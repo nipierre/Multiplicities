@@ -33,5 +33,5 @@ analySIDIS_collect: analySIDIS_collect.cc analySIDIS_collect.h
 accsplit: acceptance_split.cc acceptance_split.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
-accsplit: acceptance_collect.cc acceptance_collect.h
+acccollect: acceptance_collect.cc acceptance_collect.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
