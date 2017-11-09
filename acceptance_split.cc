@@ -134,6 +134,17 @@ void create_kin_plots()
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
+  fKinematicsMC[0] = new TH1F("Q^{2} MC", "Q^{2 MC", 100, 0, 2);
+  fKinematicsMC[1] = new TH1F("x_{Bj} MC", "x_{Bj} MC", 100, -3, 0);
+  fKinematicsMC[2] = new TH1F("y MC", "y MC", 100, 0, 1);
+  fKinematicsMC[3] = new TH1F("z MC", "z MC", 100, 0, 1);
+  fKinematicsMC[4] = new TH1F("W MC", "W MC", 100, 2, 18);
+  fKinematicsMC[5] = new TH1F("#nu MC", "#nu MC", 100, 0, 160);
+  fKinematics2DMC = new TH2F("DIS kin space MC", "DIS kin space MC", 100, -3, 0, 100, 0.1, 0.7);
+  fTarget2DMC = new TH2F("Target xy MC", "Target xy MC", 100, -3, 3, 100, -3, 3);
+  BinLogX(fKinematicsMC[0]);
+  BinLogX(fKinematicsMC[1]);
+  BinLogX(fKinematics2DMC);
 }
 
 void save_kin_plots()
