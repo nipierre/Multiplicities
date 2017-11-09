@@ -38,4 +38,4 @@ acccollect: acceptance_collect.cc acceptance_collect.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 clean :
-	rm -rf *.o
+	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect
