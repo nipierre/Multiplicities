@@ -36,3 +36,6 @@ accsplit: acceptance_split.cc acceptance_split.h
 
 acccollect: acceptance_collect.cc acceptance_collect.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+
+clean :
+	rm -rf *.o
