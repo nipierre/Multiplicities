@@ -5,7 +5,7 @@
 #include "Phast.h"
 #endif
 
-#include "cutmaker_split.h"
+#include "analySIDIS_split.h"
 
 using namespace std;
 

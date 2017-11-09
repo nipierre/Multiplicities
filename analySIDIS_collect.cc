@@ -13,7 +13,7 @@
 #include <TGraphErrors.h>
 #include <TGaxis.h>
 
-#include "cutmaker_collect.h"
+#include "analySIDIS_collect.h"
 
 //Inputs
 #define out_file_name_p "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_pion.txt"
