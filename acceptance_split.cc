@@ -2049,7 +2049,7 @@ int main(int argc, char **argv)
 
     }
 
-    cout << "-> Finished processing file added_" << run_file[filen] << ".root <-\n" << endl;
+    cout << "-> Finished processing file " << filename << " <-\n" << endl;
 
     delete f;
   }
