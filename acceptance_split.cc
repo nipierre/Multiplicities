@@ -237,10 +237,30 @@ void save_kin_plots()
 int main(int argc, char **argv)
 {
 
-  if(argc!=2)
+  if(argc < 2)
   {
-    cerr << "** ERROR : Wrong number of input **" << endl << "-> 1 input, file nb." << endl;
-    exit(1);
+    cout << "ERROR : Not enough arguments." << endl;
+    cout << "Asked : at least 1 *** Received : " << argc-1 << endl;
+    cout << "./cutmaker_split filelist" << endl;
+
+    return 1;
+  }
+
+  int kin_flag=0;
+
+  for (int i = 1; i < argc; i++)
+  {
+    if (string(argv[i]) == "-h")
+    {
+      cout << FCYN("HELP : available flags :") << endl;
+      cout << FCYN("-k") << endl;
+      return 0;
+    }
+
+    if (string(argv[i]) == "-k")
+    {
+      kin_flag=1;
+    }
   }
 
   //Kinematics
@@ -261,6 +281,8 @@ int main(int argc, char **argv)
   Double_t zBj_MC_unid = 0;
   Double_t wBj_MC = 0;
   Double_t nu_MC = 0;
+
+  if(kin_flag) create_kin_plots();
 
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
