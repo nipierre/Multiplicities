@@ -832,7 +832,7 @@ int main(int argc, char **argv)
                 // Cells crossing
                 if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
                 {
-                  //fCell++;
+                  fCell++;
 
                   if((trig&1 || trig&2 || trig&3 || trig&9))
                   {
@@ -2067,7 +2067,7 @@ int main(int argc, char **argv)
 
   if(kin_flag)
   {
-    for(int i=0; i<int(fQ2.size()); i++)
+    for(int i=0; i<int(fQ2kin.size()); i++)
     {
       fKinematics[0]->Fill(fQ2kin[i]);
       fKinematics[1]->Fill(fXBjkin[i]);
@@ -2078,7 +2078,7 @@ int main(int argc, char **argv)
       fTarget2D->Fill(fX[i],fY[i]);
 
     }
-    for(int i=0; i<int(fQ2_MC.size()); i++)
+    for(int i=0; i<int(fQ2kinMC.size()); i++)
     {
       fKinematicsMC[0]->Fill(fQ2kinMC[i]);
       fKinematicsMC[1]->Fill(fXBjkinMC[i]);
