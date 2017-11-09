@@ -2067,10 +2067,6 @@ int main(int argc, char **argv)
       fTarget2D->Fill(fX[i],fY[i]);
 
     }
-    for(int i=0; i<int(fLHpi.size()); i++)
-    {
-      fRICHLH->Fill(fLHK[i],fLHpi[i]);
-    }
     for(int i=0; i<int(fQ2_MC.size()); i++)
     {
       fKinematicsMC[0]->Fill(fQ2kinMC[i]);
@@ -2117,8 +2113,10 @@ int main(int argc, char **argv)
   fMCPplus << " MC p+\n\n" <<
   fMCPminus << " MC p-\n\n";
 
-  ofstream ofs_h(Form("hadron/hadron_%d.txt",offset), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_d(Form("DIS/DIS_%d.txt",offset), std::ofstream::out | std::ofstream::trunc);
+  // TODO : manage multiple files -> which index ? FTM 0 but to be modified
+
+  ofstream ofs_h(Form("hadron/hadron_%d.txt",0), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_d(Form("DIS/DIS_%d.txt",0), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
