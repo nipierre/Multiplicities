@@ -55,6 +55,7 @@ using namespace std;
 void fetch_acceptance(string pname)
 {
   ifstream acc_file(pname);
+  double dummy;
 
   for(int c=0; c<2; c++)
   {
