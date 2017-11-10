@@ -948,7 +948,7 @@ int main(int argc, char **argv)
           //2012 ---
 
           //2016 ---
-          if(Y2012)
+          if(Y2016)
           {
             if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),1.5))
             {
