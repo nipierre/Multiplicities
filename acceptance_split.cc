@@ -950,26 +950,20 @@ int main(int argc, char **argv)
           //2016 ---
           else if(Y2016)
           {
-            cout << "test1" << endl;
             if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue(),1.5))
             {
-              cout << "test2" << endl;
               // Q2 cut
               if((Q2_MC>1))
               {
-                cout << "test3" << endl;
                 // y cut
                 if((0.1<yBj_MC && yBj_MC<0.7))
                 {
-                  cout << "test4" << endl;
                   // W cut
                   if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
                   {
-                    cout << "test5" << endl;
                     // x cut
                     if((0.004<xBj_MC && xBj_MC<0.4))
                     {
-                      cout << "test6" << endl;
                       fAllDISflag_MC = 1;
                     }
                   }
