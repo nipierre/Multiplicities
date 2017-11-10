@@ -130,7 +130,6 @@ void create_kin_plots()
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
-  fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 2, 100, -2, 2);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -157,7 +156,6 @@ void save_kin_plots()
   c6.Divide(1,1);
   c7.Divide(1,1);
   c8.Divide(1,1);
-  c9.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -185,9 +183,6 @@ void save_kin_plots()
   c8.cd(1);
   fTarget2D->Draw("COLZ");
   c8.Update();
-  c9.cd(1);
-  fRICHLH->Draw();
-  c9.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -197,7 +192,6 @@ void save_kin_plots()
   c6.Print("kinMC.pdf","pdf");
   c7.Print("kinMC.pdf","pdf");
   c8.Print("kinMC.pdf","pdf");
-  c9.Print("kinMC.pdf","pdf");
 
   c11.Divide(1,1);
   c12.Divide(1,1);
@@ -983,20 +977,26 @@ int main(int argc, char **argv)
 
       if(kin_flag)
       {
-        fQ2kin.push_back(Q2);
-        fXBjkin.push_back(xBj);
-        fYBjkin.push_back(yBj);
-        fWBjkin.push_back(wBj);
-        fNukin.push_back(nu);
-        fX.push_back(x->GetLeaf("x")->GetValue());
-        fY.push_back(y->GetLeaf("y")->GetValue());
-        fQ2kinMC.push_back(Q2_MC);
-        fXBjkinMC.push_back(xBj_MC);
-        fYBjkinMC.push_back(yBj_MC);
-        fWBjkinMC.push_back(wBj_MC);
-        fNukinMC.push_back(nu_MC);
-        fXMC.push_back(MC_vx->GetLeaf("MC_vx")->GetValue());
-        fYMC.push_back(MC_vy->GetLeaf("MC_vy")->GetValue());
+        if(fAllDISflag)
+        {
+          fQ2kin.push_back(Q2);
+          fXBjkin.push_back(xBj);
+          fYBjkin.push_back(yBj);
+          fWBjkin.push_back(sqrt(wBj));
+          fNukin.push_back(nu);
+          fX.push_back(x->GetLeaf("x")->GetValue());
+          fY.push_back(y->GetLeaf("y")->GetValue());
+        }
+        if(fAllDISflag_MC)
+        {
+          fQ2kinMC.push_back(Q2_MC);
+          fXBjkinMC.push_back(xBj_MC);
+          fYBjkinMC.push_back(yBj_MC);
+          fWBjkinMC.push_back(sqrt(wBj_MC));
+          fNukinMC.push_back(nu_MC);
+          fXMC.push_back(MC_vx->GetLeaf("MC_vx")->GetValue());
+          fYMC.push_back(MC_vy->GetLeaf("MC_vy")->GetValue());
+        }
       }
 
       // -----------------------------------------------------------------------
@@ -1322,6 +1322,10 @@ int main(int argc, char **argv)
               hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
               pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
               zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
+              if(kin_flag)
+              {
+                fKinematicsMC[3]->Fill(zBj_MC);
+              }
             }
             if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
             idMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
@@ -1343,6 +1347,10 @@ int main(int argc, char **argv)
               hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
               pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
               zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
+              if(kin_flag)
+              {
+                fKinematicsMC[3]->Fill(zBj_MC);
+              }
             }
             if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
             idMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
@@ -1364,6 +1372,10 @@ int main(int argc, char **argv)
               hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
               pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
               zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
+              if(kin_flag)
+              {
+                fKinematicsMC[3]->Fill(zBj_MC);
+              }
             }
             if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
             idMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
@@ -1385,6 +1397,10 @@ int main(int argc, char **argv)
               hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
               pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
               zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
+              if(kin_flag)
+              {
+                fKinematicsMC[3]->Fill(zBj_MC);
+              }
             }
             if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
             idMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
@@ -1406,6 +1422,10 @@ int main(int argc, char **argv)
               hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
               pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
               zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
+              if(kin_flag)
+              {
+                fKinematicsMC[3]->Fill(zBj_MC);
+              }
             }
             if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
             idMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
@@ -1427,6 +1447,10 @@ int main(int argc, char **argv)
               hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
               pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
               zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
+              if(kin_flag)
+              {
+                fKinematicsMC[3]->Fill(zBj_MC);
+              }
             }
             if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
             idMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
@@ -1446,6 +1470,10 @@ int main(int argc, char **argv)
             zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCHplus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][3] += 1;
+            if(kin_flag)
+            {
+              fKinematicsMC[3]->Fill(zBj_MC);
+            }
           }
           else if(fId==7)
           {
@@ -1457,14 +1485,13 @@ int main(int argc, char **argv)
             zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCHminus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][3] += 1;
+            if(kin_flag)
+            {
+              fKinematicsMC[3]->Fill(zBj_MC);
+            }
           }
           else
           {}
-
-          if(kin_flag)
-          {
-            fKinematicsMC[3]->Fill(zBj_MC);
-          }
 
         }
       }
