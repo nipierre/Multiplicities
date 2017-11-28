@@ -418,22 +418,18 @@ void create_kin_plots()
   fKinematicsRD[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematicsRD[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematicsRD[5] = new TH1F("#nu", "#nu", 100, 0, 160);
-  fKinematics2DRD = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
-  fTarget2DRD = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
+  fKinematicsRD[6] = new TH1F("#Phi_h", "#Phi_h", 100, 0, 1);
   BinLogX(fKinematicsRD[0]);
   BinLogX(fKinematicsRD[1]);
-  BinLogX(fKinematics2DRD);
   fKinematicsMC[0] = new TH1F("Q^{2} MC", "Q^{2} MC", 100, 0, 2);
   fKinematicsMC[1] = new TH1F("x_{Bj} MC", "x_{Bj} MC", 100, -3, 0);
   fKinematicsMC[2] = new TH1F("y MC", "y MC", 100, 0, 1);
   fKinematicsMC[3] = new TH1F("z MC", "z MC", 100, 0, 1);
   fKinematicsMC[4] = new TH1F("W MC", "W MC", 100, 2, 18);
   fKinematicsMC[5] = new TH1F("#nu MC", "#nu MC", 100, 0, 160);
-  fKinematics2DMC = new TH2F("DIS kin space MC", "DIS kin space MC", 100, -3, 0, 100, 0.1, 0.7);
-  fTarget2DMC = new TH2F("Target xy MC", "Target xy MC", 100, -3, 3, 100, -3, 3);
+  fKinematicsMC[6] = new TH1F("#Phi_h MC", "#Phi_h MC", 100, 0, 1);
   BinLogX(fKinematicsMC[0]);
   BinLogX(fKinematicsMC[1]);
-  BinLogX(fKinematics2DMC);
 }
 
 void save_kin_plots()
@@ -445,7 +441,6 @@ void save_kin_plots()
   c5.Divide(1,1);
   c6.Divide(1,1);
   c7.Divide(1,1);
-  c8.Divide(1,1);
   c1.cd(1);
   fKinematicsRD[0]->Scale(1/fKinematicsRD[0]->Integral(), "width");
   fKinematicsRD[0]->SetLineColor(kBlue);
@@ -502,24 +497,14 @@ void save_kin_plots()
   fKinematicsMC[5]->Draw("SAME");
   c6.Update();
   c7.cd(1);
-  fKinematics2DRD->Scale(1/fKinematics2DRD->Integral(), "width");
-  fKinematics2DRD->SetLineColor(kBlue);
-  fKinematics2DRD->SetStats(0);
-  fKinematics2DRD->Draw("COLZ");
-  fKinematics2DMC->Scale(1/fKinematics2DMC->Integral(), "width");
-  fKinematics2DMC->SetLineColor(kRed);
-  fKinematics2DMC->Draw("COLZSAME");
-  gPad->SetLogx();
+  fKinematicsRD[6]->Scale(1/fKinematicsRD[6]->Integral(), "width");
+  fKinematicsRD[6]->SetLineColor(kBlue);
+  fKinematicsRD[6]->SetStats(0);
+  fKinematicsRD[6]->Draw();
+  fKinematicsMC[6]->Scale(1/fKinematicsMC[6]->Integral(), "width");
+  fKinematicsMC[6]->SetLineColor(kRed);
+  fKinematicsMC[6]->Draw("SAME");
   c7.Update();
-  c8.cd(1);
-  fTarget2DRD->Scale(1/fTarget2DRD->Integral(), "width");
-  fTarget2DRD->SetLineColor(kBlue);
-  fTarget2DRD->SetStats(0);
-  fTarget2DRD->Draw("COLZ");
-  fTarget2DMC->Scale(1/fTarget2DMC->Integral(), "width");
-  fTarget2DMC->SetLineColor(kRed);
-  fTarget2DMC->Draw("COLZSAME");
-  c8.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
@@ -527,8 +512,7 @@ void save_kin_plots()
   c4.Print("kinMCRD.pdf","pdf");
   c5.Print("kinMCRD.pdf","pdf");
   c6.Print("kinMCRD.pdf","pdf");
-  c7.Print("kinMCRD.pdf","pdf");
-  c8.Print("kinMCRD.pdf)","pdf");
+  c7.Print("kinMCRD.pdf)","pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -2030,6 +2014,8 @@ void MCextraction(string pFilelist)
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
           fPosRICH++;
 
+          if(0.1<zBj) fKinematics[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
 
@@ -2751,7 +2737,7 @@ void RDextraction(string pFilelist)
       fQ2kin.push_back(Q2);
       fXBjkin.push_back(xBj);
       fYBjkin.push_back(yBj);
-      fWBjkin.push_back(wBj);
+      fWBjkin.push_back(sqrt(wBj));
       fNukin.push_back(nu);
       fX.push_back(x->GetLeaf("x")->GetValue());
       fY.push_back(y->GetLeaf("y")->GetValue());
@@ -3296,6 +3282,8 @@ void RDextraction(string pFilelist)
           else if(30<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<35) mom_bin = 8;
           else mom_bin = 9;
         }
+
+        if(0.1<zBj) fKinematicsRD[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
 
         // z cut
         if(!(0.2<zBj && zBj<0.85)) continue;

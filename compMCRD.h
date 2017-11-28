@@ -169,20 +169,15 @@ studyxy fR_xy[24];
 
 //Draw
 
-TH1F* fKinematicsRD[6];
-TH2F* fKinematics2DRD;
-TH2F* fTarget2DRD;
-TH1F* fKinematicsMC[6];
-TH2F* fKinematics2DMC;
-TH2F* fTarget2DMC;
+TH1F* fKinematicsRD[7];
+TH1F* fKinematicsMC[7];
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
 TCanvas c3("Kin_y","Kin_y",3200,1600);
 TCanvas c4("Kin_z","Kin_z",3200,1600);
 TCanvas c5("Kin_w","Kin_w",3200,1600);
 TCanvas c6("Kin_#nu","Kin_#nu",3200,1600);
-TCanvas c7("Kin_xy","Kin_xy",3200,1600);
-TCanvas c8("target_xy","target_xy",3200,1600);
+TCanvas c7("Kin_#Phi","Kin_#Phi",3200,1600);
 
 //Graphic Style
 
