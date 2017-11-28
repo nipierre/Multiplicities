@@ -2014,7 +2014,7 @@ void MCextraction(string pFilelist)
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
           fPosRICH++;
 
-          if(0.1<zBj) fKinematics[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          if(0.1<zBj) fKinematicsRD[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
@@ -2301,9 +2301,6 @@ void MCextraction(string pFilelist)
     fKinematicsMC[2]->Fill(fYBjkinMC[i]);
     fKinematicsMC[4]->Fill(fWBjkinMC[i]);
     fKinematicsMC[5]->Fill(fNukinMC[i]);
-    fKinematics2DMC->Fill(fXBjkinMC[i],fYBjkinMC[i]);
-    fTarget2DMC->Fill(fXMC[i],fYMC[i]);
-
   }
 
 }
@@ -4241,9 +4238,6 @@ void RDextraction(string pFilelist)
     fKinematicsRD[2]->Fill(fYBjkin[i]);
     fKinematicsRD[4]->Fill(fWBjkin[i]);
     fKinematicsRD[5]->Fill(fNukin[i]);
-    fKinematics2DRD->Fill(fXBjkin[i],fYBjkin[i]);
-    fTarget2DRD->Fill(fX[i],fY[i]);
-
   }
 
 }
