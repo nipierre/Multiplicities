@@ -150,9 +150,12 @@ Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 
 //Draw
 
-TH1F* fKinematics[6];
-TH2F* fKinematics2D;
-TH2F* fTarget2D;
+TH1F* fKinematicsRD[6];
+TH2F* fKinematics2DRD;
+TH2F* fTarget2DRD;
+TH1F* fKinematicsMC[6];
+TH2F* fKinematics2DMC;
+TH2F* fTarget2DMC;
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
 TCanvas c3("Kin_y","Kin_y",3200,1600);
@@ -161,18 +164,6 @@ TCanvas c5("Kin_w","Kin_w",3200,1600);
 TCanvas c6("Kin_#nu","Kin_#nu",3200,1600);
 TCanvas c7("Kin_xy","Kin_xy",3200,1600);
 TCanvas c8("target_xy","target_xy",3200,1600);
-
-TH1F* fKinematicsMC[6];
-TH2F* fKinematics2DMC;
-TH2F* fTarget2DMC;
-TCanvas c11("KinMC_Q^{2}","KinMC_Q^{2}",3200,1600);
-TCanvas c12("KinMC_x^{Bj}","KinMC_x^{Bj}",3200,1600);
-TCanvas c13("KinMC_y","KinMC_y",3200,1600);
-TCanvas c14("KinMC_z","KinMC_z",3200,1600);
-TCanvas c15("KinMC_w","KinMC_w",3200,1600);
-TCanvas c16("KinMC_#nu","KinMC_#nu",3200,1600);
-TCanvas c17("KinMC_xy","KinMC_xy",3200,1600);
-TCanvas c18("targetMC_xy","targetMC_xy",3200,1600);
 
 //Graphic Style
 
@@ -185,3 +176,33 @@ static const Double_t fM_p = 938.272046/(1e3);
 static const Double_t fM_mu = 105.6583715/(1e3);
 static const Double_t fM_K = 493.677/(1e3);
 static const Double_t fM_pi = 139.57018/(1e3);
+
+//----------------------------------------------------------------------------
+//--------- RICH unfolding ---------------------------------------------------
+//----------------------------------------------------------------------------
+
+TMatrixD rich_mat_p[2][10];
+TMatrixD rich_mat_m[2][10];
+TMatrixD inv_rich_p[2][10];
+TMatrixD inv_rich_m[2][10];
+TMatrixD err_rich_p[3][3];
+TMatrixD err_rich_m[3][3];
+Double_t pi_unfolding_err_p[2][10][3];
+Double_t pi_unfolding_err_m[2][10][3];
+Double_t k_unfolding_err_p[2][10][3];
+Double_t k_unfolding_err_m[2][10][3];
+Double_t p_unfolding_err_p[2][10][3];
+Double_t p_unfolding_err_m[2][10][3];
+Int_t mat_bin[2][10];
+Int_t err_bin[2][10];
+Double_t cov1_pi[2][3];
+Double_t cov1_k[2][3];
+Double_t cov1_p[2][3];
+Double_t cov2[2][3];
+TMatrixD pi_sigma_uni(3,3);
+TMatrixD k_sigma_uni(3,3);
+TMatrixD p_sigma_uni(3,3);
+TMatrixD pi_vect(3,1);
+TMatrixD k_vect(3,1);
+TMatrixD p_vect(3,1);
+Double_t dummy;
