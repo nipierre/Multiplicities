@@ -1086,7 +1086,7 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.7))
+                      if((0<yBj && yBj<1))
                       {
                         fYBjtest++;
 
@@ -1094,7 +1094,7 @@ void MCextraction(string pFilelist)
                         if((5<sqrt(wBj) && sqrt(wBj)<17))
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((0<xBj && xBj<1))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -1204,13 +1204,13 @@ void MCextraction(string pFilelist)
               if((Q2_MC>1))
               {
                 // y cut
-                if((0.1<yBj_MC && yBj_MC<0.7))
+                if((0<yBj_MC && yBj_MC<1))
                 {
                   // W cut
                   if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
                   {
                     // x cut
-                    if((0.004<xBj_MC && xBj_MC<0.4))
+                    if((0<xBj_MC && xBj_MC<1))
                     {
                       fAllDISflag_MC = 1;
                     }
@@ -1998,6 +1998,8 @@ void MCextraction(string pFilelist)
             zBj_unid = 0;
           }
 
+          if(0.1<zBj) fKinematicsMC[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
           fXX0test++;
@@ -2013,8 +2015,6 @@ void MCextraction(string pFilelist)
           // RICH position cut
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
           fPosRICH++;
-
-          if(0.1<zBj) fKinematicsRD[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
@@ -2720,7 +2720,7 @@ void RDextraction(string pFilelist)
       fQ2test++;
 
       // y cut
-      if(!(0.1<yBj && yBj<0.7)) continue;
+      if(!(0<yBj && yBj<1)) continue;
       fYBjtest++;
 
       // W cut
@@ -2728,7 +2728,7 @@ void RDextraction(string pFilelist)
       fWBjtest++;
 
       // x cut
-      if(!(0.004<xBj && xBj<0.4)) continue;
+      if(!(0<xBj && xBj<1)) continue;
       fXBjtest++;
 
       fQ2kin.push_back(Q2);
@@ -3225,6 +3225,8 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
+        if(0.1<zBj) fKinematicsRD[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+
         // Maximum radiation length cumulated
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
         fXX0test++;
@@ -3279,8 +3281,6 @@ void RDextraction(string pFilelist)
           else if(30<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<35) mom_bin = 8;
           else mom_bin = 9;
         }
-
-        if(0.1<zBj) fKinematicsRD[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
 
         // z cut
         if(!(0.2<zBj && zBj<0.85)) continue;
