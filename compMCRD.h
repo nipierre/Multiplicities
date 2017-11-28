@@ -68,6 +68,10 @@ vector<Double_t> fXMC;
 vector<Double_t> fYMC;
 vector<Double_t> fZMC;
 
+vector<Pvsz> fPvsz;
+vector<Pvsz> fPvsz_err;
+vector<hadiden> fHadiden;
+
 //Misc
 
 set<Double_t> fLHsec_set;
@@ -81,6 +85,8 @@ Double_t fNu_min[3][12];
 vector<Double_t> fXv;
 vector<Double_t> fYv;
 vector<Double_t> fZv;
+hadiden fRstudy[24];
+studyxy fRstudy_xy[24];
 
 bool fAllDISflag;
 bool fAllDISflag_MC;
@@ -147,6 +153,14 @@ Double_t fRcutval[24] = {1.68812,1.6915,1.69572,1.69733,1.71178,1.74735,1.74682,
 int fFlag[3][9][5][12];
 int fFlag_MC[3][9][5][12];
 Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
+
+Recovery fMeanvalues[9][5][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
+Recovery_tank fMeanvalues_size[9][5][12];
+Recovery_tank fMeanvalues_data[9][5][12];
+
+Wrapper fBinning[9][5][12];
+Wrapper fBinning_loose[9][5][12];
+Wrapper fBinning_severe[9][5][12];
 
 //Draw
 

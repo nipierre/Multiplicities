@@ -13,6 +13,8 @@
 #include "compMCRD.h"
 
 //Inputs
+#define mat_RICH_name "rich_mat.txt"
+#define err_RICH_name "rich_mat_error.txt"
 #define target_file_2012 "target-107924-109081.dat"
 #define target_file_2016 "target-274508-274901.dat"
 
@@ -556,7 +558,7 @@ void MCextraction(string pFilelist)
 
   // List of files
 
-  ifstream list(pFileList);
+  ifstream list(pFilelist);
   string filename;
 
   while(list >> filename)
