@@ -34,6 +34,8 @@ struct Wrapper { Double_t tab[2][2][4]; };
 struct Pvsz { vector<Double_t> vec[2][5]; };
 struct hadiden { vector<Double_t> vec; };
 struct studyxy { vector<Double_t> vec[2]; };
+struct Recovery { vector<Double_t> vec[2][4][4]; };
+struct Recovery_tank { Double_t tab[2][4][4]; };
 
 
 //Qty containers
@@ -145,6 +147,7 @@ Wrapper fAcceptance[9][5][12];
 Double_t fNDIS_evt[3][9][5][12];
 Double_t fNDIS_evt_c[3][9][5][12];
 Double_t fNDIS_evt_MC[3][9][5][12];
+Double_t fNDIS_evt_err[3][9][5][12];
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
@@ -161,6 +164,8 @@ Recovery_tank fMeanvalues_data[9][5][12];
 Wrapper fBinning[9][5][12];
 Wrapper fBinning_loose[9][5][12];
 Wrapper fBinning_severe[9][5][12];
+
+studyxy fR_xy[24];
 
 //Draw
 

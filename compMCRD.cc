@@ -23,6 +23,7 @@
 #define Y2012 0
 #define Y2016 1
 #define MOMENTUM 3
+#define RCUTSTUDY_ON 0
 //#define SIZESPLIT 1
 //#define OFFSET 0
 
