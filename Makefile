@@ -18,9 +18,10 @@ ifeq ($(debug),1)
 CCFLAGS += -DDEBUG
 endif
 
-all : analySIDIS acceptance
+all : analySIDIS acceptance comparison
 analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit acccollect
+comparison : compMCRD
 
 %.o: %.cc %.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -c -o $@ $<
@@ -37,5 +38,8 @@ accsplit: acceptance_split.cc acceptance_split.h
 acccollect: acceptance_collect.cc acceptance_collect.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
+compMCRD: compMCRD.cc compMCRD.h
+	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+
 clean :
-	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect
+	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD
