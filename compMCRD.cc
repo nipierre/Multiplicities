@@ -512,7 +512,7 @@ void save_kin_plots()
   gPad->SetLogx();
   c7.Update();
   c8.cd(1);
-  fTarget2DRD->Scale(1/ffTarget2DRD->Integral(), "width");
+  fTarget2DRD->Scale(1/fTarget2DRD->Integral(), "width");
   fTarget2DRD->SetLineColor(kBlue);
   fTarget2DRD->SetStats(0);
   fTarget2DRD->Draw("COLZ");
