@@ -445,8 +445,10 @@ void save_kin_plots()
   fKinematicsRD[0]->Scale(1/fKinematicsRD[0]->Integral("width"));
   fKinematicsRD[0]->SetLineColor(kRed);
   fKinematicsRD[0]->SetStats(0);
+  fKinematicsRD[0]->SetMinimum(0.);
+  fKinematicsRD[0]->SetMaximum(0.35);
   fKinematicsRD[0]->Draw();
-  fKinematicsMC[0]->Scale(1/fKinematicsRD[0]->Integral("width"));
+  fKinematicsMC[0]->Scale(1/fKinematicsMC[0]->Integral("width"));
   fKinematicsMC[0]->SetLineColor(kBlue);
   fKinematicsMC[0]->Draw("SAME");
   gPad->SetLogx();
@@ -465,6 +467,8 @@ void save_kin_plots()
   fKinematicsRD[2]->Scale(1/fKinematicsRD[2]->Integral(), "width");
   fKinematicsRD[2]->SetLineColor(kRed);
   fKinematicsRD[2]->SetStats(0);
+  fKinematicsRD[2]->SetMinimum(0.);
+  fKinematicsRD[2]->SetMaximum(5.);
   fKinematicsRD[2]->Draw();
   fKinematicsMC[2]->Scale(1/fKinematicsMC[2]->Integral(), "width");
   fKinematicsMC[2]->SetLineColor(kBlue);
@@ -482,6 +486,8 @@ void save_kin_plots()
   c5.cd(1);
   fKinematicsRD[4]->Scale(1/fKinematicsRD[4]->Integral(), "width");
   fKinematicsRD[4]->SetLineColor(kRed);
+  fKinematicsRD[4]->SetMinimum(0.);
+  fKinematicsRD[4]->SetMaximum(0.22);
   fKinematicsRD[4]->Draw();
   fKinematicsMC[4]->Scale(1/fKinematicsMC[4]->Integral(), "width");
   fKinematicsMC[4]->SetLineColor(kBlue);
@@ -491,6 +497,8 @@ void save_kin_plots()
   fKinematicsRD[5]->Scale(1/fKinematicsRD[5]->Integral(), "width");
   fKinematicsRD[5]->SetLineColor(kRed);
   fKinematicsRD[5]->SetStats(0);
+  fKinematicsRD[5]->SetMinimum(0.);
+  fKinematicsRD[5]->SetMaximum(0.035);
   fKinematicsRD[5]->Draw();
   fKinematicsMC[5]->Scale(1/fKinematicsMC[5]->Integral(), "width");
   fKinematicsMC[5]->SetLineColor(kBlue);
@@ -500,6 +508,8 @@ void save_kin_plots()
   fKinematicsRD[6]->Scale(1/fKinematicsRD[6]->Integral(), "width");
   fKinematicsRD[6]->SetLineColor(kRed);
   fKinematicsRD[6]->SetStats(0);
+  fKinematicsRD[6]->SetMinimum(0.);
+  fKinematicsRD[6]->SetMaximum(0.4);
   fKinematicsRD[6]->Draw();
   fKinematicsMC[6]->Scale(1/fKinematicsMC[6]->Integral(), "width");
   fKinematicsMC[6]->SetLineColor(kBlue);
