@@ -427,7 +427,7 @@ void create_kin_plots()
   fKinematicsMC[3] = new TH1F("z MC", "z MC", 100, 0, 1);
   fKinematicsMC[4] = new TH1F("W MC", "W MC", 100, 2, 18);
   fKinematicsMC[5] = new TH1F("#nu MC", "#nu MC", 100, 0, 160);
-  fKinematicsMC[6] = new TH1F("#Phi_h MC", "#Phi_h MC", 100, 0, 1);
+  fKinematicsMC[6] = new TH1F("#Phi_h MC", "#Phi_h MC", 100, 0, 3);
   BinLogX(fKinematicsMC[0]);
   BinLogX(fKinematicsMC[1]);
 }
@@ -442,21 +442,21 @@ void save_kin_plots()
   c6.Divide(1,1);
   c7.Divide(1,1);
   c1.cd(1);
-  fKinematicsRD[0]->Scale(1/fKinematicsRD[0]->Integral(), "width");
+  fKinematicsRD[0]->Scale(1, "width");
   fKinematicsRD[0]->SetLineColor(kBlue);
   fKinematicsRD[0]->SetStats(0);
   fKinematicsRD[0]->Draw();
-  fKinematicsMC[0]->Scale(1/fKinematicsMC[0]->Integral(), "width");
+  fKinematicsMC[0]->Scale(1, "width");
   fKinematicsMC[0]->SetLineColor(kRed);
   fKinematicsMC[0]->Draw("SAME");
   gPad->SetLogx();
   c1.Update();
   c2.cd(1);
-  fKinematicsRD[1]->Scale(1/fKinematicsRD[1]->Integral(), "width");
+  fKinematicsRD[1]->Scale(1, "width");
   fKinematicsRD[1]->SetLineColor(kBlue);
   fKinematicsRD[1]->SetStats(0);
   fKinematicsRD[1]->Draw();
-  fKinematicsMC[1]->Scale(1/fKinematicsMC[1]->Integral(), "width");
+  fKinematicsMC[1]->Scale(1, "width");
   fKinematicsMC[1]->SetLineColor(kRed);
   fKinematicsMC[1]->Draw("SAME");
   gPad->SetLogx();
@@ -1998,7 +1998,7 @@ void MCextraction(string pFilelist)
             zBj_unid = 0;
           }
 
-          if(0.1<zBj) fKinematicsMC[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          if(0.1<zBj) fKinematicsMC[6]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
@@ -3225,7 +3225,7 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
-        if(0.1<zBj) fKinematicsRD[6]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        if(0.1<zBj) fKinematicsRD[6]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
         // Maximum radiation length cumulated
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
