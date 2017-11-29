@@ -418,7 +418,7 @@ void create_kin_plots()
   fKinematicsRD[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematicsRD[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematicsRD[5] = new TH1F("#nu", "#nu", 100, 0, 160);
-  fKinematicsRD[6] = new TH1F("#Phi_h", "#Phi_h", 100, 0, 1);
+  fKinematicsRD[6] = new TH1F("#Phi_h", "#Phi_h", 100, 0, 3);
   fKinematicsMC[0] = new TH1F("Q^{2} MC", "Q^{2} MC", 100, 0, 2);
   fKinematicsMC[1] = new TH1F("x_{Bj} MC", "x_{Bj} MC", 100, -3, 0);
   fKinematicsMC[2] = new TH1F("y MC", "y MC", 100, 0, 1);
