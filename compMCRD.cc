@@ -446,7 +446,7 @@ void save_kin_plots()
   fKinematicsRD[0]->SetLineColor(kRed);
   fKinematicsRD[0]->SetStats(0);
   fKinematicsRD[0]->Draw();
-  fKinematicsMC[0]->Scale(1/fKinematicsRD[1]->Integral("width"));
+  fKinematicsMC[0]->Scale(1/fKinematicsRD[0]->Integral("width"));
   fKinematicsMC[0]->SetLineColor(kBlue);
   fKinematicsMC[0]->Draw("SAME");
   gPad->SetLogx();
