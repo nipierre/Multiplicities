@@ -4257,6 +4257,15 @@ void RDextraction(string pFilelist)
 int main(int argc, char **argv)
 {
 
+  if(argc < 2)
+  {
+    cout << "ERROR : Not enough arguments." << endl;
+    cout << "Asked : 2 *** Received : " << argc-1 << endl;
+    cout << "./compMCRD filelist" << endl;
+
+    return 1;
+  }
+
   create_kin_plots();
   RDextraction(argv[1]);
   MCextraction(argv[2]);
