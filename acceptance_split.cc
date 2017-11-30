@@ -2087,7 +2087,7 @@ int main(int argc, char **argv)
 
     }
 
-    cout << "-> Finished processing file " << filename << " <-\n" << endl;
+    cout << "\n-> Finished processing file " << filename << " <-\n" << endl;
 
     delete f;
   }
