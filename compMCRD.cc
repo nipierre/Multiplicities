@@ -1103,7 +1103,7 @@ void MCextraction(string pFilelist)
                         fYBjtest++;
 
                         // W cut
-                        if(/*(5<sqrt(wBj) && sqrt(wBj)<17)*/)
+                        if(true/*(5<sqrt(wBj) && sqrt(wBj)<17)*/)
                         {
                           fWBjtest++;
                           if((0<xBj && xBj<1))
@@ -1219,7 +1219,7 @@ void MCextraction(string pFilelist)
                 if((0<yBj_MC && yBj_MC<1))
                 {
                   // W cut
-                  if(/*(5<sqrt(wBj_MC) && sqrt(wBj_MC)<17)*/)
+                  if(true/*(5<sqrt(wBj_MC) && sqrt(wBj_MC)<17)*/)
                   {
                     // x cut
                     if((0<xBj_MC && xBj_MC<1))
