@@ -246,7 +246,7 @@ int main(int argc, char **argv)
   {
     cout << "ERROR : Not enough arguments." << endl;
     cout << "Asked : at least 1 *** Received : " << argc-1 << endl;
-    cout << "./cutmaker_split filelist" << endl;
+    cout << "./acceptance_split filelist" << endl;
 
     return 1;
   }
