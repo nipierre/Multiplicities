@@ -1147,7 +1147,7 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0<yBj && yBj<1))
+                      if((0.1<yBj && yBj<0.7))
                       {
                         fYBjtest++;
 
@@ -1265,7 +1265,7 @@ void MCextraction(string pFilelist)
               if((Q2_MC>1))
               {
                 // y cut
-                if((0<yBj_MC && yBj_MC<1))
+                if((0.1<yBj_MC && yBj_MC<0.7))
                 {
                   // W cut
                   if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
