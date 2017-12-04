@@ -171,6 +171,7 @@ studyxy fR_xy[24];
 
 TH1F* fKinematicsRD[7];
 TH1F* fKinematicsMC[7];
+TH1F* fKinematicsRatio[7];
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
 TCanvas c3("Kin_y","Kin_y",3200,1600);
