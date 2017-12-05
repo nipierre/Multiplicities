@@ -2781,7 +2781,7 @@ void RDextraction(string pFilelist)
       fQ2test++;
 
       // y cut
-      if(!(0<yBj && yBj<1)) continue;
+      if(!(0.1<yBj && yBj<0.7)) continue;
       fYBjtest++;
 
       // W cut
@@ -2789,7 +2789,7 @@ void RDextraction(string pFilelist)
       fWBjtest++;
 
       // x cut
-      if(!(0<xBj && xBj<1)) continue;
+      if(!(0.004<xBj && xBj<0.4)) continue;
       fXBjtest++;
 
       fQ2kin.push_back(Q2);
