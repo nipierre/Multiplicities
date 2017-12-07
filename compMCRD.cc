@@ -449,6 +449,7 @@ void save_kin_plots()
   fKinematicsRatio[0]->Divide(fKinematicsMC[0]);
   fKinematicsRatio[0]->SetMarkerStyle(21);
   fKinematicsRatio[0]->Draw();
+  gPad->SetLogx();
   c1.Update();
   c1.cd(1);
   fKinematicsRD[0]->SetLineColor(kRed);
@@ -468,6 +469,7 @@ void save_kin_plots()
   fKinematicsRatio[1]->Divide(fKinematicsMC[1]);
   fKinematicsRatio[1]->SetMarkerStyle(21);
   fKinematicsRatio[1]->Draw();
+  gPad->SetLogx();
   c2.Update();
   c2.cd(1);
   fKinematicsRD[1]->SetLineColor(kRed);
