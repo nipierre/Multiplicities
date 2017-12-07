@@ -448,7 +448,7 @@ void save_kin_plots()
   fKinematicsRatio[0]->SetStats(0);
   fKinematicsRatio[0]->Divide(fKinematicsMC[0]);
   fKinematicsRatio[0]->SetMarkerStyle(21);
-  fKinematicsRatio[0]->Draw();
+  fKinematicsRatio[0]->Draw("P");
   gPad->SetLogx();
   c1.Update();
   c1.cd(1);
