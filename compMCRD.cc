@@ -468,7 +468,7 @@ void save_kin_plots()
   fKinematicsRatio[1]->SetStats(0);
   fKinematicsRatio[1]->Divide(fKinematicsMC[1]);
   fKinematicsRatio[1]->SetMarkerStyle(21);
-  fKinematicsRatio[1]->Draw();
+  fKinematicsRatio[1]->Draw("P");
   gPad->SetLogx();
   c2.Update();
   c2.cd(1);
@@ -488,7 +488,7 @@ void save_kin_plots()
   fKinematicsRatio[2]->SetStats(0);
   fKinematicsRatio[2]->Divide(fKinematicsMC[2]);
   fKinematicsRatio[2]->SetMarkerStyle(21);
-  fKinematicsRatio[2]->Draw();
+  fKinematicsRatio[2]->Draw("P");
   c3.Update();
   c3.cd(1);
   fKinematicsRD[2]->SetLineColor(kRed);
@@ -506,7 +506,7 @@ void save_kin_plots()
   fKinematicsRatio[3]->SetStats(0);
   fKinematicsRatio[3]->Divide(fKinematicsMC[3]);
   fKinematicsRatio[3]->SetMarkerStyle(21);
-  fKinematicsRatio[3]->Draw();
+  fKinematicsRatio[3]->Draw("P");
   c4.Update();
   c4.cd(1);
   fKinematicsRD[3]->SetLineColor(kRed);
@@ -522,7 +522,7 @@ void save_kin_plots()
   fKinematicsRatio[4]->SetStats(0);
   fKinematicsRatio[4]->Divide(fKinematicsMC[4]);
   fKinematicsRatio[4]->SetMarkerStyle(21);
-  fKinematicsRatio[4]->Draw();
+  fKinematicsRatio[4]->Draw("P");
   c5.Update();
   c5.cd(1);
   fKinematicsRD[4]->SetLineColor(kRed);
@@ -539,7 +539,7 @@ void save_kin_plots()
   fKinematicsRatio[5]->SetStats(0);
   fKinematicsRatio[5]->Divide(fKinematicsMC[5]);
   fKinematicsRatio[5]->SetMarkerStyle(21);
-  fKinematicsRatio[5]->Draw();
+  fKinematicsRatio[5]->Draw("P");
   c6.Update();
   c6.cd(1);
   fKinematicsRD[5]->SetLineColor(kRed);
@@ -557,7 +557,7 @@ void save_kin_plots()
   fKinematicsRatio[6]->SetStats(0);
   fKinematicsRatio[6]->Divide(fKinematicsMC[6]);
   fKinematicsRatio[6]->SetMarkerStyle(21);
-  fKinematicsRatio[6]->Draw();
+  fKinematicsRatio[6]->Draw("P");
   c7.Update();
   c7.cd(1);
   fKinematicsRD[6]->SetLineColor(kRed);
