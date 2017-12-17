@@ -2680,7 +2680,7 @@ void RDextraction(string pFilelist)
         wBj = 0;
 
       int trig= trigMask->GetLeaf("trigMask")->GetValue();
-      cout<<trigmask<<endl;
+      cout<<trigMask<<endl;
 
 
       //2006 ---
