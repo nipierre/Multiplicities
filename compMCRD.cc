@@ -500,7 +500,7 @@ void save_kin_plots()
     fKinematicsRD[i][2]->SetLineColor(kRed);
     fKinematicsRD[i][2]->SetStats(0);
     fKinematicsRD[i][2]->SetMinimum(0.);
-    fKinematicsRD[i][2]->SetMaximum(0.05);
+    fKinematicsRD[i][2]->SetMaximum(0.06);
     fKinematicsRD[i][2]->Draw();
     fKinematicsMC[i][2]->SetLineColor(kBlue);
     fKinematicsMC[i][2]->Draw("SAME");
@@ -517,7 +517,7 @@ void save_kin_plots()
     c5.cd(i+1);
     fKinematicsRD[i][4]->SetLineColor(kRed);
     fKinematicsRD[i][4]->SetMinimum(0.);
-    fKinematicsRD[i][4]->SetMaximum(0.05);
+    fKinematicsRD[i][4]->SetMaximum(0.06);
     fKinematicsRD[i][4]->Draw();
     fKinematicsMC[i][4]->SetLineColor(kBlue);
     fKinematicsMC[i][4]->Draw("SAME");
