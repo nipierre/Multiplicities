@@ -414,20 +414,20 @@ void create_kin_plots()
 {
   for(int i=0; i<4; i++)
   {
-    fKinematicsRD[i][0] = new TH1F(Form("Q^{2} %s",trigname[i]), Form("Q^{2} %s",trigname[i]), 100, 0, 2);
-    fKinematicsRD[i][1] = new TH1F(Form("x_{Bj} %s",trigname[i]), Form("x_{Bj} %s",trigname[i]), 100, -3, 0);
-    fKinematicsRD[i][2] = new TH1F(Form("y %s",trigname[i]), Form("y %s",trigname[i]), 100, 0, 1);
-    fKinematicsRD[i][3] = new TH1F(Form("z %s",trigname[i]), Form("z %s",trigname[i]), 100, 0, 1);
-    fKinematicsRD[i][4] = new TH1F(Form("W %s",trigname[i]), Form("W %s",trigname[i]), 100, 2, 18);
-    fKinematicsRD[i][5] = new TH1F(Form("#nu %s",trigname[i]), Form("#nu %s",trigname[i]), 100, 0, 160);
-    fKinematicsRD[i][6] = new TH1F(Form("#Phi_h %s",trigname[i]), Form("#Phi_h %s",trigname[i]), 100, 0, 3);
-    fKinematicsMC[i][0] = new TH1F(Form("Q^{2} MC %s",trigname[i]), Form("Q^{2} MC %s",trigname[i]), 100, 0, 2);
-    fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} MC %s",trigname[i]), Form("x_{Bj} MC %s",trigname[i]), 100, -3, 0);
-    fKinematicsMC[i][2] = new TH1F(Form("y MC %s",trigname[i]), Form("y MC %s",trigname[i]), 100, 0, 1);
-    fKinematicsMC[i][3] = new TH1F(Form("z MC %s",trigname[i]), Form("z MC %s",trigname[i]), 100, 0, 1);
-    fKinematicsMC[i][4] = new TH1F(Form("W MC %s",trigname[i]), Form("W MC %s",trigname[i]), 100, 2, 18);
-    fKinematicsMC[i][5] = new TH1F(Form("#nu MC %s",trigname[i]), Form("#nu MC %s",trigname[i]), 100, 0, 160);
-    fKinematicsMC[i][6] = new TH1F(Form("#Phi_h MC %s",trigname[i]), Form("#Phi_h MC %s",trigname[i]), 100, 0, 3);
+    fKinematicsRD[i][0] = new TH1F(Form("Q^{2} %s",trigname[i].c_str()), Form("Q^{2} %s",trigname[i].c_str()), 100, 0, 2);
+    fKinematicsRD[i][1] = new TH1F(Form("x_{Bj} %s",trigname[i].c_str()), Form("x_{Bj} %s",trigname[i].c_str()), 100, -3, 0);
+    fKinematicsRD[i][2] = new TH1F(Form("y %s",trigname[i].c_str()), Form("y %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsRD[i][3] = new TH1F(Form("z %s",trigname[i].c_str()), Form("z %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsRD[i][4] = new TH1F(Form("W %s",trigname[i].c_str()), Form("W %s",trigname[i].c_str()), 100, 2, 18);
+    fKinematicsRD[i][5] = new TH1F(Form("#nu %s",trigname[i].c_str()), Form("#nu %s",trigname[i].c_str()), 100, 0, 160);
+    fKinematicsRD[i][6] = new TH1F(Form("#Phi_h %s",trigname[i].c_str()), Form("#Phi_h %s",trigname[i].c_str()), 100, 0, 3);
+    fKinematicsMC[i][0] = new TH1F(Form("Q^{2} MC %s",trigname[i].c_str()), Form("Q^{2} MC %s",trigname[i].c_str()), 100, 0, 2);
+    fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} MC %s",trigname[i].c_str()), Form("x_{Bj} MC %s",trigname[i].c_str()), 100, -3, 0);
+    fKinematicsMC[i][2] = new TH1F(Form("y MC %s",trigname[i].c_str()), Form("y MC %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsMC[i][3] = new TH1F(Form("z MC %s",trigname[i].c_str()), Form("z MC %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsMC[i][4] = new TH1F(Form("W MC %s",trigname[i].c_str()), Form("W MC %s",trigname[i].c_str()), 100, 2, 18);
+    fKinematicsMC[i][5] = new TH1F(Form("#nu MC %s",trigname[i].c_str()), Form("#nu MC %s",trigname[i].c_str()), 100, 0, 160);
+    fKinematicsMC[i][6] = new TH1F(Form("#Phi_h MC %s",trigname[i].c_str()), Form("#Phi_h MC %s",trigname[i].c_str()), 100, 0, 3);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
