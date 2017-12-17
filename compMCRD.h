@@ -41,27 +41,27 @@ struct Recovery_tank { Double_t tab[2][4][4]; };
 //Qty containers
 
 vector<Double_t> fQ2;
-vector<Double_t> fQ2kin;
+vector<Double_t> fQ2kin[4];
 vector<Double_t> fQ2local;
 vector<Double_t> fXBj;
-vector<Double_t> fXBjkin;
+vector<Double_t> fXBjkin[4];
 vector<Double_t> fYBj;
-vector<Double_t> fYBjkin;
+vector<Double_t> fYBjkin[4];
 vector<Double_t> fWBj;
-vector<Double_t> fWBjkin;
+vector<Double_t> fWBjkin[4];
 vector<Double_t> fNu;
-vector<Double_t> fNukin;
+vector<Double_t> fNukin[4];
 
 vector<Double_t> fQ2_MC;
-vector<Double_t> fQ2kinMC;
+vector<Double_t> fQ2kinMC[4];
 vector<Double_t> fXBj_MC;
-vector<Double_t> fXBjkinMC;
+vector<Double_t> fXBjkinMC[4];
 vector<Double_t> fYBj_MC;
-vector<Double_t> fYBjkinMC;
+vector<Double_t> fYBjkinMC[4];
 vector<Double_t> fWBj_MC;
-vector<Double_t> fWBjkinMC;
+vector<Double_t> fWBjkinMC[4];
 vector<Double_t> fNu_MC;
-vector<Double_t> fNukinMC;
+vector<Double_t> fNukinMC[4];
 
 vector<Double_t> fX;
 vector<Double_t> fY;
@@ -169,9 +169,9 @@ studyxy fR_xy[24];
 
 //Draw
 
-TH1F* fKinematicsRD[7];
-TH1F* fKinematicsMC[7];
-TH1F* fKinematicsRatio[7];
+TH1F* fKinematicsRD[4][7];
+TH1F* fKinematicsMC[4][7];
+TH1F* fKinematicsRatio[4][7];
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
 TCanvas c3("Kin_y","Kin_y",3200,1600);
