@@ -2835,7 +2835,7 @@ void RDextraction(string pFilelist)
       }
       //2016 ---
       fTrig++;
-      cout<<trigMask<<endl;
+      cout<<trigMask<< " " << trig&1 << " " << trig&2 << " " << trig&3 << " " << trig&9 << endl;
 
       // Q2 cut
       if(!(Q2>1)) continue;
