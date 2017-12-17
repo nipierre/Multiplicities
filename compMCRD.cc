@@ -488,8 +488,8 @@ void save_kin_plots()
     gPad->SetLogx();
     c2.Update();
     // c3.cd(2);
-    fKinematicsRD[i][2]->Scale(1/fKinematicsRD[2][2]->Integral(), "width");
-    fKinematicsMC[i][2]->Scale(1/fKinematicsMC[2][2]->Integral(), "width");
+    fKinematicsRD[i][2]->Scale(1/fKinematicsRD[2][2]->GetEntries());
+    fKinematicsMC[i][2]->Scale(1/fKinematicsMC[2][2]->GetEntries());
     // fKinematicsRatio[2] = (TH1F*)fKinematicsRD[2]->Clone();
     // fKinematicsRatio[2]->SetStats(0);
     // fKinematicsRatio[2]->Divide(fKinematicsMC[2]);
@@ -506,8 +506,8 @@ void save_kin_plots()
     fKinematicsMC[i][2]->Draw("SAME");
     c3.Update();
     // c5.cd(2);
-    fKinematicsRD[i][4]->Scale(1/fKinematicsRD[2][4]->Integral(), "width");
-    fKinematicsMC[i][4]->Scale(1/fKinematicsMC[2][4]->Integral(), "width");
+    fKinematicsRD[i][4]->Scale(1/fKinematicsRD[2][4]->GetEntries());
+    fKinematicsMC[i][4]->Scale(1/fKinematicsMC[2][4]->GetEntries());
     // fKinematicsRatio[0][4] = (TH1F*)fKinematicsRD[4]->Clone();
     // fKinematicsRatio[0][4]->SetStats(0);
     // fKinematicsRatio[0][4]->Divide(fKinematicsMC[4]);
@@ -523,8 +523,8 @@ void save_kin_plots()
     fKinematicsMC[i][4]->Draw("SAME");
     c5.Update();
     // c6.cd(2);
-    fKinematicsRD[i][5]->Scale(1/fKinematicsRD[2][5]->Integral(), "width");
-    fKinematicsMC[i][5]->Scale(1/fKinematicsMC[2][5]->Integral(), "width");
+    fKinematicsRD[i][5]->Scale(1/fKinematicsRD[2][5]->GetEntries());
+    fKinematicsMC[i][5]->Scale(1/fKinematicsMC[2][5]->GetEntries());
     // fKinematicsRatio[0][5] = (TH1F*)fKinematicsRD[5]->Clone();
     // fKinematicsRatio[0][5]->SetStats(0);
     // fKinematicsRatio[0][5]->Divide(fKinematicsMC[5]);
