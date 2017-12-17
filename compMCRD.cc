@@ -1161,7 +1161,7 @@ void MCextraction(string pFilelist)
                         fYBjtest++;
 
                         // W cut
-                        if(true/*(5<sqrt(wBj) && sqrt(wBj)<17)*/)
+                        if((5<sqrt(wBj) && sqrt(wBj)<17))
                         {
                           fWBjtest++;
                           if((0.001<xBj && xBj<0.95))
@@ -2844,7 +2844,7 @@ void RDextraction(string pFilelist)
       fYBjtest++;
 
       // W cut
-      // if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
+      if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
       fWBjtest++;
 
       // x cut
