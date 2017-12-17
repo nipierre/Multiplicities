@@ -2680,7 +2680,6 @@ void RDextraction(string pFilelist)
         wBj = 0;
 
       int trig= trigMask->GetLeaf("trigMask")->GetValue();
-      cout<<trigMask<<endl;
 
 
       //2006 ---
@@ -2832,10 +2831,11 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        //if(!(trig&1 || trig&2 || trig&3 || trig&9)) continue;
+        if(!(trig&1 || trig&2 || trig&3 || trig&9)) continue;
       }
       //2016 ---
       fTrig++;
+      cout<<trigMask<<endl;
 
       // Q2 cut
       if(!(Q2>1)) continue;
