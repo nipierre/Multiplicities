@@ -1297,6 +1297,7 @@ void MCextraction(string pFilelist)
       {
         if(trig&1)
         {
+          cout<<"MT"<<endl;
           fQ2kinMC[0].push_back(Q2);
           fXBjkinMC[0].push_back(xBj);
           fYBjkinMC[0].push_back(yBj);
