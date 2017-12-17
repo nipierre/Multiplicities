@@ -558,11 +558,11 @@ void save_kin_plots()
   fKinematicsMC[0][3]->Draw("SAME");
   c4.Update();
   c7.cd(1);
-  fKinematicsRD[0][6]->Scale(1/fKinematicsRD[6]->Integral(), "width");
-  fKinematicsMC[0][6]->Scale(1/fKinematicsMC[6]->Integral(), "width");
-  fKinematicsRatio[0][6] = (TH1F*)fKinematicsRD[6]->Clone();
+  fKinematicsRD[0][6]->Scale(1/fKinematicsRD[0][6]->Integral(), "width");
+  fKinematicsMC[0][6]->Scale(1/fKinematicsMC[0][6]->Integral(), "width");
+  fKinematicsRatio[0][6] = (TH1F*)fKinematicsRD[0][6]->Clone();
   fKinematicsRatio[0][6]->SetStats(0);
-  fKinematicsRatio[0][6]->Divide(fKinematicsMC[6]);
+  fKinematicsRatio[0][6]->Divide(fKinematicsMC[0][6]);
   fKinematicsRatio[0][6]->SetMarkerStyle(21);
   fKinematicsRatio[0][6]->Draw("P");
   c7.Update();
@@ -3372,7 +3372,7 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
-        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)>fLHsec_tab[3])) fKinematicsRD[6]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)>fLHsec_tab[3])) fKinematicsRD[0][6]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
         // Maximum radiation length cumulated
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
