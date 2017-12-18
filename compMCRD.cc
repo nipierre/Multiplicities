@@ -501,7 +501,7 @@ void save_kin_plots()
     }
     else
     {
-      cout << idx+1+int(idx/2)*4 << endl;
+      cout << idx+1+int(idx/2)*2 << endl;
       c1.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
       fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
