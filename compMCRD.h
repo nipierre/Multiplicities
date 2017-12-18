@@ -41,27 +41,27 @@ struct Recovery_tank { Double_t tab[2][4][4]; };
 //Qty containers
 
 vector<Double_t> fQ2;
-vector<Double_t> fQ2kin[4];
+vector<Double_t> fQ2kin[5];
 vector<Double_t> fQ2local;
 vector<Double_t> fXBj;
-vector<Double_t> fXBjkin[4];
+vector<Double_t> fXBjkin[5];
 vector<Double_t> fYBj;
-vector<Double_t> fYBjkin[4];
+vector<Double_t> fYBjkin[5];
 vector<Double_t> fWBj;
-vector<Double_t> fWBjkin[4];
+vector<Double_t> fWBjkin[5];
 vector<Double_t> fNu;
-vector<Double_t> fNukin[4];
+vector<Double_t> fNukin[5];
 
 vector<Double_t> fQ2_MC;
-vector<Double_t> fQ2kinMC[4];
+vector<Double_t> fQ2kinMC[5];
 vector<Double_t> fXBj_MC;
-vector<Double_t> fXBjkinMC[4];
+vector<Double_t> fXBjkinMC[5];
 vector<Double_t> fYBj_MC;
-vector<Double_t> fYBjkinMC[4];
+vector<Double_t> fYBjkinMC[5];
 vector<Double_t> fWBj_MC;
-vector<Double_t> fWBjkinMC[4];
+vector<Double_t> fWBjkinMC[5];
 vector<Double_t> fNu_MC;
-vector<Double_t> fNukinMC[4];
+vector<Double_t> fNukinMC[5];
 
 vector<Double_t> fX;
 vector<Double_t> fY;
@@ -169,16 +169,23 @@ studyxy fR_xy[24];
 
 //Draw
 
-TH1F* fKinematicsRD[4][7];
-TH1F* fKinematicsMC[4][7];
-TH1F* fKinematicsRatio[4][7];
-TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
-TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
-TCanvas c3("Kin_y","Kin_y",3200,1600);
-TCanvas c4("Kin_z","Kin_z",3200,1600);
-TCanvas c5("Kin_w","Kin_w",3200,1600);
-TCanvas c6("Kin_#nu","Kin_#nu",3200,1600);
-TCanvas c7("Kin_#Phi","Kin_#Phi",3200,1600);
+TH1F* fKinematicsRD[5][7];
+TH1F* fKinematicsMC[5][7];
+TH1F* fKinematicsRatio[5][7];
+TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
+TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
+TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
+TCanvas c4("Kin_z Trigger","Kin_z Trigger",3200,1600);
+TCanvas c5("Kin_w Trigger","Kin_w Trigger",3200,1600);
+TCanvas c6("Kin_#nu Trigger","Kin_#nu Trigger",3200,1600);
+TCanvas c7("Kin_#Phi Trigger","Kin_#Phi Trigger",3200,1600);
+TCanvas c8("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
+TCanvas c9("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
+TCanvas c10("Kin_y","Kin_y",3200,1600);
+TCanvas c11("Kin_z","Kin_z",3200,1600);
+TCanvas c12("Kin_w","Kin_w",3200,1600);
+TCanvas c13("Kin_#nu","Kin_#nu",3200,1600);
+TCanvas c14("Kin_#Phi","Kin_#Phi",3200,1600);
 
 //Graphic Style
 
