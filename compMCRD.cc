@@ -445,7 +445,7 @@ void save_kin_plots()
   c6.Divide(2,4);
   c7.Divide(1,2);
   c8.Divide(1,2);
-  c8.Divide(1,2);
+  c9.Divide(1,2);
   c10.Divide(1,2);
   c11.Divide(1,2);
   c12.Divide(1,2);
