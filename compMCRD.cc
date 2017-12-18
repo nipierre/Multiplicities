@@ -909,6 +909,7 @@ void MCextraction(string pFilelist)
         wBj = 0;
 
       int trig= trigMask->GetLeaf("trigMask")->GetValue();
+      trig = (trig&2047);
 
 
       //2006 ---
@@ -1162,7 +1163,7 @@ void MCextraction(string pFilelist)
                 {
                   fCell++;
 
-                  if(true/*(trig&1 || trig&2 || trig&3 || trig&9)*/)
+                  if(true/*(trig&2 || trig&4 || trig&8 || trig&1024)*/)
                   {
                     fTrig++;
 
@@ -1311,7 +1312,7 @@ void MCextraction(string pFilelist)
 
       if(fAllDISflag)
       {
-        if(trig&1)
+        if(trig&2)
         {
           cout<<"MT"<<endl;
           fQ2kinMC[0].push_back(Q2);
@@ -1320,7 +1321,7 @@ void MCextraction(string pFilelist)
           fWBjkinMC[0].push_back(sqrt(wBj));
           fNukinMC[0].push_back(nu);
         }
-        if(trig&2)
+        if(trig&4)
         {
           fQ2kinMC[1].push_back(Q2);
           fXBjkinMC[1].push_back(xBj);
@@ -1328,7 +1329,7 @@ void MCextraction(string pFilelist)
           fWBjkinMC[1].push_back(sqrt(wBj));
           fNukinMC[1].push_back(nu);
         }
-        if(trig&3)
+        if(trig&8)
         {
           fQ2kinMC[2].push_back(Q2);
           fXBjkinMC[2].push_back(xBj);
@@ -1336,7 +1337,7 @@ void MCextraction(string pFilelist)
           fWBjkinMC[2].push_back(sqrt(wBj));
           fNukinMC[2].push_back(nu);
         }
-        if(trig&9)
+        if(trig&1024)
         {
           fQ2kinMC[3].push_back(Q2);
           fXBjkinMC[3].push_back(xBj);
@@ -2696,7 +2697,7 @@ void RDextraction(string pFilelist)
         wBj = 0;
 
       int trig= trigMask->GetLeaf("trigMask")->GetValue();
-
+      trig = (trig&2047);
 
       //2006 ---
 
@@ -2847,11 +2848,11 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        if(!(trig&1 || trig&2 || trig&3 || trig&9)) continue;
+        if(!(trig&2 || trig&4 || trig&8 || trig&1024)) continue;
       }
       //2016 ---
       fTrig++;
-      cout<<trig<< " " << int(trig&1) << " " << int(trig&2) << " " << int(trig&3) << " " << int(trig&9) << endl;
+      // cout<<trig<< " " << int(trig&2) << " " << int(trig&4) << " " << int(trig&8) << " " << int(trig&1024) << endl;
 
       // Q2 cut
       if(!(Q2>1)) continue;
@@ -2869,7 +2870,7 @@ void RDextraction(string pFilelist)
       if(!(0.001<xBj && xBj<0.95)) continue;
       fXBjtest++;
 
-      if(trig&1)
+      if(trig&2)
       {
         fQ2kin[0].push_back(Q2);
         fXBjkin[0].push_back(xBj);
@@ -2877,7 +2878,7 @@ void RDextraction(string pFilelist)
         fWBjkin[0].push_back(sqrt(wBj));
         fNukin[0].push_back(nu);
       }
-      if(trig&2)
+      if(trig&4)
       {
         fQ2kin[1].push_back(Q2);
         fXBjkin[1].push_back(xBj);
@@ -2885,7 +2886,7 @@ void RDextraction(string pFilelist)
         fWBjkin[1].push_back(sqrt(wBj));
         fNukin[1].push_back(nu);
       }
-      if(trig&3)
+      if(trig&8)
       {
         fQ2kin[2].push_back(Q2);
         fXBjkin[2].push_back(xBj);
@@ -2893,7 +2894,7 @@ void RDextraction(string pFilelist)
         fWBjkin[2].push_back(sqrt(wBj));
         fNukin[2].push_back(nu);
       }
-      if(trig&9)
+      if(trig&1024)
       {
         fQ2kin[3].push_back(Q2);
         fXBjkin[3].push_back(xBj);
