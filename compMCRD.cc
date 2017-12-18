@@ -448,6 +448,7 @@ void save_kin_plots()
   for(int i=0; i<8; i++)
   {
     int idx=int(i/2+i%2);
+    cout<<idx<<endl;
     if(i%2)
     {
       c1.cd(i+1);
