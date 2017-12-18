@@ -450,7 +450,7 @@ void save_kin_plots()
     int idx=int(i/2);
     if(i%2)
     {
-      c1.cd();
+      c1.cd(idx+3+int(idx/2)*2);
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsRD[idx][0]->Clone();
       fKinematicsRatio[idx][0]->SetStats(0);
@@ -461,7 +461,7 @@ void save_kin_plots()
       gPad->SetLogx();
       c1.Update();
 
-      c2.cd();
+      c2.cd(idx+3+int(idx/2)*2);
       // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       fKinematicsRatio[idx][1] = (TH1F*)fKinematicsRD[idx][1]->Clone();
       fKinematicsRatio[idx][1]->SetStats(0);
@@ -472,7 +472,7 @@ void save_kin_plots()
       gPad->SetLogx();
       c2.Update();
 
-      c3.cd();
+      c3.cd(idx+3+int(idx/2)*2);
       // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       fKinematicsRatio[idx][2] = (TH1F*)fKinematicsRD[idx][2]->Clone();
       fKinematicsRatio[idx][2]->SetStats(0);
@@ -482,7 +482,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][2]->Draw("P");
       c3.Update();
 
-      c5.cd();
+      c5.cd(idx+3+int(idx/2)*2);
       // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       fKinematicsRatio[idx][4] = (TH1F*)fKinematicsRD[idx][4]->Clone();
       fKinematicsRatio[idx][4]->SetStats(0);
@@ -492,7 +492,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][4]->Draw("P");
       c5.Update();
 
-      c6.cd();
+      c6.cd(idx+3+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       fKinematicsRatio[idx][5] = (TH1F*)fKinematicsRD[idx][5]->Clone();
       fKinematicsRatio[idx][5]->SetStats(0);
@@ -504,7 +504,7 @@ void save_kin_plots()
     }
     else
     {
-      c1.cd();
+      c1.cd(idx+1+int(idx/2)*2);
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
       fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
@@ -518,7 +518,7 @@ void save_kin_plots()
       gPad->SetLogx();
       c1.Update();
 
-      c2.cd();
+      c2.cd(idx+1+int(idx/2)*2);
       // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][1]->Scale(1/fKinematicsRD[2][1]->GetEntries());
       fKinematicsMC[idx][1]->Scale(1/fKinematicsMC[2][1]->GetEntries());
