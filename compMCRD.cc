@@ -508,7 +508,7 @@ void save_kin_plots()
       fKinematicsRD[idx][0]->SetLineColor(kRed);
       fKinematicsRD[idx][0]->SetStats(0);
       fKinematicsRD[idx][0]->SetMinimum(0.);
-      fKinematicsRD[idx][0]->SetMaximum(0.06);
+      // fKinematicsRD[idx][0]->SetMaximum(0.06);
       fKinematicsRD[idx][0]->Draw();
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
       fKinematicsMC[idx][0]->Draw("SAME");
@@ -522,7 +522,7 @@ void save_kin_plots()
       fKinematicsRD[idx][1]->SetLineColor(kRed);
       fKinematicsRD[idx][1]->SetStats(0);
       fKinematicsRD[idx][1]->SetMinimum(0.);
-      fKinematicsRD[idx][1]->SetMaximum(0.045);
+      // fKinematicsRD[idx][1]->SetMaximum(0.045);
       fKinematicsRD[idx][1]->Draw();
       fKinematicsMC[idx][1]->SetLineColor(kBlue);
       fKinematicsMC[idx][1]->Draw("SAME");
@@ -536,7 +536,7 @@ void save_kin_plots()
       fKinematicsRD[idx][2]->SetLineColor(kRed);
       fKinematicsRD[idx][2]->SetStats(0);
       fKinematicsRD[idx][2]->SetMinimum(0.);
-      fKinematicsRD[idx][2]->SetMaximum(0.06);
+      // fKinematicsRD[idx][2]->SetMaximum(0.06);
       fKinematicsRD[idx][2]->Draw();
       fKinematicsMC[idx][2]->SetLineColor(kBlue);
       fKinematicsMC[idx][2]->Draw("SAME");
@@ -548,7 +548,7 @@ void save_kin_plots()
       fKinematicsMC[idx][4]->Scale(1/fKinematicsMC[2][4]->GetEntries());
       fKinematicsRD[idx][4]->SetLineColor(kRed);
       fKinematicsRD[idx][4]->SetMinimum(0.);
-      fKinematicsRD[idx][4]->SetMaximum(0.05);
+      // fKinematicsRD[idx][4]->SetMaximum(0.05);
       fKinematicsRD[idx][4]->Draw();
       fKinematicsMC[idx][4]->SetLineColor(kBlue);
       fKinematicsMC[idx][4]->Draw("SAME");
@@ -561,7 +561,7 @@ void save_kin_plots()
       fKinematicsRD[idx][5]->SetLineColor(kRed);
       fKinematicsRD[idx][5]->SetStats(0);
       fKinematicsRD[idx][5]->SetMinimum(0.);
-      fKinematicsRD[idx][5]->SetMaximum(0.06);
+      // fKinematicsRD[idx][5]->SetMaximum(0.06);
       fKinematicsRD[idx][5]->Draw();
       fKinematicsMC[idx][5]->SetLineColor(kBlue);
       fKinematicsMC[idx][5]->Draw("SAME");
