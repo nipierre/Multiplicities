@@ -447,113 +447,114 @@ void save_kin_plots()
 
   for(int i=0; i<8; i++)
   {
+    int idx=int(i/2+i%2);
     if(i%2)
     {
       c1.cd(i+1);
-      fKinematicsRatio[i/2+i%2][0] = (TH1F*)fKinematicsRD[i/2+i%2][0]->Clone();
-      fKinematicsRatio[i/2+i%2][0]->SetStats(0);
-      fKinematicsRatio[i/2+i%2][0]->Divide(fKinematicsMC[i/2+i%2][0]);
-      fKinematicsRatio[i/2+i%2][0]->SetMarkerStyle(21);
-      fKinematicsRatio[i/2+i%2][0]->Draw("P");
+      fKinematicsRatio[idx][0] = (TH1F*)fKinematicsRD[idx][0]->Clone();
+      fKinematicsRatio[idx][0]->SetStats(0);
+      fKinematicsRatio[idx][0]->Divide(fKinematicsMC[idx][0]);
+      fKinematicsRatio[idx][0]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][0]->Draw("P");
       gPad->SetLogx();
       gPad->SetPad(0,0,1,0.3);
       c1.Update();
 
       c2.cd(2);
-      fKinematicsRatio[i/2+i%2][1] = (TH1F*)fKinematicsRD[i/2+i%2][1]->Clone();
-      fKinematicsRatio[i/2+i%2][1]->SetStats(0);
-      fKinematicsRatio[i/2+i%2][1]->Divide(fKinematicsMC[i/2+i%2][1]);
-      fKinematicsRatio[i/2+i%2][1]->SetMarkerStyle(21);
-      fKinematicsRatio[i/2+i%2][1]->Draw("P");
+      fKinematicsRatio[idx][1] = (TH1F*)fKinematicsRD[idx][1]->Clone();
+      fKinematicsRatio[idx][1]->SetStats(0);
+      fKinematicsRatio[idx][1]->Divide(fKinematicsMC[idx][1]);
+      fKinematicsRatio[idx][1]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][1]->Draw("P");
       gPad->SetLogx();
       c2.Update();
 
       c3.cd(2);
-      fKinematicsRatio[i/2+i%2][2] = (TH1F*)fKinematicsRD[i/2+i%2][2]->Clone();
-      fKinematicsRatio[i/2+i%2][2]->SetStats(0);
-      fKinematicsRatio[i/2+i%2][2]->Divide(fKinematicsMC[i/2+i%2][2]);
-      fKinematicsRatio[i/2+i%2][2]->SetMarkerStyle(21);
-      fKinematicsRatio[i/2+i%2][2]->Draw("P");
+      fKinematicsRatio[idx][2] = (TH1F*)fKinematicsRD[idx][2]->Clone();
+      fKinematicsRatio[idx][2]->SetStats(0);
+      fKinematicsRatio[idx][2]->Divide(fKinematicsMC[idx][2]);
+      fKinematicsRatio[idx][2]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][2]->Draw("P");
       c3.Update();
 
       c5.cd(2);
-      fKinematicsRatio[i/2+i%2][4] = (TH1F*)fKinematicsRD[i/2+i%2][4]->Clone();
-      fKinematicsRatio[i/2+i%2][4]->SetStats(0);
-      fKinematicsRatio[i/2+i%2][4]->Divide(fKinematicsMC[i/2+i%2][4]);
-      fKinematicsRatio[i/2+i%2][4]->SetMarkerStyle(21);
-      fKinematicsRatio[i/2+i%2][4]->Draw("P");
+      fKinematicsRatio[idx][4] = (TH1F*)fKinematicsRD[idx][4]->Clone();
+      fKinematicsRatio[idx][4]->SetStats(0);
+      fKinematicsRatio[idx][4]->Divide(fKinematicsMC[idx][4]);
+      fKinematicsRatio[idx][4]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][4]->Draw("P");
       c5.Update();
 
       c6.cd(2);
-      fKinematicsRatio[i/2+i%2][5] = (TH1F*)fKinematicsRD[i/2+i%2][5]->Clone();
-      fKinematicsRatio[i/2+i%2][5]->SetStats(0);
-      fKinematicsRatio[i/2+i%2][5]->Divide(fKinematicsMC[i/2+i%2][5]);
-      fKinematicsRatio[i/2+i%2][5]->SetMarkerStyle(21);
-      fKinematicsRatio[i/2+i%2][5]->Draw("P");
+      fKinematicsRatio[idx][5] = (TH1F*)fKinematicsRD[idx][5]->Clone();
+      fKinematicsRatio[idx][5]->SetStats(0);
+      fKinematicsRatio[idx][5]->Divide(fKinematicsMC[idx][5]);
+      fKinematicsRatio[idx][5]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][5]->Draw("P");
       c6.Update();
     }
     else
     {
       c1.cd(i+1);
-      fKinematicsRD[i/2+i%2][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
-      fKinematicsMC[i/2+i%2][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
-      fKinematicsRD[i/2+i%2][0]->SetLineColor(kRed);
-      fKinematicsRD[i/2+i%2][0]->SetStats(0);
-      fKinematicsRD[i/2+i%2][0]->SetMinimum(0.);
-      fKinematicsRD[i/2+i%2][0]->SetMaximum(0.06);
-      fKinematicsRD[i/2+i%2][0]->Draw();
-      fKinematicsMC[i/2+i%2][0]->SetLineColor(kBlue);
-      fKinematicsMC[i/2+i%2][0]->Draw("SAME");
+      fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
+      fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
+      fKinematicsRD[idx][0]->SetLineColor(kRed);
+      fKinematicsRD[idx][0]->SetStats(0);
+      fKinematicsRD[idx][0]->SetMinimum(0.);
+      fKinematicsRD[idx][0]->SetMaximum(0.06);
+      fKinematicsRD[idx][0]->Draw();
+      fKinematicsMC[idx][0]->SetLineColor(kBlue);
+      fKinematicsMC[idx][0]->Draw("SAME");
       gPad->SetLogx();
       gPad->SetPad(0,0.3,1,1);
       c1.Update();
 
       c2.cd(i+1);
-      fKinematicsRD[i/2+i%2][1]->Scale(1/fKinematicsRD[2][1]->GetEntries());
-      fKinematicsMC[i/2+i%2][1]->Scale(1/fKinematicsMC[2][1]->GetEntries());
-      fKinematicsRD[i/2+i%2][1]->SetLineColor(kRed);
-      fKinematicsRD[i/2+i%2][1]->SetStats(0);
-      fKinematicsRD[i/2+i%2][1]->SetMinimum(0.);
-      fKinematicsRD[i/2+i%2][1]->SetMaximum(0.045);
-      fKinematicsRD[i/2+i%2][1]->Draw();
-      fKinematicsMC[i/2+i%2][1]->SetLineColor(kBlue);
-      fKinematicsMC[i/2+i%2][1]->Draw("SAME");
+      fKinematicsRD[idx][1]->Scale(1/fKinematicsRD[2][1]->GetEntries());
+      fKinematicsMC[idx][1]->Scale(1/fKinematicsMC[2][1]->GetEntries());
+      fKinematicsRD[idx][1]->SetLineColor(kRed);
+      fKinematicsRD[idx][1]->SetStats(0);
+      fKinematicsRD[idx][1]->SetMinimum(0.);
+      fKinematicsRD[idx][1]->SetMaximum(0.045);
+      fKinematicsRD[idx][1]->Draw();
+      fKinematicsMC[idx][1]->SetLineColor(kBlue);
+      fKinematicsMC[idx][1]->Draw("SAME");
       gPad->SetLogx();
       c2.Update();
 
       c3.cd(i+1);
-      fKinematicsRD[i/2+i%2][2]->Scale(1/fKinematicsRD[2][2]->GetEntries());
-      fKinematicsMC[i/2+i%2][2]->Scale(1/fKinematicsMC[2][2]->GetEntries());
-      fKinematicsRD[i/2+i%2][2]->SetLineColor(kRed);
-      fKinematicsRD[i/2+i%2][2]->SetStats(0);
-      fKinematicsRD[i/2+i%2][2]->SetMinimum(0.);
-      fKinematicsRD[i/2+i%2][2]->SetMaximum(0.06);
-      fKinematicsRD[i/2+i%2][2]->Draw();
-      fKinematicsMC[i/2+i%2][2]->SetLineColor(kBlue);
-      fKinematicsMC[i/2+i%2][2]->Draw("SAME");
+      fKinematicsRD[idx][2]->Scale(1/fKinematicsRD[2][2]->GetEntries());
+      fKinematicsMC[idx][2]->Scale(1/fKinematicsMC[2][2]->GetEntries());
+      fKinematicsRD[idx][2]->SetLineColor(kRed);
+      fKinematicsRD[idx][2]->SetStats(0);
+      fKinematicsRD[idx][2]->SetMinimum(0.);
+      fKinematicsRD[idx][2]->SetMaximum(0.06);
+      fKinematicsRD[idx][2]->Draw();
+      fKinematicsMC[idx][2]->SetLineColor(kBlue);
+      fKinematicsMC[idx][2]->Draw("SAME");
       c3.Update();
 
       c5.cd(i+1);
-      fKinematicsRD[i/2+i%2][4]->Scale(1/fKinematicsRD[2][4]->GetEntries());
-      fKinematicsMC[i/2+i%2][4]->Scale(1/fKinematicsMC[2][4]->GetEntries());
-      fKinematicsRD[i/2+i%2][4]->SetLineColor(kRed);
-      fKinematicsRD[i/2+i%2][4]->SetMinimum(0.);
-      fKinematicsRD[i/2+i%2][4]->SetMaximum(0.05);
-      fKinematicsRD[i/2+i%2][4]->Draw();
-      fKinematicsMC[i/2+i%2][4]->SetLineColor(kBlue);
-      fKinematicsMC[i/2+i%2][4]->Draw("SAME");
+      fKinematicsRD[idx][4]->Scale(1/fKinematicsRD[2][4]->GetEntries());
+      fKinematicsMC[idx][4]->Scale(1/fKinematicsMC[2][4]->GetEntries());
+      fKinematicsRD[idx][4]->SetLineColor(kRed);
+      fKinematicsRD[idx][4]->SetMinimum(0.);
+      fKinematicsRD[idx][4]->SetMaximum(0.05);
+      fKinematicsRD[idx][4]->Draw();
+      fKinematicsMC[idx][4]->SetLineColor(kBlue);
+      fKinematicsMC[idx][4]->Draw("SAME");
       c5.Update();
 
       c6.cd(i+1);
-      fKinematicsRD[i/2+i%2][5]->Scale(1/fKinematicsRD[2][5]->GetEntries());
-      fKinematicsMC[i/2+i%2][5]->Scale(1/fKinematicsMC[2][5]->GetEntries());
-      fKinematicsRD[i/2+i%2][5]->SetLineColor(kRed);
-      fKinematicsRD[i/2+i%2][5]->SetStats(0);
-      fKinematicsRD[i/2+i%2][5]->SetMinimum(0.);
-      fKinematicsRD[i/2+i%2][5]->SetMaximum(0.06);
-      fKinematicsRD[i/2+i%2][5]->Draw();
-      fKinematicsMC[i/2+i%2][5]->SetLineColor(kBlue);
-      fKinematicsMC[i/2+i%2][5]->Draw("SAME");
+      fKinematicsRD[idx][5]->Scale(1/fKinematicsRD[2][5]->GetEntries());
+      fKinematicsMC[idx][5]->Scale(1/fKinematicsMC[2][5]->GetEntries());
+      fKinematicsRD[idx][5]->SetLineColor(kRed);
+      fKinematicsRD[idx][5]->SetStats(0);
+      fKinematicsRD[idx][5]->SetMinimum(0.);
+      fKinematicsRD[idx][5]->SetMaximum(0.06);
+      fKinematicsRD[idx][5]->Draw();
+      fKinematicsMC[idx][5]->SetLineColor(kBlue);
+      fKinematicsMC[idx][5]->Draw("SAME");
       c6.Update();
     }
   }
@@ -1314,7 +1315,6 @@ void MCextraction(string pFilelist)
       {
         if(trig&2)
         {
-          cout<<"MT"<<endl;
           fQ2kinMC[0].push_back(Q2);
           fXBjkinMC[0].push_back(xBj);
           fYBjkinMC[0].push_back(yBj);
