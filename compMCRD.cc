@@ -447,7 +447,7 @@ void save_kin_plots()
 
   for(int i=0; i<8; i++)
   {
-    int idx=int(i/2+i%2);
+    int idx=int(i/2);
     cout<<idx<<endl;
     if(i%2)
     {
@@ -559,6 +559,7 @@ void save_kin_plots()
       c6.Update();
     }
   }
+
   c4.cd(2);
   fKinematicsRD[0][3]->Scale(1/fKinematicsRD[0][3]->Integral(), "width");
   fKinematicsMC[0][3]->Scale(1/fKinematicsMC[0][3]->Integral(), "width");
