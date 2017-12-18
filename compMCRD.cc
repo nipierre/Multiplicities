@@ -448,9 +448,10 @@ void save_kin_plots()
   for(int i=0; i<8; i++)
   {
     int idx=int(i/2);
-    cout<<idx<<endl;
+    // cout<<idx<<endl;
     if(i%2)
     {
+      cout << i%2+3+int(idx/2)*4 << endl;
       c1.cd(i%2+3+int(idx/2)*4);
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsRD[idx][0]->Clone();
       fKinematicsRatio[idx][0]->SetStats(0);
@@ -500,6 +501,7 @@ void save_kin_plots()
     }
     else
     {
+      cout << i%2+1+int(idx/2)*4 << endl;
       c1.cd(i%2+1+int(idx/2)*4);
       fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
       fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
