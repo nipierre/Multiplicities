@@ -199,7 +199,7 @@ static const Double_t fM_mu = 105.6583715/(1e3);
 static const Double_t fM_K = 493.677/(1e3);
 static const Double_t fM_pi = 139.57018/(1e3);
 
-string trigname[4] = {"MT","LT","OT","LAST"};
+string trigname[5] = {"MT","LT","OT","LAST","All Trig"};
 
 //----------------------------------------------------------------------------
 //--------- RICH unfolding ---------------------------------------------------
