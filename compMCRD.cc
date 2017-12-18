@@ -451,7 +451,7 @@ void save_kin_plots()
     cout<<idx<<endl;
     if(i%2)
     {
-      c1.cd(idx+i%2+3);
+      c1.cd(idx+1);
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsRD[idx][0]->Clone();
       fKinematicsRatio[idx][0]->SetStats(0);
       fKinematicsRatio[idx][0]->Divide(fKinematicsMC[idx][0]);
@@ -461,7 +461,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c1.Update();
 
-      c2.cd(idx+i%2+3);
+      c2.cd(idx+1);
       fKinematicsRatio[idx][1] = (TH1F*)fKinematicsRD[idx][1]->Clone();
       fKinematicsRatio[idx][1]->SetStats(0);
       fKinematicsRatio[idx][1]->Divide(fKinematicsMC[idx][1]);
@@ -471,7 +471,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c2.Update();
 
-      c3.cd(idx+i%2+3);
+      c3.cd(idx+1);
       fKinematicsRatio[idx][2] = (TH1F*)fKinematicsRD[idx][2]->Clone();
       fKinematicsRatio[idx][2]->SetStats(0);
       fKinematicsRatio[idx][2]->Divide(fKinematicsMC[idx][2]);
@@ -480,7 +480,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c3.Update();
 
-      c5.cd(idx+i%2+3);
+      c5.cd(idx+1);
       fKinematicsRatio[idx][4] = (TH1F*)fKinematicsRD[idx][4]->Clone();
       fKinematicsRatio[idx][4]->SetStats(0);
       fKinematicsRatio[idx][4]->Divide(fKinematicsMC[idx][4]);
@@ -489,7 +489,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c5.Update();
 
-      c6.cd(idx+i%2+3);
+      c6.cd(idx+1);
       fKinematicsRatio[idx][5] = (TH1F*)fKinematicsRD[idx][5]->Clone();
       fKinematicsRatio[idx][5]->SetStats(0);
       fKinematicsRatio[idx][5]->Divide(fKinematicsMC[idx][5]);
@@ -500,7 +500,7 @@ void save_kin_plots()
     }
     else
     {
-      c1.cd(idx+i%2+1);
+      c1.cd(idx+1);
       fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
       fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
       fKinematicsRD[idx][0]->SetLineColor(kRed);
@@ -514,7 +514,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c1.Update();
 
-      c2.cd(idx+i%2+1);
+      c2.cd(idx+1);
       fKinematicsRD[idx][1]->Scale(1/fKinematicsRD[2][1]->GetEntries());
       fKinematicsMC[idx][1]->Scale(1/fKinematicsMC[2][1]->GetEntries());
       fKinematicsRD[idx][1]->SetLineColor(kRed);
@@ -528,7 +528,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c2.Update();
 
-      c3.cd(idx+i%2+1);
+      c3.cd(idx+1);
       fKinematicsRD[idx][2]->Scale(1/fKinematicsRD[2][2]->GetEntries());
       fKinematicsMC[idx][2]->Scale(1/fKinematicsMC[2][2]->GetEntries());
       fKinematicsRD[idx][2]->SetLineColor(kRed);
@@ -541,7 +541,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c3.Update();
 
-      c5.cd(idx+i%2+1);
+      c5.cd(idx+1);
       fKinematicsRD[idx][4]->Scale(1/fKinematicsRD[2][4]->GetEntries());
       fKinematicsMC[idx][4]->Scale(1/fKinematicsMC[2][4]->GetEntries());
       fKinematicsRD[idx][4]->SetLineColor(kRed);
@@ -553,7 +553,7 @@ void save_kin_plots()
       gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c5.Update();
 
-      c6.cd(idx+i%2+1);
+      c6.cd(idx+1);
       fKinematicsRD[idx][5]->Scale(1/fKinematicsRD[2][5]->GetEntries());
       fKinematicsMC[idx][5]->Scale(1/fKinematicsMC[2][5]->GetEntries());
       fKinematicsRD[idx][5]->SetLineColor(kRed);
