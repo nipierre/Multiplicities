@@ -595,7 +595,7 @@ void save_kin_plots()
   fKinematicsMC[0][3]->SetLineColor(kBlue);
   fKinematicsMC[0][3]->Draw("SAME");
   c4.Update();
-  
+
   c7.cd(1);
   fKinematicsRD[0][6]->Scale(1/fKinematicsRD[0][6]->GetEntries());
   fKinematicsMC[0][6]->Scale(1/fKinematicsMC[0][6]->GetEntries());
@@ -660,7 +660,7 @@ void save_kin_plots()
   fKinematicsMC[4][2]->Scale(1/fKinematicsMC[4][2]->GetEntries());
   fKinematicsRatio[4][2] = (TH1F*)fKinematicsRD[4][2]->Clone();
   fKinematicsRatio[4][2]->SetStats(0);
-  fKinematicsRatio[4][2]->Divide(fKinematicsMC[5][2]);
+  fKinematicsRatio[4][2]->Divide(fKinematicsMC[4][2]);
   fKinematicsRatio[4][2]->SetMarkerStyle(21);
   fKinematicsRatio[4][2]->SetMaximum(2.);
   fKinematicsRatio[4][2]->Draw("P");
