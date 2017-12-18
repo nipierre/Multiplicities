@@ -595,6 +595,7 @@ void save_kin_plots()
   fKinematicsMC[0][3]->SetLineColor(kBlue);
   fKinematicsMC[0][3]->Draw("SAME");
   c4.Update();
+  
   c7.cd(1);
   fKinematicsRD[0][6]->Scale(1/fKinematicsRD[0][6]->GetEntries());
   fKinematicsMC[0][6]->Scale(1/fKinematicsMC[0][6]->GetEntries());
@@ -631,6 +632,7 @@ void save_kin_plots()
   fKinematicsRD[4][0]->Draw();
   fKinematicsMC[4][0]->SetLineColor(kBlue);
   fKinematicsMC[4][0]->Draw("SAME");
+  gPad->SetLogx();
   c8.Update();
 
   c9.cd(2);
@@ -650,6 +652,7 @@ void save_kin_plots()
   fKinematicsRD[4][1]->Draw();
   fKinematicsMC[4][1]->SetLineColor(kBlue);
   fKinematicsMC[4][1]->Draw("SAME");
+  gPad->SetLogx();
   c9.Update();
 
   c10.cd(2);
