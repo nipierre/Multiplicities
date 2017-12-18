@@ -458,7 +458,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->SetMarkerStyle(21);
       fKinematicsRatio[idx][0]->Draw("P");
       gPad->SetLogx();
-      gPad->SetPad(0,0,1,0.3);
+      gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c1.Update();
 
       c2.cd(2);
@@ -468,6 +468,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->SetMarkerStyle(21);
       fKinematicsRatio[idx][1]->Draw("P");
       gPad->SetLogx();
+      gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c2.Update();
 
       c3.cd(2);
@@ -476,6 +477,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][2]->Divide(fKinematicsMC[idx][2]);
       fKinematicsRatio[idx][2]->SetMarkerStyle(21);
       fKinematicsRatio[idx][2]->Draw("P");
+      gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c3.Update();
 
       c5.cd(2);
@@ -484,6 +486,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][4]->Divide(fKinematicsMC[idx][4]);
       fKinematicsRatio[idx][4]->SetMarkerStyle(21);
       fKinematicsRatio[idx][4]->Draw("P");
+      gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c5.Update();
 
       c6.cd(2);
@@ -492,6 +495,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][5]->Divide(fKinematicsMC[idx][5]);
       fKinematicsRatio[idx][5]->SetMarkerStyle(21);
       fKinematicsRatio[idx][5]->Draw("P");
+      gPad->SetPad(0+i%2*0.5,0.6-idx*0.5,0.5+i%2*0.5,0.7-idx*0.5);
       c6.Update();
     }
     else
@@ -507,7 +511,7 @@ void save_kin_plots()
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
       fKinematicsMC[idx][0]->Draw("SAME");
       gPad->SetLogx();
-      gPad->SetPad(0,0.3,1,1);
+      gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c1.Update();
 
       c2.cd(i+1);
@@ -521,6 +525,7 @@ void save_kin_plots()
       fKinematicsMC[idx][1]->SetLineColor(kBlue);
       fKinematicsMC[idx][1]->Draw("SAME");
       gPad->SetLogx();
+      gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c2.Update();
 
       c3.cd(i+1);
@@ -533,6 +538,7 @@ void save_kin_plots()
       fKinematicsRD[idx][2]->Draw();
       fKinematicsMC[idx][2]->SetLineColor(kBlue);
       fKinematicsMC[idx][2]->Draw("SAME");
+      gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c3.Update();
 
       c5.cd(i+1);
@@ -544,6 +550,7 @@ void save_kin_plots()
       fKinematicsRD[idx][4]->Draw();
       fKinematicsMC[idx][4]->SetLineColor(kBlue);
       fKinematicsMC[idx][4]->Draw("SAME");
+      gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c5.Update();
 
       c6.cd(i+1);
@@ -556,6 +563,7 @@ void save_kin_plots()
       fKinematicsRD[idx][5]->Draw();
       fKinematicsMC[idx][5]->SetLineColor(kBlue);
       fKinematicsMC[idx][5]->Draw("SAME");
+      gPad->SetPad(0+i%2*0.5,0.7-idx*0.5,0.5+i%2*0.5,1-idx*0.5);
       c6.Update();
     }
   }
