@@ -661,7 +661,6 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->SetMarkerStyle(21);
   fKinematicsRatio[4][2]->SetMaximum(2.);
   fKinematicsRatio[4][2]->Draw("P");
-  gPad->SetLogx();
   c10.Update();
   c10.cd(1);
   fKinematicsRD[4][2]->SetLineColor(kRed);
@@ -680,7 +679,6 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->SetMarkerStyle(21);
   fKinematicsRatio[4][4]->SetMaximum(2.);
   fKinematicsRatio[4][4]->Draw("P");
-  gPad->SetLogx();
   c11.Update();
   c11.cd(1);
   fKinematicsRD[4][4]->SetLineColor(kRed);
@@ -699,7 +697,6 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->SetMarkerStyle(21);
   fKinematicsRatio[4][5]->SetMaximum(2.);
   fKinematicsRatio[4][5]->Draw("P");
-  gPad->SetLogx();
   c12.Update();
   c12.cd(1);
   fKinematicsRD[4][5]->SetLineColor(kRed);
@@ -1285,7 +1282,7 @@ void MCextraction(string pFilelist)
                 {
                   fCell++;
 
-                  if(true/*(trig&2 || trig&4 || trig&8 || trig&1024)*/)
+                  if(true/*(trig&2 || trig&4 || trig&8 || trig&512)*/)
                   {
                     fTrig++;
 
@@ -1458,7 +1455,7 @@ void MCextraction(string pFilelist)
           fWBjkinMC[2].push_back(sqrt(wBj));
           fNukinMC[2].push_back(nu);
         }
-        if(trig&1024)
+        if(trig&512)
         {
           fQ2kinMC[3].push_back(Q2);
           fXBjkinMC[3].push_back(xBj);
@@ -1466,7 +1463,7 @@ void MCextraction(string pFilelist)
           fWBjkinMC[3].push_back(sqrt(wBj));
           fNukinMC[3].push_back(nu);
         }
-        if(trig&2 || trig&4 || trig&8 || trig&1024)
+        if(trig&2 || trig&4 || trig&8 || trig&512)
         {
           fQ2kinMC[4].push_back(Q2);
           fXBjkinMC[4].push_back(xBj);
@@ -2985,11 +2982,11 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        // if(!(trig&2 || trig&4 || trig&8 || trig&1024)) continue;
+        // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
       }
       //2016 ---
       fTrig++;
-      // cout<<trig<< " " << int(trig&2) << " " << int(trig&4) << " " << int(trig&8) << " " << int(trig&1024) << endl;
+      // cout<<trig<< " " << int(trig&2) << " " << int(trig&4) << " " << int(trig&8) << " " << int(trig&512) << endl;
 
       // Q2 cut
       if(!(Q2>1)) continue;
@@ -3031,7 +3028,7 @@ void RDextraction(string pFilelist)
         fWBjkin[2].push_back(sqrt(wBj));
         fNukin[2].push_back(nu);
       }
-      if(trig&1024)
+      if(trig&512)
       {
         fQ2kin[3].push_back(Q2);
         fXBjkin[3].push_back(xBj);
@@ -3039,7 +3036,7 @@ void RDextraction(string pFilelist)
         fWBjkin[3].push_back(sqrt(wBj));
         fNukin[3].push_back(nu);
       }
-      if(trig&2 || trig&4 || trig&8 || trig&1024)
+      if(trig&2 || trig&4 || trig&8 || trig&512)
       {
         fQ2kin[4].push_back(Q2);
         fXBjkin[4].push_back(xBj);
