@@ -51,6 +51,11 @@ vector<Double_t> fWBj;
 vector<Double_t> fWBjkin[5];
 vector<Double_t> fNu;
 vector<Double_t> fNukin[5];
+vector<Double_t> fMu[5];
+vector<Double_t> fMup[5];
+vector<Double_t> fTheta[5];
+vector<Double_t> fPhi[5];
+vector<Double_t> fVertex[5];
 
 vector<Double_t> fQ2_MC;
 vector<Double_t> fQ2kinMC[5];
@@ -62,6 +67,11 @@ vector<Double_t> fWBj_MC;
 vector<Double_t> fWBjkinMC[5];
 vector<Double_t> fNu_MC;
 vector<Double_t> fNukinMC[5];
+vector<Double_t> fMuMC[5];
+vector<Double_t> fMupMC[5];
+vector<Double_t> fThetaMC[5];
+vector<Double_t> fPhiMC[5];
+vector<Double_t> fVertexMC[5];
 
 vector<Double_t> fX;
 vector<Double_t> fY;
@@ -169,9 +179,9 @@ studyxy fR_xy[24];
 
 //Draw
 
-TH1F* fKinematicsRD[5][7];
-TH1F* fKinematicsMC[5][7];
-TH1F* fKinematicsRatio[5][7];
+TH1F* fKinematicsRD[5][11];
+TH1F* fKinematicsMC[5][11];
+TH1F* fKinematicsRatio[5][11];
 TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
 TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
@@ -185,7 +195,11 @@ TCanvas c10("Kin_y","Kin_y",3200,1600);
 TCanvas c11("Kin_z","Kin_z",3200,1600);
 TCanvas c12("Kin_w","Kin_w",3200,1600);
 TCanvas c13("Kin_#nu","Kin_#nu",3200,1600);
-TCanvas c14("Kin_#Phi","Kin_#Phi",3200,1600);
+TCanvas c14("Kin_#mu","Kin_#mu",3200,1600);
+TCanvas c15("Kin_#mup","Kin_#mup",3200,1600);
+TCanvas c16("Kin_#theta","Kin_#theta",3200,1600);
+TCanvas c17("Kin_#phi","Kin_#phi",3200,1600);
+TCanvas c18("Kin_vertex","Kin_vertex",3200,1600);
 
 //Graphic Style
 
