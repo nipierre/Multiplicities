@@ -1596,11 +1596,11 @@ void MCextraction(string pFilelist)
           fYBjkinMC[0].push_back(yBj);
           fWBjkinMC[0].push_back(sqrt(wBj));
           fNukinMC[0].push_back(nu);
-          fMu[0].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-          fMup[0].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
-          fTheta[0].push_back(theta_m);
-          fPhi[0].push_back(phi_m);
-          fVertex[0].push_back(z->GetLeaf("z")->GetValue());
+          fMuMC[0].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+          fMupMC[0].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
+          fThetaMC[0].push_back(theta_m);
+          fPhiMC[0].push_back(phi_m);
+          fVertexMC[0].push_back(z->GetLeaf("z")->GetValue());
         }
         if(trig&4)
         {
@@ -1609,11 +1609,11 @@ void MCextraction(string pFilelist)
           fYBjkinMC[1].push_back(yBj);
           fWBjkinMC[1].push_back(sqrt(wBj));
           fNukinMC[1].push_back(nu);
-          fMu[1].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-          fMup[1].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
-          fTheta[1].push_back(theta_m);
-          fPhi[1].push_back(phi_m);
-          fVertex[1].push_back(z->GetLeaf("z")->GetValue());
+          fMuMC[1].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+          fMupMC[1].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
+          fThetaMC[1].push_back(theta_m);
+          fPhiMC[1].push_back(phi_m);
+          fVertexMC[1].push_back(z->GetLeaf("z")->GetValue());
         }
         if(trig&8)
         {
@@ -1622,11 +1622,11 @@ void MCextraction(string pFilelist)
           fYBjkinMC[2].push_back(yBj);
           fWBjkinMC[2].push_back(sqrt(wBj));
           fNukinMC[2].push_back(nu);
-          fMu[2].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-          fMup[2].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
-          fTheta[2].push_back(theta_m);
-          fPhi[2].push_back(phi_m);
-          fVertex[2].push_back(z->GetLeaf("z")->GetValue());
+          fMuMC[2].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+          fMupMC[2].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
+          fThetaMC[2].push_back(theta_m);
+          fPhiMC[2].push_back(phi_m);
+          fVertexMC[2].push_back(z->GetLeaf("z")->GetValue());
         }
         if(trig&512)
         {
@@ -1635,11 +1635,11 @@ void MCextraction(string pFilelist)
           fYBjkinMC[3].push_back(yBj);
           fWBjkinMC[3].push_back(sqrt(wBj));
           fNukinMC[3].push_back(nu);
-          fMu[3].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-          fMup[3].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
-          fTheta[3].push_back(theta_m);
-          fPhi[3].push_back(phi_m);
-          fVertex[3].push_back(z->GetLeaf("z")->GetValue());
+          fMuMC[3].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+          fMupMC[3].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
+          fThetaMC[3].push_back(theta_m);
+          fPhiMC[3].push_back(phi_m);
+          fVertexMC[3].push_back(z->GetLeaf("z")->GetValue());
         }
         if(trig&2 || trig&4 || trig&8 || trig&512)
         {
@@ -1648,11 +1648,11 @@ void MCextraction(string pFilelist)
           fYBjkinMC[4].push_back(yBj);
           fWBjkinMC[4].push_back(sqrt(wBj));
           fNukinMC[4].push_back(nu);
-          fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-          fMup[4].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
-          fTheta[4].push_back(theta_m);
-          fPhi[4].push_back(phi_m);
-          fVertex[4].push_back(z->GetLeaf("z")->GetValue());
+          fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+          fMupMC[4].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
+          fThetaMC[4].push_back(theta_m);
+          fPhiMC[4].push_back(phi_m);
+          fVertexMC[4].push_back(z->GetLeaf("z")->GetValue());
         }
         fXMC.push_back(x->GetLeaf("x")->GetValue());
         fYMC.push_back(y->GetLeaf("y")->GetValue());
