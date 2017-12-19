@@ -432,12 +432,12 @@ void create_kin_plots()
     fKinematicsMC[i][3] = new TH1F(Form("z MC %s",trigname[i].c_str()), Form("z MC %s",trigname[i].c_str()), 100, 0, 1);
     fKinematicsMC[i][4] = new TH1F(Form("W MC %s",trigname[i].c_str()), Form("W MC %s",trigname[i].c_str()), 100, 2, 18);
     fKinematicsMC[i][5] = new TH1F(Form("#nu MC %s",trigname[i].c_str()), Form("#nu MC %s",trigname[i].c_str()), 100, 0, 160);
-    fKinematicsRD[i][6] = new TH1F(Form("E_{#mu} MC %s",trigname[i].c_str()), Form("E_{#mu} MC %s",trigname[i].c_str()), 100, 0, 160);
-    fKinematicsRD[i][7] = new TH1F(Form("E_{#mu'} MC %s",trigname[i].c_str()), Form("E_{#mu'} MC %s",trigname[i].c_str()), 100, 0, 160);
-    fKinematicsRD[i][8] = new TH1F(Form("#theta MC %s",trigname[i].c_str()), Form("#theta MC %s",trigname[i].c_str()), 100, 0, 3);
-    fKinematicsRD[i][9] = new TH1F(Form("#phi MC %s",trigname[i].c_str()), Form("#phi MC %s",trigname[i].c_str()), 100, 0, 3);
-    fKinematicsRD[i][10] = new TH1F(Form("Vertex MC %s",trigname[i].c_str()), Form("Vertex MC %s",trigname[i].c_str()), 100, -318.5, -78.5);
-    fKinematicsRD[i][11] = new TH1F(Form("#Phi_h MC %s",trigname[i].c_str()), Form("#Phi_h MC %s",trigname[i].c_str()), 100, 0, 3);
+    fKinematicsMC[i][6] = new TH1F(Form("E_{#mu} MC %s",trigname[i].c_str()), Form("E_{#mu} MC %s",trigname[i].c_str()), 100, 0, 160);
+    fKinematicsMC[i][7] = new TH1F(Form("E_{#mu'} MC %s",trigname[i].c_str()), Form("E_{#mu'} MC %s",trigname[i].c_str()), 100, 0, 160);
+    fKinematicsMC[i][8] = new TH1F(Form("#theta MC %s",trigname[i].c_str()), Form("#theta MC %s",trigname[i].c_str()), 100, 0, 3);
+    fKinematicsMC[i][9] = new TH1F(Form("#phi MC %s",trigname[i].c_str()), Form("#phi MC %s",trigname[i].c_str()), 100, 0, 3);
+    fKinematicsMC[i][10] = new TH1F(Form("Vertex MC %s",trigname[i].c_str()), Form("Vertex MC %s",trigname[i].c_str()), 100, -318.5, -78.5);
+    fKinematicsMC[i][11] = new TH1F(Form("#Phi_h MC %s",trigname[i].c_str()), Form("#Phi_h MC %s",trigname[i].c_str()), 100, 0, 3);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
