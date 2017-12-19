@@ -3231,7 +3231,7 @@ void RDextraction(string pFilelist)
         fYBjkin[0].push_back(yBj);
         fWBjkin[0].push_back(sqrt(wBj));
         fNukin[0].push_back(nu);
-        fMu[0].push_back(E_mu->GetLeaf("E_mu")->GetValue());
+        fMu[0].push_back(E_beam->GetLeaf("E_beam")->GetValue());
         fMup[0].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
         fTheta[0].push_back(theta_m);
         fPhi[0].push_back(phi_m);
@@ -3244,7 +3244,7 @@ void RDextraction(string pFilelist)
         fYBjkin[1].push_back(yBj);
         fWBjkin[1].push_back(sqrt(wBj));
         fNukin[1].push_back(nu);
-        fMu[1].push_back(E_mu->GetLeaf("E_mu")->GetValue());
+        fMu[1].push_back(E_beam->GetLeaf("E_beam")->GetValue());
         fMup[1].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
         fTheta[1].push_back(theta_m);
         fPhi[1].push_back(phi_m);
@@ -3257,7 +3257,7 @@ void RDextraction(string pFilelist)
         fYBjkin[2].push_back(yBj);
         fWBjkin[2].push_back(sqrt(wBj));
         fNukin[2].push_back(nu);
-        fMu[2].push_back(E_mu->GetLeaf("E_mu")->GetValue());
+        fMu[2].push_back(E_beam->GetLeaf("E_beam")->GetValue());
         fMup[2].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
         fTheta[2].push_back(theta_m);
         fPhi[2].push_back(phi_m);
@@ -3270,7 +3270,7 @@ void RDextraction(string pFilelist)
         fYBjkin[3].push_back(yBj);
         fWBjkin[3].push_back(sqrt(wBj));
         fNukin[3].push_back(nu);
-        fMu[3].push_back(E_mu->GetLeaf("E_mu")->GetValue());
+        fMu[3].push_back(E_beam->GetLeaf("E_beam")->GetValue());
         fMup[3].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
         fTheta[3].push_back(theta_m);
         fPhi[3].push_back(phi_m);
@@ -3283,7 +3283,7 @@ void RDextraction(string pFilelist)
         fYBjkin[4].push_back(yBj);
         fWBjkin[4].push_back(sqrt(wBj));
         fNukin[4].push_back(nu);
-        fMu[4].push_back(E_mu->GetLeaf("E_mu")->GetValue());
+        fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
         fMup[4].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
         fTheta[4].push_back(theta_m);
         fPhi[4].push_back(phi_m);
