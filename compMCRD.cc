@@ -440,7 +440,7 @@ void save_kin_plots()
   c1.Divide(2,4);
   c2.Divide(2,4);
   c3.Divide(2,4);
-  c4.Divide(1,2);
+  c4.Divide(2,4);
   c5.Divide(2,4);
   c6.Divide(2,4);
   c7.Divide(1,2);
@@ -677,6 +677,24 @@ void save_kin_plots()
   c10.Update();
 
   c11.cd(2);
+  fKinematicsRD[4][3]->Scale(1/fKinematicsRD[4][3]->GetEntries());
+  fKinematicsMC[4][3]->Scale(1/fKinematicsMC[4][3]->GetEntries());
+  fKinematicsRatio[4][3] = (TH1F*)fKinematicsRD[4][3]->Clone();
+  fKinematicsRatio[4][3]->SetStats(0);
+  fKinematicsRatio[4][3]->Divide(fKinematicsMC[4][3]);
+  fKinematicsRatio[4][3]->SetMarkerStyle(21);
+  fKinematicsRatio[4][3]->SetMaximum(2.);
+  fKinematicsRatio[4][3]->Draw("P");
+  c11.Update();
+  c11.cd(1);
+  fKinematicsRD[4][3]->SetLineColor(kRed);
+  fKinematicsRD[4][3]->SetStats(0);
+  fKinematicsRD[4][3]->Draw();
+  fKinematicsMC[4][3]->SetLineColor(kBlue);
+  fKinematicsMC[4][3]->Draw("SAME");
+  c11.Update();
+
+  c12.cd(2);
   fKinematicsRD[4][4]->Scale(1/fKinematicsRD[4][4]->GetEntries());
   fKinematicsMC[4][4]->Scale(1/fKinematicsMC[4][4]->GetEntries());
   fKinematicsRatio[4][4] = (TH1F*)fKinematicsRD[4][4]->Clone();
@@ -685,16 +703,16 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->SetMarkerStyle(21);
   fKinematicsRatio[4][4]->SetMaximum(2.);
   fKinematicsRatio[4][4]->Draw("P");
-  c11.Update();
-  c11.cd(1);
+  c12.Update();
+  c12.cd(1);
   fKinematicsRD[4][4]->SetLineColor(kRed);
   fKinematicsRD[4][4]->SetStats(0);
   fKinematicsRD[4][4]->Draw();
   fKinematicsMC[4][4]->SetLineColor(kBlue);
   fKinematicsMC[4][4]->Draw("SAME");
-  c11.Update();
+  c12.Update();
 
-  c12.cd(2);
+  c13.cd(2);
   fKinematicsRD[4][5]->Scale(1/fKinematicsRD[4][5]->GetEntries());
   fKinematicsMC[4][5]->Scale(1/fKinematicsMC[4][5]->GetEntries());
   fKinematicsRatio[4][5] = (TH1F*)fKinematicsRD[4][5]->Clone();
@@ -703,14 +721,14 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->SetMarkerStyle(21);
   fKinematicsRatio[4][5]->SetMaximum(2.);
   fKinematicsRatio[4][5]->Draw("P");
-  c12.Update();
-  c12.cd(1);
+  c13.Update();
+  c13.cd(1);
   fKinematicsRD[4][5]->SetLineColor(kRed);
   fKinematicsRD[4][5]->SetStats(0);
   fKinematicsRD[4][5]->Draw();
   fKinematicsMC[4][5]->SetLineColor(kBlue);
   fKinematicsMC[4][5]->Draw("SAME");
-  c12.Update();
+  c13.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
