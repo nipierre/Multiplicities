@@ -3631,6 +3631,27 @@ void RDextraction(string pFilelist)
         else if(0.70<zBj && zBj<0.75) zbin = 10;
         else zbin = 11;
 
+        if(trig&2)
+        {
+          fKinematicsRD[0][3]->Fill(zBj);
+        }
+        if(trig&4)
+        {
+          fKinematicsRD[1][3]->Fill(zBj);
+        }
+        if(trig&8)
+        {
+          fKinematicsRD[2][3]->Fill(zBj);
+        }
+        if(trig&512)
+        {
+          fKinematicsRD[3][3]->Fill(zBj);
+        }
+        if(trig&2 || trig&4 || trig&8 || trig&512)
+        {
+          fKinematicsRD[4][3]->Fill(zBj);
+        }
+
         //**********************************************************************
 
         // Save of hadrons
@@ -4533,27 +4554,6 @@ void RDextraction(string pFilelist)
           else if(0.65<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.70) zbin = 9;
           else if(0.70<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.75) zbin = 10;
           else zbin = 11;
-
-          if(trig&2)
-          {
-            fKinematicsRD[0][3]->Fill(Pvszlocal[i].vec[j][0][l]);
-          }
-          if(trig&4)
-          {
-            fKinematicsRD[1][3]->Fill(Pvszlocal[i].vec[j][0][l]);
-          }
-          if(trig&8)
-          {
-            fKinematicsRD[2][3]->Fill(Pvszlocal[i].vec[j][0][l]);
-          }
-          if(trig&512)
-          {
-            fKinematicsRD[3][3]->Fill(Pvszlocal[i].vec[j][0][l]);
-          }
-          if(trig&2 || trig&4 || trig&8 || trig&512)
-          {
-            fKinematicsRD[4][3]->Fill(Pvszlocal[i].vec[j][0][l]);
-          }
 
           for(int ll=0; ll<4; ll++)
           {
