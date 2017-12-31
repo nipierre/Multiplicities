@@ -2,6 +2,8 @@
 
 void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
 {
+  pxbin=-1; pybin=-1; pzbin=-1;
+
   if(0.004<px && px<0.01) pxbin=0;
   else if(0.01<px && px<0.02) pxbin=1;
   else if(0.02<px && px<0.03) pxbin=2;
@@ -63,7 +65,7 @@ void PionExtraction(ifstream pf1, ifstream pf2)
 
 }
 
-void KaonExtraction3E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4);
+void KaonExtraction3E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4)
 {
   LHAPDF::initPDFSet(fLHGrid.c_str());
 
