@@ -22,6 +22,7 @@ all : analySIDIS acceptance comparison
 analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit acccollect
 comparison : compMCRD
+extractor : FFextractor
 
 %.o: %.cc %.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -c -o $@ $<
@@ -39,6 +40,9 @@ acccollect: acceptance_collect.cc acceptance_collect.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 compMCRD: compMCRD.cc compMCRD.h
+	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+
+FFextractor: FFextractor.cc FFextractor.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 clean :
