@@ -8,7 +8,7 @@ PHAST_LIBS =
 PHAST_INCL =
 LHAPDF = /sps/compass/npierre/LHAPDF6
 LHAPDF_INCL += -I$(LHAPDF)/include
-LHAPDF_LIBS += -L$(LHAPDF)/lib
+LHAPDF_LIBS += -L$(LHAPDF)/lib -lLHAPDF
 
 ifeq ($(norc),1)
 CCFLAGS += -DNORC
