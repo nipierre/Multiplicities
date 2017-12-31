@@ -66,7 +66,7 @@ void readDataFile(string pF, double pMult[9][5][12], int kin_storage=0)
     f >> z >> ddummy >> ddummy;
     // cout << Q2 << " " << z << " " << ddummy << " " << ddummy << " " << ddummy << " ";
     whichBins(x,y,z,xbin,ybin,zbin);
-    cout << xbin << " " << ybin << " " << zbin << endl;
+    // cout << xbin << " " << ybin << " " << zbin << endl;
     f >> pMult[xbin][ybin][zbin] >> ddummy >> ddummy >> ddummy >> ddummy;
     // cout << pMult[xbin][ybin][zbin] << " " << ddummy << " " << ddummy << " " << ddummy << " " << ddummy << endl;
     if(kin_storage)
@@ -245,7 +245,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  fLHGrid = "MSTW08";
+  fLHGrid = "MSTW2008lo68c";
 
   if(argc==4)
   {
