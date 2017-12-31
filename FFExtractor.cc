@@ -64,7 +64,7 @@ void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
       fY[xbin][ybin][zbin] = y;
       fZ[xbin][ybin][zbin] = z;
     }
-  } while(f >> x);
+  } while(!(f >> x));
 }
 
 void PionExtraction(string pf1, string pf2)
