@@ -9,22 +9,22 @@
 
 using namespace std;
 
-double fX[9][5][10];
-double fY[9][5][10];
-double fZ[9][5][10];
-double fQ2[9][5][10];
+double fX[9][5][12];
+double fY[9][5][12];
+double fZ[9][5][12];
+double fQ2[9][5][12];
 
-double fKp_p[9][5][10];
-double fKm_p[9][5][10];
-double fKp_d[9][5][10];
-double fKm_d[9][5][10];
-double fKpm_d[9][5][10];
+double fKp_p[9][5][12];
+double fKm_p[9][5][12];
+double fKp_d[9][5][12];
+double fKm_d[9][5][12];
+double fKpm_d[9][5][12];
 
-double fDfav[9][5][10];
-double fDstr[9][5][10];
-double fDunf[9][5][10];
-double fDunf1[9][5][10];
-double fDunf2[9][5][10];
+double fDfav[9][5][12];
+double fDstr[9][5][12];
+double fDunf[9][5][12];
+double fDunf1[9][5][12];
+double fDunf2[9][5][12];
 
 string fLHGrid;
 TMatrixD fCoeff(3,3);

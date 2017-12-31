@@ -30,6 +30,8 @@ void whichBins(double px, double py, double pz, int &pxbin, int &pybin, int &pzb
   else if(0.55<pz && pz<0.60) pzbin=7;
   else if(0.60<pz && pz<0.65) pzbin=8;
   else if(0.65<pz && pz<0.70) pzbin=9;
+  else if(0.70<pz && pz<0.75) pzbin=10;
+  else if(0.75<pz && pz<0.85) pzbin=11;
 }
 
 void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
