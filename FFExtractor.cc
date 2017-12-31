@@ -223,13 +223,13 @@ void createDummyData(string pf1, string pf2)
       {
         if(fKp_d[i][j][k])
         {
-          fKp_p[i][j][k] = fKp_d[i][j][k]*(1+(-1)^(rand()%2)*(rand()%10)/100);
-          ofs_p << fX[i][j][k] << " 0 0 " << fY[i][j][k] << " 0 0 " << fQ2[i][j][k] << fZ[i][j][k] << " 0 0 " << fKp_p[i][j][k] << " 0 0 0 0 " << endl;
+          fKp_p[i][j][k] = fKp_d[i][j][k]*(1+((-1)^(rand()%2))*(rand()%10)/100);
+          ofs_p << fX[i][j][k] << " 0 0 " << fY[i][j][k] << " 0 0 " << fQ2[i][j][k] << " " << fZ[i][j][k] << " 0 0 " << fKp_p[i][j][k] << " 0 0 0 0 " << endl;
         }
         if(fKm_d[i][j][k])
         {
-          fKm_p[i][j][k] = fKm_d[i][j][k]*(1+(-1)^(rand()%2)*(rand()%10)/100);
-          ofs_m << fX[i][j][k] << " 0 0 " << fY[i][j][k] << " 0 0 " << fQ2[i][j][k] << fZ[i][j][k] << " 0 0 " << fKm_p[i][j][k] << " 0 0 0 0 " << endl;
+          fKm_p[i][j][k] = fKm_d[i][j][k]*(1+((-1)^(rand()%2))*(rand()%10)/100);
+          ofs_m << fX[i][j][k] << " 0 0 " << fY[i][j][k] << " 0 0 " << fQ2[i][j][k] << " " << fZ[i][j][k] << " 0 0 " << fKm_p[i][j][k] << " 0 0 0 0 " << endl;
         }
       }
     }
