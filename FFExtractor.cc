@@ -1,38 +1,38 @@
-#include "FFExtractor.h"
+ istream#include "FFExtractor.h"
 
 using namespace std;
 
 void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
 {
-  if(0.004<px<0.01) pxbin=0;
-  else if(0.01<px<0.02) pxbin=1;
-  else if(0.02<px<0.03) pxbin=2;
-  else if(0.03<px<0.04) pxbin=3;
-  else if(0.04<px<0.06) pxbin=4;
-  else if(0.06<px<0.1) pxbin=5;
-  else if(0.1<px<0.14) pxbin=6;
-  else if(0.14<px<0.18) pxbin=7;
-  else if(0.18<px<0.4) pxbin=8;
+  if(0.004<px && px<0.01) pxbin=0;
+  else if(0.01< && pxpx<0.02) pxbin=1;
+  else if(0.02< && pxpx<0.03) pxbin=2;
+  else if(0.03< && pxpx<0.04) pxbin=3;
+  else if(0.04< && pxpx<0.06) pxbin=4;
+  else if(0.06< && pxpx<0.1) pxbin=5;
+  else if(0.1< && pxpx<0.14) pxbin=6;
+  else if(0.14< && pxpx<0.18) pxbin=7;
+  else if(0.18< && pxpx<0.4) pxbin=8;
 
-  if(0.1<py<0.15) pybin=0;
-  else if(0.15<py<0.2) pybin=1;
-  else if(0.2<py<0.3) pybin=2;
-  else if(0.3<py<0.5) pybin=3;
-  else if(0.5<py<0.7) pybin=4;
+  if(0.1<py && py<0.15) pybin=0;
+  else if(0.15<py && py<0.2) pybin=1;
+  else if(0.2<py && py<0.3) pybin=2;
+  else if(0.3<py && py<0.5) pybin=3;
+  else if(0.5<py && py<0.7) pybin=4;
 
-  if(0.20<pz<0.25) pzbin=0;
-  else if(0.25<pz<0.30) pzbin=1;
-  else if(0.30<pz<0.35) pzbin=2;
-  else if(0.35<pz<0.40) pzbin=3;
-  else if(0.40<pz<0.45) pzbin=4;
-  else if(0.45<pz<0.50) pzbin=5;
-  else if(0.50<pz<0.55) pzbin=6;
-  else if(0.55<pz<0.60) pzbin=7;
-  else if(0.60<pz<0.65) pzbin=8;
-  else if(0.65<pz<0.70) pzbin=9;
+  if(0.20<pz && pz<0.25) pzbin=0;
+  else if(0.25<pz && pz<0.30) pzbin=1;
+  else if(0.30<pz && pz<0.35) pzbin=2;
+  else if(0.35<pz && pz<0.40) pzbin=3;
+  else if(0.40<pz && pz<0.45) pzbin=4;
+  else if(0.45<pz && pz<0.50) pzbin=5;
+  else if(0.50<pz && pz<0.55) pzbin=6;
+  else if(0.55<pz && pz<0.60) pzbin=7;
+  else if(0.60<pz && pz<0.65) pzbin=8;
+  else if(0.65<pz && pz<0.70) pzbin=9;
 }
 
-void readDataFile(TFile* pF, double pMult[9][5][10], int kin_storage=0)
+void readDataFile(ifstream pF, double pMult[9][5][10], int kin_storage=0)
 {
   string sdummy;
   double ddummy;
@@ -60,12 +60,12 @@ void readDataFile(TFile* pF, double pMult[9][5][10], int kin_storage=0)
   } while(pF >> x);
 }
 
-void PionExtraction(TFile* pf1, TFile* pf2)
+void PionExtraction(istream pf1, istream pf2)
 {
 
 }
 
-void KaonExtraction3E(TFile* pf1, TFile* pf2, TFile* pf3, TFile* pf4);
+void KaonExtraction3E(istream pf1, istream pf2, istream pf3, istream pf4);
 {
   LHAPDF::initPDFSet(fLHGrid.c_str());
 
@@ -120,7 +120,7 @@ void KaonExtraction3E(TFile* pf1, TFile* pf2, TFile* pf3, TFile* pf4);
   }
 }
 
-void KaonExtraction4E(TFile* pf1, TFile* pf2, TFile* pf3, TFile* pf4);
+void KaonExtraction4E(istream pf1, istream pf2, istream pf3, istream pf4);
 {
   LHAPDF::initPDFSet(fLHGrid);
 
@@ -183,7 +183,7 @@ void KaonExtraction4E(TFile* pf1, TFile* pf2, TFile* pf3, TFile* pf4);
   }
 }
 
-void createDummyData(TFile* pf1, TFile* pf2)
+void createDummyData(istream pf1, istream pf2)
 {
   readDataFile(pf1,fKp_d,1);
   readDataFile(pf2,fKm_d);
@@ -214,10 +214,6 @@ void createDummyData(TFile* pf1, TFile* pf2)
 
 int main(int argc, char **argv)
 {
-  TFile *f1;
-  TFile *f2;
-  TFile *f3;
-  TFile *f4;
 
   if(argc!=4 && argc!=6)
   {
@@ -225,10 +221,10 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  f1 = TFile::Open(argv[1].c_str());
-  f2 = TFile::Open(argv[2].c_str());
-  f3 = TFile::Open(argv[3].c_str());
-  f4 = TFile::Open(argv[4].c_str());
+  istream f1(argv[1].c_str());
+  istream f2(argv[2].c_str());
+  istream f3(argv[3].c_str());
+  istream f4(argv[4].c_str());
 
   if(!f1 || !f2 || !f3 || !f4)
   {
