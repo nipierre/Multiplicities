@@ -6,6 +6,9 @@ ROOTVERSION = -D ROOT5
 PHAST = /sps/compass/npierre/PHAST
 PHAST_LIBS =
 PHAST_INCL =
+LHAPDF = /afs/cern.ch/compass/tgeant/TGEANT_REFERENCE/deps/lhapdf/install/
+LHAPDF_INCL += -I$(LHAPDF)/include
+LHAPDF_LIBS += -L$(LHAPDF)/lib
 
 ifeq ($(norc),1)
 CCFLAGS += -DNORC
@@ -43,7 +46,7 @@ compMCRD: compMCRD.cc compMCRD.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 FFExtractor: FFExtractor.cc FFExtractor.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
 
 clean :
-	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD
+	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD FFExtractor
