@@ -245,7 +245,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  fLHGrid = "MSTW2008lo68c";
+  fLHGrid = "MSTW2008lo68cl";
 
   if(argc==4)
   {
