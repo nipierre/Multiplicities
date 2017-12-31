@@ -44,7 +44,7 @@ void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
 
   if(!f)
   {
-    return 1;
+    return;
   }
 
   for(int i=0; i<15; i++) f >> sdummy;
