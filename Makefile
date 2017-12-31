@@ -18,7 +18,7 @@ ifeq ($(debug),1)
 CCFLAGS += -DDEBUG
 endif
 
-all : analySIDIS acceptance comparison FFextractor
+all : analySIDIS acceptance comparison extractor
 analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit acccollect
 comparison : compMCRD
