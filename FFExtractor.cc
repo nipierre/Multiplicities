@@ -229,14 +229,14 @@ int main(int argc, char **argv)
 
   if(argc==4)
   {
-    ifstream f1(argv[1].c_str());
-    ifstream f2(argv[2].c_str());
+    ifstream f1(argv[1]);
+    ifstream f2(argv[2]);
 
     if(!f1 || !f2)
     {
         cout << "ERROR : Filename '" << f1 <<
         "' or '" << f2 <<
-        "' not valid."
+        "' not valid." << endl;
         return 1;
     };
 
@@ -244,10 +244,10 @@ int main(int argc, char **argv)
   }
   else if(argc==6)
   {
-    ifstream f1(argv[1].c_str());
-    ifstream f2(argv[2].c_str());
-    ifstream f3(argv[3].c_str());
-    ifstream f4(argv[4].c_str());
+    ifstream f1(argv[1]);
+    ifstream f2(argv[2]);
+    ifstream f3(argv[3]);
+    ifstream f4(argv[4]);
 
     if(!f1 || !f2 || !f3 || !f4)
     {
@@ -255,7 +255,7 @@ int main(int argc, char **argv)
         "' or '" << f2 <<
         "' or '" << f3 <<
         "' or '" << f4 <<
-        "' not valid."
+        "' not valid." << endl;
         return 1;
     };
 

@@ -6,6 +6,7 @@
 #include <TCanvas.h>
 #include <TMatrixD.h>
 #include "LHAPDF/LHAPDF.h"
+#include "LHAPDF/GridPDF.h"
 
 using namespace std;
 
