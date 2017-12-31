@@ -135,6 +135,9 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
         fDfav[i][j][k] = cRes[0][0];
         fDstr[i][j][k] = cRes[1][0];
         fDunf[i][j][k] = cRes[2][0];
+
+        cout << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
+        << " " << fDstr[i][j][k] << " " << fDunf[i][j][k] << endl;
       }
     }
   }
@@ -199,6 +202,9 @@ void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
         fDstr[i][j][k] = cRes[1][0];
         fDunf1[i][j][k] = cRes[2][0];
         fDunf2[i][j][k] = cRes[3][0];
+
+        cout << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
+        << " " << fDstr[i][j][k] << " " << fDunf1[i][j][k] << " " << fDunf2[i][j][k] << endl;
       }
     }
   }
