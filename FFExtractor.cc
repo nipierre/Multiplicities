@@ -32,24 +32,26 @@ void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
   else if(0.65<pz && pz<0.70) pzbin=9;
 }
 
-void readDataFile(ifstream pF, double pMult[9][5][10], int kin_storage=0)
+void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
 {
   string sdummy;
   double ddummy;
   double x, y, z, Q2;
   int xbin, ybin, zbin;
 
-  for(int i=0; i<15; i++) pF >> sdummy;
+  ifstream f(pF.c_str());
 
-  pF >> x;
+  for(int i=0; i<15; i++) f >> sdummy;
+
+  f >> x;
   do
   {
-    pF >> ddummy >> ddummy;
-    pF >> y >> ddummy >> ddummy;
-    pF >> Q2;
-    pF >> z >> ddummy >> ddummy;
+    f >> ddummy >> ddummy;
+    f >> y >> ddummy >> ddummy;
+    f >> Q2;
+    f >> z >> ddummy >> ddummy;
     whichBins(x,y,z,xbin,ybin,zbin);
-    pF >> pMult[xbin][ybin][zbin] >> ddummy >> ddummy >> ddummy >> ddummy;
+    f >> pMult[xbin][ybin][zbin] >> ddummy >> ddummy >> ddummy >> ddummy;
     if(kin_storage)
     {
       fQ2[xbin][ybin][zbin] = Q2;
@@ -57,15 +59,15 @@ void readDataFile(ifstream pF, double pMult[9][5][10], int kin_storage=0)
       fY[xbin][ybin][zbin] = y;
       fZ[xbin][ybin][zbin] = z;
     }
-  } while(pF >> x);
+  } while(f >> x);
 }
 
-void PionExtraction(ifstream pf1, ifstream pf2)
+void PionExtraction(string pf1, string pf2)
 {
 
 }
 
-void KaonExtraction3E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4)
+void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
 {
   LHAPDF::initPDFSet(fLHGrid.c_str());
 
@@ -120,7 +122,7 @@ void KaonExtraction3E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4)
   }
 }
 
-void KaonExtraction4E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4);
+void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4);
 {
   LHAPDF::initPDFSet(fLHGrid);
 
@@ -183,7 +185,7 @@ void KaonExtraction4E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4);
   }
 }
 
-void createDummyData(ifstream pf1, ifstream pf2)
+void createDummyData(string pf1, string pf2)
 {
   readDataFile(pf1,fKp_d,1);
   readDataFile(pf2,fKm_d);
@@ -221,36 +223,56 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  ifstream f1(argv[1].c_str());
-  ifstream f2(argv[2].c_str());
-  ifstream f3(argv[3].c_str());
-  ifstream f4(argv[4].c_str());
-
-  if(!f1 || !f2 || !f3 || !f4)
+  if(argc==4)
   {
-      cout << "ERROR : Filename '" << f1 <<
-      "' or '" << f2 <<
-      "' or '" << f3 <<
-      "' or '" << f4 <<
-      "' not valid."
-      return 1;
-  };
+    ifstream f1(argv[1].c_str());
+    ifstream f2(argv[2].c_str());
+
+    if(!f1 || !f2)
+    {
+        cout << "ERROR : Filename '" << f1 <<
+        "' or '" << f2 <<
+        "' not valid."
+        return 1;
+    };
+
+    f1.close(); f2.close();
+  }
+  else if(argc==6)
+  {
+    ifstream f1(argv[1].c_str());
+    ifstream f2(argv[2].c_str());
+    ifstream f3(argv[3].c_str());
+    ifstream f4(argv[4].c_str());
+
+    if(!f1 || !f2 || !f3 || !f4)
+    {
+        cout << "ERROR : Filename '" << f1 <<
+        "' or '" << f2 <<
+        "' or '" << f3 <<
+        "' or '" << f4 <<
+        "' not valid."
+        return 1;
+    };
+
+    f1.close(); f2.close(); f3.close(); f4.close();
+  }
 
   if(atoi(argv[3])==1)
   {
-    PionExtraction(f1,f2);
+    PionExtraction(argv[1],argv[2]);
   }
   else if(atoi(argv[5])==2)
   {
-    KaonExtraction3E(f1,f2,f3,f4);
+    KaonExtraction3E(argv[1],argv[2],argv[3],argv[4]);
   }
   else if(atoi(argv[5])==3)
   {
-    KaonExtraction4E(f1,f2,f3,f4);
+    KaonExtraction4E(argv[1],argv[2],argv[3],argv[4]);
   }
   else if(atoi(argv[3])==4)
   {
-    createDummyData(f1,f2);
+    createDummyData(argv[1],argv[2]);
   }
   else
   {
