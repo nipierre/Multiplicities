@@ -32,7 +32,7 @@ void whichBins(double px, double py, double pz, int &pxbin, int &pybin, int &pzb
   else if(0.65<pz && pz<0.70) pzbin=9;
 }
 
-void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
+void readDataFile(string pF, double &pMult[9][5][10], int kin_storage=0)
 {
   string sdummy;
   double ddummy;
@@ -47,11 +47,15 @@ void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
   do
   {
     f >> ddummy >> ddummy;
+    cout << x << " " << dummy << " " << dummy << " ";
     f >> y >> ddummy >> ddummy;
+    cout << y << " " << dummy << " " << dummy << " ";
     f >> Q2;
     f >> z >> ddummy >> ddummy;
+    cout << Q2 << " " << z << " " << dummy << " " << dummy << " " << dummy << " ";
     whichBins(x,y,z,xbin,ybin,zbin);
     f >> pMult[xbin][ybin][zbin] >> ddummy >> ddummy >> ddummy >> ddummy;
+    cout << pMult[xbin][ybin][zbin] << " " << ddummy << " " << dummy << " " << dummy << " " << dummy << " ";
     if(kin_storage)
     {
       fQ2[xbin][ybin][zbin] = Q2;
