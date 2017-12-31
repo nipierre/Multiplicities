@@ -132,9 +132,9 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
 
         TMatrixD cRes = cSol*fMult;
 
-        // fDfav[i][j][k] = cRes[0][0];
-        // fDstr[i][j][k] = cRes[1][0];
-        // fDunf[i][j][k] = cRes[3][0];
+        fDfav[i][j][k] = cRes[0][0];
+        fDstr[i][j][k] = cRes[1][0];
+        fDunf[i][j][k] = cRes[2][0];
       }
     }
   }
