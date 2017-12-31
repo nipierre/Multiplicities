@@ -6,7 +6,7 @@ ROOTVERSION = -D ROOT5
 PHAST = /sps/compass/npierre/PHAST
 PHAST_LIBS =
 PHAST_INCL =
-LHAPDF = /afs/cern.ch/compass/tgeant/TGEANT_REFERENCE/deps/lhapdf/install/
+LHAPDF = /sps/compass/npierre/LHAPDF6
 LHAPDF_INCL += -I$(LHAPDF)/include
 LHAPDF_LIBS += -L$(LHAPDF)/lib
 
