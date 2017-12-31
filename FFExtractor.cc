@@ -40,7 +40,7 @@ void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
   int xbin, ybin, zbin;
 
   cout << "Reading file " << pF << "..." << endl;
-  ifstream f(pF.c_str());
+  ifstream f(pF);
 
   for(int i=0; i<15; i++) f >> sdummy;
 
