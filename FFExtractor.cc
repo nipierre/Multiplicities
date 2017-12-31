@@ -98,7 +98,7 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
   {
     for(int j=0; j<5 ; j++) //y
     {
-      for(int k=0; k<10 ; k++) //z
+      for(int k=0; k<12 ; k++) //z
       {
         const double u = pdf.xfxQ2(2,fX[i][j][k],fQ2[i][j][k]);
         const double ub = pdf.xfxQ2(-2,fX[i][j][k],fQ2[i][j][k]);
