@@ -32,7 +32,7 @@ void whichBins(double px, double py, double pz, int &pxbin, int &pybin, int &pzb
   else if(0.65<pz && pz<0.70) pzbin=9;
 }
 
-void readDataFile(string pF, double &pMult[9][5][10], int kin_storage=0)
+void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
 {
   string sdummy;
   double ddummy;
