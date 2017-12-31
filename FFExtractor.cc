@@ -1,18 +1,18 @@
- istream#include "FFExtractor.h"
+#include "FFExtractor.h"
 
 using namespace std;
 
 void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
 {
   if(0.004<px && px<0.01) pxbin=0;
-  else if(0.01< && pxpx<0.02) pxbin=1;
-  else if(0.02< && pxpx<0.03) pxbin=2;
-  else if(0.03< && pxpx<0.04) pxbin=3;
-  else if(0.04< && pxpx<0.06) pxbin=4;
-  else if(0.06< && pxpx<0.1) pxbin=5;
-  else if(0.1< && pxpx<0.14) pxbin=6;
-  else if(0.14< && pxpx<0.18) pxbin=7;
-  else if(0.18< && pxpx<0.4) pxbin=8;
+  else if(0.01<px && px<0.02) pxbin=1;
+  else if(0.02<px && px<0.03) pxbin=2;
+  else if(0.03<px && px<0.04) pxbin=3;
+  else if(0.04<px && px<0.06) pxbin=4;
+  else if(0.06<px && px<0.1) pxbin=5;
+  else if(0.1<px && px<0.14) pxbin=6;
+  else if(0.14<px && px<0.18) pxbin=7;
+  else if(0.18<px && px<0.4) pxbin=8;
 
   if(0.1<py && py<0.15) pybin=0;
   else if(0.15<py && py<0.2) pybin=1;
@@ -32,7 +32,7 @@ void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
   else if(0.65<pz && pz<0.70) pzbin=9;
 }
 
-void readDataFile(ifstream pF, double pMult[9][5][10], int kin_storage=0)
+void readDataFile(std::ifstream pF, double pMult[9][5][10], int kin_storage=0)
 {
   string sdummy;
   double ddummy;
@@ -60,12 +60,12 @@ void readDataFile(ifstream pF, double pMult[9][5][10], int kin_storage=0)
   } while(pF >> x);
 }
 
-void PionExtraction(istream pf1, istream pf2)
+void PionExtraction(ifstream pf1, ifstream pf2)
 {
 
 }
 
-void KaonExtraction3E(istream pf1, istream pf2, istream pf3, istream pf4);
+void KaonExtraction3E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4);
 {
   LHAPDF::initPDFSet(fLHGrid.c_str());
 
@@ -120,7 +120,7 @@ void KaonExtraction3E(istream pf1, istream pf2, istream pf3, istream pf4);
   }
 }
 
-void KaonExtraction4E(istream pf1, istream pf2, istream pf3, istream pf4);
+void KaonExtraction4E(ifstream pf1, ifstream pf2, ifstream pf3, ifstream pf4);
 {
   LHAPDF::initPDFSet(fLHGrid);
 
@@ -183,7 +183,7 @@ void KaonExtraction4E(istream pf1, istream pf2, istream pf3, istream pf4);
   }
 }
 
-void createDummyData(istream pf1, istream pf2)
+void createDummyData(ifstream pf1, ifstream pf2)
 {
   readDataFile(pf1,fKp_d,1);
   readDataFile(pf2,fKm_d);
@@ -221,10 +221,10 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  istream f1(argv[1].c_str());
-  istream f2(argv[2].c_str());
-  istream f3(argv[3].c_str());
-  istream f4(argv[4].c_str());
+  ifstream f1(argv[1].c_str());
+  ifstream f2(argv[2].c_str());
+  ifstream f3(argv[3].c_str());
+  ifstream f4(argv[4].c_str());
 
   if(!f1 || !f2 || !f3 || !f4)
   {
