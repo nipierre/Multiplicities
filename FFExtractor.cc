@@ -1,6 +1,6 @@
 #include "FFExtractor.h"
 
-void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
+void whichBins(double px, double py, double pz, int &pxbin, int &pybin, int &pzbin)
 {
   pxbin=-1; pybin=-1; pzbin=-1;
 
