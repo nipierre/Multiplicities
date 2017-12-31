@@ -42,6 +42,11 @@ void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
   cout << "Reading file " << pF << "..." << endl;
   ifstream f(pF);
 
+  if(!f)
+  {
+    return 1;
+  }
+
   for(int i=0; i<15; i++) f >> sdummy;
 
   f >> x;
