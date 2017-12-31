@@ -1,7 +1,5 @@
 #include "FFExtractor.h"
 
-using namespace std;
-
 void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
 {
   if(0.004<px && px<0.01) pxbin=0;
@@ -32,7 +30,7 @@ void whichBins(double px, double py, double pz, int pxbin, int pybin, int pzbin)
   else if(0.65<pz && pz<0.70) pzbin=9;
 }
 
-void readDataFile(std::ifstream pF, double pMult[9][5][10], int kin_storage=0)
+void readDataFile(ifstream pF, double pMult[9][5][10], int kin_storage=0)
 {
   string sdummy;
   double ddummy;

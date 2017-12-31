@@ -7,6 +7,8 @@
 #include <TMatrixD.h>
 #include "LHAPDF/LHAPDF.h"
 
+using namespace std;
+
 double fX[9][5][10];
 double fY[9][5][10];
 double fZ[9][5][10];
