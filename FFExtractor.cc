@@ -39,6 +39,7 @@ void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
   double x, y, z, Q2;
   int xbin, ybin, zbin;
 
+  cout << "Reading file " << pF << "..." << endl;
   ifstream f(pF.c_str());
 
   for(int i=0; i<15; i++) f >> sdummy;
@@ -55,7 +56,7 @@ void readDataFile(string pF, double pMult[9][5][10], int kin_storage=0)
     cout << Q2 << " " << z << " " << ddummy << " " << ddummy << " " << ddummy << " ";
     whichBins(x,y,z,xbin,ybin,zbin);
     f >> pMult[xbin][ybin][zbin] >> ddummy >> ddummy >> ddummy >> ddummy;
-    cout << pMult[xbin][ybin][zbin] << " " << ddummy << " " << ddummy << " " << ddummy << " " << ddummy << " ";
+    cout << pMult[xbin][ybin][zbin] << " " << ddummy << " " << ddummy << " " << ddummy << " " << ddummy << endl;
     if(kin_storage)
     {
       fQ2[xbin][ybin][zbin] = Q2;
