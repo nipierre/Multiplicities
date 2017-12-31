@@ -82,12 +82,12 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
     {
       for(int k=0; k<10 ; k++) //z
       {
-        const double u = LHAPDF::xfxQ2(2,fX[i],fQ2[i][j][k]);
-        const double ub = LHAPDF::xfxQ2(-2,fX[i],fQ2[i][j][k]);
-        const double d = LHAPDF::xfxQ2(1,fX[i],fQ2[i][j][k]);
-        const double db = LHAPDF::xfxQ2(-1,fX[i],fQ2[i][j][k]);
-        const double s = LHAPDF::xfxQ2(3,fX[i],fQ2[i][j][k]);
-        const double sb = LHAPDF::xfxQ2(-3,fX[i],fQ2[i][j][k]);
+        const double u = LHAPDF::PDF::xfxQ2(2,fX[i],fQ2[i][j][k]);
+        const double ub = LHAPDF::PDF::xfxQ2(-2,fX[i],fQ2[i][j][k]);
+        const double d = LHAPDF::PDF::xfxQ2(1,fX[i],fQ2[i][j][k]);
+        const double db = LHAPDF::PDF::xfxQ2(-1,fX[i],fQ2[i][j][k]);
+        const double s = LHAPDF::PDF::xfxQ2(3,fX[i],fQ2[i][j][k]);
+        const double sb = LHAPDF::PDF::xfxQ2(-3,fX[i],fQ2[i][j][k]);
 
         const double norm_p = 4*(u+ub)+d+db+s+sb;
         const double norm_d = 5*(u+ub+d+db)+2*(s+sb);
@@ -122,7 +122,7 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
   }
 }
 
-void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4);
+void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
 {
   LHAPDF::initPDFSet(fLHGrid);
 
@@ -137,12 +137,12 @@ void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4);
     {
       for(int k=0; k<12 ; k++) //z
       {
-        const double u = LHAPDF::xfxQ2(2,fX[i],fQ2[j]);
-        const double ub = LHAPDF::xfxQ2(-2,fX[i],fQ2[j]);
-        const double d = LHAPDF::xfxQ2(1,fX[i],fQ2[j]);
-        const double db = LHAPDF::xfxQ2(-1,fX[i],fQ2[j]);
-        const double s = LHAPDF::xfxQ2(3,fX[i],fQ2[j]);
-        const double sb = LHAPDF::xfxQ2(-3,fX[i],fQ2[j]);
+        const double u = LHAPDF::PDF::xfxQ2(2,fX[i],fQ2[j]);
+        const double ub = LHAPDF::PDF::xfxQ2(-2,fX[i],fQ2[j]);
+        const double d = LHAPDF::PDF::xfxQ2(1,fX[i],fQ2[j]);
+        const double db = LHAPDF::PDF::xfxQ2(-1,fX[i],fQ2[j]);
+        const double s = LHAPDF::PDF::xfxQ2(3,fX[i],fQ2[j]);
+        const double sb = LHAPDF::PDF::xfxQ2(-3,fX[i],fQ2[j]);
 
         const double norm_p = 4*(u+ub)+d+db+s+sb;
         const double norm_d = 5*(u+ub+d+db)+2*(s+sb);
