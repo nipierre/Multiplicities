@@ -69,7 +69,8 @@ void PionExtraction(string pf1, string pf2)
 
 void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
 {
-  LHAPDF::initPDFSet(fLHGrid.c_str());
+  const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
+  const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
 
   readDataFile(pf1,fKp_p,1);
   readDataFile(pf2,fKm_p);
@@ -82,12 +83,12 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
     {
       for(int k=0; k<10 ; k++) //z
       {
-        const double u = LHAPDF::PDF::xfxQ2(2,fX[i],fQ2[i][j][k]);
-        const double ub = LHAPDF::PDF::xfxQ2(-2,fX[i],fQ2[i][j][k]);
-        const double d = LHAPDF::PDF::xfxQ2(1,fX[i],fQ2[i][j][k]);
-        const double db = LHAPDF::PDF::xfxQ2(-1,fX[i],fQ2[i][j][k]);
-        const double s = LHAPDF::PDF::xfxQ2(3,fX[i],fQ2[i][j][k]);
-        const double sb = LHAPDF::PDF::xfxQ2(-3,fX[i],fQ2[i][j][k]);
+        const double u = pdf.xfxQ2(2,fX[i],fQ2[i][j][k]);
+        const double ub = pdf.xfxQ2(-2,fX[i],fQ2[i][j][k]);
+        const double d = pdf.xfxQ2(1,fX[i],fQ2[i][j][k]);
+        const double db = pdf.xfxQ2(-1,fX[i],fQ2[i][j][k]);
+        const double s = pdf.xfxQ2(3,fX[i],fQ2[i][j][k]);
+        const double sb = pdf.xfxQ2(-3,fX[i],fQ2[i][j][k]);
 
         const double norm_p = 4*(u+ub)+d+db+s+sb;
         const double norm_d = 5*(u+ub+d+db)+2*(s+sb);
@@ -124,7 +125,8 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
 
 void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
 {
-  LHAPDF::initPDFSet(fLHGrid);
+  const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
+  const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
 
   readDataFile(pf1,fKp_p,1);
   readDataFile(pf2,fKm_p);
@@ -137,12 +139,12 @@ void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
     {
       for(int k=0; k<12 ; k++) //z
       {
-        const double u = LHAPDF::PDF::xfxQ2(2,fX[i],fQ2[j]);
-        const double ub = LHAPDF::PDF::xfxQ2(-2,fX[i],fQ2[j]);
-        const double d = LHAPDF::PDF::xfxQ2(1,fX[i],fQ2[j]);
-        const double db = LHAPDF::PDF::xfxQ2(-1,fX[i],fQ2[j]);
-        const double s = LHAPDF::PDF::xfxQ2(3,fX[i],fQ2[j]);
-        const double sb = LHAPDF::PDF::xfxQ2(-3,fX[i],fQ2[j]);
+        const double u = pdf.xfxQ2(2,fX[i],fQ2[j]);
+        const double ub = pdf.xfxQ2(-2,fX[i],fQ2[j]);
+        const double d = pdf.xfxQ2(1,fX[i],fQ2[j]);
+        const double db = pdf.xfxQ2(-1,fX[i],fQ2[j]);
+        const double s = pdf.xfxQ2(3,fX[i],fQ2[j]);
+        const double sb = pdf.xfxQ2(-3,fX[i],fQ2[j]);
 
         const double norm_p = 4*(u+ub)+d+db+s+sb;
         const double norm_d = 5*(u+ub+d+db)+2*(s+sb);
@@ -222,6 +224,8 @@ int main(int argc, char **argv)
     cout << "ERROR : Number of arguments not valid." << endl;
     return 1;
   }
+
+  fLHGrid = "MSTW08";
 
   if(argc==4)
   {
