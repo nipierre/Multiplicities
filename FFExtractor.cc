@@ -193,7 +193,7 @@ void createDummyData(string pf1, string pf2)
   readDataFile(pf2,fKm_d);
 
   ofstream ofs_p("K+_prot.txt", std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_m("K+_prot.txt", std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_m("K-_prot.txt", std::ofstream::out | std::ofstream::trunc);
 
   ofs_p << "'$x$' '$x$ LOW' '$x$ HIGH' '$y$' '$y$ LOW' '$y$ HIGH' '$<Q^2> (GeV/c)^2$' '$z^{K^{+}}$' '$z^{K^{+}}$ LOW' '$z^{K^{+}}$ HIGH' '$M^{K^{+}}$' 'stat +' 'stat -' 'sys +' 'sys -'" << endl;
   ofs_m << "'$x$' '$x$ LOW' '$x$ HIGH' '$y$' '$y$ LOW' '$y$ HIGH' '$<Q^2> (GeV/c)^2$' '$z^{K^{-}}$' '$z^{K^{-}}$ LOW' '$z^{K^{-}}$ HIGH' '$M^{K^{-}}$' 'stat +' 'stat -' 'sys +' 'sys -'" << endl;
