@@ -66,7 +66,8 @@ void readDataFile(string pF, double pMult[9][5][12], int kin_storage=0)
     f >> z >> ddummy >> ddummy;
     cout << Q2 << " " << z << " " << ddummy << " " << ddummy << " " << ddummy << " ";
     whichBins(x,y,z,xbin,ybin,zbin);
-    cout << xbin << " " << ybin << " " << zbin << endl;
+    if(xbin==-1 || ybin==-1 || zbin==-1) continue;
+    // cout << xbin << " " << ybin << " " << zbin << endl;
     f >> pMult[xbin][ybin][zbin] >> ddummy >> ddummy >> ddummy >> ddummy;
     cout << pMult[xbin][ybin][zbin] << " " << ddummy << " " << ddummy << " " << ddummy << " " << ddummy << endl;
     if(kin_storage)
@@ -144,6 +145,7 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
       }
     }
   }
+  ofs_D.close();
 }
 
 void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
@@ -214,6 +216,7 @@ void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
       }
     }
   }
+  ofs_D.close();
 }
 
 void createDummyData(string pf1, string pf2)
