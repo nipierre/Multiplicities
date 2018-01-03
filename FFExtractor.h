@@ -27,7 +27,9 @@ double fDunf1[9][5][12];
 double fDunf2[9][5][12];
 
 string fLHGrid;
+TMatrixD fCoeff2E(2,2);
 TMatrixD fCoeff(3,3);
 TMatrixD fCoeff4E(4,4);
+TMatrixD fMult2E(2,1);
 TMatrixD fMult(3,1);
 TMatrixD fMult4E(4,1);

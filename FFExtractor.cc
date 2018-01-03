@@ -80,9 +80,54 @@ void readDataFile(string pF, double pMult[9][5][12], int kin_storage=0)
   } while(f >> x);
 }
 
-void PionExtraction(string pf1, string pf2)
+void PionExtractionDeut(string pf1, string pf2)
 {
+  const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
+  const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
+  ofstream ofs_D("Pi_FF.txt", std::ofstream::out | std::ofstream::trunc);
 
+  readDataFile(pf1,fKp_d,1);
+  readDataFile(pf2,fKm_d);
+
+  for(int i=0; i<9 ; i++) //x
+  {
+    for(int j=0; j<5 ; j++) //y
+    {
+      for(int k=0; k<12 ; k++) //z
+      {
+        if(!fX[i][j][k]) continue;
+
+        const double u = pdf.xfxQ2(2,fX[i][j][k],fQ2[i][j][k]);
+        const double ub = pdf.xfxQ2(-2,fX[i][j][k],fQ2[i][j][k]);
+        const double d = pdf.xfxQ2(1,fX[i][j][k],fQ2[i][j][k]);
+        const double db = pdf.xfxQ2(-1,fX[i][j][k],fQ2[i][j][k]);
+        const double s = pdf.xfxQ2(3,fX[i][j][k],fQ2[i][j][k]);
+        const double sb = pdf.xfxQ2(-3,fX[i][j][k],fQ2[i][j][k]);
+
+        const double norm_d = 5*(u+ub+d+db)+2*(s+sb);
+
+        fCoeff2E[0][0] = (4*u+db)/norm_d;
+        fCoeff2E[0][1] = (4*ub+d+s+sb)/norm_d;
+
+        fCoeff2E[1][0] = (4*ub+d)/norm_d;
+        fCoeff2E[1][1] = (4*u+db+s+sb)/norm_d;
+
+        TMatrixD cSol = fCoeff.InvertFast();
+
+        fMult2E[0][0] = fKp_d[i][j][k];
+        fMult2E[1][0] = fKm_d[i][j][k];
+
+        TMatrixD cRes = cSol*fMult;
+
+        fDfav[i][j][k] = cRes[0][0];
+        fDunf[i][j][k] = cRes[1][0];
+
+        ofs_D << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
+        << " " << fDunf[i][j][k] << endl;
+      }
+    }
+  }
+  ofs_D.close();
 }
 
 void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
@@ -299,7 +344,7 @@ int main(int argc, char **argv)
 
   if(atoi(argv[3])==1)
   {
-    PionExtraction(argv[1],argv[2]);
+    PionExtractionDeut(argv[1],argv[2]);
   }
   else if(atoi(argv[5])==2)
   {
