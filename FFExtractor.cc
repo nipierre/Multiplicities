@@ -117,7 +117,7 @@ void PionExtractionDeut(string pf1, string pf2)
         fMult2E[0][0] = fKp_d[i][j][k];
         fMult2E[1][0] = fKm_d[i][j][k];
 
-        TMatrixD cRes = cSol*fMult;
+        TMatrixD cRes = cSol*fMult2E;
 
         fDfav[i][j][k] = cRes[0][0];
         fDunf[i][j][k] = cRes[1][0];
