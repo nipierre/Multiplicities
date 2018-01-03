@@ -112,7 +112,7 @@ void PionExtractionDeut(string pf1, string pf2)
         fCoeff2E[1][0] = (4*ub+d)/norm_d;
         fCoeff2E[1][1] = (4*u+db+s+sb)/norm_d;
 
-        TMatrixD cSol = fCoeff.InvertFast();
+        TMatrixD cSol = fCoeff2E.InvertFast();
 
         fMult2E[0][0] = fKp_d[i][j][k];
         fMult2E[1][0] = fKm_d[i][j][k];
