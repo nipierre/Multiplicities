@@ -1083,7 +1083,7 @@ int main(int argc, char **argv)
         << LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)  << " "
         << LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)  << " "
         << LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)  << " "
-        << endl; cout << *it << " " << fLHsec << endl;}*/
+        << endl; cout << *it << " " << fLHsec << endl;}
 #endif
 
         //**********************************************************************

@@ -88,6 +88,7 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
 {
   const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
   const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
+  ofstream ofs_D("K_4FF.txt", std::ofstream::out | std::ofstream::trunc);
 
   readDataFile(pf1,fKp_p,1);
   readDataFile(pf2,fKm_p);
@@ -101,7 +102,7 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
       for(int k=0; k<12 ; k++) //z
       {
         if(!fX[i][j][k]) continue;
-        
+
         const double u = pdf.xfxQ2(2,fX[i][j][k],fQ2[i][j][k]);
         const double ub = pdf.xfxQ2(-2,fX[i][j][k],fQ2[i][j][k]);
         const double d = pdf.xfxQ2(1,fX[i][j][k],fQ2[i][j][k]);
@@ -138,7 +139,7 @@ void KaonExtraction3E(string pf1, string pf2, string pf3, string pf4)
         fDstr[i][j][k] = cRes[1][0];
         fDunf[i][j][k] = cRes[2][0];
 
-        cout << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
+        ofs_D << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
         << " " << fDstr[i][j][k] << " " << fDunf[i][j][k] << endl;
       }
     }
@@ -149,6 +150,7 @@ void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
 {
   const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
   const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
+  ofstream ofs_D("K_4FF.txt", std::ofstream::out | std::ofstream::trunc);
 
   readDataFile(pf1,fKp_p,1);
   readDataFile(pf2,fKm_p);
@@ -207,7 +209,7 @@ void KaonExtraction4E(string pf1, string pf2, string pf3, string pf4)
         fDunf1[i][j][k] = cRes[2][0];
         fDunf2[i][j][k] = cRes[3][0];
 
-        cout << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
+        ofs_D << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
         << " " << fDstr[i][j][k] << " " << fDunf1[i][j][k] << " " << fDunf2[i][j][k] << endl;
       }
     }
