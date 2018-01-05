@@ -3005,7 +3005,7 @@ void RDextraction(string pFilelist)
 
       // TEST
 
-      fCovMu0.Fill(covMu0->GetLeaf("covMu0")->GetValue());
+      fCovMu0->Fill(covMu0->GetLeaf("covMu0")->GetValue());
 
       // -------------------------------------------------------------------------
       // --------- Calculation ---------------------------------------------------
