@@ -348,7 +348,7 @@ void createDummyData(string pf1, string pf2)
 
 int main(int argc, char **argv)
 {
-  string fileFlag, MultFil, MultFil, FilePiP, FilePiM, FileKPP, FileKMP, FileKPD, FileKMD;
+  string fileFlag, MultFileP, MultFileM, FilePiP, FilePiM, FileKPP, FileKMP, FileKPD, FileKMD;
 
   for (int i = 1; i < argc; i++)
   {
