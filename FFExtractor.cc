@@ -84,10 +84,10 @@ void PionExtractionDeut(string pf1, string pf2)
 {
   const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
   const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
-  ofstream ofs_D("Pi_FF.txt", std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_D("Pi_FF_deut.txt", std::ofstream::out | std::ofstream::trunc);
 
-  readDataFile(pf1,fKp_d,1);
-  readDataFile(pf2,fKm_d);
+  readDataFile(pf1,fPip_d,1);
+  readDataFile(pf2,fPim_d);
 
   for(int i=0; i<9 ; i++) //x
   {
@@ -106,16 +106,66 @@ void PionExtractionDeut(string pf1, string pf2)
 
         const double norm_d = 5*(u+ub+d+db)+2*(s+sb);
 
-        fCoeff2E[0][0] = (4*u+db)/norm_d;
-        fCoeff2E[0][1] = (4*ub+d+s+sb)/norm_d;
+        fCoeff2E[0][0] = (4*u*(u+d)+db*(ub+db))/norm_d;
+        fCoeff2E[0][1] = (u+d+ub+db+2*(s+sb))/norm_d;
 
-        fCoeff2E[1][0] = (4*ub+d)/norm_d;
-        fCoeff2E[1][1] = (4*u+db+s+sb)/norm_d;
+        fCoeff2E[1][0] = (4*ub*(ub+db)+d*(u+d))/norm_d;
+        fCoeff2E[1][1] = (u+d+ub+db+2*(s+sb))/norm_d;
 
         TMatrixD cSol = fCoeff2E.InvertFast();
 
-        fMult2E[0][0] = fKp_d[i][j][k];
-        fMult2E[1][0] = fKm_d[i][j][k];
+        fMult2E[0][0] = fPip_d[i][j][k];
+        fMult2E[1][0] = fPim_d[i][j][k];
+
+        TMatrixD cRes = cSol*fMult2E;
+
+        fDfav[i][j][k] = cRes[0][0];
+        fDunf[i][j][k] = cRes[1][0];
+
+        ofs_D << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
+        << " " << fDunf[i][j][k] << endl;
+      }
+    }
+  }
+  ofs_D.close();
+}
+
+void PionExtractionProt(string pf1, string pf2)
+{
+  const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
+  const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
+  ofstream ofs_D("Pi_FF_prot.txt", std::ofstream::out | std::ofstream::trunc);
+
+  readDataFile(pf1,fPip_p,1);
+  readDataFile(pf2,fPim_p);
+
+  for(int i=0; i<9 ; i++) //x
+  {
+    for(int j=0; j<5 ; j++) //y
+    {
+      for(int k=0; k<12 ; k++) //z
+      {
+        if(!fX[i][j][k]) continue;
+
+        const double u = pdf.xfxQ2(2,fX[i][j][k],fQ2[i][j][k]);
+        const double ub = pdf.xfxQ2(-2,fX[i][j][k],fQ2[i][j][k]);
+        const double d = pdf.xfxQ2(1,fX[i][j][k],fQ2[i][j][k]);
+        const double db = pdf.xfxQ2(-1,fX[i][j][k],fQ2[i][j][k]);
+        const double s = pdf.xfxQ2(3,fX[i][j][k],fQ2[i][j][k]);
+        const double sb = pdf.xfxQ2(-3,fX[i][j][k],fQ2[i][j][k]);
+
+        const double norm_p = 4*(u+ub)+(d+db)+(s+sb);
+
+        fCoeff2E[0][0] = (4*u+db)/norm_p;
+        fCoeff2E[0][1] = (4*ub+d+s+sb)/norm_p;
+
+        fCoeff2E[1][0] = (4*ub+d)/norm_p;
+        fCoeff2E[1][1] = (4*u+db+s+sb)/norm_p;
+
+        TMatrixD cSol = fCoeff2E.InvertFast();
+
+        fMult2E[0][0] = fPip_p[i][j][k];
+        fMult2E[1][0] = fPim_p[i][j][k];
 
         TMatrixD cRes = cSol*fMult2E;
 
@@ -299,18 +349,81 @@ void createDummyData(string pf1, string pf2)
 int main(int argc, char **argv)
 {
 
-  if(argc!=4 && argc!=6)
+  for (int i = 1; i < argc; i++)
   {
-    cout << "ERROR : Number of arguments not valid." << endl;
+    if (string(argv[i]) == "-h")
+      {
+        cout << FCYN("HELP : available flags :") << endl;
+        cout << FCYN("-pion-deut [Pi+ file] [Pi- file]") << endl;
+        cout << FCYN("-pion-prot [Pi+ file] [Pi- file]") << endl;
+        cout << FCYN("-kaon-3 [K+ prot] [K- prot] [K+ deut] [K- deut]") << endl;
+        cout << FCYN("-kaon-4 [K+ prot] [K- prot] [K+ deut] [K- deut]") << endl;
+        cout << FCYN("-dummy-data [Mult base file]") << endl;
+        return 0;
+      }
+    if(i+2 < argc)
+    {
+      if (string(argv[i]) == "-dummy-data")
+      {
+        MultFileP = argv[i+1];
+        MultFileM = argv[i+1];
+        fileFlag = "-dummy-data";
+        break;
+      }
+      if (string(argv[i]) == "-pion-deut")
+      {
+        FilePiP = argv[i+1];
+        FilePiM = argv[i+2];
+        fileFlag = "-pion-deut";
+        break;
+      }
+      if (string(argv[i]) == "-pion-prot")
+      {
+        FilePiP = argv[i+1];
+        FilePiM = argv[i+2];
+        fileFlag = "-pion-prot";
+        break;
+      }
+    }
+    if(i+4 < argc)
+    {
+      if (string(argv[i]) == "-kaon-3")
+      {
+        FileKPP = argv[i+1];
+        FileKMP = argv[i+2];
+        FileKPD = argv[i+1];
+        FileKMD = argv[i+2];
+        fileFlag = "-kaon-3";
+        break;
+      }
+      if (string(argv[i]) == "-kaon-4")
+      {
+        FileKPP = argv[i+1];
+        FileKMP = argv[i+2];
+        FileKPD = argv[i+1];
+        FileKMD = argv[i+2];
+        fileFlag = "-kaon-4";
+        break;
+      }
+    }
+  }
+
+  if(fileFlag!="-dummy-data"
+      && fileFlag!="-pion-prot"
+      && fileFlag!="-pion-deut"
+      && fileFlag!="-kaon-3"
+      && fileFlag!="-kaon-4")
+  {
+    cout << "ERROR : No valid options specified." << endl;
     return 1;
   }
 
   fLHGrid = "MSTW2008lo68cl";
 
-  if(argc==4)
+  if(fileFlag=="-dummy-data")
   {
-    ifstream f1(argv[1]);
-    ifstream f2(argv[2]);
+    ifstream f1(MultFileP);
+    ifstream f2(MultFileM);
 
     if(!f1 || !f2)
     {
@@ -322,12 +435,27 @@ int main(int argc, char **argv)
 
     f1.close(); f2.close();
   }
-  else if(argc==6)
+  else if(fileFlag=="-pion-prot" || fileFlag=="-pion-deut")
   {
-    ifstream f1(argv[1]);
-    ifstream f2(argv[2]);
-    ifstream f3(argv[3]);
-    ifstream f4(argv[4]);
+    ifstream f1(FilePiP);
+    ifstream f2(FilePiM);
+
+    if(!f1 || !f2)
+    {
+        cout << "ERROR : Filename '" << f1 <<
+        "' or '" << f2 <<
+        "' not valid." << endl;
+        return 1;
+    };
+
+    f1.close(); f2.close();
+  }
+  else if(fileFlag=="-kaon-3" || fileFlag=="-kaon-4")
+  {
+    ifstream f1(FileKPP);
+    ifstream f2(FileKMP);
+    ifstream f3(FileKPD);
+    ifstream f4(FileKMD);
 
     if(!f1 || !f2 || !f3 || !f4)
     {
@@ -342,26 +470,21 @@ int main(int argc, char **argv)
     f1.close(); f2.close(); f3.close(); f4.close();
   }
 
-  if(atoi(argv[3])==1)
+  if(fileFlag=="-pion-deut")
   {
-    PionExtractionDeut(argv[1],argv[2]);
+    PionExtractionDeut(FilePiP,FilePiM);
   }
-  else if(atoi(argv[5])==2)
+  else if(fileFlag=="-kaon-3")
   {
-    KaonExtraction3E(argv[1],argv[2],argv[3],argv[4]);
+    KaonExtraction3E(FileKPP,FileKMP,FileKPD,FileKMD);
   }
-  else if(atoi(argv[5])==3)
+  else if(fileFlag=="-kaon-4")
   {
-    KaonExtraction4E(argv[1],argv[2],argv[3],argv[4]);
+    KaonExtraction4E(FileKPP,FileKMP,FileKPD,FileKMD);
   }
-  else if(atoi(argv[3])==4)
+  else if(fileFlag=="-dummy-data")
   {
     createDummyData(argv[1],argv[2]);
-  }
-  else
-  {
-    cout << "Error : No valid option." << endl;
-    return 1;
   }
 
   return 0;

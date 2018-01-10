@@ -20,6 +20,11 @@ double fKp_d[9][5][12];
 double fKm_d[9][5][12];
 double fKpm_d[9][5][12];
 
+double fPip_p[9][5][12];
+double fPim_p[9][5][12];
+double fPip_d[9][5][12];
+double fPim_d[9][5][12];
+
 double fDfav[9][5][12];
 double fDstr[9][5][12];
 double fDunf[9][5][12];
