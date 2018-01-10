@@ -415,7 +415,7 @@ int main(int argc, char **argv)
       && fileFlag!="-kaon-3"
       && fileFlag!="-kaon-4")
   {
-    cout << "ERROR : No valid options specified." << endl;
+    cout << FRED("ERROR : No valid options specified.") << endl;
     return 1;
   }
 
@@ -428,9 +428,9 @@ int main(int argc, char **argv)
 
     if(!f1 || !f2)
     {
-        cout << "ERROR : Filename '" << f1 <<
-        "' or '" << f2 <<
-        "' not valid." << endl;
+        cout << FRED("ERROR : Filename '") << f1 <<
+        FRED("' or '") << f2 <<
+        FRED("' not valid.") << endl;
         return 1;
     };
 
@@ -460,11 +460,11 @@ int main(int argc, char **argv)
 
     if(!f1 || !f2 || !f3 || !f4)
     {
-        cout << "ERROR : Filename '" << f1 <<
-        "' or '" << f2 <<
-        "' or '" << f3 <<
-        "' or '" << f4 <<
-        "' not valid." << endl;
+        cout << FRED("ERROR : Filename '") << f1 <<
+        FRED("' or '") << f2 <<
+        FRED("' or '") << f3 <<
+        FRED("' or '") << f4 <<
+        FRED("' not valid.") << endl;
         return 1;
     };
 
