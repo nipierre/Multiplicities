@@ -606,7 +606,7 @@ void save_kin_plots()
       fKinematicsRD[idx][1]->Scale(1/fKinematicsRD[2][1]->GetEntries());
       fKinematicsMC[idx][1]->Scale(1/fKinematicsMC[2][1]->GetEntries());
       fKinematicsRD[idx][1]->SetLineColor(kRed);
-      fKinematicsRD[idx][1]->SetStats(0);
+      // fKinematicsRD[idx][1]->SetStats(0);
       fKinematicsRD[idx][1]->SetMinimum(0.);
       // fKinematicsRD[idx][1]->SetMaximum(0.045);
       fKinematicsRD[idx][1]->Draw();
@@ -620,7 +620,7 @@ void save_kin_plots()
       fKinematicsRD[idx][2]->Scale(1/fKinematicsRD[2][2]->GetEntries());
       fKinematicsMC[idx][2]->Scale(1/fKinematicsMC[2][2]->GetEntries());
       fKinematicsRD[idx][2]->SetLineColor(kRed);
-      fKinematicsRD[idx][2]->SetStats(0);
+      // fKinematicsRD[idx][2]->SetStats(0);
       fKinematicsRD[idx][2]->SetMinimum(0.);
       // fKinematicsRD[idx][2]->SetMaximum(0.06);
       fKinematicsRD[idx][2]->Draw();
@@ -632,7 +632,7 @@ void save_kin_plots()
       fKinematicsRD[idx][3]->Scale(1/fKinematicsRD[idx][3]->GetEntries());
       fKinematicsMC[idx][3]->Scale(1/fKinematicsMC[idx][3]->GetEntries());
       fKinematicsRD[idx][3]->SetLineColor(kRed);
-      fKinematicsRD[idx][3]->SetStats(0);
+      // fKinematicsRD[idx][3]->SetStats(0);
       fKinematicsRD[idx][2]->SetMinimum(0.);
       fKinematicsRD[idx][3]->Draw();
       fKinematicsMC[idx][3]->SetLineColor(kBlue);
@@ -656,7 +656,7 @@ void save_kin_plots()
       fKinematicsRD[idx][5]->Scale(1/fKinematicsRD[2][5]->GetEntries());
       fKinematicsMC[idx][5]->Scale(1/fKinematicsMC[2][5]->GetEntries());
       fKinematicsRD[idx][5]->SetLineColor(kRed);
-      fKinematicsRD[idx][5]->SetStats(0);
+      // fKinematicsRD[idx][5]->SetStats(0);
       fKinematicsRD[idx][5]->SetMinimum(0.);
       // fKinematicsRD[idx][5]->SetMaximum(0.06);
       fKinematicsRD[idx][5]->Draw();
@@ -669,7 +669,7 @@ void save_kin_plots()
       fKinematicsRD[idx][6]->Scale(1/fKinematicsRD[2][6]->GetEntries());
       fKinematicsMC[idx][6]->Scale(1/fKinematicsMC[2][6]->GetEntries());
       fKinematicsRD[idx][6]->SetLineColor(kRed);
-      fKinematicsRD[idx][6]->SetStats(0);
+      // fKinematicsRD[idx][6]->SetStats(0);
       fKinematicsRD[idx][6]->SetMinimum(0.);
       // fKinematicsRD[idx][5]->SetMaximum(0.06);
       fKinematicsRD[idx][6]->Draw();
@@ -682,7 +682,7 @@ void save_kin_plots()
       fKinematicsRD[idx][7]->Scale(1/fKinematicsRD[2][7]->GetEntries());
       fKinematicsMC[idx][7]->Scale(1/fKinematicsMC[2][7]->GetEntries());
       fKinematicsRD[idx][7]->SetLineColor(kRed);
-      fKinematicsRD[idx][7]->SetStats(0);
+      // fKinematicsRD[idx][7]->SetStats(0);
       fKinematicsRD[idx][7]->SetMinimum(0.);
       // fKinematicsRD[idx][5]->SetMaximum(0.06);
       fKinematicsRD[idx][7]->Draw();
@@ -695,7 +695,7 @@ void save_kin_plots()
       fKinematicsRD[idx][8]->Scale(1/fKinematicsRD[2][8]->GetEntries());
       fKinematicsMC[idx][8]->Scale(1/fKinematicsMC[2][8]->GetEntries());
       fKinematicsRD[idx][8]->SetLineColor(kRed);
-      fKinematicsRD[idx][8]->SetStats(0);
+      // fKinematicsRD[idx][8]->SetStats(0);
       fKinematicsRD[idx][8]->SetMinimum(0.);
       // fKinematicsRD[idx][5]->SetMaximum(0.06);
       fKinematicsRD[idx][8]->Draw();
@@ -708,7 +708,7 @@ void save_kin_plots()
       fKinematicsRD[idx][9]->Scale(1/fKinematicsRD[2][9]->GetEntries());
       fKinematicsMC[idx][9]->Scale(1/fKinematicsMC[2][9]->GetEntries());
       fKinematicsRD[idx][9]->SetLineColor(kRed);
-      fKinematicsRD[idx][9]->SetStats(0);
+      // fKinematicsRD[idx][9]->SetStats(0);
       fKinematicsRD[idx][9]->SetMinimum(0.);
       // fKinematicsRD[idx][5]->SetMaximum(0.06);
       fKinematicsRD[idx][9]->Draw();
@@ -721,7 +721,7 @@ void save_kin_plots()
       fKinematicsRD[idx][10]->Scale(1/fKinematicsRD[2][10]->GetEntries());
       fKinematicsMC[idx][10]->Scale(1/fKinematicsMC[2][10]->GetEntries());
       fKinematicsRD[idx][10]->SetLineColor(kRed);
-      fKinematicsRD[idx][10]->SetStats(0);
+      // fKinematicsRD[idx][10]->SetStats(0);
       fKinematicsRD[idx][10]->SetMinimum(0.);
       // fKinematicsRD[idx][5]->SetMaximum(0.06);
       fKinematicsRD[idx][10]->Draw();
@@ -735,7 +735,7 @@ void save_kin_plots()
   fKinematicsRD[0][11]->Scale(1/fKinematicsRD[0][11]->GetEntries());
   fKinematicsMC[0][11]->Scale(1/fKinematicsMC[0][11]->GetEntries());
   fKinematicsRatio[0][11] = (TH1F*)fKinematicsRD[0][11]->Clone();
-  fKinematicsRatio[0][11]->SetStats(0);
+  // fKinematicsRatio[0][11]->SetStats(0);
   fKinematicsRatio[0][11]->Divide(fKinematicsMC[0][11]);
   fKinematicsRatio[0][11]->SetMarkerStyle(21);
   fKinematicsRatio[0][11]->Draw("P");
@@ -754,7 +754,7 @@ void save_kin_plots()
   fKinematicsRD[4][0]->Scale(1/fKinematicsRD[4][0]->GetEntries());
   fKinematicsMC[4][0]->Scale(1/fKinematicsMC[4][0]->GetEntries());
   fKinematicsRatio[4][0] = (TH1F*)fKinematicsRD[4][0]->Clone();
-  fKinematicsRatio[4][0]->SetStats(0);
+  // fKinematicsRatio[4][0]->SetStats(0);
   fKinematicsRatio[4][0]->Divide(fKinematicsMC[4][0]);
   fKinematicsRatio[4][0]->SetMarkerStyle(21);
   fKinematicsRatio[4][0]->SetMaximum(2.);
@@ -774,7 +774,7 @@ void save_kin_plots()
   fKinematicsRD[4][1]->Scale(1/fKinematicsRD[4][1]->GetEntries());
   fKinematicsMC[4][1]->Scale(1/fKinematicsMC[4][1]->GetEntries());
   fKinematicsRatio[4][1] = (TH1F*)fKinematicsRD[4][1]->Clone();
-  fKinematicsRatio[4][1]->SetStats(0);
+  // fKinematicsRatio[4][1]->SetStats(0);
   fKinematicsRatio[4][1]->Divide(fKinematicsMC[4][1]);
   fKinematicsRatio[4][1]->SetMarkerStyle(21);
   fKinematicsRatio[4][1]->SetMaximum(2.);
@@ -794,7 +794,7 @@ void save_kin_plots()
   fKinematicsRD[4][2]->Scale(1/fKinematicsRD[4][2]->GetEntries());
   fKinematicsMC[4][2]->Scale(1/fKinematicsMC[4][2]->GetEntries());
   fKinematicsRatio[4][2] = (TH1F*)fKinematicsRD[4][2]->Clone();
-  fKinematicsRatio[4][2]->SetStats(0);
+  // fKinematicsRatio[4][2]->SetStats(0);
   fKinematicsRatio[4][2]->Divide(fKinematicsMC[4][2]);
   fKinematicsRatio[4][2]->SetMarkerStyle(21);
   fKinematicsRatio[4][2]->SetMaximum(2.);
@@ -812,7 +812,7 @@ void save_kin_plots()
   fKinematicsRD[4][3]->Scale(1/fKinematicsRD[4][3]->GetEntries());
   fKinematicsMC[4][3]->Scale(1/fKinematicsMC[4][3]->GetEntries());
   fKinematicsRatio[4][3] = (TH1F*)fKinematicsRD[4][3]->Clone();
-  fKinematicsRatio[4][3]->SetStats(0);
+  // fKinematicsRatio[4][3]->SetStats(0);
   fKinematicsRatio[4][3]->Divide(fKinematicsMC[4][3]);
   fKinematicsRatio[4][3]->SetMarkerStyle(21);
   fKinematicsRatio[4][3]->SetMaximum(2.);
@@ -830,7 +830,7 @@ void save_kin_plots()
   fKinematicsRD[4][4]->Scale(1/fKinematicsRD[4][4]->GetEntries());
   fKinematicsMC[4][4]->Scale(1/fKinematicsMC[4][4]->GetEntries());
   fKinematicsRatio[4][4] = (TH1F*)fKinematicsRD[4][4]->Clone();
-  fKinematicsRatio[4][4]->SetStats(0);
+  // fKinematicsRatio[4][4]->SetStats(0);
   fKinematicsRatio[4][4]->Divide(fKinematicsMC[4][4]);
   fKinematicsRatio[4][4]->SetMarkerStyle(21);
   fKinematicsRatio[4][4]->SetMaximum(2.);
@@ -848,7 +848,7 @@ void save_kin_plots()
   fKinematicsRD[4][5]->Scale(1/fKinematicsRD[4][5]->GetEntries());
   fKinematicsMC[4][5]->Scale(1/fKinematicsMC[4][5]->GetEntries());
   fKinematicsRatio[4][5] = (TH1F*)fKinematicsRD[4][5]->Clone();
-  fKinematicsRatio[4][5]->SetStats(0);
+  // fKinematicsRatio[4][5]->SetStats(0);
   fKinematicsRatio[4][5]->Divide(fKinematicsMC[4][5]);
   fKinematicsRatio[4][5]->SetMarkerStyle(21);
   fKinematicsRatio[4][5]->SetMaximum(2.);
