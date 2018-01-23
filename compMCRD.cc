@@ -425,7 +425,7 @@ void create_kin_plots()
     fKinematicsRD[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsRD[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 100, -320, -70);
-    fKinematicsRD[i][11] = new TH1F(Form("#Phi_h %s",trigname[i].c_str()), Form("#Phi_h %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsRD[i][11] = new TH1F("#Phi_h","#Phi_h", 100, 0, 1);
     fKinematicsMC[i][0] = new TH1F(Form("Q^{2} MC %s",trigname[i].c_str()), Form("Q^{2} MC %s",trigname[i].c_str()), 100, 0, 2);
     fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} MC %s",trigname[i].c_str()), Form("x_{Bj} MC %s",trigname[i].c_str()), 100, -3, 0);
     fKinematicsMC[i][2] = new TH1F(Form("y MC %s",trigname[i].c_str()), Form("y MC %s",trigname[i].c_str()), 100, 0, 1);
@@ -437,7 +437,7 @@ void create_kin_plots()
     fKinematicsMC[i][8] = new TH1F(Form("#theta MC %s",trigname[i].c_str()), Form("#theta MC %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsMC[i][9] = new TH1F(Form("#phi MC %s",trigname[i].c_str()), Form("#phi MC %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC[i][10] = new TH1F(Form("Vertex MC %s",trigname[i].c_str()), Form("Vertex MC %s",trigname[i].c_str()), 100, -320, -70);
-    fKinematicsMC[i][11] = new TH1F(Form("#Phi_h MC %s",trigname[i].c_str()), Form("#Phi_h MC %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsMC[i][11] = new TH1F("#Phi_h MC","#Phi_h MC", 100, 0, 1);
     fCovMu0 = new TH1F("covMu0","covMu0",100,-10,-7);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
@@ -2398,6 +2398,14 @@ void MCextraction(string pFilelist)
           {
             fId = 9;
           }
+          else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 6)//mu-
+          {
+            fId = 10;
+          }
+          else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 5)//mu+
+          {
+            fId = 11;
+          }
           else//Hadron
           {
             if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==1 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
@@ -2434,7 +2442,8 @@ void MCextraction(string pFilelist)
             zBj_unid = 0;
           }
 
-          if(0.1<zBj && (fId==8 || fId==9)) fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+          if(0.1<zBj && (fId==8 || fId==9 || fId==10 || fId==11))
+            fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
@@ -3806,7 +3815,9 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
-        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)==fLHsec_tab[3])) fKinematicsRD[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)==fLHsec_tab[3])
+                   && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)==fLHsec_tab[3]))
+                   fKinematicsRD[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
         // Maximum radiation length cumulated
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
