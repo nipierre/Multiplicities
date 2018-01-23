@@ -2398,14 +2398,6 @@ void MCextraction(string pFilelist)
           {
             fId = 9;
           }
-          else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 6)//mu-
-          {
-            fId = 10;
-          }
-          else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 5)//mu+
-          {
-            fId = 11;
-          }
           else//Hadron
           {
             if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==1 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
@@ -2442,7 +2434,7 @@ void MCextraction(string pFilelist)
             zBj_unid = 0;
           }
 
-          if(0.1<zBj && (fId==8 || fId==9 || fId==10 || fId==11))
+          if(0.1<zBj && (fId==8 || fId==9))
             fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
           // Maximum radiation length cumulated
@@ -3815,8 +3807,7 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
-        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]
-                   || LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)>fLHsec_tab[3]))
+        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]))
                    fKinematicsRD[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
         // Maximum radiation length cumulated
