@@ -731,7 +731,7 @@ void save_kin_plots()
     }
   }
 
-  c7.cd(1);
+  c7.cd(2);
   fKinematicsRD[0][11]->Scale(1/fKinematicsRD[0][11]->GetEntries());
   fKinematicsMC[0][11]->Scale(1/fKinematicsMC[0][11]->GetEntries());
   fKinematicsRatio[0][11] = (TH1F*)fKinematicsRD[0][11]->Clone();
@@ -744,7 +744,7 @@ void save_kin_plots()
   fKinematicsRD[0][11]->SetLineColor(kRed);
   // fKinematicsRD[0][11]->SetStats(0);
   fKinematicsRD[0][11]->SetMinimum(0.);
-  fKinematicsRD[0][11]->SetMaximum(0.4);
+  fKinematicsRD[0][11]->SetMaximum(0.05);
   fKinematicsRD[0][11]->Draw();
   fKinematicsMC[0][11]->SetLineColor(kBlue);
   fKinematicsMC[0][11]->Draw("SAME");
@@ -2434,7 +2434,7 @@ void MCextraction(string pFilelist)
             zBj_unid = 0;
           }
 
-          if(0.1<zBj) fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+          if(0.1<zBj && (fId==8 || fId = 9)) fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
