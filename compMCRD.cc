@@ -1449,7 +1449,7 @@ void MCextraction(string pFilelist)
                 {
                   fCell++;
 
-                  if(true/*(trig&2 || trig&4 || trig&8 || trig&512)*/)
+                  if((trig&2 || trig&4 || trig&8 || trig&512))
                   {
                     fTrig++;
 
@@ -1459,7 +1459,7 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.01<yBj && yBj<0.95))
+                      if((0.1<yBj && yBj<0.7))
                       {
                         fYBjtest++;
 
@@ -1467,7 +1467,7 @@ void MCextraction(string pFilelist)
                         if((5<sqrt(wBj) && sqrt(wBj)<17))
                         {
                           fWBjtest++;
-                          if((0.003<xBj && xBj<0.95))
+                          if((0.004<xBj && xBj<0.4))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -1577,13 +1577,13 @@ void MCextraction(string pFilelist)
               if((Q2_MC>1))
               {
                 // y cut
-                if((0.01<yBj_MC && yBj_MC<0.95))
+                if((0.1<yBj_MC && yBj_MC<0.7))
                 {
                   // W cut
                   if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
                   {
                     // x cut
-                    if((0.0003<xBj_MC && xBj_MC<0.95))
+                    if((0.004<xBj_MC && xBj_MC<0.4))
                     {
                       fAllDISflag_MC = 1;
                     }
@@ -1815,66 +1815,66 @@ void MCextraction(string pFilelist)
       //  Data -----------------------------------------------------------------
       // -----------------------------------------------------------------------
 
-      if(fAllDISflag)
-      {
-        // z Binning
-
-        for(int i=0; i<12; i++)
-        {
-          fNDIS_evt[0][xbin][ybin][i]++;
-          fNDIS_evt[1][xbin][ybin][i]++;
-          fNDIS_evt[2][xbin][ybin][i]++;
-
-          fFlag[0][xbin][ybin][i]=0;
-          fFlag[1][xbin][ybin][i]=0;
-          fFlag[2][xbin][ybin][i]=0;
-
-          DIS_rec[0][i] = 1;
-          DIS_rec[1][i] = 1;
-          DIS_rec[2][i] = 1;
-
-          // nu cut
-          if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
-          {
-            fFlag[0][xbin][ybin][i]=1;
-          }
-          if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
-          {
-            fFlag[1][xbin][ybin][i]=1;
-          }
-          if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
-          {
-            fFlag[2][xbin][ybin][i]=1;
-          }
-          if(fFlag[0][xbin][ybin][i])
-          {
-            fNDIS_evt[0][xbin][ybin][i]--; DIS_rec[0][i] = 0;
-          }
-          if(fFlag[1][xbin][ybin][i])
-          {
-            fNDIS_evt[1][xbin][ybin][i]--; DIS_rec[1][i] = 0;
-          }
-          if(fFlag[2][xbin][ybin][i])
-          {
-            fNDIS_evt[2][xbin][ybin][i]--; DIS_rec[2][i] = 0;
-          }
-          if(xbin==xbin_MC && ybin==ybin_MC)
-          {
-            if(DIS_rec[0][i] && DIS_MC[0][i])
-            {
-              fNDIS_evt_c[0][xbin][ybin][i] += 1;
-            }
-            if(DIS_rec[1][i] && DIS_MC[1][i])
-            {
-              fNDIS_evt_c[1][xbin][ybin][i] += 1;
-            }
-            if(DIS_rec[2][i] && DIS_MC[2][i])
-            {
-              fNDIS_evt_c[2][xbin][ybin][i] += 1;
-            }
-          }
-        }
-      }
+      // if(fAllDISflag)
+      // {
+      //   // z Binning
+      //
+      //   for(int i=0; i<12; i++)
+      //   {
+      //     fNDIS_evt[0][xbin][ybin][i]++;
+      //     fNDIS_evt[1][xbin][ybin][i]++;
+      //     fNDIS_evt[2][xbin][ybin][i]++;
+      //
+      //     fFlag[0][xbin][ybin][i]=0;
+      //     fFlag[1][xbin][ybin][i]=0;
+      //     fFlag[2][xbin][ybin][i]=0;
+      //
+      //     DIS_rec[0][i] = 1;
+      //     DIS_rec[1][i] = 1;
+      //     DIS_rec[2][i] = 1;
+      //
+      //     // nu cut
+      //     if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
+      //     {
+      //       fFlag[0][xbin][ybin][i]=1;
+      //     }
+      //     if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
+      //     {
+      //       fFlag[1][xbin][ybin][i]=1;
+      //     }
+      //     if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
+      //     {
+      //       fFlag[2][xbin][ybin][i]=1;
+      //     }
+      //     if(fFlag[0][xbin][ybin][i])
+      //     {
+      //       fNDIS_evt[0][xbin][ybin][i]--; DIS_rec[0][i] = 0;
+      //     }
+      //     if(fFlag[1][xbin][ybin][i])
+      //     {
+      //       fNDIS_evt[1][xbin][ybin][i]--; DIS_rec[1][i] = 0;
+      //     }
+      //     if(fFlag[2][xbin][ybin][i])
+      //     {
+      //       fNDIS_evt[2][xbin][ybin][i]--; DIS_rec[2][i] = 0;
+      //     }
+      //     if(xbin==xbin_MC && ybin==ybin_MC)
+      //     {
+      //       if(DIS_rec[0][i] && DIS_MC[0][i])
+      //       {
+      //         fNDIS_evt_c[0][xbin][ybin][i] += 1;
+      //       }
+      //       if(DIS_rec[1][i] && DIS_MC[1][i])
+      //       {
+      //         fNDIS_evt_c[1][xbin][ybin][i] += 1;
+      //       }
+      //       if(DIS_rec[2][i] && DIS_MC[2][i])
+      //       {
+      //         fNDIS_evt_c[2][xbin][ybin][i] += 1;
+      //       }
+      //     }
+      //   }
+      // }
 
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
@@ -3209,8 +3209,8 @@ void RDextraction(string pFilelist)
       fTarg++;
 
       // Cells crossing
-      //if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
-      //fCell++;
+      if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
+      fCell++;
 
       // IM/O triggers
       //2006 ---
@@ -3228,7 +3228,7 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+        if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
       }
       //2016 ---
       fTrig++;
@@ -3239,7 +3239,7 @@ void RDextraction(string pFilelist)
       fQ2test++;
 
       // y cut
-      if(!(0.01<yBj && yBj<0.95)) continue;
+      if(!(0.1<yBj && yBj<0.7)) continue;
       fYBjtest++;
 
       // W cut
@@ -3247,7 +3247,7 @@ void RDextraction(string pFilelist)
       fWBjtest++;
 
       // x cut
-      if(!(0.003<xBj && xBj<0.95)) continue;
+      if(!(0.004<xBj && xBj<0.4)) continue;
       fXBjtest++;
 
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
@@ -3349,62 +3349,62 @@ void RDextraction(string pFilelist)
 
       // z binning
 
-      for(int i=0; i<12; i++)
-      {
-#ifdef NORC
-        fNDIS_evt[0][xbin][ybin][i] += 1;
-        fNDIS_evt[1][xbin][ybin][i] += 1;
-        fNDIS_evt[2][xbin][ybin][i] += 1;
-
-        fNDIS_evt_err[0][xbin][ybin][i] += 1;
-        fNDIS_evt_err[1][xbin][ybin][i] += 1;
-        fNDIS_evt_err[2][xbin][ybin][i] += 1;
-#else
-        fNDIS_evt[0][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-        fNDIS_evt[1][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-        fNDIS_evt[2][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-
-        fNDIS_evt_err[0][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-        fNDIS_evt_err[1][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-        fNDIS_evt_err[2][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-#endif
-
-        fFlag[0][xbin][ybin][i]=0;
-        fFlag[1][xbin][ybin][i]=0;
-        fFlag[2][xbin][ybin][i]=0;
-
-        // nu cut
-        if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
-        {
-          fFlag[0][xbin][ybin][i]=1;
-        }
-        if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
-        {
-          fFlag[1][xbin][ybin][i]=1;
-        }
-        if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
-        {
-          fFlag[2][xbin][ybin][i]=1;
-        }
-        if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
-        {
-#ifdef NORC
-          fNDIS_evt[0][xbin][ybin][i] -= 1;
-        // fNDIS_evt[1][xbin][ybin][i] -= 1;
-        // fNDIS_evt[2][xbin][ybin][i] -= 1;
-          fNDIS_evt_err[0][xbin][ybin][i] -= 1;
-        // fNDIS_evt_err[1][xbin][ybin][i] -= 1;
-        // fNDIS_evt_err[2][xbin][ybin][i] -= 1;
-#else
-          fNDIS_evt[0][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-         // fNDIS_evt[1][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-         // fNDIS_evt[2][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-          fNDIS_evt_err[0][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-         // fNDIS_evt_err[1][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-         // fNDIS_evt_err[2][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-#endif
-        }
-      }
+//       for(int i=0; i<12; i++)
+//       {
+// #ifdef NORC
+//         fNDIS_evt[0][xbin][ybin][i] += 1;
+//         fNDIS_evt[1][xbin][ybin][i] += 1;
+//         fNDIS_evt[2][xbin][ybin][i] += 1;
+//
+//         fNDIS_evt_err[0][xbin][ybin][i] += 1;
+//         fNDIS_evt_err[1][xbin][ybin][i] += 1;
+//         fNDIS_evt_err[2][xbin][ybin][i] += 1;
+// #else
+//         fNDIS_evt[0][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+//         fNDIS_evt[1][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+//         fNDIS_evt[2][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+//
+//         fNDIS_evt_err[0][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+//         fNDIS_evt_err[1][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+//         fNDIS_evt_err[2][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+// #endif
+//
+//         fFlag[0][xbin][ybin][i]=0;
+//         fFlag[1][xbin][ybin][i]=0;
+//         fFlag[2][xbin][ybin][i]=0;
+//
+//         // nu cut
+//         if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
+//         {
+//           fFlag[0][xbin][ybin][i]=1;
+//         }
+//         if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
+//         {
+//           fFlag[1][xbin][ybin][i]=1;
+//         }
+//         if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
+//         {
+//           fFlag[2][xbin][ybin][i]=1;
+//         }
+//         if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
+//         {
+// #ifdef NORC
+//           fNDIS_evt[0][xbin][ybin][i] -= 1;
+//         // fNDIS_evt[1][xbin][ybin][i] -= 1;
+//         // fNDIS_evt[2][xbin][ybin][i] -= 1;
+//           fNDIS_evt_err[0][xbin][ybin][i] -= 1;
+//         // fNDIS_evt_err[1][xbin][ybin][i] -= 1;
+//         // fNDIS_evt_err[2][xbin][ybin][i] -= 1;
+// #else
+//           fNDIS_evt[0][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+//          // fNDIS_evt[1][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+//          // fNDIS_evt[2][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+//           fNDIS_evt_err[0][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+//          // fNDIS_evt_err[1][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+//          // fNDIS_evt_err[2][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+// #endif
+//         }
+//       }
 
       // -------------------------------------------------------------------------
       // --------- Hadrons Selection ---------------------------------------------
