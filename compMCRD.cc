@@ -1459,15 +1459,15 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.7))
+                      if((0.01<yBj && yBj<0.95))
                       {
                         fYBjtest++;
 
                         // W cut
-                        if((5<sqrt(wBj) && sqrt(wBj)<17))
+                        if(/*(5<sqrt(wBj) && sqrt(wBj)<17)*/)
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((0.001<xBj && xBj<0.95))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -1577,13 +1577,13 @@ void MCextraction(string pFilelist)
               if((Q2_MC>1))
               {
                 // y cut
-                if((0.1<yBj_MC && yBj_MC<0.7))
+                if((0.01<yBj_MC && yBj_MC<0.95))
                 {
                   // W cut
-                  if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
+                  if(/*(5<sqrt(wBj_MC) && sqrt(wBj_MC)<17)*/)
                   {
                     // x cut
-                    if((0.004<xBj_MC && xBj_MC<0.4))
+                    if((0.001<xBj_MC && xBj_MC<0.95))
                     {
                       fAllDISflag_MC = 1;
                     }
@@ -3239,15 +3239,15 @@ void RDextraction(string pFilelist)
       fQ2test++;
 
       // y cut
-      if(!(0.1<yBj && yBj<0.7)) continue;
+      if(!(0.01<yBj && yBj<0.97)) continue;
       fYBjtest++;
 
       // W cut
-      if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
-      fWBjtest++;
+      // if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
+      // fWBjtest++;
 
       // x cut
-      if(!(0.004<xBj && xBj<0.4)) continue;
+      if(!(0.001<xBj && xBj<0.95)) continue;
       fXBjtest++;
 
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
