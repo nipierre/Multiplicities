@@ -906,7 +906,7 @@ int main(int argc, char **argv)
       //2016 ---
       else if(Y2016)
       {
-        if(!(trig&1 || trig&2 || trig&3 || trig&9)) continue;
+        if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
       }
       //2016 ---
       fTrig++;
@@ -932,7 +932,7 @@ int main(int argc, char **argv)
         fQ2kin.push_back(Q2);
         fXBjkin.push_back(xBj);
         fYBjkin.push_back(yBj);
-        fWBjkin.push_back(wBj);
+        fWBjkin.push_back(sqrt(wBj));
         fNukin.push_back(nu);
         fX.push_back(x->GetLeaf("x")->GetValue());
         fY.push_back(y->GetLeaf("y")->GetValue());

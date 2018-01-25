@@ -828,7 +828,7 @@ int main(int argc, char **argv)
                 {
                   fCell++;
 
-                  if((trig&1 || trig&2 || trig&3 || trig&9))
+                  if((trig&2 || trig&4 || trig&8 || trig&512))
                   {
                     fTrig++;
 
