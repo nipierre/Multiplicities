@@ -1449,7 +1449,7 @@ void MCextraction(string pFilelist)
                 {
                   fCell++;
 
-                  if(true/*(trig&2 || trig&4 || trig&8 || trig&512)*/)
+                  if((trig&2 || trig&4 || trig&8 || trig&512))
                   {
                     fTrig++;
 
@@ -3209,8 +3209,8 @@ void RDextraction(string pFilelist)
       fTarg++;
 
       // Cells crossing
-      //if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
-      //fCell++;
+      if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
+      fCell++;
 
       // IM/O triggers
       //2006 ---
@@ -3228,7 +3228,7 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+        if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
       }
       //2016 ---
       fTrig++;
