@@ -1459,7 +1459,7 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.01<yBj && yBj<0.95))
+                      if((0.1<yBj && yBj<0.7))
                       {
                         fYBjtest++;
 
@@ -1467,7 +1467,7 @@ void MCextraction(string pFilelist)
                         if((5<sqrt(wBj) && sqrt(wBj)<17))
                         {
                           fWBjtest++;
-                          if((0.003<xBj && xBj<0.95))
+                          if((0.004<xBj && xBj<0.4))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -1577,13 +1577,13 @@ void MCextraction(string pFilelist)
               if((Q2_MC>1))
               {
                 // y cut
-                if((0.01<yBj_MC && yBj_MC<0.95))
+                if((0.1<yBj_MC && yBj_MC<0.7))
                 {
                   // W cut
                   if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
                   {
                     // x cut
-                    if((0.0003<xBj_MC && xBj_MC<0.95))
+                    if((0.004<xBj_MC && xBj_MC<0.4))
                     {
                       fAllDISflag_MC = 1;
                     }
@@ -1726,90 +1726,90 @@ void MCextraction(string pFilelist)
       else if(0.3<=yBj && yBj<0.5) ybin = 3;
       else ybin = 4;
 
-      // if(fAllDISflag_MC)
-      // {
-      //   // z Binnig
-      //
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]++;
-      //     fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]++;
-      //     fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]++;
-      //
-      //     fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
-      //
-      //     DIS_MC[0][i] = 1;
-      //     DIS_MC[1][i] = 1;
-      //     DIS_MC[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
-      //     {
-      //       fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
-      //     {
-      //       fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
-      //     {
-      //       fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(fFlag_MC[0][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]--; DIS_MC[0][i] = 0;
-      //     }
-      //     if(fFlag_MC[1][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]--; DIS_MC[1][i] = 0;
-      //     }
-      //     if(fFlag_MC[2][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]--; DIS_MC[2][i] = 0;
-      //     }
-      //   }
-      // }
-      // else
-      // {
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
-      //
-      //     DIS_MC[0][i] = 1;
-      //     DIS_MC[1][i] = 1;
-      //     DIS_MC[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
-      //     {
-      //       fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
-      //     {
-      //       fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
-      //     {
-      //       fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(fFlag_MC[0][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[0][i] = 0;
-      //     }
-      //     if(fFlag_MC[1][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[1][i] = 0;
-      //     }
-      //     if(fFlag_MC[2][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[2][i] = 0;
-      //     }
-      //   }
-      // }
+      if(fAllDISflag_MC)
+      {
+        // z Binnig
+
+        for(int i=0; i<12; i++)
+        {
+          fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]++;
+          fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]++;
+          fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]++;
+
+          fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
+          fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
+          fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
+
+          DIS_MC[0][i] = 1;
+          DIS_MC[1][i] = 1;
+          DIS_MC[2][i] = 1;
+
+          // nu cut
+          if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
+          {
+            fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
+          }
+          if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
+          {
+            fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
+          }
+          if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
+          {
+            fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
+          }
+          if(fFlag_MC[0][xbin_MC][ybin_MC][i])
+          {
+            fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]--; DIS_MC[0][i] = 0;
+          }
+          if(fFlag_MC[1][xbin_MC][ybin_MC][i])
+          {
+            fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]--; DIS_MC[1][i] = 0;
+          }
+          if(fFlag_MC[2][xbin_MC][ybin_MC][i])
+          {
+            fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]--; DIS_MC[2][i] = 0;
+          }
+        }
+      }
+      else
+      {
+        for(int i=0; i<12; i++)
+        {
+          fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
+          fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
+          fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
+
+          DIS_MC[0][i] = 1;
+          DIS_MC[1][i] = 1;
+          DIS_MC[2][i] = 1;
+
+          // nu cut
+          if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
+          {
+            fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
+          }
+          if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
+          {
+            fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
+          }
+          if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
+          {
+            fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
+          }
+          if(fFlag_MC[0][xbin_MC][ybin_MC][i])
+          {
+            DIS_MC[0][i] = 0;
+          }
+          if(fFlag_MC[1][xbin_MC][ybin_MC][i])
+          {
+            DIS_MC[1][i] = 0;
+          }
+          if(fFlag_MC[2][xbin_MC][ybin_MC][i])
+          {
+            DIS_MC[2][i] = 0;
+          }
+        }
+      }
 
       // -----------------------------------------------------------------------
       //  Data -----------------------------------------------------------------
@@ -3239,7 +3239,7 @@ void RDextraction(string pFilelist)
       fQ2test++;
 
       // y cut
-      if(!(0.01<yBj && yBj<0.95)) continue;
+      if(!(0.1<yBj && yBj<0.7)) continue;
       fYBjtest++;
 
       // W cut
@@ -3247,7 +3247,7 @@ void RDextraction(string pFilelist)
       fWBjtest++;
 
       // x cut
-      if(!(0.003<xBj && xBj<0.95)) continue;
+      if(!(0.004<xBj && xBj<0.4)) continue;
       fXBjtest++;
 
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
