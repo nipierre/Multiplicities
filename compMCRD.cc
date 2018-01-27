@@ -438,12 +438,10 @@ void create_kin_plots()
     fKinematicsMC[i][9] = new TH1F(Form("#phi MC %s",trigname[i].c_str()), Form("#phi MC %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC[i][10] = new TH1F(Form("Vertex MC %s",trigname[i].c_str()), Form("Vertex MC %s",trigname[i].c_str()), 100, -320, -70);
     fKinematicsMC[i][11] = new TH1F("#Phi_h MC","#Phi_h MC", 100, 0, 1);
-    fCovMu0 = new TH1F("covMu0","covMu0",100,-10,-7);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
     BinLogX(fKinematicsMC[i][1]);
-    BinLogX(fCovMu0);
   }
 }
 
@@ -467,7 +465,6 @@ void save_kin_plots()
   c16.Divide(2,4);
   c17.Divide(2,4);
   c18.Divide(2,4);
-  c19.Divide(1,1);
 
   for(int i=0; i<8; i++)
   {
@@ -862,10 +859,6 @@ void save_kin_plots()
   fKinematicsMC[4][5]->SetLineColor(kBlue);
   fKinematicsMC[4][5]->Draw("SAME");
   c13.Update();
-  c19.cd(1);
-  fCovMu0->Draw();
-  gPad->SetLogx();
-  c19.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
@@ -885,7 +878,6 @@ void save_kin_plots()
   c16.Print("kinMCRD.pdf","pdf");
   c17.Print("kinMCRD.pdf","pdf");
   c18.Print("kinMCRD.pdf)","pdf");
-  c19.Print("cov.pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -3004,10 +2996,6 @@ void RDextraction(string pFilelist)
       Z2By->GetEntry(ip);
       RICHx->GetEntry(ip);
       RICHy->GetEntry(ip);
-
-      // TEST
-
-      fCovMu0->Fill(covMu0->GetLeaf("covMu0")->GetValue());
 
       // -------------------------------------------------------------------------
       // --------- Calculation ---------------------------------------------------
