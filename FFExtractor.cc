@@ -49,27 +49,31 @@ void readDataFile(string pF, double pMult[9][5][12], int kin_storage=0)
     return;
   }
 
-  // for(int i=0; i<15; i++)
-  // {
-  //   f >> sdummy;
-  //   cout << sdummy << " ";
-  // }
-
   f >> x;
   do
   {
     f >> ddummy >> ddummy;
-    // cout << x << " " << ddummy << " " << ddummy << " ";
+#ifdef DEBUG
+    cout << x << " " << ddummy << " " << ddummy << " ";
+#endif
     f >> y >> ddummy >> ddummy;
-    // cout << y << " " << ddummy << " " << ddummy << " ";
+#ifdef DEBUG
+    cout << y << " " << ddummy << " " << ddummy << " ";
+#endif
     f >> Q2;
     f >> z >> ddummy >> ddummy;
-    // cout << Q2 << " " << z << " " << ddummy << " " << ddummy << " " << ddummy << " ";
+#ifdef DEBUG
+    cout << Q2 << " " << z << " " << ddummy << " " << ddummy << " " << ddummy << " ";
+#endif
     whichBins(x,y,z,xbin,ybin,zbin);
     if(xbin==-1 || ybin==-1 || zbin==-1) continue;
-    // cout << xbin << " " << ybin << " " << zbin << endl;
+#ifdef DEBUG
+    cout << xbin << " " << ybin << " " << zbin << endl;
+#endif
     f >> pMult[xbin][ybin][zbin] >> ddummy >> ddummy >> ddummy >> ddummy;
-    // cout << pMult[xbin][ybin][zbin] << " " << ddummy << " " << ddummy << " " << ddummy << " " << ddummy << endl;
+#ifdef DEBUG
+    cout << pMult[xbin][ybin][zbin] << " " << ddummy << " " << ddummy << " " << ddummy << " " << ddummy << endl;
+#endif
     if(kin_storage)
     {
       fQ2[xbin][ybin][zbin] = Q2;
