@@ -346,9 +346,9 @@ void load_rich_mat(string prich, string prich_err)
         }
         cout << endl;
       }
+#endif
 
       cout << "\n" << endl;
-#endif
 
       for(int i=0; i<3; i++)
       {
@@ -4665,9 +4665,8 @@ void RDextraction(string pFilelist)
 
     }
 
-#ifdef DEBUG
     cout << "\n" << endl;
-#endif
+
     // Loose cut
 
     for(int i=0; i<int(Q2loose.size()); i++)
