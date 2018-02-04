@@ -1442,7 +1442,8 @@ void MCextraction(string pFilelist)
                 {
                   fCell++;
 
-                  if((trig&2 || trig&4 || trig&8 || trig&512))
+                  if((trig&2 || trig&4 || trig&8))
+                  // if((trig&2 || trig&4 || trig&8 || trig&512))
                   {
                     fTrig++;
 
@@ -1646,7 +1647,8 @@ void MCextraction(string pFilelist)
           fPhiMC[3].push_back(phi_m);
           fVertexMC[3].push_back(z->GetLeaf("z")->GetValue());
         }
-        if(trig&2 || trig&4 || trig&8 || trig&512)
+        if(trig&2 || trig&4 || trig&8)
+        // if(trig&2 || trig&4 || trig&8 || trig&512)
         {
           fQ2kinMC[4].push_back(Q2);
           fXBjkinMC[4].push_back(xBj);
@@ -2716,7 +2718,8 @@ void MCextraction(string pFilelist)
           {
             fKinematicsMC[3][3]->Fill(zBj);
           }
-          if(trig&2 || trig&4 || trig&8 || trig&512)
+          if(trig&2 || trig&4 || trig&8)
+          // if(trig&2 || trig&4 || trig&8 || trig&512)
           {
             fKinematicsMC[4][3]->Fill(zBj);
           }
@@ -3217,7 +3220,8 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+        if(!(trig&2 || trig&4 || trig&8)) continue;
+        // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
       }
       //2016 ---
       fTrig++;
@@ -3294,7 +3298,8 @@ void RDextraction(string pFilelist)
         fPhi[3].push_back(phi_m);
         fVertex[3].push_back(z->GetLeaf("z")->GetValue());
       }
-      if(trig&2 || trig&4 || trig&8 || trig&512)
+      if(trig&2 || trig&4 || trig&8)
+      // if(trig&2 || trig&4 || trig&8 || trig&512)
       {
         fQ2kin[4].push_back(Q2);
         fXBjkin[4].push_back(xBj);
@@ -3886,7 +3891,8 @@ void RDextraction(string pFilelist)
         {
           fKinematicsRD[3][3]->Fill(zBj);
         }
-        if(trig&2 || trig&4 || trig&8 || trig&512)
+        if(trig&2 || trig&4 || trig&8)
+        // if(trig&2 || trig&4 || trig&8 || trig&512)
         {
           fKinematicsRD[4][3]->Fill(zBj);
         }
