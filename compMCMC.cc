@@ -10,7 +10,7 @@
 #include <TBranch.h>
 #include <TLeaf.h>
 
-#include "compMCRD.h"
+#include "compMCMC.h"
 
 //Inputs
 #define mat_RICH_name "rich_mat.txt"
@@ -860,24 +860,24 @@ void save_kin_plots()
   fKinematicsMC[4][5]->Draw("SAME");
   c13.Update();
 
-  c1.Print("kinMCRD.pdf(","pdf");
-  c2.Print("kinMCRD.pdf","pdf");
-  c3.Print("kinMCRD.pdf","pdf");
-  c4.Print("kinMCRD.pdf","pdf");
-  c5.Print("kinMCRD.pdf","pdf");
-  c6.Print("kinMCRD.pdf","pdf");
-  c7.Print("kinMCRD.pdf","pdf");
-  c8.Print("kinMCRD.pdf","pdf");
-  c9.Print("kinMCRD.pdf","pdf");
-  c10.Print("kinMCRD.pdf","pdf");
-  c11.Print("kinMCRD.pdf","pdf");
-  c12.Print("kinMCRD.pdf","pdf");
-  c13.Print("kinMCRD.pdf","pdf");
-  c14.Print("kinMCRD.pdf","pdf");
-  c15.Print("kinMCRD.pdf","pdf");
-  c16.Print("kinMCRD.pdf","pdf");
-  c17.Print("kinMCRD.pdf","pdf");
-  c18.Print("kinMCRD.pdf)","pdf");
+  c1.Print("kinMCMC.pdf(","pdf");
+  c2.Print("kinMCMC.pdf","pdf");
+  c3.Print("kinMCMC.pdf","pdf");
+  c4.Print("kinMCMC.pdf","pdf");
+  c5.Print("kinMCMC.pdf","pdf");
+  c6.Print("kinMCMC.pdf","pdf");
+  c7.Print("kinMCMC.pdf","pdf");
+  c8.Print("kinMCMC.pdf","pdf");
+  c9.Print("kinMCMC.pdf","pdf");
+  c10.Print("kinMCMC.pdf","pdf");
+  c11.Print("kinMCMC.pdf","pdf");
+  c12.Print("kinMCMC.pdf","pdf");
+  c13.Print("kinMCMC.pdf","pdf");
+  c14.Print("kinMCMC.pdf","pdf");
+  c15.Print("kinMCMC.pdf","pdf");
+  c16.Print("kinMCMC.pdf","pdf");
+  c17.Print("kinMCMC.pdf","pdf");
+  c18.Print("kinMCMC.pdf)","pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -3683,7 +3683,7 @@ int main(int argc, char **argv)
   {
     cout << "ERROR : Not enough arguments." << endl;
     cout << "Asked : 2 *** Received : " << argc-1 << endl;
-    cout << "./compMCRD [RD filelist] [MC filelist]" << endl;
+    cout << "./compMCMC [RD filelist] [MC filelist]" << endl;
 
     return 1;
   }
