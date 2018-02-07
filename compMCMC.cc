@@ -3144,11 +3144,6 @@ void RDextraction(string pFilelist)
       {
         fRmu++;
 
-        if(Y2012)
-        {
-          CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-        }
-
         //BMS (reconstructed beam track)
         if(true/*(backPropFlag->GetLeaf("backPropFlag")->GetValue())*/) //not used in acceptance
         {
@@ -3541,13 +3536,10 @@ void RDextraction(string pFilelist)
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
             else
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
-
-            zBj_unid = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
           }
           else
           {
             zBj = 0;
-            zBj_unid = 0;
           }
 
           if(0.1<zBj && (fId==8 || fId==9) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
@@ -3584,19 +3576,6 @@ void RDextraction(string pFilelist)
           else if(0.65<=zBj && zBj<0.70) zbin = 9;
           else if(0.70<=zBj && zBj<0.75) zbin = 10;
           else zbin = 11;
-
-          if(0.2<zBj_unid && zBj_unid<0.25) zbin_u = 0;
-          else if(0.25<=zBj_unid && zBj_unid<0.30) zbin_u = 1;
-          else if(0.30<=zBj_unid && zBj_unid<0.35) zbin_u = 2;
-          else if(0.35<=zBj_unid && zBj_unid<0.40) zbin_u = 3;
-          else if(0.40<=zBj_unid && zBj_unid<0.45) zbin_u = 4;
-          else if(0.45<=zBj_unid && zBj_unid<0.50) zbin_u = 5;
-          else if(0.50<=zBj_unid && zBj_unid<0.55) zbin_u = 6;
-          else if(0.55<=zBj_unid && zBj_unid<0.60) zbin_u = 7;
-          else if(0.60<=zBj_unid && zBj_unid<0.65) zbin_u = 8;
-          else if(0.65<=zBj_unid && zBj_unid<0.70) zbin_u = 9;
-          else if(0.70<=zBj_unid && zBj_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
 
 
           if(trig&2)
