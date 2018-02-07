@@ -130,8 +130,8 @@ void create_kin_plots()
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
-  fHO03 = new TH2F("HO03", "HO03", 300, -3, 3, 300, -3, 3);
-  fHO04 = new TH2F("HO04", "HO04", 300, -3, 3, 300, -3, 3);
+  fHO03 = new TH2F("HO03", "HO03", 100, -300, 300, 100, -300, 300);
+  fHO04 = new TH2F("HO04", "HO04", 100, -300, 300, 100, -300, 300);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
