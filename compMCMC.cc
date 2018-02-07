@@ -2974,7 +2974,6 @@ void RDextraction(string pFilelist)
       saved->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
       backPropFlag->GetEntry(ip);
-      covMu0->GetEntry(ip);
 
       //Hadrons
       p->GetEntry(ip);
