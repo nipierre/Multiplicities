@@ -68,6 +68,11 @@ vector<Double_t> fXMC;
 vector<Double_t> fYMC;
 vector<Double_t> fZMC;
 
+vector<Double_t> fHO03x;
+vector<Double_t> fHO03y;
+vector<Double_t> fHO04x;
+vector<Double_t> fHO04y;
+
 //Misc
 
 set<Double_t> fLHsec_set;
@@ -152,6 +157,8 @@ Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 
 TH1F* fKinematics[6];
 TH2F* fKinematics2D;
+TH2F* fHO03;
+TH2F* fHO04;
 TH2F* fTarget2D;
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
@@ -161,6 +168,8 @@ TCanvas c5("Kin_w","Kin_w",3200,1600);
 TCanvas c6("Kin_#nu","Kin_#nu",3200,1600);
 TCanvas c7("Kin_xy","Kin_xy",3200,1600);
 TCanvas c8("target_xy","target_xy",3200,1600);
+TCanvas c9("HO03","HO03",3200,1600);
+TCanvas c10("HO04","HO04",3200,1600);
 
 TH1F* fKinematicsMC[6];
 TH2F* fKinematics2DMC;

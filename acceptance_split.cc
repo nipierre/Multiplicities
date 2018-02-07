@@ -130,6 +130,8 @@ void create_kin_plots()
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
+  fHO03 = new TH2F("HO03", "HO03", 300, -3, 3, 300, -3, 3);
+  fHO04 = new TH2F("HO04", "HO04", 300, -3, 3, 300, -3, 3);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -183,6 +185,12 @@ void save_kin_plots()
   c8.cd(1);
   fTarget2D->Draw("COLZ");
   c8.Update();
+  c9.cd(1);
+  fHO03->Draw("COLZ");
+  c9.Update();
+  c10.cd(1);
+  fHO04->Draw("COLZ");
+  c10.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -192,6 +200,8 @@ void save_kin_plots()
   c6.Print("kinMC.pdf","pdf");
   c7.Print("kinMC.pdf","pdf");
   c8.Print("kinMC.pdf","pdf");
+  c9.Print("kinMC.pdf","pdf");
+  c10.Print("kinMC.pdf","pdf");
 
   c11.Divide(1,1);
   c12.Divide(1,1);
@@ -351,10 +361,10 @@ int main(int argc, char **argv)
     TBranch *HM04y = (TBranch*) tree->FindBranch("HM04y");
     TBranch *HM05x = (TBranch*) tree->FindBranch("HM05x");
     TBranch *HM05y = (TBranch*) tree->FindBranch("HM05y");
-    //TBranch *HO03x = (TBranch*) tree->FindBranch("HO03x");
-    //TBranch *HO03y = (TBranch*) tree->FindBranch("HO03y");
-    //TBranch *HO04x = (TBranch*) tree->FindBranch("HO04x");
-    //TBranch *HO04y = (TBranch*) tree->FindBranch("HO04y");
+    TBranch *HO03x = (TBranch*) tree->FindBranch("HO03x");
+    TBranch *HO03y = (TBranch*) tree->FindBranch("HO03y");
+    TBranch *HO04x = (TBranch*) tree->FindBranch("HO04x");
+    TBranch *HO04y = (TBranch*) tree->FindBranch("HO04y");
     //TBranch *saved = (TBranch*) tree->FindBranch("saved");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
     TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
@@ -446,10 +456,10 @@ int main(int argc, char **argv)
       HM04y->GetEntry(ip);
       HM05x->GetEntry(ip);
       HM05y->GetEntry(ip);
-      //HO03x->GetEntry(ip);
-      //HO03y->GetEntry(ip);
-      //HO04x->GetEntry(ip);
-      //HO04y->GetEntry(ip);
+      HO03x->GetEntry(ip);
+      HO03y->GetEntry(ip);
+      HO04x->GetEntry(ip);
+      HO04y->GetEntry(ip);
       //saved->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
       backPropFlag->GetEntry(ip);
@@ -986,6 +996,10 @@ int main(int argc, char **argv)
           fNukin.push_back(nu);
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
+          fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
+          fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
+          fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
+          fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
         }
         if(fAllDISflag_MC)
         {
@@ -2103,7 +2117,8 @@ int main(int argc, char **argv)
       fKinematics[5]->Fill(fNukin[i]);
       fKinematics2D->Fill(fXBjkin[i],fYBjkin[i]);
       fTarget2D->Fill(fX[i],fY[i]);
-
+      fHO03->Fill(fHO03x[i],fHO03y[i]);
+      fHO04->Fill(fHO04x[i],fHO04y[i]);
     }
     for(int i=0; i<int(fQ2kinMC.size()); i++)
     {
