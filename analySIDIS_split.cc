@@ -414,6 +414,8 @@ void create_kin_plots()
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
+  fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
+  fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
   fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 2, 100, -2, 2);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
@@ -431,6 +433,8 @@ void save_kin_plots()
   c7.Divide(1,1);
   c8.Divide(1,1);
   c9.Divide(1,1);
+  c10.Divide(1,1);
+  c11.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -461,6 +465,12 @@ void save_kin_plots()
   c9.cd(1);
   fRICHLH->Draw();
   c9.Update();
+  c10.cd(1);
+  fHO03->Draw("COLZ");
+  c10.Update();
+  c11.cd(1);
+  fHO04->Draw("COLZ");
+  c11.Update();
 
   c1.Print("kinSIDIS.pdf(","pdf");
   c2.Print("kinSIDIS.pdf","pdf");
@@ -470,7 +480,9 @@ void save_kin_plots()
   c6.Print("kinSIDIS.pdf","pdf");
   c7.Print("kinSIDIS.pdf","pdf");
   c8.Print("kinSIDIS.pdf","pdf");
-  c9.Print("kinSIDIS.pdf)","pdf");
+  c9.Print("kinSIDIS.pdf","pdf");
+  c10.Print("kinSIDIS.pdf","pdf");
+  c11.Print("kinSIDIS.pdf)","pdf");
 }
 
 int main(int argc, char **argv)
@@ -936,6 +948,10 @@ int main(int argc, char **argv)
         fNukin.push_back(nu);
         fX.push_back(x->GetLeaf("x")->GetValue());
         fY.push_back(y->GetLeaf("y")->GetValue());
+        fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
+        fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
+        fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
+        fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
       }
 
       // -------------------------------------------------------------------------
@@ -2445,7 +2461,8 @@ int main(int argc, char **argv)
       fKinematics[5]->Fill(fNukin[i]);
       fKinematics2D->Fill(fXBjkin[i],fYBjkin[i]);
       fTarget2D->Fill(fX[i],fY[i]);
-
+      fHO03->Fill(fHO03x[i],fHO03y[i]);
+      fHO04->Fill(fHO04x[i],fHO04y[i]);
     }
     for(int i=0; i<int(fLHpi.size()); i++)
     {

@@ -204,6 +204,8 @@ studyxy fR_xy[24];
 
 TH1F* fKinematics[6];
 TH2F* fKinematics2D;
+TH2F* fHO03;
+TH2F* fHO04;
 TH2F* fTarget2D;
 TH2F* fRICHLH;
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
@@ -215,6 +217,8 @@ TCanvas c6("Kin_#nu","Kin_#nu",3200,1600);
 TCanvas c7("Kin_xy","Kin_xy",3200,1600);
 TCanvas c8("target_xy","target_xy",3200,1600);
 TCanvas c9("RICH LH","RICH LH",3200,1600);
+TCanvas c10("HO03","HO03",3200,1600);
+TCanvas c11("HO04","HO04",3200,1600);
 
 //Graphic Style
 
