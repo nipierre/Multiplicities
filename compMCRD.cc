@@ -1448,7 +1448,7 @@ void MCextraction(string pFilelist)
                     fTrig++;
 
                     // Q2 cut
-                    if((Q2>0.9))
+                    if((Q2>1))
                     {
                       fQ2test++;
 
@@ -1568,7 +1568,7 @@ void MCextraction(string pFilelist)
             if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue(),1.5))
             {
               // Q2 cut
-              if((Q2_MC>0.9))
+              if((Q2_MC>1))
               {
                 // y cut
                 if((0.1<yBj_MC && yBj_MC<0.7))
@@ -3228,7 +3228,7 @@ void RDextraction(string pFilelist)
       // cout<<trig<< " " << int(trig&2) << " " << int(trig&4) << " " << int(trig&8) << " " << int(trig&512) << endl;
 
       // Q2 cut
-      if(!(Q2>0.9)) continue;
+      if(!(Q2>1)) continue;
       fQ2test++;
 
       // y cut
