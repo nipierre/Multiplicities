@@ -2897,7 +2897,6 @@ void RDextraction(string pFilelist)
     TBranch *saved = (TBranch*) tree->FindBranch("saved");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
     TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
-    TBranch *covMu0 = (TBranch*) tree->FindBranch("covMu0");
 
     //Hadrons
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
