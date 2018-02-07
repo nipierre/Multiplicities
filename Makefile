@@ -24,8 +24,9 @@ endif
 all : analySIDIS acceptance comparison extractor
 analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit acccollect
-comparison : compMCRD
+comparison : compMCRD compMCMC
 extractor : FFExtractor
+
 
 %.o: %.cc %.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -c -o $@ $<
@@ -45,8 +46,11 @@ acccollect: acceptance_collect.cc acceptance_collect.h
 compMCRD: compMCRD.cc compMCRD.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
+compMCMC: compMCMC.cc compMCMC.h
+	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+
 FFExtractor: FFExtractor.cc FFExtractor.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
 
 clean :
-	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD FFExtractor
+	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD compMCMC FFExtractor
