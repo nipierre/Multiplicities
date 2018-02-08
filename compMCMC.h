@@ -1,8 +1,20 @@
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <set>
 #include <map>
 #include <utility>
+#include <TFile.h>
+#include <TH1F.h>
+#include <TH2F.h>
+#include <TCanvas.h>
+#include <TMatrixD.h>
+#include <TMatrixTUtils.h>
+#include <TTree.h>
+#include <TBranch.h>
+#include <TLeaf.h>
+#include <TGraphErrors.h>
 
 // COLORS
 
@@ -152,7 +164,7 @@ Double_t fPminus_err = 0;
 //Binning
 Wrapper fMC1[9][5][12];
 Wrapper fMC2[9][5][12];
-Wrapper fAcceptance[9][5][12];
+Wrapper fMultRatio[9][5][12];
 Double_t fNDIS_evt_MC1[9][5][12];
 Double_t fNDIS_evt_MC2[9][5][12];
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
