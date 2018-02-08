@@ -102,12 +102,12 @@ void PionPlotter(string pF)
         c1.cd(1);
         fDfavG[i][j]->SetTitle(Form("D^{#Pi}_{fav} @ <Q^{2}>=%f;z;D^{#Pi}_{fav}(z)",mean));
         fDfavG[i][j]->Draw("AC*");
-        fDfavG[i][j]->GetYAxis()->SetMinimum(0);
+        fDfavG[i][j]->GetYaxis()->SetMinimum(0);
         c1.Update();
         c1.cd(2);
         fDunfG[i][j]->SetTitle(Form("D^{#Pi}_{unf} @ <Q^{2}>=%f;z;D^{#Pi}_{unf}(z)",mean));
         fDunfG[i][j]->Draw("AC*");
-        fDunfG[i][j]->GetYAxis()->SetMinimum(0);
+        fDunfG[i][j]->GetYaxis()->SetMinimum(0);
         c1.Update();
         c1.Print("PionFF.pdf","pdf");
       }
