@@ -101,11 +101,11 @@ void PionPlotter(string pF)
         fDfavG[i][j] = new TGraph(int(fZ[i][j].size()),&(fZ[i][j][0]),&(fDfav[i][j][0]));
         fDunfG[i][j] = new TGraph(int(fZ[i][j].size()),&(fZ[i][j][0]),&(fDunf[i][j][0]));
         c1.cd(1);
-        fDfavG[i][j]->SetTitle(Form("D^{#Pi}_{fav} @ <Q^{2}>=%d;z;D^{#Pi}_{fav}(z)",mean));
+        fDfavG[i][j]->SetTitle(Form("D^{#Pi}_{fav} @ <Q^{2}>=%f;z;D^{#Pi}_{fav}(z)",mean));
         fDfavG[i][j]->Draw("AC*");
         c1.Update();
         c1.cd(2);
-        fDfavG[i][j]->SetTitle(Form("D^{#Pi}_{unf} @ <Q^{2}>=%d;z;D^{#Pi}_{unf}(z)",mean));
+        fDfavG[i][j]->SetTitle(Form("D^{#Pi}_{unf} @ <Q^{2}>=%f;z;D^{#Pi}_{unf}(z)",mean));
         fDunfG[i][j]->Draw("AC*");
         c1.Update();
         c1.Print("kinMCRD.pdf","pdf");
