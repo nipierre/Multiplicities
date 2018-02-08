@@ -60,15 +60,13 @@ void readDataFile(string pF, string option="Pi")
 // #endif
     fQ2mean[xbin][ybin].push_back(Q2);
     fZ[xbin][ybin].push_back(z);
-    // if(option=="Pi")
-    // {
+    if(option=="Pi")
+    {
       f >> Dfav >> Dunf;
       cout << Dfav << " " << Dunf << endl;
-      fDfav[xbin][ybin].push_back(Dfav);
-      fDunf[xbin][ybin].push_back(Dunf);
-      fDfav[xbin][ybin][zbin] *= z;
-      fDunf[xbin][ybin][zbin] *= z;
-    // }
+      fDfav[xbin][ybin].push_back(Dfav*z);
+      fDunf[xbin][ybin].push_back(Dunf*z);
+    }
   } while(f >> x);
 }
 
