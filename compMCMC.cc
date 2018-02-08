@@ -2866,10 +2866,10 @@ void MultRatio()
 
         for(int k=0; k<12; k++)
         {
-          fMultRatio[i][j][k].tab[c][0][0] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][0]) ? double((fMC1[i][j][k].tab[c][0][0]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][0]/fNDIS_evt_MC2[i][j][k])) : 0);
-          fMultRatio[i][j][k].tab[c][0][1] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][1]) ? double((fMC1[i][j][k].tab[c][0][1]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][1]/fNDIS_evt_MC2[i][j][k])) : 0);
-          fMultRatio[i][j][k].tab[c][0][2] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][2]) ? double((fMC1[i][j][k].tab[c][0][2]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][2]/fNDIS_evt_MC2[i][j][k])) : 0);
-          fMultRatio[i][j][k].tab[c][0][3] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][3]) ? double((fMC1[i][j][k].tab[c][0][3]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][3]/fNDIS_evt_MC2[i][j][k])) : 0);
+          fMultRatio[i][j][k].tab[c][0][0] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC2[i][j][k] && fMC2[i][j][k].tab[c][0][0]) ? double((fMC1[i][j][k].tab[c][0][0]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][0]/fNDIS_evt_MC2[i][j][k])) : 0);
+          fMultRatio[i][j][k].tab[c][0][1] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC2[i][j][k] && fMC2[i][j][k].tab[c][0][1]) ? double((fMC1[i][j][k].tab[c][0][1]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][1]/fNDIS_evt_MC2[i][j][k])) : 0);
+          fMultRatio[i][j][k].tab[c][0][2] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC2[i][j][k] && fMC2[i][j][k].tab[c][0][2]) ? double((fMC1[i][j][k].tab[c][0][2]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][2]/fNDIS_evt_MC2[i][j][k])) : 0);
+          fMultRatio[i][j][k].tab[c][0][3] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC2[i][j][k] && fMC2[i][j][k].tab[c][0][3]) ? double((fMC1[i][j][k].tab[c][0][3]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][3]/fNDIS_evt_MC2[i][j][k])) : 0);
 
           if(fMultRatio[i][j][k].tab[c][0][0]<0) fMultRatio[i][j][k].tab[c][0][0]=0;
           if(fMultRatio[i][j][k].tab[c][0][1]<0) fMultRatio[i][j][k].tab[c][0][1]=0;
