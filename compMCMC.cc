@@ -2838,6 +2838,8 @@ void MultRatio()
   TGraphErrors* P[2][9][5];
   TGraphErrors* K[2][9][5];
 
+  double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
+
   for(int c=0; c<2; c++)
   {
     for(int i=0; i<9; i++)
