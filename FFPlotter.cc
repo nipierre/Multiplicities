@@ -63,6 +63,7 @@ void readDataFile(string pF, string option="Pi")
     if(option=="Pi")
     {
       f >> Dfav >> Dunf;
+      cout << Dfav << " " << Dunf << endl;
       fDfav[xbin][ybin].push_back(Dfav);
       fDunf[xbin][ybin].push_back(Dunf);
       fDfav[xbin][ybin][zbin] *= z;
