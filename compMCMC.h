@@ -150,14 +150,11 @@ Double_t fPplus_err = 0;
 Double_t fPminus_err = 0;
 
 //Binning
-Wrapper fRcstr[9][5][12];
-Wrapper fGnrt[9][5][12];
-Wrapper fRcstr_c[9][5][12];
+Wrapper fMC1[9][5][12];
+Wrapper fMC2[9][5][12];
 Wrapper fAcceptance[9][5][12];
-Double_t fNDIS_evt[3][9][5][12];
-Double_t fNDIS_evt_c[3][9][5][12];
-Double_t fNDIS_evt_MC[3][9][5][12];
-Double_t fNDIS_evt_err[3][9][5][12];
+Double_t fNDIS_evt_MC1[9][5][12];
+Double_t fNDIS_evt_MC2[9][5][12];
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
@@ -200,6 +197,9 @@ TCanvas c15("Kin_#mup","Kin_#mup",3200,1600);
 TCanvas c16("Kin_#theta","Kin_#theta",3200,1600);
 TCanvas c17("Kin_#phi","Kin_#phi",3200,1600);
 TCanvas c18("Kin_vertex","Kin_vertex",3200,1600);
+TCanvas c19("MultRatio Hadron","MultRatio Hadron",3200,1600);
+TCanvas c20("MultRatio Pion","MultRatio Hadron",3200,1600);
+TCanvas c21("MultRatio Kaon","MultRatio Hadron",3200,1600);
 
 //Graphic Style
 

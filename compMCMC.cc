@@ -880,7 +880,7 @@ void save_kin_plots()
   c18.Print("kinMCMC.pdf)","pdf");
 }
 
-void MCextraction(string pFilelist)
+void MC1extraction(string pFilelist)
 {
 
   //Kinematics
@@ -1721,633 +1721,11 @@ void MCextraction(string pFilelist)
       else if(0.3<=yBj && yBj<0.5) ybin = 3;
       else ybin = 4;
 
-      // if(fAllDISflag_MC)
-      // {
-      //   // z Binnig
-      //
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]++;
-      //     fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]++;
-      //     fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]++;
-      //
-      //     fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
-      //
-      //     DIS_MC[0][i] = 1;
-      //     DIS_MC[1][i] = 1;
-      //     DIS_MC[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
-      //     {
-      //       fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
-      //     {
-      //       fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
-      //     {
-      //       fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(fFlag_MC[0][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]--; DIS_MC[0][i] = 0;
-      //     }
-      //     if(fFlag_MC[1][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]--; DIS_MC[1][i] = 0;
-      //     }
-      //     if(fFlag_MC[2][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]--; DIS_MC[2][i] = 0;
-      //     }
-      //   }
-      // }
-      // else
-      // {
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
-      //
-      //     DIS_MC[0][i] = 1;
-      //     DIS_MC[1][i] = 1;
-      //     DIS_MC[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
-      //     {
-      //       fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
-      //     {
-      //       fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
-      //     {
-      //       fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(fFlag_MC[0][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[0][i] = 0;
-      //     }
-      //     if(fFlag_MC[1][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[1][i] = 0;
-      //     }
-      //     if(fFlag_MC[2][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[2][i] = 0;
-      //     }
-      //   }
-      // }
-
-      // -----------------------------------------------------------------------
-      //  Data -----------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
-      // if(fAllDISflag)
-      // {
-      //   // z Binning
-      //
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fNDIS_evt[0][xbin][ybin][i]++;
-      //     fNDIS_evt[1][xbin][ybin][i]++;
-      //     fNDIS_evt[2][xbin][ybin][i]++;
-      //
-      //     fFlag[0][xbin][ybin][i]=0;
-      //     fFlag[1][xbin][ybin][i]=0;
-      //     fFlag[2][xbin][ybin][i]=0;
-      //
-      //     DIS_rec[0][i] = 1;
-      //     DIS_rec[1][i] = 1;
-      //     DIS_rec[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
-      //     {
-      //       fFlag[0][xbin][ybin][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
-      //     {
-      //       fFlag[1][xbin][ybin][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
-      //     {
-      //       fFlag[2][xbin][ybin][i]=1;
-      //     }
-      //     if(fFlag[0][xbin][ybin][i])
-      //     {
-      //       fNDIS_evt[0][xbin][ybin][i]--; DIS_rec[0][i] = 0;
-      //     }
-      //     if(fFlag[1][xbin][ybin][i])
-      //     {
-      //       fNDIS_evt[1][xbin][ybin][i]--; DIS_rec[1][i] = 0;
-      //     }
-      //     if(fFlag[2][xbin][ybin][i])
-      //     {
-      //       fNDIS_evt[2][xbin][ybin][i]--; DIS_rec[2][i] = 0;
-      //     }
-      //     if(xbin==xbin_MC && ybin==ybin_MC)
-      //     {
-      //       if(DIS_rec[0][i] && DIS_MC[0][i])
-      //       {
-      //         fNDIS_evt_c[0][xbin][ybin][i] += 1;
-      //       }
-      //       if(DIS_rec[1][i] && DIS_MC[1][i])
-      //       {
-      //         fNDIS_evt_c[1][xbin][ybin][i] += 1;
-      //       }
-      //       if(DIS_rec[2][i] && DIS_MC[2][i])
-      //       {
-      //         fNDIS_evt_c[2][xbin][ybin][i] += 1;
-      //       }
-      //     }
-      //   }
-      // }
-
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
       // --------- Hadrons Selection -------------------------------------------
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
-
-
-      // -----------------------------------------------------------------------
-      //  MC -------------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
-      if(fAllDISflag_MC)
-      {
-
-        for(int i=0; i<MC_p->GetLeaf("MCHadrons.P")->GetLen(); i++)
-        {
-
-          if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 8)//pi+
-          {
-            fId = 0;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 9)//pi-
-          {
-            fId = 1;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 11)//K+
-          {
-            fId = 2;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 12)//K-
-          {
-            fId = 3;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 14)//p
-          {
-            fId = 4;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 15)//pb
-          {
-            fId = 5;
-          }
-          else//Hadron
-          {
-            if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 6;
-            }
-            else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==-1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 7;
-            }
-            else
-            {
-              continue;
-            }
-          }
-
-          if(nu_MC)
-          {
-            if(fId == 2 || fId == 3)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu_MC;
-            else if(fId == 4 || fId == 5)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu_MC;
-            else
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-
-            zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-          }
-          else
-          {
-            zBj_MC = 0;
-            zBj_MC_unid = 0;
-          }
-
-          if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
-
-          if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
-          else if(0.25<zBj_MC && zBj_MC<0.30) zbin = 1;
-          else if(0.30<zBj_MC && zBj_MC<0.35) zbin = 2;
-          else if(0.35<zBj_MC && zBj_MC<0.40) zbin = 3;
-          else if(0.40<zBj_MC && zBj_MC<0.45) zbin = 4;
-          else if(0.45<zBj_MC && zBj_MC<0.50) zbin = 5;
-          else if(0.50<zBj_MC && zBj_MC<0.55) zbin = 6;
-          else if(0.55<zBj_MC && zBj_MC<0.60) zbin = 7;
-          else if(0.60<zBj_MC && zBj_MC<0.65) zbin = 8;
-          else if(0.65<zBj_MC && zBj_MC<0.70) zbin = 9;
-          else if(0.70<zBj_MC && zBj_MC<0.75) zbin = 10;
-          else zbin = 11;
-
-          if(0.2<zBj_MC_unid && zBj_MC_unid<0.25) zbin_u = 0;
-          else if(0.25<zBj_MC_unid && zBj_MC_unid<0.30) zbin_u = 1;
-          else if(0.30<zBj_MC_unid && zBj_MC_unid<0.35) zbin_u = 2;
-          else if(0.35<zBj_MC_unid && zBj_MC_unid<0.40) zbin_u = 3;
-          else if(0.40<zBj_MC_unid && zBj_MC_unid<0.45) zbin_u = 4;
-          else if(0.45<zBj_MC_unid && zBj_MC_unid<0.50) zbin_u = 5;
-          else if(0.50<zBj_MC_unid && zBj_MC_unid<0.55) zbin_u = 6;
-          else if(0.55<zBj_MC_unid && zBj_MC_unid<0.60) zbin_u = 7;
-          else if(0.60<zBj_MC_unid && zBj_MC_unid<0.65) zbin_u = 8;
-          else if(0.65<zBj_MC_unid && zBj_MC_unid<0.70) zbin_u = 9;
-          else if(0.70<zBj_MC_unid && zBj_MC_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
-
-          // **********************************************************************
-
-          // Save of hadrons
-
-          if(fId==0)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
-              fMCHplus++;
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPiplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][0] += 1;
-          }
-          else if(fId==1)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
-              fMCHminus++;
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPiminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][0] += 1;
-          }
-          else if(fId==2)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
-              fMCHplus++;
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCKplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][1] += 1;
-          }
-          else if(fId==3)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
-              fMCHminus++;
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCKminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][1] += 1;
-          }
-          else if(fId==4)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
-              fMCHplus++;
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][2] += 1;
-          }
-          else if(fId==5)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
-              fMCHminus++;
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            pMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][2] += 1;
-          }
-          else if(fId==6)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCHplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][3] += 1;
-          }
-          else if(fId==7)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCHminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][3] += 1;
-          }
-          else
-          {}
-
-        }
-      }
-	    else
-      {
-	      for(int i=0; i<MC_p->GetLeaf("MCHadrons.P")->GetLen(); i++)
-        {
-
-          if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 8)//pi+
-          {
-            fId = 0;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 9)//pi-
-          {
-            fId = 1;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 11)//K+
-          {
-            fId = 2;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 12)//K-
-          {
-            fId = 3;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 14)//p
-          {
-            fId = 4;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 15)//pb
-          {
-            fId = 5;
-          }
-          else//Hadron
-          {
-            if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 6;
-            }
-            else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==-1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 7;
-            }
-            else
-            {
-              continue;
-            }
-          }
-
-          if(nu_MC)
-          {
-            if(fId == 2 || fId == 3)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu_MC;
-            else if(fId == 4 || fId == 5)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu_MC;
-            else
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-
-              zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-          }
-          else
-          {
-            zBj_MC = 0;
-          }
-
-          if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
-
-          if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
-          else if(0.25<=zBj_MC && zBj_MC<0.30) zbin = 1;
-          else if(0.30<=zBj_MC && zBj_MC<0.35) zbin = 2;
-          else if(0.35<=zBj_MC && zBj_MC<0.40) zbin = 3;
-          else if(0.40<=zBj_MC && zBj_MC<0.45) zbin = 4;
-          else if(0.45<=zBj_MC && zBj_MC<0.50) zbin = 5;
-          else if(0.50<=zBj_MC && zBj_MC<0.55) zbin = 6;
-          else if(0.55<=zBj_MC && zBj_MC<0.60) zbin = 7;
-          else if(0.60<=zBj_MC && zBj_MC<0.65) zbin = 8;
-          else if(0.65<=zBj_MC && zBj_MC<0.70) zbin = 9;
-          else if(0.70<=zBj_MC && zBj_MC<0.75) zbin = 10;
-          else zbin = 11;
-
-          if(0.2<zBj_MC_unid && zBj_MC_unid<0.25) zbin_u = 0;
-          else if(0.25<zBj_MC_unid && zBj_MC_unid<0.30) zbin_u = 1;
-          else if(0.30<zBj_MC_unid && zBj_MC_unid<0.35) zbin_u = 2;
-          else if(0.35<zBj_MC_unid && zBj_MC_unid<0.40) zbin_u = 3;
-          else if(0.40<zBj_MC_unid && zBj_MC_unid<0.45) zbin_u = 4;
-          else if(0.45<zBj_MC_unid && zBj_MC_unid<0.50) zbin_u = 5;
-          else if(0.50<zBj_MC_unid && zBj_MC_unid<0.55) zbin_u = 6;
-          else if(0.55<zBj_MC_unid && zBj_MC_unid<0.60) zbin_u = 7;
-          else if(0.60<zBj_MC_unid && zBj_MC_unid<0.65) zbin_u = 8;
-          else if(0.65<zBj_MC_unid && zBj_MC_unid<0.70) zbin_u = 9;
-          else if(0.70<zBj_MC_unid && zBj_MC_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
-
-          // **********************************************************************
-
-          // Save of hadrons
-
-          if(fId==0)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==1)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==2)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==3)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==4)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==5)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==6)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==7)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else
-          {}
-
-        }
-      }
-
 
       // -----------------------------------------------------------------------
       //  Data -----------------------------------------------------------------
@@ -2355,6 +1733,9 @@ void MCextraction(string pFilelist)
 
       if(fAllDISflag)
       {
+        for(int i=0; i<12; i++)
+          fNDIS_evt_MC1[xbin][ybin][i]++;
+
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
         {
           // **********************************************************************
@@ -2420,13 +1801,10 @@ void MCextraction(string pFilelist)
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
             else
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
-
-            zBj_unid = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
           }
           else
           {
             zBj = 0;
-            zBj_unid = 0;
           }
 
           if(0.1<zBj && (fId==8 || fId==9) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
@@ -2464,238 +1842,48 @@ void MCextraction(string pFilelist)
           else if(0.70<=zBj && zBj<0.75) zbin = 10;
           else zbin = 11;
 
-          if(0.2<zBj_unid && zBj_unid<0.25) zbin_u = 0;
-          else if(0.25<=zBj_unid && zBj_unid<0.30) zbin_u = 1;
-          else if(0.30<=zBj_unid && zBj_unid<0.35) zbin_u = 2;
-          else if(0.35<=zBj_unid && zBj_unid<0.40) zbin_u = 3;
-          else if(0.40<=zBj_unid && zBj_unid<0.45) zbin_u = 4;
-          else if(0.45<=zBj_unid && zBj_unid<0.50) zbin_u = 5;
-          else if(0.50<=zBj_unid && zBj_unid<0.55) zbin_u = 6;
-          else if(0.55<=zBj_unid && zBj_unid<0.60) zbin_u = 7;
-          else if(0.60<=zBj_unid && zBj_unid<0.65) zbin_u = 8;
-          else if(0.65<=zBj_unid && zBj_unid<0.70) zbin_u = 9;
-          else if(0.70<=zBj_unid && zBj_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
-
-
 
           // **********************************************************************
 
           // Save of hadrons
 
-          map<int,int>::iterator it;
-
           if(fId==0)
           {
-            it = idMCrec[1][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHplus++;
-              fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
-              if(it!=idMCrec[1][3].end())
-              {
-                if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[1][0].find(i);
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fPiplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-            if(it!=idMCrec[1][0].end())
-            {
-              if(zbin == idMCrec[1][0][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][0]++;
-                idMCrec[1][0].erase(i);
-              }
-            }
+            fMC1[xbin][ybin][zbin].tab[1][0][0] += 1;
+            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
           }
           else if(fId==1)
           {
-            it = idMCrec[0][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHminus++;
-              fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
-              if(it!=idMCrec[0][3].end())
-              {
-                if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[0][0].find(i);
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fPiminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-            if(it!=idMCrec[0][0].end())
-            {
-              if(zbin == idMCrec[0][0][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][0]++;
-                idMCrec[0][0].erase(i);
-              }
-            }
+            fMC1[xbin][ybin][zbin].tab[0][0][0] += 1;
+            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
           }
           else if(fId==2)
           {
-            it = idMCrec[1][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHplus++;
-              fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
-              if(it!=idMCrec[1][3].end())
-              {
-                if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[1][1].find(i);
-            if(fFlag[1][xbin][ybin][zbin]) continue;
-            fKplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][1] += 1;
-            if(it!=idMCrec[1][1].end())
-            {
-              if(zbin == idMCrec[1][1][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][1]++;
-                idMCrec[1][1].erase(i);
-              }
-            }
+            fMC1[xbin][ybin][zbin].tab[1][0][1] += 1;
+            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
           }
           else if(fId==3)
           {
-            it = idMCrec[0][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHminus++;
-              fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
-              if(it!=idMCrec[0][3].end())
-              {
-                if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[0][1].find(i);
-            if(fFlag[1][xbin][ybin][zbin]) continue;
-            fKminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][1] += 1;
-            if(it!=idMCrec[0][1].end())
-            {
-              if(zbin == idMCrec[0][1][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][1]++;
-                idMCrec[0][1].erase(i);
-              }
-            }
+            fMC1[xbin][ybin][zbin].tab[0][0][1] += 1;
+            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
           }
           else if(fId==4)
           {
-            it = idMCrec[1][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHplus++;
-              fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
-              if(it!=idMCrec[1][3].end())
-              {
-                if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[1][2].find(i);
-            if(fFlag[2][xbin][ybin][zbin]) continue;
-            fPplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][2] += 1;
-            if(it!=idMCrec[1][2].end())
-            {
-              if(zbin == idMCrec[1][2][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][2]++;
-                idMCrec[1][2].erase(i);
-              }
-            }
+            fMC1[xbin][ybin][zbin].tab[1][0][2] += 1;
+            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
           }
           else if(fId==5)
           {
-            it = idMCrec[0][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHminus++;
-              fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
-              if(it!=idMCrec[0][3].end())
-              {
-                if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[0][2].find(i);
-            if(fFlag[2][xbin][ybin][zbin]) continue;
-            fPminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][2] += 1;
-            if(it!=idMCrec[0][2].end())
-            {
-              if(zbin == idMCrec[0][2][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][2]++;
-                idMCrec[0][2].erase(i);
-              }
-            }
+            fMC1[xbin][ybin][zbin].tab[0][0][2] += 1;
+            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
           }
           else if(fId==6)
           {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
-            it = idMCrec[1][3].find(i);
-            if(it!=idMCrec[1][3].end())
-            {
-              if(zbin == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][3]++;
-                idMCrec[1][3].erase(i);
-              }
-            }
+            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
           }
           else if(fId==7)
           {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-            it = idMCrec[0][3].find(i);
-            if(it!=idMCrec[0][3].end())
-            {
-              if(zbin == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][3]++;
-                idMCrec[0][3].erase(i);
-              }
-            }
-          }
-          else if(fId==8)
-          {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHminus++; fPiminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-            fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-          }
-          else if(fId==9)
-          {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHplus++; fPiplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-            fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
+            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
           }
           else
           {
@@ -2725,20 +1913,6 @@ void MCextraction(string pFilelist)
           }
         }
       }
-
-      for(int cc=0; cc<2; cc++)
-      {
-    	for(int hh=0; hh<4; hh++)
-        {
-          idMCrec[cc][hh].clear();
-          hidMCrec[cc][hh].clear();
-          pMCrec[cc][hh].clear();
-          zMCrec[cc][hh].clear();
-          prevMCrec[cc][hh].clear();
-        }
-      }
-
-
     }
 
     cout << "\n-> Finished processing file " << filename << " <-\n" << endl;
@@ -2813,7 +1987,7 @@ void MCextraction(string pFilelist)
   }
 }
 
-void RDextraction(string pFilelist)
+void MC2extraction(string pFilelist)
 {
 
   //Kinematics
@@ -3403,72 +2577,15 @@ void RDextraction(string pFilelist)
       else if(0.3<yBj && yBj<0.5) ybin = 3;
       else ybin = 4;
 
-
-      // z binning
-
-//       for(int i=0; i<12; i++)
-//       {
-// #ifdef NORC
-//         fNDIS_evt[0][xbin][ybin][i] += 1;
-//         fNDIS_evt[1][xbin][ybin][i] += 1;
-//         fNDIS_evt[2][xbin][ybin][i] += 1;
-//
-//         fNDIS_evt_err[0][xbin][ybin][i] += 1;
-//         fNDIS_evt_err[1][xbin][ybin][i] += 1;
-//         fNDIS_evt_err[2][xbin][ybin][i] += 1;
-// #else
-//         fNDIS_evt[0][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//         fNDIS_evt[1][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//         fNDIS_evt[2][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//
-//         fNDIS_evt_err[0][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//         fNDIS_evt_err[1][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//         fNDIS_evt_err[2][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-// #endif
-//
-//         fFlag[0][xbin][ybin][i]=0;
-//         fFlag[1][xbin][ybin][i]=0;
-//         fFlag[2][xbin][ybin][i]=0;
-//
-//         // nu cut
-//         if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
-//         {
-//           fFlag[0][xbin][ybin][i]=1;
-//         }
-//         if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
-//         {
-//           fFlag[1][xbin][ybin][i]=1;
-//         }
-//         if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
-//         {
-//           fFlag[2][xbin][ybin][i]=1;
-//         }
-//         if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
-//         {
-// #ifdef NORC
-//           fNDIS_evt[0][xbin][ybin][i] -= 1;
-//         // fNDIS_evt[1][xbin][ybin][i] -= 1;
-//         // fNDIS_evt[2][xbin][ybin][i] -= 1;
-//           fNDIS_evt_err[0][xbin][ybin][i] -= 1;
-//         // fNDIS_evt_err[1][xbin][ybin][i] -= 1;
-//         // fNDIS_evt_err[2][xbin][ybin][i] -= 1;
-// #else
-//           fNDIS_evt[0][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//          // fNDIS_evt[1][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//          // fNDIS_evt[2][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//           fNDIS_evt_err[0][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//          // fNDIS_evt_err[1][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//          // fNDIS_evt_err[2][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-// #endif
-//         }
-//       }
-
       // -------------------------------------------------------------------------
       // --------- Hadrons Selection ---------------------------------------------
       // -------------------------------------------------------------------------
 
       if(fAllDISflag)
       {
+        for(int i=0; i<12; i++)
+          fNDIS_evt_MC2[xbin][ybin][i]++;
+
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
         {
           // **********************************************************************
@@ -3575,6 +2692,53 @@ void RDextraction(string pFilelist)
           else if(0.70<=zBj && zBj<0.75) zbin = 10;
           else zbin = 11;
 
+          // **********************************************************************
+
+          // Save of hadrons
+
+          if(fId==0)
+          {
+            fMC2[xbin][ybin][zbin].tab[1][0][0] += 1;
+            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+          }
+          else if(fId==1)
+          {
+            fMC2[xbin][ybin][zbin].tab[0][0][0] += 1;
+            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+          }
+          else if(fId==2)
+          {
+            fMC2[xbin][ybin][zbin].tab[1][0][1] += 1;
+            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+          }
+          else if(fId==3)
+          {
+            fMC2[xbin][ybin][zbin].tab[0][0][1] += 1;
+            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+          }
+          else if(fId==4)
+          {
+            fMC2[xbin][ybin][zbin].tab[1][0][2] += 1;
+            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+          }
+          else if(fId==5)
+          {
+            fMC2[xbin][ybin][zbin].tab[0][0][2] += 1;
+            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+          }
+          else if(fId==6)
+          {
+            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+          }
+          else if(fId==7)
+          {
+            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+          }
+          else
+          {
+            continue;
+          }
+
 
           if(trig&2)
           {
@@ -3597,6 +2761,8 @@ void RDextraction(string pFilelist)
           {
             fKinematicsRD[4][3]->Fill(zBj);
           }
+
+
         }
       }
     }
@@ -3674,6 +2840,184 @@ void RDextraction(string pFilelist)
 
 }
 
+void MultRatio()
+{
+  c19.Divide(9,5);
+  c20.Divide(9,5);
+  c21.Divide(9,5);
+
+  TGraphErrors* H[2][9][5];
+  TGraphErrors* P[2][9][5];
+  TGraphErrors* K[2][9][5];
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<5; j++)
+      {
+        std::vector<double> p_a;
+        std::vector<double> k_a;
+        std::vector<double> h_a;
+        std::vector<double> p_err;
+        std::vector<double> k_err;
+        std::vector<double> h_err;
+
+        std::vector<double> z_range_p;
+        std::vector<double> z_range_k;
+        std::vector<double> z_range_h;
+
+        for(int l=0; l<12; l++)
+        {
+          z_range_p.push_back(z_range[l]);
+          z_range_k.push_back(z_range[l]);
+          z_range_h.push_back(z_range[l]);
+        }
+
+        for(int k=0; k<12; k++)
+        {
+          fMultRatio[i][j][k].tab[c][0][0] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][0]) ? double((fMC1[i][j][k].tab[c][0][0]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][0]/fNDIS_evt_MC2[i][j][k])) : 0);
+          fMultRatio[i][j][k].tab[c][0][1] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][1]) ? double((fMC1[i][j][k].tab[c][0][1]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][1]/fNDIS_evt_MC2[i][j][k])) : 0);
+          fMultRatio[i][j][k].tab[c][0][2] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][2]) ? double((fMC1[i][j][k].tab[c][0][2]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][2]/fNDIS_evt_MC2[i][j][k])) : 0);
+          fMultRatio[i][j][k].tab[c][0][3] = ((fNDIS_evt_MC1[i][j][k] && fNDIS_evt_MC[i][j][k] && fMC2[i][j][k].tab[c][0][3]) ? double((fMC1[i][j][k].tab[c][0][3]/fNDIS_evt_MC1[i][j][k])/(fMC2[i][j][k].tab[c][0][3]/fNDIS_evt_MC2[i][j][k])) : 0);
+
+          if(fMultRatio[i][j][k].tab[c][0][0]<0) fMultRatio[i][j][k].tab[c][0][0]=0;
+          if(fMultRatio[i][j][k].tab[c][0][1]<0) fMultRatio[i][j][k].tab[c][0][1]=0;
+          if(fMultRatio[i][j][k].tab[c][0][2]<0) fMultRatio[i][j][k].tab[c][0][2]=0;
+          if(fMultRatio[i][j][k].tab[c][0][3]<0) fMultRatio[i][j][k].tab[c][0][3]=0;
+
+          p_a.push_back(fMultRatio[i][j][k].tab[c][0][0]);
+          k_a.push_back(fMultRatio[i][j][k].tab[c][0][1]);
+          h_a.push_back(fMultRatio[i][j][k].tab[c][0][3]);
+
+          p_err.push_back(fMultRatio[i][j][k].tab[c][1][0]);
+          k_err.push_back(fMultRatio[i][j][k].tab[c][1][1]);
+          h_err.push_back(fMultRatio[i][j][k].tab[c][1][3]);
+        }
+
+        for(int k=12; k>0; k--)
+        {
+          if(!p_a[k-1]) {p_a.erase(p_a.begin()+k-1); p_err.erase(p_err.begin()+k-1); z_range_p.erase(z_range_p.begin()+k-1);}
+          if(!k_a[k-1]) {k_a.erase(k_a.begin()+k-1); k_err.erase(k_err.begin()+k-1); z_range_k.erase(z_range_k.begin()+k-1);}
+          if(!h_a[k-1]) {h_a.erase(h_a.begin()+k-1); h_err.erase(h_err.begin()+k-1); z_range_h.erase(z_range_h.begin()+k-1);}
+        }
+
+        bool p_a_empty = 0;
+        bool k_a_empty = 0;
+        bool h_a_empty = 0;
+
+        if(!(int(p_a.size()))) p_a_empty = 1;
+        if(!(int(k_a.size()))) k_a_empty = 1;
+        if(!(int(h_a.size()))) h_a_empty = 1;
+
+        H[c][i][j] = new TGraphErrors(int(h_a.size()),&(z_range_h[0]),&(h_a[0]),0,&(h_err[0]));
+        P[c][i][j] = new TGraphErrors(int(p_a.size()),&(z_range_p[0]),&(p_a[0]),0,&(p_err[0]));
+        K[c][i][j] = new TGraphErrors(int(k_a.size()),&(z_range_k[0]),&(k_a[0]),0,&(k_err[0]));
+
+        H[c][i][j]->SetMarkerColor(fMarkerColor[c]);
+        P[c][i][j]->SetMarkerColor(fMarkerColor[c]);
+        K[c][i][j]->SetMarkerColor(fMarkerColor[c]);
+
+        H[c][i][j]->SetMarkerSize(2);
+        P[c][i][j]->SetMarkerSize(2);
+        K[c][i][j]->SetMarkerSize(2);
+
+        H[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
+        P[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
+        K[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
+
+        H[c][i][j]->GetYaxis()->SetTitle("");
+        P[c][i][j]->GetYaxis()->SetTitle("");
+        K[c][i][j]->GetYaxis()->SetTitle("");
+
+        H[c][i][j]->GetXaxis()->SetTitle("");
+        P[c][i][j]->GetXaxis()->SetTitle("");
+        K[c][i][j]->GetXaxis()->SetTitle("");
+
+        H[c][i][j]->SetTitle("");
+        P[c][i][j]->SetTitle("");
+        K[c][i][j]->SetTitle("");
+
+        if(!h_a_empty)
+        {
+          c19.cd(i+1+j*9);
+          if(H[c][i][j])
+          {
+            if(!c)
+            {
+              H[c][i][j]->Draw("SAMEPA");
+              H[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              H[c][i][j]->SetMinimum(0.2);
+              H[c][i][j]->SetMaximum(1.2);
+            }
+            else
+            {
+              H[c][i][j]->Draw("SAMEP");
+              H[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              H[c][i][j]->SetMinimum(0.2);
+              H[c][i][j]->SetMaximum(1.2);
+            }
+          }
+          c19.Update();
+        }
+
+        if(!p_a_empty)
+        {
+          c20.cd(i+1+j*9);
+          if(P[c][i][j])
+          {
+            if(!c)
+            {
+              P[c][i][j]->Draw("SAMEPA");
+              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P[c][i][j]->SetMinimum(0.3);
+              P[c][i][j]->SetMaximum(1.1);
+            }
+            else
+            {
+              P[c][i][j]->Draw("SAMEP");
+              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P[c][i][j]->SetMinimum(0.3);
+              P[c][i][j]->SetMaximum(1.1);
+            }
+          }
+          c20.Update();
+        }
+
+        if(!k_a_empty)
+        {
+          c21.cd(i+1+j*9);
+          if(K[c][i][j])
+          {
+            if(!c)
+            {
+              K[c][i][j]->Draw("SAMEPA");
+              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K[c][i][j]->SetMinimum(0.2);
+              K[c][i][j]->SetMaximum(1.2);
+            }
+            else
+            {
+              K[c][i][j]->Draw("SAMEP");
+              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K[c][i][j]->SetMinimum(0.2);
+              K[c][i][j]->SetMaximum(1.2);
+            }
+          }
+          c21.Update();
+        }
+      }
+    }
+  }
+  c19.Update();
+  c20.Update();
+  c21.Update();
+
+  c19.Print("MC_ratio_hadron.pdf");
+  c20.Print("MC_ratio_pion.pdf");
+  c21.Print("MC_ratio_kaon.pdf");
+}
+
 int main(int argc, char **argv)
 {
 
@@ -3687,8 +3031,9 @@ int main(int argc, char **argv)
   }
 
   create_kin_plots();
-  RDextraction(argv[1]);
-  MCextraction(argv[2]);
+  MC1extraction(argv[1]);
+  MC2extraction(argv[2]);
+  MultRatio();
   save_kin_plots();
 
   return 0;
