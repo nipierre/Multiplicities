@@ -2892,9 +2892,9 @@ void MultRatio()
         //   if(!h_a[k-1]) {h_a.erase(h_a.begin()+k-1); h_err.erase(h_err.begin()+k-1); z_range_h.erase(z_range_h.begin()+k-1);}
         // }
         //
-        // bool p_a_empty = 0;
-        // bool k_a_empty = 0;
-        // bool h_a_empty = 0;
+        bool p_a_empty = 0;
+        bool k_a_empty = 0;
+        bool h_a_empty = 0;
         //
         // if(!(int(p_a.size()))) p_a_empty = 1;
         // if(!(int(k_a.size()))) k_a_empty = 1;
