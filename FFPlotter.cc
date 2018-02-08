@@ -95,11 +95,11 @@ void PionPlotter(string pF)
       if(int(fZ[i][j].size()))
       {
         double mean;
-        mean = MeanValue(fQ2mean);
+        mean = MeanValue(fQ2mean[i][j]);
         TCanvas c1("FF","FF",3200,1600);
         c1.Divide(2,1);
-        fDfavG[i][j] = new TGraph(int(fZ[i][j].size()),&(fZ[i][j][0]),&(fDfav[xbin][ybin][0]));
-        fDunfG[i][j] = new TGraph(int(fZ[i][j].size()),&(fZ[i][j][0]),&(fDunf[xbin][ybin][0]));
+        fDfavG[i][j] = new TGraph(int(fZ[i][j].size()),&(fZ[i][j][0]),&(fDfav[i][j][0]));
+        fDunfG[i][j] = new TGraph(int(fZ[i][j].size()),&(fZ[i][j][0]),&(fDunf[i][j][0]));
         c1.cd(1);
         fDfavG[i][j]->SetTitle(Form("D^{#Pi}_{fav} @ <Q^{2}>=%d;z;D^{#Pi}_{fav}(z)",mean));
         fDfavG[i][j]->Draw("AC*");
