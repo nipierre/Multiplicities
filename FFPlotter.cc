@@ -51,13 +51,13 @@ void readDataFile(string pF, string option="Pi")
   do
   {
     f >> y >> Q2 >> z;
-#ifdef DEBUG
+// #ifdef DEBUG
     cout << x << " " << y << " " << Q2 << " " << z << endl;
-#endif
+// #endif
     whichBins(x,y,z,xbin,ybin,zbin);
-#ifdef DEBUG
+// #ifdef DEBUG
     cout << xbin << " " << ybin << " " << zbin << endl;
-#endif
+// #endif
     fQ2mean[xbin][ybin].push_back(Q2);
     fZ[xbin][ybin].push_back(z);
     if(option=="Pi")
