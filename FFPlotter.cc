@@ -85,14 +85,14 @@ double MeanValue(vector<double> pVec)
 
 void PionPlotter(string pF)
 {
-  readDataFile(pf1,"Pi");
+  readDataFile(pF,"Pi");
   TCanvas c0("dummy","dummy",3200,1600);
   c0.Print("kinMCRD.pdf(","pdf");
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<5; j++)
     {
-      if(int(fZ[i][j].size())
+      if(int(fZ[i][j].size()))
       {
         double mean;
         mean = MeanValue(fQ2mean);
