@@ -86,7 +86,7 @@ void PionPlotter(string pF)
 {
   readDataFile(pF,"Pi");
   TCanvas c0("dummy","dummy",3200,1600);
-  c0.Print("kinMCRD.pdf(","pdf");
+  c0.Print("PionFF.pdf(","pdf");
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<5; j++)
@@ -107,11 +107,11 @@ void PionPlotter(string pF)
         fDfavG[i][j]->SetTitle(Form("D^{#Pi}_{unf} @ <Q^{2}>=%f;z;D^{#Pi}_{unf}(z)",mean));
         fDunfG[i][j]->Draw("AC*");
         c1.Update();
-        c1.Print("kinMCRD.pdf","pdf");
+        c1.Print("PionFF.pdf","pdf");
       }
     }
   }
-  c0.Print("kinMCRD.pdf)","pdf");
+  c0.Print("PionFF.pdf)","pdf");
 }
 
 int main(int argc, char **argv)
