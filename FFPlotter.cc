@@ -36,8 +36,6 @@ void whichBins(double px, double py, double pz, int &pxbin, int &pybin, int &pzb
 
 void readDataFile(string pF, string option="Pi")
 {
-  string sdummy;
-  double ddummy;
   double x, y, z, Q2, Dfav, Dunf;
   int xbin, ybin, zbin;
 
@@ -55,6 +53,7 @@ void readDataFile(string pF, string option="Pi")
     f >> y >> Q2 >> z;
 #ifdef DEBUG
     cout << x << " " << y << " " << Q2 << " " << z << endl;
+#endif
     whichBins(x,y,z,xbin,ybin,zbin);
 #ifdef DEBUG
     cout << xbin << " " << ybin << " " << zbin << endl;
