@@ -26,6 +26,7 @@ analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit acccollect
 comparison : compMCRD compMCMC
 extractor : FFExtractor
+plotter : FFPlotter
 
 
 %.o: %.cc %.h
@@ -52,5 +53,8 @@ compMCMC: compMCMC.cc compMCMC.h
 FFExtractor: FFExtractor.cc FFExtractor.h
 	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
 
+FFPlotter: FFPlotter.cc FFPlotter.h
+	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
+
 clean :
-	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD compMCMC FFExtractor
+	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD compMCMC FFExtractor FFPlotter
