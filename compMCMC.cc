@@ -1838,40 +1838,40 @@ void MC1extraction(string pFilelist)
           if(fId==0)
           {
             fMC1[xbin][ybin][zbin].tab[1][0][0] += 1;
-            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==1)
           {
             fMC1[xbin][ybin][zbin].tab[0][0][0] += 1;
-            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else if(fId==2)
           {
             fMC1[xbin][ybin][zbin].tab[1][0][1] += 1;
-            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==3)
           {
             fMC1[xbin][ybin][zbin].tab[0][0][1] += 1;
-            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else if(fId==4)
           {
             fMC1[xbin][ybin][zbin].tab[1][0][2] += 1;
-            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==5)
           {
             fMC1[xbin][ybin][zbin].tab[0][0][2] += 1;
-            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else if(fId==6)
           {
-            fMC1[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==7)
           {
-            fMC1[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC1[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else
           {
@@ -2687,40 +2687,40 @@ void MC2extraction(string pFilelist)
           if(fId==0)
           {
             fMC2[xbin][ybin][zbin].tab[1][0][0] += 1;
-            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==1)
           {
             fMC2[xbin][ybin][zbin].tab[0][0][0] += 1;
-            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else if(fId==2)
           {
             fMC2[xbin][ybin][zbin].tab[1][0][1] += 1;
-            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==3)
           {
             fMC2[xbin][ybin][zbin].tab[0][0][1] += 1;
-            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else if(fId==4)
           {
             fMC2[xbin][ybin][zbin].tab[1][0][2] += 1;
-            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==5)
           {
             fMC2[xbin][ybin][zbin].tab[0][0][2] += 1;
-            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else if(fId==6)
           {
-            fMC2[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[1][0][3] += 1;
           }
           else if(fId==7)
           {
-            fMC2[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+            fMC2[xbin][ybin][zbin].tab[0][0][3] += 1;
           }
           else
           {
@@ -2885,20 +2885,20 @@ void MultRatio()
           h_err.push_back(fMultRatio[i][j][k].tab[c][1][3]);
         }
 
-        // for(int k=12; k>0; k--)
-        // {
-        //   if(!p_a[k-1]) {p_a.erase(p_a.begin()+k-1); p_err.erase(p_err.begin()+k-1); z_range_p.erase(z_range_p.begin()+k-1);}
-        //   if(!k_a[k-1]) {k_a.erase(k_a.begin()+k-1); k_err.erase(k_err.begin()+k-1); z_range_k.erase(z_range_k.begin()+k-1);}
-        //   if(!h_a[k-1]) {h_a.erase(h_a.begin()+k-1); h_err.erase(h_err.begin()+k-1); z_range_h.erase(z_range_h.begin()+k-1);}
-        // }
-        //
+        for(int k=12; k>0; k--)
+        {
+          if(!p_a[k-1]) {p_a.erase(p_a.begin()+k-1); p_err.erase(p_err.begin()+k-1); z_range_p.erase(z_range_p.begin()+k-1);}
+          if(!k_a[k-1]) {k_a.erase(k_a.begin()+k-1); k_err.erase(k_err.begin()+k-1); z_range_k.erase(z_range_k.begin()+k-1);}
+          if(!h_a[k-1]) {h_a.erase(h_a.begin()+k-1); h_err.erase(h_err.begin()+k-1); z_range_h.erase(z_range_h.begin()+k-1);}
+        }
+
         bool p_a_empty = 0;
         bool k_a_empty = 0;
         bool h_a_empty = 0;
-        //
-        // if(!(int(p_a.size()))) p_a_empty = 1;
-        // if(!(int(k_a.size()))) k_a_empty = 1;
-        // if(!(int(h_a.size()))) h_a_empty = 1;
+
+        if(!(int(p_a.size()))) p_a_empty = 1;
+        if(!(int(k_a.size()))) k_a_empty = 1;
+        if(!(int(h_a.size()))) h_a_empty = 1;
 
         H[c][i][j] = new TGraphErrors(int(h_a.size()),&(z_range_h[0]),&(h_a[0]),0,&(h_err[0]));
         P[c][i][j] = new TGraphErrors(int(p_a.size()),&(z_range_p[0]),&(p_a[0]),0,&(p_err[0]));
