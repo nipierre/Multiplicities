@@ -461,11 +461,13 @@ void save_kin_plots()
   c7.Update();
 
   c8.cd(2);
+  for(int tt=0; tt<fKinematicsMC1[4][0]->GetNbinsX(); tt++) cout<< fKinematicsMC1[4][0]->GetBinError(tt) << endl;
+  for(int tt=0; tt<fKinematicsMC2[4][0]->GetNbinsX(); tt++) cout<< fKinematicsMC2[4][0]->GetBinError(tt) << endl;
   fKinematicsMC2[4][0]->Scale(1/fKinematicsMC2[4][0]->GetEntries());
   fKinematicsMC1[4][0]->Scale(1/fKinematicsMC1[4][0]->GetEntries());
-  fKinematicsRatio[4][0] = (TH1F*)fKinematicsMC2[4][0]->Clone();
+  fKinematicsRatio[4][0] = (TH1F*)fKinematicsMC1[4][0]->Clone();
   fKinematicsRatio[4][0]->SetStats(0);
-  fKinematicsRatio[4][0]->Divide(fKinematicsMC1[4][0]);
+  fKinematicsRatio[4][0]->Divide(fKinematicsMC2[4][0]);
   fKinematicsRatio[4][0]->SetMarkerStyle(21);
   fKinematicsRatio[4][0]->SetMaximum(2.);
   for(int tt=0; tt<fKinematicsRatio[4][0]->GetNbinsX(); tt++) cout<< fKinematicsRatio[4][0]->GetBinError(tt) << endl;
@@ -485,9 +487,9 @@ void save_kin_plots()
   c9.cd(2);
   fKinematicsMC2[4][1]->Scale(1/fKinematicsMC2[4][1]->GetEntries());
   fKinematicsMC1[4][1]->Scale(1/fKinematicsMC1[4][1]->GetEntries());
-  fKinematicsRatio[4][1] = (TH1F*)fKinematicsMC2[4][1]->Clone();
+  fKinematicsRatio[4][1] = (TH1F*)fKinematicsMC1[4][1]->Clone();
   fKinematicsRatio[4][1]->SetStats(0);
-  fKinematicsRatio[4][1]->Divide(fKinematicsMC1[4][1]);
+  fKinematicsRatio[4][1]->Divide(fKinematicsMC2[4][1]);
   fKinematicsRatio[4][1]->SetMarkerStyle(21);
   fKinematicsRatio[4][1]->SetMaximum(2.);
   fKinematicsRatio[4][1]->SetFillColor(kYellow-7);
@@ -506,9 +508,9 @@ void save_kin_plots()
   c10.cd(2);
   fKinematicsMC2[4][2]->Scale(1/fKinematicsMC2[4][2]->GetEntries());
   fKinematicsMC1[4][2]->Scale(1/fKinematicsMC1[4][2]->GetEntries());
-  fKinematicsRatio[4][2] = (TH1F*)fKinematicsMC2[4][2]->Clone();
+  fKinematicsRatio[4][2] = (TH1F*)fKinematicsMC1[4][2]->Clone();
   fKinematicsRatio[4][2]->SetStats(0);
-  fKinematicsRatio[4][2]->Divide(fKinematicsMC1[4][2]);
+  fKinematicsRatio[4][2]->Divide(fKinematicsMC2[4][2]);
   fKinematicsRatio[4][2]->SetMarkerStyle(21);
   fKinematicsRatio[4][2]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][2]->SetMaximum(2.);
@@ -525,9 +527,9 @@ void save_kin_plots()
   c11.cd(2);
   fKinematicsMC2[4][3]->Scale(1/fKinematicsMC2[4][3]->GetEntries());
   fKinematicsMC1[4][3]->Scale(1/fKinematicsMC1[4][3]->GetEntries());
-  fKinematicsRatio[4][3] = (TH1F*)fKinematicsMC2[4][3]->Clone();
+  fKinematicsRatio[4][3] = (TH1F*)fKinematicsMC1[4][3]->Clone();
   fKinematicsRatio[4][3]->SetStats(0);
-  fKinematicsRatio[4][3]->Divide(fKinematicsMC1[4][3]);
+  fKinematicsRatio[4][3]->Divide(fKinematicsMC2[4][3]);
   fKinematicsRatio[4][3]->SetMarkerStyle(21);
   fKinematicsRatio[4][3]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][3]->SetMaximum(2.);
@@ -544,9 +546,9 @@ void save_kin_plots()
   c12.cd(2);
   fKinematicsMC2[4][4]->Scale(1/fKinematicsMC2[4][4]->GetEntries());
   fKinematicsMC1[4][4]->Scale(1/fKinematicsMC1[4][4]->GetEntries());
-  fKinematicsRatio[4][4] = (TH1F*)fKinematicsMC2[4][4]->Clone();
+  fKinematicsRatio[4][4] = (TH1F*)fKinematicsMC1[4][4]->Clone();
   fKinematicsRatio[4][4]->SetStats(0);
-  fKinematicsRatio[4][4]->Divide(fKinematicsMC1[4][4]);
+  fKinematicsRatio[4][4]->Divide(fKinematicsMC2[4][4]);
   fKinematicsRatio[4][4]->SetMarkerStyle(21);
   fKinematicsRatio[4][4]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][4]->SetMaximum(2.);
@@ -563,9 +565,9 @@ void save_kin_plots()
   c13.cd(2);
   fKinematicsMC2[4][5]->Scale(1/fKinematicsMC2[4][5]->GetEntries());
   fKinematicsMC1[4][5]->Scale(1/fKinematicsMC1[4][5]->GetEntries());
-  fKinematicsRatio[4][5] = (TH1F*)fKinematicsMC2[4][5]->Clone();
+  fKinematicsRatio[4][5] = (TH1F*)fKinematicsMC1[4][5]->Clone();
   fKinematicsRatio[4][5]->SetStats(0);
-  fKinematicsRatio[4][5]->Divide(fKinematicsMC1[4][5]);
+  fKinematicsRatio[4][5]->Divide(fKinematicsMC2[4][5]);
   fKinematicsRatio[4][5]->SetMarkerStyle(21);
   fKinematicsRatio[4][5]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][5]->SetMaximum(2.);
