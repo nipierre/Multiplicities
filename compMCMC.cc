@@ -126,24 +126,24 @@ void create_kin_plots()
     fKinematicsMC2[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsMC2[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC2[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 100, -320, -70);
-    fKinematicsMC1[i][0] = new TH1F(Form("Q^{2} MC %s",trigname[i].c_str()), Form("Q^{2} MC %s",trigname[i].c_str()), 100, -1, 2);
-    fKinematicsMC1[i][1] = new TH1F(Form("x_{Bj} MC %s",trigname[i].c_str()), Form("x_{Bj} MC %s",trigname[i].c_str()), 100, -3, 0);
-    fKinematicsMC1[i][2] = new TH1F(Form("y MC %s",trigname[i].c_str()), Form("y MC %s",trigname[i].c_str()), 100, 0, 1);
-    fKinematicsMC1[i][3] = new TH1F(Form("z MC %s",trigname[i].c_str()), Form("z MC %s",trigname[i].c_str()), 100, 0, 1);
-    fKinematicsMC1[i][4] = new TH1F(Form("W MC %s",trigname[i].c_str()), Form("W MC %s",trigname[i].c_str()), 100, 2, 18);
-    fKinematicsMC1[i][5] = new TH1F(Form("#nu MC %s",trigname[i].c_str()), Form("#nu MC %s",trigname[i].c_str()), 100, 0, 160);
-    fKinematicsMC1[i][6] = new TH1F(Form("E_{#mu} MC %s",trigname[i].c_str()), Form("E_{#mu} MC %s",trigname[i].c_str()), 100, 140, 180);
-    fKinematicsMC1[i][7] = new TH1F(Form("E_{#mu'} MC %s",trigname[i].c_str()), Form("E_{#mu'} MC %s",trigname[i].c_str()), 100, 0, 160);
-    fKinematicsMC1[i][8] = new TH1F(Form("#theta MC %s",trigname[i].c_str()), Form("#theta MC %s",trigname[i].c_str()), 100, 0, 0.1);
-    fKinematicsMC1[i][9] = new TH1F(Form("#phi MC %s",trigname[i].c_str()), Form("#phi MC %s",trigname[i].c_str()), 100, -1.7, 1.7);
-    fKinematicsMC1[i][10] = new TH1F(Form("Vertex MC %s",trigname[i].c_str()), Form("Vertex MC %s",trigname[i].c_str()), 100, -320, -70);
+    fKinematicsMC1[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 100, -1, 2);
+    fKinematicsMC1[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 100, -3, 0);
+    fKinematicsMC1[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsMC1[i][3] = new TH1F(Form("z Ratio %s",trigname[i].c_str()), Form("z Ratio %s",trigname[i].c_str()), 100, 0, 1);
+    fKinematicsMC1[i][4] = new TH1F(Form("W Ratio %s",trigname[i].c_str()), Form("W Ratio %s",trigname[i].c_str()), 100, 2, 18);
+    fKinematicsMC1[i][5] = new TH1F(Form("#nu Ratio %s",trigname[i].c_str()), Form("#nu Ratio %s",trigname[i].c_str()), 100, 0, 160);
+    fKinematicsMC1[i][6] = new TH1F(Form("E_{#mu} Ratio %s",trigname[i].c_str()), Form("E_{#mu} Ratio %s",trigname[i].c_str()), 100, 140, 180);
+    fKinematicsMC1[i][7] = new TH1F(Form("E_{#mu'} Ratio %s",trigname[i].c_str()), Form("E_{#mu'} Ratio %s",trigname[i].c_str()), 100, 0, 160);
+    fKinematicsMC1[i][8] = new TH1F(Form("#theta Ratio %s",trigname[i].c_str()), Form("#theta Ratio %s",trigname[i].c_str()), 100, 0, 0.1);
+    fKinematicsMC1[i][9] = new TH1F(Form("#phi Ratio %s",trigname[i].c_str()), Form("#phi Ratio %s",trigname[i].c_str()), 100, -1.7, 1.7);
+    fKinematicsMC1[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 100, -320, -70);
     BinLogX(fKinematicsMC2[i][0]);
     BinLogX(fKinematicsMC1[i][0]);
     BinLogX(fKinematicsMC2[i][1]);
     BinLogX(fKinematicsMC1[i][1]);
   }
   fKinematicsMC2[0][11] = new TH1F("#Phi_h","#Phi_h", 100, 0, 1);
-  fKinematicsMC1[0][11] = new TH1F("#Phi_h MC","#Phi_h MC", 100, 0, 1);
+  fKinematicsMC1[0][11] = new TH1F("#Phi_h Ratio","#Phi_h Ratio", 100, 0, 1);
   for(int i=0; i<7; i++)
   {
     l2[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
