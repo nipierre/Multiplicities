@@ -1,15 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <TFile.h>
-#include <TH1F.h>
-#include <TH2F.h>
-#include <TCanvas.h>
-#include <TMatrixD.h>
-#include <TMatrixTUtils.h>
-#include <TTree.h>
-#include <TBranch.h>
-#include <TLeaf.h>
-
 #include "compMCRD.h"
 
 //Inputs
