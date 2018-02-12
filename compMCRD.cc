@@ -499,10 +499,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->SetMaximum(2.);
       fKinematicsRatio[idx][0]->SetMinimum(0.);
       fKinematicsRatio[idx][0]->Draw("PE2");
-      for(int tt=0; tt<7; tt++)
-      {
-        l1[0][tt]->Draw();
-      }
+      // for(int tt=0; tt<7; tt++)
+      // {
+      //   l1[0][tt]->Draw();
+      // }
       gPad->SetLogx();
       c1.Update();
 
@@ -527,10 +527,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->SetMaximum(2.);
       fKinematicsRatio[idx][1]->SetMinimum(0.);
       fKinematicsRatio[idx][1]->Draw("PE2");
-      for(int tt=0; tt<7; tt++)
-      {
-        l1[1][tt]->Draw();
-      }
+      // for(int tt=0; tt<7; tt++)
+      // {
+      //   l1[1][tt]->Draw();
+      // }
       gPad->SetLogx();
       c2.Update();
 
