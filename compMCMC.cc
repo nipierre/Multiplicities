@@ -461,7 +461,7 @@ void save_kin_plots()
   c7.Update();
 
   c8.cd(2);
-  for(int tt=0; tt<fKinematicsRatio[4][0]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsMC1[4][0]->GetNbinsX(); tt++)
   {
     fError.push_back((fKinematicsMC1[4][0]->GetBinError(tt) && fKinematicsMC2[4][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][0]->GetBinError(tt)+1/fKinematicsMC2[4][0]->GetBinError(tt)):0));
   }
