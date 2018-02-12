@@ -1699,10 +1699,6 @@ void MC2extraction(string pFilelist)
   Double_t wBj = 0;
   Double_t nu = 0;
 
-  load_rich_mat(mat_RICH_name, err_RICH_name);
-
-  //cout << pi_sigma_uni[0][0] << " " << pi_sigma_uni[1][1] << " " << pi_sigma_uni[2][2] << endl;
-
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
