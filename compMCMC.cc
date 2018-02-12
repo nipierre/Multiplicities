@@ -1,4 +1,4 @@
-H#include "compMCMC.h"
+#include "compMCMC.h"
 
 //Inputs
 #define mat_RICH_name "rich_mat.txt"
