@@ -216,6 +216,7 @@ TCanvas c21("MultRatio Kaon","MultRatio Hadron",3200,1600);
 
 TLine* l1[5];
 TLine* l2[12][7];
+Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
 
 vector<double> fError;
 
