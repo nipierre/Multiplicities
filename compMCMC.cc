@@ -430,7 +430,7 @@ void save_kin_plots()
     {
       c1.cd(idx+1+int(idx/2)*2);
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][0]->SetLineColor(kRed);
+      fKinematicsMC2[idx][0]->SetLineColor(kGreen);
       fKinematicsMC2[idx][0]->SetStats(0);
       fKinematicsMC2[idx][0]->SetMinimum(0.);
       // fKinematicsMC2[idx][0]->SetMaximum(0.06);
@@ -442,7 +442,7 @@ void save_kin_plots()
 
       c2.cd(idx+1+int(idx/2)*2);
       // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][1]->SetLineColor(kRed);
+      fKinematicsMC2[idx][1]->SetLineColor(kGreen);
       fKinematicsMC2[idx][1]->SetStats(0);
       fKinematicsMC2[idx][1]->SetMinimum(0.);
       // fKinematicsMC2[idx][1]->SetMaximum(0.045);
@@ -454,7 +454,7 @@ void save_kin_plots()
 
       c3.cd(idx+1+int(idx/2)*2);
       // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][2]->SetLineColor(kRed);
+      fKinematicsMC2[idx][2]->SetLineColor(kGreen);
       fKinematicsMC2[idx][2]->SetStats(0);
       fKinematicsMC2[idx][2]->SetMinimum(0.);
       // fKinematicsMC2[idx][2]->SetMaximum(0.06);
@@ -464,7 +464,7 @@ void save_kin_plots()
       c3.Update();
 
       c4.cd(idx+1+int(idx/2)*2);
-      fKinematicsMC2[idx][3]->SetLineColor(kRed);
+      fKinematicsMC2[idx][3]->SetLineColor(kGreen);
       fKinematicsMC2[idx][3]->SetStats(0);
       fKinematicsMC2[idx][2]->SetMinimum(0.);
       fKinematicsMC2[idx][3]->Draw();
@@ -474,7 +474,7 @@ void save_kin_plots()
 
       c5.cd(idx+1+int(idx/2)*2);
       // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][4]->SetLineColor(kRed);
+      fKinematicsMC2[idx][4]->SetLineColor(kGreen);
       fKinematicsMC2[idx][4]->SetStats(0);
       fKinematicsMC2[idx][4]->SetMinimum(0.);
       // fKinematicsMC2[idx][4]->SetMaximum(0.05);
@@ -485,7 +485,7 @@ void save_kin_plots()
 
       c6.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][5]->SetLineColor(kRed);
+      fKinematicsMC2[idx][5]->SetLineColor(kGreen);
       fKinematicsMC2[idx][5]->SetStats(0);
       fKinematicsMC2[idx][5]->SetMinimum(0.);
       // fKinematicsMC2[idx][5]->SetMaximum(0.06);
@@ -496,7 +496,7 @@ void save_kin_plots()
 
       c14.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][6]->SetLineColor(kRed);
+      fKinematicsMC2[idx][6]->SetLineColor(kGreen);
       fKinematicsMC2[idx][6]->SetStats(0);
       fKinematicsMC2[idx][6]->SetMinimum(0.);
       // fKinematicsMC2[idx][5]->SetMaximum(0.06);
@@ -507,7 +507,7 @@ void save_kin_plots()
 
       c15.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][7]->SetLineColor(kRed);
+      fKinematicsMC2[idx][7]->SetLineColor(kGreen);
       fKinematicsMC2[idx][7]->SetStats(0);
       fKinematicsMC2[idx][7]->SetMinimum(0.);
       // fKinematicsMC2[idx][5]->SetMaximum(0.06);
@@ -518,7 +518,7 @@ void save_kin_plots()
 
       c16.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][8]->SetLineColor(kRed);
+      fKinematicsMC2[idx][8]->SetLineColor(kGreen);
       fKinematicsMC2[idx][8]->SetStats(0);
       fKinematicsMC2[idx][8]->SetMinimum(0.);
       // fKinematicsMC2[idx][5]->SetMaximum(0.06);
@@ -529,7 +529,7 @@ void save_kin_plots()
 
       c17.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][9]->SetLineColor(kRed);
+      fKinematicsMC2[idx][9]->SetLineColor(kGreen);
       fKinematicsMC2[idx][9]->SetStats(0);
       fKinematicsMC2[idx][9]->SetMinimum(0.);
       // fKinematicsMC2[idx][5]->SetMaximum(0.06);
@@ -540,7 +540,7 @@ void save_kin_plots()
 
       c18.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][10]->SetLineColor(kRed);
+      fKinematicsMC2[idx][10]->SetLineColor(kGreen);
       fKinematicsMC2[idx][10]->SetStats(0);
       fKinematicsMC2[idx][10]->SetMinimum(0.);
       // fKinematicsMC2[idx][5]->SetMaximum(0.06);
@@ -572,7 +572,7 @@ void save_kin_plots()
   fKinematicsRatio[0][11]->Draw("P");
   c7.Update();
   c7.cd(1);
-  fKinematicsMC2[0][11]->SetLineColor(kRed);
+  fKinematicsMC2[0][11]->SetLineColor(kGreen);
   fKinematicsMC2[0][11]->SetStats(0);
   fKinematicsMC2[0][11]->SetMinimum(0.);
   fKinematicsMC2[0][11]->SetMaximum(0.05);
@@ -603,7 +603,7 @@ void save_kin_plots()
   gPad->SetLogx();
   c8.Update();
   c8.cd(1);
-  fKinematicsMC2[4][0]->SetLineColor(kRed);
+  fKinematicsMC2[4][0]->SetLineColor(kGreen);
   fKinematicsMC2[4][0]->SetStats(0);
   fKinematicsMC2[4][0]->Draw();
   fKinematicsMC1[4][0]->SetLineColor(kBlue);
@@ -633,7 +633,7 @@ void save_kin_plots()
   gPad->SetLogx();
   c9.Update();
   c9.cd(1);
-  fKinematicsMC2[4][1]->SetLineColor(kRed);
+  fKinematicsMC2[4][1]->SetLineColor(kGreen);
   fKinematicsMC2[4][1]->SetStats(0);
   fKinematicsMC2[4][1]->Draw();
   fKinematicsMC1[4][1]->SetLineColor(kBlue);
@@ -662,7 +662,7 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->Draw("PE2");
   c10.Update();
   c10.cd(1);
-  fKinematicsMC2[4][2]->SetLineColor(kRed);
+  fKinematicsMC2[4][2]->SetLineColor(kGreen);
   fKinematicsMC2[4][2]->SetStats(0);
   fKinematicsMC2[4][2]->Draw();
   fKinematicsMC1[4][2]->SetLineColor(kBlue);
@@ -690,7 +690,7 @@ void save_kin_plots()
   fKinematicsRatio[4][3]->Draw("PE2");
   c11.Update();
   c11.cd(1);
-  fKinematicsMC2[4][3]->SetLineColor(kRed);
+  fKinematicsMC2[4][3]->SetLineColor(kGreen);
   fKinematicsMC2[4][3]->SetStats(0);
   fKinematicsMC2[4][3]->Draw();
   fKinematicsMC1[4][3]->SetLineColor(kBlue);
@@ -718,7 +718,7 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->Draw("PE2");
   c12.Update();
   c12.cd(1);
-  fKinematicsMC2[4][4]->SetLineColor(kRed);
+  fKinematicsMC2[4][4]->SetLineColor(kGreen);
   fKinematicsMC2[4][4]->SetStats(0);
   fKinematicsMC2[4][4]->Draw();
   fKinematicsMC1[4][4]->SetLineColor(kBlue);
@@ -746,7 +746,7 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->Draw("PE2");
   c13.Update();
   c13.cd(1);
-  fKinematicsMC2[4][5]->SetLineColor(kRed);
+  fKinematicsMC2[4][5]->SetLineColor(kGreen);
   fKinematicsMC2[4][5]->SetStats(0);
   fKinematicsMC2[4][5]->Draw();
   fKinematicsMC1[4][5]->SetLineColor(kBlue);

@@ -201,6 +201,8 @@ TCanvas c16("Kin_#theta","Kin_#theta",3200,1600);
 TCanvas c17("Kin_#phi","Kin_#phi",3200,1600);
 TCanvas c18("Kin_vertex","Kin_vertex",3200,1600);
 
+vector<double> fError;
+
 //Graphic Style
 
 Int_t fMarkerColor[2] = {4,2};
