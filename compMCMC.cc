@@ -2355,7 +2355,7 @@ void MC2extraction(string pFilelist)
           }
 
           if(0.1<zBj && (fId==8 || fId==9) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
-            fKinematicsMC1[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+            fKinematicsMC2[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
