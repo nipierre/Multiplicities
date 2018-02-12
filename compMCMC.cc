@@ -2954,7 +2954,7 @@ void MultRatio()
 
         if(!h_a_empty)
         {
-          c7.cd(i+1);
+          c19.cd(i+1);
           gPad->SetFillStyle(4000);
           if(H[c][i][j])
           {
@@ -3009,12 +3009,12 @@ void MultRatio()
               H[c][i][j]->SetMaximum(1.55);
             }
           }
-          c7.Update();
+          c19.Update();
         }
 
         if(!p_a_empty)
         {
-          c8.cd(i+1);
+          c20.cd(i+1);
           gPad->SetFillStyle(4000);
           if(P[c][i][j])
           {
@@ -3069,12 +3069,12 @@ void MultRatio()
               P[c][i][j]->SetMaximum(1.55);
             }
           }
-          c8.Update();
+          c20.Update();
         }
 
         if(!k_a_empty)
         {
-          c9.cd(i+1);
+          c21.cd(i+1);
           gPad->SetFillStyle(4000);
           if(K[c][i][j])
           {
