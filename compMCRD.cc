@@ -501,7 +501,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[0]->Draw();
+        l1[0][0]->Draw();
       }
       gPad->SetLogx();
       c1.Update();
