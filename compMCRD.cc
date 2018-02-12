@@ -433,7 +433,7 @@ void create_kin_plots()
   fKinematicsMC[0][11] = new TH1F("#Phi_h MC","#Phi_h MC", 100, 0, 1);
   for(int i=0; i<7; i++)
   {
-    l1[0][i] = new TLine(0.01,0.4+i*0.2,100,0.4+i*0.2);
+    l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
     l1[1][i] = new TLine(0.001,0.4+i*0.2,1,0.4+i*0.2);
     l1[2][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
     l1[3][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
@@ -448,6 +448,7 @@ void create_kin_plots()
     for(int j=0; j<11; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
+      l1[j][i]->SetLineWidth(1);
     }
   }
 }
@@ -660,7 +661,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][6]->SetMarkerStyle(21);
       fKinematicsRatio[idx][6]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][6]->SetMaximum(2.);
-      fKinematicsRatio[idx][6]->SetMaximum(0.);
+      fKinematicsRatio[idx][6]->SetMinimum(0.);
       fKinematicsRatio[idx][6]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
