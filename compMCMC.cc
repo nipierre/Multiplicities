@@ -468,7 +468,8 @@ void save_kin_plots()
   fKinematicsRatio[4][0]->Divide(fKinematicsMC1[4][0]);
   fKinematicsRatio[4][0]->SetMarkerStyle(21);
   fKinematicsRatio[4][0]->SetMaximum(2.);
-  fKinematicsRatio[4][0]->Draw("P");
+  fKinematicsRatio[4][0]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][0]->Draw("PE2");
   gPad->SetLogx();
   c8.Update();
   c8.cd(1);
@@ -488,7 +489,8 @@ void save_kin_plots()
   fKinematicsRatio[4][1]->Divide(fKinematicsMC1[4][1]);
   fKinematicsRatio[4][1]->SetMarkerStyle(21);
   fKinematicsRatio[4][1]->SetMaximum(2.);
-  fKinematicsRatio[4][1]->Draw("P");
+  fKinematicsRatio[4][1]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][1]->Draw("PE2");
   gPad->SetLogx();
   c9.Update();
   c9.cd(1);
@@ -507,8 +509,9 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->SetStats(0);
   fKinematicsRatio[4][2]->Divide(fKinematicsMC1[4][2]);
   fKinematicsRatio[4][2]->SetMarkerStyle(21);
+  fKinematicsRatio[4][2]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][2]->SetMaximum(2.);
-  fKinematicsRatio[4][2]->Draw("P");
+  fKinematicsRatio[4][2]->Draw("PE2");
   c10.Update();
   c10.cd(1);
   fKinematicsMC2[4][2]->SetLineColor(kRed);
@@ -525,8 +528,9 @@ void save_kin_plots()
   fKinematicsRatio[4][3]->SetStats(0);
   fKinematicsRatio[4][3]->Divide(fKinematicsMC1[4][3]);
   fKinematicsRatio[4][3]->SetMarkerStyle(21);
+  fKinematicsRatio[4][3]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][3]->SetMaximum(2.);
-  fKinematicsRatio[4][3]->Draw("P");
+  fKinematicsRatio[4][3]->Draw("PE2");
   c11.Update();
   c11.cd(1);
   fKinematicsMC2[4][3]->SetLineColor(kRed);
@@ -543,8 +547,9 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->SetStats(0);
   fKinematicsRatio[4][4]->Divide(fKinematicsMC1[4][4]);
   fKinematicsRatio[4][4]->SetMarkerStyle(21);
+  fKinematicsRatio[4][4]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][4]->SetMaximum(2.);
-  fKinematicsRatio[4][4]->Draw("P");
+  fKinematicsRatio[4][4]->Draw("PE2");
   c12.Update();
   c12.cd(1);
   fKinematicsMC2[4][4]->SetLineColor(kRed);
@@ -561,8 +566,9 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->SetStats(0);
   fKinematicsRatio[4][5]->Divide(fKinematicsMC1[4][5]);
   fKinematicsRatio[4][5]->SetMarkerStyle(21);
+  fKinematicsRatio[4][5]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][5]->SetMaximum(2.);
-  fKinematicsRatio[4][5]->Draw("P");
+  fKinematicsRatio[4][5]->Draw("PE2");
   c13.Update();
   c13.cd(1);
   fKinematicsMC2[4][5]->SetLineColor(kRed);
