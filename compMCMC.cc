@@ -144,6 +144,26 @@ void create_kin_plots()
   }
   fKinematicsMC2[0][11] = new TH1F("#Phi_h","#Phi_h", 100, 0, 1);
   fKinematicsMC1[0][11] = new TH1F("#Phi_h MC","#Phi_h MC", 100, 0, 1);
+  for(int i=0; i<7; i++)
+  {
+    l2[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
+    l2[1][i] = new TLine(0.001,0.4+i*0.2,1,0.4+i*0.2);
+    l2[2][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
+    l2[3][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
+    l2[4][i] = new TLine(2,0.4+i*0.2,18,0.4+i*0.2);
+    l2[5][i] = new TLine(0,0.4+i*0.2,160,0.4+i*0.2);
+    l2[6][i] = new TLine(140,0.4+i*0.2,180,0.4+i*0.2);
+    l2[7][i] = new TLine(0,0.4+i*0.2,160,0.4+i*0.2);
+    l2[8][i] = new TLine(0,0.4+i*0.2,0.1,0.4+i*0.2);
+    l2[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
+    l2[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
+    l2[11][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
+    for(int j=0; j<11; j++)
+    {
+      l2[j][i]->SetLineStyle(fLineStyle[i]);
+      l2[j][i]->SetLineWidth(1);
+    }
+  }
 }
 
 void save_kin_plots()
@@ -193,6 +213,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->SetMaximum(2.);
       fKinematicsRatio[idx][0]->SetMinimum(0.);
       fKinematicsRatio[idx][0]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[0][tt]->Draw();
+      }
       gPad->SetLogx();
       c1.Update();
 
@@ -217,6 +241,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->SetMaximum(2.);
       fKinematicsRatio[idx][1]->SetMinimum(0.);
       fKinematicsRatio[idx][1]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[1][tt]->Draw();
+      }
       gPad->SetLogx();
       c2.Update();
 
@@ -241,6 +269,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][2]->SetMaximum(2.);
       fKinematicsRatio[idx][2]->SetMinimum(0.);
       fKinematicsRatio[idx][2]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[2][tt]->Draw();
+      }
       c3.Update();
 
       c4.cd(idx+3+int(idx/2)*2);
@@ -263,6 +295,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][3]->SetMaximum(2.);
       fKinematicsRatio[idx][3]->SetMinimum(0.);
       fKinematicsRatio[idx][3]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[3][tt]->Draw();
+      }
       c4.Update();
 
       c5.cd(idx+3+int(idx/2)*2);
@@ -286,6 +322,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][4]->SetMaximum(2.);
       fKinematicsRatio[idx][4]->SetMinimum(0.);
       fKinematicsRatio[idx][4]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[4][tt]->Draw();
+      }
       c5.Update();
 
       c6.cd(idx+3+int(idx/2)*2);
@@ -309,6 +349,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][5]->SetMaximum(2.);
       fKinematicsRatio[idx][5]->SetMinimum(0.);
       fKinematicsRatio[idx][5]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[5][tt]->Draw();
+      }
       c6.Update();
 
       c14.cd(idx+3+int(idx/2)*2);
@@ -332,6 +376,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][6]->SetMaximum(2.);
       fKinematicsRatio[idx][6]->SetMinimum(0.);
       fKinematicsRatio[idx][6]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[6][tt]->Draw();
+      }
       c14.Update();
 
       c15.cd(idx+3+int(idx/2)*2);
@@ -355,6 +403,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][7]->SetMaximum(2.);
       fKinematicsRatio[idx][7]->SetMinimum(0.);
       fKinematicsRatio[idx][7]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[7][tt]->Draw();
+      }
       c15.Update();
 
       c16.cd(idx+3+int(idx/2)*2);
@@ -378,6 +430,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][8]->SetMaximum(2.);
       fKinematicsRatio[idx][8]->SetMinimum(0.);
       fKinematicsRatio[idx][8]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[8][tt]->Draw();
+      }
       c16.Update();
 
       c17.cd(idx+3+int(idx/2)*2);
@@ -401,6 +457,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][9]->SetMaximum(2.);
       fKinematicsRatio[idx][9]->SetMinimum(0.);
       fKinematicsRatio[idx][9]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[9][tt]->Draw();
+      }
       c17.Update();
 
       c18.cd(idx+3+int(idx/2)*2);
@@ -424,6 +484,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][10]->SetMaximum(2.);
       fKinematicsRatio[idx][10]->SetMinimum(0.);
       fKinematicsRatio[idx][10]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[10][tt]->Draw();
+      }
       c18.Update();
     }
     else
@@ -569,7 +633,11 @@ void save_kin_plots()
   fKinematicsRatio[0][11]->SetMarkerStyle(21);
   fKinematicsRatio[0][11]->SetMaximum(2.);
   fKinematicsRatio[0][11]->SetFillColor(kYellow-7);
-  fKinematicsRatio[0][11]->Draw("P");
+  fKinematicsRatio[0][11]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[11][tt]->Draw();
+  }
   c7.Update();
   c7.cd(1);
   fKinematicsMC2[0][11]->SetLineColor(kGreen);
@@ -600,6 +668,10 @@ void save_kin_plots()
   fKinematicsRatio[4][0]->SetMaximum(2.);
   fKinematicsRatio[4][0]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][0]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[0][tt]->Draw();
+  }
   gPad->SetLogx();
   c8.Update();
   c8.cd(1);
@@ -630,6 +702,10 @@ void save_kin_plots()
   fKinematicsRatio[4][1]->SetMaximum(2.);
   fKinematicsRatio[4][1]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][1]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[1][tt]->Draw();
+  }
   gPad->SetLogx();
   c9.Update();
   c9.cd(1);
@@ -660,6 +736,10 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][2]->SetMaximum(2.);
   fKinematicsRatio[4][2]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[2][tt]->Draw();
+  }
   c10.Update();
   c10.cd(1);
   fKinematicsMC2[4][2]->SetLineColor(kGreen);
@@ -688,6 +768,10 @@ void save_kin_plots()
   fKinematicsRatio[4][3]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][3]->SetMaximum(2.);
   fKinematicsRatio[4][3]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[3][tt]->Draw();
+  }
   c11.Update();
   c11.cd(1);
   fKinematicsMC2[4][3]->SetLineColor(kGreen);
@@ -716,6 +800,10 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][4]->SetMaximum(2.);
   fKinematicsRatio[4][4]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[4][tt]->Draw();
+  }
   c12.Update();
   c12.cd(1);
   fKinematicsMC2[4][4]->SetLineColor(kGreen);
@@ -744,6 +832,10 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][5]->SetMaximum(2.);
   fKinematicsRatio[4][5]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[5][tt]->Draw();
+  }
   c13.Update();
   c13.cd(1);
   fKinematicsMC2[4][5]->SetLineColor(kGreen);

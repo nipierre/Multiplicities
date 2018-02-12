@@ -215,6 +215,7 @@ TCanvas c20("MultRatio Pion","MultRatio Hadron",3200,1600);
 TCanvas c21("MultRatio Kaon","MultRatio Hadron",3200,1600);
 
 TLine* l1[5];
+TLine* l2[12][7];
 
 vector<double> fError;
 
