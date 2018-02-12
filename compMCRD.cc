@@ -486,6 +486,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][0]->SetMarkerStyle(21);
       fKinematicsRatio[idx][0]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][0]->SetMaximum(2.);
@@ -509,6 +510,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][1]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][1]->SetMarkerStyle(21);
       fKinematicsRatio[idx][1]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][1]->SetMaximum(2.);
@@ -532,6 +534,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][2]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][2]->SetMarkerStyle(21);
       fKinematicsRatio[idx][2]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][2]->SetMaximum(2.);
@@ -553,6 +556,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][3]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][3]->SetMarkerStyle(21);
       fKinematicsRatio[idx][3]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][3]->SetMaximum(2.);
@@ -575,6 +579,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][4]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][4]->SetMarkerStyle(21);
       fKinematicsRatio[idx][4]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][4]->SetMaximum(2.);
@@ -597,6 +602,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][5]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][5]->SetMarkerStyle(21);
       fKinematicsRatio[idx][5]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][5]->SetMaximum(2.);
@@ -619,6 +625,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][6]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][6]->SetMarkerStyle(21);
       fKinematicsRatio[idx][6]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][6]->SetMaximum(2.);
@@ -641,6 +648,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][7]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][7]->SetMarkerStyle(21);
       fKinematicsRatio[idx][7]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][7]->SetMaximum(2.);
@@ -663,6 +671,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][8]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][8]->SetMarkerStyle(21);
       fKinematicsRatio[idx][8]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][8]->SetMaximum(2.);
@@ -685,6 +694,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][9]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][9]->SetMarkerStyle(21);
       fKinematicsRatio[idx][9]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][9]->SetMaximum(2.);
@@ -707,6 +717,7 @@ void save_kin_plots()
       {
         fKinematicsRatio[idx][10]->SetBinError(tt,fError[tt]);
       }
+      fError.clear();
       fKinematicsRatio[idx][10]->SetMarkerStyle(21);
       fKinematicsRatio[idx][10]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][10]->SetMaximum(2.);
