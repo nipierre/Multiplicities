@@ -501,7 +501,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[0][tt]->Draw("SAME");
+        l1[0][tt]->Draw();
       }
       gPad->SetLogx();
       c1.Update();
@@ -529,7 +529,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[1][tt]->Draw("SAME");
+        l1[1][tt]->Draw();
       }
       gPad->SetLogx();
       c2.Update();
@@ -557,7 +557,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][2]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[2][tt]->Draw("SAME");
+        l1[2][tt]->Draw();
       }
       c3.Update();
 
@@ -583,7 +583,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][3]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[3][tt]->Draw("SAME");
+        l1[3][tt]->Draw();
       }
       c4.Update();
 
@@ -610,7 +610,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][4]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[4][tt]->Draw("SAME");
+        l1[4][tt]->Draw();
       }
       c5.Update();
 
@@ -637,7 +637,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][5]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[5][tt]->Draw("SAME");
+        l1[5][tt]->Draw();
       }
       c6.Update();
 
@@ -664,7 +664,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][6]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[6][tt]->Draw("SAME");
+        l1[6][tt]->Draw();
       }
       c14.Update();
 
@@ -691,7 +691,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][7]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[7][tt]->Draw("SAME");
+        l1[7][tt]->Draw();
       }
       c15.Update();
 
@@ -718,7 +718,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][8]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[8][tt]->Draw("SAME");
+        l1[8][tt]->Draw();
       }
       c16.Update();
 
@@ -745,7 +745,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][9]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[9][tt]->Draw("SAME");
+        l1[9][tt]->Draw();
       }
       c17.Update();
 
@@ -772,7 +772,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][10]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l1[10][tt]->Draw("SAME");
+        l1[10][tt]->Draw();
       }
       c18.Update();
     }
@@ -923,7 +923,7 @@ void save_kin_plots()
   fKinematicsRatio[0][11]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l1[11][tt]->Draw("SAME");
+    l1[11][tt]->Draw();
   }
   c7.Update();
   c7.cd(1);
@@ -958,7 +958,7 @@ void save_kin_plots()
   fKinematicsRatio[4][0]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l1[0][tt]->Draw("SAME");
+    l1[0][tt]->Draw();
   }
   gPad->SetLogx();
   c8.Update();
@@ -993,7 +993,7 @@ void save_kin_plots()
   fKinematicsRatio[4][1]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l1[1][tt]->Draw("SAME");
+    l1[1][tt]->Draw();
   }
   gPad->SetLogx();
   c9.Update();
@@ -1028,7 +1028,7 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l1[2][tt]->Draw("SAME");
+    l1[2][tt]->Draw();
   }
   c10.Update();
   c10.cd(1);
@@ -1061,7 +1061,7 @@ void save_kin_plots()
   fKinematicsRatio[4][3]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l1[3][tt]->Draw("SAME");
+    l1[3][tt]->Draw();
   }
   c11.Update();
   c11.cd(1);
@@ -1094,7 +1094,7 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l1[4][tt]->Draw("SAME");
+    l1[4][tt]->Draw();
   }
   c12.Update();
   c12.cd(1);
@@ -1127,7 +1127,7 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l1[5][tt]->Draw("SAME");
+    l1[5][tt]->Draw();
   }
   c13.Update();
   c13.cd(1);
