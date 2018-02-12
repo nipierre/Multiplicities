@@ -425,7 +425,6 @@ void create_kin_plots()
     fKinematicsRD[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsRD[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 100, -320, -70);
-    fKinematicsRD[i][11] = new TH1F("#Phi_h","#Phi_h", 100, 0, 1);
     fKinematicsMC[i][0] = new TH1F(Form("Q^{2} MC %s",trigname[i].c_str()), Form("Q^{2} MC %s",trigname[i].c_str()), 100, -1, 2);
     fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} MC %s",trigname[i].c_str()), Form("x_{Bj} MC %s",trigname[i].c_str()), 100, -3, 0);
     fKinematicsMC[i][2] = new TH1F(Form("y MC %s",trigname[i].c_str()), Form("y MC %s",trigname[i].c_str()), 100, 0, 1);
@@ -437,12 +436,13 @@ void create_kin_plots()
     fKinematicsMC[i][8] = new TH1F(Form("#theta MC %s",trigname[i].c_str()), Form("#theta MC %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsMC[i][9] = new TH1F(Form("#phi MC %s",trigname[i].c_str()), Form("#phi MC %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC[i][10] = new TH1F(Form("Vertex MC %s",trigname[i].c_str()), Form("Vertex MC %s",trigname[i].c_str()), 100, -320, -70);
-    fKinematicsMC[i][11] = new TH1F("#Phi_h MC","#Phi_h MC", 100, 0, 1);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
     BinLogX(fKinematicsMC[i][1]);
   }
+  fKinematicsRD[0][11] = new TH1F("#Phi_h","#Phi_h", 100, 0, 1);
+  fKinematicsMC[0][11] = new TH1F("#Phi_h MC","#Phi_h MC", 100, 0, 1);
 }
 
 void save_kin_plots()
@@ -917,7 +917,7 @@ void save_kin_plots()
   }
   fError.clear();
   fKinematicsRatio[4][1]->SetMarkerStyle(21);
-  fKinematicsRatio[4][5]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][1]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][1]->SetMaximum(2.);
   fKinematicsRatio[4][1]->SetMinimum(0.);
   fKinematicsRatio[4][1]->Draw("PE2");
