@@ -871,9 +871,9 @@ void save_kin_plots()
   c7.Update();
 
   c8.cd(2);
-  for(int tt=0; tt<fKinematicsMC1[4][0]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsRD[4][0]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][0]->GetBinError(tt) && fKinematicsMC2[4][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][0]->GetBinError(tt)+1/fKinematicsMC2[4][0]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsRD[4][0]->GetBinError(tt) && fKinematicsMC[4][0]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][0]->GetBinError(tt)+1/fKinematicsMC[4][0]->GetBinError(tt)):0));
   }
   fKinematicsRD[4][0]->Scale(1/fKinematicsRD[4][0]->GetEntries());
   fKinematicsMC[4][0]->Scale(1/fKinematicsMC[4][0]->GetEntries());
@@ -902,9 +902,9 @@ void save_kin_plots()
   c8.Update();
 
   c9.cd(2);
-  for(int tt=0; tt<fKinematicsMC1[4][1]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsRD[4][1]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][1]->GetBinError(tt) && fKinematicsMC2[4][1]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][1]->GetBinError(tt)+1/fKinematicsMC2[4][1]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsRD[4][1]->GetBinError(tt) && fKinematicsMC[4][1]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][1]->GetBinError(tt)+1/fKinematicsMC[4][1]->GetBinError(tt)):0));
   }
   fKinematicsRD[4][1]->Scale(1/fKinematicsRD[4][1]->GetEntries());
   fKinematicsMC[4][1]->Scale(1/fKinematicsMC[4][1]->GetEntries());
@@ -933,9 +933,9 @@ void save_kin_plots()
   c9.Update();
 
   c10.cd(2);
-  for(int tt=0; tt<fKinematicsMC1[4][2]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsRD[4][2]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][2]->GetBinError(tt) && fKinematicsMC2[4][2]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][2]->GetBinError(tt)+1/fKinematicsMC2[4][2]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsRD[4][2]->GetBinError(tt) && fKinematicsMC[4][2]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][2]->GetBinError(tt)+1/fKinematicsMC[4][2]->GetBinError(tt)):0));
   }
   fKinematicsRD[4][2]->Scale(1/fKinematicsRD[4][2]->GetEntries());
   fKinematicsMC[4][2]->Scale(1/fKinematicsMC[4][2]->GetEntries());
@@ -962,9 +962,9 @@ void save_kin_plots()
   c10.Update();
 
   c11.cd(2);
-  for(int tt=0; tt<fKinematicsMC1[4][3]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsRD[4][3]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][3]->GetBinError(tt) && fKinematicsMC2[4][3]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][3]->GetBinError(tt)+1/fKinematicsMC2[4][3]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsRD[4][3]->GetBinError(tt) && fKinematicsMC[4][3]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][3]->GetBinError(tt)+1/fKinematicsMC[4][3]->GetBinError(tt)):0));
   }
   fKinematicsRD[4][3]->Scale(1/fKinematicsRD[4][3]->GetEntries());
   fKinematicsMC[4][3]->Scale(1/fKinematicsMC[4][3]->GetEntries());
@@ -991,9 +991,9 @@ void save_kin_plots()
   c11.Update();
 
   c12.cd(2);
-  for(int tt=0; tt<fKinematicsMC1[4][4]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsRD[4][4]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][4]->GetBinError(tt) && fKinematicsMC2[4][4]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][4]->GetBinError(tt)+1/fKinematicsMC2[4][4]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsRD[4][4]->GetBinError(tt) && fKinematicsMC[4][4]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][4]->GetBinError(tt)+1/fKinematicsMC[4][4]->GetBinError(tt)):0));
   }
   fKinematicsRD[4][4]->Scale(1/fKinematicsRD[4][4]->GetEntries());
   fKinematicsMC[4][4]->Scale(1/fKinematicsMC[4][4]->GetEntries());
@@ -1020,9 +1020,9 @@ void save_kin_plots()
   c12.Update();
 
   c13.cd(2);
-  for(int tt=0; tt<fKinematicsMC1[4][5]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][5]->GetBinError(tt) && fKinematicsMC2[4][5]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][5]->GetBinError(tt)+1/fKinematicsMC2[4][5]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsRD[4][5]->GetBinError(tt) && fKinematicsMC[4][5]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][5]->GetBinError(tt)+1/fKinematicsMC[4][5]->GetBinError(tt)):0));
   }
   fKinematicsRD[4][5]->Scale(1/fKinematicsRD[4][5]->GetEntries());
   fKinematicsMC[4][5]->Scale(1/fKinematicsMC[4][5]->GetEntries());
