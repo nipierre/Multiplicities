@@ -178,6 +178,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][0]->GetBinError(tt)+1/fKinematicsMC2[idx][0]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][0]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][0]->GetEntries());
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsMC1[idx][0]->Clone();
       fKinematicsRatio[idx][0]->SetStats(0);
       fKinematicsRatio[idx][0]->Divide(fKinematicsMC2[idx][0]);
@@ -200,6 +202,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][1]->GetBinError(tt) && fKinematicsMC2[idx][1]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][1]->GetBinError(tt)+1/fKinematicsMC2[idx][1]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][1]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][1]->GetEntries());
       fKinematicsRatio[idx][1] = (TH1F*)fKinematicsMC1[idx][1]->Clone();
       fKinematicsRatio[idx][1]->SetStats(0);
       fKinematicsRatio[idx][1]->Divide(fKinematicsMC2[idx][1]);
@@ -222,6 +226,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][2]->GetBinError(tt) && fKinematicsMC2[idx][2]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][2]->GetBinError(tt)+1/fKinematicsMC2[idx][2]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][2]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][2]->GetEntries());
       fKinematicsRatio[idx][2] = (TH1F*)fKinematicsMC1[idx][2]->Clone();
       fKinematicsRatio[idx][2]->SetStats(0);
       fKinematicsRatio[idx][2]->Divide(fKinematicsMC2[idx][2]);
@@ -242,6 +248,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][3]->GetBinError(tt) && fKinematicsMC2[idx][3]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][3]->GetBinError(tt)+1/fKinematicsMC2[idx][3]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][3]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][3]->GetEntries());
       fKinematicsRatio[idx][3] = (TH1F*)fKinematicsMC1[idx][3]->Clone();
       fKinematicsRatio[idx][3]->SetStats(0);
       fKinematicsRatio[idx][3]->Divide(fKinematicsMC2[idx][3]);
@@ -263,6 +271,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][4]->GetBinError(tt) && fKinematicsMC2[idx][4]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][4]->GetBinError(tt)+1/fKinematicsMC2[idx][4]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][4]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][4]->GetEntries());
       fKinematicsRatio[idx][4] = (TH1F*)fKinematicsMC1[idx][4]->Clone();
       fKinematicsRatio[idx][4]->SetStats(0);
       fKinematicsRatio[idx][4]->Divide(fKinematicsMC2[idx][4]);
@@ -284,6 +294,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][5]->GetBinError(tt) && fKinematicsMC2[idx][5]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][5]->GetBinError(tt)+1/fKinematicsMC2[idx][5]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][5]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][5]->GetEntries());
       fKinematicsRatio[idx][5] = (TH1F*)fKinematicsMC1[idx][5]->Clone();
       fKinematicsRatio[idx][5]->SetStats(0);
       fKinematicsRatio[idx][5]->Divide(fKinematicsMC2[idx][5]);
@@ -305,6 +317,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][6]->GetBinError(tt) && fKinematicsMC2[idx][6]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][6]->GetBinError(tt)+1/fKinematicsMC2[idx][6]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][6]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][6]->GetEntries());
       fKinematicsRatio[idx][6] = (TH1F*)fKinematicsMC1[idx][6]->Clone();
       fKinematicsRatio[idx][6]->SetStats(0);
       fKinematicsRatio[idx][6]->Divide(fKinematicsMC2[idx][6]);
@@ -326,6 +340,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][7]->GetBinError(tt) && fKinematicsMC2[idx][7]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][7]->GetBinError(tt)+1/fKinematicsMC2[idx][7]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][7]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][7]->GetEntries());
       fKinematicsRatio[idx][7] = (TH1F*)fKinematicsMC1[idx][7]->Clone();
       fKinematicsRatio[idx][7]->SetStats(0);
       fKinematicsRatio[idx][7]->Divide(fKinematicsMC2[idx][7]);
@@ -347,6 +363,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][8]->GetBinError(tt) && fKinematicsMC2[idx][8]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][8]->GetBinError(tt)+1/fKinematicsMC2[idx][8]->GetBinError(tt)):0));
       }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][8]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][8]->GetEntries());
       fKinematicsRatio[idx][8] = (TH1F*)fKinematicsMC1[idx][8]->Clone();
       fKinematicsRatio[idx][8]->SetStats(0);
       fKinematicsRatio[idx][8]->Divide(fKinematicsMC2[idx][8]);
@@ -368,8 +386,8 @@ void save_kin_plots()
       {
         fError.push_back((fKinematicsMC1[idx][9]->GetBinError(tt) && fKinematicsMC2[idx][9]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][9]->GetBinError(tt)+1/fKinematicsMC2[idx][9]->GetBinError(tt)):0));
       }
-      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][10]->GetEntries());
-      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][10]->GetEntries());
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][9]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][9]->GetEntries());
       fKinematicsRatio[idx][9] = (TH1F*)fKinematicsMC1[idx][9]->Clone();
       fKinematicsRatio[idx][9]->SetStats(0);
       fKinematicsRatio[idx][9]->Divide(fKinematicsMC2[idx][9]);
