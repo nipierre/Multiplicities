@@ -213,10 +213,14 @@ TCanvas c19("MultRatio Hadron","MultRatio Hadron",3200,1600);
 TCanvas c20("MultRatio Pion","MultRatio Hadron",3200,1600);
 TCanvas c21("MultRatio Kaon","MultRatio Hadron",3200,1600);
 
+TLine* l1[5];
+
 //Graphic Style
 
 Int_t fMarkerColor[2] = {4,2};
 Int_t fMarkerStyle[2] = {24,20};
+Int_t fMarkerColorAlt[5] = {2,95,209,226,221};
+Int_t fMarkerStyleAlt[5][2] = {{24,20},{26,22},{25,21},{27,33},{28,34}};
 
 //Constants
 

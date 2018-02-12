@@ -2838,6 +2838,13 @@ void MultRatio()
   TGraphErrors* P[2][9][5];
   TGraphErrors* K[2][9][5];
 
+  for(int i=0; i<5; i++)
+  {
+    l1[i] = new TLine(0.1,1+i*0.1,0.9,1+i*0.1);
+    l1[i]->SetLineStyle(4);
+    l1[i]->SetLineColor(fMarkerColorAlt[i]);
+  }
+
   double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
 
   for(int c=0; c<2; c++)
@@ -2877,16 +2884,16 @@ void MultRatio()
 
           fMultRatio[i][j][k].tab[c][1][0] = ((fNDIS_evt_MC1[i][j][k] && fMC1[i][j][k].tab[c][0][0] && fNDIS_evt_MC2[i][j][k]
                                                 && fMC2[i][j][k].tab[c][0][0]) ?
-                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][0]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][0]+1/fNDIS_evt_MC2[i][j][k]) : 0);
+                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][0]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][0]+1/fNDIS_evt_MC2[i][j][k])) : 0);
           fMultRatio[i][j][k].tab[c][1][1] = ((fNDIS_evt_MC1[i][j][k] && fMC1[i][j][k].tab[c][0][1] && fNDIS_evt_MC2[i][j][k]
                                                 && fMC2[i][j][k].tab[c][0][1]) ?
-                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][1]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][1]+1/fNDIS_evt_MC2[i][j][k]) : 0);
+                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][1]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][1]+1/fNDIS_evt_MC2[i][j][k])) : 0);
           fMultRatio[i][j][k].tab[c][1][2] = ((fNDIS_evt_MC1[i][j][k] && fMC1[i][j][k].tab[c][0][2] && fNDIS_evt_MC2[i][j][k]
                                                 && fMC2[i][j][k].tab[c][0][2]) ?
-                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][2]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][2]+1/fNDIS_evt_MC2[i][j][k]) : 0);
+                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][2]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][2]+1/fNDIS_evt_MC2[i][j][k])) : 0);
           fMultRatio[i][j][k].tab[c][1][3] = ((fNDIS_evt_MC1[i][j][k] && fMC1[i][j][k].tab[c][0][3] && fNDIS_evt_MC2[i][j][k]
                                                 && fMC2[i][j][k].tab[c][0][3]) ?
-                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][3]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][3]+1/fNDIS_evt_MC2[i][j][k]) : 0);
+                                                double(sqrt(1/fMC1[i][j][k].tab[c][0][3]+1/fNDIS_evt_MC1[i][j][k]+1/fMC2[i][j][k].tab[c][0][3]+1/fNDIS_evt_MC2[i][j][k])) : 0);
 
           if(fMultRatio[i][j][k].tab[c][0][0]<0) fMultRatio[i][j][k].tab[c][0][0]=0;
           if(fMultRatio[i][j][k].tab[c][0][1]<0) fMultRatio[i][j][k].tab[c][0][1]=0;
@@ -2945,7 +2952,7 @@ void MultRatio()
         P[c][i][j]->SetTitle("");
         K[c][i][j]->SetTitle("");
 
-        if(!h_a_d_empty)
+        if(!h_a_empty)
         {
           c7.cd(i+1);
           gPad->SetFillStyle(4000);
@@ -3005,7 +3012,7 @@ void MultRatio()
           c7.Update();
         }
 
-        if(!p_a_d_empty)
+        if(!p_a_empty)
         {
           c8.cd(i+1);
           gPad->SetFillStyle(4000);
@@ -3065,7 +3072,7 @@ void MultRatio()
           c8.Update();
         }
 
-        if(!k_a_d_empty)
+        if(!k_a_empty)
         {
           c9.cd(i+1);
           gPad->SetFillStyle(4000);
