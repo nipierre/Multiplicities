@@ -461,8 +461,6 @@ void save_kin_plots()
   c7.Update();
 
   c8.cd(2);
-  fKinematicsMC2[4][0]->Scale(1/fKinematicsMC2[4][0]->GetEntries());
-  fKinematicsMC1[4][0]->Scale(1/fKinematicsMC1[4][0]->GetEntries());
   fKinematicsRatio[4][0] = (TH1F*)fKinematicsMC1[4][0]->Clone();
   fKinematicsRatio[4][0]->SetStats(0);
   fKinematicsRatio[4][0]->Divide(fKinematicsMC2[4][0]);
@@ -470,6 +468,8 @@ void save_kin_plots()
   {
     fKinematicsRatio[4][0]->SetBinError(tt,(fKinematicsMC1[4][0]->GetBinError(tt) && fKinematicsMC2[4][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][0]->GetBinError(tt)+1/fKinematicsMC2[4][0]->GetBinError(tt)):0));
   }
+  fKinematicsMC2[4][0]->Scale(1/fKinematicsMC2[4][0]->GetEntries());
+  fKinematicsMC1[4][0]->Scale(1/fKinematicsMC1[4][0]->GetEntries());
   fKinematicsRatio[4][0]->SetMarkerStyle(21);
   fKinematicsRatio[4][0]->SetMaximum(2.);
   fKinematicsRatio[4][0]->SetFillColor(kYellow-7);
