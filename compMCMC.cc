@@ -2830,9 +2830,9 @@ void MC2extraction(string pFilelist)
 
 void MultRatio()
 {
-  c19.Divide(9,5);
-  c20.Divide(9,5);
-  c21.Divide(9,5);
+  c19.Divide(5,2,0,0);
+  c20.Divide(5,2,0,0);
+  c21.Divide(5,2,0,0);
 
   TGraphErrors* H[2][9][5];
   TGraphErrors* P[2][9][5];
