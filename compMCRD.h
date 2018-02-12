@@ -204,7 +204,7 @@ TCanvas c18("Kin_vertex","Kin_vertex",3200,1600);
 vector<double> fError;
 int fLineStyle[7] = {8,9,10,1,10,9,8};
 
-TLine* l1[7];
+TLine* l1[11][7];
 
 //Graphic Style
 
