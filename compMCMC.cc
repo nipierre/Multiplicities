@@ -3006,7 +3006,7 @@ void MultRatio()
               H[c][i][j]->Draw("SAMEP");
               H[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
               H[c][i][j]->SetMinimum(0.85);
-              H_d[c][i][j]->SetMaximum(1.55);
+              H[c][i][j]->SetMaximum(1.55);
             }
           }
           c7.Update();
