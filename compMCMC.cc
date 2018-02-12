@@ -178,6 +178,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->SetStats(0);
       fKinematicsRatio[idx][0]->Divide(fKinematicsMC2[idx][0]);
       fKinematicsRatio[idx][0]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][0]->SetFillColor(kRed);
       fKinematicsRatio[idx][0]->SetMaximum(2.);
       fKinematicsRatio[idx][0]->Draw("E5");
       gPad->SetLogx();
@@ -189,6 +190,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->SetStats(0);
       fKinematicsRatio[idx][1]->Divide(fKinematicsMC2[idx][1]);
       fKinematicsRatio[idx][1]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][1]->SetFillColor(kRed);
       fKinematicsRatio[idx][1]->SetMaximum(2.);
       fKinematicsRatio[idx][1]->Draw("E5");
       gPad->SetLogx();
