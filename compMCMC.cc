@@ -468,6 +468,7 @@ void save_kin_plots()
   fKinematicsRatio[4][0]->Divide(fKinematicsMC1[4][0]);
   fKinematicsRatio[4][0]->SetMarkerStyle(21);
   fKinematicsRatio[4][0]->SetMaximum(2.);
+  for(int tt=0; tt<fKinematicsRatio[4][0]->GetNbinsX(); tt++) cout<< fKinematicsRatio[4][0]->GetBinError(tt) << endl;
   fKinematicsRatio[4][0]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][0]->Draw("PE2");
   gPad->SetLogx();
