@@ -216,6 +216,8 @@ TCanvas c21("MultRatio Kaon","MultRatio Hadron",3200,1600);
 
 TLine* l1[5];
 
+vector<double> fError;
+
 //Graphic Style
 
 Int_t fMarkerColor[2] = {4,2};
