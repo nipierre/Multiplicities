@@ -214,7 +214,7 @@ TCanvas c17("Kin_#phi","Kin_#phi",3200,1600);
 TCanvas c18("Kin_vertex","Kin_vertex",3200,1600);
 
 vector<double> fError;
-Int_t fLineStyle[7] = {8,9,10,1,10,9,8};
+Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
 
 TLine* l1[12][7];
 
