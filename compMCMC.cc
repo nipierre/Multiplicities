@@ -468,7 +468,7 @@ void save_kin_plots()
   fKinematicsRatio[4][0]->Divide(fKinematicsMC2[4][0]);
   for(int tt=0; tt<fKinematicsRatio[4][0]->GetNbinsX(); tt++)
   {
-    fKinematicsRatio[4][0]->SetBinError(tt,sqrt(1/fKinematicsMC1[4][0]->GetBinError(tt)+1/fKinematicsMC2[4][0]->GetBinError(tt)));
+    fKinematicsRatio[4][0]->SetBinError(tt,(fKinematicsMC1[4][0]->GetBinError(tt) && fKinematicsMC2[4][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][0]->GetBinError(tt)+1/fKinematicsMC2[4][0]->GetBinError(tt)):0));
   }
   fKinematicsRatio[4][0]->SetMarkerStyle(21);
   fKinematicsRatio[4][0]->SetMaximum(2.);
