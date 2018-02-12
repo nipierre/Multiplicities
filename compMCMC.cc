@@ -174,9 +174,18 @@ void save_kin_plots()
     {
       c1.cd(idx+3+int(idx/2)*2);
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][0]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][0]->GetBinError(tt)+1/fKinematicsMC2[idx][0]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsMC1[idx][0]->Clone();
       fKinematicsRatio[idx][0]->SetStats(0);
       fKinematicsRatio[idx][0]->Divide(fKinematicsMC2[idx][0]);
+      for(int tt=0; tt<fKinematicsRatio[idx][0]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][0]->SetMarkerStyle(21);
       fKinematicsRatio[idx][0]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][0]->SetMaximum(2.);
@@ -186,9 +195,18 @@ void save_kin_plots()
 
       c2.cd(idx+3+int(idx/2)*2);
       // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][1]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][1]->GetBinError(tt) && fKinematicsMC2[idx][1]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][1]->GetBinError(tt)+1/fKinematicsMC2[idx][1]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][1] = (TH1F*)fKinematicsMC1[idx][1]->Clone();
       fKinematicsRatio[idx][1]->SetStats(0);
       fKinematicsRatio[idx][1]->Divide(fKinematicsMC2[idx][1]);
+      for(int tt=0; tt<fKinematicsRatio[idx][1]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][1]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][1]->SetMarkerStyle(21);
       fKinematicsRatio[idx][1]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][1]->SetMaximum(2.);
@@ -198,9 +216,18 @@ void save_kin_plots()
 
       c3.cd(idx+3+int(idx/2)*2);
       // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][2]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][2]->GetBinError(tt) && fKinematicsMC2[idx][2]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][2]->GetBinError(tt)+1/fKinematicsMC2[idx][2]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][2] = (TH1F*)fKinematicsMC1[idx][2]->Clone();
       fKinematicsRatio[idx][2]->SetStats(0);
       fKinematicsRatio[idx][2]->Divide(fKinematicsMC2[idx][2]);
+      for(int tt=0; tt<fKinematicsRatio[idx][2]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][2]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][2]->SetMarkerStyle(21);
       fKinematicsRatio[idx][2]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][2]->SetMaximum(2.);
@@ -208,9 +235,18 @@ void save_kin_plots()
       c3.Update();
 
       c4.cd(idx+3+int(idx/2)*2);
+      for(int tt=0; tt<fKinematicsMC1[idx][3]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][3]->GetBinError(tt) && fKinematicsMC2[idx][3]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][3]->GetBinError(tt)+1/fKinematicsMC2[idx][3]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][3] = (TH1F*)fKinematicsMC1[idx][3]->Clone();
       fKinematicsRatio[idx][3]->SetStats(0);
       fKinematicsRatio[idx][3]->Divide(fKinematicsMC2[idx][3]);
+      for(int tt=0; tt<fKinematicsRatio[idx][3]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][3]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][3]->SetMarkerStyle(21);
       fKinematicsRatio[idx][3]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][3]->SetMaximum(2.);
@@ -219,9 +255,18 @@ void save_kin_plots()
 
       c5.cd(idx+3+int(idx/2)*2);
       // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][4]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][4]->GetBinError(tt) && fKinematicsMC2[idx][4]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][4]->GetBinError(tt)+1/fKinematicsMC2[idx][4]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][4] = (TH1F*)fKinematicsMC1[idx][4]->Clone();
       fKinematicsRatio[idx][4]->SetStats(0);
       fKinematicsRatio[idx][4]->Divide(fKinematicsMC2[idx][4]);
+      for(int tt=0; tt<fKinematicsRatio[idx][4]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][4]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][4]->SetMarkerStyle(21);
       fKinematicsRatio[idx][4]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][4]->SetMaximum(2.);
@@ -230,9 +275,18 @@ void save_kin_plots()
 
       c6.cd(idx+3+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][5]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][5]->GetBinError(tt) && fKinematicsMC2[idx][5]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][5]->GetBinError(tt)+1/fKinematicsMC2[idx][5]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][5] = (TH1F*)fKinematicsMC1[idx][5]->Clone();
       fKinematicsRatio[idx][5]->SetStats(0);
       fKinematicsRatio[idx][5]->Divide(fKinematicsMC2[idx][5]);
+      for(int tt=0; tt<fKinematicsRatio[idx][5]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][5]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][5]->SetMarkerStyle(21);
       fKinematicsRatio[idx][5]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][5]->SetMaximum(2.);
@@ -241,9 +295,18 @@ void save_kin_plots()
 
       c14.cd(idx+3+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][6]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][6]->GetBinError(tt) && fKinematicsMC2[idx][6]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][6]->GetBinError(tt)+1/fKinematicsMC2[idx][6]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][6] = (TH1F*)fKinematicsMC1[idx][6]->Clone();
       fKinematicsRatio[idx][6]->SetStats(0);
       fKinematicsRatio[idx][6]->Divide(fKinematicsMC2[idx][6]);
+      for(int tt=0; tt<fKinematicsRatio[idx][6]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][6]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][6]->SetMarkerStyle(21);
       fKinematicsRatio[idx][6]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][6]->SetMaximum(2.);
@@ -252,9 +315,18 @@ void save_kin_plots()
 
       c15.cd(idx+3+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][7]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][7]->GetBinError(tt) && fKinematicsMC2[idx][7]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][7]->GetBinError(tt)+1/fKinematicsMC2[idx][7]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][7] = (TH1F*)fKinematicsMC1[idx][7]->Clone();
       fKinematicsRatio[idx][7]->SetStats(0);
       fKinematicsRatio[idx][7]->Divide(fKinematicsMC2[idx][7]);
+      for(int tt=0; tt<fKinematicsRatio[idx][7]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][7]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][7]->SetMarkerStyle(21);
       fKinematicsRatio[idx][7]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][7]->SetMaximum(2.);
@@ -263,9 +335,18 @@ void save_kin_plots()
 
       c16.cd(idx+3+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][8]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][8]->GetBinError(tt) && fKinematicsMC2[idx][8]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][8]->GetBinError(tt)+1/fKinematicsMC2[idx][8]->GetBinError(tt)):0));
+      }
       fKinematicsRatio[idx][8] = (TH1F*)fKinematicsMC1[idx][8]->Clone();
       fKinematicsRatio[idx][8]->SetStats(0);
       fKinematicsRatio[idx][8]->Divide(fKinematicsMC2[idx][8]);
+      for(int tt=0; tt<fKinematicsRatio[idx][8]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][8]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][8]->SetMarkerStyle(21);
       fKinematicsRatio[idx][8]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][8]->SetMaximum(2.);
@@ -274,9 +355,20 @@ void save_kin_plots()
 
       c17.cd(idx+3+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][9]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][9]->GetBinError(tt) && fKinematicsMC2[idx][9]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][9]->GetBinError(tt)+1/fKinematicsMC2[idx][9]->GetBinError(tt)):0));
+      }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][10]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][10]->GetEntries());
       fKinematicsRatio[idx][9] = (TH1F*)fKinematicsMC1[idx][9]->Clone();
       fKinematicsRatio[idx][9]->SetStats(0);
       fKinematicsRatio[idx][9]->Divide(fKinematicsMC2[idx][9]);
+      for(int tt=0; tt<fKinematicsRatio[idx][9]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][9]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][9]->SetMarkerStyle(21);
       fKinematicsRatio[idx][9]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][9]->SetMaximum(2.);
@@ -285,9 +377,20 @@ void save_kin_plots()
 
       c18.cd(idx+3+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsMC1[idx][10]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsMC1[idx][10]->GetBinError(tt) && fKinematicsMC2[idx][10]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][10]->GetBinError(tt)+1/fKinematicsMC2[idx][10]->GetBinError(tt)):0));
+      }
+      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][10]->GetEntries());
+      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][10]->GetEntries());
       fKinematicsRatio[idx][10] = (TH1F*)fKinematicsMC1[idx][10]->Clone();
       fKinematicsRatio[idx][10]->SetStats(0);
       fKinematicsRatio[idx][10]->Divide(fKinematicsMC2[idx][10]);
+      for(int tt=0; tt<fKinematicsRatio[idx][10]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][10]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
       fKinematicsRatio[idx][10]->SetMarkerStyle(21);
       fKinematicsRatio[idx][10]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][10]->SetMaximum(2.);
@@ -428,8 +531,6 @@ void save_kin_plots()
 
       c18.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][10]->GetEntries());
-      fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][10]->GetEntries());
       fKinematicsMC2[idx][10]->SetLineColor(kRed);
       fKinematicsMC2[idx][10]->SetStats(0);
       fKinematicsMC2[idx][10]->SetMinimum(0.);
@@ -442,12 +543,23 @@ void save_kin_plots()
   }
 
   c7.cd(2);
+  for(int tt=0; tt<fKinematicsMC1[0][11]->GetNbinsX(); tt++)
+  {
+    fError.push_back((fKinematicsMC1[0][11]->GetBinError(tt) && fKinematicsMC2[0][11]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[0][11]->GetBinError(tt)+1/fKinematicsMC2[0][11]->GetBinError(tt)):0));
+  }
   fKinematicsMC2[0][11]->Scale(1/fKinematicsMC2[0][11]->GetEntries());
   fKinematicsMC1[0][11]->Scale(1/fKinematicsMC1[0][11]->GetEntries());
   fKinematicsRatio[0][11] = (TH1F*)fKinematicsMC2[0][11]->Clone();
   fKinematicsRatio[0][11]->SetStats(0);
   fKinematicsRatio[0][11]->Divide(fKinematicsMC1[0][11]);
+  for(int tt=0; tt<fKinematicsRatio[0][11]->GetNbinsX(); tt++)
+  {
+    fKinematicsRatio[0][11]->SetBinError(tt,fError[tt]);
+  }
+  fError.clear();
   fKinematicsRatio[0][11]->SetMarkerStyle(21);
+  fKinematicsRatio[0][11]->SetMaximum(2.);
+  fKinematicsRatio[0][11]->SetFillColor(kYellow-7);
   fKinematicsRatio[0][11]->Draw("P");
   c7.Update();
   c7.cd(1);
