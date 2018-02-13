@@ -127,7 +127,7 @@ void create_kin_plots()
     fKinematicsMC2[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC2[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 100, -320, -70);
     fKinematicsMC2[i][12] = new TH1F(Form("p_{hadron} %s",trigname[i].c_str()), Form("p_{hadron} %s",trigname[i].c_str()), 100, 0, 40);
-    fKinematicsMC2[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 100, 0, 0.5);
+    fKinematicsMC2[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 100, 0, 0.25);
     fKinematicsMC2[i][14] = new TH1F(Form("#phi_{hadron} %s",trigname[i].c_str()), Form("#phi_{hadron} %s",trigname[i].c_str()), 100, -3.5, 3.5);
     fKinematicsMC1[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 100, -1, 2);
     fKinematicsMC1[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 100, -3, 0);
@@ -141,7 +141,7 @@ void create_kin_plots()
     fKinematicsMC1[i][9] = new TH1F(Form("#phi Ratio %s",trigname[i].c_str()), Form("#phi Ratio %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC1[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 100, -320, -70);
     fKinematicsMC1[i][12] = new TH1F(Form("p_{hadron} Ratio %s",trigname[i].c_str()), Form("p_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 40);
-    fKinematicsMC1[i][13] = new TH1F(Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 0.5);
+    fKinematicsMC1[i][13] = new TH1F(Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 0.25);
     fKinematicsMC1[i][14] = new TH1F(Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), 100, -3.5, 3.5);
     BinLogX(fKinematicsMC2[i][0]);
     BinLogX(fKinematicsMC1[i][0]);
@@ -165,7 +165,7 @@ void create_kin_plots()
     l2[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
     l2[11][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
     l2[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
-    l2[13][i] = new TLine(0,0.4+i*0.2,0.5,0.4+i*0.2);
+    l2[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
     l2[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
     for(int j=0; j<11; j++)
     {
@@ -1077,10 +1077,10 @@ void save_kin_plots()
   c4.Print("kinMCMC.pdf","pdf");
   c5.Print("kinMCMC.pdf","pdf");
   c6.Print("kinMCMC.pdf","pdf");
-  c7.Print("kinMCMC.pdf","pdf");
   c22.Print("kinMCMC.pdf","pdf");
   c23.Print("kinMCMC.pdf","pdf");
   c24.Print("kinMCMC.pdf","pdf");
+  c7.Print("kinMCMC.pdf","pdf");
   c8.Print("kinMCMC.pdf","pdf");
   c9.Print("kinMCMC.pdf","pdf");
   c10.Print("kinMCMC.pdf","pdf");
