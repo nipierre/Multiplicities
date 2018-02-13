@@ -413,9 +413,9 @@ void create_kin_plots()
     fKinematicsRD[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsRD[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 100, -320, -70);
-    fKinematicsMC2[i][12] = new TH1F(Form("p_{hadron} %s",trigname[i].c_str()), Form("p_{hadron} %s",trigname[i].c_str()), 100, 0, 40);
-    fKinematicsMC2[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 100, 0, 0.25);
-    fKinematicsMC2[i][14] = new TH1F(Form("#phi_{hadron} %s",trigname[i].c_str()), Form("#phi_{hadron} %s",trigname[i].c_str()), 100, -3.5, 3.5);
+    fKinematicsRD[i][12] = new TH1F(Form("p_{hadron} %s",trigname[i].c_str()), Form("p_{hadron} %s",trigname[i].c_str()), 100, 0, 40);
+    fKinematicsRD[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 100, 0, 0.25);
+    fKinematicsRD[i][14] = new TH1F(Form("#phi_{hadron} %s",trigname[i].c_str()), Form("#phi_{hadron} %s",trigname[i].c_str()), 100, -3.5, 3.5);
     fKinematicsMC[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 100, -1, 2);
     fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 100, -3, 0);
     fKinematicsMC[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 100, 0, 1);
@@ -427,9 +427,9 @@ void create_kin_plots()
     fKinematicsMC[i][8] = new TH1F(Form("#theta Ratio %s",trigname[i].c_str()), Form("#theta Ratio %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsMC[i][9] = new TH1F(Form("#phi Ratio %s",trigname[i].c_str()), Form("#phi Ratio %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 100, -320, -70);
-    fKinematicsMC1[i][12] = new TH1F(Form("p_{hadron} Ratio %s",trigname[i].c_str()), Form("p_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 40);
-    fKinematicsMC1[i][13] = new TH1F(Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 0.25);
-    fKinematicsMC1[i][14] = new TH1F(Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), 100, -3.5, 3.5);
+    fKinematicsMC[i][12] = new TH1F(Form("p_{hadron} Ratio %s",trigname[i].c_str()), Form("p_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 40);
+    fKinematicsMC[i][13] = new TH1F(Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 0.25);
+    fKinematicsMC[i][14] = new TH1F(Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), 100, -3.5, 3.5);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
@@ -451,9 +451,9 @@ void create_kin_plots()
     l1[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
     l1[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
     l1[11][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
-    l2[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
-    l2[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
-    l2[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
+    l1[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
+    l1[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
+    l1[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
     for(int j=0; j<11; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
@@ -809,7 +809,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][12]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l2[12][tt]->Draw();
+        l1[12][tt]->Draw();
       }
       c19.Update();
 
@@ -836,7 +836,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][13]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l2[13][tt]->Draw();
+        l1[13][tt]->Draw();
       }
       c20.Update();
 
@@ -863,7 +863,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][14]->Draw("PE2");
       for(int tt=0; tt<7; tt++)
       {
-        l2[14][tt]->Draw();
+        l1[14][tt]->Draw();
       }
       c21.Update();
     }
@@ -1296,7 +1296,7 @@ void save_kin_plots()
   fKinematicsRatio[4][12]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l2[12][tt]->Draw();
+    l1[12][tt]->Draw();
   }
   c22.Update();
   c22.cd(1);
@@ -1330,7 +1330,7 @@ void save_kin_plots()
   fKinematicsRatio[4][13]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l2[13][tt]->Draw();
+    l1[13][tt]->Draw();
   }
   c23.Update();
   c23.cd(1);
@@ -1364,7 +1364,7 @@ void save_kin_plots()
   fKinematicsRatio[4][14]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l2[14][tt]->Draw();
+    l1[14][tt]->Draw();
   }
   c24.Update();
   c24.cd(1);
@@ -4344,9 +4344,9 @@ void RDextraction(string pFilelist)
         if(trig&4)
         {
           fKinematicsRD[1][3]->Fill(zBj);
-          fKinematicsMC1[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-          fKinematicsMC1[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-          fKinematicsMC1[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
         }
         if(trig&8)
         {
