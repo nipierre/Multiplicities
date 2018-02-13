@@ -167,7 +167,7 @@ void create_kin_plots()
     l2[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l2[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
     l2[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
-    for(int j=0; j<11; j++)
+    for(int j=0; j<15; j++)
     {
       l2[j][i]->SetLineStyle(fLineStyle[i]);
       l2[j][i]->SetLineWidth(1);
@@ -795,6 +795,7 @@ void save_kin_plots()
   fError.clear();
   fKinematicsRatio[4][0]->SetMarkerStyle(21);
   fKinematicsRatio[4][0]->SetMaximum(2.);
+  fKinematicsRatio[4][0]->SetMinimum(0.);
   fKinematicsRatio[4][0]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][0]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
@@ -829,6 +830,7 @@ void save_kin_plots()
   fError.clear();
   fKinematicsRatio[4][1]->SetMarkerStyle(21);
   fKinematicsRatio[4][1]->SetMaximum(2.);
+  fKinematicsRatio[4][1]->SetMinimum(0.);
   fKinematicsRatio[4][1]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][1]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
@@ -864,6 +866,7 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->SetMarkerStyle(21);
   fKinematicsRatio[4][2]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][2]->SetMaximum(2.);
+  fKinematicsRatio[4][2]->SetMinimum(0.);
   fKinematicsRatio[4][2]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
@@ -896,6 +899,7 @@ void save_kin_plots()
   fKinematicsRatio[4][3]->SetMarkerStyle(21);
   fKinematicsRatio[4][3]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][3]->SetMaximum(2.);
+  fKinematicsRatio[4][3]->SetMinimum(0.);
   fKinematicsRatio[4][3]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
@@ -928,6 +932,7 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->SetMarkerStyle(21);
   fKinematicsRatio[4][4]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][4]->SetMaximum(2.);
+  fKinematicsRatio[4][4]->SetMinimum(0.);
   fKinematicsRatio[4][4]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
@@ -960,6 +965,7 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->SetMarkerStyle(21);
   fKinematicsRatio[4][5]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][5]->SetMaximum(2.);
+  fKinematicsRatio[4][5]->SetMinimum(0.);
   fKinematicsRatio[4][5]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
@@ -992,6 +998,7 @@ void save_kin_plots()
   fKinematicsRatio[4][12]->SetMarkerStyle(21);
   fKinematicsRatio[4][12]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][12]->SetMaximum(2.);
+  fKinematicsRatio[4][12]->SetMaximum(0.);
   fKinematicsRatio[4][12]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
@@ -1024,6 +1031,7 @@ void save_kin_plots()
   fKinematicsRatio[4][13]->SetMarkerStyle(21);
   fKinematicsRatio[4][13]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][13]->SetMaximum(2.);
+  fKinematicsRatio[4][13]->SetMaximum(0.);
   fKinematicsRatio[4][13]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
@@ -1056,6 +1064,7 @@ void save_kin_plots()
   fKinematicsRatio[4][14]->SetMarkerStyle(21);
   fKinematicsRatio[4][14]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][14]->SetMaximum(2.);
+  fKinematicsRatio[4][14]->SetMaximum(0.);
   fKinematicsRatio[4][14]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
