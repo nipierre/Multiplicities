@@ -527,7 +527,6 @@ void save_kin_plots()
       {
         l2[0][tt]->Draw();
       }
-      gPad->SetLogx();
       c22.Update();
 
       c23.cd(idx+3+int(idx/2)*2);
@@ -555,7 +554,6 @@ void save_kin_plots()
       {
         l2[0][tt]->Draw();
       }
-      gPad->SetLogx();
       c23.Update();
 
       c24.cd(idx+3+int(idx/2)*2);
@@ -583,7 +581,6 @@ void save_kin_plots()
       {
         l2[0][tt]->Draw();
       }
-      gPad->SetLogx();
       c24.Update();
     }
     else
