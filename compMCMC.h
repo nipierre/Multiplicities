@@ -189,9 +189,9 @@ studyxy fR_xy[24];
 
 //Draw
 
-TH1F* fKinematicsMC1[5][12];
-TH1F* fKinematicsMC2[5][12];
-TH1F* fKinematicsRatio[5][12];
+TH1F* fKinematicsMC1[5][15];
+TH1F* fKinematicsMC2[5][15];
+TH1F* fKinematicsRatio[5][15];
 TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
 TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
@@ -213,6 +213,12 @@ TCanvas c18("Kin_vertex","Kin_vertex",3200,1600);
 TCanvas c19("MultRatio Hadron","MultRatio Hadron",3200,1600);
 TCanvas c20("MultRatio Pion","MultRatio Hadron",3200,1600);
 TCanvas c21("MultRatio Kaon","MultRatio Hadron",3200,1600);
+TCanvas c22("Kin_hadron_p Trigger","Kin_hadron_p Trigger",3200,1600);
+TCanvas c23("Kin_hadron_#theta Trigger","Kin_hadron_#theta Trigger",3200,1600);
+TCanvas c24("Kin_hadron_#phi Trigger","Kin_hadron_#phi Trigger",3200,1600);
+TCanvas c25("Kin_hadron_p","Kin_hadron_p",3200,1600);
+TCanvas c26("Kin_hadron_#theta","Kin_hadron_#theta",3200,1600);
+TCanvas c27("Kin_hadron_#phi","Kin_hadron_#phi",3200,1600);
 
 TLine* l1[5];
 TLine* l2[12][7];
