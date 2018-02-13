@@ -999,7 +999,7 @@ void save_kin_plots()
 
       c19.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsRD[idx][12]->SetLineColor(kGreen);
+      fKinematicsRD[idx][12]->SetLineColor(kRed);
       fKinematicsRD[idx][12]->SetStats(0);
       fKinematicsRD[idx][12]->SetMinimum(0.);
       fKinematicsRD[idx][12]->SetMaximum(max(fKinematicsRD[idx][12]->GetMaximum()*1.2,fKinematicsMC[idx][12]->GetMaximum()*1.2));
@@ -1010,7 +1010,7 @@ void save_kin_plots()
 
       c20.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsRD[idx][13]->SetLineColor(kGreen);
+      fKinematicsRD[idx][13]->SetLineColor(kRed);
       fKinematicsRD[idx][13]->SetStats(0);
       fKinematicsRD[idx][13]->SetMinimum(0.);
       fKinematicsRD[idx][13]->SetMaximum(max(fKinematicsRD[idx][13]->GetMaximum()*1.2,fKinematicsMC[idx][13]->GetMaximum()*1.2));
@@ -1021,7 +1021,7 @@ void save_kin_plots()
 
       c21.cd(idx+1+int(idx/2)*2);
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
-      fKinematicsRD[idx][14]->SetLineColor(kGreen);
+      fKinematicsRD[idx][14]->SetLineColor(kRed);
       fKinematicsRD[idx][14]->SetStats(0);
       fKinematicsRD[idx][14]->SetMinimum(0.);
       fKinematicsRD[idx][14]->SetMaximum(max(fKinematicsRD[idx][14]->GetMaximum()*1.2,fKinematicsMC[idx][14]->GetMaximum()*1.2));
@@ -1306,7 +1306,7 @@ void save_kin_plots()
   }
   c22.Update();
   c22.cd(1);
-  fKinematicsRD[4][12]->SetLineColor(kGreen);
+  fKinematicsRD[4][12]->SetLineColor(kRed);
   fKinematicsRD[4][12]->SetStats(0);
   fKinematicsRD[4][12]->SetMinimum(0.);
   fKinematicsRD[4][12]->SetMaximum(max(fKinematicsRD[4][12]->GetMaximum()*1.2,fKinematicsMC[4][12]->GetMaximum()*1.2));
@@ -1340,7 +1340,7 @@ void save_kin_plots()
   }
   c23.Update();
   c23.cd(1);
-  fKinematicsRD[4][13]->SetLineColor(kGreen);
+  fKinematicsRD[4][13]->SetLineColor(kRed);
   fKinematicsRD[4][13]->SetStats(0);
   fKinematicsRD[4][13]->SetMinimum(0.);
   fKinematicsRD[4][13]->SetMaximum(max(fKinematicsRD[4][13]->GetMaximum()*1.2,fKinematicsMC[4][13]->GetMaximum()*1.2));
@@ -1374,7 +1374,7 @@ void save_kin_plots()
   }
   c24.Update();
   c24.cd(1);
-  fKinematicsRD[4][14]->SetLineColor(kGreen);
+  fKinematicsRD[4][14]->SetLineColor(kRed);
   fKinematicsRD[4][14]->SetStats(0);
   fKinematicsRD[4][14]->SetMinimum(0.);
   fKinematicsRD[4][14]->SetMaximum(max(fKinematicsRD[4][14]->GetMaximum()*1.2,fKinematicsMC[4][14]->GetMaximum()*1.2));
