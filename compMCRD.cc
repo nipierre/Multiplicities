@@ -482,6 +482,12 @@ void save_kin_plots()
   c16.Divide(2,4);
   c17.Divide(2,4);
   c18.Divide(2,4);
+  c19.Divide(2,4);
+  c20.Divide(2,4);
+  c21.Divide(2,4);
+  c22.Divide(1,2);
+  c23.Divide(1,2);
+  c24.Divide(1,2);
 
   for(int i=0; i<8; i++)
   {
@@ -1384,6 +1390,9 @@ void save_kin_plots()
   c4.Print("kinMCRD.pdf","pdf");
   c5.Print("kinMCRD.pdf","pdf");
   c6.Print("kinMCRD.pdf","pdf");
+  c19.Print("kinMCRD.pdf","pdf");
+  c20.Print("kinMCRD.pdf","pdf");
+  c21.Print("kinMCRD.pdf","pdf");
   c7.Print("kinMCRD.pdf","pdf");
   c8.Print("kinMCRD.pdf","pdf");
   c9.Print("kinMCRD.pdf","pdf");
@@ -1391,6 +1400,9 @@ void save_kin_plots()
   c11.Print("kinMCRD.pdf","pdf");
   c12.Print("kinMCRD.pdf","pdf");
   c13.Print("kinMCRD.pdf","pdf");
+  c22.Print("kinMCRD.pdf","pdf");
+  c23.Print("kinMCRD.pdf","pdf");
+  c24.Print("kinMCRD.pdf","pdf");
   c14.Print("kinMCRD.pdf","pdf");
   c15.Print("kinMCRD.pdf","pdf");
   c16.Print("kinMCRD.pdf","pdf");
