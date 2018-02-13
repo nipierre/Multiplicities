@@ -995,7 +995,7 @@ void save_kin_plots()
   fKinematicsRatio[4][12]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l2[5][tt]->Draw();
+    l2[12][tt]->Draw();
   }
   c25.Update();
   c25.cd(1);
@@ -1027,7 +1027,7 @@ void save_kin_plots()
   fKinematicsRatio[4][13]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l2[5][tt]->Draw();
+    l2[13][tt]->Draw();
   }
   c26.Update();
   c26.cd(1);
@@ -1059,7 +1059,7 @@ void save_kin_plots()
   fKinematicsRatio[4][14]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
-    l2[5][tt]->Draw();
+    l2[14][tt]->Draw();
   }
   c27.Update();
   c27.cd(1);
@@ -2057,8 +2057,8 @@ void MC1extraction(string pFilelist)
           {
             fKinematicsMC1[4][3]->Fill(zBj);
             fKinematicsMC1[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC1[4][13]->Fill(zBj);
-            fKinematicsMC1[4][14]->Fill(zBj);
+            fKinematicsMC1[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC1[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           }
 
           if(0.1<zBj && (fId==8 || fId==9) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
