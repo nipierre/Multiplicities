@@ -413,6 +413,9 @@ void create_kin_plots()
     fKinematicsRD[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsRD[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 100, -320, -70);
+    fKinematicsMC2[i][12] = new TH1F(Form("p_{hadron} %s",trigname[i].c_str()), Form("p_{hadron} %s",trigname[i].c_str()), 100, 0, 40);
+    fKinematicsMC2[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 100, 0, 0.25);
+    fKinematicsMC2[i][14] = new TH1F(Form("#phi_{hadron} %s",trigname[i].c_str()), Form("#phi_{hadron} %s",trigname[i].c_str()), 100, -3.5, 3.5);
     fKinematicsMC[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 100, -1, 2);
     fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 100, -3, 0);
     fKinematicsMC[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 100, 0, 1);
@@ -424,6 +427,9 @@ void create_kin_plots()
     fKinematicsMC[i][8] = new TH1F(Form("#theta Ratio %s",trigname[i].c_str()), Form("#theta Ratio %s",trigname[i].c_str()), 100, 0, 0.1);
     fKinematicsMC[i][9] = new TH1F(Form("#phi Ratio %s",trigname[i].c_str()), Form("#phi Ratio %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 100, -320, -70);
+    fKinematicsMC1[i][12] = new TH1F(Form("p_{hadron} Ratio %s",trigname[i].c_str()), Form("p_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 40);
+    fKinematicsMC1[i][13] = new TH1F(Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 0.25);
+    fKinematicsMC1[i][14] = new TH1F(Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), 100, -3.5, 3.5);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
@@ -445,6 +451,9 @@ void create_kin_plots()
     l1[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
     l1[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
     l1[11][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
+    l2[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
+    l2[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
+    l2[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
     for(int j=0; j<11; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
@@ -776,6 +785,87 @@ void save_kin_plots()
         l1[10][tt]->Draw();
       }
       c18.Update();
+
+      c19.cd(idx+3+int(idx/2)*2);
+      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsRD[idx][12]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsRD[idx][12]->GetBinError(tt) && fKinematicsMC[idx][12]->GetBinError(tt) ? sqrt(1/fKinematicsRD[idx][12]->GetBinError(tt)+1/fKinematicsMC[idx][12]->GetBinError(tt)):0));
+      }
+      fKinematicsRD[idx][12]->Scale(1/fKinematicsRD[2][12]->GetEntries());
+      fKinematicsMC[idx][12]->Scale(1/fKinematicsMC[2][12]->GetEntries());
+      fKinematicsRatio[idx][12] = (TH1F*)fKinematicsRD[idx][12]->Clone();
+      fKinematicsRatio[idx][12]->SetStats(0);
+      fKinematicsRatio[idx][12]->Divide(fKinematicsMC[idx][12]);
+      for(int tt=0; tt<fKinematicsRatio[idx][12]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][12]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
+      fKinematicsRatio[idx][12]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][12]->SetFillColor(kYellow-7);
+      fKinematicsRatio[idx][12]->SetMaximum(2.);
+      fKinematicsRatio[idx][12]->SetMinimum(0.);
+      fKinematicsRatio[idx][12]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l2[12][tt]->Draw();
+      }
+      c19.Update();
+
+      c20.cd(idx+3+int(idx/2)*2);
+      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsRD[idx][13]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsRD[idx][13]->GetBinError(tt) && fKinematicsMC[idx][13]->GetBinError(tt) ? sqrt(1/fKinematicsRD[idx][13]->GetBinError(tt)+1/fKinematicsMC[idx][13]->GetBinError(tt)):0));
+      }
+      fKinematicsRD[idx][13]->Scale(1/fKinematicsRD[2][13]->GetEntries());
+      fKinematicsMC[idx][13]->Scale(1/fKinematicsMC[2][13]->GetEntries());
+      fKinematicsRatio[idx][13] = (TH1F*)fKinematicsRD[idx][13]->Clone();
+      fKinematicsRatio[idx][13]->SetStats(0);
+      fKinematicsRatio[idx][13]->Divide(fKinematicsMC[idx][13]);
+      for(int tt=0; tt<fKinematicsRatio[idx][13]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][13]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
+      fKinematicsRatio[idx][13]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][13]->SetFillColor(kYellow-7);
+      fKinematicsRatio[idx][13]->SetMaximum(2.);
+      fKinematicsRatio[idx][13]->SetMinimum(0.);
+      fKinematicsRatio[idx][13]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l2[13][tt]->Draw();
+      }
+      c20.Update();
+
+      c21.cd(idx+3+int(idx/2)*2);
+      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
+      for(int tt=0; tt<fKinematicsRD[idx][14]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsRD[idx][14]->GetBinError(tt) && fKinematicsMC[idx][14]->GetBinError(tt) ? sqrt(1/fKinematicsRD[idx][14]->GetBinError(tt)+1/fKinematicsMC[idx][14]->GetBinError(tt)):0));
+      }
+      fKinematicsRD[idx][14]->Scale(1/fKinematicsRD[2][14]->GetEntries());
+      fKinematicsMC[idx][14]->Scale(1/fKinematicsMC[2][14]->GetEntries());
+      fKinematicsRatio[idx][14] = (TH1F*)fKinematicsRD[idx][14]->Clone();
+      fKinematicsRatio[idx][14]->SetStats(0);
+      fKinematicsRatio[idx][14]->Divide(fKinematicsMC[idx][14]);
+      for(int tt=0; tt<fKinematicsRatio[idx][14]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][14]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
+      fKinematicsRatio[idx][14]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][14]->SetFillColor(kYellow-7);
+      fKinematicsRatio[idx][14]->SetMaximum(2.);
+      fKinematicsRatio[idx][14]->SetMinimum(0.);
+      fKinematicsRatio[idx][14]->Draw("PE2");
+      for(int tt=0; tt<7; tt++)
+      {
+        l2[14][tt]->Draw();
+      }
+      c21.Update();
     }
     else
     {
@@ -900,6 +990,39 @@ void save_kin_plots()
       fKinematicsMC[idx][10]->SetLineColor(kBlue);
       fKinematicsMC[idx][10]->Draw("SAME");
       c18.Update();
+
+      c19.cd(idx+1+int(idx/2)*2);
+      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
+      fKinematicsRD[idx][12]->SetLineColor(kGreen);
+      fKinematicsRD[idx][12]->SetStats(0);
+      fKinematicsRD[idx][12]->SetMinimum(0.);
+      fKinematicsRD[idx][12]->SetMaximum(max(fKinematicsRD[idx][12]->GetMaximum()*1.2,fKinematicsMC[idx][12]->GetMaximum()*1.2));
+      fKinematicsRD[idx][12]->Draw();
+      fKinematicsMC[idx][12]->SetLineColor(kBlue);
+      fKinematicsMC[idx][12]->Draw("SAME");
+      c19.Update();
+
+      c20.cd(idx+1+int(idx/2)*2);
+      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
+      fKinematicsRD[idx][13]->SetLineColor(kGreen);
+      fKinematicsRD[idx][13]->SetStats(0);
+      fKinematicsRD[idx][13]->SetMinimum(0.);
+      fKinematicsRD[idx][13]->SetMaximum(max(fKinematicsRD[idx][13]->GetMaximum()*1.2,fKinematicsMC[idx][13]->GetMaximum()*1.2));
+      fKinematicsRD[idx][13]->Draw();
+      fKinematicsMC[idx][13]->SetLineColor(kBlue);
+      fKinematicsMC[idx][13]->Draw("SAME");
+      c20.Update();
+
+      c21.cd(idx+1+int(idx/2)*2);
+      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
+      fKinematicsRD[idx][14]->SetLineColor(kGreen);
+      fKinematicsRD[idx][14]->SetStats(0);
+      fKinematicsRD[idx][14]->SetMinimum(0.);
+      fKinematicsRD[idx][14]->SetMaximum(max(fKinematicsRD[idx][14]->GetMaximum()*1.2,fKinematicsMC[idx][14]->GetMaximum()*1.2));
+      fKinematicsRD[idx][14]->Draw();
+      fKinematicsMC[idx][14]->SetLineColor(kBlue);
+      fKinematicsMC[idx][14]->Draw("SAME");
+      c21.Update();
     }
   }
 
@@ -1151,6 +1274,109 @@ void save_kin_plots()
   fKinematicsMC[4][5]->SetLineColor(kBlue);
   fKinematicsMC[4][5]->Draw("SAME");
   c13.Update();
+
+  c22.cd(2);
+  for(int tt=0; tt<fKinematicsRD[4][12]->GetNbinsX(); tt++)
+  {
+    fError.push_back((fKinematicsRD[4][12]->GetBinError(tt) && fKinematicsMC[4][12]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][12]->GetBinError(tt)+1/fKinematicsMC[4][12]->GetBinError(tt)):0));
+  }
+  fKinematicsRD[4][12]->Scale(1/fKinematicsRD[4][12]->GetEntries());
+  fKinematicsMC[4][12]->Scale(1/fKinematicsMC[4][12]->GetEntries());
+  fKinematicsRatio[4][12] = (TH1F*)fKinematicsRD[4][12]->Clone();
+  fKinematicsRatio[4][12]->SetStats(0);
+  fKinematicsRatio[4][12]->Divide(fKinematicsMC[4][12]);
+  for(int tt=0; tt<fKinematicsRatio[4][12]->GetNbinsX(); tt++)
+  {
+    fKinematicsRatio[4][12]->SetBinError(tt,fError[tt]);
+  }
+  fError.clear();
+  fKinematicsRatio[4][12]->SetMarkerStyle(21);
+  fKinematicsRatio[4][12]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][12]->SetMaximum(2.);
+  fKinematicsRatio[4][12]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l2[12][tt]->Draw();
+  }
+  c22.Update();
+  c22.cd(1);
+  fKinematicsRD[4][12]->SetLineColor(kGreen);
+  fKinematicsRD[4][12]->SetStats(0);
+  fKinematicsRD[4][12]->SetMinimum(0.);
+  fKinematicsRD[4][12]->SetMaximum(max(fKinematicsRD[4][12]->GetMaximum()*1.2,fKinematicsMC[4][12]->GetMaximum()*1.2));
+  fKinematicsRD[4][12]->Draw();
+  fKinematicsMC[4][12]->SetLineColor(kBlue);
+  fKinematicsMC[4][12]->Draw("SAME");
+  c22.Update();
+
+  c23.cd(2);
+  for(int tt=0; tt<fKinematicsRD[4][13]->GetNbinsX(); tt++)
+  {
+    fError.push_back((fKinematicsRD[4][13]->GetBinError(tt) && fKinematicsMC[4][13]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][13]->GetBinError(tt)+1/fKinematicsMC[4][13]->GetBinError(tt)):0));
+  }
+  fKinematicsRD[4][13]->Scale(1/fKinematicsRD[4][13]->GetEntries());
+  fKinematicsMC[4][13]->Scale(1/fKinematicsMC[4][13]->GetEntries());
+  fKinematicsRatio[4][13] = (TH1F*)fKinematicsRD[4][13]->Clone();
+  fKinematicsRatio[4][13]->SetStats(0);
+  fKinematicsRatio[4][13]->Divide(fKinematicsMC[4][13]);
+  for(int tt=0; tt<fKinematicsRatio[4][13]->GetNbinsX(); tt++)
+  {
+    fKinematicsRatio[4][13]->SetBinError(tt,fError[tt]);
+  }
+  fError.clear();
+  fKinematicsRatio[4][13]->SetMarkerStyle(21);
+  fKinematicsRatio[4][13]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][13]->SetMaximum(2.);
+  fKinematicsRatio[4][13]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l2[13][tt]->Draw();
+  }
+  c23.Update();
+  c23.cd(1);
+  fKinematicsRD[4][13]->SetLineColor(kGreen);
+  fKinematicsRD[4][13]->SetStats(0);
+  fKinematicsRD[4][13]->SetMinimum(0.);
+  fKinematicsRD[4][13]->SetMaximum(max(fKinematicsRD[4][13]->GetMaximum()*1.2,fKinematicsMC[4][13]->GetMaximum()*1.2));
+  fKinematicsRD[4][13]->Draw();
+  fKinematicsMC[4][13]->SetLineColor(kBlue);
+  fKinematicsMC[4][13]->Draw("SAME");
+  c23.Update();
+
+  c24.cd(2);
+  for(int tt=0; tt<fKinematicsRD[4][14]->GetNbinsX(); tt++)
+  {
+    fError.push_back((fKinematicsRD[4][14]->GetBinError(tt) && fKinematicsMC[4][14]->GetBinError(tt) ? sqrt(1/fKinematicsRD[4][14]->GetBinError(tt)+1/fKinematicsMC[4][14]->GetBinError(tt)):0));
+  }
+  fKinematicsRD[4][14]->Scale(1/fKinematicsRD[4][14]->GetEntries());
+  fKinematicsMC[4][14]->Scale(1/fKinematicsMC[4][14]->GetEntries());
+  fKinematicsRatio[4][14] = (TH1F*)fKinematicsRD[4][14]->Clone();
+  fKinematicsRatio[4][14]->SetStats(0);
+  fKinematicsRatio[4][14]->Divide(fKinematicsMC[4][14]);
+  for(int tt=0; tt<fKinematicsRatio[4][14]->GetNbinsX(); tt++)
+  {
+    fKinematicsRatio[4][14]->SetBinError(tt,fError[tt]);
+  }
+  fError.clear();
+  fKinematicsRatio[4][14]->SetMarkerStyle(21);
+  fKinematicsRatio[4][14]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][14]->SetMaximum(2.);
+  fKinematicsRatio[4][14]->Draw("PE2");
+  for(int tt=0; tt<7; tt++)
+  {
+    l2[14][tt]->Draw();
+  }
+  c24.Update();
+  c24.cd(1);
+  fKinematicsRD[4][14]->SetLineColor(kGreen);
+  fKinematicsRD[4][14]->SetStats(0);
+  fKinematicsRD[4][14]->SetMinimum(0.);
+  fKinematicsRD[4][14]->SetMaximum(max(fKinematicsRD[4][14]->GetMaximum()*1.2,fKinematicsMC[4][14]->GetMaximum()*1.2));
+  fKinematicsRD[4][14]->Draw();
+  fKinematicsMC[4][14]->SetLineColor(kBlue);
+  fKinematicsMC[4][14]->Draw("SAME");
+  c24.Update();
+
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
@@ -2721,6 +2947,43 @@ void MCextraction(string pFilelist)
             zBj_unid = 0;
           }
 
+          if(trig&2)
+          {
+            fKinematicsMC[0][3]->Fill(zBj);
+            fKinematicsMC[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          }
+          if(trig&4)
+          {
+            fKinematicsMC[1][3]->Fill(zBj);
+            fKinematicsMC[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          }
+          if(trig&8)
+          {
+            fKinematicsMC[2][3]->Fill(zBj);
+            fKinematicsMC[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          }
+          if(trig&512)
+          {
+            fKinematicsMC[3][3]->Fill(zBj);
+            fKinematicsMC[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          }
+          if(trig&2 || trig&4 || trig&8)
+          // if(trig&2 || trig&4 || trig&8 || trig&512)
+          {
+            fKinematicsMC[4][3]->Fill(zBj);
+            fKinematicsMC[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          }
+
           if(0.1<zBj && (fId==8 || fId==9) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
             fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
@@ -2992,28 +3255,6 @@ void MCextraction(string pFilelist)
           else
           {
             continue;
-          }
-
-          if(trig&2)
-          {
-            fKinematicsMC[0][3]->Fill(zBj);
-          }
-          if(trig&4)
-          {
-            fKinematicsMC[1][3]->Fill(zBj);
-          }
-          if(trig&8)
-          {
-            fKinematicsMC[2][3]->Fill(zBj);
-          }
-          if(trig&512)
-          {
-            fKinematicsMC[3][3]->Fill(zBj);
-          }
-          if(trig&2 || trig&4 || trig&8)
-          // if(trig&2 || trig&4 || trig&8 || trig&512)
-          {
-            fKinematicsMC[4][3]->Fill(zBj);
           }
         }
       }
@@ -4093,6 +4334,43 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
+        if(trig&2)
+        {
+          fKinematicsRD[0][3]->Fill(zBj);
+          fKinematicsRD[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        }
+        if(trig&4)
+        {
+          fKinematicsRD[1][3]->Fill(zBj);
+          fKinematicsMC1[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsMC1[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsMC1[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        }
+        if(trig&8)
+        {
+          fKinematicsRD[2][3]->Fill(zBj);
+          fKinematicsRD[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        }
+        if(trig&512)
+        {
+          fKinematicsRD[3][3]->Fill(zBj);
+          fKinematicsRD[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        }
+        if(trig&2 || trig&4 || trig&8)
+        // if(trig&2 || trig&4 || trig&8 || trig&512)
+        {
+          fKinematicsRD[4][3]->Fill(zBj);
+          fKinematicsRD[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        }
+
         if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)) && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
                    fKinematicsRD[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
@@ -4166,28 +4444,6 @@ void RDextraction(string pFilelist)
         else if(0.65<zBj && zBj<0.70) zbin = 9;
         else if(0.70<zBj && zBj<0.75) zbin = 10;
         else zbin = 11;
-
-        if(trig&2)
-        {
-          fKinematicsRD[0][3]->Fill(zBj);
-        }
-        if(trig&4)
-        {
-          fKinematicsRD[1][3]->Fill(zBj);
-        }
-        if(trig&8)
-        {
-          fKinematicsRD[2][3]->Fill(zBj);
-        }
-        if(trig&512)
-        {
-          fKinematicsRD[3][3]->Fill(zBj);
-        }
-        if(trig&2 || trig&4 || trig&8)
-        // if(trig&2 || trig&4 || trig&8 || trig&512)
-        {
-          fKinematicsRD[4][3]->Fill(zBj);
-        }
 
         //**********************************************************************
 
