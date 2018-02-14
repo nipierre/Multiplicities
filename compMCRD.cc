@@ -1299,7 +1299,7 @@ void save_kin_plots()
   fKinematicsRatio[4][12]->SetMarkerStyle(21);
   fKinematicsRatio[4][12]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][12]->SetMaximum(2.);
-  fKinematicsRatio[4][12]->SetMaximum(0.);
+  fKinematicsRatio[4][12]->SetMinimum(0.);
   fKinematicsRatio[4][12]->Draw("PE2");
   for(int tt=0; tt<7; tt++)
   {
