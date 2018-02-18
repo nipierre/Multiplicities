@@ -410,7 +410,7 @@ void create_kin_plots()
     fKinematicsRD[i][5] = new TH1F(Form("#nu %s",trigname[i].c_str()), Form("#nu %s",trigname[i].c_str()), 100, 0, 160);
     fKinematicsRD[i][6] = new TH1F(Form("E_{#mu} %s",trigname[i].c_str()), Form("E_{#mu} %s",trigname[i].c_str()), 100, 140, 180);
     fKinematicsRD[i][7] = new TH1F(Form("E_{#mu'} %s",trigname[i].c_str()), Form("E_{#mu'} %s",trigname[i].c_str()), 100, 0, 160);
-    fKinematicsRD[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 100, 0, 0.1);
+    fKinematicsRD[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 100, 0, 0.05);
     fKinematicsRD[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 100, -320, -70);
     fKinematicsRD[i][12] = new TH1F(Form("p_{hadron} %s",trigname[i].c_str()), Form("p_{hadron} %s",trigname[i].c_str()), 100, 0, 40);
@@ -424,7 +424,7 @@ void create_kin_plots()
     fKinematicsMC[i][5] = new TH1F(Form("#nu Ratio %s",trigname[i].c_str()), Form("#nu Ratio %s",trigname[i].c_str()), 100, 0, 160);
     fKinematicsMC[i][6] = new TH1F(Form("E_{#mu} Ratio %s",trigname[i].c_str()), Form("E_{#mu} Ratio %s",trigname[i].c_str()), 100, 140, 180);
     fKinematicsMC[i][7] = new TH1F(Form("E_{#mu'} Ratio %s",trigname[i].c_str()), Form("E_{#mu'} Ratio %s",trigname[i].c_str()), 100, 0, 160);
-    fKinematicsMC[i][8] = new TH1F(Form("#theta Ratio %s",trigname[i].c_str()), Form("#theta Ratio %s",trigname[i].c_str()), 100, 0, 0.1);
+    fKinematicsMC[i][8] = new TH1F(Form("#theta Ratio %s",trigname[i].c_str()), Form("#theta Ratio %s",trigname[i].c_str()), 100, 0, 0.05);
     fKinematicsMC[i][9] = new TH1F(Form("#phi Ratio %s",trigname[i].c_str()), Form("#phi Ratio %s",trigname[i].c_str()), 100, -1.7, 1.7);
     fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 100, -320, -70);
     fKinematicsMC[i][12] = new TH1F(Form("p_{hadron} Ratio %s",trigname[i].c_str()), Form("p_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 40);
