@@ -211,7 +211,7 @@ void save_kin_plots()
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][0]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][0]->GetBinError(tt)+1/fKinematicsMC2[idx][0]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][0]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][0]->Scale(1/fKinematicsMC2[2][0]->GetEntries());
       fKinematicsMC1[idx][0]->Scale(1/fKinematicsMC1[2][0]->GetEntries());
@@ -239,7 +239,7 @@ void save_kin_plots()
       // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][1]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][1]->GetBinError(tt) && fKinematicsMC2[idx][1]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][1]->GetBinError(tt)+1/fKinematicsMC2[idx][1]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][1]->GetBinError(tt) && fKinematicsMC2[idx][1]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][1]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][1]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][1]->Scale(1/fKinematicsMC2[2][1]->GetEntries());
       fKinematicsMC1[idx][1]->Scale(1/fKinematicsMC1[2][1]->GetEntries());
@@ -267,7 +267,7 @@ void save_kin_plots()
       // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][2]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][2]->GetBinError(tt) && fKinematicsMC2[idx][2]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][2]->GetBinError(tt)+1/fKinematicsMC2[idx][2]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][2]->GetBinError(tt) && fKinematicsMC2[idx][2]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][2]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][2]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][2]->Scale(1/fKinematicsMC2[2][2]->GetEntries());
       fKinematicsMC1[idx][2]->Scale(1/fKinematicsMC1[2][2]->GetEntries());
@@ -293,7 +293,7 @@ void save_kin_plots()
       c4.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsMC1[idx][3]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][3]->GetBinError(tt) && fKinematicsMC2[idx][3]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][3]->GetBinError(tt)+1/fKinematicsMC2[idx][3]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][3]->GetBinError(tt) && fKinematicsMC2[idx][3]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][3]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][3]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][3]->Scale(1/fKinematicsMC2[2][3]->GetEntries());
       fKinematicsMC1[idx][3]->Scale(1/fKinematicsMC1[2][3]->GetEntries());
@@ -320,7 +320,7 @@ void save_kin_plots()
       // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][4]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][4]->GetBinError(tt) && fKinematicsMC2[idx][4]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][4]->GetBinError(tt)+1/fKinematicsMC2[idx][4]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][4]->GetBinError(tt) && fKinematicsMC2[idx][4]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][4]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][4]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][4]->Scale(1/fKinematicsMC2[2][4]->GetEntries());
       fKinematicsMC1[idx][4]->Scale(1/fKinematicsMC1[2][4]->GetEntries());
@@ -347,7 +347,7 @@ void save_kin_plots()
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][5]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][5]->GetBinError(tt) && fKinematicsMC2[idx][5]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][5]->GetBinError(tt)+1/fKinematicsMC2[idx][5]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][5]->GetBinError(tt) && fKinematicsMC2[idx][5]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][5]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][5]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][5]->Scale(1/fKinematicsMC2[2][5]->GetEntries());
       fKinematicsMC1[idx][5]->Scale(1/fKinematicsMC1[2][5]->GetEntries());
@@ -374,7 +374,7 @@ void save_kin_plots()
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][6]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][6]->GetBinError(tt) && fKinematicsMC2[idx][6]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][6]->GetBinError(tt)+1/fKinematicsMC2[idx][6]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][6]->GetBinError(tt) && fKinematicsMC2[idx][6]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][6]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][6]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][6]->Scale(1/fKinematicsMC2[2][6]->GetEntries());
       fKinematicsMC1[idx][6]->Scale(1/fKinematicsMC1[2][6]->GetEntries());
@@ -401,7 +401,7 @@ void save_kin_plots()
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][7]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][7]->GetBinError(tt) && fKinematicsMC2[idx][7]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][7]->GetBinError(tt)+1/fKinematicsMC2[idx][7]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][7]->GetBinError(tt) && fKinematicsMC2[idx][7]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][7]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][7]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][7]->Scale(1/fKinematicsMC2[2][7]->GetEntries());
       fKinematicsMC1[idx][7]->Scale(1/fKinematicsMC1[2][7]->GetEntries());
@@ -428,7 +428,7 @@ void save_kin_plots()
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][8]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][8]->GetBinError(tt) && fKinematicsMC2[idx][8]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][8]->GetBinError(tt)+1/fKinematicsMC2[idx][8]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][8]->GetBinError(tt) && fKinematicsMC2[idx][8]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][8]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][8]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][8]->Scale(1/fKinematicsMC2[2][8]->GetEntries());
       fKinematicsMC1[idx][8]->Scale(1/fKinematicsMC1[2][8]->GetEntries());
@@ -455,7 +455,7 @@ void save_kin_plots()
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][9]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][9]->GetBinError(tt) && fKinematicsMC2[idx][9]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][9]->GetBinError(tt)+1/fKinematicsMC2[idx][9]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][9]->GetBinError(tt) && fKinematicsMC2[idx][9]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][9]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][9]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][9]->Scale(1/fKinematicsMC2[2][9]->GetEntries());
       fKinematicsMC1[idx][9]->Scale(1/fKinematicsMC1[2][9]->GetEntries());
@@ -482,7 +482,7 @@ void save_kin_plots()
       // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][10]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][10]->GetBinError(tt) && fKinematicsMC2[idx][10]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][10]->GetBinError(tt)+1/fKinematicsMC2[idx][10]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][10]->GetBinError(tt) && fKinematicsMC2[idx][10]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][10]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][10]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][10]->Scale(1/fKinematicsMC2[2][10]->GetEntries());
       fKinematicsMC1[idx][10]->Scale(1/fKinematicsMC1[2][10]->GetEntries());
@@ -509,7 +509,7 @@ void save_kin_plots()
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][12]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][12]->GetBinError(tt) && fKinematicsMC2[idx][12]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][12]->GetBinError(tt)+1/fKinematicsMC2[idx][12]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][12]->GetBinError(tt) && fKinematicsMC2[idx][12]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][12]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][12]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][12]->Scale(1/fKinematicsMC2[2][12]->GetEntries());
       fKinematicsMC1[idx][12]->Scale(1/fKinematicsMC1[2][12]->GetEntries());
@@ -536,7 +536,7 @@ void save_kin_plots()
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][13]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][13]->GetBinError(tt) && fKinematicsMC2[idx][13]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][13]->GetBinError(tt)+1/fKinematicsMC2[idx][13]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][13]->GetBinError(tt) && fKinematicsMC2[idx][13]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][13]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][13]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][13]->Scale(1/fKinematicsMC2[2][13]->GetEntries());
       fKinematicsMC1[idx][13]->Scale(1/fKinematicsMC1[2][13]->GetEntries());
@@ -563,7 +563,7 @@ void save_kin_plots()
       // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][14]->GetNbinsX(); tt++)
       {
-        fError.push_back((fKinematicsMC1[idx][14]->GetBinError(tt) && fKinematicsMC2[idx][14]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[idx][14]->GetBinError(tt)+1/fKinematicsMC2[idx][14]->GetBinError(tt)):0));
+        fError.push_back((fKinematicsMC1[idx][14]->GetBinError(tt) && fKinematicsMC2[idx][14]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][14]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][14]->GetBinError(tt),2)):0));
       }
       fKinematicsMC2[idx][14]->Scale(1/fKinematicsMC2[2][14]->GetEntries());
       fKinematicsMC1[idx][14]->Scale(1/fKinematicsMC1[2][14]->GetEntries());
@@ -747,7 +747,7 @@ void save_kin_plots()
   c7.cd(2);
   for(int tt=0; tt<fKinematicsMC1[0][11]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[0][11]->GetBinError(tt) && fKinematicsMC2[0][11]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[0][11]->GetBinError(tt)+1/fKinematicsMC2[0][11]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[0][11]->GetBinError(tt) && fKinematicsMC2[0][11]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[0][11]->GetBinError(tt),2)+pow(1/fKinematicsMC2[0][11]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[0][11]->Scale(1/fKinematicsMC2[0][11]->GetEntries());
   fKinematicsMC1[0][11]->Scale(1/fKinematicsMC1[0][11]->GetEntries());
@@ -781,7 +781,7 @@ void save_kin_plots()
   c8.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][0]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][0]->GetBinError(tt) && fKinematicsMC2[4][0]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][0]->GetBinError(tt)+1/fKinematicsMC2[4][0]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][0]->GetBinError(tt) && fKinematicsMC2[4][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][0]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][0]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][0]->Scale(1/fKinematicsMC2[4][0]->GetEntries());
   fKinematicsMC1[4][0]->Scale(1/fKinematicsMC1[4][0]->GetEntries());
@@ -816,7 +816,7 @@ void save_kin_plots()
   c9.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][1]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][1]->GetBinError(tt) && fKinematicsMC2[4][1]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][1]->GetBinError(tt)+1/fKinematicsMC2[4][1]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][1]->GetBinError(tt) && fKinematicsMC2[4][1]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][1]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][1]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][1]->Scale(1/fKinematicsMC2[4][1]->GetEntries());
   fKinematicsMC1[4][1]->Scale(1/fKinematicsMC1[4][1]->GetEntries());
@@ -851,7 +851,7 @@ void save_kin_plots()
   c10.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][2]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][2]->GetBinError(tt) && fKinematicsMC2[4][2]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][2]->GetBinError(tt)+1/fKinematicsMC2[4][2]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][2]->GetBinError(tt) && fKinematicsMC2[4][2]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][2]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][2]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][2]->Scale(1/fKinematicsMC2[4][2]->GetEntries());
   fKinematicsMC1[4][2]->Scale(1/fKinematicsMC1[4][2]->GetEntries());
@@ -884,7 +884,7 @@ void save_kin_plots()
   c11.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][3]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][3]->GetBinError(tt) && fKinematicsMC2[4][3]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][3]->GetBinError(tt)+1/fKinematicsMC2[4][3]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][3]->GetBinError(tt) && fKinematicsMC2[4][3]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][3]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][3]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][3]->Scale(1/fKinematicsMC2[4][3]->GetEntries());
   fKinematicsMC1[4][3]->Scale(1/fKinematicsMC1[4][3]->GetEntries());
@@ -917,7 +917,7 @@ void save_kin_plots()
   c12.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][4]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][4]->GetBinError(tt) && fKinematicsMC2[4][4]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][4]->GetBinError(tt)+1/fKinematicsMC2[4][4]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][4]->GetBinError(tt) && fKinematicsMC2[4][4]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][4]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][4]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][4]->Scale(1/fKinematicsMC2[4][4]->GetEntries());
   fKinematicsMC1[4][4]->Scale(1/fKinematicsMC1[4][4]->GetEntries());
@@ -950,7 +950,7 @@ void save_kin_plots()
   c13.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][5]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][5]->GetBinError(tt) && fKinematicsMC2[4][5]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][5]->GetBinError(tt)+1/fKinematicsMC2[4][5]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][5]->GetBinError(tt) && fKinematicsMC2[4][5]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][5]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][5]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][5]->Scale(1/fKinematicsMC2[4][5]->GetEntries());
   fKinematicsMC1[4][5]->Scale(1/fKinematicsMC1[4][5]->GetEntries());
@@ -983,7 +983,7 @@ void save_kin_plots()
   c25.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][12]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][12]->GetBinError(tt) && fKinematicsMC2[4][12]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][12]->GetBinError(tt)+1/fKinematicsMC2[4][12]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][12]->GetBinError(tt) && fKinematicsMC2[4][12]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][12]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][12]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][12]->Scale(1/fKinematicsMC2[4][12]->GetEntries());
   fKinematicsMC1[4][12]->Scale(1/fKinematicsMC1[4][12]->GetEntries());
@@ -1016,7 +1016,7 @@ void save_kin_plots()
   c26.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][13]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][13]->GetBinError(tt) && fKinematicsMC2[4][13]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][13]->GetBinError(tt)+1/fKinematicsMC2[4][13]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][13]->GetBinError(tt) && fKinematicsMC2[4][13]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][13]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][13]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][13]->Scale(1/fKinematicsMC2[4][13]->GetEntries());
   fKinematicsMC1[4][13]->Scale(1/fKinematicsMC1[4][13]->GetEntries());
@@ -1049,7 +1049,7 @@ void save_kin_plots()
   c27.cd(2);
   for(int tt=0; tt<fKinematicsMC1[4][14]->GetNbinsX(); tt++)
   {
-    fError.push_back((fKinematicsMC1[4][14]->GetBinError(tt) && fKinematicsMC2[4][14]->GetBinError(tt) ? sqrt(1/fKinematicsMC1[4][14]->GetBinError(tt)+1/fKinematicsMC2[4][14]->GetBinError(tt)):0));
+    fError.push_back((fKinematicsMC1[4][14]->GetBinError(tt) && fKinematicsMC2[4][14]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[4][14]->GetBinError(tt),2)+pow(1/fKinematicsMC2[4][14]->GetBinError(tt),2)):0));
   }
   fKinematicsMC2[4][14]->Scale(1/fKinematicsMC2[4][14]->GetEntries());
   fKinematicsMC1[4][14]->Scale(1/fKinematicsMC1[4][14]->GetEntries());
