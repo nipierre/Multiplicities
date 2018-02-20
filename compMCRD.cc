@@ -1893,7 +1893,7 @@ void MCextraction(string pFilelist)
                         fQ2test++;
 
                         // y cut
-                        if((0.1<yBj && yBj<0.95))
+                        if((0.1<yBj && yBj<0.7))
                         {
                           fYBjtest++;
 
@@ -1941,7 +1941,7 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.95))
+                      if((0.1<yBj && yBj<0.7))
                       {
                         fYBjtest++;
 
@@ -1986,7 +1986,7 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.95))
+                      if((0.1<yBj && yBj<0.7))
                       {
                         fYBjtest++;
 
@@ -3780,7 +3780,7 @@ void RDextraction(string pFilelist)
       fQ2test++;
 
       // y cut
-      if(!(0.1<yBj && yBj<0.95)) continue;
+      if(!(0.1<yBj && yBj<0.7)) continue;
       fYBjtest++;
 
       // W cut
