@@ -130,7 +130,7 @@ void create_kin_plots()
     fKinematicsMC2[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 100, 0, 0.25);
     fKinematicsMC2[i][14] = new TH1F(Form("#phi_{hadron,lab} %s",trigname[i].c_str()), Form("#phi_{hadron,lab} %s",trigname[i].c_str()), 100, -3.5, 3.5);
     fKinematicsMC2[i][15] = new TH1F(Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), 100, 0, 3.5);
-    fKinematicsMC2[i][16] = new TH1F(Form("p_{T} %s",trigname[i].c_str()), Form("#p_{T} %s",trigname[i].c_str()), 100, 0, 3);
+    fKinematicsMC2[i][16] = new TH1F(Form("p_{T} %s",trigname[i].c_str()), Form("p_{T} %s",trigname[i].c_str()), 100, 0, 3);
     fKinematicsMC1[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 100, -1, 2);
     fKinematicsMC1[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 100, -3, 0);
     fKinematicsMC1[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 100, 0, 1);
