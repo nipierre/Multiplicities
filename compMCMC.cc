@@ -129,7 +129,7 @@ void create_kin_plots()
     fKinematicsMC2[i][12] = new TH1F(Form("p_{hadron} %s",trigname[i].c_str()), Form("p_{hadron} %s",trigname[i].c_str()), 100, 0, 40);
     fKinematicsMC2[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 100, 0, 0.25);
     fKinematicsMC2[i][14] = new TH1F(Form("#phi_{hadron,lab} %s",trigname[i].c_str()), Form("#phi_{hadron,lab} %s",trigname[i].c_str()), 100, -3.5, 3.5);
-    fKinematicsMC2[i][15] = new TH1F(Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), 100, 0, 3);
+    fKinematicsMC2[i][15] = new TH1F(Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), 100, 0, 3.5);
     fKinematicsMC1[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 100, -1, 2);
     fKinematicsMC1[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 100, -3, 0);
     fKinematicsMC1[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 100, 0, 1);
@@ -144,14 +144,14 @@ void create_kin_plots()
     fKinematicsMC1[i][12] = new TH1F(Form("p_{hadron} Ratio %s",trigname[i].c_str()), Form("p_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 40);
     fKinematicsMC1[i][13] = new TH1F(Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), 100, 0, 0.25);
     fKinematicsMC1[i][14] = new TH1F(Form("#phi_{hadron,lab} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron,lab} Ratio %s",trigname[i].c_str()), 100, -3.5, 3.5);
-    fKinematicsMC1[i][15] = new TH1F(Form("#phi_{hadron,prod.pl} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron,prod.pl} Ratio %s",trigname[i].c_str()), 100, 0, 3);
+    fKinematicsMC1[i][15] = new TH1F(Form("#phi_{hadron,prod.pl} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron,prod.pl} Ratio %s",trigname[i].c_str()), 100, 0, 3.5);
     BinLogX(fKinematicsMC2[i][0]);
     BinLogX(fKinematicsMC1[i][0]);
     BinLogX(fKinematicsMC2[i][1]);
     BinLogX(fKinematicsMC1[i][1]);
   }
-  fKinematicsMC2[0][11] = new TH1F("#Phi_h","#Phi_h", 100, 0, 6.5);
-  fKinematicsMC1[0][11] = new TH1F("#Phi_h Ratio","#Phi_h Ratio", 100, 0, 6.5);
+  fKinematicsMC2[0][11] = new TH1F("#Phi_h","#Phi_h", 100, 0, 3.5);
+  fKinematicsMC1[0][11] = new TH1F("#Phi_h Ratio","#Phi_h Ratio", 100, 0, 3.5);
   for(int i=0; i<7; i++)
   {
     l2[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -165,11 +165,11 @@ void create_kin_plots()
     l2[8][i] = new TLine(0,0.4+i*0.2,0.05,0.4+i*0.2);
     l2[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
     l2[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
-    l2[11][i] = new TLine(0,0.4+i*0.2,6.5,0.4+i*0.2);
+    l2[11][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l2[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l2[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
     l2[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
-    l2[15][i] = new TLine(0,0.4+i*0.2,3,0.4+i*0.2);
+    l2[15][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     for(int j=0; j<15; j++)
     {
       l2[j][i]->SetLineStyle(fLineStyle[i]);
@@ -883,9 +883,9 @@ void save_kin_plots()
   }
   fKinematicsMC2[0][11]->Scale(1/fKinematicsMC2[0][11]->GetEntries());
   fKinematicsMC1[0][11]->Scale(1/fKinematicsMC1[0][11]->GetEntries());
-  fKinematicsRatio[0][11] = (TH1F*)fKinematicsMC2[0][11]->Clone();
+  fKinematicsRatio[0][11] = (TH1F*)fKinematicsMC1[0][11]->Clone();
   fKinematicsRatio[0][11]->SetStats(0);
-  fKinematicsRatio[0][11]->Divide(fKinematicsMC1[0][11]);
+  fKinematicsRatio[0][11]->Divide(fKinematicsMC2[0][11]);
   for(int tt=0; tt<fKinematicsRatio[0][11]->GetNbinsX(); tt++)
   {
     fKinematicsRatio[0][11]->SetBinError(tt,fError[tt]);
