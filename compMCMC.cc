@@ -2489,6 +2489,7 @@ void MC2extraction(string pFilelist)
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
+    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -2565,6 +2566,7 @@ void MC2extraction(string pFilelist)
       p->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
+      ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
