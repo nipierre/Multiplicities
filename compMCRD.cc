@@ -1635,7 +1635,7 @@ void MCextraction(string pFilelist)
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
-    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
+    // TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -1731,7 +1731,7 @@ void MCextraction(string pFilelist)
       p->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
-      ph_pl->GetEntry(ip);
+      // ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
@@ -3128,7 +3128,7 @@ void MCextraction(string pFilelist)
           }
 
           if(0.1<zBj && (fId==8 || fId==9))
-            fKinematicsMC[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
+            fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
