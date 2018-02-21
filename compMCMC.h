@@ -69,6 +69,7 @@ vector<Double_t> fMup[5];
 vector<Double_t> fTheta[5];
 vector<Double_t> fPhi[5];
 vector<Double_t> fVertex[5];
+vector<Double_t> fPt[5];
 
 vector<Double_t> fQ2_MC;
 vector<Double_t> fQ2kinMC[5];
@@ -85,6 +86,7 @@ vector<Double_t> fMupMC[5];
 vector<Double_t> fThetaMC[5];
 vector<Double_t> fPhiMC[5];
 vector<Double_t> fVertexMC[5];
+vector<Double_t> fPtMC[5];
 
 vector<Double_t> fX;
 vector<Double_t> fY;
@@ -189,9 +191,9 @@ studyxy fR_xy[24];
 
 //Draw
 
-TH1F* fKinematicsMC1[5][15];
-TH1F* fKinematicsMC2[5][15];
-TH1F* fKinematicsRatio[5][15];
+TH1F* fKinematicsMC1[5][16];
+TH1F* fKinematicsMC2[5][16];
+TH1F* fKinematicsRatio[5][16];
 TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
 TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
@@ -219,9 +221,10 @@ TCanvas c24("Kin_hadron_#phi Trigger","Kin_hadron_#phi Trigger",3200,1600);
 TCanvas c25("Kin_hadron_p","Kin_hadron_p",3200,1600);
 TCanvas c26("Kin_hadron_#theta","Kin_hadron_#theta",3200,1600);
 TCanvas c27("Kin_hadron_#phi","Kin_hadron_#phi",3200,1600);
+TCanvas c28("Kin_p_T","Kin_hadron_p_T",3200,1600);
 
 TLine* l1[5];
-TLine* l2[15][7];
+TLine* l2[16][7];
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
 
 vector<double> fError;
