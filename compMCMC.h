@@ -221,10 +221,12 @@ TCanvas c24("Kin_hadron_#phi Trigger","Kin_hadron_#phi Trigger",3200,1600);
 TCanvas c25("Kin_hadron_p","Kin_hadron_p",3200,1600);
 TCanvas c26("Kin_hadron_#theta","Kin_hadron_#theta",3200,1600);
 TCanvas c27("Kin_hadron_#phi","Kin_hadron_#phi",3200,1600);
-TCanvas c28("Kin_p_T","Kin_hadron_p_T",3200,1600);
+TCanvas c28("Kin_hadron_#phi_pl Trigger","Kin_hadron_#phi_pl Trigger",3200,1600);
+TCanvas c29("Kin_hadron_#phi_pl","Kin_hadron_#phi_pl",3200,1600);
+TCanvas c30("Kin_p_T","Kin_hadron_p_T",3200,1600);
 
 TLine* l1[5];
-TLine* l2[16][7];
+TLine* l2[17][7];
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
 
 vector<double> fError;
