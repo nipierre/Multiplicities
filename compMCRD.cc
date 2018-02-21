@@ -517,7 +517,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->Draw("PE2");
       fKinematicsRatio[idx][0]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][0]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(108,kTRUE);
+      fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(801,kTRUE);
       for(int tt=0; tt<7; tt++)
       {
         l1[0][tt]->Draw();
