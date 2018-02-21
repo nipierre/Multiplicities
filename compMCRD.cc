@@ -922,10 +922,10 @@ void save_kin_plots()
       fKinematicsRD[idx][0]->SetLineColor(kRed);
       fKinematicsRD[idx][0]->SetStats(0);
       fKinematicsRD[idx][0]->SetMinimum(0.);
-      fKinematicsRD[idx][0]->SetMaximum(max(fKinematicsRD[idx][0]->GetMaximum()*1.2,fKinematicsMC[idx][0]->GetMaximum()*1.2));
       fKinematicsRD[idx][0]->Draw();
       fKinematicsRD[idx][0]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRD[idx][0]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][0]->SetMaximum(max(fKinematicsRD[idx][0]->GetMaximum()*1.2,fKinematicsMC[idx][0]->GetMaximum()*1.2));
       fKinematicsRD[idx][0]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
       fKinematicsMC[idx][0]->Draw("SAME");
