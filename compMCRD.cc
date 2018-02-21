@@ -548,7 +548,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->Draw("PE2");
       fKinematicsRatio[idx][1]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][1]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][1]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][1]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[1][tt]->Draw();
@@ -579,7 +579,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][2]->Draw("PE2");
       fKinematicsRatio[idx][2]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][2]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][2]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][2]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[2][tt]->Draw();
@@ -608,7 +608,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][3]->Draw("PE2");
       fKinematicsRatio[idx][3]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][3]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][3]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][3]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[3][tt]->Draw();
@@ -638,7 +638,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][4]->Draw("PE2");
       fKinematicsRatio[idx][4]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][4]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][4]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][4]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[4][tt]->Draw();
@@ -668,7 +668,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][5]->Draw("PE2");
       fKinematicsRatio[idx][5]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][5]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][5]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][5]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[5][tt]->Draw();
@@ -698,7 +698,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][6]->Draw("PE2");
       fKinematicsRatio[idx][6]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][6]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][6]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][6]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[6][tt]->Draw();
@@ -728,7 +728,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][7]->Draw("PE2");
       fKinematicsRatio[idx][7]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][7]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][7]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][7]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[7][tt]->Draw();
@@ -758,7 +758,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][8]->Draw("PE2");
       fKinematicsRatio[idx][8]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][8]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][8]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][8]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[8][tt]->Draw();
@@ -788,7 +788,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][9]->Draw("PE2");
       fKinematicsRatio[idx][9]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][9]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][9]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][9]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[9][tt]->Draw();
@@ -818,7 +818,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][10]->Draw("PE2");
       fKinematicsRatio[idx][10]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][10]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][10]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][10]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[10][tt]->Draw();
@@ -848,7 +848,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][12]->Draw("PE2");
       fKinematicsRatio[idx][12]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][12]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][12]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][12]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[12][tt]->Draw();
@@ -878,7 +878,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][13]->Draw("PE2");
       fKinematicsRatio[idx][13]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][13]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][13]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][13]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[13][tt]->Draw();
@@ -908,7 +908,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][14]->Draw("PE2");
       fKinematicsRatio[idx][14]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][14]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[idx][14]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsRatio[idx][14]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[14][tt]->Draw();
