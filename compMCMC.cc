@@ -173,7 +173,7 @@ void create_kin_plots()
     l2[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
     l2[15][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l2[16][i] = new TLine(0,0.4+i*0.2,3,0.4+i*0.2);
-    for(int j=0; j<15; j++)
+    for(int j=0; j<17; j++)
     {
       l2[j][i]->SetLineStyle(fLineStyle[i]);
       l2[j][i]->SetLineWidth(1);
@@ -1282,7 +1282,7 @@ void save_kin_plots()
   fKinematicsRatio[4][15]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
-    l2[14][tt]->Draw();
+    l2[15][tt]->Draw();
   }
   c29.Update();
   c29.cd(1);
@@ -1319,7 +1319,7 @@ void save_kin_plots()
   fKinematicsRatio[4][16]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
-    l2[14][tt]->Draw();
+    l2[16][tt]->Draw();
   }
   c30.Update();
   c30.cd(1);
