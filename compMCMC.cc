@@ -232,8 +232,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->SetMaximum(2.);
       fKinematicsRatio[idx][0]->SetMinimum(0.);
       fKinematicsRatio[idx][0]->Draw("PE2");
-      fKinematicsRatio[idx][0]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][0]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][0]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][0]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[0][tt]->Draw();
@@ -262,8 +262,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->SetMaximum(2.);
       fKinematicsRatio[idx][1]->SetMinimum(0.);
       fKinematicsRatio[idx][1]->Draw("PE2");
-      fKinematicsRatio[idx][1]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][1]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][1]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][1]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[1][tt]->Draw();
@@ -292,8 +292,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][2]->SetMaximum(2.);
       fKinematicsRatio[idx][2]->SetMinimum(0.);
       fKinematicsRatio[idx][2]->Draw("PE2");
-      fKinematicsRatio[idx][2]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][2]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][2]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][2]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[2][tt]->Draw();
@@ -320,8 +320,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][3]->SetMaximum(2.);
       fKinematicsRatio[idx][3]->SetMinimum(0.);
       fKinematicsRatio[idx][3]->Draw("PE2");
-      fKinematicsRatio[idx][3]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][3]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][3]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][3]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[3][tt]->Draw();
@@ -349,8 +349,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][4]->SetMaximum(2.);
       fKinematicsRatio[idx][4]->SetMinimum(0.);
       fKinematicsRatio[idx][4]->Draw("PE2");
-      fKinematicsRatio[idx][4]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][4]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][4]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][4]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[4][tt]->Draw();
@@ -378,8 +378,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][5]->SetMaximum(2.);
       fKinematicsRatio[idx][5]->SetMinimum(0.);
       fKinematicsRatio[idx][5]->Draw("PE2");
-      fKinematicsRatio[idx][5]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][5]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][5]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][5]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[5][tt]->Draw();
@@ -407,8 +407,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][6]->SetMaximum(2.);
       fKinematicsRatio[idx][6]->SetMinimum(0.);
       fKinematicsRatio[idx][6]->Draw("PE2");
-      fKinematicsRatio[idx][6]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][6]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][6]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][6]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[6][tt]->Draw();
@@ -436,8 +436,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][7]->SetMaximum(2.);
       fKinematicsRatio[idx][7]->SetMinimum(0.);
       fKinematicsRatio[idx][7]->Draw("PE2");
-      fKinematicsRatio[idx][7]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][7]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][7]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][7]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[7][tt]->Draw();
@@ -465,8 +465,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][8]->SetMaximum(2.);
       fKinematicsRatio[idx][8]->SetMinimum(0.);
       fKinematicsRatio[idx][8]->Draw("PE2");
-      fKinematicsRatio[idx][8]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][8]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][8]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][8]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[8][tt]->Draw();
@@ -494,8 +494,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][9]->SetMaximum(2.);
       fKinematicsRatio[idx][9]->SetMinimum(0.);
       fKinematicsRatio[idx][9]->Draw("PE2");
-      fKinematicsRatio[idx][9]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][9]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][9]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][9]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[9][tt]->Draw();
@@ -523,8 +523,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][10]->SetMaximum(2.);
       fKinematicsRatio[idx][10]->SetMinimum(0.);
       fKinematicsRatio[idx][10]->Draw("PE2");
-      fKinematicsRatio[idx][10]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][10]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][10]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][10]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[10][tt]->Draw();
@@ -552,8 +552,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][12]->SetMaximum(2.);
       fKinematicsRatio[idx][12]->SetMinimum(0.);
       fKinematicsRatio[idx][12]->Draw("PE2");
-      fKinematicsRatio[idx][12]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][12]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][12]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][12]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[12][tt]->Draw();
@@ -581,8 +581,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][13]->SetMaximum(2.);
       fKinematicsRatio[idx][13]->SetMinimum(0.);
       fKinematicsRatio[idx][13]->Draw("PE2");
-      fKinematicsRatio[idx][13]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][13]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][13]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][13]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[13][tt]->Draw();
@@ -610,8 +610,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][14]->SetMaximum(2.);
       fKinematicsRatio[idx][14]->SetMinimum(0.);
       fKinematicsRatio[idx][14]->Draw("PE2");
-      fKinematicsRatio[idx][14]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][14]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][14]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][14]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[14][tt]->Draw();
@@ -639,8 +639,8 @@ void save_kin_plots()
       fKinematicsRatio[idx][15]->SetMaximum(2.);
       fKinematicsRatio[idx][15]->SetMinimum(0.);
       fKinematicsRatio[idx][15]->Draw("PE2");
-      fKinematicsRatio[idx][15]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsRatio[idx][15]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsRatio[idx][15]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][15]->GetYaxis()->SetLabelSize(0.08);
       for(int tt=0; tt<7; tt++)
       {
         l2[15][tt]->Draw();
@@ -654,10 +654,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][0]->SetLineColor(kGreen);
       fKinematicsMC2[idx][0]->SetStats(0);
       fKinematicsMC2[idx][0]->SetMinimum(0.);
-      // fKinematicsMC2[idx][0]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][0]->SetMaximum(0.08);
       fKinematicsMC2[idx][0]->Draw();
-      fKinematicsMC2[idx][0]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][0]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][0]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][0]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][0]->SetLineColor(kBlue);
       fKinematicsMC1[idx][0]->Draw("SAME");
       gPad->SetLogx();
@@ -670,8 +670,8 @@ void save_kin_plots()
       fKinematicsMC2[idx][1]->SetMinimum(0.);
       // fKinematicsMC2[idx][1]->SetMaximum(0.045);
       fKinematicsMC2[idx][1]->Draw();
-      fKinematicsMC2[idx][1]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][1]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][1]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][1]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][1]->SetLineColor(kBlue);
       fKinematicsMC1[idx][1]->Draw("SAME");
       gPad->SetLogx();
@@ -682,10 +682,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][2]->SetLineColor(kGreen);
       fKinematicsMC2[idx][2]->SetStats(0);
       fKinematicsMC2[idx][2]->SetMinimum(0.);
-      // fKinematicsMC2[idx][2]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][2]->SetMaximum(0.08);
       fKinematicsMC2[idx][2]->Draw();
-      fKinematicsMC2[idx][2]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][2]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][2]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][2]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][2]->SetLineColor(kBlue);
       fKinematicsMC1[idx][2]->Draw("SAME");
       c3.Update();
@@ -695,8 +695,8 @@ void save_kin_plots()
       fKinematicsMC2[idx][3]->SetStats(0);
       fKinematicsMC2[idx][3]->SetMinimum(0.);
       fKinematicsMC2[idx][3]->Draw();
-      fKinematicsMC2[idx][3]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][3]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][3]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][3]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][3]->SetLineColor(kBlue);
       fKinematicsMC1[idx][3]->Draw("SAME");
       c4.Update();
@@ -708,8 +708,8 @@ void save_kin_plots()
       fKinematicsMC2[idx][4]->SetMinimum(0.);
       // fKinematicsMC2[idx][4]->SetMaximum(0.05);
       fKinematicsMC2[idx][4]->Draw();
-      fKinematicsMC2[idx][4]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][4]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][4]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][4]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][4]->SetLineColor(kBlue);
       fKinematicsMC1[idx][4]->Draw("SAME");
       c5.Update();
@@ -719,10 +719,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][5]->SetLineColor(kGreen);
       fKinematicsMC2[idx][5]->SetStats(0);
       fKinematicsMC2[idx][5]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][5]->Draw();
-      fKinematicsMC2[idx][5]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][5]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][5]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][5]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][5]->SetLineColor(kBlue);
       fKinematicsMC1[idx][5]->Draw("SAME");
       c6.Update();
@@ -732,10 +732,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][6]->SetLineColor(kGreen);
       fKinematicsMC2[idx][6]->SetStats(0);
       fKinematicsMC2[idx][6]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][6]->Draw();
-      fKinematicsMC2[idx][6]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][6]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][6]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][6]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][6]->SetLineColor(kBlue);
       fKinematicsMC1[idx][6]->Draw("SAME");
       c14.Update();
@@ -745,10 +745,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][7]->SetLineColor(kGreen);
       fKinematicsMC2[idx][7]->SetStats(0);
       fKinematicsMC2[idx][7]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][7]->Draw();
-      fKinematicsMC2[idx][7]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][7]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][7]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][7]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][7]->SetLineColor(kBlue);
       fKinematicsMC1[idx][7]->Draw("SAME");
       c15.Update();
@@ -758,10 +758,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][8]->SetLineColor(kGreen);
       fKinematicsMC2[idx][8]->SetStats(0);
       fKinematicsMC2[idx][8]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][8]->Draw();
-      fKinematicsMC2[idx][8]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][8]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][8]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][8]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][8]->SetLineColor(kBlue);
       fKinematicsMC1[idx][8]->Draw("SAME");
       c16.Update();
@@ -771,10 +771,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][9]->SetLineColor(kGreen);
       fKinematicsMC2[idx][9]->SetStats(0);
       fKinematicsMC2[idx][9]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][9]->Draw();
-      fKinematicsMC2[idx][9]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][9]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][9]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][9]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][9]->SetLineColor(kBlue);
       fKinematicsMC1[idx][9]->Draw("SAME");
       c17.Update();
@@ -784,10 +784,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][10]->SetLineColor(kGreen);
       fKinematicsMC2[idx][10]->SetStats(0);
       fKinematicsMC2[idx][10]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][10]->Draw();
-      fKinematicsMC2[idx][10]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][10]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][10]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][10]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][10]->SetLineColor(kBlue);
       fKinematicsMC1[idx][10]->Draw("SAME");
       c18.Update();
@@ -797,10 +797,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][12]->SetLineColor(kGreen);
       fKinematicsMC2[idx][12]->SetStats(0);
       fKinematicsMC2[idx][12]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][12]->Draw();
-      fKinematicsMC2[idx][12]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][12]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][12]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][12]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][12]->SetLineColor(kBlue);
       fKinematicsMC1[idx][12]->Draw("SAME");
       c22.Update();
@@ -810,10 +810,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][13]->SetLineColor(kGreen);
       fKinematicsMC2[idx][13]->SetStats(0);
       fKinematicsMC2[idx][13]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][13]->Draw();
-      fKinematicsMC2[idx][13]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][13]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][13]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][13]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][13]->SetLineColor(kBlue);
       fKinematicsMC1[idx][13]->Draw("SAME");
       c23.Update();
@@ -823,10 +823,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][14]->SetLineColor(kGreen);
       fKinematicsMC2[idx][14]->SetStats(0);
       fKinematicsMC2[idx][14]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][14]->Draw();
-      fKinematicsMC2[idx][14]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][14]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][14]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][14]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][14]->SetLineColor(kBlue);
       fKinematicsMC1[idx][14]->Draw("SAME");
       c24.Update();
@@ -836,10 +836,10 @@ void save_kin_plots()
       fKinematicsMC2[idx][15]->SetLineColor(kGreen);
       fKinematicsMC2[idx][15]->SetStats(0);
       fKinematicsMC2[idx][15]->SetMinimum(0.);
-      // fKinematicsMC2[idx][5]->SetMaximum(0.06);
+      // fKinematicsMC2[idx][5]->SetMaximum(0.08);
       fKinematicsMC2[idx][15]->Draw();
-      fKinematicsMC2[idx][15]->GetXaxis()->SetLabelSize(0.06);
-      fKinematicsMC2[idx][15]->GetYaxis()->SetLabelSize(0.06);
+      fKinematicsMC2[idx][15]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsMC2[idx][15]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsMC1[idx][15]->SetLineColor(kBlue);
       fKinematicsMC1[idx][15]->Draw("SAME");
       c28.Update();
@@ -865,8 +865,8 @@ void save_kin_plots()
   fKinematicsRatio[0][11]->SetMaximum(2.);
   fKinematicsRatio[0][11]->SetFillColor(kYellow-7);
   fKinematicsRatio[0][11]->Draw("PE2");
-  fKinematicsRatio[0][11]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[0][11]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[0][11]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[0][11]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[11][tt]->Draw();
@@ -878,8 +878,8 @@ void save_kin_plots()
   fKinematicsMC2[0][11]->SetMinimum(0.);
   fKinematicsMC2[0][11]->SetMaximum(0.05);
   fKinematicsMC2[0][11]->Draw();
-  fKinematicsMC2[0][11]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[0][11]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[0][11]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[0][11]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[0][11]->SetLineColor(kBlue);
   fKinematicsMC1[0][11]->Draw("SAME");
   c7.Update();
@@ -904,8 +904,8 @@ void save_kin_plots()
   fKinematicsRatio[4][0]->SetMinimum(0.);
   fKinematicsRatio[4][0]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][0]->Draw("PE2");
-  fKinematicsRatio[4][0]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][0]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][0]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][0]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[0][tt]->Draw();
@@ -916,8 +916,8 @@ void save_kin_plots()
   fKinematicsMC2[4][0]->SetLineColor(kGreen);
   fKinematicsMC2[4][0]->SetStats(0);
   fKinematicsMC2[4][0]->Draw();
-  fKinematicsMC2[4][0]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][0]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][0]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][0]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][0]->SetLineColor(kBlue);
   fKinematicsMC1[4][0]->Draw("SAME");
   gPad->SetLogx();
@@ -943,8 +943,8 @@ void save_kin_plots()
   fKinematicsRatio[4][1]->SetMinimum(0.);
   fKinematicsRatio[4][1]->SetFillColor(kYellow-7);
   fKinematicsRatio[4][1]->Draw("PE2");
-  fKinematicsRatio[4][1]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][1]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][1]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][1]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[1][tt]->Draw();
@@ -955,8 +955,8 @@ void save_kin_plots()
   fKinematicsMC2[4][1]->SetLineColor(kGreen);
   fKinematicsMC2[4][1]->SetStats(0);
   fKinematicsMC2[4][1]->Draw();
-  fKinematicsMC2[4][1]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][1]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][1]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][1]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][1]->SetLineColor(kBlue);
   fKinematicsMC1[4][1]->Draw("SAME");
   gPad->SetLogx();
@@ -982,8 +982,8 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->SetMaximum(2.);
   fKinematicsRatio[4][2]->SetMinimum(0.);
   fKinematicsRatio[4][2]->Draw("PE2");
-  fKinematicsRatio[4][2]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][2]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][2]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][2]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[2][tt]->Draw();
@@ -993,8 +993,8 @@ void save_kin_plots()
   fKinematicsMC2[4][2]->SetLineColor(kGreen);
   fKinematicsMC2[4][2]->SetStats(0);
   fKinematicsMC2[4][2]->Draw();
-  fKinematicsMC2[4][2]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][2]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][2]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][2]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][2]->SetLineColor(kBlue);
   fKinematicsMC1[4][2]->Draw("SAME");
   c10.Update();
@@ -1019,8 +1019,8 @@ void save_kin_plots()
   fKinematicsRatio[4][3]->SetMaximum(2.);
   fKinematicsRatio[4][3]->SetMinimum(0.);
   fKinematicsRatio[4][3]->Draw("PE2");
-  fKinematicsRatio[4][3]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][3]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][3]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][3]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[3][tt]->Draw();
@@ -1030,8 +1030,8 @@ void save_kin_plots()
   fKinematicsMC2[4][3]->SetLineColor(kGreen);
   fKinematicsMC2[4][3]->SetStats(0);
   fKinematicsMC2[4][3]->Draw();
-  fKinematicsMC2[4][3]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][3]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][3]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][3]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][3]->SetLineColor(kBlue);
   fKinematicsMC1[4][3]->Draw("SAME");
   c11.Update();
@@ -1056,8 +1056,8 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->SetMaximum(2.);
   fKinematicsRatio[4][4]->SetMinimum(0.);
   fKinematicsRatio[4][4]->Draw("PE2");
-  fKinematicsRatio[4][4]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][4]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][4]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][4]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[4][tt]->Draw();
@@ -1067,8 +1067,8 @@ void save_kin_plots()
   fKinematicsMC2[4][4]->SetLineColor(kGreen);
   fKinematicsMC2[4][4]->SetStats(0);
   fKinematicsMC2[4][4]->Draw();
-  fKinematicsMC2[4][4]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][4]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][4]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][4]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][4]->SetLineColor(kBlue);
   fKinematicsMC1[4][4]->Draw("SAME");
   c12.Update();
@@ -1093,8 +1093,8 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->SetMaximum(2.);
   fKinematicsRatio[4][5]->SetMinimum(0.);
   fKinematicsRatio[4][5]->Draw("PE2");
-  fKinematicsRatio[4][5]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][5]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][5]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][5]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[5][tt]->Draw();
@@ -1104,8 +1104,8 @@ void save_kin_plots()
   fKinematicsMC2[4][5]->SetLineColor(kGreen);
   fKinematicsMC2[4][5]->SetStats(0);
   fKinematicsMC2[4][5]->Draw();
-  fKinematicsMC2[4][5]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][5]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][5]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][5]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][5]->SetLineColor(kBlue);
   fKinematicsMC1[4][5]->Draw("SAME");
   c13.Update();
@@ -1130,8 +1130,8 @@ void save_kin_plots()
   fKinematicsRatio[4][12]->SetMaximum(2.);
   fKinematicsRatio[4][12]->SetMinimum(0.);
   fKinematicsRatio[4][12]->Draw("PE2");
-  fKinematicsRatio[4][12]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][12]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][12]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][12]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[12][tt]->Draw();
@@ -1141,8 +1141,8 @@ void save_kin_plots()
   fKinematicsMC2[4][12]->SetLineColor(kGreen);
   fKinematicsMC2[4][12]->SetStats(0);
   fKinematicsMC2[4][12]->Draw();
-  fKinematicsMC2[4][12]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][12]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][12]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][12]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][12]->SetLineColor(kBlue);
   fKinematicsMC1[4][12]->Draw("SAME");
   c25.Update();
@@ -1167,8 +1167,8 @@ void save_kin_plots()
   fKinematicsRatio[4][13]->SetMaximum(2.);
   fKinematicsRatio[4][13]->SetMinimum(0.);
   fKinematicsRatio[4][13]->Draw("PE2");
-  fKinematicsRatio[4][13]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][13]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][13]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][13]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[13][tt]->Draw();
@@ -1178,8 +1178,8 @@ void save_kin_plots()
   fKinematicsMC2[4][13]->SetLineColor(kGreen);
   fKinematicsMC2[4][13]->SetStats(0);
   fKinematicsMC2[4][13]->Draw();
-  fKinematicsMC2[4][13]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][13]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][13]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][13]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][13]->SetLineColor(kBlue);
   fKinematicsMC1[4][13]->Draw("SAME");
   c26.Update();
@@ -1204,8 +1204,8 @@ void save_kin_plots()
   fKinematicsRatio[4][14]->SetMaximum(2.);
   fKinematicsRatio[4][14]->SetMinimum(0.);
   fKinematicsRatio[4][14]->Draw("PE2");
-  fKinematicsRatio[4][14]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsRatio[4][14]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsRatio[4][14]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][14]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l2[14][tt]->Draw();
@@ -1215,8 +1215,8 @@ void save_kin_plots()
   fKinematicsMC2[4][14]->SetLineColor(kGreen);
   fKinematicsMC2[4][14]->SetStats(0);
   fKinematicsMC2[4][14]->Draw();
-  fKinematicsMC2[4][14]->GetXaxis()->SetLabelSize(0.06);
-  fKinematicsMC2[4][14]->GetYaxis()->SetLabelSize(0.06);
+  fKinematicsMC2[4][14]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC2[4][14]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC1[4][14]->SetLineColor(kBlue);
   fKinematicsMC1[4][14]->Draw("SAME");
   c27.Update();
