@@ -435,8 +435,8 @@ void create_kin_plots()
     BinLogX(fKinematicsRD[i][1]);
     BinLogX(fKinematicsMC[i][1]);
   }
-  fKinematicsRD[0][11] = new TH1F("#Phi_h","#Phi_h", 50, 0, 1);
-  fKinematicsMC[0][11] = new TH1F("#Phi_h Ratio","#Phi_h Ratio", 50, 0, 1);
+  fKinematicsRD[0][11] = new TH1F("#Phi_h","#Phi_h", 50, 0, 3.5);
+  fKinematicsMC[0][11] = new TH1F("#Phi_h Ratio","#Phi_h Ratio", 50, 0, 3.5);
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -450,7 +450,7 @@ void create_kin_plots()
     l1[8][i] = new TLine(0,0.4+i*0.2,0.05,0.4+i*0.2);
     l1[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
     l1[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
-    l1[11][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
+    l1[11][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l1[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
     l1[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
@@ -1138,7 +1138,7 @@ void save_kin_plots()
   fKinematicsRatio[0][11]->Draw("PE2");
   fKinematicsRatio[0][11]->GetXaxis()->SetLabelSize(0.08);
   fKinematicsRatio[0][11]->GetYaxis()->SetLabelSize(0.08);
-  fKinematicsRatio[0][11]->GetYaxis()->SetNdivisions(304,kTRUE);
+  fKinematicsRatio[0][11]->GetYaxis()->SetNdivisions(2,kTRUE);
   for(int tt=0; tt<7; tt++)
   {
     l1[11][tt]->Draw();
@@ -1635,6 +1635,7 @@ void MCextraction(string pFilelist)
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
+    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -1730,6 +1731,7 @@ void MCextraction(string pFilelist)
       p->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
+      ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
@@ -3125,8 +3127,8 @@ void MCextraction(string pFilelist)
             fKinematicsMC[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           }
 
-          if(0.1<zBj && (fId==8 || fId==9) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
-            fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+          if(0.1<zBj && (fId==8 || fId==9))
+            fKinematicsMC[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
@@ -4512,7 +4514,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
         }
 
-        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)) && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
+        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)) && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]))
                    fKinematicsRD[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
 
         // Maximum radiation length cumulated
