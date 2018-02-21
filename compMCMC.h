@@ -191,9 +191,9 @@ studyxy fR_xy[24];
 
 //Draw
 
-TH1F* fKinematicsMC1[5][16];
-TH1F* fKinematicsMC2[5][16];
-TH1F* fKinematicsRatio[5][16];
+TH1F* fKinematicsMC1[5][17];
+TH1F* fKinematicsMC2[5][17];
+TH1F* fKinematicsRatio[5][17];
 TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
 TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
