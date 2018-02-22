@@ -152,8 +152,8 @@ void create_kin_plots()
     BinLogX(fKinematicsMC2[i][1]);
     BinLogX(fKinematicsMC1[i][1]);
   }
-  fKinematicsMC2[0][11] = new TH1F("#Phi_{e,prod.pl}","#Phi_{e,prod.pl}", 100, 0, 3.5);
-  fKinematicsMC1[0][11] = new TH1F("#Phi_{e,prod.pl} Ratio","#Phi_{e,prod.pl} Ratio", 100, 0, 3.5);
+  fKinematicsMC2[0][11] = new TH1F("#phi_{e,prod.pl}","#phi_{e,prod.pl}", 100, 0, 3.5);
+  fKinematicsMC1[0][11] = new TH1F("#phi_{e,prod.pl} Ratio","#phi_{e,prod.pl} Ratio", 100, 0, 3.5);
   for(int i=0; i<7; i++)
   {
     l2[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
