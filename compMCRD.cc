@@ -494,6 +494,10 @@ void save_kin_plots()
   c22.Divide(1,2);
   c23.Divide(1,2);
   c24.Divide(1,2);
+  c25.Divide(2,4);
+  c26.Divide(1,2);
+  c27.Divide(2,4);
+  c28.Divide(1,2);
 
   for(int i=0; i<8; i++)
   {
