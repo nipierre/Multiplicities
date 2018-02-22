@@ -3765,8 +3765,10 @@ void RDextraction(string pFilelist)
 
     //Hadrons
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
+    TBranch *pt = (TBranch*) tree->FindBranch("Hadrons.pt");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
+    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -3842,8 +3844,10 @@ void RDextraction(string pFilelist)
 
       //Hadrons
       p->GetEntry(ip);
+      pt->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
+      ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
