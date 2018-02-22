@@ -912,7 +912,7 @@ void save_kin_plots()
   fKinematicsMC2[0][11]->SetLineColor(kGreen);
   fKinematicsMC2[0][11]->SetStats(0);
   fKinematicsMC2[0][11]->SetMinimum(0.);
-  fKinematicsMC2[0][11]->SetMaximum(0.05);
+  fKinematicsMC2[0][11]->SetMaximum(max(fKinematicsMC2[0][11]->GetMaximum()*1.2,fKinematicsMC1[0][11]->GetMaximum()*1.2));
   fKinematicsMC2[0][11]->Draw();
   fKinematicsMC2[0][11]->GetXaxis()->SetLabelSize(0.08);
   fKinematicsMC2[0][11]->GetYaxis()->SetLabelSize(0.08);
