@@ -2173,13 +2173,10 @@ void MCextraction(string pFilelist)
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
             else
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
-
-            zBj_unid = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
           }
           else
           {
             zBj = 0;
-            zBj_unid = 0;
           }
 
           // /phi_plane for electron (Radiative correction test for electro-production from real photons)
@@ -2254,35 +2251,6 @@ void MCextraction(string pFilelist)
             fKinematicsMC[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
-
-          // z cut
-          if(!(0.2<zBj && zBj<0.85)) continue;
-
-          if(0.2<zBj && zBj<0.25) zbin = 0;
-          else if(0.25<=zBj && zBj<0.30) zbin = 1;
-          else if(0.30<=zBj && zBj<0.35) zbin = 2;
-          else if(0.35<=zBj && zBj<0.40) zbin = 3;
-          else if(0.40<=zBj && zBj<0.45) zbin = 4;
-          else if(0.45<=zBj && zBj<0.50) zbin = 5;
-          else if(0.50<=zBj && zBj<0.55) zbin = 6;
-          else if(0.55<=zBj && zBj<0.60) zbin = 7;
-          else if(0.60<=zBj && zBj<0.65) zbin = 8;
-          else if(0.65<=zBj && zBj<0.70) zbin = 9;
-          else if(0.70<=zBj && zBj<0.75) zbin = 10;
-          else zbin = 11;
-
-          if(0.2<zBj_unid && zBj_unid<0.25) zbin_u = 0;
-          else if(0.25<=zBj_unid && zBj_unid<0.30) zbin_u = 1;
-          else if(0.30<=zBj_unid && zBj_unid<0.35) zbin_u = 2;
-          else if(0.35<=zBj_unid && zBj_unid<0.40) zbin_u = 3;
-          else if(0.40<=zBj_unid && zBj_unid<0.45) zbin_u = 4;
-          else if(0.45<=zBj_unid && zBj_unid<0.50) zbin_u = 5;
-          else if(0.50<=zBj_unid && zBj_unid<0.55) zbin_u = 6;
-          else if(0.55<=zBj_unid && zBj_unid<0.60) zbin_u = 7;
-          else if(0.60<=zBj_unid && zBj_unid<0.65) zbin_u = 8;
-          else if(0.65<=zBj_unid && zBj_unid<0.70) zbin_u = 9;
-          else if(0.70<=zBj_unid && zBj_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
         }
       }
     }
