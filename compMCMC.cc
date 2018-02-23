@@ -1704,15 +1704,6 @@ void MC1extraction(string pFilelist)
       Double_t r = sqrt( (x->GetLeaf("x")->GetValue()-xC)*(x->GetLeaf("x")->GetValue()-xC)
                     + (y->GetLeaf("y")->GetValue()-yC)*(y->GetLeaf("y")->GetValue()-yC) );
 
-      Double_t MC_mcxC = (mcxD-mcxU) * (mczU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (mczU_1-mczD_2) + mcxU;
-      Double_t MC_mcyC = (mcyD-mcyU) * (mczU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (mczU_1-mczD_2) + mcyU;
-      Double_t MC_mcr = sqrt( (MC_vx->GetLeaf("MC_vx")->GetValue()-MC_mcxC)*(MC_vx->GetLeaf("MC_vx")->GetValue()-MC_mcxC)
-                    + (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC)*(MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC) );
-      Double_t MC_xC = (xD-xU) * (zU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (zU_1-zD_2) + xU;
-      Double_t MC_yC = (yD-yU) * (zU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (zU_1-zD_2) + yU;
-      Double_t MC_r = sqrt( (MC_vx->GetLeaf("MC_vx")->GetValue()-MC_xC)*(MC_vx->GetLeaf("MC_vx")->GetValue()-MC_xC)
-                    + (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_yC)*(MC_vy->GetLeaf("MC_vy")->GetValue()-MC_yC) );
-
       //2006 ---
 
 
@@ -1994,16 +1985,6 @@ void MC1extraction(string pFilelist)
 
       // x Binning
 
-      if(0.<xBj_MC && xBj_MC<0.01) xbin_MC = 0;
-      else if(0.01<=xBj_MC && xBj_MC<0.02) xbin_MC = 1;
-      else if(0.02<=xBj_MC && xBj_MC<0.03) xbin_MC = 2;
-      else if(0.03<=xBj_MC && xBj_MC<0.04) xbin_MC = 3;
-      else if(0.04<=xBj_MC && xBj_MC<0.06) xbin_MC = 4;
-      else if(0.06<=xBj_MC && xBj_MC<0.1) xbin_MC = 5;
-      else if(0.1<=xBj_MC && xBj_MC<0.14) xbin_MC = 6;
-      else if(0.14<=xBj_MC && xBj_MC<0.18) xbin_MC = 7;
-      else xbin_MC = 8;
-
       if(0.<xBj && xBj<0.01) xbin = 0;
       else if(0.01<=xBj && xBj<0.02) xbin = 1;
       else if(0.02<=xBj && xBj<0.03) xbin = 2;
@@ -2015,12 +1996,6 @@ void MC1extraction(string pFilelist)
       else xbin = 8;
 
       // y Binning
-
-      if(0.<yBj_MC && yBj_MC<0.15) ybin_MC = 0;
-      else if(0.15<=yBj_MC && yBj_MC<0.2) ybin_MC = 1;
-      else if(0.2<=yBj_MC && yBj_MC<0.3) ybin_MC = 2;
-      else if(0.3<=yBj_MC && yBj_MC<0.5) ybin_MC = 3;
-      else ybin_MC = 4;
 
       if(0.<yBj && yBj<0.15) ybin = 0;
       else if(0.15<=yBj && yBj<0.2) ybin = 1;
