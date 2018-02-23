@@ -189,6 +189,18 @@ Wrapper fBinning_severe[9][5][12];
 
 studyxy fR_xy[24];
 
+// Cuts
+
+Double_t fXmin;
+Double_t fXmax;
+Double_t fYmin;
+Double_t fYmax;
+Double_t fWmin;
+Double_t fWmax;
+Double_t fPmin;
+Double_t fPmax;
+
+
 //Draw
 
 TH1F* fKinematicsRD[5][17];
@@ -241,33 +253,3 @@ static const Double_t fM_K = 493.677/(1e3);
 static const Double_t fM_pi = 139.57018/(1e3);
 
 string trigname[5] = {"MT","LT","OT","LAST","All Trig"};
-
-//----------------------------------------------------------------------------
-//--------- RICH unfolding ---------------------------------------------------
-//----------------------------------------------------------------------------
-
-TMatrixD rich_mat_p[2][10];
-TMatrixD rich_mat_m[2][10];
-TMatrixD inv_rich_p[2][10];
-TMatrixD inv_rich_m[2][10];
-TMatrixD err_rich_p[3][3];
-TMatrixD err_rich_m[3][3];
-Double_t pi_unfolding_err_p[2][10][3];
-Double_t pi_unfolding_err_m[2][10][3];
-Double_t k_unfolding_err_p[2][10][3];
-Double_t k_unfolding_err_m[2][10][3];
-Double_t p_unfolding_err_p[2][10][3];
-Double_t p_unfolding_err_m[2][10][3];
-Int_t mat_bin[2][10];
-Int_t err_bin[2][10];
-Double_t cov1_pi[2][3];
-Double_t cov1_k[2][3];
-Double_t cov1_p[2][3];
-Double_t cov2[2][3];
-TMatrixD pi_sigma_uni(3,3);
-TMatrixD k_sigma_uni(3,3);
-TMatrixD p_sigma_uni(3,3);
-TMatrixD pi_vect(3,1);
-TMatrixD k_vect(3,1);
-TMatrixD p_vect(3,1);
-Double_t dummy;

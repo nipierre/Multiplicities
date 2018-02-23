@@ -1,8 +1,6 @@
 #include "compMCMC.h"
 
 //Inputs
-#define mat_RICH_name "rich_mat.txt"
-#define err_RICH_name "rich_mat_error.txt"
 #define target_file_2012 "target-107924-109081.dat"
 #define target_file_2016 "target-274508-274901.dat"
 
@@ -10,10 +8,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define MOMENTUM 3
 #define RCUTSTUDY_ON 0
-//#define SIZESPLIT 1
-//#define OFFSET 0
 
 using namespace std;
 
@@ -109,6 +104,21 @@ void BinLogX(TH1*h)
    }
    axis->Set(bins, new_bins);
    delete new_bins;
+}
+
+void readKinCuts(string pFile)
+{
+  string dummy;
+  ifstream list(pFile);
+  list >> dummy >> fXmin;
+  list >> dummy >> fXmax;
+  list >> dummy >> fYmin;
+  list >> dummy >> fYmax;
+  list >> dummy >> fWmin;
+  list >> dummy >> fWmax;
+  list >> dummy >> fPmin;
+  list >> dummy >> fPmax;
+  list.close();
 }
 
 void create_kin_plots()
@@ -217,7 +227,6 @@ void save_kin_plots()
     if(i%2)
     {
       c1.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][0]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][0]->GetBinError(tt),2)):0));
@@ -248,7 +257,6 @@ void save_kin_plots()
       c1.Update();
 
       c2.cd(idx+3+int(idx/2)*2);
-      // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][1]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][1]->GetBinError(tt) && fKinematicsMC2[idx][1]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][1]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][1]->GetBinError(tt),2)):0));
@@ -279,7 +287,6 @@ void save_kin_plots()
       c2.Update();
 
       c3.cd(idx+3+int(idx/2)*2);
-      // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][2]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][2]->GetBinError(tt) && fKinematicsMC2[idx][2]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][2]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][2]->GetBinError(tt),2)):0));
@@ -338,7 +345,6 @@ void save_kin_plots()
       c4.Update();
 
       c5.cd(idx+3+int(idx/2)*2);
-      // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][4]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][4]->GetBinError(tt) && fKinematicsMC2[idx][4]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][4]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][4]->GetBinError(tt),2)):0));
@@ -368,7 +374,6 @@ void save_kin_plots()
       c5.Update();
 
       c6.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][5]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][5]->GetBinError(tt) && fKinematicsMC2[idx][5]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][5]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][5]->GetBinError(tt),2)):0));
@@ -398,7 +403,6 @@ void save_kin_plots()
       c6.Update();
 
       c14.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][6]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][6]->GetBinError(tt) && fKinematicsMC2[idx][6]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][6]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][6]->GetBinError(tt),2)):0));
@@ -428,7 +432,6 @@ void save_kin_plots()
       c14.Update();
 
       c15.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][7]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][7]->GetBinError(tt) && fKinematicsMC2[idx][7]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][7]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][7]->GetBinError(tt),2)):0));
@@ -458,7 +461,6 @@ void save_kin_plots()
       c15.Update();
 
       c16.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][8]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][8]->GetBinError(tt) && fKinematicsMC2[idx][8]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][8]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][8]->GetBinError(tt),2)):0));
@@ -488,7 +490,6 @@ void save_kin_plots()
       c16.Update();
 
       c17.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][9]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][9]->GetBinError(tt) && fKinematicsMC2[idx][9]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][9]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][9]->GetBinError(tt),2)):0));
@@ -518,7 +519,6 @@ void save_kin_plots()
       c17.Update();
 
       c18.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][10]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][10]->GetBinError(tt) && fKinematicsMC2[idx][10]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][10]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][10]->GetBinError(tt),2)):0));
@@ -548,7 +548,6 @@ void save_kin_plots()
       c18.Update();
 
       c22.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][12]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][12]->GetBinError(tt) && fKinematicsMC2[idx][12]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][12]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][12]->GetBinError(tt),2)):0));
@@ -578,7 +577,6 @@ void save_kin_plots()
       c22.Update();
 
       c23.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][13]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][13]->GetBinError(tt) && fKinematicsMC2[idx][13]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][13]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][13]->GetBinError(tt),2)):0));
@@ -608,7 +606,6 @@ void save_kin_plots()
       c23.Update();
 
       c24.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][14]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][14]->GetBinError(tt) && fKinematicsMC2[idx][14]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][14]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][14]->GetBinError(tt),2)):0));
@@ -638,7 +635,6 @@ void save_kin_plots()
       c24.Update();
 
       c28.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsMC1[idx][15]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsMC1[idx][15]->GetBinError(tt) && fKinematicsMC2[idx][15]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][15]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][15]->GetBinError(tt),2)):0));
@@ -670,7 +666,6 @@ void save_kin_plots()
     else
     {
       c1.cd(idx+1+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][0]->SetLineColor(kGreen);
       fKinematicsMC2[idx][0]->SetStats(0);
       fKinematicsMC2[idx][0]->SetMinimum(0.);
@@ -685,7 +680,6 @@ void save_kin_plots()
       c1.Update();
 
       c2.cd(idx+1+int(idx/2)*2);
-      // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][1]->SetLineColor(kGreen);
       fKinematicsMC2[idx][1]->SetStats(0);
       fKinematicsMC2[idx][1]->SetMinimum(0.);
@@ -700,7 +694,6 @@ void save_kin_plots()
       c2.Update();
 
       c3.cd(idx+1+int(idx/2)*2);
-      // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][2]->SetLineColor(kGreen);
       fKinematicsMC2[idx][2]->SetStats(0);
       fKinematicsMC2[idx][2]->SetMinimum(0.);
@@ -726,7 +719,6 @@ void save_kin_plots()
       c4.Update();
 
       c5.cd(idx+1+int(idx/2)*2);
-      // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][4]->SetLineColor(kGreen);
       fKinematicsMC2[idx][4]->SetStats(0);
       fKinematicsMC2[idx][4]->SetMinimum(0.);
@@ -740,7 +732,6 @@ void save_kin_plots()
       c5.Update();
 
       c6.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][5]->SetLineColor(kGreen);
       fKinematicsMC2[idx][5]->SetStats(0);
       fKinematicsMC2[idx][5]->SetMinimum(0.);
@@ -754,7 +745,6 @@ void save_kin_plots()
       c6.Update();
 
       c14.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][6]->SetLineColor(kGreen);
       fKinematicsMC2[idx][6]->SetStats(0);
       fKinematicsMC2[idx][6]->SetMinimum(0.);
@@ -768,7 +758,6 @@ void save_kin_plots()
       c14.Update();
 
       c15.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][7]->SetLineColor(kGreen);
       fKinematicsMC2[idx][7]->SetStats(0);
       fKinematicsMC2[idx][7]->SetMinimum(0.);
@@ -782,7 +771,6 @@ void save_kin_plots()
       c15.Update();
 
       c16.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][8]->SetLineColor(kGreen);
       fKinematicsMC2[idx][8]->SetStats(0);
       fKinematicsMC2[idx][8]->SetMinimum(0.);
@@ -796,7 +784,6 @@ void save_kin_plots()
       c16.Update();
 
       c17.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][9]->SetLineColor(kGreen);
       fKinematicsMC2[idx][9]->SetStats(0);
       fKinematicsMC2[idx][9]->SetMinimum(0.);
@@ -810,7 +797,6 @@ void save_kin_plots()
       c17.Update();
 
       c18.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][10]->SetLineColor(kGreen);
       fKinematicsMC2[idx][10]->SetStats(0);
       fKinematicsMC2[idx][10]->SetMinimum(0.);
@@ -824,7 +810,6 @@ void save_kin_plots()
       c18.Update();
 
       c22.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][12]->SetLineColor(kGreen);
       fKinematicsMC2[idx][12]->SetStats(0);
       fKinematicsMC2[idx][12]->SetMinimum(0.);
@@ -838,7 +823,6 @@ void save_kin_plots()
       c22.Update();
 
       c23.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][13]->SetLineColor(kGreen);
       fKinematicsMC2[idx][13]->SetStats(0);
       fKinematicsMC2[idx][13]->SetMinimum(0.);
@@ -852,7 +836,6 @@ void save_kin_plots()
       c23.Update();
 
       c24.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][14]->SetLineColor(kGreen);
       fKinematicsMC2[idx][14]->SetStats(0);
       fKinematicsMC2[idx][14]->SetMinimum(0.);
@@ -866,7 +849,6 @@ void save_kin_plots()
       c24.Update();
 
       c28.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsMC2[idx][15]->SetLineColor(kGreen);
       fKinematicsMC2[idx][15]->SetStats(0);
       fKinematicsMC2[idx][15]->SetMinimum(0.);
@@ -1410,22 +1392,6 @@ void MC1extraction(string pFilelist)
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
 
-  //----------------------------------------------------------------------------
-  //--------- nu cut prep ------------------------------------------------------
-  //----------------------------------------------------------------------------
-
-  for(int i=0; i<12; i++)
-  {
-    fNu_max[1][i] = sqrt(pow(40,2)+pow(fM_K,2))/fZrange[i+1];
-    fNu_min[1][i] = sqrt(pow(MOMENTUM,2)+pow(fM_K,2))/fZrange[i];
-
-    fNu_max[2][i] = sqrt(pow(40,2)+pow(fM_p,2))/fZrange[i+1];
-    fNu_min[2][i] = sqrt(pow(MOMENTUM,2)+pow(fM_p,2))/fZrange[i];
-
-    fNu_max[0][i] = sqrt(pow(40,2)+pow(fM_pi,2))/fZrange[i+1];
-    fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
-  }
-
   // List of files
 
   ifstream list(pFilelist);
@@ -1810,7 +1776,6 @@ void MC1extraction(string pFilelist)
       // -----------------------------------------------------------------------
 
       fAllDISflag = 0;
-      int DIS_rec[3][12];
 
       // Best Primary Vertex
       fBP++;
@@ -1826,7 +1791,7 @@ void MC1extraction(string pFilelist)
         }
 
         //BMS (reconstructed beam track)
-        if(true/*(backPropFlag->GetLeaf("backPropFlag")->GetValue())*/) //not used in acceptance
+        if(true) //not used in acceptance
         {
           fBMS++;
 
@@ -1853,9 +1818,9 @@ void MC1extraction(string pFilelist)
                   fTarg++;
 
                   // Cells crossing
-                  if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                  if(true)
                   {
-                    //fCell++;
+                    fCell++;
 
                     // IM/O triggers
                     if((trig&8 || trig&256))
@@ -1868,17 +1833,17 @@ void MC1extraction(string pFilelist)
                         fQ2test++;
 
                         // y cut
-                        if((0.1<yBj && yBj<0.95))
+                        if((fYmin<yBj && yBj<fYmax))
                         {
                           fYBjtest++;
 
                           // W cut
-                          if((5<sqrt(wBj) && sqrt(wBj)<17))
+                          if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                           {
                             fWBjtest++;
 
                             // x cut
-                            if((0.004<xBj && xBj<0.4))
+                            if((fXmin<xBj && xBj<fXmax))
                             {
                               fXBjtest++;
                               fAllDISflag = 1;
@@ -1902,9 +1867,9 @@ void MC1extraction(string pFilelist)
                 fTarg++;
 
                 // Cells crossing
-                if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                if(true)
                 {
-                  //fCell++;
+                  fCell++;
 
                   if((trig&2 || trig&4 || trig&8))
                   {
@@ -1916,15 +1881,15 @@ void MC1extraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.95))
+                      if((fYmin<yBj && yBj<fYmax))
                       {
                         fYBjtest++;
 
                         // W cut
-                        if((5<sqrt(wBj) && sqrt(wBj)<17))
+                        if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((fXmin<xBj && xBj<fXmax))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -1946,7 +1911,7 @@ void MC1extraction(string pFilelist)
                 fTarg++;
 
                 // Cells crossing
-                if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                if(true)
                 {
                   fCell++;
 
@@ -1961,15 +1926,15 @@ void MC1extraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.95))
+                      if((fYmin<yBj && yBj<fYmax))
                       {
                         fYBjtest++;
 
                         // W cut
-                        if((5<sqrt(wBj) && sqrt(wBj)<17))
+                        if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((fXmin<xBj && xBj<fXmax))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -1986,123 +1951,12 @@ void MC1extraction(string pFilelist)
         }
       }
 
-
-      // -----------------------------------------------------------------------
-      // MC --------------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
-      fAllDISflag_MC = 0;
-      int DIS_MC[3][12];
-
-      // Best Primary Vertex
-
-      if((0<MCE0))
-      {
-
-        if(Y2012)
-        {
-          CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-        }
-
-        // Energy of the muon beam
-        if((140<=MCE0 && MCE0<=180))
-        {
-          //2006 ---
-          if(Y2006)
-          {
-            // Z coordinate within target regions
-            if((((-56<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-35)
-                  ||(-20<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<31)
-                  ||(43<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<66))))
-            {
-              if((MC_mcr < mcR &&  (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC)<yCUT
-                   && MC_r < R
-                   &&  (MC_vy->GetLeaf("MC_vy")->GetValue()-yC)<yCUT
-                   && ((MC_vz->GetLeaf("MC_vz")->GetValue()>(-65+2+7) && MC_vz->GetLeaf("MC_vz")->GetValue()<(-35+2-2))
-                        ||(MC_vz->GetLeaf("MC_vz")->GetValue() > (-30+2+8) && MC_vz->GetLeaf("MC_vz")->GetValue() < (30+2-1))
-                        ||(MC_vz->GetLeaf("MC_vz")->GetValue() > (35+2+6) && MC_vz->GetLeaf("MC_vz")->GetValue() < (65+2-1)))))
-              {
-                // Q2 cut
-                if((Q2_MC>1))
-                {
-                  // y cut
-                  if((0.1<yBj_MC && yBj_MC<0.7))
-                  {
-                    // W cut
-                    if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
-                    {
-                      // x cut
-                      if((0.004<xBj_MC && xBj_MC<0.4))
-                      {
-                        fAllDISflag_MC = 1;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-          //2006 ---
-
-          //2012 ---
-          else if(Y2012)
-          {
-            if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin]))
-            {
-              // Q2 cut
-              if((Q2_MC>1))
-              {
-                // y cut
-                if((0.1<yBj_MC && yBj_MC<0.7))
-                {
-                  // W cut
-                  if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
-                  {
-                    // x cut
-                    if((0.004<xBj_MC && xBj_MC<0.4))
-                    {
-                      fAllDISflag_MC = 1;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          //2012 ---
-
-          //2016 ---
-          else if(Y2016)
-          {
-            if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue(),1.5))
-            {
-              // Q2 cut
-              if((Q2_MC>1))
-              {
-                // y cut
-                if((0.1<yBj_MC && yBj_MC<0.7))
-                {
-                  // W cut
-                  if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
-                  {
-                    // x cut
-                    if((0.004<xBj_MC && xBj_MC<0.4))
-                    {
-                      fAllDISflag_MC = 1;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          //2016 ---
-        }
-      }
-
       if(fAllDISflag)
       {
         double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
         double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
+        // MT
         if(trig&2)
         {
           fQ2kinMC[0].push_back(Q2);
@@ -2116,6 +1970,7 @@ void MC1extraction(string pFilelist)
           fPhiMC[0].push_back(phi_m);
           fVertexMC[0].push_back(z->GetLeaf("z")->GetValue());
         }
+        // LT
         if(trig&4)
         {
           fQ2kinMC[1].push_back(Q2);
@@ -2129,6 +1984,7 @@ void MC1extraction(string pFilelist)
           fPhiMC[1].push_back(phi_m);
           fVertexMC[1].push_back(z->GetLeaf("z")->GetValue());
         }
+        // OT
         if(trig&8)
         {
           fQ2kinMC[2].push_back(Q2);
@@ -2142,6 +1998,7 @@ void MC1extraction(string pFilelist)
           fPhiMC[2].push_back(phi_m);
           fVertexMC[2].push_back(z->GetLeaf("z")->GetValue());
         }
+        // LAST
         if(trig&512)
         {
           fQ2kinMC[3].push_back(Q2);
@@ -2155,6 +2012,7 @@ void MC1extraction(string pFilelist)
           fPhiMC[3].push_back(phi_m);
           fVertexMC[3].push_back(z->GetLeaf("z")->GetValue());
         }
+        // ALL TRIGGERS
         if(trig&2 || trig&4 || trig&8)
         // if(trig&2 || trig&4 || trig&8 || trig&512)
         {
@@ -2178,16 +2036,6 @@ void MC1extraction(string pFilelist)
       // --------- DIS event calculation ---------------------------------------
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
-
-      for(int i=0; i<12; i++)
-      {
-        DIS_rec[0][i] = 0;
-        DIS_rec[1][i] = 0;
-        DIS_rec[2][i] = 0;
-        DIS_MC[0][i] = 0;
-        DIS_MC[1][i] = 0;
-        DIS_MC[2][i] = 0;
-      }
 
       // -----------------------------------------------------------------------
       // MC --------------------------------------------------------------------
@@ -2315,6 +2163,28 @@ void MC1extraction(string pFilelist)
             zBj = 0;
           }
 
+          // /phi_plane for electron (Radiative correction test for electro-production from real photons)
+          // Has to be done before Hadron cuts
+          if(0.1<zBj && (fId==8 || fId==9))
+            fKinematicsMC1[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
+
+          // Maximum radiation length cumulated
+          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
+          fXX0test++;
+
+          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+          if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
+          fMom++;
+
+          // Theta cut
+          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+          fTRICH++;
+
+          // RICH position cut
+          if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
+          fPosRICH++;
+
+          // MT
           if(trig&2)
           {
             fKinematicsMC1[0][3]->Fill(zBj);
@@ -2324,6 +2194,7 @@ void MC1extraction(string pFilelist)
             fKinematicsMC1[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC1[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
+          // LT
           if(trig&4)
           {
             fKinematicsMC1[1][3]->Fill(zBj);
@@ -2333,6 +2204,7 @@ void MC1extraction(string pFilelist)
             fKinematicsMC1[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC1[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
+          // OT
           if(trig&8)
           {
             fKinematicsMC1[2][3]->Fill(zBj);
@@ -2342,6 +2214,7 @@ void MC1extraction(string pFilelist)
             fKinematicsMC1[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC1[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
+          // LAST
           if(trig&512)
           {
             fKinematicsMC1[3][3]->Fill(zBj);
@@ -2351,6 +2224,7 @@ void MC1extraction(string pFilelist)
             fKinematicsMC1[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC1[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
+          // ALL TRIGGERS
           if(trig&2 || trig&4 || trig&8)
           // if(trig&2 || trig&4 || trig&8 || trig&512)
           {
@@ -2361,25 +2235,6 @@ void MC1extraction(string pFilelist)
             fKinematicsMC1[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC1[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
-
-          if(0.1<zBj && (fId==8 || fId==9))
-            fKinematicsMC1[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
-
-          // Maximum radiation length cumulated
-          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
-          fXX0test++;
-
-          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
-          fMom++;
-
-          // Theta cut
-          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
-          fTRICH++;
-
-          // RICH position cut
-          if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
-          fPosRICH++;
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
@@ -2534,22 +2389,6 @@ void MC2extraction(string pFilelist)
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
-
-  //----------------------------------------------------------------------------
-  //--------- nu cut prep ------------------------------------------------------
-  //----------------------------------------------------------------------------
-
-  for(int i=0; i<12; i++)
-  {
-    fNu_max[1][i] = sqrt(pow(40,2)+pow(fM_K,2))/fZrange[i+1];
-    fNu_min[1][i] = sqrt(pow(MOMENTUM,2)+pow(fM_K,2))/fZrange[i];
-
-    fNu_max[2][i] = sqrt(pow(40,2)+pow(fM_p,2))/fZrange[i+1];
-    fNu_min[2][i] = sqrt(pow(MOMENTUM,2)+pow(fM_p,2))/fZrange[i];
-
-    fNu_max[0][i] = sqrt(pow(40,2)+pow(fM_pi,2))/fZrange[i+1];
-    fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
-  }
 
   // List of files
 
@@ -2839,7 +2678,6 @@ void MC2extraction(string pFilelist)
       // -------------------------------------------------------------------------
 
       fAllDISflag = 0;
-      int DIS_rec[3][12];
 
       // Best Primary Vertex
       fBP++;
@@ -2850,7 +2688,7 @@ void MC2extraction(string pFilelist)
         fRmu++;
 
         //BMS (reconstructed beam track)
-        if(true/*(backPropFlag->GetLeaf("backPropFlag")->GetValue())*/) //not used in acceptance
+        if(true) //not used in acceptance
         {
           fBMS++;
 
@@ -2877,9 +2715,9 @@ void MC2extraction(string pFilelist)
                   fTarg++;
 
                   // Cells crossing
-                  if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                  if(true)
                   {
-                    //fCell++;
+                    fCell++;
 
                     // IM/O triggers
                     if((trig&8 || trig&256))
@@ -2892,17 +2730,17 @@ void MC2extraction(string pFilelist)
                         fQ2test++;
 
                         // y cut
-                        if((0.1<yBj && yBj<0.7))
+                        if((fYmin<yBj && yBj<fYmax))
                         {
                           fYBjtest++;
 
                           // W cut
-                          if((5<sqrt(wBj) && sqrt(wBj)<17))
+                          if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                           {
                             fWBjtest++;
 
                             // x cut
-                            if((0.004<xBj && xBj<0.4))
+                            if((fXmin<xBj && xBj<fXmax))
                             {
                               fXBjtest++;
                               fAllDISflag = 1;
@@ -2926,7 +2764,7 @@ void MC2extraction(string pFilelist)
                 fTarg++;
 
                 // Cells crossing
-                if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                if(true)
                 {
                   //fCell++;
 
@@ -2940,15 +2778,15 @@ void MC2extraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.95))
+                      if((fYmin<yBj && yBj<fYmax))
                       {
                         fYBjtest++;
 
                         // W cut
-                        if((5<sqrt(wBj) && sqrt(wBj)<17))
+                        if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((fXmin<xBj && xBj<fXmax))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -2970,7 +2808,7 @@ void MC2extraction(string pFilelist)
                 fTarg++;
 
                 // Cells crossing
-                if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                if(true)
                 {
                   fCell++;
 
@@ -2985,15 +2823,15 @@ void MC2extraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.95))
+                      if((fYmin<yBj && yBj<fYmax))
                       {
                         fYBjtest++;
 
                         // W cut
-                        if((5<sqrt(wBj) && sqrt(wBj)<17))
+                        if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((fXmin<xBj && xBj<fXmax))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -3015,6 +2853,7 @@ void MC2extraction(string pFilelist)
         double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
         double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
+        // MT
         if(trig&2)
         {
           fQ2kin[0].push_back(Q2);
@@ -3028,6 +2867,7 @@ void MC2extraction(string pFilelist)
           fPhi[0].push_back(phi_m);
           fVertex[0].push_back(z->GetLeaf("z")->GetValue());
         }
+        // LT
         if(trig&4)
         {
           fQ2kin[1].push_back(Q2);
@@ -3041,6 +2881,7 @@ void MC2extraction(string pFilelist)
           fPhi[1].push_back(phi_m);
           fVertex[1].push_back(z->GetLeaf("z")->GetValue());
         }
+        // OT
         if(trig&8)
         {
           fQ2kin[2].push_back(Q2);
@@ -3054,6 +2895,7 @@ void MC2extraction(string pFilelist)
           fPhi[2].push_back(phi_m);
           fVertex[2].push_back(z->GetLeaf("z")->GetValue());
         }
+        // LAST
         if(trig&512)
         {
           fQ2kin[3].push_back(Q2);
@@ -3067,6 +2909,7 @@ void MC2extraction(string pFilelist)
           fPhi[3].push_back(phi_m);
           fVertex[3].push_back(z->GetLeaf("z")->GetValue());
         }
+        // ALL TRIGGERS
         if(trig&2 || trig&4 || trig&8)
         // if(trig&2 || trig&4 || trig&8 || trig&512)
         {
@@ -3190,6 +3033,27 @@ void MC2extraction(string pFilelist)
             zBj = 0;
           }
 
+          // /phi_plane for electron (Radiative correction test for electro-production from real photons)
+          // Has to be done before Hadron cuts
+          if(0.1<zBj && (fId==8 || fId==9))
+            fKinematicsMC2[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
+
+          // Maximum radiation length cumulated
+          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
+          fXX0test++;
+
+          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+          fMom++;
+
+          // Theta cut
+          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+          fTRICH++;
+
+          // RICH position cut
+          if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
+          fPosRICH++;
+
           if(trig&2)
           {
             fKinematicsMC2[0][3]->Fill(zBj);
@@ -3236,25 +3100,6 @@ void MC2extraction(string pFilelist)
             fKinematicsMC2[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC2[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
-
-          if(0.1<zBj && (fId==8 || fId==9))
-            fKinematicsMC2[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
-
-          // Maximum radiation length cumulated
-          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
-          fXX0test++;
-
-          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
-          fMom++;
-
-          // Theta cut
-          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
-          fTRICH++;
-
-          // RICH position cut
-          if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
-          fPosRICH++;
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
@@ -3713,16 +3558,17 @@ void MultRatio()
 int main(int argc, char **argv)
 {
 
-  if(argc < 2)
+  if(argc < 3)
   {
     cout << "ERROR : Not enough arguments." << endl;
-    cout << "Asked : 2 *** Received : " << argc-1 << endl;
-    cout << "./compMCMC [MC1 filelist] [MC2 filelist]" << endl;
+    cout << "Asked : 3 *** Received : " << argc-1 << endl;
+    cout << "./compMCMC [MC1 filelist] [MC2 filelist] [Cutfile]" << endl;
 
     return 1;
   }
 
   create_kin_plots();
+  readKinCuts(argv[3])
   MC1extraction(argv[1]);
   MC2extraction(argv[2]);
   MultRatio();
