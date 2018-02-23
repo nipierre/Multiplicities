@@ -2727,15 +2727,15 @@ void RDextraction(string pFilelist)
       fQ2test++;
 
       // y cut
-      if(!(0.1<yBj && yBj<0.7)) continue;
+      if(!(fYmin<yBj && yBj<fYmax)) continue;
       fYBjtest++;
 
       // W cut
-      if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
+      if(!(fWmin<sqrt(wBj) && sqrt(wBj)<fWmax)) continue;
       fWBjtest++;
 
       // x cut
-      if(!(0.004<xBj && xBj<0.4)) continue;
+      if(!(fXmin<xBj && xBj<fXmax)) continue;
       fXBjtest++;
 
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
