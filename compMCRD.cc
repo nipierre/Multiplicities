@@ -1472,19 +1472,9 @@ void MCextraction(string pFilelist)
   Double_t xBj = 0;
   Double_t yBj = 0;
   Double_t zBj = 0;
-  Double_t zBj_unid = 0;
   Double_t wBj = 0;
   Double_t nu = 0;
 
-  Double_t MCE0 = 0;
-  Double_t MCE1 = 0;
-  Double_t Q2_MC = 0;
-  Double_t xBj_MC = 0;
-  Double_t yBj_MC = 0;
-  Double_t zBj_MC = 0;
-  Double_t zBj_MC_unid = 0;
-  Double_t wBj_MC = 0;
-  Double_t nu_MC = 0;
 
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
@@ -1775,44 +1765,6 @@ void MCextraction(string pFilelist)
 
       //2006 ---
 
-      //MC
-      MCE0 = sqrt(pow(fM_mu,2)
-                  +MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p0x->GetLeaf("MC_p0x")->GetValue()
-                  +MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p0y->GetLeaf("MC_p0y")->GetValue()
-                  +MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p0z->GetLeaf("MC_p0z")->GetValue());
-
-      MCE1 = sqrt(pow(fM_mu,2)
-                  +MC_p1x->GetLeaf("MC_p1x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
-                  +MC_p1y->GetLeaf("MC_p1y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
-                  +MC_p1z->GetLeaf("MC_p1z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue());
-
-      Q2_MC = 2.*( MCE0*MCE1
-           - MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
-           - MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
-           - MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue()
-           - pow(fM_mu,2));
-
-      nu_MC = MCE0 - MCE1;
-
-      if(MCE0 != 0)
-        yBj_MC = nu_MC/MCE0;
-      else
-        yBj_MC = 0;
-
-      if(nu_MC != 0)
-      {
-        xBj_MC = Q2_MC/(2*fM_p*nu_MC);
-      }
-      else
-      {
-        xBj_MC = 0;
-      }
-
-      if(xBj_MC != 0)
-        wBj_MC = pow(fM_p,2) + Q2_MC*(1-xBj_MC)/xBj_MC;
-      else
-        wBj_MC = 0;
-
       //--------------------------------------------------------------------------
       //--------- Target ---------------------------------------------------------
       //--------------------------------------------------------------------------
@@ -1851,14 +1803,6 @@ void MCextraction(string pFilelist)
       Double_t r = sqrt( (x->GetLeaf("x")->GetValue()-xC)*(x->GetLeaf("x")->GetValue()-xC)
                     + (y->GetLeaf("y")->GetValue()-yC)*(y->GetLeaf("y")->GetValue()-yC) );
 
-      Double_t MC_mcxC = (mcxD-mcxU) * (mczU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (mczU_1-mczD_2) + mcxU;
-      Double_t MC_mcyC = (mcyD-mcyU) * (mczU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (mczU_1-mczD_2) + mcyU;
-      Double_t MC_mcr = sqrt( (MC_vx->GetLeaf("MC_vx")->GetValue()-MC_mcxC)*(MC_vx->GetLeaf("MC_vx")->GetValue()-MC_mcxC)
-                    + (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC)*(MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC) );
-      Double_t MC_xC = (xD-xU) * (zU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (zU_1-zD_2) + xU;
-      Double_t MC_yC = (yD-yU) * (zU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (zU_1-zD_2) + yU;
-      Double_t MC_r = sqrt( (MC_vx->GetLeaf("MC_vx")->GetValue()-MC_xC)*(MC_vx->GetLeaf("MC_vx")->GetValue()-MC_xC)
-                    + (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_yC)*(MC_vy->GetLeaf("MC_vy")->GetValue()-MC_yC) );
 
       //2006 ---
 
@@ -1874,7 +1818,6 @@ void MCextraction(string pFilelist)
       // -----------------------------------------------------------------------
 
       fAllDISflag = 0;
-      int DIS_rec[3][12];
 
       // Best Primary Vertex
       fBP++;
@@ -2430,22 +2373,6 @@ void RDextraction(string pFilelist)
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
-
-  //----------------------------------------------------------------------------
-  //--------- nu cut prep ------------------------------------------------------
-  //----------------------------------------------------------------------------
-
-  for(int i=0; i<12; i++)
-  {
-    fNu_max[1][i] = sqrt(pow(40,2)+pow(fM_K,2))/fZrange[i+1];
-    fNu_min[1][i] = sqrt(pow(MOMENTUM,2)+pow(fM_K,2))/fZrange[i];
-
-    fNu_max[2][i] = sqrt(pow(40,2)+pow(fM_p,2))/fZrange[i+1];
-    fNu_min[2][i] = sqrt(pow(MOMENTUM,2)+pow(fM_p,2))/fZrange[i];
-
-    fNu_max[0][i] = sqrt(pow(40,2)+pow(fM_pi,2))/fZrange[i+1];
-    fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
-  }
 
   // List of files
 
@@ -3061,7 +2988,7 @@ void RDextraction(string pFilelist)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId = 4;
           else fId = 6;
-
+        }
         // Charge -
 
         else if(charge->GetLeaf("Hadrons.charge")->GetValue(i) == -1)
@@ -3139,7 +3066,7 @@ void RDextraction(string pFilelist)
         fXX0test++;
 
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-        if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+        if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
         fMom++;
 
         // Theta cut
@@ -3293,7 +3220,7 @@ int main(int argc, char **argv)
   }
 
   create_kin_plots();
-  readKinCuts(argv[3])
+  readKinCuts(argv[3]);
   RDextraction(argv[1]);
   MCextraction(argv[2]);
   save_kin_plots();
