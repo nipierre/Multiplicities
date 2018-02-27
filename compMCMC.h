@@ -69,6 +69,7 @@ vector<Double_t> fMup[5];
 vector<Double_t> fTheta[5];
 vector<Double_t> fPhi[5];
 vector<Double_t> fVertex[5];
+vector<Double_t> fPt[5];
 
 vector<Double_t> fQ2_MC;
 vector<Double_t> fQ2kinMC[5];
@@ -85,6 +86,7 @@ vector<Double_t> fMupMC[5];
 vector<Double_t> fThetaMC[5];
 vector<Double_t> fPhiMC[5];
 vector<Double_t> fVertexMC[5];
+vector<Double_t> fPtMC[5];
 
 vector<Double_t> fX;
 vector<Double_t> fY;
@@ -187,11 +189,22 @@ Wrapper fBinning_severe[9][5][12];
 
 studyxy fR_xy[24];
 
+// Cuts
+
+Double_t fXmin;
+Double_t fXmax;
+Double_t fYmin;
+Double_t fYmax;
+Double_t fWmin;
+Double_t fWmax;
+Double_t fPmin;
+Double_t fPmax;
+
 //Draw
 
-TH1F* fKinematicsMC1[5][15];
-TH1F* fKinematicsMC2[5][15];
-TH1F* fKinematicsRatio[5][15];
+TH1F* fKinematicsMC1[5][17];
+TH1F* fKinematicsMC2[5][17];
+TH1F* fKinematicsRatio[5][17];
 TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
 TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
@@ -219,9 +232,12 @@ TCanvas c24("Kin_hadron_#phi Trigger","Kin_hadron_#phi Trigger",3200,1600);
 TCanvas c25("Kin_hadron_p","Kin_hadron_p",3200,1600);
 TCanvas c26("Kin_hadron_#theta","Kin_hadron_#theta",3200,1600);
 TCanvas c27("Kin_hadron_#phi","Kin_hadron_#phi",3200,1600);
+TCanvas c28("Kin_hadron_#phi_pl Trigger","Kin_hadron_#phi_pl Trigger",3200,1600);
+TCanvas c29("Kin_hadron_#phi_pl","Kin_hadron_#phi_pl",3200,1600);
+TCanvas c30("Kin_p_T","Kin_hadron_p_T",3200,1600);
 
 TLine* l1[5];
-TLine* l2[15][7];
+TLine* l2[17][7];
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
 
 vector<double> fError;
@@ -241,33 +257,3 @@ static const Double_t fM_K = 493.677/(1e3);
 static const Double_t fM_pi = 139.57018/(1e3);
 
 string trigname[5] = {"MT","LT","OT","LAST","All Trig"};
-
-//----------------------------------------------------------------------------
-//--------- RICH unfolding ---------------------------------------------------
-//----------------------------------------------------------------------------
-
-TMatrixD rich_mat_p[2][10];
-TMatrixD rich_mat_m[2][10];
-TMatrixD inv_rich_p[2][10];
-TMatrixD inv_rich_m[2][10];
-TMatrixD err_rich_p[3][3];
-TMatrixD err_rich_m[3][3];
-Double_t pi_unfolding_err_p[2][10][3];
-Double_t pi_unfolding_err_m[2][10][3];
-Double_t k_unfolding_err_p[2][10][3];
-Double_t k_unfolding_err_m[2][10][3];
-Double_t p_unfolding_err_p[2][10][3];
-Double_t p_unfolding_err_m[2][10][3];
-Int_t mat_bin[2][10];
-Int_t err_bin[2][10];
-Double_t cov1_pi[2][3];
-Double_t cov1_k[2][3];
-Double_t cov1_p[2][3];
-Double_t cov2[2][3];
-TMatrixD pi_sigma_uni(3,3);
-TMatrixD k_sigma_uni(3,3);
-TMatrixD p_sigma_uni(3,3);
-TMatrixD pi_vect(3,1);
-TMatrixD k_vect(3,1);
-TMatrixD p_vect(3,1);
-Double_t dummy;

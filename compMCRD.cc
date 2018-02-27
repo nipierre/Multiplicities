@@ -1,8 +1,6 @@
 #include "compMCRD.h"
 
 //Inputs
-#define mat_RICH_name "rich_mat.txt"
-#define err_RICH_name "rich_mat_error.txt"
 #define target_file_2012 "target-107924-109081.dat"
 #define target_file_2016 "target-274508-274901.dat"
 
@@ -10,10 +8,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define MOMENTUM 3
 #define RCUTSTUDY_ON 0
-//#define SIZESPLIT 1
-//#define OFFSET 0
 
 using namespace std;
 
@@ -164,238 +159,19 @@ void fusionSort(Double_t* tab, Int_t len)
       fusionSort2(tab, 0, len-1);
 }
 
-void load_rich_mat(string prich, string prich_err)
+void readKinCuts(string pFile)
 {
-
-  pi_sigma_uni[0][0] = 1;
-  k_sigma_uni[1][1] = 1;
-  p_sigma_uni[2][2] = 1;
-  pi_vect[0][0] = 1;
-  k_vect[1][0] = 1;
-  p_vect[2][0] = 1;
-
-  for(int i=0; i<2; i++)
-  {
-    for(int j=0; j<10; j++)
-    {
-      rich_mat_p[i][j].ResizeTo(3,3);
-      rich_mat_m[i][j].ResizeTo(3,3);
-      inv_rich_p[i][j].ResizeTo(3,3);
-      inv_rich_m[i][j].ResizeTo(3,3);
-    }
-  }
-
-  for(int i=0; i<3; i++)
-  {
-    for(int j=0; j<3; j++)
-    {
-      err_rich_p[i][j].ResizeTo(3,3);
-      err_rich_m[i][j].ResizeTo(3,3);
-    }
-  }
-
-  ifstream matRICH(prich);
-
-  for(int i=0; i<24; i++)
-  {
-    if(i < 4)
-    {
-      for(int j=0; j<20; j++)
-        matRICH >> dummy;
-    }
-    else
-    {
-      matRICH >> mat_bin[0][i] >> mat_bin[1][i];
-      for(int j=0; j<9; j++)
-      {
-        matRICH >> rich_mat_p[i%2][(i-4)/2][(int)j/3][j%3];
-      }
-      for(int j=0; j<9; j++)
-      {
-        matRICH >> rich_mat_m[i%2][(i-4)/2][(int)j/3][j%3];
-      }
-    }
-  }
-
-  matRICH.close();
-
-  for(int i=0; i<10; i++)
-  {
-    inv_rich_p[0][i] = rich_mat_p[0][i].InvertFast();
-    inv_rich_p[1][i] = rich_mat_p[1][i].InvertFast();
-    inv_rich_m[0][i] = rich_mat_m[0][i].InvertFast();
-    inv_rich_m[1][i] = rich_mat_m[1][i].InvertFast();
-  }
-
-  // Errors YODO
-
-  ifstream errRICH(prich_err);
-
-
-  for(int loop=0; loop<24; loop++)
-  {
-    if(loop < 4)
-    {
-      for(int j=0; j<38; j++)
-        errRICH >> dummy;
-    }
-    else
-    {
-      errRICH >> err_bin[0][loop-4] >> err_bin[1][loop-4];
-
-      errRICH >> err_rich_p[0][0][0][0];
-      errRICH >> err_rich_p[0][1][0][1];
-      errRICH >> err_rich_p[0][2][0][2];//3
-      errRICH >> err_rich_p[0][0][1][0];
-      errRICH >> err_rich_p[0][0][2][0];
-      errRICH >> err_rich_p[1][0][2][0];//6
-      errRICH >> err_rich_p[1][0][1][0];
-      errRICH >> err_rich_p[1][1][1][1];
-      errRICH >> err_rich_p[1][2][1][2];//9
-      errRICH >> err_rich_p[0][1][1][1];
-      errRICH >> err_rich_p[0][1][2][1];
-      errRICH >> err_rich_p[1][1][2][1];//12
-      errRICH >> err_rich_p[2][0][2][0];
-      errRICH >> err_rich_p[2][1][2][1];
-      errRICH >> err_rich_p[2][2][2][2];//15
-      errRICH >> err_rich_p[0][2][1][2];
-      errRICH >> err_rich_p[0][2][2][2];
-      errRICH >> err_rich_p[1][2][2][2];//18
-
-      err_rich_p[0][0][0][0] = pow(err_rich_p[0][0][0][0],2);
-      err_rich_p[0][1][0][1] = pow(err_rich_p[0][1][0][1],2);
-      err_rich_p[0][2][0][2] = pow(err_rich_p[0][2][0][2],2);
-      err_rich_p[1][0][1][0] = pow(err_rich_p[1][0][1][0],2);
-      err_rich_p[1][1][1][1] = pow(err_rich_p[1][1][1][1],2);
-      err_rich_p[1][2][1][2] = pow(err_rich_p[1][2][1][2],2);
-      err_rich_p[2][0][2][0] = pow(err_rich_p[2][0][2][0],2);
-      err_rich_p[2][1][2][1] = pow(err_rich_p[2][1][2][1],2);
-      err_rich_p[2][2][2][2] = pow(err_rich_p[2][2][2][2],2);
-
-      err_rich_p[0][0][1][0] = err_rich_p[1][0][0][0];
-      err_rich_p[0][0][2][0] = err_rich_p[2][0][0][0];
-      err_rich_p[1][0][2][0] = err_rich_p[2][0][1][0];
-
-      err_rich_p[0][1][1][1] = err_rich_p[1][1][0][1];
-      err_rich_p[0][1][2][1] = err_rich_p[2][1][0][1];
-      err_rich_p[1][1][2][1] = err_rich_p[2][1][1][1];
-
-      err_rich_p[0][2][1][2] = err_rich_p[1][2][0][2];
-      err_rich_p[0][2][2][2] = err_rich_p[2][2][0][2];
-      err_rich_p[1][2][2][2] = err_rich_p[2][2][1][2];
-
-      errRICH >> err_rich_m[0][0][0][0];
-      errRICH >> err_rich_m[0][1][0][1];
-      errRICH >> err_rich_m[0][2][0][2];//3
-      errRICH >> err_rich_m[0][0][1][0];
-      errRICH >> err_rich_m[0][0][2][0];
-      errRICH >> err_rich_m[1][0][2][0];//6
-      errRICH >> err_rich_m[1][0][1][0];
-      errRICH >> err_rich_m[1][1][1][1];
-      errRICH >> err_rich_m[1][2][1][2];//9
-      errRICH >> err_rich_m[0][1][1][1];
-      errRICH >> err_rich_m[0][1][2][1];
-      errRICH >> err_rich_m[1][1][2][1];//12
-      errRICH >> err_rich_m[2][0][2][0];
-      errRICH >> err_rich_m[2][1][2][1];
-      errRICH >> err_rich_m[2][2][2][2];//15
-      errRICH >> err_rich_m[0][2][1][2];
-      errRICH >> err_rich_m[0][2][2][2];
-      errRICH >> err_rich_m[1][2][2][2];//18
-
-      err_rich_m[0][0][0][0] = pow(err_rich_m[0][0][0][0],2);
-      err_rich_m[0][1][0][1] = pow(err_rich_m[0][1][0][1],2);
-      err_rich_m[0][2][0][2] = pow(err_rich_m[0][2][0][2],2);
-      err_rich_m[1][0][1][0] = pow(err_rich_m[1][0][1][0],2);
-      err_rich_m[1][1][1][1] = pow(err_rich_m[1][1][1][1],2);
-      err_rich_m[1][2][1][2] = pow(err_rich_m[1][2][1][2],2);
-      err_rich_m[2][0][2][0] = pow(err_rich_m[2][0][2][0],2);
-      err_rich_m[2][1][2][1] = pow(err_rich_m[2][1][2][1],2);
-      err_rich_m[2][2][2][2] = pow(err_rich_m[2][2][2][2],2);
-
-      err_rich_m[0][0][1][0] = err_rich_m[1][0][0][0];
-      err_rich_m[0][0][2][0] = err_rich_m[2][0][0][0];
-      err_rich_m[1][0][2][0] = err_rich_m[2][0][1][0];
-
-      err_rich_m[0][1][1][1] = err_rich_m[1][1][0][1];
-      err_rich_m[0][1][2][1] = err_rich_m[2][1][0][1];
-      err_rich_m[1][1][2][1] = err_rich_m[2][1][1][1];
-
-      err_rich_m[0][2][1][2] = err_rich_m[1][2][0][2];
-      err_rich_m[0][2][2][2] = err_rich_m[2][2][0][2];
-      err_rich_m[1][2][2][2] = err_rich_m[2][2][1][2];
-
-#ifdef DEBUG
-      for(int i=0; i<9; i++)
-      {
-        for(int j=0; j<9; j++)
-        {
-          cout << err_rich_p[i][j] << " ";
-        }
-        cout << endl;
-      }
-#endif
-
-      cout << "\n" << endl;
-
-      for(int i=0; i<3; i++)
-      {
-        cov1_pi[0][i] = 0;
-        cov1_pi[1][i] = 0;
-        cov1_k[0][i] = 0;
-        cov1_k[1][i] = 0;
-        cov1_p[0][i] = 0;
-        cov1_p[1][i] = 0;
-        cov2[0][i] = 0;
-        cov2[1][i] = 0;
-      }
-
-      for(int i=0; i<3; i++)
-      {
-        for(int j=0; j<3; j++)
-        {
-          cov1_pi[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*pi_sigma_uni[j][j],2);
-          cov1_pi[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*pi_sigma_uni[j][j],2);
-          cov1_k[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*k_sigma_uni[j][j],2);
-          cov1_k[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*k_sigma_uni[j][j],2);
-          cov1_p[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*p_sigma_uni[j][j],2);
-          cov1_p[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*p_sigma_uni[j][j],2);
-
-          for(int k=0; k<3; k++)
-          {
-            for(int l=0; l<3; l++)
-            {
-              for(int m=0; m<3; m++)
-              {
-                    cov2[0][i] += inv_rich_p[loop%2][(loop-4)/2][i][j]
-                                   *inv_rich_p[loop%2][(loop-4)/2][i][l]
-                                   *inv_rich_p[loop%2][(loop-4)/2][k][i]
-                                   *inv_rich_p[loop%2][(loop-4)/2][m][i]
-                                   *err_rich_p[j][k][l][m];
-#ifdef DEBUG
-                                  cout << err_rich_p[j*3+k][l*3+m] << endl;
-                                  cout << j*3+k << " " << l*3+m << endl;
-#endif
-                    cov2[1][i] += inv_rich_m[loop%2][(loop-4)/2][i][j]
-                                   *inv_rich_m[loop%2][(loop-4)/2][i][l]
-                                   *inv_rich_m[loop%2][(loop-4)/2][k][i]
-                                   *inv_rich_m[loop%2][(loop-4)/2][m][i]
-                                   *err_rich_m[j][k][l][m];
-              }
-            }
-          }
-        }
-        pi_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_pi[0][i] + cov2[0][i];
-        pi_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_pi[1][i] + cov2[1][i];
-        k_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_k[0][i] + cov2[0][i];
-        k_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_k[1][i] + cov2[1][i];
-        p_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_p[0][i] + cov2[0][i];
-        p_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_p[1][i] + cov2[1][i];
-      }
-    }
-  }
-
-  errRICH.close();
+  string dummy;
+  ifstream list(pFile);
+  list >> dummy >> fXmin;
+  list >> dummy >> fXmax;
+  list >> dummy >> fYmin;
+  list >> dummy >> fYmax;
+  list >> dummy >> fWmin;
+  list >> dummy >> fWmax;
+  list >> dummy >> fPmin;
+  list >> dummy >> fPmax;
+  list.close();
 }
 
 void create_kin_plots()
@@ -415,7 +191,9 @@ void create_kin_plots()
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 50, -320, -70);
     fKinematicsRD[i][12] = new TH1F(Form("p_{hadron} %s",trigname[i].c_str()), Form("p_{hadron} %s",trigname[i].c_str()), 50, 0, 40);
     fKinematicsRD[i][13] = new TH1F(Form("#theta_{hadron} %s",trigname[i].c_str()), Form("#theta_{hadron} %s",trigname[i].c_str()), 50, 0, 0.25);
-    fKinematicsRD[i][14] = new TH1F(Form("#phi_{hadron} %s",trigname[i].c_str()), Form("#phi_{hadron} %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsRD[i][14] = new TH1F(Form("#phi_{hadron,lab} %s",trigname[i].c_str()), Form("#phi_{hadron,lab} %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsRD[i][15] = new TH1F(Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), Form("#phi_{hadron,prod.pl} %s",trigname[i].c_str()), 50, 0, 3.5);
+    fKinematicsRD[i][16] = new TH1F(Form("p_{T} %s",trigname[i].c_str()), Form("p_{T} %s",trigname[i].c_str()), 50, 0, 3);
     fKinematicsMC[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 50, -1, 2);
     fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 50, -3, 0);
     fKinematicsMC[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 50, 0, 1);
@@ -429,14 +207,16 @@ void create_kin_plots()
     fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -320, -70);
     fKinematicsMC[i][12] = new TH1F(Form("p_{hadron} Ratio %s",trigname[i].c_str()), Form("p_{hadron} Ratio %s",trigname[i].c_str()), 50, 0, 40);
     fKinematicsMC[i][13] = new TH1F(Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron} Ratio %s",trigname[i].c_str()), 50, 0, 0.25);
-    fKinematicsMC[i][14] = new TH1F(Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsMC[i][14] = new TH1F(Form("#phi_{hadron,lab} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsMC[i][15] = new TH1F(Form("#phi_{hadron,prod.pl} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
+    fKinematicsMC[i][16] = new TH1F(Form("p_{T} Ratio %s",trigname[i].c_str()), Form("p_{T} Ratio %s",trigname[i].c_str()), 50, 0, 3);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
     BinLogX(fKinematicsMC[i][1]);
   }
-  fKinematicsRD[0][11] = new TH1F("#Phi_h","#Phi_h", 50, 0, 1);
-  fKinematicsMC[0][11] = new TH1F("#Phi_h Ratio","#Phi_h Ratio", 50, 0, 1);
+  fKinematicsRD[0][11] = new TH1F("#phi_{e,prod.pl}","#phi_{e,prod.pl}", 50, 0, 3.5);
+  fKinematicsMC[0][11] = new TH1F("#phi_{e,prod.pl} Ratio","#phi_{e,prod.pl} Ratio", 50, 0, 3.5);
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -450,11 +230,13 @@ void create_kin_plots()
     l1[8][i] = new TLine(0,0.4+i*0.2,0.05,0.4+i*0.2);
     l1[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
     l1[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
-    l1[11][i] = new TLine(0,0.4+i*0.2,1,0.4+i*0.2);
+    l1[11][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l1[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
     l1[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
-    for(int j=0; j<15; j++)
+    l1[15][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
+    l1[16][i] = new TLine(0,0.4+i*0.2,3,0.4+i*0.2);
+    for(int j=0; j<17; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
       l1[j][i]->SetLineWidth(1);
@@ -488,6 +270,10 @@ void save_kin_plots()
   c22.Divide(1,2);
   c23.Divide(1,2);
   c24.Divide(1,2);
+  c25.Divide(2,4);
+  c26.Divide(1,2);
+  c27.Divide(2,4);
+  c28.Divide(1,2);
 
   for(int i=0; i<8; i++)
   {
@@ -495,7 +281,6 @@ void save_kin_plots()
     if(i%2)
     {
       c1.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][0]->GetBinError(tt) && fKinematicsMC[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][0]->GetBinError(tt),2)):0));
@@ -515,6 +300,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->SetMaximum(2.);
       fKinematicsRatio[idx][0]->SetMinimum(0.);
       fKinematicsRatio[idx][0]->Draw("PE2");
+      fKinematicsRatio[idx][0]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][0]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[0][tt]->Draw();
@@ -523,7 +311,6 @@ void save_kin_plots()
       c1.Update();
 
       c2.cd(idx+3+int(idx/2)*2);
-      // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][1]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][1]->GetBinError(tt) && fKinematicsMC[idx][1]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][1]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][1]->GetBinError(tt),2)):0));
@@ -543,6 +330,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][1]->SetMaximum(2.);
       fKinematicsRatio[idx][1]->SetMinimum(0.);
       fKinematicsRatio[idx][1]->Draw("PE2");
+      fKinematicsRatio[idx][1]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][1]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][1]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[1][tt]->Draw();
@@ -551,7 +341,6 @@ void save_kin_plots()
       c2.Update();
 
       c3.cd(idx+3+int(idx/2)*2);
-      // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][2]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][2]->GetBinError(tt) && fKinematicsMC[idx][2]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][2]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][2]->GetBinError(tt),2)):0));
@@ -571,6 +360,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][2]->SetMaximum(2.);
       fKinematicsRatio[idx][2]->SetMinimum(0.);
       fKinematicsRatio[idx][2]->Draw("PE2");
+      fKinematicsRatio[idx][2]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][2]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][2]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[2][tt]->Draw();
@@ -597,6 +389,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][3]->SetMaximum(2.);
       fKinematicsRatio[idx][3]->SetMinimum(0.);
       fKinematicsRatio[idx][3]->Draw("PE2");
+      fKinematicsRatio[idx][3]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][3]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][3]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[3][tt]->Draw();
@@ -604,7 +399,6 @@ void save_kin_plots()
       c4.Update();
 
       c5.cd(idx+3+int(idx/2)*2);
-      // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][4]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][4]->GetBinError(tt) && fKinematicsMC[idx][4]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][4]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][4]->GetBinError(tt),2)):0));
@@ -624,6 +418,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][4]->SetMaximum(2.);
       fKinematicsRatio[idx][4]->SetMinimum(0.);
       fKinematicsRatio[idx][4]->Draw("PE2");
+      fKinematicsRatio[idx][4]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][4]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][4]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[4][tt]->Draw();
@@ -631,7 +428,6 @@ void save_kin_plots()
       c5.Update();
 
       c6.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][5]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][5]->GetBinError(tt) && fKinematicsMC[idx][5]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][5]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][5]->GetBinError(tt),2)):0));
@@ -651,6 +447,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][5]->SetMaximum(2.);
       fKinematicsRatio[idx][5]->SetMinimum(0.);
       fKinematicsRatio[idx][5]->Draw("PE2");
+      fKinematicsRatio[idx][5]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][5]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][5]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[5][tt]->Draw();
@@ -658,7 +457,6 @@ void save_kin_plots()
       c6.Update();
 
       c14.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][6]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][6]->GetBinError(tt) && fKinematicsMC[idx][6]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][6]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][6]->GetBinError(tt),2)):0));
@@ -678,6 +476,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][6]->SetMaximum(2.);
       fKinematicsRatio[idx][6]->SetMinimum(0.);
       fKinematicsRatio[idx][6]->Draw("PE2");
+      fKinematicsRatio[idx][6]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][6]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][6]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[6][tt]->Draw();
@@ -685,7 +486,6 @@ void save_kin_plots()
       c14.Update();
 
       c15.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][7]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][7]->GetBinError(tt) && fKinematicsMC[idx][7]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][7]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][7]->GetBinError(tt),2)):0));
@@ -705,6 +505,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][7]->SetMaximum(2.);
       fKinematicsRatio[idx][7]->SetMinimum(0.);
       fKinematicsRatio[idx][7]->Draw("PE2");
+      fKinematicsRatio[idx][7]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][7]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][7]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[7][tt]->Draw();
@@ -712,7 +515,6 @@ void save_kin_plots()
       c15.Update();
 
       c16.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][8]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][8]->GetBinError(tt) && fKinematicsMC[idx][8]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][8]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][8]->GetBinError(tt),2)):0));
@@ -732,6 +534,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][8]->SetMaximum(2.);
       fKinematicsRatio[idx][8]->SetMinimum(0.);
       fKinematicsRatio[idx][8]->Draw("PE2");
+      fKinematicsRatio[idx][8]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][8]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][8]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[8][tt]->Draw();
@@ -739,7 +544,6 @@ void save_kin_plots()
       c16.Update();
 
       c17.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][9]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][9]->GetBinError(tt) && fKinematicsMC[idx][9]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][9]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][9]->GetBinError(tt),2)):0));
@@ -759,6 +563,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][9]->SetMaximum(2.);
       fKinematicsRatio[idx][9]->SetMinimum(0.);
       fKinematicsRatio[idx][9]->Draw("PE2");
+      fKinematicsRatio[idx][9]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][9]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][9]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[9][tt]->Draw();
@@ -766,7 +573,6 @@ void save_kin_plots()
       c17.Update();
 
       c18.cd(idx+3+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][10]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][10]->GetBinError(tt) && fKinematicsMC[idx][10]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][10]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][10]->GetBinError(tt),2)):0));
@@ -786,6 +592,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][10]->SetMaximum(2.);
       fKinematicsRatio[idx][10]->SetMinimum(0.);
       fKinematicsRatio[idx][10]->Draw("PE2");
+      fKinematicsRatio[idx][10]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][10]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][10]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[10][tt]->Draw();
@@ -793,7 +602,6 @@ void save_kin_plots()
       c18.Update();
 
       c19.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][12]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][12]->GetBinError(tt) && fKinematicsMC[idx][12]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][12]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][12]->GetBinError(tt),2)):0));
@@ -813,6 +621,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][12]->SetMaximum(2.);
       fKinematicsRatio[idx][12]->SetMinimum(0.);
       fKinematicsRatio[idx][12]->Draw("PE2");
+      fKinematicsRatio[idx][12]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][12]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][12]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[12][tt]->Draw();
@@ -820,7 +631,6 @@ void save_kin_plots()
       c19.Update();
 
       c20.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][13]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][13]->GetBinError(tt) && fKinematicsMC[idx][13]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][13]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][13]->GetBinError(tt),2)):0));
@@ -840,6 +650,9 @@ void save_kin_plots()
       fKinematicsRatio[idx][13]->SetMaximum(2.);
       fKinematicsRatio[idx][13]->SetMinimum(0.);
       fKinematicsRatio[idx][13]->Draw("PE2");
+      fKinematicsRatio[idx][13]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][13]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][13]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[13][tt]->Draw();
@@ -847,7 +660,6 @@ void save_kin_plots()
       c20.Update();
 
       c21.cd(idx+3+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.6-i%2*0.5,0.5+i%2*0.5,0.7-i%2*0.5);
       for(int tt=0; tt<fKinematicsRD[idx][14]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][14]->GetBinError(tt) && fKinematicsMC[idx][14]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][14]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][14]->GetBinError(tt),2)):0));
@@ -867,45 +679,112 @@ void save_kin_plots()
       fKinematicsRatio[idx][14]->SetMaximum(2.);
       fKinematicsRatio[idx][14]->SetMinimum(0.);
       fKinematicsRatio[idx][14]->Draw("PE2");
+      fKinematicsRatio[idx][14]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][14]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][14]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
         l1[14][tt]->Draw();
       }
       c21.Update();
+
+      c25.cd(idx+3+int(idx/2)*2);
+      for(int tt=0; tt<fKinematicsRD[idx][15]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsRD[idx][15]->GetBinError(tt) && fKinematicsMC[idx][15]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][15]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][15]->GetBinError(tt),2)):0));
+      }
+      fKinematicsRD[idx][15]->Scale(1/fKinematicsRD[2][15]->GetEntries());
+      fKinematicsMC[idx][15]->Scale(1/fKinematicsMC[2][15]->GetEntries());
+      fKinematicsRatio[idx][15] = (TH1F*)fKinematicsRD[idx][15]->Clone();
+      fKinematicsRatio[idx][15]->SetStats(0);
+      fKinematicsRatio[idx][15]->Divide(fKinematicsMC[idx][15]);
+      for(int tt=0; tt<fKinematicsRatio[idx][15]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][15]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
+      fKinematicsRatio[idx][15]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][15]->SetFillColor(kYellow-7);
+      fKinematicsRatio[idx][15]->SetMaximum(2.);
+      fKinematicsRatio[idx][15]->SetMinimum(0.);
+      fKinematicsRatio[idx][15]->Draw("PE2");
+      fKinematicsRatio[idx][15]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][15]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][15]->GetYaxis()->SetNdivisions(2,kFALSE);
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[15][tt]->Draw();
+      }
+      c25.Update();
+
+      c27.cd(idx+3+int(idx/2)*2);
+      for(int tt=0; tt<fKinematicsRD[idx][16]->GetNbinsX(); tt++)
+      {
+        fError.push_back((fKinematicsRD[idx][16]->GetBinError(tt) && fKinematicsMC[idx][16]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][16]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][16]->GetBinError(tt),2)):0));
+      }
+      fKinematicsRD[idx][16]->Scale(1/fKinematicsRD[2][16]->GetEntries());
+      fKinematicsMC[idx][16]->Scale(1/fKinematicsMC[2][16]->GetEntries());
+      fKinematicsRatio[idx][16] = (TH1F*)fKinematicsRD[idx][16]->Clone();
+      fKinematicsRatio[idx][16]->SetStats(0);
+      fKinematicsRatio[idx][16]->Divide(fKinematicsMC[idx][16]);
+      for(int tt=0; tt<fKinematicsRatio[idx][16]->GetNbinsX(); tt++)
+      {
+        fKinematicsRatio[idx][16]->SetBinError(tt,fError[tt]);
+      }
+      fError.clear();
+      fKinematicsRatio[idx][16]->SetMarkerStyle(21);
+      fKinematicsRatio[idx][16]->SetFillColor(kYellow-7);
+      fKinematicsRatio[idx][16]->SetMaximum(2.);
+      fKinematicsRatio[idx][16]->SetMinimum(0.);
+      fKinematicsRatio[idx][16]->Draw("PE2");
+      fKinematicsRatio[idx][16]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][16]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRatio[idx][16]->GetYaxis()->SetNdivisions(2,kFALSE);
+      for(int tt=0; tt<7; tt++)
+      {
+        l1[16][tt]->Draw();
+      }
+      c27.Update();
     }
     else
     {
       c1.cd(idx+1+int(idx/2)*2);
-      // TPad *pad1 = new TPad("pad1","pad1",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][0]->SetLineColor(kRed);
       fKinematicsRD[idx][0]->SetStats(0);
       fKinematicsRD[idx][0]->SetMinimum(0.);
-      fKinematicsRD[idx][0]->SetMaximum(max(fKinematicsRD[idx][0]->GetMaximum()*1.2,fKinematicsMC[idx][0]->GetMaximum()*1.2));
       fKinematicsRD[idx][0]->Draw();
+      fKinematicsRD[idx][0]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][0]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][0]->SetMaximum(max(fKinematicsRD[idx][0]->GetMaximum()*1.2,fKinematicsMC[idx][0]->GetMaximum()*1.2));
+      fKinematicsRD[idx][0]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
       fKinematicsMC[idx][0]->Draw("SAME");
       gPad->SetLogx();
       c1.Update();
 
       c2.cd(idx+1+int(idx/2)*2);
-      // TPad *pad2 = new TPad("pad2","pad2",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][1]->SetLineColor(kRed);
       fKinematicsRD[idx][1]->SetStats(0);
       fKinematicsRD[idx][1]->SetMinimum(0.);
-      fKinematicsRD[idx][1]->SetMaximum(max(fKinematicsRD[idx][1]->GetMaximum()*1.2,fKinematicsMC[idx][1]->GetMaximum()*1.2));
       fKinematicsRD[idx][1]->Draw();
+      fKinematicsRD[idx][1]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][1]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][1]->SetMaximum(max(fKinematicsRD[idx][1]->GetMaximum()*1.2,fKinematicsMC[idx][1]->GetMaximum()*1.2));
+      fKinematicsRD[idx][1]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][1]->SetLineColor(kBlue);
       fKinematicsMC[idx][1]->Draw("SAME");
       gPad->SetLogx();
       c2.Update();
 
       c3.cd(idx+1+int(idx/2)*2);
-      // TPad *pad3 = new TPad("pad3","pad3",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][2]->SetLineColor(kRed);
       fKinematicsRD[idx][2]->SetStats(0);
       fKinematicsRD[idx][2]->SetMinimum(0.);
-      fKinematicsRD[idx][2]->SetMaximum(max(fKinematicsRD[idx][2]->GetMaximum()*1.2,fKinematicsMC[idx][2]->GetMaximum()*1.2));
       fKinematicsRD[idx][2]->Draw();
+      fKinematicsRD[idx][2]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][2]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][2]->SetMaximum(max(fKinematicsRD[idx][2]->GetMaximum()*1.2,fKinematicsMC[idx][2]->GetMaximum()*1.2));
+      fKinematicsRD[idx][2]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][2]->SetLineColor(kBlue);
       fKinematicsMC[idx][2]->Draw("SAME");
       c3.Update();
@@ -914,121 +793,170 @@ void save_kin_plots()
       fKinematicsRD[idx][3]->SetLineColor(kRed);
       fKinematicsRD[idx][3]->SetStats(0);
       fKinematicsRD[idx][3]->SetMinimum(0.);
-      fKinematicsRD[idx][3]->SetMaximum(max(fKinematicsRD[idx][3]->GetMaximum()*1.2,fKinematicsMC[idx][3]->GetMaximum()*1.2));
       fKinematicsRD[idx][3]->Draw();
+      fKinematicsRD[idx][3]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][3]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][3]->SetMaximum(max(fKinematicsRD[idx][3]->GetMaximum()*1.2,fKinematicsMC[idx][3]->GetMaximum()*1.2));
+      fKinematicsRD[idx][3]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][3]->SetLineColor(kBlue);
       fKinematicsMC[idx][3]->Draw("SAME");
       c4.Update();
 
       c5.cd(idx+1+int(idx/2)*2);
-      // TPad *pad4 = new TPad("pad4","pad4",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][4]->SetLineColor(kRed);
       fKinematicsRD[idx][4]->SetStats(0);
       fKinematicsRD[idx][4]->SetMinimum(0.);
-      fKinematicsRD[idx][4]->SetMaximum(max(fKinematicsRD[idx][4]->GetMaximum()*1.2,fKinematicsMC[idx][4]->GetMaximum()*1.2));
       fKinematicsRD[idx][4]->Draw();
+      fKinematicsRD[idx][4]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][4]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][4]->SetMaximum(max(fKinematicsRD[idx][4]->GetMaximum()*1.2,fKinematicsMC[idx][4]->GetMaximum()*1.2));
+      fKinematicsRD[idx][4]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][4]->SetLineColor(kBlue);
       fKinematicsMC[idx][4]->Draw("SAME");
       c5.Update();
 
       c6.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][5]->SetLineColor(kRed);
       fKinematicsRD[idx][5]->SetStats(0);
       fKinematicsRD[idx][5]->SetMinimum(0.);
-      fKinematicsRD[idx][5]->SetMaximum(max(fKinematicsRD[idx][5]->GetMaximum()*1.2,fKinematicsMC[idx][5]->GetMaximum()*1.2));
       fKinematicsRD[idx][5]->Draw();
+      fKinematicsRD[idx][5]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][5]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][5]->SetMaximum(max(fKinematicsRD[idx][5]->GetMaximum()*1.2,fKinematicsMC[idx][5]->GetMaximum()*1.2));
+      fKinematicsRD[idx][5]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][5]->SetLineColor(kBlue);
       fKinematicsMC[idx][5]->Draw("SAME");
       c6.Update();
 
       c14.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][6]->SetLineColor(kRed);
       fKinematicsRD[idx][6]->SetStats(0);
       fKinematicsRD[idx][6]->SetMinimum(0.);
-      fKinematicsRD[idx][6]->SetMaximum(max(fKinematicsRD[idx][6]->GetMaximum()*1.2,fKinematicsMC[idx][6]->GetMaximum()*1.2));
       fKinematicsRD[idx][6]->Draw();
+      fKinematicsRD[idx][6]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][6]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][6]->SetMaximum(max(fKinematicsRD[idx][6]->GetMaximum()*1.2,fKinematicsMC[idx][6]->GetMaximum()*1.2));
+      fKinematicsRD[idx][6]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][6]->SetLineColor(kBlue);
       fKinematicsMC[idx][6]->Draw("SAME");
       c14.Update();
 
       c15.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][7]->SetLineColor(kRed);
       fKinematicsRD[idx][7]->SetStats(0);
       fKinematicsRD[idx][7]->SetMinimum(0.);
-      fKinematicsRD[idx][7]->SetMaximum(max(fKinematicsRD[idx][7]->GetMaximum()*1.2,fKinematicsMC[idx][7]->GetMaximum()*1.2));
       fKinematicsRD[idx][7]->Draw();
+      fKinematicsRD[idx][7]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][7]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][7]->SetMaximum(max(fKinematicsRD[idx][7]->GetMaximum()*1.2,fKinematicsMC[idx][7]->GetMaximum()*1.2));
+      fKinematicsRD[idx][7]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][7]->SetLineColor(kBlue);
       fKinematicsMC[idx][7]->Draw("SAME");
       c15.Update();
 
       c16.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][8]->SetLineColor(kRed);
       fKinematicsRD[idx][8]->SetStats(0);
       fKinematicsRD[idx][8]->SetMinimum(0.);
-      fKinematicsRD[idx][8]->SetMaximum(max(fKinematicsRD[idx][8]->GetMaximum()*1.2,fKinematicsMC[idx][8]->GetMaximum()*1.2));
       fKinematicsRD[idx][8]->Draw();
+      fKinematicsRD[idx][8]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][8]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][8]->SetMaximum(max(fKinematicsRD[idx][8]->GetMaximum()*1.2,fKinematicsMC[idx][8]->GetMaximum()*1.2));
+      fKinematicsRD[idx][8]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][8]->SetLineColor(kBlue);
       fKinematicsMC[idx][8]->Draw("SAME");
       c16.Update();
 
       c17.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][9]->SetLineColor(kRed);
       fKinematicsRD[idx][9]->SetStats(0);
       fKinematicsRD[idx][9]->SetMinimum(0.);
-      fKinematicsRD[idx][9]->SetMaximum(max(fKinematicsRD[idx][9]->GetMaximum()*1.2,fKinematicsMC[idx][9]->GetMaximum()*1.2));
       fKinematicsRD[idx][9]->Draw();
+      fKinematicsRD[idx][9]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][9]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][9]->SetMaximum(max(fKinematicsRD[idx][9]->GetMaximum()*1.2,fKinematicsMC[idx][9]->GetMaximum()*1.2));
+      fKinematicsRD[idx][9]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][9]->SetLineColor(kBlue);
       fKinematicsMC[idx][9]->Draw("SAME");
       c17.Update();
 
       c18.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][10]->SetLineColor(kRed);
       fKinematicsRD[idx][10]->SetStats(0);
       fKinematicsRD[idx][10]->SetMinimum(0.);
-      fKinematicsRD[idx][10]->SetMaximum(max(fKinematicsRD[idx][10]->GetMaximum()*1.2,fKinematicsMC[idx][10]->GetMaximum()*1.2));
       fKinematicsRD[idx][10]->Draw();
+      fKinematicsRD[idx][10]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][10]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][10]->SetMaximum(max(fKinematicsRD[idx][10]->GetMaximum()*1.2,fKinematicsMC[idx][10]->GetMaximum()*1.2));
+      fKinematicsRD[idx][10]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][10]->SetLineColor(kBlue);
       fKinematicsMC[idx][10]->Draw("SAME");
       c18.Update();
 
       c19.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][12]->SetLineColor(kRed);
       fKinematicsRD[idx][12]->SetStats(0);
       fKinematicsRD[idx][12]->SetMinimum(0.);
-      fKinematicsRD[idx][12]->SetMaximum(max(fKinematicsRD[idx][12]->GetMaximum()*1.2,fKinematicsMC[idx][12]->GetMaximum()*1.2));
       fKinematicsRD[idx][12]->Draw();
+      fKinematicsRD[idx][12]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][12]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][12]->SetMaximum(max(fKinematicsRD[idx][12]->GetMaximum()*1.2,fKinematicsMC[idx][12]->GetMaximum()*1.2));
+      fKinematicsRD[idx][12]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][12]->SetLineColor(kBlue);
       fKinematicsMC[idx][12]->Draw("SAME");
       c19.Update();
 
       c20.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][13]->SetLineColor(kRed);
       fKinematicsRD[idx][13]->SetStats(0);
       fKinematicsRD[idx][13]->SetMinimum(0.);
-      fKinematicsRD[idx][13]->SetMaximum(max(fKinematicsRD[idx][13]->GetMaximum()*1.2,fKinematicsMC[idx][13]->GetMaximum()*1.2));
       fKinematicsRD[idx][13]->Draw();
+      fKinematicsRD[idx][13]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][13]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][13]->SetMaximum(max(fKinematicsRD[idx][13]->GetMaximum()*1.2,fKinematicsMC[idx][13]->GetMaximum()*1.2));
+      fKinematicsRD[idx][13]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][13]->SetLineColor(kBlue);
       fKinematicsMC[idx][13]->Draw("SAME");
       c20.Update();
 
       c21.cd(idx+1+int(idx/2)*2);
-      // TPad *pad5 = new TPad("pad5","pad5",0+i%2*0.5,0.7-i%2*0.5,0.5+i%2*0.5,1-i%2*0.5);
       fKinematicsRD[idx][14]->SetLineColor(kRed);
       fKinematicsRD[idx][14]->SetStats(0);
       fKinematicsRD[idx][14]->SetMinimum(0.);
-      fKinematicsRD[idx][14]->SetMaximum(max(fKinematicsRD[idx][14]->GetMaximum()*1.2,fKinematicsMC[idx][14]->GetMaximum()*1.2));
       fKinematicsRD[idx][14]->Draw();
+      fKinematicsRD[idx][14]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][14]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][14]->SetMaximum(max(fKinematicsRD[idx][14]->GetMaximum()*1.2,fKinematicsMC[idx][14]->GetMaximum()*1.2));
+      fKinematicsRD[idx][14]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][14]->SetLineColor(kBlue);
       fKinematicsMC[idx][14]->Draw("SAME");
       c21.Update();
+
+      c25.cd(idx+1+int(idx/2)*2);
+      fKinematicsRD[idx][15]->SetLineColor(kRed);
+      fKinematicsRD[idx][15]->SetStats(0);
+      fKinematicsRD[idx][15]->SetMinimum(0.);
+      fKinematicsRD[idx][15]->Draw();
+      fKinematicsRD[idx][15]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][15]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][15]->SetMaximum(max(fKinematicsRD[idx][15]->GetMaximum()*1.2,fKinematicsMC[idx][15]->GetMaximum()*1.2));
+      fKinematicsRD[idx][15]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsMC[idx][15]->SetLineColor(kBlue);
+      fKinematicsMC[idx][15]->Draw("SAME");
+      c25.Update();
+
+      c27.cd(idx+1+int(idx/2)*2);
+      fKinematicsRD[idx][16]->SetLineColor(kRed);
+      fKinematicsRD[idx][16]->SetStats(0);
+      fKinematicsRD[idx][16]->SetMinimum(0.);
+      fKinematicsRD[idx][16]->Draw();
+      fKinematicsRD[idx][16]->GetXaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][16]->GetYaxis()->SetLabelSize(0.08);
+      fKinematicsRD[idx][16]->SetMaximum(max(fKinematicsRD[idx][16]->GetMaximum()*1.2,fKinematicsMC[idx][16]->GetMaximum()*1.2));
+      fKinematicsRD[idx][16]->GetYaxis()->SetNdivisions(304,kTRUE);
+      fKinematicsMC[idx][16]->SetLineColor(kBlue);
+      fKinematicsMC[idx][16]->Draw("SAME");
+      c27.Update();
     }
   }
 
@@ -1052,6 +980,9 @@ void save_kin_plots()
   fKinematicsRatio[0][11]->SetMaximum(2.);
   fKinematicsRatio[0][11]->SetMinimum(0.);
   fKinematicsRatio[0][11]->Draw("PE2");
+  fKinematicsRatio[0][11]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[0][11]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[0][11]->GetYaxis()->SetNdivisions(2,kTRUE);
   for(int tt=0; tt<7; tt++)
   {
     l1[11][tt]->Draw();
@@ -1063,6 +994,9 @@ void save_kin_plots()
   fKinematicsRD[0][11]->SetMinimum(0.);
   fKinematicsRD[0][11]->SetMaximum(max(fKinematicsRD[0][11]->GetMaximum()*1.2,fKinematicsMC[0][11]->GetMaximum()*1.2));
   fKinematicsRD[0][11]->Draw();
+  fKinematicsRD[0][11]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[0][11]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsRD[0][11]->GetYaxis()->SetNdivisions(304,kTRUE);
   fKinematicsMC[0][11]->SetLineColor(kBlue);
   fKinematicsMC[0][11]->Draw("SAME");
   c7.Update();
@@ -1087,6 +1021,8 @@ void save_kin_plots()
   fKinematicsRatio[4][0]->SetMaximum(2.);
   fKinematicsRatio[4][0]->SetMinimum(0.);
   fKinematicsRatio[4][0]->Draw("PE2");
+  fKinematicsRatio[4][0]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][0]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[0][tt]->Draw();
@@ -1099,6 +1035,8 @@ void save_kin_plots()
   fKinematicsRD[4][0]->SetMinimum(0.);
   fKinematicsRD[4][0]->SetMaximum(max(fKinematicsRD[4][0]->GetMaximum()*1.2,fKinematicsMC[4][0]->GetMaximum()*1.2));
   fKinematicsRD[4][0]->Draw();
+  fKinematicsRD[4][0]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][0]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][0]->SetLineColor(kBlue);
   fKinematicsMC[4][0]->Draw("SAME");
   gPad->SetLogx();
@@ -1124,6 +1062,8 @@ void save_kin_plots()
   fKinematicsRatio[4][1]->SetMaximum(2.);
   fKinematicsRatio[4][1]->SetMinimum(0.);
   fKinematicsRatio[4][1]->Draw("PE2");
+  fKinematicsRatio[4][1]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][1]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[1][tt]->Draw();
@@ -1136,6 +1076,8 @@ void save_kin_plots()
   fKinematicsRD[4][1]->SetMinimum(0.);
   fKinematicsRD[4][1]->SetMaximum(max(fKinematicsRD[4][1]->GetMaximum()*1.2,fKinematicsMC[4][1]->GetMaximum()*1.2));
   fKinematicsRD[4][1]->Draw();
+  fKinematicsRD[4][1]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][1]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][1]->SetLineColor(kBlue);
   fKinematicsMC[4][1]->Draw("SAME");
   gPad->SetLogx();
@@ -1161,6 +1103,8 @@ void save_kin_plots()
   fKinematicsRatio[4][2]->SetMaximum(2.);
   fKinematicsRatio[4][2]->SetMinimum(0.);
   fKinematicsRatio[4][2]->Draw("PE2");
+  fKinematicsRatio[4][2]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][2]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[2][tt]->Draw();
@@ -1172,6 +1116,8 @@ void save_kin_plots()
   fKinematicsRD[4][2]->SetMinimum(0.);
   fKinematicsRD[4][2]->SetMaximum(max(fKinematicsRD[4][2]->GetMaximum()*1.2,fKinematicsMC[4][2]->GetMaximum()*1.2));
   fKinematicsRD[4][2]->Draw();
+  fKinematicsRD[4][2]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][2]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][2]->SetLineColor(kBlue);
   fKinematicsMC[4][2]->Draw("SAME");
   c10.Update();
@@ -1196,6 +1142,8 @@ void save_kin_plots()
   fKinematicsRatio[4][3]->SetMaximum(2.);
   fKinematicsRatio[4][3]->SetMinimum(0.);
   fKinematicsRatio[4][3]->Draw("PE2");
+  fKinematicsRatio[4][3]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][3]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[3][tt]->Draw();
@@ -1207,6 +1155,8 @@ void save_kin_plots()
   fKinematicsRD[4][3]->SetMinimum(0.);
   fKinematicsRD[4][3]->SetMaximum(max(fKinematicsRD[4][3]->GetMaximum()*1.2,fKinematicsMC[4][3]->GetMaximum()*1.2));
   fKinematicsRD[4][3]->Draw();
+  fKinematicsRD[4][3]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][3]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][3]->SetLineColor(kBlue);
   fKinematicsMC[4][3]->Draw("SAME");
   c11.Update();
@@ -1231,6 +1181,8 @@ void save_kin_plots()
   fKinematicsRatio[4][4]->SetMaximum(2.);
   fKinematicsRatio[4][4]->SetMinimum(0.);
   fKinematicsRatio[4][4]->Draw("PE2");
+  fKinematicsRatio[4][4]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][4]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[4][tt]->Draw();
@@ -1242,6 +1194,8 @@ void save_kin_plots()
   fKinematicsRD[4][4]->SetMinimum(0.);
   fKinematicsRD[4][4]->SetMaximum(max(fKinematicsRD[4][4]->GetMaximum()*1.2,fKinematicsMC[4][4]->GetMaximum()*1.2));
   fKinematicsRD[4][4]->Draw();
+  fKinematicsRD[4][4]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][4]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][4]->SetLineColor(kBlue);
   fKinematicsMC[4][4]->Draw("SAME");
   c12.Update();
@@ -1266,6 +1220,8 @@ void save_kin_plots()
   fKinematicsRatio[4][5]->SetMaximum(2.);
   fKinematicsRatio[4][5]->SetMinimum(0.);
   fKinematicsRatio[4][5]->Draw("PE2");
+  fKinematicsRatio[4][5]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][5]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[5][tt]->Draw();
@@ -1277,6 +1233,8 @@ void save_kin_plots()
   fKinematicsRD[4][5]->SetMinimum(0.);
   fKinematicsRD[4][5]->SetMaximum(max(fKinematicsRD[4][5]->GetMaximum()*1.2,fKinematicsMC[4][5]->GetMaximum()*1.2));
   fKinematicsRD[4][5]->Draw();
+  fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][5]->SetLineColor(kBlue);
   fKinematicsMC[4][5]->Draw("SAME");
   c13.Update();
@@ -1301,6 +1259,8 @@ void save_kin_plots()
   fKinematicsRatio[4][12]->SetMaximum(2.);
   fKinematicsRatio[4][12]->SetMinimum(0.);
   fKinematicsRatio[4][12]->Draw("PE2");
+  fKinematicsRatio[4][12]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][12]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[12][tt]->Draw();
@@ -1312,6 +1272,8 @@ void save_kin_plots()
   fKinematicsRD[4][12]->SetMinimum(0.);
   fKinematicsRD[4][12]->SetMaximum(max(fKinematicsRD[4][12]->GetMaximum()*1.2,fKinematicsMC[4][12]->GetMaximum()*1.2));
   fKinematicsRD[4][12]->Draw();
+  fKinematicsRD[4][12]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][12]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][12]->SetLineColor(kBlue);
   fKinematicsMC[4][12]->Draw("SAME");
   c22.Update();
@@ -1336,6 +1298,8 @@ void save_kin_plots()
   fKinematicsRatio[4][13]->SetMaximum(2.);
   fKinematicsRatio[4][13]->SetMinimum(0.);
   fKinematicsRatio[4][13]->Draw("PE2");
+  fKinematicsRatio[4][13]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][13]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[13][tt]->Draw();
@@ -1347,6 +1311,8 @@ void save_kin_plots()
   fKinematicsRD[4][13]->SetMinimum(0.);
   fKinematicsRD[4][13]->SetMaximum(max(fKinematicsRD[4][13]->GetMaximum()*1.2,fKinematicsMC[4][13]->GetMaximum()*1.2));
   fKinematicsRD[4][13]->Draw();
+  fKinematicsRD[4][13]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][13]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][13]->SetLineColor(kBlue);
   fKinematicsMC[4][13]->Draw("SAME");
   c23.Update();
@@ -1371,6 +1337,8 @@ void save_kin_plots()
   fKinematicsRatio[4][14]->SetMaximum(2.);
   fKinematicsRatio[4][14]->SetMinimum(0.);
   fKinematicsRatio[4][14]->Draw("PE2");
+  fKinematicsRatio[4][14]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][14]->GetYaxis()->SetLabelSize(0.08);
   for(int tt=0; tt<7; tt++)
   {
     l1[14][tt]->Draw();
@@ -1382,10 +1350,89 @@ void save_kin_plots()
   fKinematicsRD[4][14]->SetMinimum(0.);
   fKinematicsRD[4][14]->SetMaximum(max(fKinematicsRD[4][14]->GetMaximum()*1.2,fKinematicsMC[4][14]->GetMaximum()*1.2));
   fKinematicsRD[4][14]->Draw();
+  fKinematicsRD[4][14]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][14]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][14]->SetLineColor(kBlue);
   fKinematicsMC[4][14]->Draw("SAME");
   c24.Update();
 
+  c26.cd(2);
+  for(int tt=0; tt<fKinematicsRD[4][15]->GetNbinsX(); tt++)
+  {
+    fError.push_back((fKinematicsRD[4][15]->GetBinError(tt) && fKinematicsMC[4][15]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][15]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][15]->GetBinError(tt),2)):0));
+  }
+  fKinematicsRD[4][15]->Scale(1/fKinematicsRD[4][15]->GetEntries());
+  fKinematicsMC[4][15]->Scale(1/fKinematicsMC[4][15]->GetEntries());
+  fKinematicsRatio[4][15] = (TH1F*)fKinematicsRD[4][15]->Clone();
+  fKinematicsRatio[4][15]->SetStats(0);
+  fKinematicsRatio[4][15]->Divide(fKinematicsMC[4][15]);
+  for(int tt=0; tt<fKinematicsRatio[4][15]->GetNbinsX(); tt++)
+  {
+    fKinematicsRatio[4][15]->SetBinError(tt,fError[tt]);
+  }
+  fError.clear();
+  fKinematicsRatio[4][15]->SetMarkerStyle(21);
+  fKinematicsRatio[4][15]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][15]->SetMaximum(2.);
+  fKinematicsRatio[4][15]->SetMinimum(0.);
+  fKinematicsRatio[4][15]->Draw("PE2");
+  fKinematicsRatio[4][15]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][15]->GetYaxis()->SetLabelSize(0.08);
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[15][tt]->Draw();
+  }
+  c26.Update();
+  c26.cd(1);
+  fKinematicsRD[4][15]->SetLineColor(kRed);
+  fKinematicsRD[4][15]->SetStats(0);
+  fKinematicsRD[4][15]->SetMinimum(0.);
+  fKinematicsRD[4][15]->SetMaximum(max(fKinematicsRD[4][15]->GetMaximum()*1.2,fKinematicsMC[4][15]->GetMaximum()*1.2));
+  fKinematicsRD[4][15]->Draw();
+  fKinematicsRD[4][15]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][15]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsMC[4][15]->SetLineColor(kBlue);
+  fKinematicsMC[4][15]->Draw("SAME");
+  c26.Update();
+
+  c28.cd(2);
+  for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
+  {
+    fError.push_back((fKinematicsRD[4][16]->GetBinError(tt) && fKinematicsMC[4][16]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][16]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][16]->GetBinError(tt),2)):0));
+  }
+  fKinematicsRD[4][16]->Scale(1/fKinematicsRD[4][16]->GetEntries());
+  fKinematicsMC[4][16]->Scale(1/fKinematicsMC[4][16]->GetEntries());
+  fKinematicsRatio[4][16] = (TH1F*)fKinematicsRD[4][16]->Clone();
+  fKinematicsRatio[4][16]->SetStats(0);
+  fKinematicsRatio[4][16]->Divide(fKinematicsMC[4][16]);
+  for(int tt=0; tt<fKinematicsRatio[4][16]->GetNbinsX(); tt++)
+  {
+    fKinematicsRatio[4][16]->SetBinError(tt,fError[tt]);
+  }
+  fError.clear();
+  fKinematicsRatio[4][16]->SetMarkerStyle(21);
+  fKinematicsRatio[4][16]->SetFillColor(kYellow-7);
+  fKinematicsRatio[4][16]->SetMaximum(2.);
+  fKinematicsRatio[4][16]->SetMinimum(0.);
+  fKinematicsRatio[4][16]->Draw("PE2");
+  fKinematicsRatio[4][16]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[4][16]->GetYaxis()->SetLabelSize(0.08);
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[16][tt]->Draw();
+  }
+  c28.Update();
+  c28.cd(1);
+  fKinematicsRD[4][16]->SetLineColor(kRed);
+  fKinematicsRD[4][16]->SetStats(0);
+  fKinematicsRD[4][16]->SetMinimum(0.);
+  fKinematicsRD[4][16]->SetMaximum(max(fKinematicsRD[4][16]->GetMaximum()*1.2,fKinematicsMC[4][16]->GetMaximum()*1.2));
+  fKinematicsRD[4][16]->Draw();
+  fKinematicsRD[4][16]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD[4][16]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsMC[4][16]->SetLineColor(kBlue);
+  fKinematicsMC[4][16]->Draw("SAME");
+  c28.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
@@ -1396,6 +1443,8 @@ void save_kin_plots()
   c19.Print("kinMCRD.pdf","pdf");
   c20.Print("kinMCRD.pdf","pdf");
   c21.Print("kinMCRD.pdf","pdf");
+  c25.Print("kinMCRD.pdf","pdf");
+  c27.Print("kinMCRD.pdf","pdf");
   c7.Print("kinMCRD.pdf","pdf");
   c8.Print("kinMCRD.pdf","pdf");
   c9.Print("kinMCRD.pdf","pdf");
@@ -1406,6 +1455,8 @@ void save_kin_plots()
   c22.Print("kinMCRD.pdf","pdf");
   c23.Print("kinMCRD.pdf","pdf");
   c24.Print("kinMCRD.pdf","pdf");
+  c26.Print("kinMCRD.pdf","pdf");
+  c28.Print("kinMCRD.pdf","pdf");
   c14.Print("kinMCRD.pdf","pdf");
   c15.Print("kinMCRD.pdf","pdf");
   c16.Print("kinMCRD.pdf","pdf");
@@ -1421,39 +1472,13 @@ void MCextraction(string pFilelist)
   Double_t xBj = 0;
   Double_t yBj = 0;
   Double_t zBj = 0;
-  Double_t zBj_unid = 0;
   Double_t wBj = 0;
   Double_t nu = 0;
 
-  Double_t MCE0 = 0;
-  Double_t MCE1 = 0;
-  Double_t Q2_MC = 0;
-  Double_t xBj_MC = 0;
-  Double_t yBj_MC = 0;
-  Double_t zBj_MC = 0;
-  Double_t zBj_MC_unid = 0;
-  Double_t wBj_MC = 0;
-  Double_t nu_MC = 0;
 
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
-
-  //----------------------------------------------------------------------------
-  //--------- nu cut prep ------------------------------------------------------
-  //----------------------------------------------------------------------------
-
-  for(int i=0; i<12; i++)
-  {
-    fNu_max[1][i] = sqrt(pow(40,2)+pow(fM_K,2))/fZrange[i+1];
-    fNu_min[1][i] = sqrt(pow(MOMENTUM,2)+pow(fM_K,2))/fZrange[i];
-
-    fNu_max[2][i] = sqrt(pow(40,2)+pow(fM_p,2))/fZrange[i+1];
-    fNu_min[2][i] = sqrt(pow(MOMENTUM,2)+pow(fM_p,2))/fZrange[i];
-
-    fNu_max[0][i] = sqrt(pow(40,2)+pow(fM_pi,2))/fZrange[i+1];
-    fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
-  }
 
   // List of files
 
@@ -1507,8 +1532,10 @@ void MCextraction(string pFilelist)
 
     //Hadrons
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
+    TBranch *pt = (TBranch*) tree->FindBranch("Hadrons.pt");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
+    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -1602,8 +1629,10 @@ void MCextraction(string pFilelist)
 
       //Hadrons
       p->GetEntry(ip);
+      pt->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
+      ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
@@ -1736,44 +1765,6 @@ void MCextraction(string pFilelist)
 
       //2006 ---
 
-      //MC
-      MCE0 = sqrt(pow(fM_mu,2)
-                  +MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p0x->GetLeaf("MC_p0x")->GetValue()
-                  +MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p0y->GetLeaf("MC_p0y")->GetValue()
-                  +MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p0z->GetLeaf("MC_p0z")->GetValue());
-
-      MCE1 = sqrt(pow(fM_mu,2)
-                  +MC_p1x->GetLeaf("MC_p1x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
-                  +MC_p1y->GetLeaf("MC_p1y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
-                  +MC_p1z->GetLeaf("MC_p1z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue());
-
-      Q2_MC = 2.*( MCE0*MCE1
-           - MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
-           - MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
-           - MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue()
-           - pow(fM_mu,2));
-
-      nu_MC = MCE0 - MCE1;
-
-      if(MCE0 != 0)
-        yBj_MC = nu_MC/MCE0;
-      else
-        yBj_MC = 0;
-
-      if(nu_MC != 0)
-      {
-        xBj_MC = Q2_MC/(2*fM_p*nu_MC);
-      }
-      else
-      {
-        xBj_MC = 0;
-      }
-
-      if(xBj_MC != 0)
-        wBj_MC = pow(fM_p,2) + Q2_MC*(1-xBj_MC)/xBj_MC;
-      else
-        wBj_MC = 0;
-
       //--------------------------------------------------------------------------
       //--------- Target ---------------------------------------------------------
       //--------------------------------------------------------------------------
@@ -1812,14 +1803,6 @@ void MCextraction(string pFilelist)
       Double_t r = sqrt( (x->GetLeaf("x")->GetValue()-xC)*(x->GetLeaf("x")->GetValue()-xC)
                     + (y->GetLeaf("y")->GetValue()-yC)*(y->GetLeaf("y")->GetValue()-yC) );
 
-      Double_t MC_mcxC = (mcxD-mcxU) * (mczU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (mczU_1-mczD_2) + mcxU;
-      Double_t MC_mcyC = (mcyD-mcyU) * (mczU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (mczU_1-mczD_2) + mcyU;
-      Double_t MC_mcr = sqrt( (MC_vx->GetLeaf("MC_vx")->GetValue()-MC_mcxC)*(MC_vx->GetLeaf("MC_vx")->GetValue()-MC_mcxC)
-                    + (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC)*(MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC) );
-      Double_t MC_xC = (xD-xU) * (zU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (zU_1-zD_2) + xU;
-      Double_t MC_yC = (yD-yU) * (zU_1-MC_vz->GetLeaf("MC_vz")->GetValue()) / (zU_1-zD_2) + yU;
-      Double_t MC_r = sqrt( (MC_vx->GetLeaf("MC_vx")->GetValue()-MC_xC)*(MC_vx->GetLeaf("MC_vx")->GetValue()-MC_xC)
-                    + (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_yC)*(MC_vy->GetLeaf("MC_vy")->GetValue()-MC_yC) );
 
       //2006 ---
 
@@ -1835,7 +1818,6 @@ void MCextraction(string pFilelist)
       // -----------------------------------------------------------------------
 
       fAllDISflag = 0;
-      int DIS_rec[3][12];
 
       // Best Primary Vertex
       fBP++;
@@ -1851,7 +1833,7 @@ void MCextraction(string pFilelist)
         }
 
         //BMS (reconstructed beam track)
-        if(true/*(backPropFlag->GetLeaf("backPropFlag")->GetValue())*/) //not used in acceptance
+        if(true) //not used in acceptance
         {
           fBMS++;
 
@@ -1878,9 +1860,9 @@ void MCextraction(string pFilelist)
                   fTarg++;
 
                   // Cells crossing
-                  if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                  if(true)
                   {
-                    //fCell++;
+                    fCell++;
 
                     // IM/O triggers
                     if((trig&8 || trig&256))
@@ -1893,17 +1875,17 @@ void MCextraction(string pFilelist)
                         fQ2test++;
 
                         // y cut
-                        if((0.1<yBj && yBj<0.7))
+                        if((fYmin<yBj && yBj<fYmax))
                         {
                           fYBjtest++;
 
                           // W cut
-                          if((5<sqrt(wBj) && sqrt(wBj)<17))
+                          if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                           {
                             fWBjtest++;
 
                             // x cut
-                            if((0.004<xBj && xBj<0.4))
+                            if((fXmin<xBj && xBj<fXmax))
                             {
                               fXBjtest++;
                               fAllDISflag = 1;
@@ -1927,9 +1909,9 @@ void MCextraction(string pFilelist)
                 fTarg++;
 
                 // Cells crossing
-                if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                if(true)
                 {
-                  //fCell++;
+                  fCell++;
 
                   if((trig&2 || trig&4 || trig&8))
                   {
@@ -1941,15 +1923,15 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.7))
+                      if((fYmin<yBj && yBj<fYmax))
                       {
                         fYBjtest++;
 
                         // W cut
-                        if((5<sqrt(wBj) && sqrt(wBj)<17))
+                        if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((fXmin<xBj && xBj<fXmax))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -1971,7 +1953,7 @@ void MCextraction(string pFilelist)
                 fTarg++;
 
                 // Cells crossing
-                if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                if(true)
                 {
                   fCell++;
 
@@ -1986,15 +1968,15 @@ void MCextraction(string pFilelist)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.7))
+                      if((fYmin<yBj && yBj<fYmax))
                       {
                         fYBjtest++;
 
                         // W cut
-                        if((5<sqrt(wBj) && sqrt(wBj)<17))
+                        if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
                           fWBjtest++;
-                          if((0.004<xBj && xBj<0.4))
+                          if((fXmin<xBj && xBj<fXmax))
                           {
                             fXBjtest++;
                             fAllDISflag = 1;
@@ -2011,123 +1993,13 @@ void MCextraction(string pFilelist)
         }
       }
 
-
-      // -----------------------------------------------------------------------
-      // MC --------------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
-      fAllDISflag_MC = 0;
-      int DIS_MC[3][12];
-
-      // Best Primary Vertex
-
-      if((0<MCE0))
-      {
-
-        if(Y2012)
-        {
-          CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-        }
-
-        // Energy of the muon beam
-        if((140<=MCE0 && MCE0<=180))
-        {
-          //2006 ---
-          if(Y2006)
-          {
-            // Z coordinate within target regions
-            if((((-56<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-35)
-                  ||(-20<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<31)
-                  ||(43<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<66))))
-            {
-              if((MC_mcr < mcR &&  (MC_vy->GetLeaf("MC_vy")->GetValue()-MC_mcyC)<yCUT
-                   && MC_r < R
-                   &&  (MC_vy->GetLeaf("MC_vy")->GetValue()-yC)<yCUT
-                   && ((MC_vz->GetLeaf("MC_vz")->GetValue()>(-65+2+7) && MC_vz->GetLeaf("MC_vz")->GetValue()<(-35+2-2))
-                        ||(MC_vz->GetLeaf("MC_vz")->GetValue() > (-30+2+8) && MC_vz->GetLeaf("MC_vz")->GetValue() < (30+2-1))
-                        ||(MC_vz->GetLeaf("MC_vz")->GetValue() > (35+2+6) && MC_vz->GetLeaf("MC_vz")->GetValue() < (65+2-1)))))
-              {
-                // Q2 cut
-                if((Q2_MC>1))
-                {
-                  // y cut
-                  if((0.1<yBj_MC && yBj_MC<0.7))
-                  {
-                    // W cut
-                    if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
-                    {
-                      // x cut
-                      if((0.004<xBj_MC && xBj_MC<0.4))
-                      {
-                        fAllDISflag_MC = 1;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-          //2006 ---
-
-          //2012 ---
-          else if(Y2012)
-          {
-            if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin]))
-            {
-              // Q2 cut
-              if((Q2_MC>1))
-              {
-                // y cut
-                if((0.1<yBj_MC && yBj_MC<0.7))
-                {
-                  // W cut
-                  if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
-                  {
-                    // x cut
-                    if((0.004<xBj_MC && xBj_MC<0.4))
-                    {
-                      fAllDISflag_MC = 1;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          //2012 ---
-
-          //2016 ---
-          else if(Y2016)
-          {
-            if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue(),1.5))
-            {
-              // Q2 cut
-              if((Q2_MC>1))
-              {
-                // y cut
-                if((0.1<yBj_MC && yBj_MC<0.7))
-                {
-                  // W cut
-                  if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
-                  {
-                    // x cut
-                    if((0.004<xBj_MC && xBj_MC<0.4))
-                    {
-                      fAllDISflag_MC = 1;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          //2016 ---
-        }
-      }
-
+      // If all DIS tests are good, then event is saved
       if(fAllDISflag)
       {
         double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
         double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
+        // MT
         if(trig&2)
         {
           fQ2kinMC[0].push_back(Q2);
@@ -2141,6 +2013,7 @@ void MCextraction(string pFilelist)
           fPhiMC[0].push_back(phi_m);
           fVertexMC[0].push_back(z->GetLeaf("z")->GetValue());
         }
+        // LT
         if(trig&4)
         {
           fQ2kinMC[1].push_back(Q2);
@@ -2154,6 +2027,7 @@ void MCextraction(string pFilelist)
           fPhiMC[1].push_back(phi_m);
           fVertexMC[1].push_back(z->GetLeaf("z")->GetValue());
         }
+        // OT
         if(trig&8)
         {
           fQ2kinMC[2].push_back(Q2);
@@ -2167,6 +2041,7 @@ void MCextraction(string pFilelist)
           fPhiMC[2].push_back(phi_m);
           fVertexMC[2].push_back(z->GetLeaf("z")->GetValue());
         }
+        // LAST
         if(trig&512)
         {
           fQ2kinMC[3].push_back(Q2);
@@ -2180,6 +2055,7 @@ void MCextraction(string pFilelist)
           fPhiMC[3].push_back(phi_m);
           fVertexMC[3].push_back(z->GetLeaf("z")->GetValue());
         }
+        // ALL TRIGGERS
         if(trig&2 || trig&4 || trig&8)
         // if(trig&2 || trig&4 || trig&8 || trig&512)
         {
@@ -2204,31 +2080,7 @@ void MCextraction(string pFilelist)
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
 
-      for(int i=0; i<12; i++)
-      {
-        DIS_rec[0][i] = 0;
-        DIS_rec[1][i] = 0;
-        DIS_rec[2][i] = 0;
-        DIS_MC[0][i] = 0;
-        DIS_MC[1][i] = 0;
-        DIS_MC[2][i] = 0;
-      }
-
-      // -----------------------------------------------------------------------
-      // MC --------------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
       // x Binning
-
-      if(0.<xBj_MC && xBj_MC<0.01) xbin_MC = 0;
-      else if(0.01<=xBj_MC && xBj_MC<0.02) xbin_MC = 1;
-      else if(0.02<=xBj_MC && xBj_MC<0.03) xbin_MC = 2;
-      else if(0.03<=xBj_MC && xBj_MC<0.04) xbin_MC = 3;
-      else if(0.04<=xBj_MC && xBj_MC<0.06) xbin_MC = 4;
-      else if(0.06<=xBj_MC && xBj_MC<0.1) xbin_MC = 5;
-      else if(0.1<=xBj_MC && xBj_MC<0.14) xbin_MC = 6;
-      else if(0.14<=xBj_MC && xBj_MC<0.18) xbin_MC = 7;
-      else xbin_MC = 8;
 
       if(0.<xBj && xBj<0.01) xbin = 0;
       else if(0.01<=xBj && xBj<0.02) xbin = 1;
@@ -2242,648 +2094,16 @@ void MCextraction(string pFilelist)
 
       // y Binning
 
-      if(0.<yBj_MC && yBj_MC<0.15) ybin_MC = 0;
-      else if(0.15<=yBj_MC && yBj_MC<0.2) ybin_MC = 1;
-      else if(0.2<=yBj_MC && yBj_MC<0.3) ybin_MC = 2;
-      else if(0.3<=yBj_MC && yBj_MC<0.5) ybin_MC = 3;
-      else ybin_MC = 4;
-
       if(0.<yBj && yBj<0.15) ybin = 0;
       else if(0.15<=yBj && yBj<0.2) ybin = 1;
       else if(0.2<=yBj && yBj<0.3) ybin = 2;
       else if(0.3<=yBj && yBj<0.5) ybin = 3;
       else ybin = 4;
 
-      // if(fAllDISflag_MC)
-      // {
-      //   // z Binnig
-      //
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]++;
-      //     fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]++;
-      //     fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]++;
-      //
-      //     fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
-      //
-      //     DIS_MC[0][i] = 1;
-      //     DIS_MC[1][i] = 1;
-      //     DIS_MC[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
-      //     {
-      //       fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
-      //     {
-      //       fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
-      //     {
-      //       fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(fFlag_MC[0][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]--; DIS_MC[0][i] = 0;
-      //     }
-      //     if(fFlag_MC[1][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]--; DIS_MC[1][i] = 0;
-      //     }
-      //     if(fFlag_MC[2][xbin_MC][ybin_MC][i])
-      //     {
-      //       fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]--; DIS_MC[2][i] = 0;
-      //     }
-      //   }
-      // }
-      // else
-      // {
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
-      //     fFlag_MC[2][xbin_MC][ybin_MC][i]=0;
-      //
-      //     DIS_MC[0][i] = 1;
-      //     DIS_MC[1][i] = 1;
-      //     DIS_MC[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
-      //     {
-      //       fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu_MC && nu_MC<fNu_max[1][i]))
-      //     {
-      //       fFlag_MC[1][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu_MC && nu_MC<fNu_max[2][i]))
-      //     {
-      //       fFlag_MC[2][xbin_MC][ybin_MC][i]=1;
-      //     }
-      //     if(fFlag_MC[0][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[0][i] = 0;
-      //     }
-      //     if(fFlag_MC[1][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[1][i] = 0;
-      //     }
-      //     if(fFlag_MC[2][xbin_MC][ybin_MC][i])
-      //     {
-      //       DIS_MC[2][i] = 0;
-      //     }
-      //   }
-      // }
-
-      // -----------------------------------------------------------------------
-      //  Data -----------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
-      // if(fAllDISflag)
-      // {
-      //   // z Binning
-      //
-      //   for(int i=0; i<12; i++)
-      //   {
-      //     fNDIS_evt[0][xbin][ybin][i]++;
-      //     fNDIS_evt[1][xbin][ybin][i]++;
-      //     fNDIS_evt[2][xbin][ybin][i]++;
-      //
-      //     fFlag[0][xbin][ybin][i]=0;
-      //     fFlag[1][xbin][ybin][i]=0;
-      //     fFlag[2][xbin][ybin][i]=0;
-      //
-      //     DIS_rec[0][i] = 1;
-      //     DIS_rec[1][i] = 1;
-      //     DIS_rec[2][i] = 1;
-      //
-      //     // nu cut
-      //     if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
-      //     {
-      //       fFlag[0][xbin][ybin][i]=1;
-      //     }
-      //     if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
-      //     {
-      //       fFlag[1][xbin][ybin][i]=1;
-      //     }
-      //     if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
-      //     {
-      //       fFlag[2][xbin][ybin][i]=1;
-      //     }
-      //     if(fFlag[0][xbin][ybin][i])
-      //     {
-      //       fNDIS_evt[0][xbin][ybin][i]--; DIS_rec[0][i] = 0;
-      //     }
-      //     if(fFlag[1][xbin][ybin][i])
-      //     {
-      //       fNDIS_evt[1][xbin][ybin][i]--; DIS_rec[1][i] = 0;
-      //     }
-      //     if(fFlag[2][xbin][ybin][i])
-      //     {
-      //       fNDIS_evt[2][xbin][ybin][i]--; DIS_rec[2][i] = 0;
-      //     }
-      //     if(xbin==xbin_MC && ybin==ybin_MC)
-      //     {
-      //       if(DIS_rec[0][i] && DIS_MC[0][i])
-      //       {
-      //         fNDIS_evt_c[0][xbin][ybin][i] += 1;
-      //       }
-      //       if(DIS_rec[1][i] && DIS_MC[1][i])
-      //       {
-      //         fNDIS_evt_c[1][xbin][ybin][i] += 1;
-      //       }
-      //       if(DIS_rec[2][i] && DIS_MC[2][i])
-      //       {
-      //         fNDIS_evt_c[2][xbin][ybin][i] += 1;
-      //       }
-      //     }
-      //   }
-      // }
-
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
       // --------- Hadrons Selection -------------------------------------------
       // -----------------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
-
-      // -----------------------------------------------------------------------
-      //  MC -------------------------------------------------------------------
-      // -----------------------------------------------------------------------
-
-      if(fAllDISflag_MC)
-      {
-
-        for(int i=0; i<MC_p->GetLeaf("MCHadrons.P")->GetLen(); i++)
-        {
-
-          if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 8)//pi+
-          {
-            fId = 0;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 9)//pi-
-          {
-            fId = 1;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 11)//K+
-          {
-            fId = 2;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 12)//K-
-          {
-            fId = 3;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 14)//p
-          {
-            fId = 4;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 15)//pb
-          {
-            fId = 5;
-          }
-          else//Hadron
-          {
-            if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 6;
-            }
-            else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==-1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 7;
-            }
-            else
-            {
-              continue;
-            }
-          }
-
-          if(nu_MC)
-          {
-            if(fId == 2 || fId == 3)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu_MC;
-            else if(fId == 4 || fId == 5)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu_MC;
-            else
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-
-            zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-          }
-          else
-          {
-            zBj_MC = 0;
-            zBj_MC_unid = 0;
-          }
-
-          if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
-
-          if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
-          else if(0.25<zBj_MC && zBj_MC<0.30) zbin = 1;
-          else if(0.30<zBj_MC && zBj_MC<0.35) zbin = 2;
-          else if(0.35<zBj_MC && zBj_MC<0.40) zbin = 3;
-          else if(0.40<zBj_MC && zBj_MC<0.45) zbin = 4;
-          else if(0.45<zBj_MC && zBj_MC<0.50) zbin = 5;
-          else if(0.50<zBj_MC && zBj_MC<0.55) zbin = 6;
-          else if(0.55<zBj_MC && zBj_MC<0.60) zbin = 7;
-          else if(0.60<zBj_MC && zBj_MC<0.65) zbin = 8;
-          else if(0.65<zBj_MC && zBj_MC<0.70) zbin = 9;
-          else if(0.70<zBj_MC && zBj_MC<0.75) zbin = 10;
-          else zbin = 11;
-
-          if(0.2<zBj_MC_unid && zBj_MC_unid<0.25) zbin_u = 0;
-          else if(0.25<zBj_MC_unid && zBj_MC_unid<0.30) zbin_u = 1;
-          else if(0.30<zBj_MC_unid && zBj_MC_unid<0.35) zbin_u = 2;
-          else if(0.35<zBj_MC_unid && zBj_MC_unid<0.40) zbin_u = 3;
-          else if(0.40<zBj_MC_unid && zBj_MC_unid<0.45) zbin_u = 4;
-          else if(0.45<zBj_MC_unid && zBj_MC_unid<0.50) zbin_u = 5;
-          else if(0.50<zBj_MC_unid && zBj_MC_unid<0.55) zbin_u = 6;
-          else if(0.55<zBj_MC_unid && zBj_MC_unid<0.60) zbin_u = 7;
-          else if(0.60<zBj_MC_unid && zBj_MC_unid<0.65) zbin_u = 8;
-          else if(0.65<zBj_MC_unid && zBj_MC_unid<0.70) zbin_u = 9;
-          else if(0.70<zBj_MC_unid && zBj_MC_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
-
-          // **********************************************************************
-
-          // Save of hadrons
-
-          if(fId==0)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
-              fMCHplus++;
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPiplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][0] += 1;
-          }
-          else if(fId==1)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
-              fMCHminus++;
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPiminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][0] += 1;
-          }
-          else if(fId==2)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
-              fMCHplus++;
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCKplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][1] += 1;
-          }
-          else if(fId==3)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
-              fMCHminus++;
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCKminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][1] += 1;
-          }
-          else if(fId==4)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
-              fMCHplus++;
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][2] += 1;
-          }
-          else if(fId==5)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
-              fMCHminus++;
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            pMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCPminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][2] += 1;
-          }
-          else if(fId==6)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCHplus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][3] += 1;
-          }
-          else if(fId==7)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-            fMCHminus++;
-            fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][3] += 1;
-          }
-          else
-          {}
-
-        }
-      }
-	    else
-      {
-	      for(int i=0; i<MC_p->GetLeaf("MCHadrons.P")->GetLen(); i++)
-        {
-
-          if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 8)//pi+
-          {
-            fId = 0;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 9)//pi-
-          {
-            fId = 1;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 11)//K+
-          {
-            fId = 2;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 12)//K-
-          {
-            fId = 3;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 14)//p
-          {
-            fId = 4;
-          }
-          else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 15)//pb
-          {
-            fId = 5;
-          }
-          else//Hadron
-          {
-            if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 6;
-            }
-            else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==-1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
-            {
-              fId = 7;
-            }
-            else
-            {
-              continue;
-            }
-          }
-
-          if(nu_MC)
-          {
-            if(fId == 2 || fId == 3)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu_MC;
-            else if(fId == 4 || fId == 5)
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu_MC;
-            else
-              zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-
-              zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
-          }
-          else
-          {
-            zBj_MC = 0;
-          }
-
-          if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
-
-          if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
-          else if(0.25<=zBj_MC && zBj_MC<0.30) zbin = 1;
-          else if(0.30<=zBj_MC && zBj_MC<0.35) zbin = 2;
-          else if(0.35<=zBj_MC && zBj_MC<0.40) zbin = 3;
-          else if(0.40<=zBj_MC && zBj_MC<0.45) zbin = 4;
-          else if(0.45<=zBj_MC && zBj_MC<0.50) zbin = 5;
-          else if(0.50<=zBj_MC && zBj_MC<0.55) zbin = 6;
-          else if(0.55<=zBj_MC && zBj_MC<0.60) zbin = 7;
-          else if(0.60<=zBj_MC && zBj_MC<0.65) zbin = 8;
-          else if(0.65<=zBj_MC && zBj_MC<0.70) zbin = 9;
-          else if(0.70<=zBj_MC && zBj_MC<0.75) zbin = 10;
-          else zbin = 11;
-
-          if(0.2<zBj_MC_unid && zBj_MC_unid<0.25) zbin_u = 0;
-          else if(0.25<zBj_MC_unid && zBj_MC_unid<0.30) zbin_u = 1;
-          else if(0.30<zBj_MC_unid && zBj_MC_unid<0.35) zbin_u = 2;
-          else if(0.35<zBj_MC_unid && zBj_MC_unid<0.40) zbin_u = 3;
-          else if(0.40<zBj_MC_unid && zBj_MC_unid<0.45) zbin_u = 4;
-          else if(0.45<zBj_MC_unid && zBj_MC_unid<0.50) zbin_u = 5;
-          else if(0.50<zBj_MC_unid && zBj_MC_unid<0.55) zbin_u = 6;
-          else if(0.55<zBj_MC_unid && zBj_MC_unid<0.60) zbin_u = 7;
-          else if(0.60<zBj_MC_unid && zBj_MC_unid<0.65) zbin_u = 8;
-          else if(0.65<zBj_MC_unid && zBj_MC_unid<0.70) zbin_u = 9;
-          else if(0.70<zBj_MC_unid && zBj_MC_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
-
-          // **********************************************************************
-
-          // Save of hadrons
-
-          if(fId==0)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==1)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][0].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==2)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==3)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[1][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][1].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==4)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==5)
-          {
-            if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
-            {
-              idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
-              prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-              hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-              pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-              zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC_unid));
-            }
-            if(fFlag_MC[2][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][2].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==6)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else if(fId==7)
-          {
-            if(fFlag_MC[0][xbin_MC][ybin_MC][zbin]) continue;
-            idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin));
-            prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
-            hidMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),fId));
-            pMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),MC_p->GetLeaf("MCHadrons.P")->GetValue(i)));
-            zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
-          }
-          else
-          {}
-
-        }
-      }
-
-
-      // -----------------------------------------------------------------------
-      //  Data -----------------------------------------------------------------
       // -----------------------------------------------------------------------
 
       if(fAllDISflag)
@@ -2953,61 +2173,23 @@ void MCextraction(string pFilelist)
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
             else
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
-
-            zBj_unid = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
           }
           else
           {
             zBj = 0;
-            zBj_unid = 0;
           }
 
-          if(trig&2)
-          {
-            fKinematicsMC[0][3]->Fill(zBj);
-            fKinematicsMC[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          }
-          if(trig&4)
-          {
-            fKinematicsMC[1][3]->Fill(zBj);
-            fKinematicsMC[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          }
-          if(trig&8)
-          {
-            fKinematicsMC[2][3]->Fill(zBj);
-            fKinematicsMC[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          }
-          if(trig&512)
-          {
-            fKinematicsMC[3][3]->Fill(zBj);
-            fKinematicsMC[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          }
-          if(trig&2 || trig&4 || trig&8)
-          // if(trig&2 || trig&4 || trig&8 || trig&512)
-          {
-            fKinematicsMC[4][3]->Fill(zBj);
-            fKinematicsMC[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          }
-
-          if(0.1<zBj && (fId==8 || fId==9) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
-            fKinematicsMC[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+          // /phi_plane for electron (Radiative correction test for electro-production from real photons)
+          // Has to be done before Hadron cuts
+          if(0.1<zBj && (fId==8 || fId==9))
+            fKinematicsMC[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
           fXX0test++;
 
           // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+          if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
           fMom++;
 
           // Theta cut
@@ -3018,275 +2200,59 @@ void MCextraction(string pFilelist)
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
           fPosRICH++;
 
-          // z cut
-          if(!(0.2<zBj && zBj<0.85)) continue;
-
-          if(0.2<zBj && zBj<0.25) zbin = 0;
-          else if(0.25<=zBj && zBj<0.30) zbin = 1;
-          else if(0.30<=zBj && zBj<0.35) zbin = 2;
-          else if(0.35<=zBj && zBj<0.40) zbin = 3;
-          else if(0.40<=zBj && zBj<0.45) zbin = 4;
-          else if(0.45<=zBj && zBj<0.50) zbin = 5;
-          else if(0.50<=zBj && zBj<0.55) zbin = 6;
-          else if(0.55<=zBj && zBj<0.60) zbin = 7;
-          else if(0.60<=zBj && zBj<0.65) zbin = 8;
-          else if(0.65<=zBj && zBj<0.70) zbin = 9;
-          else if(0.70<=zBj && zBj<0.75) zbin = 10;
-          else zbin = 11;
-
-          if(0.2<zBj_unid && zBj_unid<0.25) zbin_u = 0;
-          else if(0.25<=zBj_unid && zBj_unid<0.30) zbin_u = 1;
-          else if(0.30<=zBj_unid && zBj_unid<0.35) zbin_u = 2;
-          else if(0.35<=zBj_unid && zBj_unid<0.40) zbin_u = 3;
-          else if(0.40<=zBj_unid && zBj_unid<0.45) zbin_u = 4;
-          else if(0.45<=zBj_unid && zBj_unid<0.50) zbin_u = 5;
-          else if(0.50<=zBj_unid && zBj_unid<0.55) zbin_u = 6;
-          else if(0.55<=zBj_unid && zBj_unid<0.60) zbin_u = 7;
-          else if(0.60<=zBj_unid && zBj_unid<0.65) zbin_u = 8;
-          else if(0.65<=zBj_unid && zBj_unid<0.70) zbin_u = 9;
-          else if(0.70<=zBj_unid && zBj_unid<0.75) zbin_u = 10;
-          else zbin_u = 11;
-
-
-
-          // **********************************************************************
-
-          // Save of hadrons
-
-          map<int,int>::iterator it;
-
-          if(fId==0)
+          // MT
+          if(trig&2)
           {
-            it = idMCrec[1][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHplus++;
-              fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
-              if(it!=idMCrec[1][3].end())
-              {
-                if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[1][0].find(i);
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fPiplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-            if(it!=idMCrec[1][0].end())
-            {
-              if(zbin == idMCrec[1][0][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][0]++;
-                idMCrec[1][0].erase(i);
-              }
-            }
+            fKinematicsMC[0][3]->Fill(zBj);
+            fKinematicsMC[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+            fKinematicsMC[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+            fKinematicsMC[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
-          else if(fId==1)
+          // LT
+          if(trig&4)
           {
-            it = idMCrec[0][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHminus++;
-              fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
-              if(it!=idMCrec[0][3].end())
-              {
-                if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[0][0].find(i);
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fPiminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-            if(it!=idMCrec[0][0].end())
-            {
-              if(zbin == idMCrec[0][0][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][0]++;
-                idMCrec[0][0].erase(i);
-              }
-            }
+            fKinematicsMC[1][3]->Fill(zBj);
+            fKinematicsMC[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+            fKinematicsMC[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+            fKinematicsMC[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
-          else if(fId==2)
+          // OT
+          if(trig&8)
           {
-            it = idMCrec[1][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHplus++;
-              fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
-              if(it!=idMCrec[1][3].end())
-              {
-                if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[1][1].find(i);
-            if(fFlag[1][xbin][ybin][zbin]) continue;
-            fKplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][1] += 1;
-            if(it!=idMCrec[1][1].end())
-            {
-              if(zbin == idMCrec[1][1][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][1]++;
-                idMCrec[1][1].erase(i);
-              }
-            }
+            fKinematicsMC[2][3]->Fill(zBj);
+            fKinematicsMC[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+            fKinematicsMC[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+            fKinematicsMC[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
-          else if(fId==3)
+          // LAST
+          if(trig&512)
           {
-            it = idMCrec[0][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHminus++;
-              fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
-              if(it!=idMCrec[0][3].end())
-              {
-                if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[0][1].find(i);
-            if(fFlag[1][xbin][ybin][zbin]) continue;
-            fKminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][1] += 1;
-            if(it!=idMCrec[0][1].end())
-            {
-              if(zbin == idMCrec[0][1][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][1]++;
-                idMCrec[0][1].erase(i);
-              }
-            }
+            fKinematicsMC[3][3]->Fill(zBj);
+            fKinematicsMC[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+            fKinematicsMC[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+            fKinematicsMC[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
-          else if(fId==4)
+          // ALL TRIGGERS
+          if(trig&2 || trig&4 || trig&8)
+          // if(trig&2 || trig&4 || trig&8 || trig&512)
           {
-            it = idMCrec[1][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHplus++;
-              fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
-              if(it!=idMCrec[1][3].end())
-              {
-                if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[1][2].find(i);
-            if(fFlag[2][xbin][ybin][zbin]) continue;
-            fPplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][2] += 1;
-            if(it!=idMCrec[1][2].end())
-            {
-              if(zbin == idMCrec[1][2][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][2]++;
-                idMCrec[1][2].erase(i);
-              }
-            }
-          }
-          else if(fId==5)
-          {
-            it = idMCrec[0][3].find(i);
-            if(!fFlag[0][xbin][ybin][zbin_u])
-            {
-              fHminus++;
-              fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
-              if(it!=idMCrec[0][3].end())
-              {
-                if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-                {
-                  fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3]++;
-                }
-              }
-            }
-            it = idMCrec[0][2].find(i);
-            if(fFlag[2][xbin][ybin][zbin]) continue;
-            fPminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][2] += 1;
-            if(it!=idMCrec[0][2].end())
-            {
-              if(zbin == idMCrec[0][2][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][2]++;
-                idMCrec[0][2].erase(i);
-              }
-            }
-          }
-          else if(fId==6)
-          {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
-            it = idMCrec[1][3].find(i);
-            if(it!=idMCrec[1][3].end())
-            {
-              if(zbin == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[1][0][3]++;
-                idMCrec[1][3].erase(i);
-              }
-            }
-          }
-          else if(fId==7)
-          {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-            it = idMCrec[0][3].find(i);
-            if(it!=idMCrec[0][3].end())
-            {
-              if(zbin == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
-              {
-                fRcstr_c[xbin][ybin][zbin].tab[0][0][3]++;
-                idMCrec[0][3].erase(i);
-              }
-            }
-          }
-          else if(fId==8)
-          {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHminus++; fPiminus++;
-            fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-            fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-          }
-          else if(fId==9)
-          {
-            if(fFlag[0][xbin][ybin][zbin]) continue;
-            fHplus++; fPiplus++;
-            fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-            fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
-          }
-          else
-          {
-            continue;
+            fKinematicsMC[4][3]->Fill(zBj);
+            fKinematicsMC[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+            fKinematicsMC[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+            fKinematicsMC[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+            fKinematicsMC[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+            fKinematicsMC[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
         }
       }
-
-      for(int cc=0; cc<2; cc++)
-      {
-    	for(int hh=0; hh<4; hh++)
-        {
-          idMCrec[cc][hh].clear();
-          hidMCrec[cc][hh].clear();
-          pMCrec[cc][hh].clear();
-          zMCrec[cc][hh].clear();
-          prevMCrec[cc][hh].clear();
-        }
-      }
-
-
     }
 
     cout << "\n-> Finished processing file " << filename << " <-\n" << endl;
@@ -3372,29 +2338,9 @@ void RDextraction(string pFilelist)
   Double_t wBj = 0;
   Double_t nu = 0;
 
-  load_rich_mat(mat_RICH_name, err_RICH_name);
-
-  //cout << pi_sigma_uni[0][0] << " " << pi_sigma_uni[1][1] << " " << pi_sigma_uni[2][2] << endl;
-
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
-
-  //----------------------------------------------------------------------------
-  //--------- nu cut prep ------------------------------------------------------
-  //----------------------------------------------------------------------------
-
-  for(int i=0; i<12; i++)
-  {
-    fNu_max[1][i] = sqrt(pow(40,2)+pow(fM_K,2))/fZrange[i+1];
-    fNu_min[1][i] = sqrt(pow(MOMENTUM,2)+pow(fM_K,2))/fZrange[i];
-
-    fNu_max[2][i] = sqrt(pow(40,2)+pow(fM_p,2))/fZrange[i+1];
-    fNu_min[2][i] = sqrt(pow(MOMENTUM,2)+pow(fM_p,2))/fZrange[i];
-
-    fNu_max[0][i] = sqrt(pow(40,2)+pow(fM_pi,2))/fZrange[i+1];
-    fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
-  }
 
   // List of files
 
@@ -3445,12 +2391,13 @@ void RDextraction(string pFilelist)
     TBranch *saved = (TBranch*) tree->FindBranch("saved");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
     TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
-    TBranch *covMu0 = (TBranch*) tree->FindBranch("covMu0");
 
     //Hadrons
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
+    TBranch *pt = (TBranch*) tree->FindBranch("Hadrons.pt");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
+    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -3522,12 +2469,13 @@ void RDextraction(string pFilelist)
       saved->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
       backPropFlag->GetEntry(ip);
-      covMu0->GetEntry(ip);
 
       //Hadrons
       p->GetEntry(ip);
+      pt->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
+      ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
@@ -3773,27 +2721,27 @@ void RDextraction(string pFilelist)
       }
       //2016 ---
       fTrig++;
-      // cout<<trig<< " " << int(trig&2) << " " << int(trig&4) << " " << int(trig&8) << " " << int(trig&512) << endl;
 
       // Q2 cut
       if(!(Q2>1)) continue;
       fQ2test++;
 
       // y cut
-      if(!(0.1<yBj && yBj<0.7)) continue;
+      if(!(fYmin<yBj && yBj<fYmax)) continue;
       fYBjtest++;
 
       // W cut
-      if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
+      if(!(fWmin<sqrt(wBj) && sqrt(wBj)<fWmax)) continue;
       fWBjtest++;
 
       // x cut
-      if(!(0.004<xBj && xBj<0.4)) continue;
+      if(!(fXmin<xBj && xBj<fXmax)) continue;
       fXBjtest++;
 
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
+      // MT
       if(trig&2)
       {
         fQ2kin[0].push_back(Q2);
@@ -3807,6 +2755,7 @@ void RDextraction(string pFilelist)
         fPhi[0].push_back(phi_m);
         fVertex[0].push_back(z->GetLeaf("z")->GetValue());
       }
+      // LT
       if(trig&4)
       {
         fQ2kin[1].push_back(Q2);
@@ -3820,6 +2769,7 @@ void RDextraction(string pFilelist)
         fPhi[1].push_back(phi_m);
         fVertex[1].push_back(z->GetLeaf("z")->GetValue());
       }
+      // OT
       if(trig&8)
       {
         fQ2kin[2].push_back(Q2);
@@ -3833,6 +2783,7 @@ void RDextraction(string pFilelist)
         fPhi[2].push_back(phi_m);
         fVertex[2].push_back(z->GetLeaf("z")->GetValue());
       }
+      // LAST
       if(trig&512)
       {
         fQ2kin[3].push_back(Q2);
@@ -3846,6 +2797,7 @@ void RDextraction(string pFilelist)
         fPhi[3].push_back(phi_m);
         fVertex[3].push_back(z->GetLeaf("z")->GetValue());
       }
+      // ALL TRIGGERS
       if(trig&2 || trig&4 || trig&8)
       // if(trig&2 || trig&4 || trig&8 || trig&512)
       {
@@ -3887,66 +2839,6 @@ void RDextraction(string pFilelist)
       else if(0.2<yBj && yBj<0.3) ybin = 2;
       else if(0.3<yBj && yBj<0.5) ybin = 3;
       else ybin = 4;
-
-
-      // z binning
-
-//       for(int i=0; i<12; i++)
-//       {
-// #ifdef NORC
-//         fNDIS_evt[0][xbin][ybin][i] += 1;
-//         fNDIS_evt[1][xbin][ybin][i] += 1;
-//         fNDIS_evt[2][xbin][ybin][i] += 1;
-//
-//         fNDIS_evt_err[0][xbin][ybin][i] += 1;
-//         fNDIS_evt_err[1][xbin][ybin][i] += 1;
-//         fNDIS_evt_err[2][xbin][ybin][i] += 1;
-// #else
-//         fNDIS_evt[0][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//         fNDIS_evt[1][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//         fNDIS_evt[2][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//
-//         fNDIS_evt_err[0][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//         fNDIS_evt_err[1][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//         fNDIS_evt_err[2][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-// #endif
-//
-//         fFlag[0][xbin][ybin][i]=0;
-//         fFlag[1][xbin][ybin][i]=0;
-//         fFlag[2][xbin][ybin][i]=0;
-//
-//         // nu cut
-//         if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
-//         {
-//           fFlag[0][xbin][ybin][i]=1;
-//         }
-//         if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
-//         {
-//           fFlag[1][xbin][ybin][i]=1;
-//         }
-//         if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
-//         {
-//           fFlag[2][xbin][ybin][i]=1;
-//         }
-//         if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
-//         {
-// #ifdef NORC
-//           fNDIS_evt[0][xbin][ybin][i] -= 1;
-//         // fNDIS_evt[1][xbin][ybin][i] -= 1;
-//         // fNDIS_evt[2][xbin][ybin][i] -= 1;
-//           fNDIS_evt_err[0][xbin][ybin][i] -= 1;
-//         // fNDIS_evt_err[1][xbin][ybin][i] -= 1;
-//         // fNDIS_evt_err[2][xbin][ybin][i] -= 1;
-// #else
-//           fNDIS_evt[0][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//          // fNDIS_evt[1][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//          // fNDIS_evt[2][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-//           fNDIS_evt_err[0][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//          // fNDIS_evt_err[1][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-//          // fNDIS_evt_err[2][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-// #endif
-//         }
-//       }
 
       // -------------------------------------------------------------------------
       // --------- Hadrons Selection ---------------------------------------------
@@ -4020,8 +2912,6 @@ void RDextraction(string pFilelist)
 
         if(charge->GetLeaf("Hadrons.charge")->GetValue(i) == 1)
         {
-          // Normal cuts ---
-
           if((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>0)
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
@@ -4066,119 +2956,11 @@ void RDextraction(string pFilelist)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId = 4;
           else fId = 6;
-
-          // Normal cuts ---
-
-
-          //**********************************************************************
-
-          // Error associated to RICH unfolding ----------------------------------
-
-          // Loose cuts ---
-
-          if((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>0)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/fLHsec>1.00)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.00)) fId_loose = 0;
-
-          else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/fLHsec>1.06)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.00)) fId_loose = 2;
-
-          else if((8.9<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<=17.95-5)
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.3)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<3.0))
-                    || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0)))) fId_loose = 4;
-
-          else if((p->GetLeaf("Hadrons.P")->GetValue(i)>(17.95+5))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>0.98)) fId_loose = 4;
-
-          else if(((17.95-5)<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<(17.95+5))
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>0.98))
-                  || (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.3)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<3.0))
-                  || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_loose = 4;
-          else fId = 6;
-
-          // Loose cuts ---
-
-          // Severe cuts ---
-
-          if((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>0)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/fLHsec>1.06)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.04)) fId_severe = 0;
-
-          else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/fLHsec>1.10)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.16)) fId_severe = 2;
-
-          else if((8.9<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<=17.95-5)
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.7))
-                    || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0)))) fId_severe = 4;
-
-          else if((p->GetLeaf("Hadrons.P")->GetValue(i)>(17.95+5))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1.06)) fId_severe = 4;
-
-          else if(((17.95-5)<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<(17.95+5))
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1.06))
-                  || (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.7))
-                  || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_severe = 4;
-          else fId_severe = 6;
-
-          // Severe cuts ---
         }
-
         // Charge -
 
         else if(charge->GetLeaf("Hadrons.charge")->GetValue(i) == -1)
         {
-          // Normal cuts ---
-
           if((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>0)
               && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
               && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
@@ -4223,114 +3005,7 @@ void RDextraction(string pFilelist)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId = 5;
           else fId = 7;
-
-          // Normal cuts ---
-
-
-          //**********************************************************************
-
-          // Error associated to RICH unfolding ----------------------------------
-
-          // Loose cuts ---
-
-          if((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>0)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/fLHsec>1.00)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.00)) fId_loose = 1;
-
-          else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/fLHsec>1.06)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.00)) fId_loose = 3;
-
-          else if((8.9<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<=17.95-5)
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.3)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<3.0))
-                    || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0)))) fId_loose = 5;
-
-          else if((p->GetLeaf("Hadrons.P")->GetValue(i)>(17.95+5))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>0.98)) fId_loose = 5;
-
-          else if(((17.95-5)<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<(17.95+5))
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>0.98))
-                  || (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.3)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<3.0))
-                  || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_loose = 5;
-          else fId = 7;
-
-          // Loose cuts ---
-
-          // Severe cuts ---
-
-          if((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>0)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/fLHsec>1.06)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.04)) fId_severe = 1;
-
-          else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/fLHsec>1.10)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.16)) fId_severe = 3;
-
-          else if((8.9<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<=17.95-5)
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.7))
-                    || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0)))) fId_severe = 5;
-
-          else if((p->GetLeaf("Hadrons.P")->GetValue(i)>(17.95+5))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1.06)) fId_severe = 5;
-
-          else if(((17.95-5)<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<(17.95+5))
-                  && (((LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1.06))
-                  || (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.0)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.7))
-                  || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_severe = 5;
-          else fId_severe = 7;
-
-          // Severe cuts ---
         }
-
-
 
         //**********************************************************************
 
@@ -4349,52 +3024,17 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
-        if(trig&2)
-        {
-          fKinematicsRD[0][3]->Fill(zBj);
-          fKinematicsRD[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-          fKinematicsRD[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-          fKinematicsRD[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        }
-        if(trig&4)
-        {
-          fKinematicsRD[1][3]->Fill(zBj);
-          fKinematicsRD[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-          fKinematicsRD[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-          fKinematicsRD[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        }
-        if(trig&8)
-        {
-          fKinematicsRD[2][3]->Fill(zBj);
-          fKinematicsRD[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-          fKinematicsRD[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-          fKinematicsRD[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        }
-        if(trig&512)
-        {
-          fKinematicsRD[3][3]->Fill(zBj);
-          fKinematicsRD[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-          fKinematicsRD[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-          fKinematicsRD[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        }
-        if(trig&2 || trig&4 || trig&8)
-        // if(trig&2 || trig&4 || trig&8 || trig&512)
-        {
-          fKinematicsRD[4][3]->Fill(zBj);
-          fKinematicsRD[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-          fKinematicsRD[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-          fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        }
-
-        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)) && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]) && abs(ph->GetLeaf("Hadrons.ph")->GetValue(i))<1)
-                   fKinematicsRD[0][11]->Fill(abs(ph->GetLeaf("Hadrons.ph")->GetValue(i)));
+        // /phi_plane for electron (Radiative correction test for electro-production from real photons)
+        // Has to be done before Hadron cuts
+        if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)) && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]))
+          fKinematicsRD[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
 
         // Maximum radiation length cumulated
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
         fXX0test++;
 
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-        if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+        if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
         fMom++;
 
         // Theta cut
@@ -4408,801 +3048,52 @@ void RDextraction(string pFilelist)
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
 
-        Int_t theta_bin, mom_bin;
-        TMatrixD res_vect(3,1);
-        Double_t res_vect_err[3];
-        Double_t hadron_nb;
-
-        // Theta and momentum binning
-
-        if(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.04)
+        if(trig&2)
         {
-          theta_bin = 0;
-          if(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
-          else if(13<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<15) mom_bin = 1;
-          else if(15<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17) mom_bin = 2;
-          else if(17<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<19) mom_bin = 3;
-          else if(19<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<22) mom_bin = 4;
-          else if(22<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<25) mom_bin = 5;
-          else if(25<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<27) mom_bin = 6;
-          else if(27<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<30) mom_bin = 7;
-          else if(30<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<35) mom_bin = 8;
-          else mom_bin = 9;
+          fKinematicsRD[0][3]->Fill(zBj);
+          fKinematicsRD[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        else
+        if(trig&4)
         {
-          theta_bin = 1;
-          if(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
-          else if(13<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<15) mom_bin = 1;
-          else if(15<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17) mom_bin = 2;
-          else if(17<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<19) mom_bin = 3;
-          else if(19<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<22) mom_bin = 4;
-          else if(22<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<25) mom_bin = 5;
-          else if(25<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<27) mom_bin = 6;
-          else if(27<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<30) mom_bin = 7;
-          else if(30<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<35) mom_bin = 8;
-          else mom_bin = 9;
+          fKinematicsRD[1][3]->Fill(zBj);
+          fKinematicsRD[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-
-        // z cut
-        if(!(0.2<zBj && zBj<0.85)) continue;
-
-        if(0.2<zBj && zBj<0.25) zbin = 0;
-        else if(0.25<zBj && zBj<0.30) zbin = 1;
-        else if(0.30<zBj && zBj<0.35) zbin = 2;
-        else if(0.35<zBj && zBj<0.40) zbin = 3;
-        else if(0.40<zBj && zBj<0.45) zbin = 4;
-        else if(0.45<zBj && zBj<0.50) zbin = 5;
-        else if(0.50<zBj && zBj<0.55) zbin = 6;
-        else if(0.55<zBj && zBj<0.60) zbin = 7;
-        else if(0.60<zBj && zBj<0.65) zbin = 8;
-        else if(0.65<zBj && zBj<0.70) zbin = 9;
-        else if(0.70<zBj && zBj<0.75) zbin = 10;
-        else zbin = 11;
-
-        //**********************************************************************
-
-        // Save of hadrons
-
-        int hadron_flag = 0;
-
-        if(fId==0)
+        if(trig&8)
         {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHplus++; fPiplus++;
-            res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
-            for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_p[theta_bin][mom_bin][rce];
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
-            fPiplus_err += pow(res_vect_err[0],2);
-            fKplus_err += pow(res_vect_err[1],2);
-            fPplus_err += pow(res_vect_err[2],2);
-
-            pzcontainer.vec[1][0].push_back(zBj);
-            pzcontainer.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer.vec[1][3].push_back(res_vect[2][0]);
-
-            pzcontainer_err.vec[1][0].push_back(zBj);
-            pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[0],2));
-            pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[1],2));
-            pzcontainer_err.vec[1][3].push_back(pow(res_vect_err[2],2));
-
-            pzcontainer.vec[1][4].push_back(hadron_nb);
-            pzcontainer_err.vec[1][4].push_back(hadron_nb);
-
-            hadcontainer.vec.push_back(0);
-#ifdef DEBUG
-            cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
-#endif
-          }
+          fKinematicsRD[2][3]->Fill(zBj);
+          fKinematicsRD[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        else if(fId==1)
+        if(trig&512)
         {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHminus++; fPiminus++;
-            res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
-            for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_m[theta_bin][mom_bin][rce];
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
-            fPiminus_err += pow(res_vect_err[0],2);
-            fKminus_err += pow(res_vect_err[1],2);
-            fPminus_err += pow(res_vect_err[2],2);
-
-            pzcontainer.vec[0][0].push_back(zBj);
-            pzcontainer.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer.vec[0][3].push_back(res_vect[2][0]);
-
-            pzcontainer_err.vec[0][0].push_back(zBj);
-            pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[0],2));
-            pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[1],2));
-            pzcontainer_err.vec[0][3].push_back(pow(res_vect_err[2],2));
-
-            pzcontainer.vec[0][4].push_back(hadron_nb);
-            pzcontainer_err.vec[0][4].push_back(hadron_nb);
-
-            hadcontainer.vec.push_back(1);
-#ifdef DEBUG
-            cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
-#endif
-          }
+          fKinematicsRD[3][3]->Fill(zBj);
+          fKinematicsRD[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        else if(fId==2)
+        if(trig&2 || trig&4 || trig&8)
+        // if(trig&2 || trig&4 || trig&8 || trig&512)
         {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHplus++;
-#ifdef NORC
-            pzcontainer.vec[1][4].push_back(1);
-            pzcontainer_err.vec[1][4].push_back(1);
-#else
-            pzcontainer.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[1][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[1][xbin][ybin][zbin])
-          {
-            fKplus++;
-            res_vect = inv_rich_p[theta_bin][mom_bin]*k_vect;
-            for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_p[theta_bin][mom_bin][rce];
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
-            fPiplus_err += pow(res_vect_err[0],2);
-            fKplus_err += pow(res_vect_err[1],2);
-            fPplus_err += pow(res_vect_err[2],2);
-
-            pzcontainer.vec[1][0].push_back(zBj);
-            pzcontainer.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer.vec[1][3].push_back(res_vect[2][0]);
-
-            pzcontainer_err.vec[1][0].push_back(zBj);
-            pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[0],2));
-            pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[1],2));
-            pzcontainer_err.vec[1][3].push_back(pow(res_vect_err[2],2));
-
-            if(!hadron_flag)
-            {
-              pzcontainer.vec[1][4].push_back(0);
-              pzcontainer_err.vec[1][4].push_back(0);
-            }
-
-            hadcontainer.vec.push_back(2);
-#ifdef DEBUG
-            cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
-#endif
-          }
+          fKinematicsRD[4][3]->Fill(zBj);
+          fKinematicsRD[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        else if(fId==3)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHminus++;
-#ifdef NORC
-            pzcontainer.vec[0][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[1][xbin][ybin][zbin])
-          {
-            fKminus++;
-            res_vect = inv_rich_m[theta_bin][mom_bin]*k_vect;
-            for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_m[theta_bin][mom_bin][rce];
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
-            fPiminus_err += pow(res_vect_err[0],2);
-            fKminus_err += pow(res_vect_err[1],2);
-            fPminus_err += pow(res_vect_err[2],2);
-
-            pzcontainer.vec[0][0].push_back(zBj);
-            pzcontainer.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer.vec[0][3].push_back(res_vect[2][0]);
-
-            pzcontainer_err.vec[0][0].push_back(zBj);
-            pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[0],2));
-            pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[1],2));
-            pzcontainer_err.vec[0][3].push_back(pow(res_vect_err[2],2));
-
-            if(!hadron_flag)
-            {
-              pzcontainer.vec[0][4].push_back(0);
-              pzcontainer_err.vec[0][4].push_back(0);
-            }
-
-            hadcontainer.vec.push_back(3);
-#ifdef DEBUG
-            cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
-#endif
-          }
-        }
-        else if(fId==4)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHplus++;
-#ifdef NORC
-            pzcontainer.vec[1][4].push_back(1);
-            pzcontainer_err.vec[1][4].push_back(1);
-#else
-            pzcontainer.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[1][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[2][xbin][ybin][zbin])
-          {
-            fPplus++;
-            res_vect = inv_rich_p[theta_bin][mom_bin]*p_vect;
-            for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_p[theta_bin][mom_bin][rce];
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
-            fPiplus_err += pow(res_vect_err[0],2);
-            fKplus_err += pow(res_vect_err[1],2);
-            fPplus_err += pow(res_vect_err[2],2);
-
-            pzcontainer.vec[1][0].push_back(zBj);
-            pzcontainer.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer.vec[1][3].push_back(res_vect[2][0]);
-
-            pzcontainer_err.vec[1][0].push_back(zBj);
-            pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[0],2));
-            pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[1],2));
-            pzcontainer_err.vec[1][3].push_back(pow(res_vect_err[2],2));
-
-            if(!hadron_flag)
-            {
-              pzcontainer.vec[1][4].push_back(0);
-              pzcontainer_err.vec[1][4].push_back(0);
-            }
-
-            hadcontainer.vec.push_back(0);
-#ifdef DEBUG
-            cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
-#endif
-          }
-        }
-        else if(fId==5)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHminus++;
-#ifdef NORC
-            pzcontainer.vec[0][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[2][xbin][ybin][zbin])
-          {
-            fPminus++;
-            res_vect = inv_rich_m[theta_bin][mom_bin]*p_vect;
-            for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_m[theta_bin][mom_bin][rce];
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
-            fPiminus_err += pow(res_vect_err[0],2);
-            fKminus_err += pow(res_vect_err[1],2);
-            fPminus_err += pow(res_vect_err[2],2);
-
-            pzcontainer.vec[0][0].push_back(zBj);
-            pzcontainer.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer.vec[0][3].push_back(res_vect[2][0]);
-
-            pzcontainer_err.vec[0][0].push_back(zBj);
-            pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[0],2));
-            pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[1],2));
-            pzcontainer_err.vec[0][3].push_back(pow(res_vect_err[2],2));
-
-            if(!hadron_flag)
-            {
-              pzcontainer.vec[0][4].push_back(0);
-              pzcontainer_err.vec[0][4].push_back(0);
-            }
-
-            hadcontainer.vec.push_back(5);
-#ifdef DEBUG
-            cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
-#endif
-          }
-        }
-        else if(fId==6)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHplus++;
-            pzcontainer.vec[1][0].push_back(zBj); pzcontainer_err.vec[1][0].push_back(zBj);
-            pzcontainer.vec[1][1].push_back(0); pzcontainer_err.vec[1][1].push_back(0);
-            pzcontainer.vec[1][2].push_back(0); pzcontainer_err.vec[1][2].push_back(0);
-            pzcontainer.vec[1][3].push_back(0); pzcontainer_err.vec[1][3].push_back(0);
-#ifdef NORC
-            pzcontainer.vec[1][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
-            hadcontainer.vec.push_back(6);
-          }
-        }
-        else if(fId==7)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            fHminus++;
-            pzcontainer.vec[0][0].push_back(zBj); pzcontainer_err.vec[0][0].push_back(zBj);
-            pzcontainer.vec[0][1].push_back(0); pzcontainer_err.vec[0][1].push_back(0);
-            pzcontainer.vec[0][2].push_back(0); pzcontainer_err.vec[0][2].push_back(0);
-            pzcontainer.vec[0][3].push_back(0); pzcontainer_err.vec[0][3].push_back(0);
-#ifdef NORC
-            pzcontainer.vec[0][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
-            hadcontainer.vec.push_back(7);
-          }
-        }
-        else
-        {
-
-        }
-
-
-        //**********************************************************************
-
-        // Loose cut
-
-        hadron_flag = 0;
-
-        if(fId_loose==0)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[1][0].push_back(zBj);
-            pzcontainer_loose.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer_loose.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer_loose.vec[1][3].push_back(res_vect[2][0]);
-            pzcontainer_loose.vec[1][4].push_back(hadron_nb);
-          }
-        }
-        else if(fId_loose==1)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[0][0].push_back(zBj);
-            pzcontainer_loose.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer_loose.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer_loose.vec[0][3].push_back(res_vect[2][0]);
-            pzcontainer_loose.vec[0][4].push_back(hadron_nb);
-          }
-        }
-        else if(fId_loose==2)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_loose.vec[1][4].push_back(1);
-#else
-            pzcontainer_loose.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[1][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_p[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[1][0].push_back(zBj);
-            pzcontainer_loose.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer_loose.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer_loose.vec[1][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_loose.vec[1][4].push_back(0);
-          }
-        }
-        else if(fId_loose==3)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_loose.vec[0][4].push_back(1);
-#else
-            pzcontainer_loose.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[1][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_m[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[0][0].push_back(zBj);
-            pzcontainer_loose.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer_loose.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer_loose.vec[0][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_loose.vec[0][4].push_back(0);
-          }
-        }
-        else if(fId_loose==4)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_loose.vec[1][4].push_back(1);
-#else
-            pzcontainer_loose.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[2][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_p[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[1][0].push_back(zBj);
-            pzcontainer_loose.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer_loose.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer_loose.vec[1][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_loose.vec[1][4].push_back(0);
-          }
-        }
-        else if(fId_loose==5)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_loose.vec[0][4].push_back(1);
-#else
-            pzcontainer_loose.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[2][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_m[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[0][0].push_back(zBj);
-            pzcontainer_loose.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer_loose.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer_loose.vec[0][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_loose.vec[0][4].push_back(0);
-          }
-        }
-        else if(fId_loose==6)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            pzcontainer_loose.vec[1][0].push_back(zBj);
-            pzcontainer_loose.vec[1][1].push_back(0);
-            pzcontainer_loose.vec[1][2].push_back(0);
-            pzcontainer_loose.vec[1][3].push_back(0);
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[1][4].push_back(hadron_nb);
-          }
-        }
-        else if(fId_loose==7)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            pzcontainer_loose.vec[0][0].push_back(zBj);
-            pzcontainer_loose.vec[0][1].push_back(0);
-            pzcontainer_loose.vec[0][2].push_back(0);
-            pzcontainer_loose.vec[0][3].push_back(0);
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_loose.vec[0][4].push_back(hadron_nb);
-          }
-        }
-        else
-        {
-
-        }
-
-
-        // Severe cut
-
-        hadron_flag = 0;
-
-        if(fId_severe==0)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[1][0].push_back(zBj);
-            pzcontainer_severe.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer_severe.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer_severe.vec[1][3].push_back(res_vect[2][0]);
-            pzcontainer_severe.vec[1][4].push_back(hadron_nb);
-          }
-        }
-        else if(fId_severe==1)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[0][0].push_back(zBj);
-            pzcontainer_severe.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer_severe.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer_severe.vec[0][3].push_back(res_vect[2][0]);
-            pzcontainer_severe.vec[0][4].push_back(hadron_nb);
-          }
-        }
-        else if(fId_severe==2)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_severe.vec[1][4].push_back(1);
-#else
-            pzcontainer_severe.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[1][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_p[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[1][0].push_back(zBj);
-            pzcontainer_severe.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer_severe.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer_severe.vec[1][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_severe.vec[1][4].push_back(0);
-          }
-        }
-        else if(fId_severe==3)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_severe.vec[0][4].push_back(1);
-#else
-            pzcontainer_severe.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[1][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_m[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[0][0].push_back(zBj);
-            pzcontainer_severe.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer_severe.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer_severe.vec[0][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_severe.vec[0][4].push_back(0);
-          }
-        }
-        else if(fId_severe==4)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_severe.vec[1][4].push_back(1);
-#else
-            pzcontainer_severe.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[2][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_p[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[1][0].push_back(zBj);
-            pzcontainer_severe.vec[1][1].push_back(res_vect[0][0]);
-            pzcontainer_severe.vec[1][2].push_back(res_vect[1][0]);
-            pzcontainer_severe.vec[1][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_severe.vec[1][4].push_back(0);
-          }
-        }
-        else if(fId_severe==5)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-#ifdef NORC
-            pzcontainer_severe.vec[0][4].push_back(1);
-#else
-            pzcontainer_severe.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
-            hadron_flag = 1;
-          }
-          if(!fFlag[2][xbin][ybin][zbin])
-          {
-            res_vect = inv_rich_m[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[0][0].push_back(zBj);
-            pzcontainer_severe.vec[0][1].push_back(res_vect[0][0]);
-            pzcontainer_severe.vec[0][2].push_back(res_vect[1][0]);
-            pzcontainer_severe.vec[0][3].push_back(res_vect[2][0]);
-            if(!hadron_flag) pzcontainer_severe.vec[0][4].push_back(0);
-          }
-        }
-        else if(fId_severe==6)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            pzcontainer_severe.vec[1][0].push_back(zBj);
-            pzcontainer_severe.vec[1][1].push_back(0);
-            pzcontainer_severe.vec[1][2].push_back(0);
-            pzcontainer_severe.vec[1][3].push_back(0);
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[1][4].push_back(hadron_nb);
-          }
-        }
-        else if(fId_severe==7)
-        {
-          if(!fFlag[0][xbin][ybin][zbin])
-          {
-            pzcontainer_severe.vec[0][0].push_back(zBj);
-            pzcontainer_severe.vec[0][1].push_back(0);
-            pzcontainer_severe.vec[0][2].push_back(0);
-            pzcontainer_severe.vec[0][3].push_back(0);
-            hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
-            pzcontainer_severe.vec[0][4].push_back(hadron_nb);
-          }
-        }
-        else
-        {
-
-        }
-
       }
 
       //Misc
@@ -5211,184 +3102,9 @@ void RDextraction(string pFilelist)
       fYBj.push_back(yBj);
       fWBj.push_back(wBj);
       fNu.push_back(nu);
-
-      fPvsz.push_back(pzcontainer);
-      fPvsz_err.push_back(pzcontainer_err);
-      fHadiden.push_back(hadcontainer);
-
-      Q2local.push_back(Q2);
-      Pvszlocal.push_back(pzcontainer);
-      Pvsz_errlocal.push_back(pzcontainer_err);
-      XBjlocal.push_back(xBj);
-      YBjlocal.push_back(yBj);
-
-      Q2loose.push_back(Q2);
-      Pvszloose.push_back(pzcontainer_loose);
-      XBjloose.push_back(xBj);
-      YBjloose.push_back(yBj);
-
-      Q2severe.push_back(Q2);
-      Pvszsevere.push_back(pzcontainer_severe);
-      XBjsevere.push_back(xBj);
-      YBjsevere.push_back(yBj);
-
     }
 
     cout << "\n" << endl;
-
-    // Loose cut
-
-    for(int i=0; i<int(Q2loose.size()); i++)
-    {
-      if(0.004<=XBjloose[i] && XBjloose[i]<0.01) xbin = 0;
-      else if(0.01<=XBjloose[i] && XBjloose[i]<0.02) xbin = 1;
-      else if(0.02<=XBjloose[i] && XBjloose[i]<0.03) xbin = 2;
-      else if(0.03<=XBjloose[i] && XBjloose[i]<0.04) xbin = 3;
-      else if(0.04<=XBjloose[i] && XBjloose[i]<0.06) xbin = 4;
-      else if(0.06<=XBjloose[i] && XBjloose[i]<0.1) xbin = 5;
-      else if(0.1<=XBjloose[i] && XBjloose[i]<0.14) xbin = 6;
-      else if(0.1<=XBjloose[i] && XBjloose[i]<0.18) xbin = 7;
-      else xbin = 8;
-
-      if(0.1<YBjloose[i] && YBjloose[i]<0.15) ybin = 0;
-      else if(0.15<YBjloose[i] && YBjloose[i]<0.2) ybin = 1;
-      else if(0.2<YBjloose[i] && YBjloose[i]<0.3) ybin = 2;
-      else if(0.3<YBjloose[i] && YBjloose[i]<0.5) ybin = 3;
-      else ybin = 4;
-
-      for(int j=0; j<2; j++)
-      {
-        for(int l=0; l<int(Pvszloose[i].vec[j][0].size()); l++)
-        {
-          if(0.2<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.25) zbin = 0;
-          else if(0.25<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.30) zbin = 1;
-          else if(0.30<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.35) zbin = 2;
-          else if(0.35<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.40) zbin = 3;
-          else if(0.40<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.45) zbin = 4;
-          else if(0.45<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.50) zbin = 5;
-          else if(0.50<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.55) zbin = 6;
-          else if(0.55<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.60) zbin = 7;
-          else if(0.60<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.65) zbin = 8;
-          else if(0.65<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.70) zbin = 9;
-          else if(0.70<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.75) zbin = 10;
-          else zbin = 11;
-
-          for(int ll=0; ll<4; ll++)
-          {
-            fBinning_loose[xbin][ybin][zbin].tab[j][0][ll] += Pvszloose[i].vec[j][ll+1][l];
-          }
-        }
-      }
-
-    }
-
-    // Severe cut
-
-    for(int i=0; i<int(Q2severe.size()); i++)
-    {
-      if(0.004<=XBjsevere[i] && XBjsevere[i]<0.01) xbin = 0;
-      else if(0.01<=XBjsevere[i] && XBjsevere[i]<0.02) xbin = 1;
-      else if(0.02<=XBjsevere[i] && XBjsevere[i]<0.03) xbin = 2;
-      else if(0.03<=XBjsevere[i] && XBjsevere[i]<0.04) xbin = 3;
-      else if(0.04<=XBjsevere[i] && XBjsevere[i]<0.06) xbin = 4;
-      else if(0.06<=XBjsevere[i] && XBjsevere[i]<0.1) xbin = 5;
-      else if(0.1<=XBjsevere[i] && XBjsevere[i]<0.14) xbin = 6;
-      else if(0.1<=XBjsevere[i] && XBjsevere[i]<0.18) xbin = 7;
-      else xbin = 8;
-
-      if(0.1<YBjsevere[i] && YBjsevere[i]<0.15) ybin = 0;
-      else if(0.15<YBjsevere[i] && YBjsevere[i]<0.2) ybin = 1;
-      else if(0.2<YBjsevere[i] && YBjsevere[i]<0.3) ybin = 2;
-      else if(0.3<YBjsevere[i] && YBjsevere[i]<0.5) ybin = 3;
-      else ybin = 4;
-
-      for(int j=0; j<2; j++)
-      {
-        for(int l=0; l<int(Pvszsevere[i].vec[j][0].size()); l++)
-        {
-          if(0.2<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.25) zbin = 0;
-          else if(0.25<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.30) zbin = 1;
-          else if(0.30<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.35) zbin = 2;
-          else if(0.35<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.40) zbin = 3;
-          else if(0.40<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.45) zbin = 4;
-          else if(0.45<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.50) zbin = 5;
-          else if(0.50<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.55) zbin = 6;
-          else if(0.55<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.60) zbin = 7;
-          else if(0.60<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.65) zbin = 8;
-          else if(0.65<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.70) zbin = 9;
-          else if(0.70<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.75) zbin = 10;
-          else zbin = 11;
-
-          for(int ll=0; ll<4; ll++)
-          {
-            fBinning_severe[xbin][ybin][zbin].tab[j][0][ll] += Pvszsevere[i].vec[j][ll+1][l];
-          }
-        }
-      }
-
-    }
-
-    for(int i=0; i<int(Q2local.size()); i++)
-    {
-      if(0.004<=XBjlocal[i] && XBjlocal[i]<0.01) xbin = 0;
-      else if(0.01<=XBjlocal[i] && XBjlocal[i]<0.02) xbin = 1;
-      else if(0.02<=XBjlocal[i] && XBjlocal[i]<0.03) xbin = 2;
-      else if(0.03<=XBjlocal[i] && XBjlocal[i]<0.04) xbin = 3;
-      else if(0.04<=XBjlocal[i] && XBjlocal[i]<0.06) xbin = 4;
-      else if(0.06<=XBjlocal[i] && XBjlocal[i]<0.1) xbin = 5;
-      else if(0.1<=XBjlocal[i] && XBjlocal[i]<0.14) xbin = 6;
-      else if(0.1<=XBjlocal[i] && XBjlocal[i]<0.18) xbin = 7;
-      else xbin = 8;
-
-      if(0.1<YBjlocal[i] && YBjlocal[i]<0.15) ybin = 0;
-      else if(0.15<YBjlocal[i] && YBjlocal[i]<0.2) ybin = 1;
-      else if(0.2<YBjlocal[i] && YBjlocal[i]<0.3) ybin = 2;
-      else if(0.3<YBjlocal[i] && YBjlocal[i]<0.5) ybin = 3;
-      else ybin = 4;
-
-      for(int j=0; j<2; j++)
-      {
-        for(int l=0; l<int(Pvszlocal[i].vec[j][0].size()); l++)
-        {
-          if(0.2<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.25) zbin = 0;
-          else if(0.25<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.30) zbin = 1;
-          else if(0.30<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.35) zbin = 2;
-          else if(0.35<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.40) zbin = 3;
-          else if(0.40<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.45) zbin = 4;
-          else if(0.45<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.50) zbin = 5;
-          else if(0.50<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.55) zbin = 6;
-          else if(0.55<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.60) zbin = 7;
-          else if(0.60<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.65) zbin = 8;
-          else if(0.65<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.70) zbin = 9;
-          else if(0.70<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.75) zbin = 10;
-          else zbin = 11;
-
-          for(int ll=0; ll<4; ll++)
-          {
-            fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
-            //fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][3].push_back(Pvszlocal[i].vec[j][0][l]);
-          }
-        }
-      }
-    }
-
-    Pvszlocal.clear();
-    Pvsz_errlocal.clear();
-    XBjlocal.clear();
-    YBjlocal.clear();
-    Q2local.clear();
-    Pvszloose.clear();
-    XBjloose.clear();
-    YBjloose.clear();
-    Q2loose.clear();
-    Pvszsevere.clear();
-    XBjsevere.clear();
-    YBjsevere.clear();
-    Q2severe.clear();
   }
 
   for(int i=0; i<int(fQ2kin[0].size()); i++)
@@ -5462,16 +3178,17 @@ void RDextraction(string pFilelist)
 int main(int argc, char **argv)
 {
 
-  if(argc < 2)
+  if(argc < 3)
   {
     cout << "ERROR : Not enough arguments." << endl;
-    cout << "Asked : 2 *** Received : " << argc-1 << endl;
-    cout << "./compMCRD [RD filelist] [MC filelist]" << endl;
+    cout << "Asked : 3 *** Received : " << argc-1 << endl;
+    cout << "./compMCRD [RD filelist] [MC filelist] [Cutfile]" << endl;
 
     return 1;
   }
 
   create_kin_plots();
+  readKinCuts(argv[3]);
   RDextraction(argv[1]);
   MCextraction(argv[2]);
   save_kin_plots();
