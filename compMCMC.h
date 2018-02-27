@@ -16,6 +16,7 @@
 #include <TLeaf.h>
 #include <TGraphErrors.h>
 #include <TLine.h>
+#include <TLatex.h>
 
 // COLORS
 
