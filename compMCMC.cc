@@ -3317,7 +3317,7 @@ void MultRatio()
               H[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                H[c][i][j]->GetYaxis()->SetTitle("#font[12]{eta}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
+                H[c][i][j]->GetYaxis()->SetTitle("#font[ 12]{#eta}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
                 H[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               H[c][i][0]->Draw("SAMEP");
@@ -3377,7 +3377,7 @@ void MultRatio()
               P[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                P[c][i][j]->GetYaxis()->SetTitle("#font[12]{eta}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
+                P[c][i][j]->GetYaxis()->SetTitle("#font[ 12]{#eta}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
                 P[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               P[c][i][0]->Draw("SAMEP");
@@ -3437,7 +3437,7 @@ void MultRatio()
               K[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                K[c][i][j]->GetYaxis()->SetTitle("#font[12]{#eta}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
+                K[c][i][j]->GetYaxis()->SetTitle("#font[ 12]{#eta}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
                 K[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               K[c][i][0]->Draw("SAMEP");
