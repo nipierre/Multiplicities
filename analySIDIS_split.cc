@@ -928,7 +928,7 @@ int main(int argc, char **argv)
       fQ2test++;
 
       // y cut
-      if(!(0.1<yBj && yBj<0.7)) continue;
+      if(!(0.1<yBj && yBj<0.9)) continue;
       fYBjtest++;
 
       // W cut
