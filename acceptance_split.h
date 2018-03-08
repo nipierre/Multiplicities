@@ -68,10 +68,22 @@ vector<Double_t> fXMC;
 vector<Double_t> fYMC;
 vector<Double_t> fZMC;
 
+vector<Double_t> fHM04x;
+vector<Double_t> fHM04y;
+vector<Double_t> fHM05x;
+vector<Double_t> fHM05y;
+vector<Double_t> fHL04x;
+vector<Double_t> fHL04y;
+vector<Double_t> fHL05x;
+vector<Double_t> fHL05y;
 vector<Double_t> fHO03x;
 vector<Double_t> fHO03y;
 vector<Double_t> fHO04x;
 vector<Double_t> fHO04y;
+vector<Double_t> fHG01x;
+vector<Double_t> fHG01y;
+vector<Double_t> fHG02x;
+vector<Double_t> fHG02y;
 
 //Misc
 
@@ -168,20 +180,26 @@ TCanvas c5("Kin_w","Kin_w",3200,1600);
 TCanvas c6("Kin_#nu","Kin_#nu",3200,1600);
 TCanvas c7("Kin_xy","Kin_xy",3200,1600);
 TCanvas c8("target_xy","target_xy",3200,1600);
-TCanvas c9("HO03","HO03",3200,1600);
-TCanvas c10("HO04","HO04",3200,1600);
+TCanvas c9("HM04","HM04",3200,1600);
+TCanvas c10("HM05","HM05",3200,1600);
+TCanvas c11("HL04","HL04",3200,1600);
+TCanvas c12("HL05","HL05",3200,1600);
+TCanvas c13("HO03","HO03",3200,1600);
+TCanvas c14("HO04","HO04",3200,1600);
+TCanvas c15("HG01","HG01",3200,1600);
+TCanvas c16("HG02","HG02",3200,1600);
 
 TH1F* fKinematicsMC[6];
 TH2F* fKinematics2DMC;
 TH2F* fTarget2DMC;
-TCanvas c11("KinMC_Q^{2}","KinMC_Q^{2}",3200,1600);
-TCanvas c12("KinMC_x^{Bj}","KinMC_x^{Bj}",3200,1600);
-TCanvas c13("KinMC_y","KinMC_y",3200,1600);
-TCanvas c14("KinMC_z","KinMC_z",3200,1600);
-TCanvas c15("KinMC_w","KinMC_w",3200,1600);
-TCanvas c16("KinMC_#nu","KinMC_#nu",3200,1600);
-TCanvas c17("KinMC_xy","KinMC_xy",3200,1600);
-TCanvas c18("targetMC_xy","targetMC_xy",3200,1600);
+TCanvas c17("KinMC_Q^{2}","KinMC_Q^{2}",3200,1600);
+TCanvas c18("KinMC_x^{Bj}","KinMC_x^{Bj}",3200,1600);
+TCanvas c19("KinMC_y","KinMC_y",3200,1600);
+TCanvas c20("KinMC_z","KinMC_z",3200,1600);
+TCanvas c21("KinMC_w","KinMC_w",3200,1600);
+TCanvas c22("KinMC_#nu","KinMC_#nu",3200,1600);
+TCanvas c23("KinMC_xy","KinMC_xy",3200,1600);
+TCanvas c24("targetMC_xy","targetMC_xy",3200,1600);
 
 //Graphic Style
 
