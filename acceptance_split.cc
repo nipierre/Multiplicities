@@ -409,8 +409,8 @@ int main(int argc, char **argv)
     TBranch *HO04y = (TBranch*) tree->FindBranch("HO04y");
     TBranch *HG01x = (TBranch*) tree->FindBranch("HG01x");
     TBranch *HG01y = (TBranch*) tree->FindBranch("HG01y");
-    TBranch *HG02x = (TBranch*) tree->FindBranch("HG02x");
-    TBranch *HG02y = (TBranch*) tree->FindBranch("HG02y");
+    TBranch *HG021x = (TBranch*) tree->FindBranch("HG021x");
+    TBranch *HG021y = (TBranch*) tree->FindBranch("HG021y");
     //TBranch *saved = (TBranch*) tree->FindBranch("saved");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
     TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
@@ -512,8 +512,8 @@ int main(int argc, char **argv)
       HO04y->GetEntry(ip);
       HG01x->GetEntry(ip);
       HG01y->GetEntry(ip);
-      HG02x->GetEntry(ip);
-      HG02y->GetEntry(ip);
+      HG021x->GetEntry(ip);
+      HG021y->GetEntry(ip);
       //saved->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
       backPropFlag->GetEntry(ip);
@@ -1064,8 +1064,8 @@ int main(int argc, char **argv)
           fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
           fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
           fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
-          fHG02x.push_back(HG02x->GetLeaf("HG02x")->GetValue());
-          fHG02y.push_back(HG02y->GetLeaf("HG02y")->GetValue());
+          fHG02x.push_back(HG021x->GetLeaf("HG021x")->GetValue());
+          fHG02y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
         }
         if(fAllDISflag_MC)
         {
