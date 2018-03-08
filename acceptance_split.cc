@@ -172,6 +172,7 @@ void save_kin_plots()
   c14.Divide(1,1);
   c15.Divide(1,1);
   c16.Divide(1,1);
+  c17.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -221,8 +222,11 @@ void save_kin_plots()
   fHG01->Draw("COLZ");
   c15.Update();
   c16.cd(1);
-  fHG02->Draw("COLZ");
+  fHG021->Draw("COLZ");
   c16.Update();
+  c17.cd(1);
+  fHG022->Draw("COLZ");
+  c17.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -240,8 +244,8 @@ void save_kin_plots()
   c14.Print("kinMC.pdf","pdf");
   c15.Print("kinMC.pdf","pdf");
   c16.Print("kinMC.pdf","pdf");
+  c17.Print("kinMC.pdf","pdf");
 
-  c17.Divide(1,1);
   c18.Divide(1,1);
   c19.Divide(1,1);
   c20.Divide(1,1);
@@ -249,42 +253,43 @@ void save_kin_plots()
   c22.Divide(1,1);
   c23.Divide(1,1);
   c24.Divide(1,1);
-  c17.cd(1);
-  fKinematicsMC[0]->Draw();
-  gPad->SetLogx();
-  c17.Update();
+  c25.Divide(1,1);
   c18.cd(1);
-  fKinematicsMC[1]->Draw();
+  fKinematicsMC[0]->Draw();
   gPad->SetLogx();
   c18.Update();
   c19.cd(1);
-  fKinematicsMC[2]->Draw();
+  fKinematicsMC[1]->Draw();
+  gPad->SetLogx();
   c19.Update();
   c20.cd(1);
-  fKinematicsMC[3]->Draw();
+  fKinematicsMC[2]->Draw();
   c20.Update();
   c21.cd(1);
-  fKinematicsMC[4]->Draw();
+  fKinematicsMC[3]->Draw();
   c21.Update();
   c22.cd(1);
-  fKinematicsMC[5]->Draw();
+  fKinematicsMC[4]->Draw();
   c22.Update();
   c23.cd(1);
-  fKinematics2DMC->Draw("COLZ");
-  gPad->SetLogx();
+  fKinematicsMC[5]->Draw();
   c23.Update();
   c24.cd(1);
-  fTarget2DMC->Draw("COLZ");
+  fKinematics2DMC->Draw("COLZ");
+  gPad->SetLogx();
   c24.Update();
+  c25.cd(1);
+  fTarget2DMC->Draw("COLZ");
+  c25.Update();
 
-  c17.Print("kinMC.pdf","pdf");
   c18.Print("kinMC.pdf","pdf");
   c19.Print("kinMC.pdf","pdf");
   c20.Print("kinMC.pdf","pdf");
   c21.Print("kinMC.pdf","pdf");
   c22.Print("kinMC.pdf","pdf");
   c23.Print("kinMC.pdf","pdf");
-  c24.Print("kinMC.pdf)","pdf");
+  c24.Print("kinMC.pdf","pdf");
+  c25.Print("kinMC.pdf)","pdf");
 }
 
 int main(int argc, char **argv)
@@ -411,6 +416,8 @@ int main(int argc, char **argv)
     TBranch *HG01y = (TBranch*) tree->FindBranch("HG01y");
     TBranch *HG021x = (TBranch*) tree->FindBranch("HG021x");
     TBranch *HG021y = (TBranch*) tree->FindBranch("HG021y");
+    TBranch *HG022x = (TBranch*) tree->FindBranch("HG022x");
+    TBranch *HG022y = (TBranch*) tree->FindBranch("HG022y");
     //TBranch *saved = (TBranch*) tree->FindBranch("saved");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
     TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
@@ -1064,8 +1071,10 @@ int main(int argc, char **argv)
           fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
           fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
           fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
-          fHG02x.push_back(HG021x->GetLeaf("HG021x")->GetValue());
-          fHG02y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
+          fHG021x.push_back(HG021x->GetLeaf("HG021x")->GetValue());
+          fHG021y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
+          fHG022x.push_back(HG022x->GetLeaf("HG022x")->GetValue());
+          fHG022y.push_back(HG022y->GetLeaf("HG022y")->GetValue());
         }
         if(fAllDISflag_MC)
         {
