@@ -82,8 +82,10 @@ vector<Double_t> fHO04x;
 vector<Double_t> fHO04y;
 vector<Double_t> fHG01x;
 vector<Double_t> fHG01y;
-vector<Double_t> fHG02x;
-vector<Double_t> fHG02y;
+vector<Double_t> fHG021x;
+vector<Double_t> fHG022x;
+vector<Double_t> fHG021y;
+vector<Double_t> fHG022y;
 
 //Misc
 
