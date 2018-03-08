@@ -169,8 +169,14 @@ Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 
 TH1F* fKinematics[6];
 TH2F* fKinematics2D;
+TH2F* fHM04;
+TH2F* fHM05;
+TH2F* fHL04;
+TH2F* fHL05;
 TH2F* fHO03;
 TH2F* fHO04;
+TH2F* fHG01;
+TH2F* fHG02;
 TH2F* fTarget2D;
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
