@@ -522,6 +522,8 @@ int main(int argc, char **argv)
       HG01y->GetEntry(ip);
       HG021x->GetEntry(ip);
       HG021y->GetEntry(ip);
+      HG022x->GetEntry(ip);
+      HG022y->GetEntry(ip);
       //saved->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
       backPropFlag->GetEntry(ip);
