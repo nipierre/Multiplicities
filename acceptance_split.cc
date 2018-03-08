@@ -2199,7 +2199,8 @@ int main(int argc, char **argv)
       fHO03->Fill(fHO03x[i],fHO03y[i]);
       fHO04->Fill(fHO04x[i],fHO04y[i]);
       fHG01->Fill(fHG01x[i],fHG01y[i]);
-      fHG02->Fill(fHG02x[i],fHG02y[i]);
+      fHG021->Fill(fHG021x[i],fHG021y[i]);
+      fHG022->Fill(fHG022x[i],fHG022y[i]);
     }
     for(int i=0; i<int(fQ2kinMC.size()); i++)
     {
