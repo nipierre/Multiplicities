@@ -1060,24 +1060,36 @@ int main(int argc, char **argv)
           fNukin.push_back(nu);
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
-          fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
-          fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
-          fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
-          fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
+          if(trig&2)
+          {
+            fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
+            fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
+            fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
+            fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
+          }
+          else if(trig&4)
+          {
           fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
           fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
           fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
           fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
-          fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
-          fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
-          fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
-          fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
-          fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
-          fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
-          fHG021x.push_back(HG021x->GetLeaf("HG021x")->GetValue());
-          fHG021y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
-          fHG022x.push_back(HG022x->GetLeaf("HG022x")->GetValue());
-          fHG022y.push_back(HG022y->GetLeaf("HG022y")->GetValue());
+          }
+          if(trig&8)
+          {
+            fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
+            fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
+            fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
+            fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
+          }
+          if(trig&512)
+          {
+            fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
+            fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
+            fHG021x.push_back(HG021x->GetLeaf("HG021x")->GetValue());
+            fHG021y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
+            fHG022x.push_back(HG022x->GetLeaf("HG022x")->GetValue());
+            fHG022y.push_back(HG022y->GetLeaf("HG022y")->GetValue());
+          }
         }
         if(fAllDISflag_MC)
         {
