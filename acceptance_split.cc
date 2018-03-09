@@ -1074,14 +1074,14 @@ int main(int argc, char **argv)
           fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
           fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
           }
-          if(trig&8)
+          else if(trig&8)
           {
             fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
             fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
             fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
             fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
           }
-          if(trig&512)
+          else if(trig&512)
           {
             fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
             fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
@@ -2207,12 +2207,24 @@ int main(int argc, char **argv)
       fKinematics[5]->Fill(fNukin[i]);
       fKinematics2D->Fill(fXBjkin[i],fYBjkin[i]);
       fTarget2D->Fill(fX[i],fY[i]);
+    }
+    for(int i=0; i<int(fHM04x.size()); i++)
+    {
       fHM04->Fill(fHM04x[i],fHM04y[i]);
       fHM05->Fill(fHM05x[i],fHM05y[i]);
+    }
+    for(int i=0; i<int(fHL04x.size()); i++)
+    {
       fHL04->Fill(fHL04x[i],fHL04y[i]);
       fHL05->Fill(fHL05x[i],fHL05y[i]);
+    }
+    for(int i=0; i<int(fHO03x.size()); i++)
+    {
       fHO03->Fill(fHO03x[i],fHO03y[i]);
       fHO04->Fill(fHO04x[i],fHO04y[i]);
+    }
+    for(int i=0; i<int(fHG01x.size()); i++)
+    {
       fHG01->Fill(fHG01x[i],fHG01y[i]);
       fHG021->Fill(fHG021x[i],fHG021y[i]);
       fHG022->Fill(fHG022x[i],fHG022y[i]);
