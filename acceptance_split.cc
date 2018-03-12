@@ -134,6 +134,8 @@ void create_kin_plots()
   fHM05 = new TH2F("HM05X1", "HM05X1", 100, -250, 250, 100, -100, 100);
   fHL04 = new TH2F("HL04X1", "HL04X1", 100, 50, 190, 100, -25, 25);
   fHL05 = new TH2F("HL05X1", "HL05X1", 100, 60, 240, 100, -25, 25);
+  fHL04y1D = new TH2F("HL04X1y", "HL04X1y", 100, -25, 25);
+  fHL05y1D = new TH2F("HL05X1y", "HL05X1y", 100, -25, 25);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -250, 250, 100, -100, 100);
   fHO04 = new TH2F("HO04Y1", "HO04Y1", 100, -250, 250, 100, -100, 100);
   fHG01 = new TH2F("HG01Y1", "HG01Y1", 100, -100, 100, 100, -50, 50);
@@ -174,6 +176,8 @@ void save_kin_plots()
   c15.Divide(1,1);
   c16.Divide(1,1);
   c17.Divide(1,1);
+  c26.Divide(1,1);
+  c27.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -228,6 +232,12 @@ void save_kin_plots()
   c17.cd(1);
   fHG022->Draw("COLZ");
   c17.Update();
+  c26.cd(1);
+  fHL04y1D->Draw();
+  c26.Update();
+  c27.cd(1);
+  fHL05y1D->Draw();
+  c27.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -246,6 +256,8 @@ void save_kin_plots()
   c15.Print("kinMC.pdf","pdf");
   c16.Print("kinMC.pdf","pdf");
   c17.Print("kinMC.pdf","pdf");
+  c26.Print("kinMC.pdf","pdf");
+  c27.Print("kinMC.pdf","pdf");
 
   c18.Divide(1,1);
   c19.Divide(1,1);
@@ -1069,10 +1081,10 @@ int main(int argc, char **argv)
           }
           else if(trig&4)
           {
-          fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
-          fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
-          fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
-          fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
+            fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
+            fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
+            fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
+            fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
           }
           else if(trig&8)
           {
@@ -2217,6 +2229,8 @@ int main(int argc, char **argv)
     {
       fHL04->Fill(fHL04x[i],fHL04y[i]);
       fHL05->Fill(fHL05x[i],fHL05y[i]);
+      fHL04y1D->Fill(fHL04y[i]);
+      fHL05y1D->Fill(fHL05y[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
     {
