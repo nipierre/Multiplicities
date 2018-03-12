@@ -134,8 +134,8 @@ void create_kin_plots()
   fHM05 = new TH2F("HM05X1", "HM05X1", 100, -250, 250, 100, -100, 100);
   fHL04 = new TH2F("HL04X1", "HL04X1", 100, 50, 190, 100, -25, 25);
   fHL05 = new TH2F("HL05X1", "HL05X1", 100, 60, 240, 100, -25, 25);
-  fHL04y1D = new TH2F("HL04X1y", "HL04X1y", 100, -25, 25);
-  fHL05y1D = new TH2F("HL05X1y", "HL05X1y", 100, -25, 25);
+  fHL04y1D = new TH1F("HL04X1y", "HL04X1y", 100, -25, 25);
+  fHL05y1D = new TH1F("HL05X1y", "HL05X1y", 100, -25, 25);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -250, 250, 100, -100, 100);
   fHO04 = new TH2F("HO04Y1", "HO04Y1", 100, -250, 250, 100, -100, 100);
   fHG01 = new TH2F("HG01Y1", "HG01Y1", 100, -100, 100, 100, -50, 50);
