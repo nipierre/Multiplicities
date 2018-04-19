@@ -10,13 +10,6 @@ LHAPDF = /sps/compass/npierre/LHAPDF6
 LHAPDF_INCL += -I$(LHAPDF)/include
 LHAPDF_LIBS += -L$(LHAPDF)/lib -lLHAPDF
 
-ifeq ($(norc),1)
-CCFLAGS += -DNORC
-else
-PHAST_INCL += -I$(PHAST)/include -lGeom -lMathMore $(shell cernlib kernlib mathlib)
-PHAST_LIBS += -L$(PHAST)/lib -lPhast
-endif
-
 ifeq ($(debug),1)
 CCFLAGS += -DDEBUG
 endif
