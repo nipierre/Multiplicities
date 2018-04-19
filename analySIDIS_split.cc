@@ -282,7 +282,7 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
   }
   else
   {
-    cout << "ERROR in GetInclusiveRadiativeCorrection : Year not recognized. No correction applied."
+    cout << "ERROR in GetInclusiveRadiativeCorrection : Year not recognized. No correction applied." << endl;
     return 1;
   }
 }
@@ -333,7 +333,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   }
   else
   {
-    cout << "ERROR in GetSemiInclusiveRadiativeCorrection : Year not recognized. No correction applied."
+    cout << "ERROR in GetSemiInclusiveRadiativeCorrection : Year not recognized. No correction applied." << endl;
     return 1;
   }
 }
@@ -1168,13 +1168,13 @@ int main(int argc, char **argv)
 
       for(int i=0; i<12; i++)
       {
-        fNDIS_evt[0][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-        fNDIS_evt[1][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-        fNDIS_evt[2][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+        fNDIS_evt[0][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+        fNDIS_evt[1][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+        fNDIS_evt[2][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
 
-        fNDIS_evt_err[0][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-        fNDIS_evt_err[1][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-        fNDIS_evt_err[2][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+        fNDIS_evt_err[0][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+        fNDIS_evt_err[1][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+        fNDIS_evt_err[2][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
 
         fFlag[0][xbin][ybin][i]=0;
         fFlag[1][xbin][ybin][i]=0;
@@ -1195,12 +1195,12 @@ int main(int argc, char **argv)
         }
         if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
         {
-          fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-         // fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-         // fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-          fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-         // fNDIS_evt_err[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-         // fNDIS_evt_err[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+          fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+         // fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+         // fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+         // fNDIS_evt_err[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj),2);
+         // fNDIS_evt_err[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj),2);
         }
       }
 
