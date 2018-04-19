@@ -13,8 +13,8 @@
 #include "acceptance_split.h"
 
 //Inputs
-#define target_file_2012 "target-107924-109081.dat"
-#define target_file_2016 "target-274508-274901.dat"
+#define target_file_2012 "data/target-107924-109081.dat"
+#define target_file_2016 "data/target-274508-274901.dat"
 
 // Flags
 #define Y2006 0
