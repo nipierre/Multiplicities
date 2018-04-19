@@ -22,75 +22,35 @@ LOG
 #include <TArrow.h>
 
 #include "acceptance_collect.h"
-/*
-//Inputs
-#define mat_RICH_name "/afs/cern.ch/user/n/nipierre/workspace/rich_mat.txt"
-#define err_RICH_name "/afs/cern.ch/user/n/nipierre/workspace/rich_mat_error.txt"
-#define target_file "/afs/cern.ch/compass/dvcs/Production/Analysis/plots/target-107924-109081.dat"
 
-// Outputs
-#define acceptance_file "/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/acceptance.txt"
-#define hadron_acceptance_pdf "/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/hadron_acceptance.pdf"
-#define pion_acceptance_pdf "/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/pion_acceptance.pdf"
-#define kaon_acceptance_pdf "/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/kaon_acceptance.pdf"
-*/
-
-//Inputs
-#define mat_RICH_name "/afs/in2p3.fr/home/n/npierre/2006/rich_mat.txt"
-#define err_RICH_name "/afs/in2p3.fr/home/n/npierre/2006/rich_mat_error.txt"
-#define target_file "/afs/in2p3.fr/home/n/npierre/2006/target-107924-109081.dat"
-
-// Outputs
-#define acceptance_file "/afs/in2p3.fr/home/n/npierre/2006/acceptance.txt"
-#define lepto_file "/afs/in2p3.fr/home/n/npierre/2006/lepto.txt"
-#define hadron_acceptance_pdf "/afs/in2p3.fr/home/n/npierre/2006/hadron_acceptance.pdf"
-#define pion_acceptance_pdf "/afs/in2p3.fr/home/n/npierre/2006/pion_acceptance.pdf"
-#define kaon_acceptance_pdf "/afs/in2p3.fr/home/n/npierre/2006/kaon_acceptance.pdf"
-
-/*
-//Inputs
-#define mat_RICH_name "/afs/in2p3.fr/home/n/npierre/2006_nmr/rich_mat.txt"
-#define err_RICH_name "/afs/in2p3.fr/home/n/npierre/2006_nmr/rich_mat_error.txt"
-#define target_file "/afs/in2p3.fr/home/n/npierre/2006_nmr/target-107924-109081.dat"
-
-// Outputs
-#define acceptance_file "/afs/in2p3.fr/home/n/npierre/2006_nmr/acceptance.txt"
-#define lepto_file "/afs/in2p3.fr/home/n/npierre/2006_nmr/lepto.txt"
-#define hadron_acceptance_pdf "/afs/in2p3.fr/home/n/npierre/2006_nmr/hadron_acceptance.pdf"
-#define pion_acceptance_pdf "/afs/in2p3.fr/home/n/npierre/2006_nmr/pion_acceptance.pdf"
-#define kaon_acceptance_pdf "/afs/in2p3.fr/home/n/npierre/2006_nmr/kaon_acceptance.pdf"
-*/
-/*
-//Inputs
-#define mat_RICH_name "/Users/nico/CodeSoft/Fit/phast/rich_mat.txt"
-#define err_RICH_name "/Users/nico/CodeSoft/Fit/phast/rich_mat_error.txt"
-#define target_file "/Users/nico/CodeSoft/Fit/phast/target-107924-109081.dat"
-
-// Outputs
-#define acceptance_file "/Users/nico/CodeSoft/Fit/phast/acceptance.txt"
-#define lepto_file "/Users/nico/CodeSoft/Fit/phast/lepto.txt"
-#define hadron_acceptance_pdf "/Users/nico/CodeSoft/Fit/phast/hadron_acceptance.pdf"
-#define pion_acceptance_pdf "/Users/nico/CodeSoft/Fit/phast/pion_acceptance.pdf"
-#define kaon_acceptance_pdf "/Users/nico/CodeSoft/Fit/phast/kaon_acceptance.pdf"
-*/
 // Flags
-#define Y2006 1
+#define Y2006 0
 #define Y2012 0
+#define Y2016 1
+
+// Outputs
+#define dirroot "/sps/compass/npierre/acceptance"
 
 using namespace std;
 
 int main()
 {
 
+  int year=0;
+
+  if(Y2006) year=2006;
+  else if(Y2012) year=2012;
+  else if(Y2016) year=2016;
+
   // Files
 
-  for(int filen=0; filen<45; filen++)
+  for(int filen=0; filen<1; filen++)
   {
 
     double dummyd;
 
-    ifstream DIS_file(Form("DIS_%d.txt",filen));
-    ifstream had_file(Form("hadron_%d.txt",filen));
+    ifstream DIS_file(Form("acceptance/%d/DIS_%d.txt",year,filen));
+    ifstream had_file(Form("acceptance/%d/hadron_%d.txt",year,filen));
 
     for(int c=0; c<2; c++)
     {
@@ -187,8 +147,8 @@ int main()
 
   double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
 
-  ofstream ofs(acceptance_file, std::ofstream::out | std::ofstream::trunc);
-  ofstream lepto(lepto_file, std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs(Form("%s/%d/acceptance.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
+  ofstream lepto(Form("%s/%d/lepto.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
@@ -475,9 +435,9 @@ int main()
   c6.Update();
   c7.Update();
 
-  c5.Print(hadron_acceptance_pdf);
-  c6.Print(pion_acceptance_pdf);
-  c7.Print(kaon_acceptance_pdf);
+  c5.Print(Form("%s/%d/hadron_acceptance.pdf",dirroot,year));
+  c6.Print(Form("%s/%d/pion_acceptance.pdf",dirroot,year));
+  c7.Print(Form("%s/%d/kaon_acceptance.pdf",dirroot,year));
 
   ofs.close();
 

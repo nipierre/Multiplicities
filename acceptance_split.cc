@@ -334,6 +334,12 @@ int main(int argc, char **argv)
     }
   }
 
+  int year=0;
+
+  if(Y2006) year=2006;
+  else if(Y2012) year=2012;
+  else if(Y2016) year=2016;
+
   //Kinematics
   Double_t Q2 = 0;
   Double_t xBj = 0;
@@ -2291,8 +2297,8 @@ int main(int argc, char **argv)
 
   // TODO : manage multiple files -> which index ? FTM 0 but to be modified
 
-  ofstream ofs_h(Form("hadron/hadron_%d.txt",0), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_d(Form("DIS/DIS_%d.txt",0), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%d.txt",year,0), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%d.txt",year,0), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
