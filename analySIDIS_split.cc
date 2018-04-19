@@ -10,10 +10,12 @@
 using namespace std;
 
 //Inputs
-#define mat_RICH_name "rich_mat.txt"
-#define err_RICH_name "rich_mat_error.txt"
-#define target_file_2012 "target-107924-109081.dat"
-#define target_file_2016 "target-274508-274901.dat"
+#define mat_RICH_name "data/rich_mat.txt"
+#define err_RICH_name "data/rich_mat_error.txt"
+#define target_file_2012 "data/target-107924-109081.dat"
+#define target_file_2016 "data/target-274508-274901.dat"
+#define proton_sirc "data/proton_semi_inclusive_RC.txt"
+#define proton_irc "data/hh160_r1998_f2tulay_compass_grv.asy_hcorr.txt"
 
 // Flags
 #define Y2006 0
@@ -151,6 +153,196 @@ bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx, Double_t R)
   Double_t r = sqrt(dx*dx + dy*dy);
 
   return( r <= R );
+}
+
+void LoadInclusiveRadiativeCorrection()
+{
+  string sdum;
+
+  ifstream proton(proton_irc);
+  for(int i=0; i<19; i++)
+  {
+    for(int j=0; j<5; j++)
+    {
+      proton >> sdum;
+#ifdef DEBUG
+      cout << sdum << "\t";
+#endif
+
+      for(int k=0; k<6; k++)
+      {
+        proton >> fInclusiveRCproton[i][k+j*6] >> sdum;
+#ifdef DEBUG
+        cout << " " << fInclusiveRCproton[i][k+j*6] << sdum;
+#endif
+      }
+
+#ifdef DEBUG
+      cout << endl;
+#endif
+    }
+  }
+  proton.close();
+}
+
+void LoadSemiInclusiveRadiativeCorrection()
+{
+  string sdum;
+
+  ifstream proton(proton_sirc);
+  for(int i=0; i<9; i++)
+  {
+    proton >> sdum;
+#ifdef DEBUG
+    cout << " " << sdum;
+#endif
+  }
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      proton >> sdum;
+#ifdef DEBUG
+      cout << sdum << "\t";
+#endif
+      proton >> sdum;
+#ifdef DEBUG
+      cout << sdum << "\t";
+#endif
+
+      for(int k=0; k<14; k++)
+      {
+        proton >> fSemiInclusiveRCproton[i][j][k];
+#ifdef DEBUG
+        cout << " " << fSemiInclusiveRCproton[i][j][k];
+#endif
+      }
+
+#ifdef DEBUG
+      cout << endl;
+#endif
+    }
+  }
+  proton.close();
+}
+
+Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
+{
+  int xb, yb;
+
+  if(0.00005<x && x<0.00007) xb = 0;
+  else if(0.00007<=x && x<0.0001) xb = 1;
+  else if(0.0001<=x && x<0.0002) xb = 2;
+  else if(0.0002<=x && x<0.0003) xb = 3;
+  else if(0.0003<=x && x<0.0005) xb = 4;
+  else if(0.0005<=x && x<0.0007) xb = 5;
+  else if(0.0007<=x && x<0.001) xb = 6;
+  else if(0.001<=x && x<0.002) xb = 7;
+  else if(0.002<=x && x<0.004) xb = 8;
+  else if(0.004<=x && x<0.006) xb = 9;
+  else if(0.006<=x && x<0.008) xb = 10;
+  else if(0.008<=x && x<0.01) xb = 11;
+  else if(0.01<=x && x<0.013) xb = 12;
+  else if(0.013<=x && x<0.016) xb = 13;
+  else if(0.016<=x && x<0.02) xb = 14;
+  else if(0.02<=x && x<0.03) xb = 15;
+  else if(0.03<=x && x<0.04) xb = 16;
+  else if(0.04<=x && x<0.06) xb = 17;
+  else if(0.06<=x && x<0.08) xb = 18;
+  else if(0.08<=x && x<0.1) xb = 19;
+  else if(0.1<=x && x<0.15) xb = 20;
+  else if(0.15<=x && x<0.2) xb = 21;
+  else if(0.2<=x && x<0.3) xb = 22;
+  else if(0.3<=x && x<0.4) xb = 23;
+  else if(0.4<=x && x<0.5) xb = 24;
+  else if(0.5<=x && x<0.6) xb = 25;
+  else if(0.6<=x && x<0.7) xb = 26;
+  else if(0.7<=x && x<0.8) xb = 27;
+  else xb = 28;
+
+  if(0.05<y && y<0.1) yb = 0;
+  else if(0.1<=y && y<0.15) yb = 1;
+  else if(0.15<=y && y<0.2) yb = 2;
+  else if(0.2<=y && y<0.25) yb = 3;
+  else if(0.25<=y && y<0.3) yb = 4;
+  else if(0.3<=y && y<0.35) yb = 5;
+  else if(0.3<=y && y<0.35) yb = 6;
+  else if(0.35<=y && y<0.4) yb = 7;
+  else if(0.4<=y && y<0.45) yb = 8;
+  else if(0.45<=y && y<0.5) yb = 9;
+  else if(0.5<=y && y<0.55) yb = 10;
+  else if(0.55<=y && y<0.6) yb = 11;
+  else if(0.6<=y && y<0.65) yb = 12;
+  else if(0.65<=y && y<0.7) yb = 13;
+  else if(0.7<=y && y<0.75) yb = 14;
+  else if(0.75<=y && y<0.8) yb = 15;
+  else if(0.8<=y && y<0.85) yb = 16;
+  else yb = 17;
+
+  if(2006)
+  {
+    return 1;
+  }
+  else if(2012 || 2016)
+  {
+    return fInclusiveRCproton[xb][yb];
+  }
+  else
+  {
+    cout << "ERROR in GetInclusiveRadiativeCorrection : Year not recognized. No correction applied."
+    return 1;
+  }
+}
+
+Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
+{
+  int xb, yb, zb;
+
+  if(0.004<x && x<0.01) xb = 0;
+  else if(0.01<=x && x<0.02) xb = 1;
+  else if(0.02<=x && x<0.03) xb = 2;
+  else if(0.03<=x && x<0.04) xb = 3;
+  else if(0.04<=x && x<0.06) xb = 4;
+  else if(0.06<=x && x<0.1) xb = 5;
+  else if(0.1<=x && x<0.14) xb = 6;
+  else if(0.14<=x && x<0.18) xb = 7;
+  else xb = 8;
+
+  if(0.1<y && y<0.15) yb = 0;
+  else if(0.15<=y && y<0.2) yb = 1;
+  else if(0.2<=y && y<0.3) yb = 2;
+  else if(0.3<=y && y<0.5) yb = 3;
+  else if(0.5<=y && y<0.7) yb = 4;
+  else yb = 5;
+
+  if(0<z && z<0.2) zb = 0;
+  else if(0.2<z && z<0.25) zb = 1;
+  else if(0.25<=z && z<0.30) zb = 2;
+  else if(0.30<=z && z<0.35) zb = 3;
+  else if(0.35<=z && z<0.40) zb = 4;
+  else if(0.40<=z && z<0.45) zb = 5;
+  else if(0.45<=z && z<0.50) zb = 6;
+  else if(0.50<=z && z<0.55) zb = 7;
+  else if(0.55<=z && z<0.60) zb = 8;
+  else if(0.60<=z && z<0.65) zb = 9;
+  else if(0.65<=z && z<0.70) zb = 10;
+  else if(0.70<=z && z<0.75) zb = 11;
+  else if(0.75<=z && z<0.85) zb = 12;
+  else zb = 13;
+
+  if(2006)
+  {
+    return 1;
+  }
+  else if(2012 || 2016)
+  {
+    return fSemiInclusiveRCproton[xb][yb][zb];
+  }
+  else
+  {
+    cout << "ERROR in GetSemiInclusiveRadiativeCorrection : Year not recognized. No correction applied."
+    return 1;
+  }
 }
 
 void load_rich_mat(string prich, string prich_err)
@@ -983,23 +1175,13 @@ int main(int argc, char **argv)
 
       for(int i=0; i<12; i++)
       {
-#ifdef NORC
-        fNDIS_evt[0][xbin][ybin][i] += 1;
-        fNDIS_evt[1][xbin][ybin][i] += 1;
-        fNDIS_evt[2][xbin][ybin][i] += 1;
+        fNDIS_evt[0][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+        fNDIS_evt[1][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+        fNDIS_evt[2][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
 
-        fNDIS_evt_err[0][xbin][ybin][i] += 1;
-        fNDIS_evt_err[1][xbin][ybin][i] += 1;
-        fNDIS_evt_err[2][xbin][ybin][i] += 1;
-#else
-        fNDIS_evt[0][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-        fNDIS_evt[1][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-        fNDIS_evt[2][xbin][ybin][i] += 1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-
-        fNDIS_evt_err[0][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-        fNDIS_evt_err[1][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-        fNDIS_evt_err[2][xbin][ybin][i] += pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-#endif
+        fNDIS_evt_err[0][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+        fNDIS_evt_err[1][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+        fNDIS_evt_err[2][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
 
         fFlag[0][xbin][ybin][i]=0;
         fFlag[1][xbin][ybin][i]=0;
@@ -1020,21 +1202,12 @@ int main(int argc, char **argv)
         }
         if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
         {
-#ifdef NORC
-          fNDIS_evt[0][xbin][ybin][i] -= 1;
-        // fNDIS_evt[1][xbin][ybin][i] -= 1;
-        // fNDIS_evt[2][xbin][ybin][i] -= 1;
-          fNDIS_evt_err[0][xbin][ybin][i] -= 1;
-        // fNDIS_evt_err[1][xbin][ybin][i] -= 1;
-        // fNDIS_evt_err[2][xbin][ybin][i] -= 1;
-#else
-          fNDIS_evt[0][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-         // fNDIS_evt[1][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-         // fNDIS_evt[2][xbin][ybin][i] -= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue());
-          fNDIS_evt_err[0][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-         // fNDIS_evt_err[1][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-         // fNDIS_evt_err[2][xbin][ybin][i] -= pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
-#endif
+          fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+         // fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+         // fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue());
+          fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+         // fNDIS_evt_err[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
+         // fNDIS_evt_err[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj,1,z->GetLeaf("z")->GetValue()),2);
         }
       }
 
@@ -1531,16 +1704,14 @@ int main(int argc, char **argv)
             res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
             for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_p[theta_bin][mom_bin][rce];
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
             fPiplus_err += pow(res_vect_err[0],2);
             fKplus_err += pow(res_vect_err[1],2);
@@ -1573,16 +1744,13 @@ int main(int argc, char **argv)
             res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
             for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_m[theta_bin][mom_bin][rce];
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
             fPiminus_err += pow(res_vect_err[0],2);
             fKminus_err += pow(res_vect_err[1],2);
@@ -1612,13 +1780,9 @@ int main(int argc, char **argv)
           if(!fFlag[0][xbin][ybin][zbin])
           {
             fHplus++;
-#ifdef NORC
-            pzcontainer.vec[1][4].push_back(1);
-            pzcontainer_err.vec[1][4].push_back(1);
-#else
-            pzcontainer.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[1][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
+
+            pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
+            pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
             hadron_flag = 1;
           }
           if(!fFlag[1][xbin][ybin][zbin])
@@ -1627,16 +1791,13 @@ int main(int argc, char **argv)
             res_vect = inv_rich_p[theta_bin][mom_bin]*k_vect;
             for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_p[theta_bin][mom_bin][rce];
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
             fPiplus_err += pow(res_vect_err[0],2);
             fKplus_err += pow(res_vect_err[1],2);
@@ -1669,13 +1830,8 @@ int main(int argc, char **argv)
           if(!fFlag[0][xbin][ybin][zbin])
           {
             fHminus++;
-#ifdef NORC
-            pzcontainer.vec[0][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
+            pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
+            pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
             hadron_flag = 1;
           }
           if(!fFlag[1][xbin][ybin][zbin])
@@ -1684,16 +1840,13 @@ int main(int argc, char **argv)
             res_vect = inv_rich_m[theta_bin][mom_bin]*k_vect;
             for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_m[theta_bin][mom_bin][rce];
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
             fPiminus_err += pow(res_vect_err[0],2);
             fKminus_err += pow(res_vect_err[1],2);
@@ -1726,13 +1879,8 @@ int main(int argc, char **argv)
           if(!fFlag[0][xbin][ybin][zbin])
           {
             fHplus++;
-#ifdef NORC
-            pzcontainer.vec[1][4].push_back(1);
-            pzcontainer_err.vec[1][4].push_back(1);
-#else
-            pzcontainer.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[1][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
+            pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
+            pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
             hadron_flag = 1;
           }
           if(!fFlag[2][xbin][ybin][zbin])
@@ -1741,16 +1889,13 @@ int main(int argc, char **argv)
             res_vect = inv_rich_p[theta_bin][mom_bin]*p_vect;
             for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_p[theta_bin][mom_bin][rce];
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
             fPiplus_err += pow(res_vect_err[0],2);
             fKplus_err += pow(res_vect_err[1],2);
@@ -1783,13 +1928,8 @@ int main(int argc, char **argv)
           if(!fFlag[0][xbin][ybin][zbin])
           {
             fHminus++;
-#ifdef NORC
-            pzcontainer.vec[0][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
+            pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
+            pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
             hadron_flag = 1;
           }
           if(!fFlag[2][xbin][ybin][zbin])
@@ -1798,16 +1938,13 @@ int main(int argc, char **argv)
             res_vect = inv_rich_m[theta_bin][mom_bin]*p_vect;
             for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_m[theta_bin][mom_bin][rce];
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[1] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect_err[2] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
             fPiminus_err += pow(res_vect_err[0],2);
             fKminus_err += pow(res_vect_err[1],2);
@@ -1844,13 +1981,8 @@ int main(int argc, char **argv)
             pzcontainer.vec[1][1].push_back(0); pzcontainer_err.vec[1][1].push_back(0);
             pzcontainer.vec[1][2].push_back(0); pzcontainer_err.vec[1][2].push_back(0);
             pzcontainer.vec[1][3].push_back(0); pzcontainer_err.vec[1][3].push_back(0);
-#ifdef NORC
-            pzcontainer.vec[1][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
+            pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
+            pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
             hadcontainer.vec.push_back(6);
           }
         }
@@ -1863,13 +1995,8 @@ int main(int argc, char **argv)
             pzcontainer.vec[0][1].push_back(0); pzcontainer_err.vec[0][1].push_back(0);
             pzcontainer.vec[0][2].push_back(0); pzcontainer_err.vec[0][2].push_back(0);
             pzcontainer.vec[0][3].push_back(0); pzcontainer_err.vec[0][3].push_back(0);
-#ifdef NORC
-            pzcontainer.vec[0][4].push_back(1);
-            pzcontainer_err.vec[0][4].push_back(1);
-#else
-            pzcontainer.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-            pzcontainer_err.vec[0][4].push_back(pow(PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()),2));
-#endif
+            pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
+            pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
             hadcontainer.vec.push_back(7);
           }
         }
@@ -1891,13 +2018,10 @@ int main(int argc, char **argv)
           {
             res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[1][0].push_back(zBj);
             pzcontainer_loose.vec[1][1].push_back(res_vect[0][0]);
             pzcontainer_loose.vec[1][2].push_back(res_vect[1][0]);
@@ -1911,13 +2035,10 @@ int main(int argc, char **argv)
           {
             res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[0][0].push_back(zBj);
             pzcontainer_loose.vec[0][1].push_back(res_vect[0][0]);
             pzcontainer_loose.vec[0][2].push_back(res_vect[1][0]);
@@ -1929,22 +2050,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_loose.vec[1][4].push_back(1);
-#else
-            pzcontainer_loose.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_loose.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[1][xbin][ybin][zbin])
           {
             res_vect = inv_rich_p[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[1][0].push_back(zBj);
             pzcontainer_loose.vec[1][1].push_back(res_vect[0][0]);
             pzcontainer_loose.vec[1][2].push_back(res_vect[1][0]);
@@ -1956,22 +2070,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_loose.vec[0][4].push_back(1);
-#else
-            pzcontainer_loose.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_loose.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[1][xbin][ybin][zbin])
           {
             res_vect = inv_rich_m[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[0][0].push_back(zBj);
             pzcontainer_loose.vec[0][1].push_back(res_vect[0][0]);
             pzcontainer_loose.vec[0][2].push_back(res_vect[1][0]);
@@ -1983,22 +2090,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_loose.vec[1][4].push_back(1);
-#else
-            pzcontainer_loose.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_loose.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[2][xbin][ybin][zbin])
           {
             res_vect = inv_rich_p[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[1][0].push_back(zBj);
             pzcontainer_loose.vec[1][1].push_back(res_vect[0][0]);
             pzcontainer_loose.vec[1][2].push_back(res_vect[1][0]);
@@ -2010,22 +2110,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_loose.vec[0][4].push_back(1);
-#else
-            pzcontainer_loose.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_loose.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[2][xbin][ybin][zbin])
           {
             res_vect = inv_rich_m[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[0][0].push_back(zBj);
             pzcontainer_loose.vec[0][1].push_back(res_vect[0][0]);
             pzcontainer_loose.vec[0][2].push_back(res_vect[1][0]);
@@ -2042,10 +2135,7 @@ int main(int argc, char **argv)
             pzcontainer_loose.vec[1][2].push_back(0);
             pzcontainer_loose.vec[1][3].push_back(0);
             hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[1][4].push_back(hadron_nb);
           }
         }
@@ -2058,10 +2148,7 @@ int main(int argc, char **argv)
             pzcontainer_loose.vec[0][2].push_back(0);
             pzcontainer_loose.vec[0][3].push_back(0);
             hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_loose.vec[0][4].push_back(hadron_nb);
           }
         }
@@ -2081,13 +2168,10 @@ int main(int argc, char **argv)
           {
             res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[1][0].push_back(zBj);
             pzcontainer_severe.vec[1][1].push_back(res_vect[0][0]);
             pzcontainer_severe.vec[1][2].push_back(res_vect[1][0]);
@@ -2101,13 +2185,10 @@ int main(int argc, char **argv)
           {
             res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
             hadron_nb = 1;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[0][0].push_back(zBj);
             pzcontainer_severe.vec[0][1].push_back(res_vect[0][0]);
             pzcontainer_severe.vec[0][2].push_back(res_vect[1][0]);
@@ -2119,22 +2200,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_severe.vec[1][4].push_back(1);
-#else
-            pzcontainer_severe.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_severe.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[1][xbin][ybin][zbin])
           {
             res_vect = inv_rich_p[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[1][0].push_back(zBj);
             pzcontainer_severe.vec[1][1].push_back(res_vect[0][0]);
             pzcontainer_severe.vec[1][2].push_back(res_vect[1][0]);
@@ -2146,22 +2220,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_severe.vec[0][4].push_back(1);
-#else
-            pzcontainer_severe.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_severe.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[1][xbin][ybin][zbin])
           {
             res_vect = inv_rich_m[theta_bin][mom_bin]*k_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[0][0].push_back(zBj);
             pzcontainer_severe.vec[0][1].push_back(res_vect[0][0]);
             pzcontainer_severe.vec[0][2].push_back(res_vect[1][0]);
@@ -2173,22 +2240,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_severe.vec[1][4].push_back(1);
-#else
-            pzcontainer_severe.vec[1][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_severe.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[2][xbin][ybin][zbin])
           {
             res_vect = inv_rich_p[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[1][0].push_back(zBj);
             pzcontainer_severe.vec[1][1].push_back(res_vect[0][0]);
             pzcontainer_severe.vec[1][2].push_back(res_vect[1][0]);
@@ -2200,22 +2260,15 @@ int main(int argc, char **argv)
         {
           if(!fFlag[0][xbin][ybin][zbin])
           {
-#ifdef NORC
-            pzcontainer_severe.vec[0][4].push_back(1);
-#else
-            pzcontainer_severe.vec[0][4].push_back(1*PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue()));
-#endif
+            pzcontainer_severe.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
             hadron_flag = 1;
           }
           if(!fFlag[2][xbin][ybin][zbin])
           {
             res_vect = inv_rich_m[theta_bin][mom_bin]*p_vect;
-#ifdef NORC
-#else
-            res_vect[0][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[1][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-            res_vect[2][0] *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+            res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[0][0].push_back(zBj);
             pzcontainer_severe.vec[0][1].push_back(res_vect[0][0]);
             pzcontainer_severe.vec[0][2].push_back(res_vect[1][0]);
@@ -2232,10 +2285,7 @@ int main(int argc, char **argv)
             pzcontainer_severe.vec[1][2].push_back(0);
             pzcontainer_severe.vec[1][3].push_back(0);
             hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[1][4].push_back(hadron_nb);
           }
         }
@@ -2248,10 +2298,7 @@ int main(int argc, char **argv)
             pzcontainer_severe.vec[0][2].push_back(0);
             pzcontainer_severe.vec[0][3].push_back(0);
             hadron_nb = 1;
-#ifdef NORC
-#else
-            hadron_nb *= PaAlgo::GetRadiativeWeightLiD(xBj,yBj,2,z->GetLeaf("z")->GetValue());
-#endif
+            hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
             pzcontainer_severe.vec[0][4].push_back(hadron_nb);
           }
         }

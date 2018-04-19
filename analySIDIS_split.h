@@ -177,6 +177,9 @@ Double_t fKminus_err = 0;
 Double_t fPplus_err = 0;
 Double_t fPminus_err = 0;
 
+Double_t fInclusiveRCproton[30][19];
+Double_t fSemiInclusiveRCproton[9][6][14];
+
 //Binning
 Wrapper fBinning[9][5][12];
 Wrapper fBinning_loose[9][5][12];
