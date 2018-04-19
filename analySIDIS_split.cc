@@ -1,10 +1,3 @@
-// Include for RC tables from PHAST
-#ifdef NORC
-#else
-#include "PaAlgo.h"
-#include "Phast.h"
-#endif
-
 #include "analySIDIS_split.h"
 
 using namespace std;
