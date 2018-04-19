@@ -15,35 +15,8 @@
 
 #include "analySIDIS_collect.h"
 
-//Inputs
-#define out_file_name_p "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_pion.txt"
-#define out_file_name_test "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_raw.txt"
-#define out_file_name_k "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_kaon.txt"
-#define out_file_name_h "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_hadron.txt"
-#define acceptance_file_name "/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/smr/acceptance.txt"
+#define dirroot "/sps/compass/npierre/Multiplicities"
 
-// Outputs
-#define hadron_multiplicity_file "/afs/cern.ch/user/n/nipierre/workspace/hadron_multiplicity_file.root"
-#define pion_multiplicity_file "/afs/cern.ch/user/n/nipierre/workspace/pion_multiplicity_file.root"
-#define kaon_multiplicity_file "/afs/cern.ch/user/n/nipierre/workspace/kaon_multiplicity_file.root"
-#define hadron_multiplicity_pdf "/afs/cern.ch/user/n/nipierre/workspace/hadron_multiplicity_file.pdf"
-#define pion_multiplicity_pdf "/afs/cern.ch/user/n/nipierre/workspace/pion_multiplicity_file.pdf"
-#define kaon_multiplicity_pdf "/afs/cern.ch/user/n/nipierre/workspace/kaon_multiplicity_file.pdf"
-/*
-//Inputs
-#define out_file_name_p "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_pion_nmr.txt"
-#define out_file_name_k "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_kaon_nmr.txt"
-#define out_file_name_h "/afs/cern.ch/user/n/nipierre/workspace/multiplicities_hadron_nmr.txt"
-#define acceptance_file_name "/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/nmr/acceptance_nmr.txt"
-
-// Outputs
-#define hadron_multiplicity_file "/afs/cern.ch/user/n/nipierre/workspace/hadron_multiplicity_file_nmr.root"
-#define pion_multiplicity_file "/afs/cern.ch/user/n/nipierre/workspace/pion_multiplicity_file_nmr.root"
-#define kaon_multiplicity_file "/afs/cern.ch/user/n/nipierre/workspace/kaon_multiplicity_file_nmr.root"
-#define hadron_multiplicity_pdf "/afs/cern.ch/user/n/nipierre/workspace/hadron_multiplicity_file_nmr.pdf"
-#define pion_multiplicity_pdf "/afs/cern.ch/user/n/nipierre/workspace/pion_multiplicity_file_nmr.pdf"
-#define kaon_multiplicity_pdf "/afs/cern.ch/user/n/nipierre/workspace/kaon_multiplicity_file_nmr.pdf"
-*/
 // Flags
 #define Y2006 0
 #define Y2012 0
@@ -101,14 +74,20 @@ int main()
 
   //q_bin x_bin y_bin z_bin acc_pi acc_error_pi acc_k acc_error_k acc_p acc_error_p acc_h acc_error_h
 
+  int year=0;
+
+  if(Y2006) year=2006;
+  else if(Y2012) year=2012;
+  else if(Y2016) year=2016;
+
   double dummy;
+
+  fetch_acceptance(Form("acceptance/%d/acceptance.txt",year));
 
   for(int filen=0; filen<1/*5*/; filen++)
   {
-    ifstream dis_file(Form("/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/smr/DIS_%d.txt",filen));
-    ifstream had_file(Form("/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/smr/hadron_%d.txt",filen));
-    //ifstream dis_file(Form("/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/nmr/DIS_%d.txt",filen));
-    //ifstream had_file(Form("/afs/cern.ch/user/n/nipierre/workspace/2006_pion_nmr/nmr/hadron_%d.txt",filen));
+    ifstream dis_file(Form("rawmult/%d/DIS_%d.txt",year,filen));
+    ifstream had_file(Form("rawmult/%d/hadron_%d.txt",year,filen));
 
     for(int c=0; c<2; c++)
     {
@@ -276,10 +255,10 @@ int main()
 
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
 
-  ofstream ofs_p(out_file_name_p, std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_t(out_file_name_test, std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_k(out_file_name_k, std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_h(out_file_name_h, std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_p(Form("%s/multiplicities_pion.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_t(Form("%s/multiplicities_raw.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_k(Form("%s/multiplicities_kaon.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_h(Form("%s/multiplicities_hadron.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
 
   std::vector<Double_t> p_m[2][9][5];
   std::vector<Double_t> k_m[2][9][5];
@@ -582,12 +561,12 @@ int main()
   c6->Update();
   c7->Update();
 
-  c5->Print(hadron_multiplicity_file);
-  c5->Print(hadron_multiplicity_pdf);
-  c6->Print(pion_multiplicity_file);
-  c6->Print(pion_multiplicity_pdf);
-  c7->Print(kaon_multiplicity_file);
-  c7->Print(kaon_multiplicity_pdf);
+  c5->Print(Form("%s/hadron_multiplicity_file.pdf",dirroot));
+  c5->Print(Form("%s/hadron_multiplicity_file.root",dirroot));
+  c6->Print(Form("%s/pion_multiplicity_file.pdf",dirroot));
+  c6->Print(Form("%s/pion_multiplicity_file.root",dirroot));
+  c7->Print(Form("%s/kaon_multiplicity_file.pdf",dirroot));
+  c7->Print(Form("%s/kaon_multiplicity_file.root",dirroot));
 
   ofs_p.close();
   ofs_k.close();
