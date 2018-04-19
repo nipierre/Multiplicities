@@ -2571,7 +2571,7 @@ int main(int argc, char **argv)
   "true kaons : + " << fKplus_true << " - " << fKminus_true << "\n\n" <<
   "true protons : + " << fPplus_true << " - " << fPminus_true << "\n\n";
 
-  ofstream shout("rawmult/shout.txt",std::ofstream::out | std::ofstream::trunc);
+  ofstream shout(Form("rawmult/%d/shout.txt",year), std::ofstream::out | std::ofstream::trunc);
 
   shout <<
   fBP << " Best Primary (entries in disevent.root)\n\n" <<
@@ -2602,9 +2602,9 @@ int main(int argc, char **argv)
 
   shout.close();
 
-  ofstream ofs_h("rawmult/hadron_0.txt", std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_d("rawmult/DIS_0.txt", std::ofstream::out | std::ofstream::trunc);
-  ofstream xc("rawmult/xcheck.txt",std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_h(Form("rawmult/%d/hadron_0.txt",year), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_d("rawmult/%d/DIS_0.txt",year, std::ofstream::out | std::ofstream::trunc);
+  ofstream xc("rawmult/%d/xcheck.txt",year, std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
