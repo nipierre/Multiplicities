@@ -29,7 +29,7 @@ LOG
 #define Y2016 1
 
 // Outputs
-#define dirroot "/sps/compass/npierre/acceptance"
+#define dirroot "/sps/compass/npierre/Multiplicities/acceptance"
 
 using namespace std;
 
