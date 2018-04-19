@@ -49,8 +49,8 @@ int main()
 
     double dummyd;
 
-    ifstream DIS_file(Form("acceptance/%d/DIS_%d.txt",year,filen));
-    ifstream had_file(Form("acceptance/%d/hadron_%d.txt",year,filen));
+    ifstream DIS_file(Form("%d/DIS/DIS_%d.txt",year,filen));
+    ifstream had_file(Form("%d/hadron/hadron_%d.txt",year,filen));
 
     for(int c=0; c<2; c++)
     {
