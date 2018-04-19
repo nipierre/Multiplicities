@@ -699,6 +699,12 @@ int main(int argc, char **argv)
     }
   }
 
+  int year=0;
+
+  if(Y2006) year=2006;
+  else if(Y2012) year=2012;
+  else if(Y2016) year=2016;
+
   //Kinematics
   Double_t Q2 = 0;
   Double_t xBj = 0;
