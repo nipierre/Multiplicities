@@ -2609,8 +2609,8 @@ int main(int argc, char **argv)
   shout.close();
 
   ofstream ofs_h(Form("rawmult/%d/hadron_0.txt",year), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_d("rawmult/%d/DIS_0.txt",year, std::ofstream::out | std::ofstream::trunc);
-  ofstream xc("rawmult/%d/xcheck.txt",year, std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_d(Form("rawmult/%d/DIS_0.txt",year), std::ofstream::out | std::ofstream::trunc);
+  ofstream xc(Form("rawmult/%d/xcheck.txt",year), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
