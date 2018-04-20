@@ -3,6 +3,7 @@
 #include <set>
 #include <map>
 #include <utility>
+#include <TLatex.h>
 
 using namespace std;
 

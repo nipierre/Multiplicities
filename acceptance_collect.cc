@@ -149,7 +149,7 @@ int main()
   {
     l1[i] = new TLine(0.1,1+i*0.1,0.9,1+i*0.1);
     l1[i]->SetLineStyle(4);
-    l1[i]->SetLineColor(fMarkerColorAlt[i]);
+    l1[i]->SetLineColor(fMarkerColor[i]);
   }
 
   double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
@@ -430,7 +430,7 @@ int main()
           c6.cd(i+1);
           if(P_acc[c][i][j])
           {
-            if(!c & j==3)
+            if(!c && j==3)
             {
               P_acc[c][i][j]->Draw("SAMEPA");
               P_acc[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
@@ -673,7 +673,7 @@ int main()
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-  c9.cd(4);
+  c7.cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
