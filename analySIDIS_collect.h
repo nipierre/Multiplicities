@@ -5,6 +5,7 @@
 #include <set>
 #include <map>
 #include <utility>
+#include <TLatex.h>
 
 using namespace std;
 
@@ -159,8 +160,8 @@ studyxy fR_xy[24];
 
 //Graphic Style
 
-Int_t fMarkerColor[2] = {4,2};
-Int_t fMarkerStyle[2] = {24,20};
+int fMarkerColor[5] = {2,95,209,226,221};
+int fMarkerStyle[5][2] = {{24,20},{26,22},{25,21},{27,33},{28,34}};
 
 //Constants
 
