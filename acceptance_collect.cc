@@ -145,13 +145,6 @@ int main()
   TGraphErrors* P_acc[2][9][5];
   TGraphErrors* K_acc[2][9][5];
 
-  for(int i=0; i<5; i++)
-  {
-    l1[i] = new TLine(0.1,1+i*0.1,0.9,1+i*0.1);
-    l1[i]->SetLineStyle(4);
-    l1[i]->SetLineColor(fMarkerColor[i]);
-  }
-
   double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
 
   ofstream ofs(Form("%s/%d/acceptance.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
@@ -320,6 +313,10 @@ int main()
           (fAcceptance[i][j][k].tab[c][0][2] ? Double_t((fGnrt[i][j][k].tab[c][0][2]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][2],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
           (fAcceptance[i][j][k].tab[c][0][3] ? Double_t((fGnrt[i][j][k].tab[c][0][3]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][3],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " << endl;
 
+          fAcceptance[i][j][k].tab[c][0][0] = ((fAcceptance[i][j][k].tab[c][0][0]) ? (fAcceptance[i][j][k].tab[c][0][0]+j*0.1) : 0);
+          fAcceptance[i][j][k].tab[c][0][1] = ((fAcceptance[i][j][k].tab[c][0][1]) ? (fAcceptance[i][j][k].tab[c][0][1]+j*0.1) : 0);
+          fAcceptance[i][j][k].tab[c][0][2] = ((fAcceptance[i][j][k].tab[c][0][2]) ? (fAcceptance[i][j][k].tab[c][0][2]+j*0.1) : 0);
+          fAcceptance[i][j][k].tab[c][0][3] = ((fAcceptance[i][j][k].tab[c][0][3]) ? (fAcceptance[i][j][k].tab[c][0][3]+j*0.1) : 0);
         }
 
         for(int k=12; k>0; k--)
@@ -374,9 +371,9 @@ int main()
             if(!c && j==3)
             {
               H_acc[c][i][j]->Draw("SAMEPA");
-              H_acc[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
-              H_acc[c][i][j]->SetMinimum(0.);
-              H_acc[c][i][j]->SetMaximum(3.);
+              H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              H_acc[c][i][j]->SetMinimum(0.2);
+              H_acc[c][i][j]->SetMaximum(1.5);
               H_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               H_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               H_acc[c][i][j]->SetTitle("");
@@ -392,34 +389,29 @@ int main()
               H_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                H_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{#eta}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
+                H_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
                 H_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               H_acc[c][i][0]->Draw("SAMEP");
-              H_acc[c][i][0]->GetXaxis()->SetLimits(-0.05,1.05);
-              H_acc[c][i][0]->SetMinimum(0.);
-              H_acc[c][i][0]->SetMaximum(3.);
+              H_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+              H_acc[c][i][0]->SetMinimum(0.2);
+              H_acc[c][i][0]->SetMaximum(1.5);
               H_acc[c][i][1]->Draw("SAMEP");
-              H_acc[c][i][1]->GetXaxis()->SetLimits(-0.05,1.05);
-              H_acc[c][i][1]->SetMinimum(0.);
-              H_acc[c][i][1]->SetMaximum(3.);
+              H_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+              H_acc[c][i][1]->SetMinimum(0.2);
+              H_acc[c][i][1]->SetMaximum(1.5);
               H_acc[c][i][2]->Draw("SAMEP");
-              H_acc[c][i][2]->GetXaxis()->SetLimits(-0.05,1.05);
-              H_acc[c][i][2]->SetMinimum(0.);
-              H_acc[c][i][2]->SetMaximum(3.);
-              c5.Range(0.,0.,1.,3.);
-              l1[0]->Draw();
-              l1[1]->Draw();
-              l1[2]->Draw();
-              l1[3]->Draw();
-              l1[4]->Draw();
+              H_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+              H_acc[c][i][2]->SetMinimum(0.2);
+              H_acc[c][i][2]->SetMaximum(1.5);
+              c5.Range(0.1,0.2,0.9,1.5);
             }
             else
             {
               H_acc[c][i][j]->Draw("SAMEP");
-              H_acc[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
-              H_acc[c][i][j]->SetMinimum(0.);
-              H_acc[c][i][j]->SetMaximum(3.);
+              H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              H_acc[c][i][j]->SetMinimum(0.2);
+              H_acc[c][i][j]->SetMaximum(1.5);
             }
           }
           c5.Update();
@@ -451,7 +443,7 @@ int main()
               P_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                P_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{#eta}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
+                P_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
                 P_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               P_acc[c][i][0]->Draw("SAMEP");
@@ -467,11 +459,6 @@ int main()
               P_acc[c][i][2]->SetMinimum(0.);
               P_acc[c][i][2]->SetMaximum(3.);
               c6.Range(0.,0.,1.,3.);
-              l1[0]->Draw();
-              l1[1]->Draw();
-              l1[2]->Draw();
-              l1[3]->Draw();
-              l1[4]->Draw();
             }
             else
             {
@@ -510,7 +497,7 @@ int main()
               K_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                K_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{#eta}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
+                K_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
                 K_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               K_acc[c][i][0]->Draw("SAMEP");
@@ -526,11 +513,6 @@ int main()
               K_acc[c][i][2]->SetMinimum(0.);
               K_acc[c][i][2]->SetMaximum(3.);
               c7.Range(0.,0.,1.,3.);
-              l1[0]->Draw();
-              l1[1]->Draw();
-              l1[2]->Draw();
-              l1[3]->Draw();
-              l1[4]->Draw();
             }
             else
             {

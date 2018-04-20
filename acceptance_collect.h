@@ -110,8 +110,6 @@ int fFlag[3][9][5][12];
 int fFlag_MC[3][9][5][12];
 double fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 
-TLine* l1[5];
-
 //Graphic Style
 
 int fMarkerColor[5] = {2,95,209,226,221};
