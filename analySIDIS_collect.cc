@@ -463,7 +463,7 @@ int main()
               H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][2]->SetMinimum(0.);
               H_mult[c][i][2]->SetMaximum(2.5);
-              c5.Range(0.1,0.,0.9,2.5);
+              c5->Range(0.1,0.,0.9,2.5);
             }
             else
             {
@@ -517,7 +517,7 @@ int main()
               P_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
               P_mult[c][i][2]->SetMinimum(0.);
               P_mult[c][i][2]->SetMaximum(2.);
-              c8.Range(0.1,0.,0.9,2.);
+              c6->Range(0.1,0.,0.9,2.);
             }
             else
             {
@@ -541,37 +541,37 @@ int main()
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               K_mult[c][i][j]->SetMinimum(0.);
               K_mult[c][i][j]->SetMaximum(1.);
-              K_d[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-              K_d[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-              K_d[c][i][j]->SetTitle("");
+              K_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              K_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              K_mult[c][i][j]->SetTitle("");
               if(i>4) gPad->SetBottomMargin(.15);
               if(i==0 || i==5) gPad->SetLeftMargin(.22);
               if(i==8)
               {
-                K_d[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                K_d[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-                K_d[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                K_mult[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                K_mult[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                K_mult[c][i][j]->GetXaxis()->SetTitleOffset(.8);
               }
-              K_d[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-              K_d[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              K_mult[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              K_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                K_d[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
-                K_d[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
+                K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              K_d[c][i][0]->Draw("SAMEP");
-              K_d[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-              K_d[c][i][0]->SetMinimum(0.);
-              K_d[c][i][0]->SetMaximum(1.);
-              K_d[c][i][1]->Draw("SAMEP");
-              K_d[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-              K_d[c][i][1]->SetMinimum(0.);
-              K_d[c][i][1]->SetMaximum(1.);
-              K_d[c][i][2]->Draw("SAMEP");
-              K_d[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-              K_d[c][i][2]->SetMinimum(0.);
-              K_d[c][i][2]->SetMaximum(1.);
-              c9.Range(0.1,.0,0.9,1.);
+              K_mult[c][i][0]->Draw("SAMEP");
+              K_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+              K_mult[c][i][0]->SetMinimum(0.);
+              K_mult[c][i][0]->SetMaximum(1.);
+              K_mult[c][i][1]->Draw("SAMEP");
+              K_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+              K_mult[c][i][1]->SetMinimum(0.);
+              K_mult[c][i][1]->SetMaximum(1.);
+              K_mult[c][i][2]->Draw("SAMEP");
+              K_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+              K_mult[c][i][2]->SetMinimum(0.);
+              K_mult[c][i][2]->SetMaximum(1.);
+              c7->Range(0.1,.0,0.9,1.);
             }
             else
             {
