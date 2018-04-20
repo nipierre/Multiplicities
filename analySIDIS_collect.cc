@@ -589,52 +589,52 @@ int main()
 
   TLatex fTitle;
 
-  c5.cd(1);
+  c5->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-  c5.cd(2);
+  c5->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-  c5.cd(3);
+  c5->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-  c5.cd(4);
+  c5->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-  c5.cd(5);
+  c5->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-  c5.cd(6);
+  c5->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-  c7.cd(7);
+  c7->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-  c5.cd(8);
+  c5->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-  c5.cd(9);
+  c5->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
-  c5.cd(10);
+  c5->cd(10);
   fTitle.SetTextSize(0.095);
   fTitle.SetTextAlign(11);
   fTitle.DrawLatex(0.05, 0.64,"#color[221]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
@@ -644,52 +644,52 @@ int main()
   fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
 
 
-  c6.cd(1);
+  c6->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-  c6.cd(2);
+  c6->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-  c6.cd(3);
+  c6->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-  c6.cd(4);
+  c6->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-  c6.cd(5);
+  c6->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-  c6.cd(6);
+  c6->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-  c6.cd(7);
+  c6->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-  c6.cd(8);
+  c6->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-  c6.cd(9);
+  c6->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
-  c6.cd(10);
+  c6->cd(10);
   fTitle.SetTextSize(0.095);
   fTitle.SetTextAlign(11);
   fTitle.DrawLatex(0.05, 0.64,"#color[221]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
@@ -698,52 +698,52 @@ int main()
   fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
   fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
 
-  c7.cd(1);
+  c7->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-  c7.cd(2);
+  c7->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-  c7.cd(3);
+  c7->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-  c7.cd(4);
+  c7->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-  c7.cd(5);
+  c7->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-  c7.cd(6);
+  c7->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-  c7.cd(7);
+  c7->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-  c7.cd(8);
+  c7->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-  c7.cd(9);
+  c7->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 1.5,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
-  c7.cd(10);
+  c7->cd(10);
   fTitle.SetTextSize(0.095);
   fTitle.SetTextAlign(11);
   fTitle.DrawLatex(0.05, 0.64,"#color[221]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
