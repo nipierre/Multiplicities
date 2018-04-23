@@ -242,21 +242,19 @@ int main()
   TCanvas c5("Hadron_Acceptance","Hadron_Acceptance",3200,1600);
   TCanvas c6("Pion_Acceptance","Pion_Acceptance",3200,1600);
   TCanvas c7("Kaon_Acceptance","Kaon_Acceptance",3200,1600);
-  TCanvas c8("Hadron_Acceptance_zvtx","Hadron_Acceptance_zvtx",3200,1600);
+  TCanvas* c8[12];
   TCanvas c9("Pion_Acceptance_zvtx","Pion_Acceptance_zvtx",3200,1600);
   TCanvas c10("Kaon_Acceptance_zvtx","Kaon_Acceptance_zvtx",3200,1600);
 
   c5.SetFillColor(0);
   c6.SetFillColor(0);
   c7.SetFillColor(0);
-  c8.SetFillColor(0);
   c9.SetFillColor(0);
   c10.SetFillColor(0);
 
   c5.Divide(5,2,0,0);
   c6.Divide(5,2,0,0);
   c7.Divide(5,2,0,0);
-  c8.Divide(5,2,0,0);
   c9.Divide(5,2,0,0);
   c10.Divide(5,2,0,0);
 
@@ -266,6 +264,13 @@ int main()
   TGraphErrors* H_corr_zvtx[2][9][6][12];
   TGraphErrors* P_corr_zvtx[2][9][6][12];
   TGraphErrors* K_corr_zvtx[2][9][6][12];
+
+  for(int i=0; i<12; i++)
+  {
+    c8[i] = new TCanvas(Form("Hadron_Acceptance_zvtx_%d",i),Form("Hadron_Acceptance_zvtx_%d",i),3200,1600);
+    c8[i]->SetFillColor(0);
+    c8[i]->Divide(5,2,0,0);
+  }
 
   double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
   double zvtx_range[4] = {-281.19,-221.19,-161.19,-101.19};
@@ -540,11 +545,9 @@ int main()
           P_corr_zvtx[c][i][j][k]->SetTitle("");
           K_corr_zvtx[c][i][j][k]->SetTitle("");
 
-          cout << "pouet" << endl;
-
           if(!h_corr_empty)
           {
-            c8.cd(i+1);
+            c8[k]->cd(i+1);
             gPad->SetFillStyle(4000);
             if(H_corr_zvtx[c][i][j][k])
             {
@@ -584,7 +587,7 @@ int main()
                 H_corr_zvtx[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
                 H_corr_zvtx[c][i][2][k]->SetMinimum(0.);
                 H_corr_zvtx[c][i][2][k]->SetMaximum(2.);
-                c8.Range(-320,0.,-60,2.);
+                c8[k]->Range(-320,0.,-60,2.);
               }
               else
               {
@@ -594,7 +597,7 @@ int main()
                 H_corr_zvtx[c][i][j][k]->SetMaximum(2.);
               }
             }
-            c8.Update();
+            c8[k]->Update();
           }
 
           if(!p_corr_empty)
@@ -1085,52 +1088,52 @@ int main()
   fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
   fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
 
-  c8.cd(1);
+  c8->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  fTitle.DrawLatex(-310, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-  c8.cd(2);
+  c8->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  fTitle.DrawLatex(-310, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-  c8.cd(3);
+  c8->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+  fTitle.DrawLatex(-310, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-  c8.cd(4);
+  c8->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+  fTitle.DrawLatex(-310, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-  c8.cd(5);
+  c8->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+  fTitle.DrawLatex(-310, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-  c8.cd(6);
+  c8->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+  fTitle.DrawLatex(-310, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-  c8.cd(7);
+  c8->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+  fTitle.DrawLatex(-310, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-  c8.cd(8);
+  c8->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+  fTitle.DrawLatex(-310, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-  c8.cd(9);
+  c8->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+  fTitle.DrawLatex(-310, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
-  c8.cd(10);
+  c8->cd(10);
   fTitle.SetTextSize(0.095);
   fTitle.SetTextAlign(11);
   fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90, #delta = 0.5}");
@@ -1149,7 +1152,10 @@ int main()
   c5.Print(Form("%s/%d/hadron_acceptance.pdf",dirroot,year));
   c6.Print(Form("%s/%d/pion_acceptance.pdf",dirroot,year));
   c7.Print(Form("%s/%d/kaon_acceptance.pdf",dirroot,year));
-  c8.Print(Form("%s/%d/hadron_acceptance_corr.pdf",dirroot,year));
+  c8[0]->Print(Form("%s/%d/hadron_acceptance_corr.pdf(",dirroot,year),"pdf");
+  for(int i=1; i<11; i++)
+    c8[i]->Print(Form("%s/%d/hadron_acceptance_corr.pdf",dirroot,year),"pdf");
+  c8[11]->Print(Form("%s/%d/hadron_acceptance_corr.pdf)",dirroot,year),"pdf");
 
   ofs.close();
 
