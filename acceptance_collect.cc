@@ -287,13 +287,6 @@ int main()
         std::vector<double> k_err;
         std::vector<double> h_err;
 
-        std::vector<double> p_corr;
-        std::vector<double> k_corr;
-        std::vector<double> h_corr;
-        std::vector<double> p_cerr;
-        std::vector<double> k_cerr;
-        std::vector<double> h_cerr;
-
         std::vector<double> z_range_p;
         std::vector<double> z_range_k;
         std::vector<double> z_range_h;
@@ -307,6 +300,12 @@ int main()
 
         for(int k=0; k<12; k++)
         {
+          std::vector<double> p_corr;
+          std::vector<double> k_corr;
+          std::vector<double> h_corr;
+          std::vector<double> p_cerr;
+          std::vector<double> k_cerr;
+          std::vector<double> h_cerr;
 
           std::vector<double> zvtx_range_p;
           std::vector<double> zvtx_range_k;
