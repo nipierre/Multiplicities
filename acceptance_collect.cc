@@ -471,10 +471,10 @@ int main()
             if(fAcceptance_zvtx[i][j][k][l].tab[c][0][2]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][2]=0;
             if(fAcceptance_zvtx[i][j][k][l].tab[c][0][3]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][3]=0;
 
-            fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = fAcceptance[i][j][k].tab[c][1][0];
-            fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = fAcceptance[i][j][k].tab[c][1][1];
-            fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = fAcceptance[i][j][k].tab[c][1][2];
-            fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = fAcceptance[i][j][k].tab[c][1][3];
+            fAcceptance_zvtx[i][j][k][l].tab[c][1][0] = fAcceptance[i][j][k].tab[c][1][0];
+            fAcceptance_zvtx[i][j][k][l].tab[c][1][1] = fAcceptance[i][j][k].tab[c][1][1];
+            fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = fAcceptance[i][j][k].tab[c][1][2];
+            fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = fAcceptance[i][j][k].tab[c][1][3];
 
             if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
             {
@@ -512,13 +512,9 @@ int main()
           if(!(int(k_corr.size()))) k_corr_empty = 1;
           if(!(int(h_corr.size()))) h_corr_empty = 1;
 
-          cout << "pouet" << endl;
-
           H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
           P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
           K_corr_zvtx[c][i][j][k] = new TGraphErrors(int(k_corr.size()),&(zvtx_range_k[0]),&(k_corr[0]),0,&(k_cerr[0]));
-
-          cout << "pouet" << endl;
 
           H_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
           P_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
