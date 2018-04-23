@@ -518,6 +518,8 @@ int main()
           P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
           K_corr_zvtx[c][i][j][k] = new TGraphErrors(int(k_corr.size()),&(zvtx_range_k[0]),&(k_corr[0]),0,&(k_cerr[0]));
 
+          cout << "pouet" << endl;
+
           H_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
           P_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
           K_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
