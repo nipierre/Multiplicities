@@ -298,10 +298,6 @@ int main()
         std::vector<double> z_range_k;
         std::vector<double> z_range_h;
 
-        std::vector<double> zvtx_range_p;
-        std::vector<double> zvtx_range_k;
-        std::vector<double> zvtx_range_h;
-
         for(int l=0; l<12; l++)
         {
           z_range_p.push_back(z_range[l]);
@@ -312,13 +308,17 @@ int main()
         for(int k=0; k<12; k++)
         {
 
+          std::vector<double> zvtx_range_p;
+          std::vector<double> zvtx_range_k;
+          std::vector<double> zvtx_range_h;
+
           for(int l=0; l<4; l++)
           {
             zvtx_range_p.push_back(zvtx_range[l]);
             zvtx_range_k.push_back(zvtx_range[l]);
             zvtx_range_h.push_back(zvtx_range[l]);
           }
-          
+
           /*cout << "data count : " << fNDIS_evt_MC[0][i][j][k] << endl;
           cout << "MC count : " << fNDIS_evt_MC[0][i][j][k] << endl;
           cout << "Rcst count : " << fRcstr[i][j][k].tab[c][0][3] << endl;
