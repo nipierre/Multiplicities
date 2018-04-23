@@ -521,9 +521,9 @@ int main()
           P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
           K_corr_zvtx[c][i][j][k] = new TGraphErrors(int(k_corr.size()),&(zvtx_range_k[0]),&(k_corr[0]),0,&(k_cerr[0]));
 
-          H_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
-          P_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
-          K_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
+          H_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColor[j]);
+          P_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColor[j]);
+          K_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColor[j]);
 
           H_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
           P_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
@@ -1093,47 +1093,47 @@ int main()
     c8[i]->cd(1);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+    fTitle.DrawLatex(-200, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
     c8[i]->cd(2);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+    fTitle.DrawLatex(-200, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
     c8[i]->cd(3);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+    fTitle.DrawLatex(-200, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
     c8[i]->cd(4);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+    fTitle.DrawLatex(-200, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
     c8[i]->cd(5);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+    fTitle.DrawLatex(-200, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
     c8[i]->cd(6);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+    fTitle.DrawLatex(-200, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
     c8[i]->cd(7);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+    fTitle.DrawLatex(-200, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
     c8[i]->cd(8);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+    fTitle.DrawLatex(-200, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
     c8[i]->cd(9);
     fTitle.SetTextSize(0.078);
     fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(-310, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+    fTitle.DrawLatex(-200, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
     c8[i]->cd(10);
     fTitle.SetTextSize(0.095);
