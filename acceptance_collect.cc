@@ -286,14 +286,6 @@ int main()
             fAcceptance[i][j][k].tab[c][1][3] = 0;
           }
 
-          p_a.push_back(fAcceptance[i][j][k].tab[c][0][0]);
-          k_a.push_back(fAcceptance[i][j][k].tab[c][0][1]);
-          h_a.push_back(fAcceptance[i][j][k].tab[c][0][3]);
-
-          p_err.push_back(fAcceptance[i][j][k].tab[c][1][0]);
-          k_err.push_back(fAcceptance[i][j][k].tab[c][1][1]);
-          h_err.push_back(fAcceptance[i][j][k].tab[c][1][3]);
-
           //Output file
           //q_bin x_bin y_bin z_bin acc_pi acc_error_pi acc_k acc_error_k acc_p acc_error_p acc_h acc_error_h
 
@@ -317,6 +309,14 @@ int main()
           fAcceptance[i][j][k].tab[c][0][1] = ((fAcceptance[i][j][k].tab[c][0][1]) ? (fAcceptance[i][j][k].tab[c][0][1]+j*0.1) : 0);
           fAcceptance[i][j][k].tab[c][0][2] = ((fAcceptance[i][j][k].tab[c][0][2]) ? (fAcceptance[i][j][k].tab[c][0][2]+j*0.1) : 0);
           fAcceptance[i][j][k].tab[c][0][3] = ((fAcceptance[i][j][k].tab[c][0][3]) ? (fAcceptance[i][j][k].tab[c][0][3]+j*0.1) : 0);
+
+          p_a.push_back(fAcceptance[i][j][k].tab[c][0][0]);
+          k_a.push_back(fAcceptance[i][j][k].tab[c][0][1]);
+          h_a.push_back(fAcceptance[i][j][k].tab[c][0][3]);
+
+          p_err.push_back(fAcceptance[i][j][k].tab[c][1][0]);
+          k_err.push_back(fAcceptance[i][j][k].tab[c][1][1]);
+          h_err.push_back(fAcceptance[i][j][k].tab[c][1][3]);
         }
 
         for(int k=12; k>0; k--)
