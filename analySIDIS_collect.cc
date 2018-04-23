@@ -478,7 +478,7 @@ int main()
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][j]->SetMinimum(0.);
-              H_mult[c][i][j]->SetMaximum(2.5);
+              H_mult[c][i][j]->SetMaximum(4.);
               H_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               H_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               H_mult[c][i][j]->SetTitle("");
@@ -500,23 +500,23 @@ int main()
               H_mult[c][i][0]->Draw("SAMEP");
               H_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][0]->SetMinimum(0.);
-              H_mult[c][i][0]->SetMaximum(2.5);
+              H_mult[c][i][0]->SetMaximum(4.);
               H_mult[c][i][1]->Draw("SAMEP");
               H_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][1]->SetMinimum(0.);
-              H_mult[c][i][1]->SetMaximum(2.5);
+              H_mult[c][i][1]->SetMaximum(4.);
               H_mult[c][i][2]->Draw("SAMEP");
               H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][2]->SetMinimum(0.);
-              H_mult[c][i][2]->SetMaximum(2.5);
-              c5->Range(0.1,0.,0.9,2.5);
+              H_mult[c][i][2]->SetMaximum(4.);
+              c5->Range(0.1,0.,0.9,4.);
             }
             else
             {
               H_mult[c][i][j]->Draw("SAMEP");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][j]->SetMinimum(0.);
-              H_mult[c][i][j]->SetMaximum(2.5);
+              H_mult[c][i][j]->SetMaximum(4.);
             }
           }
           c5->Update();
