@@ -151,20 +151,23 @@ Double_t fPplus_err = 0;
 Double_t fPminus_err = 0;
 
 //Binning
-Wrapper fRcstr[9][5][12];
-Wrapper fGnrt[9][5][12];
-Wrapper fRcstr_c[9][5][12];
-Wrapper fAcceptance[9][5][12];
-Double_t fNDIS_evt[3][9][5][12];
-Double_t fNDIS_evt_c[3][9][5][12];
-Double_t fNDIS_evt_MC[3][9][5][12];
+Wrapper fRcstr[9][6][12];
+Wrapper fGnrt[9][6][12];
+Wrapper fRcstr_c[9][6][12];
+Wrapper fRcstr_zvtx[9][6][12][4];
+Wrapper fGnrt_zvtx[9][6][12][4];
+Double_t fNDIS_evt[3][9][6][12];
+Double_t fNDIS_evt_c[3][9][6][12];
+Double_t fNDIS_evt_MC[3][9][6][12];
+Double_t fNDIS_evt_zvtx[9][6][12][4];
+Double_t fNDIS_evt_MC_zvtx[9][6][12][4];
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
-Double_t fYrange[6] = {.1,.15,.2,.3,.5,.7};
+Double_t fYrange[7] = {.1,.15,.2,.3,.5,.7,.9};
 Double_t fRcutval[24] = {1.68812,1.6915,1.69572,1.69733,1.71178,1.74735,1.74682,1.7846,1.80058,1.81382,1.83367,1.84183,1.84587,1.8423,1.8376,1.8368,1.84023,1.84309,1.85645,1.86316,1.85021,1.84775,1.84463,1.84185};
-int fFlag[3][9][5][12];
-int fFlag_MC[3][9][5][12];
+int fFlag[3][9][6][12];
+int fFlag_MC[3][9][6][12];
 Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 
 //Draw

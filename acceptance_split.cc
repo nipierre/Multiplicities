@@ -602,7 +602,9 @@ int main(int argc, char **argv)
       // -------------------------------------------------------------------------
 
       Double_t zlab = z->GetLeaf("z")->GetValue();
+      Double_t zlab_MC = MC_vz->GetLeaf("MC_vz")->GetValue();
       int zlabbin;
+      int zlabbin_MC;
 
       if(Y2012)
       {
@@ -632,6 +634,18 @@ int main(int argc, char **argv)
         else if(-101.2<=zlab && zlab<-91.2) zlabbin = 21;
         else if(-91.2<=zlab && zlab<-81.2) zlabbin = 22;
         else zlabbin = 23;
+      }
+
+      if(Y2016)
+      {
+        if(-311.19<=zlab && zlab<-251.19) zlabbin = 0;
+        else if(-251.19<=zlab && zlab<-191.19) zlabbin = 1;
+        else if(-191.19<=zlab && zlab<-131.19) zlabbin = 2;
+        else if(-131.19<=zlab && zlab<=-71.19) zlabbin = 3;
+        if(-311.19<=zlab_MC && zlab_MC<-251.19) zlabbin_MC = 0;
+        else if(-251.19<=zlab_MC && zlab_MC<-191.19) zlabbin_MC = 1;
+        else if(-191.19<=zlab_MC && zlab_MC<-131.19) zlabbin_MC = 2;
+        else if(-131.19<=zlab_MC && zlab_MC<=-71.19) zlabbin_MC = 3;
       }
 
       //--------------------------------------------------------------------------
@@ -930,7 +944,7 @@ int main(int argc, char **argv)
                       fQ2test++;
 
                       // y cut
-                      if((0.1<yBj && yBj<0.7))
+                      if((0.1<yBj && yBj<0.9))
                       {
                         fYBjtest++;
 
@@ -1048,7 +1062,7 @@ int main(int argc, char **argv)
               if((Q2_MC>1))
               {
                 // y cut
-                if((0.1<yBj_MC && yBj_MC<0.7))
+                if((0.1<yBj_MC && yBj_MC<0.9))
                 {
                   // W cut
                   if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
@@ -1169,13 +1183,15 @@ int main(int argc, char **argv)
       else if(0.15<=yBj_MC && yBj_MC<0.2) ybin_MC = 1;
       else if(0.2<=yBj_MC && yBj_MC<0.3) ybin_MC = 2;
       else if(0.3<=yBj_MC && yBj_MC<0.5) ybin_MC = 3;
-      else ybin_MC = 4;
+      else if(0.5<=yBj_MC && yBj_MC<0.7) ybin_MC = 4;
+      else ybin_MC = 5;
 
       if(0.1<yBj && yBj<0.15) ybin = 0;
       else if(0.15<=yBj && yBj<0.2) ybin = 1;
       else if(0.2<=yBj && yBj<0.3) ybin = 2;
       else if(0.3<=yBj && yBj<0.5) ybin = 3;
-      else ybin = 4;
+      else if(0.5<=yBj && yBj<0.7) ybin = 4;
+      else ybin = 5;
 
       if(fAllDISflag_MC)
       {
@@ -1186,6 +1202,9 @@ int main(int argc, char **argv)
           fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]++;
           fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]++;
           fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]++;
+          fNDIS_evt_MC_zvtx[0][xbin_MC][ybin_MC][i][zlabbin_MC]++;
+          fNDIS_evt_MC_zvtx[1][xbin_MC][ybin_MC][i][zlabbin_MC]++;
+          fNDIS_evt_MC_zvtx[2][xbin_MC][ybin_MC][i][zlabbin_MC]++;
 
           fFlag_MC[0][xbin_MC][ybin_MC][i]=0;
           fFlag_MC[1][xbin_MC][ybin_MC][i]=0;
@@ -1210,15 +1229,21 @@ int main(int argc, char **argv)
           }
           if(fFlag_MC[0][xbin_MC][ybin_MC][i])
           {
-            fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]--; DIS_MC[0][i] = 0;
+            fNDIS_evt_MC[0][xbin_MC][ybin_MC][i]--;
+            fNDIS_evt_MC_zvtx[0][xbin_MC][ybin_MC][i][zlabbin_MC]--;
+            DIS_MC[0][i] = 0;
           }
           if(fFlag_MC[1][xbin_MC][ybin_MC][i])
           {
-            fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]--; DIS_MC[1][i] = 0;
+            fNDIS_evt_MC[1][xbin_MC][ybin_MC][i]--;
+            fNDIS_evt_MC_zvtx[1][xbin_MC][ybin_MC][i][zlabbin_MC]--;
+            DIS_MC[1][i] = 0;
           }
           if(fFlag_MC[2][xbin_MC][ybin_MC][i])
           {
-            fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]--; DIS_MC[2][i] = 0;
+            fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]--;
+            fNDIS_evt_MC_zvtx[2][xbin_MC][ybin_MC][i][zlabbin_MC]--;
+            DIS_MC[2][i] = 0;
           }
         }
       }
@@ -1275,6 +1300,9 @@ int main(int argc, char **argv)
           fNDIS_evt[0][xbin][ybin][i]++;
           fNDIS_evt[1][xbin][ybin][i]++;
           fNDIS_evt[2][xbin][ybin][i]++;
+          fNDIS_evt_zvtx[0][xbin][ybin][i][zlabbin]++;
+          fNDIS_evt_zvtx[1][xbin][ybin][i][zlabbin]++;
+          fNDIS_evt_zvtx[2][xbin][ybin][i][zlabbin]++;
 
           fFlag[0][xbin][ybin][i]=0;
           fFlag[1][xbin][ybin][i]=0;
@@ -1299,15 +1327,21 @@ int main(int argc, char **argv)
           }
           if(fFlag[0][xbin][ybin][i])
           {
-            fNDIS_evt[0][xbin][ybin][i]--; DIS_rec[0][i] = 0;
+            fNDIS_evt[0][xbin][ybin][i]--;
+            fNDIS_evt_zvtx[0][xbin][ybin][i][zlabbin]--;
+            DIS_rec[0][i] = 0;
           }
           if(fFlag[1][xbin][ybin][i])
           {
-            fNDIS_evt[1][xbin][ybin][i]--; DIS_rec[1][i] = 0;
+            fNDIS_evt[1][xbin][ybin][i]--;
+            fNDIS_evt_zvtx[1][xbin][ybin][i][zlabbin]--;
+            DIS_rec[1][i] = 0;
           }
           if(fFlag[2][xbin][ybin][i])
           {
-            fNDIS_evt[2][xbin][ybin][i]--; DIS_rec[2][i] = 0;
+            fNDIS_evt[2][xbin][ybin][i]--;
+            fNDIS_evt_zvtx[2][xbin][ybin][i][zlabbin]--;
+            DIS_rec[2][i] = 0;
           }
           if(xbin==xbin_MC && ybin==ybin_MC)
           {
@@ -1438,6 +1472,7 @@ int main(int argc, char **argv)
             if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
             {
               fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
+              fGnrt_zvtx[xbin_MC][ybin_MC][zbin_u][zlabbin_MC].tab[1][0][3] += 1;
               fMCHplus++;
               idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
               prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
@@ -1457,12 +1492,14 @@ int main(int argc, char **argv)
             zMCrec[1][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCPiplus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][0] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[1][0][0] += 1;
           }
           else if(fId==1)
           {
             if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
             {
               fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
+              fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][3] += 1;
               fMCHminus++;
               idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
               prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
@@ -1482,12 +1519,14 @@ int main(int argc, char **argv)
             zMCrec[0][0].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCPiminus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][0] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][0] += 1;
           }
           else if(fId==2)
           {
             if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
             {
               fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
+              fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[1][0][3] += 1;
               fMCHplus++;
               idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
               prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
@@ -1507,12 +1546,14 @@ int main(int argc, char **argv)
             zMCrec[1][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCKplus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][1] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[1][0][1] += 1;
           }
           else if(fId==3)
           {
             if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
             {
               fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
+              fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][3] += 1;
               fMCHminus++;
               idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
               prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
@@ -1532,12 +1573,14 @@ int main(int argc, char **argv)
             zMCrec[0][1].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCKminus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][1] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][1] += 1;
           }
           else if(fId==4)
           {
             if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
             {
               fGnrt[xbin_MC][ybin_MC][zbin_u].tab[1][0][3] += 1;
+              fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[1][0][3] += 1;
               fMCHplus++;
               idMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
               prevMCrec[1][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
@@ -1557,12 +1600,14 @@ int main(int argc, char **argv)
             zMCrec[1][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCPplus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][2] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[1][0][2] += 1;
           }
           else if(fId==5)
           {
             if(!fFlag_MC[0][xbin_MC][ybin_MC][zbin_u])
             {
               fGnrt[xbin_MC][ybin_MC][zbin_u].tab[0][0][3] += 1;
+              fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][3] += 1;
               fMCHminus++;
               idMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zbin_u));
               prevMCrec[0][3].insert(pair<int,int>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),i));
@@ -1581,6 +1626,7 @@ int main(int argc, char **argv)
             zMCrec[0][2].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCPminus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][2] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][2] += 1;
           }
           else if(fId==6)
           {
@@ -1592,6 +1638,7 @@ int main(int argc, char **argv)
             zMCrec[1][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCHplus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[1][0][3] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[1][0][3] += 1;
             if(kin_flag)
             {
               fKinematicsMC[3]->Fill(zBj_MC);
@@ -1607,6 +1654,7 @@ int main(int argc, char **argv)
             zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
             fMCHminus++;
             fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][3] += 1;
+            fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][3] += 1;
             if(kin_flag)
             {
               fKinematicsMC[3]->Fill(zBj_MC);
@@ -1977,6 +2025,7 @@ int main(int argc, char **argv)
             {
               fHplus++;
               fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
               if(it!=idMCrec[1][3].end())
               {
                 if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -1989,6 +2038,7 @@ int main(int argc, char **argv)
             if(fFlag[0][xbin][ybin][zbin]) continue;
             fPiplus++;
             fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
             if(it!=idMCrec[1][0].end())
             {
               if(zbin == idMCrec[1][0][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2005,6 +2055,7 @@ int main(int argc, char **argv)
             {
               fHminus++;
               fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
               if(it!=idMCrec[0][3].end())
               {
                 if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2017,6 +2068,7 @@ int main(int argc, char **argv)
             if(fFlag[0][xbin][ybin][zbin]) continue;
             fPiminus++;
             fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
             if(it!=idMCrec[0][0].end())
             {
               if(zbin == idMCrec[0][0][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2033,6 +2085,7 @@ int main(int argc, char **argv)
             {
               fHplus++;
               fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
               if(it!=idMCrec[1][3].end())
               {
                 if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2045,6 +2098,7 @@ int main(int argc, char **argv)
             if(fFlag[1][xbin][ybin][zbin]) continue;
             fKplus++;
             fRcstr[xbin][ybin][zbin].tab[1][0][1] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][1] += 1;
             if(it!=idMCrec[1][1].end())
             {
               if(zbin == idMCrec[1][1][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2061,6 +2115,7 @@ int main(int argc, char **argv)
             {
               fHminus++;
               fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
               if(it!=idMCrec[0][3].end())
               {
                 if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2073,6 +2128,7 @@ int main(int argc, char **argv)
             if(fFlag[1][xbin][ybin][zbin]) continue;
             fKminus++;
             fRcstr[xbin][ybin][zbin].tab[0][0][1] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][1] += 1;
             if(it!=idMCrec[0][1].end())
             {
               if(zbin == idMCrec[0][1][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2089,6 +2145,7 @@ int main(int argc, char **argv)
             {
               fHplus++;
               fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
               if(it!=idMCrec[1][3].end())
               {
                 if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2101,6 +2158,7 @@ int main(int argc, char **argv)
             if(fFlag[2][xbin][ybin][zbin]) continue;
             fPplus++;
             fRcstr[xbin][ybin][zbin].tab[1][0][2] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][2] += 1;
             if(it!=idMCrec[1][2].end())
             {
               if(zbin == idMCrec[1][2][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2117,6 +2175,7 @@ int main(int argc, char **argv)
             {
               fHminus++;
               fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
               if(it!=idMCrec[0][3].end())
               {
                 if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2129,6 +2188,7 @@ int main(int argc, char **argv)
             if(fFlag[2][xbin][ybin][zbin]) continue;
             fPminus++;
             fRcstr[xbin][ybin][zbin].tab[0][0][2] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][2] += 1;
             if(it!=idMCrec[0][2].end())
             {
               if(zbin == idMCrec[0][2][i] && xbin==xbin_MC && ybin==ybin_MC)
@@ -2143,6 +2203,7 @@ int main(int argc, char **argv)
             if(fFlag[0][xbin][ybin][zbin]) continue;
             fHplus++;
             fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
             it = idMCrec[1][3].find(i);
             if(it!=idMCrec[1][3].end())
             {
@@ -2158,6 +2219,7 @@ int main(int argc, char **argv)
             if(fFlag[0][xbin][ybin][zbin]) continue;
             fHminus++;
             fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
             it = idMCrec[0][3].find(i);
             if(it!=idMCrec[0][3].end())
             {
@@ -2174,6 +2236,8 @@ int main(int argc, char **argv)
             fHminus++; fPiminus++;
             fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
             fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
           }
           else if(fId==9)
           {
@@ -2181,6 +2245,8 @@ int main(int argc, char **argv)
             fHplus++; fPiplus++;
             fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
             fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
+            fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
           }
           else
           {
@@ -2298,13 +2364,15 @@ int main(int argc, char **argv)
   // TODO : manage multiple files -> which index ? FTM 0 but to be modified
 
   ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%d.txt",year,0), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%d.txt",year,0), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%d.txt",year,0), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%d.txt",year,0), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
     for(int i=0; i<9; i++)
     {
-      for(int j=0; j<5; j++)
+      for(int j=0; j<6; j++)
       {
         for(int k=0; k<12; k++)
         {
@@ -2313,12 +2381,28 @@ int main(int argc, char **argv)
             ofs_d << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt_c[0][i][j][k] << " " << fNDIS_evt_MC[0][i][j][k] << " " <<
                      fNDIS_evt[1][i][j][k] << " " << fNDIS_evt_c[1][i][j][k] << " " << fNDIS_evt_MC[1][i][j][k] << " " <<
                      fNDIS_evt[2][i][j][k] << " " << fNDIS_evt_c[2][i][j][k] << " " << fNDIS_evt_MC[2][i][j][k] << endl;
+
+            ofs_dzvtx << fNDIS_evt_zvtx[0][i][j][k][0] << " " << fNDIS_evt_zvtx[0][i][j][k][1] << " " << fNDIS_evt_zvtx[0][i][j][k][2] << " " << fNDIS_evt_zvtx[0][i][j][k][3] << " " <<
+                         fNDIS_evt_MC_zvtx[0][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[0][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[0][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[0][i][j][k][3] << " " <<
+                         fNDIS_evt_zvtx[1][i][j][k][0] << " " << fNDIS_evt_zvtx[1][i][j][k][1] << " " << fNDIS_evt_zvtx[1][i][j][k][2] << " " << fNDIS_evt_zvtx[1][i][j][k][3] << " " <<
+                         fNDIS_evt_MC_zvtx[1][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[1][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[1][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[1][i][j][k][3] << " " <<
+                         fNDIS_evt_zvtx[2][i][j][k][0] << " " << fNDIS_evt_zvtx[2][i][j][k][1] << " " << fNDIS_evt_zvtx[2][i][j][k][2] << " " << fNDIS_evt_zvtx[2][i][j][k][3] << " " <<
+                         fNDIS_evt_MC_zvtx[2][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][3] << endl;
           }
 
           ofs_h << fRcstr[i][j][k].tab[c][0][0] << " " << fRcstr_c[i][j][k].tab[c][0][0] << " " << fGnrt[i][j][k].tab[c][0][0] << " " <<
                    fRcstr[i][j][k].tab[c][0][1] << " " << fRcstr_c[i][j][k].tab[c][0][1] << " " << fGnrt[i][j][k].tab[c][0][1] << " " <<
                    fRcstr[i][j][k].tab[c][0][2] << " " << fRcstr_c[i][j][k].tab[c][0][2] << " " << fGnrt[i][j][k].tab[c][0][2] << " " <<
                    fRcstr[i][j][k].tab[c][0][3] << " " << fRcstr_c[i][j][k].tab[c][0][3] << " " << fGnrt[i][j][k].tab[c][0][3] << " " << endl;
+
+          ofs_hzvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][0] << " " <<
+                       fGnrt_zvtx[i][j][k][0].tab[c][0][0] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][0] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][0] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][0] << " " <<
+                       fRcstr_zvtx[i][j][k][0].tab[c][0][1] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][1] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][1] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][1] << " " <<
+                       fGnrt_zvtx[i][j][k][0].tab[c][0][1] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][1] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][1] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][1] << " " <<
+                       fRcstr_zvtx[i][j][k][0].tab[c][0][2] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][2] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][2] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][2] << " " <<
+                       fGnrt_zvtx[i][j][k][0].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][2] << " " <<
+                       fRcstr_zvtx[i][j][k][0].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][3] << " " <<
+                       fGnrt_zvtx[i][j][k][0].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][3] << " " <<  endl;
         }
       }
     }
@@ -2326,6 +2410,8 @@ int main(int argc, char **argv)
 
   ofs_h.close();
   ofs_d.close();
+  ofs_hzvtx.close();
+  ofs_dzvtx.close();
 
   return 0;
 }
