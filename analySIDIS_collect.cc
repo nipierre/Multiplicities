@@ -329,6 +329,32 @@ int main()
 
             if(!c) ofs_t << endl;
 
+            if (c) ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+            ofs_k <<
+            fMeanvalues_data[i][j][k].tab[0][1][0] << " " << fMeanvalues_data[i][j][k].tab[0][1][1] << " " <<
+            fMeanvalues_data[i][j][k].tab[0][1][2] << " " << fMeanvalues_data[i][j][k].tab[0][1][3] << " " <<
+            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1])) : 0) << " " <<
+            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(((fBinning[i][j][k].tab[c][1][1]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][0],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1],2)))
+                                                                                    + fAcceptance[i][j][k].tab[c][1][1]*pow(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][1],2)),2)) : 0) << " " <<
+            (fNDIS_evt[0][i][j][k] ? Double_t(sqrt(pow(fRich_sys_err[i][j][k].tab[c][1][1],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1],2)+pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][1])*fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][1],2)),2))) : 0) << " " <<
+            ((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1])) : 0) ? 1 : 0) << " ";
+
+            if(!c) ofs_k << endl;
+
+            if (c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+            ofs_h <<
+            fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
+            fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
+            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3])) : 0) << " " <<
+            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(((fBinning[i][j][k].tab[c][1][3]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][3],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3],2)))
+                                                                                    + fAcceptance[i][j][k].tab[c][1][0]*pow(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][0],2)),2)) : 0) << " " <<
+            (fNDIS_evt[0][i][j][k] ? Double_t(sqrt(pow(fRich_sys_err[i][j][k].tab[c][1][3],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3],2)+pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][3])*fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][3],2)),2))) : 0) << " " <<
+            ((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3])) : 0) ? 1 : 0) << " ";
+
+            if(!c) ofs_h << endl;
+
             p_m[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])+j*0.1) : 0));
             k_m[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1])+j*0.1) : 0));
             h_m[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3])+j*0.1) : 0));
@@ -337,35 +363,7 @@ int main()
             k_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] ? Double_t(sqrt(pow(1/sqrt(fNDIS_evt[0][i][j][k]),2)+pow(fAcceptance[i][j][k].tab[c][1][1],2))) : 0));
             h_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] ? Double_t(sqrt(pow(1/sqrt(fNDIS_evt[0][i][j][k]),2)+pow(fAcceptance[i][j][k].tab[c][1][3],2))) : 0));
           }
-
         }
-
-        /*ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-        fMeanvalues_data[i][j][k].tab[1][1][0] << " " << fMeanvalues_data[i][j][k].tab[1][1][1] << " " <<
-        fMeanvalues_data[i][j][k].tab[1][1][2] << " " << fMeanvalues_data[i][j][k].tab[1][1][3] << " " <<
-        fMultiplicities[i][j][k].tab[1][0][1] << " " <<
-        fMultiplicities[i][j][k].tab[1][1][1] << " " << fMultiplicities[i][j][k].tab[1][2][1] << " " <<
-        (fMultiplicities[i][j][k].tab[1][0][1]>0 ? 1 : 0) << " " <<
-        fMeanvalues_data[i][j][k].tab[0][1][0] << " " << fMeanvalues_data[i][j][k].tab[0][1][1] << " " <<
-        fMeanvalues_data[i][j][k].tab[0][1][2] << " " << fMeanvalues_data[i][j][k].tab[0][1][3] << " " <<
-        fMultiplicities[i][j][k].tab[0][0][1] << " " <<
-        fMultiplicities[i][j][k].tab[0][1][1] << " " << fMultiplicities[i][j][k].tab[0][2][1] << " " <<
-        (fMultiplicities[i][j][k].tab[0][0][1]>0 ? 1 : 0) << endl;
-
-        ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-        fMeanvalues_data[i][j][k].tab[1][3][0] << " " << fMeanvalues_data[i][j][k].tab[1][3][1] << " " <<
-        fMeanvalues_data[i][j][k].tab[1][3][2] << " " << fMeanvalues_data[i][j][k].tab[1][3][3] << " " <<
-        fMultiplicities[i][j][k].tab[1][0][3] << " " <<
-        fMultiplicities[i][j][k].tab[1][1][3] << " " << fMultiplicities[i][j][k].tab[1][2][3] << " " <<
-        (fMultiplicities[i][j][k].tab[1][0][3]>0 ? 1 : 0) << " " <<
-        fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
-        fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
-        fMultiplicities[i][j][k].tab[0][0][3] << " " <<
-        fMultiplicities[i][j][k].tab[0][1][3] << " " << fMultiplicities[i][j][k].tab[0][2][3] << " " <<
-        (fMultiplicities[i][j][k].tab[0][0][3]>0 ? 1 : 0) << endl;*/
-
-
-
       }
 
       for(int c=0; c<2; c++)
