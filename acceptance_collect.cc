@@ -587,10 +587,10 @@ int main()
               }
               else
               {
-                H_acc[c][i][j]->Draw("SAMEP");
-                H_acc[c][i][j]->GetXaxis()->SetLimits(-320,-60);
-                H_acc[c][i][j]->SetMinimum(0.);
-                H_acc[c][i][j]->SetMaximum(2.);
+                H_corr_zvtx[c][i][j][k]->Draw("SAMEP");
+                H_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                H_corr_zvtx[c][i][j][k]->SetMinimum(0.);
+                H_corr_zvtx[c][i][j][k]->SetMaximum(2.);
               }
             }
             c8.Update();
