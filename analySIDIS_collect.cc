@@ -277,6 +277,30 @@ int main()
 
             if(!c) ofs_p << endl;
 
+            if(c) ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+            ofs_k <<
+            "0" << " " << "0" << " " <<
+            "0" << " " << "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " ";
+
+            if(!c) ofs_k << endl;
+
+            if(c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+            ofs_h <<
+            "0" << " " << "0" << " " <<
+            "0" << " " << "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " ";
+
+            if(!c) ofs_h << endl;
+
             p_m[c][i][j].push_back(0);
             k_m[c][i][j].push_back(0);
             h_m[c][i][j].push_back(0);
@@ -297,6 +321,30 @@ int main()
             "0" << " ";
 
             if(!c) ofs_p << endl;
+
+            if(c) ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+            ofs_k <<
+            "0" << " " << "0" << " " <<
+            "0" << " " << "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " ";
+
+            if(!c) ofs_k << endl;
+
+            if(c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+            ofs_h <<
+            "0" << " " << "0" << " " <<
+            "0" << " " << "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " " <<
+            "0" << " ";
+
+            if(!c) ofs_h << endl;
 
             p_m[c][i][j].push_back(0);
             k_m[c][i][j].push_back(0);
