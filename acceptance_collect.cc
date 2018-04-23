@@ -50,7 +50,9 @@ int main()
     double dummyd;
 
     ifstream DIS_file(Form("acceptance/%d/DIS/DIS_%d.txt",year,filen));
+    ifstream DIS_zvtx_file(Form("acceptance/%d/DIS/DIS_zvtx_%d.txt",year,filen));
     ifstream had_file(Form("acceptance/%d/hadron/hadron_%d.txt",year,filen));
+    ifstream had_zvtx_file(Form("acceptance/%d/hadron/hadron_zvtx_%d.txt",year,filen));
 
     for(int c=0; c<2; c++)
     {
@@ -80,6 +82,55 @@ int main()
               fNDIS_evt_c[2][i][j][k] += dummyd;
               DIS_file >> dummyd;
               fNDIS_evt_MC[2][i][j][k] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][i][j][k][3] += dummyd;
+
             }
 
             had_file >> dummyd;
@@ -109,6 +160,74 @@ int main()
             fRcstr_c[i][j][k].tab[c][0][3] += dummyd;
             had_file >> dummyd;
             fGnrt[i][j][k].tab[c][0][3] += dummyd;
+
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][0] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][0] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][0] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][0] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][0] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][0] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][0] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][0][0] += dummyd;
+
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][1] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][1] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][1] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][0][1] += dummyd;
+
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][2] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][2] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][2] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][0][2] += dummyd;
+
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][3] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][3] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][3] += dummyd;
+            ad_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][0][3] += dummyd;
           }
         }
       }
@@ -116,36 +235,40 @@ int main()
 
     DIS_file.close();
     had_file.close();
+    DIS_zvtx_file.close();
+    had_zvtx_file.close();
   }
 
-  //TArrow t1(0.1,0.9,0.1,0.9,0.1,"|>");
-  //TArrow t2(0.1,0.1,0.1,0.9,0.1,"<|");
-
   TCanvas c5("Hadron_Acceptance","Hadron_Acceptance",3200,1600);
-  //t1.Draw(); t2.Draw();
-
   TCanvas c6("Pion_Acceptance","Pion_Acceptance",3200,1600);
-  //t1.Draw(); t2.Draw();
-
   TCanvas c7("Kaon_Acceptance","Kaon_Acceptance",3200,1600);
-  //t1.Draw(); t2.Draw();
+  TCanvas c8("Hadron_Acceptance_zvtx","Hadron_Acceptance_zvtx",3200,1600);
+  TCanvas c9("Pion_Acceptance_zvtx","Pion_Acceptance_zvtx",3200,1600);
+  TCanvas c10("Kaon_Acceptance_zvtx","Kaon_Acceptance_zvtx",3200,1600);
 
   c5.SetFillColor(0);
-  //c5.SetFrameFillStyle(0);
   c6.SetFillColor(0);
-  //c6.SetFrameFillStyle(0);
   c7.SetFillColor(0);
-  //c7.SetFrameFillStyle(0);
+  c8.SetFillColor(0);
+  c9.SetFillColor(0);
+  c10.SetFillColor(0);
 
   c5.Divide(5,2,0,0);
   c6.Divide(5,2,0,0);
   c7.Divide(5,2,0,0);
+  c8.Divide(5,2,0,0);
+  c9.Divide(5,2,0,0);
+  c10.Divide(5,2,0,0);
 
   TGraphErrors* H_acc[2][9][6];
   TGraphErrors* P_acc[2][9][6];
   TGraphErrors* K_acc[2][9][6];
+  TGraphErrors* H_corr_zvtx[2][9][6][12];
+  TGraphErrors* P_corr_zvtx[2][9][6][12];
+  TGraphErrors* K_corr_zvtx[2][9][6][12];
 
   double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
+  double zvtx_range[4] = {-281.19,-221.19,-161.19,-101.19};
 
   ofstream ofs(Form("%s/%d/acceptance.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
   ofstream lepto(Form("%s/%d/lepto.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
@@ -164,15 +287,33 @@ int main()
         std::vector<double> k_err;
         std::vector<double> h_err;
 
+        std::vector<double> p_corr;
+        std::vector<double> k_corr;
+        std::vector<double> h_corr;
+        std::vector<double> p_cerr;
+        std::vector<double> k_cerr;
+        std::vector<double> h_cerr;
+
         std::vector<double> z_range_p;
         std::vector<double> z_range_k;
         std::vector<double> z_range_h;
+
+        std::vector<double> zvtx_range_p;
+        std::vector<double> zvtx_range_k;
+        std::vector<double> zvtx_range_h;
 
         for(int l=0; l<12; l++)
         {
           z_range_p.push_back(z_range[l]);
           z_range_k.push_back(z_range[l]);
           z_range_h.push_back(z_range[l]);
+        }
+
+        for(int l=0; l<12; l++)
+        {
+          zvtx_range_p.push_back(zvtx_range[l]);
+          zvtx_range_k.push_back(zvtx_range[l]);
+          zvtx_range_h.push_back(zvtx_range[l]);
         }
 
         for(int k=0; k<12; k++)
@@ -317,6 +458,251 @@ int main()
           p_err.push_back(fAcceptance[i][j][k].tab[c][1][0]);
           k_err.push_back(fAcceptance[i][j][k].tab[c][1][1]);
           h_err.push_back(fAcceptance[i][j][k].tab[c][1][3]);
+
+          for(int l=0; l<4; l++)
+          {
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = ((fNDIS_evt_zvtx[0][i][j][k][l] && fNDIS_evt_MC_zvtx[0][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][0]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][0]/fNDIS_evt_zvtx[0][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][0]/fNDIS_evt_MC_zvtx[0][i][j][k][l])) : 0);
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = ((fNDIS_evt_zvtx[1][i][j][k][l] && fNDIS_evt_MC_zvtx[1][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][1]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][1]/fNDIS_evt_zvtx[1][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][1]/fNDIS_evt_MC_zvtx[1][i][j][k][l])) : 0);
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = ((fNDIS_evt_zvtx[2][i][j][k][l] && fNDIS_evt_MC_zvtx[2][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][2]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][2]/fNDIS_evt_zvtx[2][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][2]/fNDIS_evt_MC_zvtx[2][i][j][k][l])) : 0);
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = ((fNDIS_evt_zvtx[0][i][j][k][l] && fNDIS_evt_MC_zvtx[0][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][3]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][3]/fNDIS_evt_zvtx[0][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][3]/fNDIS_evt_MC_zvtx[0][i][j][k][l])) : 0);
+
+            if(fAcceptance_zvtx[i][j][k][l].tab[c][0][0]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][0]=0;
+            if(fAcceptance_zvtx[i][j][k][l].tab[c][0][1]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][1]=0;
+            if(fAcceptance_zvtx[i][j][k][l].tab[c][0][2]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][2]=0;
+            if(fAcceptance_zvtx[i][j][k][l].tab[c][0][3]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][3]=0;
+
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = fAcceptance[i][j][k].tab[c][1][0];
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = fAcceptance[i][j][k].tab[c][1][1];
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = fAcceptance[i][j][k].tab[c][1][2];
+            fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = fAcceptance[i][j][k].tab[c][1][3];
+
+            if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+            {
+              fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = 0;
+              fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = 0;
+              fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = 0;
+              fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = 0;
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][0] = 0;
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][1] = 0;
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = 0;
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = 0;
+            }
+
+            p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][0]);
+            k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][1]);
+            h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][3]);
+
+            p_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][0]);
+            k_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][1]);
+            h_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][3]);
+          }
+
+          for(int k=12; k>0; k--)
+          {
+            if(!p_corr[k-1]) {p_corr.erase(p_a.begin()+k-1); p_cerr.erase(p_cerr.begin()+k-1); zvtx_range_p.erase(zvtx_range_p.begin()+k-1);}
+            if(!k_corr[k-1]) {k_corr.erase(k_a.begin()+k-1); k_cerr.erase(k_cerr.begin()+k-1); zvtx_range_k.erase(zvtx_range_k.begin()+k-1);}
+            if(!h_corr[k-1]) {h_corr.erase(h_a.begin()+k-1); h_cerr.erase(h_cerr.begin()+k-1); zvtx_range_h.erase(zvtx_range_h.begin()+k-1);}
+          }
+
+          bool p_corr_empty = 0;
+          bool k_corr_empty = 0;
+          bool h_corr_empty = 0;
+
+          if(!(int(p_corr.size()))) p_corr_empty = 1;
+          if(!(int(k_corr.size()))) k_corr_empty = 1;
+          if(!(int(h_corr.size()))) h_corr_empty = 1;
+
+          H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
+          P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
+          K_corr_zvtx[c][i][j][k] = new TGraphErrors(int(k_corr.size()),&(zvtx_range_k[0]),&(k_corr[0]),0,&(k_cerr[0]));
+
+          H_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
+          P_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
+          K_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColorAlt[k]);
+
+          H_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
+          P_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
+          K_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
+
+          H_corr_zvtx[c][i][j][k]->SetMarkerStyle(fMarkerStyle[j][c]);
+          P_corr_zvtx[c][i][j][k]->SetMarkerStyle(fMarkerStyle[j][c]);
+          K_corr_zvtx[c][i][j][k]->SetMarkerStyle(fMarkerStyle[j][c]);
+
+          H_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("");
+          P_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("");
+          K_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("");
+
+          H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("");
+          P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("");
+          K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("");
+
+          H_corr_zvtx[c][i][j][k]->SetTitle("");
+          P_corr_zvtx[c][i][j][k]->SetTitle("");
+          K_corr_zvtx[c][i][j][k]->SetTitle("");
+
+          if(!h_corr_empty)
+          {
+            c8.cd(i+1);
+            gPad->SetFillStyle(4000);
+            if(H_corr_zvtx[c][i][j][k])
+            {
+              if(!c && j==3)
+              {
+                H_corr_zvtx[c][i][j][k]->Draw("SAMEPA");
+                H_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                H_corr_zvtx[c][i][j][k]->SetMinimum(0.);
+                H_corr_zvtx[c][i][j][k]->SetMaximum(2.);
+                H_corr_zvtx[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
+                H_corr_zvtx[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
+                H_corr_zvtx[c][i][j][k]->SetTitle("");
+                if(i>4) gPad->SetBottomMargin(.15);
+                if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                if(i==8)
+                {
+                  H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
+                  H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
+                }
+                H_corr_zvtx[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
+                H_corr_zvtx[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
+                if(i==0)
+                {
+                  H_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
+                  H_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
+                }
+                H_corr_zvtx[c][i][0][k]->Draw("SAMEP");
+                H_corr_zvtx[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
+                H_corr_zvtx[c][i][0][k]->SetMinimum(0.);
+                H_corr_zvtx[c][i][0][k]->SetMaximum(2.);
+                H_corr_zvtx[c][i][1][k]->Draw("SAMEP");
+                H_corr_zvtx[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
+                H_corr_zvtx[c][i][1][k]->SetMinimum(0.);
+                H_corr_zvtx[c][i][1][k]->SetMaximum(2.);
+                H_corr_zvtx[c][i][2][k]->Draw("SAMEP");
+                H_corr_zvtx[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
+                H_corr_zvtx[c][i][2][k]->SetMinimum(0.);
+                H_corr_zvtx[c][i][2][k]->SetMaximum(2.);
+                c8.Range(-320,0.,-60,2.);
+              }
+              else
+              {
+                H_acc[c][i][j]->Draw("SAMEP");
+                H_acc[c][i][j]->GetXaxis()->SetLimits(-320,-60);
+                H_acc[c][i][j]->SetMinimum(0.);
+                H_acc[c][i][j]->SetMaximum(2.);
+              }
+            }
+            c8.Update();
+          }
+
+          if(!p_corr_empty)
+          {
+            c9.cd(i+1);
+            if(P_corr[c][i][j][k])
+            {
+              if(!c && j==3)
+              {
+                P_corr[c][i][j][k]->Draw("SAMEPA");
+                P_corr[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr[c][i][j][k]->SetMinimum(0.);
+                P_corr[c][i][j][k]->SetMaximum(3.);
+                P_corr[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
+                P_corr[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
+                P_corr[c][i][j][k]->SetTitle("");
+                if(i>4) gPad->SetBottomMargin(.15);
+                if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                if(i==8)
+                {
+                  P_corr[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  P_corr[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
+                  P_corr[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
+                }
+                P_corr[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
+                P_corr[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
+                if(i==0)
+                {
+                  P_corr[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
+                  P_corr[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
+                }
+                P_corr[c][i][0][k]->Draw("SAMEP");
+                P_corr[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr[c][i][0][k]->SetMinimum(0.);
+                P_corr[c][i][0][k]->SetMaximum(3.);
+                P_corr[c][i][1][k]->Draw("SAMEP");
+                P_corr[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr[c][i][1][k]->SetMinimum(0.);
+                P_corr[c][i][1][k]->SetMaximum(3.);
+                P_corr[c][i][2][k]->Draw("SAMEP");
+                P_corr[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr[c][i][2][k]->SetMinimum(0.);
+                P_corr[c][i][2][k]->SetMaximum(3.);
+                c9.Range(-320,0.,-60,3.);
+              }
+              else
+              {
+                P_corr[c][i][j][k]->Draw("SAMEP");
+                P_corr[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr[c][i][j][k]->SetMinimum(0.);
+                P_corr[c][i][j][k]->SetMaximum(3.);
+              }
+            }
+            c9.Update();
+          }
+
+          if(!k_corr_empty)
+          {
+            c10.cd(i+1);
+            if(K_corr_zvtx[c][i][j][k])
+            {
+              if(!c && j==3)
+              {
+                K_corr_zvtx[c][i][j][k]->Draw("SAMEPA");
+                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                K_corr_zvtx[c][i][j][k]->SetMinimum(0.);
+                K_corr_zvtx[c][i][j][k]->SetMaximum(3.);
+                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
+                K_corr_zvtx[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
+                K_corr_zvtx[c][i][j][k]->SetTitle("");
+                if(i>4) gPad->SetBottomMargin(.15);
+                if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                if(i==8)
+                {
+                  K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
+                  K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
+                }
+                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
+                K_corr_zvtx[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
+                if(i==0)
+                {
+                  K_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
+                  K_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
+                }
+                K_corr_zvtx[c][i][0][k]->Draw("SAMEP");
+                K_corr_zvtx[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
+                K_corr_zvtx[c][i][0][k]->SetMinimum(0.);
+                K_corr_zvtx[c][i][0][k]->SetMaximum(3.);
+                K_corr_zvtx[c][i][1][k]->Draw("SAMEP");
+                K_corr_zvtx[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
+                K_corr_zvtx[c][i][1][k]->SetMinimum(0.);
+                K_corr_zvtx[c][i][1][k]->SetMaximum(3.);
+                K_corr_zvtx[c][i][2][k]->Draw("SAMEP");
+                K_corr_zvtx[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
+                K_corr_zvtx[c][i][2][k]->SetMinimum(0.);
+                K_corr_zvtx[c][i][2][k]->SetMaximum(3.);
+                c10.Range(-320,0.,-60,3.);
+              }
+              else
+              {
+                K_corr_zvtx[c][i][j][k]->Draw("SAMEP");
+                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                K_corr_zvtx[c][i][j][k]->SetMinimum(0.);
+                K_corr_zvtx[c][i][j][k]->SetMaximum(3.);
+              }
+            }
+            c10.Update();
+          }
+
         }
 
         for(int k=12; k>0; k--)
@@ -697,14 +1083,71 @@ int main()
   fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
   fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
 
+  c8.cd(1);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+
+  c8.cd(2);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+
+  c8.cd(3);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+
+  c8.cd(4);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+
+  c8.cd(5);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+
+  c8.cd(6);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+
+  c8.cd(7);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+
+  c8.cd(8);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+
+  c8.cd(9);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+  c8.cd(10);
+  fTitle.SetTextSize(0.095);
+  fTitle.SetTextAlign(11);
+  fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90, #delta = 0.5}");
+  fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
+  fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50, #delta = 0.3}");
+  fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30, #delta = 0.2}");
+  fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
+  fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
+
 
   c5.Update();
   c6.Update();
   c7.Update();
+  c8.Update();
 
   c5.Print(Form("%s/%d/hadron_acceptance.pdf",dirroot,year));
   c6.Print(Form("%s/%d/pion_acceptance.pdf",dirroot,year));
   c7.Print(Form("%s/%d/kaon_acceptance.pdf",dirroot,year));
+  c8.Print(Form("%s/%d/hadron_acceptance_corr.pdf",dirroot,year));
 
   ofs.close();
 
