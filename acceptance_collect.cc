@@ -309,7 +309,7 @@ int main()
           z_range_h.push_back(z_range[l]);
         }
 
-        for(int l=0; l<12; l++)
+        for(int l=0; l<4; l++)
         {
           zvtx_range_p.push_back(zvtx_range[l]);
           zvtx_range_k.push_back(zvtx_range[l]);
