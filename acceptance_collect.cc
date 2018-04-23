@@ -513,6 +513,7 @@ int main()
           if(!(int(h_corr.size()))) h_corr_empty = 1;
 
           cout << "pouet" << endl;
+          cout << int(h_corr.size()) << endl;
 
           H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
           P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
