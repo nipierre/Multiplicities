@@ -409,9 +409,9 @@ int main()
             p_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(((fBinning[i][j][k].tab[c][1][0]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][0],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0],2)))
                                                                                     + fAcceptance[i][j][k].tab[c][1][0]*pow(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][0],2)),2)) : 0));
             k_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(((fBinning[i][j][k].tab[c][1][1]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][1],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][1]*pow(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][1],2)),2)) : 0)););
+                                                                                    + fAcceptance[i][j][k].tab[c][1][1]*pow(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][1],2)),2)) : 0));
             h_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(((fBinning[i][j][k].tab[c][1][3]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][3],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][3]*pow(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][3],2)),2)) : 0)););
+                                                                                    + fAcceptance[i][j][k].tab[c][1][3]*pow(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][3],2)),2)) : 0));
           }
         }
       }
