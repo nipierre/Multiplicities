@@ -603,8 +603,8 @@ int main(int argc, char **argv)
 
       Double_t zlab = z->GetLeaf("z")->GetValue();
       Double_t zlab_MC = MC_vz->GetLeaf("MC_vz")->GetValue();
-      int zlabbin;
-      int zlabbin_MC;
+      int zlabbin=-1;
+      int zlabbin_MC=-1;
 
       if(Y2012)
       {
