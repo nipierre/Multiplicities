@@ -404,7 +404,7 @@ int main()
               H_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
               H_acc[c][i][2]->SetMinimum(0.);
               H_acc[c][i][2]->SetMaximum(2.);
-              c5.Range(0.1,0.,0.9,é.);
+              c5.Range(0.1,0.,0.9,2.);
             }
             else
             {
