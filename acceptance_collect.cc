@@ -499,9 +499,9 @@ int main()
 
           for(int l=4; l>0; l--)
           {
-            if(!p_corr[l-1]) {p_corr.erase(p_a.begin()+l-1); p_cerr.erase(p_cerr.begin()+l-1); zvtx_range_p.erase(zvtx_range_p.begin()+l-1);}
-            if(!k_corr[l-1]) {k_corr.erase(k_a.begin()+l-1); k_cerr.erase(k_cerr.begin()+l-1); zvtx_range_k.erase(zvtx_range_k.begin()+l-1);}
-            if(!h_corr[l-1]) {h_corr.erase(h_a.begin()+l-1); h_cerr.erase(h_cerr.begin()+l-1); zvtx_range_h.erase(zvtx_range_h.begin()+l-1);}
+            if(!p_corr[l-1]) {p_corr.erase(p_corr.begin()+l-1); p_cerr.erase(p_cerr.begin()+l-1); zvtx_range_p.erase(zvtx_range_p.begin()+l-1);}
+            if(!k_corr[l-1]) {k_corr.erase(k_corr.begin()+l-1); k_cerr.erase(k_cerr.begin()+l-1); zvtx_range_k.erase(zvtx_range_k.begin()+l-1);}
+            if(!h_corr[l-1]) {h_corr.erase(h_corr.begin()+l-1); h_cerr.erase(h_cerr.begin()+l-1); zvtx_range_h.erase(zvtx_range_h.begin()+l-1);}
           }
 
           bool p_corr_empty = 0;
@@ -513,7 +513,6 @@ int main()
           if(!(int(h_corr.size()))) h_corr_empty = 1;
 
           cout << "pouet" << endl;
-          cout << int(h_corr.size()) << endl;
 
           H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
           P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
