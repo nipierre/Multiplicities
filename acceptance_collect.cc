@@ -497,11 +497,11 @@ int main()
             h_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][3]);
           }
 
-          for(int k=12; k>0; k--)
+          for(int l=4; l>0; l--)
           {
-            if(!p_corr[k-1]) {p_corr.erase(p_a.begin()+k-1); p_cerr.erase(p_cerr.begin()+k-1); zvtx_range_p.erase(zvtx_range_p.begin()+k-1);}
-            if(!k_corr[k-1]) {k_corr.erase(k_a.begin()+k-1); k_cerr.erase(k_cerr.begin()+k-1); zvtx_range_k.erase(zvtx_range_k.begin()+k-1);}
-            if(!h_corr[k-1]) {h_corr.erase(h_a.begin()+k-1); h_cerr.erase(h_cerr.begin()+k-1); zvtx_range_h.erase(zvtx_range_h.begin()+k-1);}
+            if(!p_corr[l-1]) {p_corr.erase(p_a.begin()+l-1); p_cerr.erase(p_cerr.begin()+l-1); zvtx_range_p.erase(zvtx_range_p.begin()+l-1);}
+            if(!k_corr[l-1]) {k_corr.erase(k_a.begin()+l-1); k_cerr.erase(k_cerr.begin()+l-1); zvtx_range_k.erase(zvtx_range_k.begin()+l-1);}
+            if(!h_corr[l-1]) {h_corr.erase(h_a.begin()+l-1); h_cerr.erase(h_cerr.begin()+l-1); zvtx_range_h.erase(zvtx_range_h.begin()+l-1);}
           }
 
           bool p_corr_empty = 0;
