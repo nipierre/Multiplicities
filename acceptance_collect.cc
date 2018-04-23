@@ -598,52 +598,52 @@ int main()
           if(!p_corr_empty)
           {
             c9.cd(i+1);
-            if(P_corr[c][i][j][k])
+            if(P_corr_zvtx[c][i][j][k])
             {
               if(!c && j==3)
               {
-                P_corr[c][i][j][k]->Draw("SAMEPA");
-                P_corr[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr[c][i][j][k]->SetMinimum(0.);
-                P_corr[c][i][j][k]->SetMaximum(3.);
-                P_corr[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
-                P_corr[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
-                P_corr[c][i][j][k]->SetTitle("");
+                P_corr_zvtx[c][i][j][k]->Draw("SAMEPA");
+                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr_zvtx[c][i][j][k]->SetMinimum(0.);
+                P_corr_zvtx[c][i][j][k]->SetMaximum(3.);
+                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
+                P_corr_zvtx[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
+                P_corr_zvtx[c][i][j][k]->SetTitle("");
                 if(i>4) gPad->SetBottomMargin(.15);
                 if(i==0 || i==5) gPad->SetLeftMargin(.22);
                 if(i==8)
                 {
-                  P_corr[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  P_corr[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
-                  P_corr[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
+                  P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
+                  P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
                 }
-                P_corr[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
-                P_corr[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
+                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
+                P_corr_zvtx[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
                 if(i==0)
                 {
-                  P_corr[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
-                  P_corr[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
+                  P_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
+                  P_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
                 }
-                P_corr[c][i][0][k]->Draw("SAMEP");
-                P_corr[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr[c][i][0][k]->SetMinimum(0.);
-                P_corr[c][i][0][k]->SetMaximum(3.);
-                P_corr[c][i][1][k]->Draw("SAMEP");
-                P_corr[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr[c][i][1][k]->SetMinimum(0.);
-                P_corr[c][i][1][k]->SetMaximum(3.);
-                P_corr[c][i][2][k]->Draw("SAMEP");
-                P_corr[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr[c][i][2][k]->SetMinimum(0.);
-                P_corr[c][i][2][k]->SetMaximum(3.);
+                P_corr_zvtx[c][i][0][k]->Draw("SAMEP");
+                P_corr_zvtx[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr_zvtx[c][i][0][k]->SetMinimum(0.);
+                P_corr_zvtx[c][i][0][k]->SetMaximum(3.);
+                P_corr_zvtx[c][i][1][k]->Draw("SAMEP");
+                P_corr_zvtx[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr_zvtx[c][i][1][k]->SetMinimum(0.);
+                P_corr_zvtx[c][i][1][k]->SetMaximum(3.);
+                P_corr_zvtx[c][i][2][k]->Draw("SAMEP");
+                P_corr_zvtx[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr_zvtx[c][i][2][k]->SetMinimum(0.);
+                P_corr_zvtx[c][i][2][k]->SetMaximum(3.);
                 c9.Range(-320,0.,-60,3.);
               }
               else
               {
-                P_corr[c][i][j][k]->Draw("SAMEP");
-                P_corr[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr[c][i][j][k]->SetMinimum(0.);
-                P_corr[c][i][j][k]->SetMaximum(3.);
+                P_corr_zvtx[c][i][j][k]->Draw("SAMEP");
+                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
+                P_corr_zvtx[c][i][j][k]->SetMinimum(0.);
+                P_corr_zvtx[c][i][j][k]->SetMaximum(3.);
               }
             }
             c9.Update();

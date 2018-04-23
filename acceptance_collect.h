@@ -104,7 +104,8 @@ Wrapper fAcceptance_zvtx[9][6][12][4];
 Double_t fNDIS_evt[3][9][6][12];
 Double_t fNDIS_evt_c[3][9][6][12];
 Double_t fNDIS_evt_MC[3][9][6][12];
-Double_t fNDIS_evt_zvtx[9][6][12][4];
+Double_t fNDIS_evt_zvtx[3][9][6][12][4];
+Double_t fNDIS_evt_MC_zvtx[3][9][6][12][4];
 int xbin, ybin, zbin, xbin_MC, ybin_MC;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
@@ -117,6 +118,7 @@ Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 //Graphic Style
 
 int fMarkerColor[6] = {2,95,209,226,4,221};
+int fMarkerColor[12] = {2,623,95,86,209,200,226,217,4,591,221,212};
 int fMarkerStyle[6][2] = {{24,20},{26,22},{25,21},{27,33},{28,34},{30,29}};
 
 //Constants
