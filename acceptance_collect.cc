@@ -171,11 +171,11 @@ int main()
             fRcstr_zvtx[i][j][k][3].tab[c][0][0] += dummyd;
             had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][0].tab[c][0][0] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][1].tab[c][0][0] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][2].tab[c][0][0] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][3].tab[c][0][0] += dummyd;
 
             had_zvtx_file >> dummyd;
@@ -188,11 +188,11 @@ int main()
             fRcstr_zvtx[i][j][k][3].tab[c][0][1] += dummyd;
             had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][0].tab[c][0][1] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][1].tab[c][0][1] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][2].tab[c][0][1] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][3].tab[c][0][1] += dummyd;
 
             had_zvtx_file >> dummyd;
@@ -205,11 +205,11 @@ int main()
             fRcstr_zvtx[i][j][k][3].tab[c][0][2] += dummyd;
             had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][0].tab[c][0][2] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][1].tab[c][0][2] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][2].tab[c][0][2] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][3].tab[c][0][2] += dummyd;
 
             had_zvtx_file >> dummyd;
@@ -222,11 +222,11 @@ int main()
             fRcstr_zvtx[i][j][k][3].tab[c][0][3] += dummyd;
             had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][0].tab[c][0][3] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][1].tab[c][0][3] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][2].tab[c][0][3] += dummyd;
-            ad_zvtx_file >> dummyd;
+            had_zvtx_file >> dummyd;
             fGnrt_zvtx[i][j][k][3].tab[c][0][3] += dummyd;
           }
         }
