@@ -638,6 +638,8 @@ int main(int argc, char **argv)
 
       if(Y2016)
       {
+        if(!(-311.19<zlab && zlab<-71.19)) continue;
+
         if(-311.19<=zlab && zlab<-251.19) zlabbin = 0;
         else if(-251.19<=zlab && zlab<-191.19) zlabbin = 1;
         else if(-191.19<=zlab && zlab<-131.19) zlabbin = 2;
