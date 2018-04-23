@@ -1144,12 +1144,13 @@ int main()
     fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30, #delta = 0.2}");
     fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
     fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
+
+    c8[i]->Update();
   }
 
   c5.Update();
   c6.Update();
   c7.Update();
-  c8.Update();
 
   c5.Print(Form("%s/%d/hadron_acceptance.pdf",dirroot,year));
   c6.Print(Form("%s/%d/pion_acceptance.pdf",dirroot,year));
