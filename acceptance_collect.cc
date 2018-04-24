@@ -564,7 +564,7 @@ int main()
                 if(i==0 || i==5) gPad->SetLeftMargin(.22);
                 if(i==8)
                 {
-                  H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z_{vtx}}");
                   H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
                   H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
                 }
