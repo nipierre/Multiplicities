@@ -181,21 +181,21 @@ Double_t fInclusiveRCproton[30][19];
 Double_t fSemiInclusiveRCproton[9][6][14];
 
 //Binning
-Wrapper fBinning[9][5][12];
-Wrapper fBinning_loose[9][5][12];
-Wrapper fBinning_severe[9][5][12];
-Multiplicities fMultiplicities[9][5][12];
-Wrapper fAcceptance[9][5][12];
-Wrapper fRich_sys_err[9][5][12]; // tab[][0][] : stat, tab[][1][] : sys
-Recovery fMeanvalues[9][5][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
-Recovery_tank fMeanvalues_size[9][5][12];
-Recovery_tank fMeanvalues_data[9][5][12];
-Double_t fNDIS_evt[3][9][5][12];
-Double_t fNDIS_evt_err[3][9][5][12];
+Wrapper fBinning[9][6][12];
+Wrapper fBinning_loose[9][6][12];
+Wrapper fBinning_severe[9][6][12];
+Multiplicities fMultiplicities[9][6][12];
+Wrapper fAcceptance[9][6][12];
+Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
+Recovery fMeanvalues[9][6][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
+Recovery_tank fMeanvalues_size[9][6][12];
+Recovery_tank fMeanvalues_data[9][6][12];
+Double_t fNDIS_evt[3][9][6][12];
+Double_t fNDIS_evt_err[3][9][6][12];
 Int_t xbin, ybin, zbin;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
-Double_t fYrange[6] = {.1,.15,.2,.3,.5,.7};
+Double_t fYrange[7] = {.1,.15,.2,.3,.5,.7,.9};
 Double_t fRcutval[24] = {1.68812,1.6915,1.69572,1.69733,1.71178,1.74735,1.74682,1.7846,1.80058,1.81382,1.83367,1.84183,1.84587,1.8423,1.8376,1.8368,1.84023,1.84309,1.85645,1.86316,1.85021,1.84775,1.84463,1.84185};
 Int_t fFlag[3][9][5][12];
 Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};

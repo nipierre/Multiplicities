@@ -1167,7 +1167,8 @@ int main(int argc, char **argv)
       else if(0.15<yBj && yBj<0.2) ybin = 1;
       else if(0.2<yBj && yBj<0.3) ybin = 2;
       else if(0.3<yBj && yBj<0.5) ybin = 3;
-      else ybin = 4;
+      else if(0.5<yBj && yBj<0.7) ybin = 4;
+      else ybin = 5;
 
 
       // z binning
@@ -2357,7 +2358,8 @@ int main(int argc, char **argv)
       else if(0.15<YBjloose[i] && YBjloose[i]<0.2) ybin = 1;
       else if(0.2<YBjloose[i] && YBjloose[i]<0.3) ybin = 2;
       else if(0.3<YBjloose[i] && YBjloose[i]<0.5) ybin = 3;
-      else ybin = 4;
+      else if(0.5<YBjloose[i] && YBjloose[i]<0.7) ybin = 4;
+      else ybin = 5;
 
       for(int j=0; j<2; j++)
       {
@@ -2403,7 +2405,8 @@ int main(int argc, char **argv)
       else if(0.15<YBjsevere[i] && YBjsevere[i]<0.2) ybin = 1;
       else if(0.2<YBjsevere[i] && YBjsevere[i]<0.3) ybin = 2;
       else if(0.3<YBjsevere[i] && YBjsevere[i]<0.5) ybin = 3;
-      else ybin = 4;
+      else if(0.5<YBjsevere[i] && YBjsevere[i]<0.7) ybin = 4;
+      else ybin = 5;
 
       for(int j=0; j<2; j++)
       {
@@ -2447,7 +2450,8 @@ int main(int argc, char **argv)
       else if(0.15<YBjlocal[i] && YBjlocal[i]<0.2) ybin = 1;
       else if(0.2<YBjlocal[i] && YBjlocal[i]<0.3) ybin = 2;
       else if(0.3<YBjlocal[i] && YBjlocal[i]<0.5) ybin = 3;
-      else ybin = 4;
+      else if(0.5<YBjlocal[i] && YBjlocal[i]<0.7) ybin = 4;
+      else ybin = 5;
 
       for(int j=0; j<2; j++)
       {
@@ -2519,7 +2523,7 @@ int main(int argc, char **argv)
 
   for(int i=0; i<9; i++)
   {
-    for(int j=0; j<5; j++)
+    for(int j=0; j<6; j++)
     {
       for(int k=0; k<12; k++)
       {
@@ -2616,7 +2620,7 @@ int main(int argc, char **argv)
   {
     for(int i=0; i<9; i++)
     {
-      for(int j=0; j<5; j++)
+      for(int j=0; j<6; j++)
       {
         for(int k=0; k<12; k++)
         {

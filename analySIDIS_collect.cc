@@ -34,7 +34,7 @@ void fetch_acceptance(string pname)
   {
     for(int i=0; i<9; i++)
     {
-      for(int j=0; j<5; j++)
+      for(int j=0; j<6; j++)
       {
         for(int k=0; k<12; k++)
         {
@@ -93,7 +93,7 @@ int main()
     {
       for(int i=0; i<9; i++)
       {
-        for(int j=0; j<5; j++)
+        for(int j=0; j<6; j++)
         {
           for(int k=0; k<12; k++)
           {
@@ -163,7 +163,7 @@ int main()
   {
     for(xbin=0; xbin<9; xbin++)
     {
-      for(ybin=0; ybin<5; ybin++)
+      for(ybin=0; ybin<6; ybin++)
       {
         for(zbin=0; zbin<12; zbin++)
         {
@@ -182,7 +182,7 @@ int main()
 
   for(int i=0; i<9; i++)
   {
-    for(int j=0; j<5; j++)
+    for(int j=0; j<6; j++)
     {
       for(int k=0; k<12; k++)
       {
@@ -223,9 +223,9 @@ int main()
   c6->Divide(5,2,0,0);
   c7->Divide(5,2,0,0);
 
-  TGraphErrors* H_mult[2][9][5];
-  TGraphErrors* P_mult[2][9][5];
-  TGraphErrors* K_mult[2][9][5];
+  TGraphErrors* H_mult[2][9][6];
+  TGraphErrors* P_mult[2][9][6];
+  TGraphErrors* K_mult[2][9][6];
 
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
 
@@ -234,26 +234,26 @@ int main()
   ofstream ofs_k(Form("%s/multiplicities_kaon.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_h(Form("%s/multiplicities_hadron.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
 
-  std::vector<Double_t> p_m[2][9][5];
-  std::vector<Double_t> k_m[2][9][5];
-  std::vector<Double_t> h_m[2][9][5];
-  std::vector<Double_t> p_err[2][9][5];
-  std::vector<Double_t> k_err[2][9][5];
-  std::vector<Double_t> h_err[2][9][5];
-  std::vector<Double_t> z_range_p[2][9][5];
-  std::vector<Double_t> z_range_k[2][9][5];
-  std::vector<Double_t> z_range_h[2][9][5];
+  std::vector<Double_t> p_m[2][9][6];
+  std::vector<Double_t> k_m[2][9][6];
+  std::vector<Double_t> h_m[2][9][6];
+  std::vector<Double_t> p_err[2][9][6];
+  std::vector<Double_t> k_err[2][9][6];
+  std::vector<Double_t> h_err[2][9][6];
+  std::vector<Double_t> z_range_p[2][9][6];
+  std::vector<Double_t> z_range_k[2][9][6];
+  std::vector<Double_t> z_range_h[2][9][6];
 
   for(int i=0; i<9; i++)
   {
-    for(int j=0; j<5; j++)
+    for(int j=0; j<6; j++)
     {
       for(int k=0; k<12; k++)
       {
 
         for(int c=1; c>=0; c--)
         {
-          /*ofs << c << " " << i << " " << j << " " << k << "   " << (fNDIS_evt[0][i][j][k] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k])) : 0) << " " <<
+          cout << c << " " << i << " " << j << " " << k << "   " << (fNDIS_evt[0][i][j][k] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k])) : 0) << " " <<
           fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
           fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " <<
           fNDIS_evt[1][i][j][k] << " " << fNDIS_evt[1][i][j][k] << " " <<
@@ -261,7 +261,7 @@ int main()
           fNDIS_evt[2][i][j][k] << " " << fNDIS_evt[2][i][j][k] << " " <<
           fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " <<
           fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
-          fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << endl;*/
+          fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << endl;
 
           if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
           {
@@ -685,7 +685,8 @@ int main()
   c5->cd(10);
   fTitle.SetTextSize(0.095);
   fTitle.SetTextAlign(11);
-  fTitle.DrawLatex(0.05, 0.64,"#color[221]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
+  fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90, #delta = 0.5}");
+  fTitle.DrawLatex(0.05, 0.64,"#color[3]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
   fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50, #delta = 0.3}");
   fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30, #delta = 0.2}");
   fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
@@ -740,7 +741,8 @@ int main()
   c6->cd(10);
   fTitle.SetTextSize(0.095);
   fTitle.SetTextAlign(11);
-  fTitle.DrawLatex(0.05, 0.64,"#color[221]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
+  fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90, #delta = 0.5}");
+  fTitle.DrawLatex(0.05, 0.64,"#color[3]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
   fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50, #delta = 0.3}");
   fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30, #delta = 0.2}");
   fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
@@ -794,7 +796,8 @@ int main()
   c7->cd(10);
   fTitle.SetTextSize(0.095);
   fTitle.SetTextAlign(11);
-  fTitle.DrawLatex(0.05, 0.64,"#color[221]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
+  fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90, #delta = 0.5}");
+  fTitle.DrawLatex(0.05, 0.64,"#color[3]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.4}");
   fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50, #delta = 0.3}");
   fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30, #delta = 0.2}");
   fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.1}");
