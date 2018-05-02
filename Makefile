@@ -26,36 +26,36 @@ plotter : FFPlotter
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -c -o $@ $<
 
 analySIDIS_split: analySIDIS_split.cc analySIDIS_split.h
-	echo 'Building SIDIS analysis package..'
+	@echo 'Building SIDIS analysis package..'
 	@$(CXX) $(CCFLAGS) -Wno-ignored-qualifiers $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(PHAST_LIBS) $(PHAST_INCL)
 
 analySIDIS_collect: analySIDIS_collect.cc analySIDIS_collect.h
 	@$(CXX) $(CCFLAGS) -Wno-ignored-qualifiers $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
-	echo 'SIDIS analysis package built !'
+	@echo 'SIDIS analysis package built !'
 
 accsplit: acceptance_split.cc acceptance_split.h
-	echo 'Building acceptance package..'
+	@echo 'Building acceptance package..'
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 acccollect: acceptance_collect.cc acceptance_collect.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
-	echo 'Acceptance package built !'
+	@echo 'Acceptance package built !'
 
 compMCRD: compMCRD.cc compMCRD.h
-	echo 'Building RD/MC.MC/MC package..'
+	@echo 'Building RD/MC.MC/MC package..'
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 compMCMC: compMCMC.cc compMCMC.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
-	echo 'RD/MC.MC/MC package built !'
+	@echo 'RD/MC.MC/MC package built !'
 
 FFExtractor: FFExtractor.cc FFExtractor.h
-	echo 'Building FF extraction package..'
+	@echo 'Building FF extraction package..'
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
 
 FFPlotter: FFPlotter.cc FFPlotter.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
-	echo 'FF extraction package built !'
+	@echo 'FF extraction package built !'
 
 clean :
 	@rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD compMCMC FFExtractor FFPlotter
