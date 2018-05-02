@@ -253,15 +253,15 @@ int main()
 
         for(int c=1; c>=0; c--)
         {
-          cout << c << " " << i << " " << j << " " << k << "   " << (fNDIS_evt[0][i][j][k] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k])) : 0) << " " <<
-          fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
-          fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " <<
-          fNDIS_evt[1][i][j][k] << " " << fNDIS_evt[1][i][j][k] << " " <<
-          fBinning[i][j][k].tab[c][0][1] << " " << fBinning[i][j][k].tab[c][1][1] << " " <<
-          fNDIS_evt[2][i][j][k] << " " << fNDIS_evt[2][i][j][k] << " " <<
-          fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " <<
-          fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
-          fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << endl;
+          // cout << c << " " << i << " " << j << " " << k << "   " << (fNDIS_evt[0][i][j][k] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k])) : 0) << " " <<
+          // fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
+          // fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " <<
+          // fNDIS_evt[1][i][j][k] << " " << fNDIS_evt[1][i][j][k] << " " <<
+          // fBinning[i][j][k].tab[c][0][1] << " " << fBinning[i][j][k].tab[c][1][1] << " " <<
+          // fNDIS_evt[2][i][j][k] << " " << fNDIS_evt[2][i][j][k] << " " <<
+          // fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " <<
+          // fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
+          // fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << endl;
 
           if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
           {

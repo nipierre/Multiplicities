@@ -33,6 +33,24 @@ LOG
 
 using namespace std;
 
+Double_t RelDiff(int x, int y, int z, int had)
+{
+  Double_t min=fAcceptance_zvtx[x][y][z][0].tab[c][0][had];
+  Double_t max=fAcceptance_zvtx[x][y][z][0].tab[c][0][had];
+
+  for(int i=1; i<4; i++)
+  {
+    if(fAcceptance_zvtx[x][y][z][i].tab[c][0][had]>max)
+      max=fAcceptance_zvtx[x][y][z][i].tab[c][0][had];
+    if(fAcceptance_zvtx[x][y][z][i].tab[c][0][had]<max)
+      min=fAcceptance_zvtx[x][y][z][i].tab[c][0][had];
+  }
+
+  return (max-min)/min;
+
+}
+
+
 int main()
 {
 
@@ -276,6 +294,7 @@ int main()
   double zvtx_range[4] = {-281.19,-221.19,-161.19,-101.19};
 
   ofstream ofs(Form("%s/%d/acceptance.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_vtx(Form("%s/%d/reldiff_vtx.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
   ofstream lepto(Form("%s/%d/lepto.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
@@ -493,14 +512,17 @@ int main()
               fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = 0;
             }
 
-            p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][0]);
-            k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][1]);
-            h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][3]);
+            p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][0] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][0]+j*0.1 : 0);
+            k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][1] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][1]+j*0.1 : 0);
+            h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][3] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][3]+j*0.1 : 0);
 
             p_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][0]);
             k_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][1]);
             h_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][3]);
           }
+
+          ofs_vtx << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
+          RelDiff(i,j,k,0) << " " << RelDiff(i,j,k,1) << " " << RelDiff(i,j,k,2) << " " << RelDiff(i,j,k,3) <<   endl;
 
           for(int l=4; l>0; l--)
           {
@@ -1161,6 +1183,7 @@ int main()
   c8[11]->Print(Form("%s/%d/hadron_acceptance_corr.pdf)",dirroot,year),"pdf");
 
   ofs.close();
+  ofs_vtx.close();
 
   return 0;
 }
