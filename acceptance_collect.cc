@@ -46,7 +46,7 @@ Double_t RelDiff(int c, int x, int y, int z, int had)
       min=fAcceptance_zvtx[x][y][z][i].tab[c][0][had];
   }
 
-  return (max-min)/min;
+  return (min ? Double_t((max-min)/min) : 0);
 
 }
 
