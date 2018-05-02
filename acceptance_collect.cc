@@ -33,7 +33,7 @@ LOG
 
 using namespace std;
 
-Double_t RelDiff(int x, int y, int z, int had)
+Double_t RelDiff(int c, int x, int y, int z, int had)
 {
   Double_t min=fAcceptance_zvtx[x][y][z][0].tab[c][0][had];
   Double_t max=fAcceptance_zvtx[x][y][z][0].tab[c][0][had];
@@ -522,7 +522,7 @@ int main()
           }
 
           ofs_vtx << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-          RelDiff(i,j,k,0) << " " << RelDiff(i,j,k,1) << " " << RelDiff(i,j,k,2) << " " << RelDiff(i,j,k,3) <<   endl;
+          RelDiff(c,i,j,k,0) << " " << RelDiff(c,i,j,k,1) << " " << RelDiff(c,i,j,k,2) << " " << RelDiff(c,i,j,k,3) <<   endl;
 
           for(int l=4; l>0; l--)
           {
