@@ -23,31 +23,39 @@ plotter : FFPlotter
 
 
 %.o: %.cc %.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -c -o $@ $<
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -c -o $@ $<
 
 analySIDIS_split: analySIDIS_split.cc analySIDIS_split.h
-	$(CXX) $(CCFLAGS) -Wno-ignored-qualifiers $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(PHAST_LIBS) $(PHAST_INCL)
+	echo 'Building SIDIS analysis package..'
+	@$(CXX) $(CCFLAGS) -Wno-ignored-qualifiers $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(PHAST_LIBS) $(PHAST_INCL)
 
 analySIDIS_collect: analySIDIS_collect.cc analySIDIS_collect.h
-	$(CXX) $(CCFLAGS) -Wno-ignored-qualifiers $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	@$(CXX) $(CCFLAGS) -Wno-ignored-qualifiers $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	echo 'SIDIS analysis package built !'
 
 accsplit: acceptance_split.cc acceptance_split.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	echo 'Building acceptance package..'
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 acccollect: acceptance_collect.cc acceptance_collect.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	echo 'Acceptance package built !'
 
 compMCRD: compMCRD.cc compMCRD.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	echo 'Building RD/MC.MC/MC package..'
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 compMCMC: compMCMC.cc compMCMC.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+	echo 'RD/MC.MC/MC package built !'
 
 FFExtractor: FFExtractor.cc FFExtractor.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
+	echo 'Building FF extraction package..'
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
 
 FFPlotter: FFPlotter.cc FFPlotter.h
-	$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
+	echo 'FF extraction package built !'
 
 clean :
-	rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD compMCMC FFExtractor FFPlotter
+	@rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD compMCMC FFExtractor FFPlotter
