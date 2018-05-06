@@ -1969,7 +1969,7 @@ void MCextraction(string pFilelist)
                   fCell++;
 
                   // if((trig&2 || trig&4 || trig&8))
-                  if((trig&2 || trig&4 || trig&8 || trig&512))
+                  if((trig&2 || trig&4 || trig&8 /*|| trig&512*/))
                   {
                     fTrig++;
 
@@ -2069,8 +2069,8 @@ void MCextraction(string pFilelist)
         else
         {}
         // ALL TRIGGERS
-        // if(trig&2 || trig&4 || trig&8)
-        if(trig&2 || trig&4 || trig&8 || trig&512)
+        if(trig&2 || trig&4 || trig&8)
+        // if(trig&2 || trig&4 || trig&8 || trig&512)
         {
           fQ2kinMC[4].push_back(Q2);
           fXBjkinMC[4].push_back(xBj);
@@ -2256,8 +2256,8 @@ void MCextraction(string pFilelist)
           else
           {}
           // ALL TRIGGERS
-          // if(trig&2 || trig&4 || trig&8)
-          if(trig&2 || trig&4 || trig&8 || trig&512)
+          if(trig&2 || trig&4 || trig&8)
+          // if(trig&2 || trig&4 || trig&8 || trig&512)
           {
             fKinematicsMC[4][3]->Fill(zBj);
             fKinematicsMC[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -2732,7 +2732,7 @@ void RDextraction(string pFilelist)
       else if(Y2016)
       {
         // if(!(trig&2 || trig&4 || trig&8)) continue;
-        if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+        if(!(trig&2 || trig&4 || trig&8 /*|| trig&512*/)) continue;
       }
       //2016 ---
       fTrig++;
@@ -2817,8 +2817,8 @@ void RDextraction(string pFilelist)
 
       }
       // ALL TRIGGERS
-      // if(trig&2 || trig&4 || trig&8)
-      if(trig&2 || trig&4 || trig&8 || trig&512)
+      if(trig&2 || trig&4 || trig&8)
+      // if(trig&2 || trig&4 || trig&8 || trig&512)
       {
         fQ2kin[4].push_back(Q2);
         fXBjkin[4].push_back(xBj);
