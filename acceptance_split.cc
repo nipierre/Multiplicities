@@ -130,10 +130,10 @@ void create_kin_plots()
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
-  fHM04 = new TH2F("HM04Y1", "HM04Y1", 100, 0, 120, 100, -60, 60);
-  fHM05 = new TH2F("HM05Y1", "HM05Y1", 100, 0, 120, 100, -60, 60);
-  fHL04 = new TH2F("HL04X1", "HL04X1", 300, 50, 190, 100, -25, 25);
-  fHL05 = new TH2F("HL05X1", "HL05X1", 300, 60, 240, 100, -25, 25);
+  fHM04 = new TH2F("HM04Y1", "HM04Y1", 200, 0, 120, 100, -60, 60);
+  fHM05 = new TH2F("HM05Y1", "HM05Y1", 200, 0, 120, 100, -60, 60);
+  fHL04 = new TH2F("HL04X1", "HL04X1", 200, 50, 190, 100, -25, 25);
+  fHL05 = new TH2F("HL05X1", "HL05X1", 200, 60, 240, 100, -25, 25);
   fHL04y1D = new TH1F("HL04X1y", "HL04X1y", 100, -25, 25);
   fHL05y1D = new TH1F("HL05X1y", "HL05X1y", 100, -25, 25);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -60, 90, 100, -60, 60);
