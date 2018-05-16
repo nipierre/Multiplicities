@@ -132,10 +132,10 @@ void create_kin_plots()
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHM04 = new TH2F("HM04Y1", "HM04Y1", 200, 0, 120, 100, -60, 60);
   fHM05 = new TH2F("HM05Y1", "HM05Y1", 200, 0, 120, 100, -60, 60);
-  fHL04 = new TH2F("HL04X1", "HL04X1", 200, 50, 190, 100, -25, 25);
-  fHL05 = new TH2F("HL05X1", "HL05X1", 200, 60, 240, 100, -25, 25);
-  fHL04y1D = new TH1F("HL04X1y", "HL04X1y", 100, -25, 25);
-  fHL05y1D = new TH1F("HL05X1y", "HL05X1y", 100, -25, 25);
+  fHL04 = new TH2F("HL04X1", "HL04X1", 1000, 50, 190, 100, -25, 25);
+  fHL05 = new TH2F("HL05X1", "HL05X1", 1000, 60, 240, 100, -25, 25);
+  fHL04x1D = new TH1F("HL04X1x", "HL04X1x", 100, -25, 25);
+  fHL05x1D = new TH1F("HL05X1x", "HL05X1x", 100, -25, 25);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -60, 90, 100, -60, 60);
   fHO04 = new TH2F("HO04Y1", "HO04Y1", 100, -100, 250, 100, -90, 90);
   fHG01 = new TH2F("HG01Y1", "HG01Y1", 100, -100, 100, 100, -50, 50);
@@ -233,10 +233,10 @@ void save_kin_plots()
   fHG022->Draw("COLZ");
   c17.Update();
   c26.cd(1);
-  fHL04y1D->Draw();
+  fHL04x1D->Draw();
   c26.Update();
   c27.cd(1);
-  fHL05y1D->Draw();
+  fHL05x1D->Draw();
   c27.Update();
 
   c1.Print("kinMC.pdf(","pdf");
@@ -2303,8 +2303,8 @@ int main(int argc, char **argv)
     {
       fHL04->Fill(fHL04x[i],fHL04y[i]);
       fHL05->Fill(fHL05x[i],fHL05y[i]);
-      fHL04y1D->Fill(fHL04y[i]);
-      fHL05y1D->Fill(fHL05y[i]);
+      fHL04x1D->Fill(fHL04x[i]);
+      fHL05x1D->Fill(fHL05x[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
     {
