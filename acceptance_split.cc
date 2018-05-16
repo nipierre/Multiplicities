@@ -136,6 +136,7 @@ void create_kin_plots()
   fHL05 = new TH2F("HL05X1", "HL05X1", 100, 60, 240, 100, -25, 25);
   fHL04x1D = new TH1F("HL04X1x", "HL04X1x", 1000, 50, 190);
   fHL05x1D = new TH1F("HL05X1x", "HL05X1x", 1000, 60, 240);
+  fHLx2D = new TH1F("HLx2D", "HLx2D", 1000, 50, 190, 1000, 60, 240);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -60, 90, 100, -60, 60);
   fHO04 = new TH2F("HO04Y1", "HO04Y1", 100, -100, 250, 100, -90, 90);
   fHG01 = new TH2F("HG01Y1", "HG01Y1", 100, -100, 100, 100, -50, 50);
@@ -238,6 +239,9 @@ void save_kin_plots()
   c27.cd(1);
   fHL05x1D->Draw();
   c27.Update();
+  c28.cd(1);
+  fHLx2D->Draw();
+  c28.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -258,6 +262,7 @@ void save_kin_plots()
   c17.Print("kinMC.pdf","pdf");
   c26.Print("kinMC.pdf","pdf");
   c27.Print("kinMC.pdf","pdf");
+  c28.Print("kinMC.pdf","pdf");
 
   c18.Divide(1,1);
   c19.Divide(1,1);
@@ -2305,6 +2310,7 @@ int main(int argc, char **argv)
       fHL05->Fill(fHL05x[i],fHL05y[i]);
       fHL04x1D->Fill(fHL04x[i]);
       fHL05x1D->Fill(fHL05x[i]);
+      fHLx2D->Fill(fHL04x[i],fHL05x[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
     {
