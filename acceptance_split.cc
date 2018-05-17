@@ -136,7 +136,7 @@ void create_kin_plots()
   fHL05 = new TH2F("HL05X1", "HL05X1", 100, 60, 240, 100, -25, 25);
   fHL04x1D = new TH1F("HL04X1x", "HL04X1x", 1000, 50, 190);
   fHL05x1D = new TH1F("HL05X1x", "HL05X1x", 1000, 60, 240);
-  fHLx2D = new TH2F("HLx2D", "HLx2D", 1000, 70, 90, 1000, 70, 90);
+  fHLx2D = new TH2F("HLx2D", "HLx2D", 1000, 70, 90, 1000, 80, 110);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -60, 90, 100, -60, 60);
   fHO04 = new TH2F("HO04Y1", "HO04Y1", 100, -100, 250, 100, -90, 90);
   fHG01 = new TH2F("HG01Y1", "HG01Y1", 100, -100, 100, 100, -50, 50);
@@ -241,7 +241,7 @@ void save_kin_plots()
   fHL05x1D->Draw();
   c27.Update();
   c28.cd(1);
-  fHLx2D->Draw();
+  fHLx2D->Draw("COLZ");
   c28.Update();
 
   c1.Print("kinMC.pdf(","pdf");
