@@ -136,7 +136,7 @@ void create_kin_plots()
   fHL05 = new TH2F("HL05X1", "HL05X1", 100, 60, 240, 100, -25, 25);
   fHL04x1D = new TH1F("HL04X1x", "HL04X1x", 1000, 50, 190);
   fHL05x1D = new TH1F("HL05X1x", "HL05X1x", 1000, 60, 240);
-  fHLx2D = new TH2F("HLx2D", "HLx2D", 1000, 70, 90, 1000, 80, 110);
+  fHLx2D = new TH2F("HLx2D", "HLx2D", 1000, 50, 190, 1000, 60, 240);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -60, 90, 100, -60, 60);
   fHO04 = new TH2F("HO04Y1", "HO04Y1", 100, -100, 250, 100, -90, 90);
   fHG01 = new TH2F("HG01Y1", "HG01Y1", 100, -100, 100, 100, -50, 50);
@@ -942,7 +942,7 @@ int main(int argc, char **argv)
                 {
                   fCell++;
 
-                  if((trig&2 || trig&4 || trig&8 || trig&512))
+                  if(/*(trig&2 || trig&4 || trig&8 || trig&512)*/true)
                   {
                     fTrig++;
 
@@ -1100,36 +1100,36 @@ int main(int argc, char **argv)
           fNukin.push_back(nu);
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
-          if(trig&2)
-          {
+          // if(trig&2)
+          // {
             fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
             fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
             fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
             fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
-          }
-          else if(trig&4)
-          {
+          // }
+          // else if(trig&4)
+          // {
             fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
             fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
             fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
-          }
-          else if(trig&8)
-          {
+          // }
+          // else if(trig&8)
+          // {
             fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
             fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
             fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
             fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
-          }
-          else if(trig&512)
-          {
+          // }
+          // else if(trig&512)
+          // {
             fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
             fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
             fHG021x.push_back(HG021x->GetLeaf("HG021x")->GetValue());
             fHG021y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
             fHG022x.push_back(HG022x->GetLeaf("HG022x")->GetValue());
             fHG022y.push_back(HG022y->GetLeaf("HG022y")->GetValue());
-          }
+          // }
         }
         if(fAllDISflag_MC)
         {
