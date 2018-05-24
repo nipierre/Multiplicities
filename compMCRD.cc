@@ -274,6 +274,7 @@ void save_kin_plots()
   c26.Divide(1,2);
   c27.Divide(2,4);
   c28.Divide(1,2);
+  c28.Divide(1,1);
 
   for(int i=0; i<8; i++)
   {
@@ -1405,6 +1406,11 @@ void save_kin_plots()
   fKinematicsMC[4][15]->Draw("SAME");
   c26.Update();
 
+  c29.cd(1);
+  fKinematicsRD[4][15]->Draw();
+  fKinematicsMC[4][15]->Draw("SAME");
+  c29.Update();
+
   c28.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
   {
@@ -1473,6 +1479,7 @@ void save_kin_plots()
   c16.Print("kinMCRD.pdf","pdf");
   c17.Print("kinMCRD.pdf","pdf");
   c18.Print("kinMCRD.pdf)","pdf");
+  c29.Print("photoelec.pdf","pdf");
 }
 
 void MCextraction(string pFilelist)
