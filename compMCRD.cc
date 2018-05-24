@@ -1002,6 +1002,13 @@ void save_kin_plots()
   fKinematicsMC[0][11]->Draw("SAME");
   c7.Update();
 
+  c29.cd(1);
+  fKinematicsRD[0][11]->GetXaxis()->SetLabelSize(0.02);
+  fKinematicsRD[0][11]->GetYaxis()->SetLabelSize(0.02);
+  fKinematicsRD[0][11]->Draw();
+  fKinematicsMC[0][11]->Draw("SAME");
+  c29.Update();
+
   c8.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][0]->GetNbinsX(); tt++)
   {
@@ -1405,11 +1412,6 @@ void save_kin_plots()
   fKinematicsMC[4][15]->SetLineColor(kBlue);
   fKinematicsMC[4][15]->Draw("SAME");
   c26.Update();
-
-  c29.cd(1);
-  fKinematicsRD[4][15]->Draw();
-  fKinematicsMC[4][15]->Draw("SAME");
-  c29.Update();
 
   c28.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
