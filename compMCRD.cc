@@ -1282,7 +1282,7 @@ void save_kin_plots()
   fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.01);
   for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
   {
-    cout << fKinematicsMC[4][5]->GetBinError(tt)/fKinematicsMC[4][5]->GetEntries() << endl;
+    cout << fKinematicsMC[4][5]->GetBinError(tt) << " " << fKinematicsMC[4][5]->GetEntries() << " " << fKinematicsMC[4][5]->GetBinError(tt)/fKinematicsMC[4][5]->GetEntries() << endl;
     fKinematicsMC[4][5]->SetBinError(tt,fKinematicsMC[4][5]->GetBinError(tt)/fKinematicsMC[4][5]->GetEntries());
   }
   fKinematicsMC[4][5]->SetFillColor(kYellow-7);
