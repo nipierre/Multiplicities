@@ -1273,7 +1273,7 @@ void save_kin_plots()
   c32.cd(1);
   for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][5]->SetBinError(tt,fKinematicsRD[4][5]->GetBinError(tt)/fKinematicsRD[4][5]->GetEntries());
+    fKinematicsRD[4][5]->SetBinError(tt,double(fKinematicsRD[4][5]->GetBinError(tt))/double(fKinematicsRD[4][5]->GetEntries()));
   }
   fKinematicsRD[4][5]->Draw("E2");
   fKinematicsRD[4][5]->Draw("SAME");
