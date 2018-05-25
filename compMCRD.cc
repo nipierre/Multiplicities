@@ -1230,25 +1230,13 @@ void save_kin_plots()
   fKinematicsMC[4][4]->Draw("SAME");
   c12.Update();
 
-  c32.cd(1);
-  fKinematicsRD[4][5]->SetStats(0);
-  fKinematicsRD[4][5]->SetFillColor(kYellow-7);
-  fKinematicsRD[4][5]->Draw("E2");
-  fKinematicsRD[4][5]->Draw("SAME");
-  fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.01);
-  fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.01);
-  fKinematicsMC[4][5]->SetFillColor(kYellow-7);
-  fKinematicsMC[4][5]->Draw("E2SAME");
-  fKinematicsMC[4][5]->Draw("SAME");
-  c32.Update();
-
   c13.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
   {
     fError.push_back((fKinematicsRD[4][5]->GetBinError(tt) && fKinematicsMC[4][5]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][5]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][5]->GetBinError(tt),2)):0));
   }
-  fKinematicsRD[4][5]->Scale(1/fKinematicsRD[4][5]->GetEntries());
-  fKinematicsMC[4][5]->Scale(1/fKinematicsMC[4][5]->GetEntries());
+  // fKinematicsRD[4][5]->Scale(1/fKinematicsRD[4][5]->GetEntries());
+  // fKinematicsMC[4][5]->Scale(1/fKinematicsMC[4][5]->GetEntries());
   fKinematicsRatio[4][5] = (TH1F*)fKinematicsRD[4][5]->Clone();
   fKinematicsRatio[4][5]->SetStats(0);
   fKinematicsRatio[4][5]->Divide(fKinematicsMC[4][5]);
@@ -1281,6 +1269,25 @@ void save_kin_plots()
   fKinematicsMC[4][5]->SetLineColor(kBlue);
   fKinematicsMC[4][5]->Draw("SAME");
   c13.Update();
+
+  c32.cd(1);
+  for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
+  {
+    fKinematicsRD[4][5]->SetBinError(tt,sqrt(fKinematicsRD[4][5]->GetBinContent(tt)));
+  }
+  fKinematicsRD[4][5]->SetFillColor(kYellow-7);
+  fKinematicsRD[4][5]->Draw("E2");
+  fKinematicsRD[4][5]->Draw("SAME");
+  fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.01);
+  fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.01);
+  for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
+  {
+    fKinematicsMC[4][5]->SetBinError(tt,sqrt(fKinematicsMC[4][5]->GetBinContent(tt)));
+  }
+  fKinematicsMC[4][5]->SetFillColor(kYellow-7);
+  fKinematicsMC[4][5]->Draw("E2SAME");
+  fKinematicsMC[4][5]->Draw("SAME");
+  c32.Update();
 
   c22.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][12]->GetNbinsX(); tt++)
