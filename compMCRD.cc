@@ -1271,9 +1271,11 @@ void save_kin_plots()
   c13.Update();
 
   c32.cd(1);
-  fKinematicsRD[4][5]->Draw("");
+  fKinematicsRD[4][5]->Draw("E");
+  fKinematicsRD[4][5]->Draw("SAME");
   fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.01);
   fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.01);
+  fKinematicsMC[4][5]->Draw("E");
   fKinematicsMC[4][5]->Draw("SAME");
   c32.Update();
 
