@@ -1273,7 +1273,7 @@ void save_kin_plots()
   c32.cd(1);
   for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][5]->SetBinError(tt,double(fKinematicsRD[4][5]->GetBinError(tt))/double(fKinematicsRD[4][5]->GetEntries()));
+    fKinematicsRD[4][5]->SetBinError(tt,double(fKinematicsRD[4][5]->GetBinError(tt)));
   }
   fKinematicsRD[4][5]->SetFillColor(kYellow-7);
   fKinematicsRD[4][5]->Draw("E2");
@@ -1282,8 +1282,7 @@ void save_kin_plots()
   fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.01);
   for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
   {
-    cout << fKinematicsMC[4][5]->GetBinError(tt) << " " << fKinematicsMC[4][5]->GetEntries() << " " << fKinematicsMC[4][5]->GetBinError(tt)/fKinematicsMC[4][5]->GetEntries() << endl;
-    fKinematicsMC[4][5]->SetBinError(tt,fKinematicsMC[4][5]->GetBinError(tt)/fKinematicsMC[4][5]->GetEntries());
+    fKinematicsMC[4][5]->SetBinError(tt,fKinematicsMC[4][5]->GetBinError(tt));
   }
   fKinematicsMC[4][5]->SetFillColor(kYellow-7);
   fKinematicsMC[4][5]->Draw("E2SAME");
