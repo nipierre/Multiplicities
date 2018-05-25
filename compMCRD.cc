@@ -1011,7 +1011,6 @@ void save_kin_plots()
   {
     fKinematicsRD[0][11]->SetBinError(tt,sqrt(fKinematicsRD[0][11]->GetBinContent(tt)));
   }
-  fKinematicsRD[0][11]->SetFillColor(kYellow-7);
   fKinematicsRD[0][11]->Draw("E2");
   fKinematicsRD[0][11]->Draw("SAME");
   fKinematicsRD[0][11]->GetXaxis()->SetLabelSize(0.03);
@@ -1020,7 +1019,6 @@ void save_kin_plots()
   {
     fKinematicsMC[0][11]->SetBinError(tt,sqrt(fKinematicsMC[0][11]->GetBinContent(tt)));
   }
-  fKinematicsMC[0][11]->SetFillColor(kYellow-7);
   fKinematicsMC[0][11]->Draw("E2SAME");
   fKinematicsMC[0][11]->Draw("SAME");
   c29.Update();
@@ -1073,7 +1071,6 @@ void save_kin_plots()
   {
     fKinematicsRD[4][0]->SetBinError(tt,sqrt(fKinematicsRD[4][0]->GetBinContent(tt)));
   }
-  fKinematicsRD[4][0]->SetFillColor(kYellow-7);
   fKinematicsRD[4][0]->Draw("E2");
   fKinematicsRD[4][0]->Draw("SAME");
   fKinematicsRD[4][0]->GetXaxis()->SetLabelSize(0.03);
@@ -1082,7 +1079,6 @@ void save_kin_plots()
   {
     fKinematicsMC[4][0]->SetBinError(tt,sqrt(fKinematicsMC[4][0]->GetBinContent(tt)));
   }
-  fKinematicsMC[4][0]->SetFillColor(kYellow-7);
   fKinematicsMC[4][0]->Draw("E2SAME");
   fKinematicsMC[4][0]->Draw("SAME");
   gPad->SetLogx();
@@ -1216,7 +1212,6 @@ void save_kin_plots()
   {
     fKinematicsRD[4][3]->SetBinError(tt,sqrt(fKinematicsRD[4][3]->GetBinContent(tt)));
   }
-  fKinematicsRD[4][3]->SetFillColor(kYellow-7);
   fKinematicsRD[4][3]->Draw("E2");
   fKinematicsRD[4][3]->Draw("SAME");
   fKinematicsRD[4][3]->GetXaxis()->SetLabelSize(0.03);
@@ -1225,7 +1220,6 @@ void save_kin_plots()
   {
     fKinematicsMC[4][3]->SetBinError(tt,sqrt(fKinematicsMC[4][3]->GetBinContent(tt)));
   }
-  fKinematicsMC[4][3]->SetFillColor(kYellow-7);
   fKinematicsMC[4][3]->Draw("E2SAME");
   fKinematicsMC[4][3]->Draw("SAME");
   c31.Update();
@@ -1316,7 +1310,6 @@ void save_kin_plots()
   {
     fKinematicsRD[4][5]->SetBinError(tt,sqrt(fKinematicsRD[4][5]->GetBinContent(tt)));
   }
-  fKinematicsRD[4][5]->SetFillColor(kYellow-7);
   fKinematicsRD[4][5]->Draw("E2");
   fKinematicsRD[4][5]->Draw("SAME");
   fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.03);
@@ -1325,7 +1318,6 @@ void save_kin_plots()
   {
     fKinematicsMC[4][5]->SetBinError(tt,sqrt(fKinematicsMC[4][5]->GetBinContent(tt)));
   }
-  fKinematicsMC[4][5]->SetFillColor(kYellow-7);
   fKinematicsMC[4][5]->Draw("E2SAME");
   fKinematicsMC[4][5]->Draw("SAME");
   c32.Update();
