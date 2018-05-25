@@ -1055,10 +1055,10 @@ void save_kin_plots()
   c8.Update();
 
   c30.cd(1);
-  fKinematicsRD[4][0]->Draw("PE2");
+  fKinematicsRD[4][0]->Draw("E2");
   fKinematicsRD[4][0]->GetXaxis()->SetLabelSize(0.01);
   fKinematicsRD[4][0]->GetYaxis()->SetLabelSize(0.01);
-  fKinematicsMC[4][0]->Draw("PE2SAME");
+  fKinematicsMC[4][0]->Draw("E2SAME");
   gPad->SetLogx();
   c30.Update();
 
@@ -1184,10 +1184,10 @@ void save_kin_plots()
   fKinematicsMC[4][3]->Draw("SAME");
   c11.Update();
   c31.cd(1);
-  fKinematicsRD[4][3]->Draw("PE2");
+  fKinematicsRD[4][3]->Draw("E2");
   fKinematicsRD[4][3]->GetXaxis()->SetLabelSize(0.01);
   fKinematicsRD[4][3]->GetYaxis()->SetLabelSize(0.01);
-  fKinematicsMC[4][3]->Draw("PE2SAME");
+  fKinematicsMC[4][3]->Draw("E2SAME");
   c31.Update();
 
   c12.cd(2);
@@ -1271,10 +1271,10 @@ void save_kin_plots()
   c13.Update();
 
   c32.cd(1);
-  fKinematicsRD[4][5]->Draw("PE2");
+  fKinematicsRD[4][5]->Draw("E2");
   fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.01);
   fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.01);
-  fKinematicsMC[4][5]->Draw("PE2SAME");
+  fKinematicsMC[4][5]->Draw("E2SAME");
   c32.Update();
 
   c22.cd(2);
