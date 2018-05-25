@@ -275,6 +275,9 @@ void save_kin_plots()
   c27.Divide(2,4);
   c28.Divide(1,2);
   c29.Divide(1,1);
+  c30.Divide(1,1);
+  c31.Divide(1,1);
+  c32.Divide(1,1);
 
   for(int i=0; i<8; i++)
   {
@@ -1051,6 +1054,14 @@ void save_kin_plots()
   gPad->SetLogx();
   c8.Update();
 
+  c30.cd(1);
+  fKinematicsRD[4][0]->Draw("PE2");
+  fKinematicsRD[4][0]->GetXaxis()->SetLabelSize(0.01);
+  fKinematicsRD[4][0]->GetYaxis()->SetLabelSize(0.01);
+  fKinematicsMC[4][0]->Draw("PE2SAME");
+  gPad->SetLogx();
+  c30.Update();
+
   c9.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][1]->GetNbinsX(); tt++)
   {
@@ -1172,6 +1183,12 @@ void save_kin_plots()
   fKinematicsMC[4][3]->SetLineColor(kBlue);
   fKinematicsMC[4][3]->Draw("SAME");
   c11.Update();
+  c31.cd(1);
+  fKinematicsRD[4][3]->Draw("PE2");
+  fKinematicsRD[4][3]->GetXaxis()->SetLabelSize(0.01);
+  fKinematicsRD[4][3]->GetYaxis()->SetLabelSize(0.01);
+  fKinematicsMC[4][3]->Draw("PE2SAME");
+  c31.Update();
 
   c12.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][4]->GetNbinsX(); tt++)
@@ -1252,6 +1269,13 @@ void save_kin_plots()
   fKinematicsMC[4][5]->SetLineColor(kBlue);
   fKinematicsMC[4][5]->Draw("SAME");
   c13.Update();
+
+  c32.cd(1);
+  fKinematicsRD[4][5]->Draw("PE2");
+  fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.01);
+  fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.01);
+  fKinematicsMC[4][5]->Draw("PE2SAME");
+  c32.Update();
 
   c22.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][12]->GetNbinsX(); tt++)
@@ -1482,6 +1506,9 @@ void save_kin_plots()
   c17.Print("kinMCRD.pdf","pdf");
   c18.Print("kinMCRD.pdf)","pdf");
   c29.Print("photoelec.pdf","pdf");
+  c30.Print("Q2.pdf","pdf");
+  c31.Print("nu.pdf","pdf");
+  c32.Print("z.pdf","pdf");
 }
 
 void MCextraction(string pFilelist)

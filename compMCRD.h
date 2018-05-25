@@ -235,6 +235,9 @@ TCanvas c26("Kin_hadron_#phi_pl","Kin_hadron_#phi_pl",3200,1600);
 TCanvas c27("Kin_p_T Trigger","Kin_hadron_p_T Trigger",3200,1600);
 TCanvas c28("Kin_p_T","Kin_hadron_p_T",3200,1600);
 TCanvas c29("photoelec","photoelec",2000,2000);
+TCanvas c30("Q^2","Q^2",2000,2000);
+TCanvas c31("nu","nu",2000,2000);
+TCanvas c32("z","z",2000,2000);
 
 vector<double> fError;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
