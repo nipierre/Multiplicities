@@ -1259,7 +1259,7 @@ void save_kin_plots()
   }
   c13.Update();
   c13.cd(1);
-  fKinematicsMC[4][5]->Scale(fKinematicsRD[4][5]->GetEntries()/fKinematicsMC[4][5]->GetEntries())
+  fKinematicsMC[4][5]->Scale(fKinematicsRD[4][5]->GetEntries()/fKinematicsMC[4][5]->GetEntries());
   fKinematicsRD[4][5]->SetLineColor(kRed);
   fKinematicsRD[4][5]->SetStats(0);
   fKinematicsRD[4][5]->SetMinimum(0.);
