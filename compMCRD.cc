@@ -1260,6 +1260,14 @@ void save_kin_plots()
   c13.Update();
   c13.cd(1);
   fKinematicsMC[4][5]->Scale(fKinematicsRD[4][5]->GetEntries()/fKinematicsMC[4][5]->GetEntries());
+  for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
+  {
+    fKinematicsRD[4][5]->SetBinError(tt,sqrt(fKinematicsRD[4][5]->GetBinContent()));
+  }
+  for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
+  {
+    fKinematicsMC[4][5]->SetBinError(tt,sqrt(fKinematicsMC[4][5]->GetBinContent()));
+  }
   fKinematicsRD[4][5]->SetLineColor(kRed);
   fKinematicsRD[4][5]->SetStats(0);
   fKinematicsRD[4][5]->SetMinimum(0.);
