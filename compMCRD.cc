@@ -1012,6 +1012,7 @@ void save_kin_plots()
     fKinematicsRD[0][11]->SetBinError(tt,sqrt(fKinematicsRD[0][11]->GetBinContent(tt)));
   }
   fKinematicsRD[0][11]->Draw("E2");
+  fKinematicsRD[0][11]->SetMarkerStyle(22);
   fKinematicsRD[0][11]->Draw("SAME");
   fKinematicsRD[0][11]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD[0][11]->GetYaxis()->SetLabelSize(0.03);
