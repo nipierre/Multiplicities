@@ -1100,7 +1100,7 @@ int main(int argc, char **argv)
           fNukin.push_back(nu);
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
-          cout << int(trig&2) << " " << int(trig&4) << << " " << int(trig&8) << " " << int(trig&512) << endl;
+          cout << int(trig&2) << " " << int(trig&4) << " " << int(trig&8) << " " << int(trig&512) << endl;
           if(trig&2 && !trig&4 && !trig&8 && !trig&512)
           {
             fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
