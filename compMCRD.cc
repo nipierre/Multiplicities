@@ -2057,7 +2057,7 @@ void MCextraction(string pFilelist)
         double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
         // MT
-        if(trig&2)
+        if(trig&2 && !trig&4 && !trig&8 && !trig&512)
         {
           fQ2kinMC[0].push_back(Q2);
           fXBjkinMC[0].push_back(xBj);
@@ -2071,7 +2071,7 @@ void MCextraction(string pFilelist)
           fVertexMC[0].push_back(z->GetLeaf("z")->GetValue());
         }
         // LT
-        else if(trig&4)
+        else if(trig&4 && !trig&2 && !trig&8 && !trig&512)
         {
           fQ2kinMC[1].push_back(Q2);
           fXBjkinMC[1].push_back(xBj);
@@ -2085,7 +2085,7 @@ void MCextraction(string pFilelist)
           fVertexMC[1].push_back(z->GetLeaf("z")->GetValue());
         }
         // OT
-        else if(trig&8)
+        else if(trig&8 && !trig&2 && !trig&4 && !trig&512)
         {
           fQ2kinMC[2].push_back(Q2);
           fXBjkinMC[2].push_back(xBj);
@@ -2099,7 +2099,7 @@ void MCextraction(string pFilelist)
           fVertexMC[2].push_back(z->GetLeaf("z")->GetValue());
         }
         // LAST
-        else if(trig&512)
+        else if(trig&512 && !trig&4 && !trig&8 && !trig&2)
         {
           fQ2kinMC[3].push_back(Q2);
           fXBjkinMC[3].push_back(xBj);
@@ -2803,7 +2803,7 @@ void RDextraction(string pFilelist)
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
       // MT
-      if(trig&2)
+      if(trig&2 && !trig&4 && !trig&8 && !trig&512)
       {
         fQ2kin[0].push_back(Q2);
         fXBjkin[0].push_back(xBj);
@@ -2817,7 +2817,7 @@ void RDextraction(string pFilelist)
         fVertex[0].push_back(z->GetLeaf("z")->GetValue());
       }
       // LT
-      else if(trig&4)
+      else if(trig&4 && !trig&2 && !trig&8 && !trig&512)
       {
         fQ2kin[1].push_back(Q2);
         fXBjkin[1].push_back(xBj);
@@ -2831,7 +2831,7 @@ void RDextraction(string pFilelist)
         fVertex[1].push_back(z->GetLeaf("z")->GetValue());
       }
       // OT
-      else if(trig&8)
+      else if(trig&8 && !trig&2 && !trig&4 && !trig&512)
       {
         fQ2kin[2].push_back(Q2);
         fXBjkin[2].push_back(xBj);
@@ -2845,7 +2845,7 @@ void RDextraction(string pFilelist)
         fVertex[2].push_back(z->GetLeaf("z")->GetValue());
       }
       // LAST
-      else if(trig&512)
+      else if(trig&512 && !trig&4 && !trig&8 && !trig&2)
       {
         fQ2kin[3].push_back(Q2);
         fXBjkin[3].push_back(xBj);
