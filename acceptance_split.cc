@@ -1108,7 +1108,7 @@ int main(int argc, char **argv)
             fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
             fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
           }
-          if(int(trig&4 && !int(trig&2) && !int(trig&8) && !int(trig&512))
+          if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
             fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
