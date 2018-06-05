@@ -1101,28 +1101,28 @@ int main(int argc, char **argv)
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
           cout << int(trig&2) << " " << int(trig&4) << " " << int(trig&8) << " " << int(trig&512) << endl;
-          if(trig&2 && !trig&4 && !trig&8 && !trig&512)
+          if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
           {
             fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
             fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
             fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
             fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
           }
-          if(trig&4 && !trig&2 && !trig&8 && !trig&512)
+          if(int(trig&4 && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
             fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
             fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
             fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
           }
-          if(trig&8 && !trig&4 && !trig&2 && !trig&512)
+          if(int(trig&8) && !int(trig&4) && !int(trig&2) && !int(trig&512))
           {
             fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
             fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
             fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
             fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
           }
-          if(trig&512 && !trig&4 && !trig&8 && !trig&2)
+          if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
           {
             fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
             fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
