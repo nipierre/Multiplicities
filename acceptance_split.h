@@ -87,6 +87,25 @@ vector<Double_t> fHG022x;
 vector<Double_t> fHG021y;
 vector<Double_t> fHG022y;
 
+vector<Double_t> fHM04MCx;
+vector<Double_t> fHM04MCy;
+vector<Double_t> fHM05MCx;
+vector<Double_t> fHM05MCy;
+vector<Double_t> fHL04MCx;
+vector<Double_t> fHL04MCy;
+vector<Double_t> fHL05MCx;
+vector<Double_t> fHL05MCy;
+vector<Double_t> fHO03MCx;
+vector<Double_t> fHO03MCy;
+vector<Double_t> fHO04MCx;
+vector<Double_t> fHO04MCy;
+vector<Double_t> fHG01MCx;
+vector<Double_t> fHG01MCy;
+vector<Double_t> fHG021MCx;
+vector<Double_t> fHG022MCx;
+vector<Double_t> fHG021MCy;
+vector<Double_t> fHG022MCy;
+
 //Misc
 
 set<Double_t> fLHsec_set;
