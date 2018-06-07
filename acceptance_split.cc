@@ -142,6 +142,17 @@ void create_kin_plots()
   fHG01 = new TH2F("HG01Y1", "HG01Y1", 100, -100, 100, 100, -50, 50);
   fHG021 = new TH2F("HG02Y1", "HG02Y1", 100, -100, 100, 100, -50, 50);
   fHG022 = new TH2F("HG02Y2", "HG02Y2", 100, -100, 100, 100, -50, 50);
+  fHM04MC = new TH2F("HM04MCY1", "HM04MCY1", 100, 0, 120, 100, -60, 60);
+  fHM05MC = new TH2F("HM05MCY1", "HM05MCY1", 100, 0, 120, 100, -60, 60);
+  fHL04MC = new TH2F("HL04MCX1", "HL04MCX1", 100, 50, 190, 100, -25, 25);
+  fHL05MC = new TH2F("HL05MCX1", "HL05MCX1", 100, 60, 240, 100, -25, 25);
+  fHL04MCx2D = new TH2F("HL04MCX1x", "HL04MCX1x", 100, 50, 190, 100, 50, 190);
+  fHL05MCx2D = new TH2F("HL05MCX1x", "HL05MCX1x", 100, 60, 240, 100, 60, 240);
+  fHO03MC = new TH2F("HO03MCY1", "HO03MCY1", 100, -60, 90, 100, -60, 60);
+  fHO04MC = new TH2F("HO04MCY1", "HO04MCY1", 100, -100, 250, 100, -90, 90);
+  fHG01MC = new TH2F("HG01MCY1", "HG01MCY1", 100, -100, 100, 100, -50, 50);
+  fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -100, 100, 100, -50, 50);
+  fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -100, 100, 100, -50, 50);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -180,6 +191,17 @@ void save_kin_plots()
   c26.Divide(1,1);
   c27.Divide(1,1);
   c28.Divide(1,1);
+  c29.Divide(1,1);
+  c39.Divide(1,1);
+  c31.Divide(1,1);
+  c32.Divide(1,1);
+  c33.Divide(1,1);
+  c34.Divide(1,1);
+  c35.Divide(1,1);
+  c36.Divide(1,1);
+  c37.Divide(1,1);
+  c38.Divide(1,1);
+  c39.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -243,6 +265,39 @@ void save_kin_plots()
   c28.cd(1);
   fHLx2D->Draw("COLZ");
   c28.Update();
+  c29.cd(1);
+  fHM04MC->Draw("COLZ");
+  c29.Update();
+  c30.cd(1);
+  fHM05MC->Draw("COLZ");
+  c30.Update();
+  c31.cd(1);
+  fHL04MC->Draw("COLZ");
+  c31.Update();
+  c32.cd(1);
+  fHL05MC->Draw("COLZ");
+  c32.Update();
+  c33.cd(1);
+  fHO03MC->Draw("COLZ");
+  c33.Update();
+  c34.cd(1);
+  fHO04MC->Draw("COLZ");
+  c34.Update();
+  c35.cd(1);
+  fHG01MC->Draw("COLZ");
+  c35.Update();
+  c36.cd(1);
+  fHG021MC->Draw("COLZ");
+  c36.Update();
+  c37.cd(1);
+  fHG022MC->Draw("COLZ");
+  c37.Update();
+  c38.cd(1);
+  fHL04MCx2D->Draw();
+  c38.Update();
+  c39.cd(1);
+  fHL05MCx2D->Draw();
+  c39.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -264,6 +319,17 @@ void save_kin_plots()
   c26.Print("kinMC.pdf","pdf");
   c27.Print("kinMC.pdf","pdf");
   c28.Print("kinMC.pdf","pdf");
+  c29.Print("kinMC.pdf","pdf");
+  c30.Print("kinMC.pdf","pdf");
+  c31.Print("kinMC.pdf","pdf");
+  c32.Print("kinMC.pdf","pdf");
+  c33.Print("kinMC.pdf","pdf");
+  c34.Print("kinMC.pdf","pdf");
+  c35.Print("kinMC.pdf","pdf");
+  c36.Print("kinMC.pdf","pdf");
+  c37.Print("kinMC.pdf","pdf");
+  c38.Print("kinMC.pdf","pdf");
+  c39.Print("kinMC.pdf","pdf");
 
   c18.Divide(1,1);
   c19.Divide(1,1);
@@ -485,6 +551,24 @@ int main(int argc, char **argv)
     TBranch *MC_nuTr = (TBranch*) tree->FindBranch("MC_nuTr");
     TBranch *MC_Q2Tr = (TBranch*) tree->FindBranch("MC_Q2Tr");
     TBranch *MC_w = (TBranch*) tree->FindBranch("MC_w");
+    TBranch *HM04MCx = (TBranch*) tree->FindBranch("HM04MCx");
+    TBranch *HM04MCy = (TBranch*) tree->FindBranch("HM04MCy");
+    TBranch *HM05MCx = (TBranch*) tree->FindBranch("HM05MCx");
+    TBranch *HM05MCy = (TBranch*) tree->FindBranch("HM05MCy");
+    TBranch *HL04MCx = (TBranch*) tree->FindBranch("HL04MCx");
+    TBranch *HL04MCy = (TBranch*) tree->FindBranch("HL04MCy");
+    TBranch *HL05MCx = (TBranch*) tree->FindBranch("HL05MCx");
+    TBranch *HL05MCy = (TBranch*) tree->FindBranch("HL05MCy");
+    TBranch *HO03MCx = (TBranch*) tree->FindBranch("HO03MCx");
+    TBranch *HO03MCy = (TBranch*) tree->FindBranch("HO03MCy");
+    TBranch *HO04MCx = (TBranch*) tree->FindBranch("HO04MCx");
+    TBranch *HO04MCy = (TBranch*) tree->FindBranch("HO04MCy");
+    TBranch *HG01MCx = (TBranch*) tree->FindBranch("HG01MCx");
+    TBranch *HG01MCy = (TBranch*) tree->FindBranch("HG01MCy");
+    TBranch *HG021MCx = (TBranch*) tree->FindBranch("HG021MCx");
+    TBranch *HG021MCy = (TBranch*) tree->FindBranch("HG021MCy");
+    TBranch *HG022MCx = (TBranch*) tree->FindBranch("HG022MCx");
+    TBranch *HG022MCy = (TBranch*) tree->FindBranch("HG022MCy");
     TBranch *recons = (TBranch*) tree->FindBranch("recons");
     TBranch *MC_yTr = (TBranch*) tree->FindBranch("MC_yTr");
     TBranch *MC_xTr = (TBranch*) tree->FindBranch("MC_xTr");
@@ -591,6 +675,24 @@ int main(int argc, char **argv)
       MC_Q2Tr->GetEntry(ip);
       MC_w->GetEntry(ip);
       recons->GetEntry(ip);
+      HM04MCx->GetEntry(ip);
+      HM04MCy->GetEntry(ip);
+      HM05MCx->GetEntry(ip);
+      HM05MCy->GetEntry(ip);
+      HL04MCx->GetEntry(ip);
+      HL04MCy->GetEntry(ip);
+      HL05MCx->GetEntry(ip);
+      HL05MCy->GetEntry(ip);
+      HO03MCx->GetEntry(ip);
+      HO03MCy->GetEntry(ip);
+      HO04MCx->GetEntry(ip);
+      HO04MCy->GetEntry(ip);
+      HG01MCx->GetEntry(ip);
+      HG01MCy->GetEntry(ip);
+      HG021MCx->GetEntry(ip);
+      HG021MCy->GetEntry(ip);
+      HG022MCx->GetEntry(ip);
+      HG022MCy->GetEntry(ip);
       MC_yTr->GetEntry(ip);
       MC_xTr->GetEntry(ip);
 
@@ -1107,6 +1209,10 @@ int main(int argc, char **argv)
             fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
             fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
             fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
+            fHM04MCx.push_back(HM04MCx->GetLeaf("HM04MCx")->GetValue());
+            fHM04MCy.push_back(HM04MCy->GetLeaf("HM04MCy")->GetValue());
+            fHM05MCx.push_back(HM05MCx->GetLeaf("HM05MCx")->GetValue());
+            fHM05MCy.push_back(HM05MCy->GetLeaf("HM05MCy")->GetValue());
           }
           if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
@@ -1114,6 +1220,10 @@ int main(int argc, char **argv)
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
             fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
             fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
+            fHL04MCx.push_back(HL04MCx->GetLeaf("HL04MCx")->GetValue());
+            fHL04MCy.push_back(HL04MCy->GetLeaf("HL04MCy")->GetValue());
+            fHL05MCx.push_back(HL05MCx->GetLeaf("HL05MCx")->GetValue());
+            fHL05MCy.push_back(HL05MCy->GetLeaf("HL05MCy")->GetValue());
           }
           if(int(trig&8) && !int(trig&4) && !int(trig&2) && !int(trig&512))
           {
@@ -1121,6 +1231,10 @@ int main(int argc, char **argv)
             fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
             fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
             fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
+            fHO03MCx.push_back(HO03MCx->GetLeaf("HO03MCx")->GetValue());
+            fHO03MCy.push_back(HO03MCy->GetLeaf("HO03MCy")->GetValue());
+            fHO04MCx.push_back(HO04MCx->GetLeaf("HO04MCx")->GetValue());
+            fHO04MCy.push_back(HO04MCy->GetLeaf("HO04MCy")->GetValue());
           }
           if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
           {
@@ -1130,6 +1244,12 @@ int main(int argc, char **argv)
             fHG021y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
             fHG022x.push_back(HG022x->GetLeaf("HG022x")->GetValue());
             fHG022y.push_back(HG022y->GetLeaf("HG022y")->GetValue());
+            fHG01MCx.push_back(HG01MCx->GetLeaf("HG01MCx")->GetValue());
+            fHG01MCy.push_back(HG01MCy->GetLeaf("HG01MCy")->GetValue());
+            fHG021MCx.push_back(HG021MCx->GetLeaf("HG021MCx")->GetValue());
+            fHG021MCy.push_back(HG021MCy->GetLeaf("HG021MCy")->GetValue());
+            fHG022MCx.push_back(HG022MCx->GetLeaf("HG022MCx")->GetValue());
+            fHG022MCy.push_back(HG022MCy->GetLeaf("HG022MCy")->GetValue());
           }
         }
         if(fAllDISflag_MC)
@@ -2305,6 +2425,8 @@ int main(int argc, char **argv)
     {
       fHM04->Fill(fHM04x[i],fHM04y[i]);
       fHM05->Fill(fHM05x[i],fHM05y[i]);
+      fHM04MC->Fill(fHM04MCx[i],fHM04MCy[i]);
+      fHM05MC->Fill(fHM05MCx[i],fHM05MCy[i]);
     }
     for(int i=0; i<int(fHL04x.size()); i++)
     {
@@ -2312,18 +2434,27 @@ int main(int argc, char **argv)
       fHL05->Fill(fHL05x[i],fHL05y[i]);
       fHL04x1D->Fill(fHL04x[i]);
       fHL05x1D->Fill(fHL05x[i]);
+      fHL04MC->Fill(fHL04MCx[i],fHL04MCy[i]);
+      fHL05MC->Fill(fHL05MCx[i],fHL05MCy[i]);
+      fHL04MCx2D->Fill(fHL04x[i],fHL04MCx[i]);
+      fHL05MCx2D->Fill(fHL05x[i],fHL05MCx[i]);
       fHLx2D->Fill(fHL04x[i],fHL05x[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
     {
       fHO03->Fill(fHO03x[i],fHO03y[i]);
       fHO04->Fill(fHO04x[i],fHO04y[i]);
+      fHO03MC->Fill(fHO03MCx[i],fHO03MCy[i]);
+      fHO04MC->Fill(fHO04MCx[i],fHO04MCy[i]);
     }
     for(int i=0; i<int(fHG01x.size()); i++)
     {
       fHG01->Fill(fHG01x[i],fHG01y[i]);
       fHG021->Fill(fHG021x[i],fHG021y[i]);
       fHG022->Fill(fHG022x[i],fHG022y[i]);
+      fHG01MC->Fill(fHG01MCx[i],fHG01MCy[i]);
+      fHG021MC->Fill(fHG021MCx[i],fHG021MCy[i]);
+      fHG022MC->Fill(fHG022MCx[i],fHG022MCy[i]);
     }
     for(int i=0; i<int(fQ2kinMC.size()); i++)
     {
