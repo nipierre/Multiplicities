@@ -160,8 +160,8 @@ studyxy fR_xy[24];
 
 //Graphic Style
 
-int fMarkerColor[5] = {2,95,209,226,221};
-int fMarkerStyle[5][2] = {{24,20},{26,22},{25,21},{27,33},{28,34}};
+int fMarkerColor[5] = {2,95,209,226,4,221};
+int fMarkerStyle[5][2] = {{24,20},{26,22},{25,21},{27,33},{28,34},{30,29}};
 
 //Constants
 
