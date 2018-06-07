@@ -1203,7 +1203,7 @@ int main(int argc, char **argv)
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
 
-          // if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
+          if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
           {
             fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
             fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
@@ -1214,7 +1214,7 @@ int main(int argc, char **argv)
             fHM05MCx.push_back(HM05MCx->GetLeaf("HM05MCx")->GetValue());
             fHM05MCy.push_back(HM05MCy->GetLeaf("HM05MCy")->GetValue());
           }
-          // if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
+          if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
             fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
@@ -1225,7 +1225,7 @@ int main(int argc, char **argv)
             fHL05MCx.push_back(HL05MCx->GetLeaf("HL05MCx")->GetValue());
             fHL05MCy.push_back(HL05MCy->GetLeaf("HL05MCy")->GetValue());
           }
-          // if(int(trig&8) && !int(trig&4) && !int(trig&2) && !int(trig&512))
+          if(int(trig&8) && !int(trig&4) && !int(trig&2) && !int(trig&512))
           {
             fHO03x.push_back(HO03x->GetLeaf("HO03x")->GetValue());
             fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
@@ -1236,7 +1236,7 @@ int main(int argc, char **argv)
             fHO04MCx.push_back(HO04MCx->GetLeaf("HO04MCx")->GetValue());
             fHO04MCy.push_back(HO04MCy->GetLeaf("HO04MCy")->GetValue());
           }
-          // if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
+          if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
           {
             fHG01x.push_back(HG01x->GetLeaf("HG01x")->GetValue());
             fHG01y.push_back(HG01y->GetLeaf("HG01y")->GetValue());
