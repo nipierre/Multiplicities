@@ -146,8 +146,8 @@ void create_kin_plots()
   fHM05MC = new TH2F("HM05MCY1", "HM05MCY1", 100, 0, 120, 100, -60, 60);
   fHL04MC = new TH2F("HL04MCX1", "HL04MCX1", 100, 50, 190, 100, -25, 25);
   fHL05MC = new TH2F("HL05MCX1", "HL05MCX1", 100, 60, 240, 100, -25, 25);
-  fHL04MCx2D = new TH2F("HL04MCX1x", "HL04MCX1x", 100, 0, 2, 100, -4, 4);
-  fHL05MCx2D = new TH2F("HL05MCX1x", "HL05MCX1x", 100, 0, 2, 100, -4, 4);
+  fHL04MCx2D = new TH2F("HL04MCX1x", "HL04MCX1x", 100, -10, 10, 100, -10, 10);
+  fHL05MCx2D = new TH2F("HL05MCX1x", "HL05MCX1x", 100, -10, 10, 100, -10, 10);
   fHO03MC = new TH2F("HO03MCY1", "HO03MCY1", 100, -60, 90, 100, -60, 60);
   fHO04MC = new TH2F("HO04MCY1", "HO04MCY1", 100, -100, 250, 100, -90, 90);
   fHG01MC = new TH2F("HG01MCY1", "HG01MCY1", 100, -100, 100, 100, -50, 50);
@@ -2436,8 +2436,8 @@ int main(int argc, char **argv)
       fHL05x1D->Fill(fHL05x[i]);
       fHL04MC->Fill(fHL04MCx[i],fHL04MCy[i]);
       fHL05MC->Fill(fHL05MCx[i],fHL05MCy[i]);
-      fHL04MCx2D->Fill(double(fHL04x[i])/double(fHL04MCx[i]),double(fHL04y[i])/double(fHL04MCy[i]));
-      fHL05MCx2D->Fill(double(fHL05x[i])/double(fHL05MCx[i]),double(fHL05y[i])/double(fHL05MCy[i]));
+      fHL04MCx2D->Fill(fHL04x[i]-fHL04MCx[i],fHL04y[i])-fHL04MCy[i]);
+      fHL05MCx2D->Fill(fHL05x[i]-fHL05MCx[i],fHL05y[i])-fHL05MCy[i]);
       fHLx2D->Fill(fHL04x[i],fHL05x[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
