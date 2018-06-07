@@ -293,10 +293,10 @@ void save_kin_plots()
   fHG022MC->Draw("COLZ");
   c37.Update();
   c38.cd(1);
-  fHL04MCx2D->Draw();
+  fHL04MCx2D->Draw("COLZ");
   c38.Update();
   c39.cd(1);
-  fHL05MCx2D->Draw();
+  fHL05MCx2D->Draw("COLZ");
   c39.Update();
 
   c1.Print("kinMC.pdf(","pdf");
@@ -2436,8 +2436,8 @@ int main(int argc, char **argv)
       fHL05x1D->Fill(fHL05x[i]);
       fHL04MC->Fill(fHL04MCx[i],fHL04MCy[i]);
       fHL05MC->Fill(fHL05MCx[i],fHL05MCy[i]);
-      fHL04MCx2D->Fill(fHL04x[i],fHL04MCx[i]);
-      fHL05MCx2D->Fill(fHL05x[i],fHL05MCx[i]);
+      fHL04MCx2D->Fill(fHL04x[i]/fHL04MCx[i],fHL04y[i]/fHL04MCy[i]);
+      fHL05MCx2D->Fill(fHL05x[i]/fHL05MCx[i],fHL05y[i]/fHL05MCy[i]);
       fHLx2D->Fill(fHL04x[i],fHL05x[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
