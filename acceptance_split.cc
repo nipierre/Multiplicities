@@ -1216,7 +1216,8 @@ int main(int argc, char **argv)
           }
           if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
-            cout << ip << " " << HL04x->GetLeaf("HL04x")->GetValue()-HL04MCx->GetLeaf("HL04MCx")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue()-HL04MCy->GetLeaf("HL04MCy")->GetValue() << endl;
+            cout << ip << " " << HL04x->GetLeaf("HL04x")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue() << " " << HL04MCx->GetLeaf("HL04MCx")->GetValue() << " " << HL04MCy->GetLeaf("HL04MCy")->GetValue() 
+            << " " << HL04x->GetLeaf("HL04x")->GetValue()-HL04MCx->GetLeaf("HL04MCx")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue()-HL04MCy->GetLeaf("HL04MCy")->GetValue() << endl;
             fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
             fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
