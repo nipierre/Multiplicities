@@ -551,24 +551,24 @@ int main(int argc, char **argv)
     TBranch *MC_nuTr = (TBranch*) tree->FindBranch("MC_nuTr");
     TBranch *MC_Q2Tr = (TBranch*) tree->FindBranch("MC_Q2Tr");
     TBranch *MC_w = (TBranch*) tree->FindBranch("MC_w");
-    TBranch *HM04MCx = (TBranch*) tree->FindBranch("HM04MCx");
-    TBranch *HM04MCy = (TBranch*) tree->FindBranch("HM04MCy");
-    TBranch *HM05MCx = (TBranch*) tree->FindBranch("HM05MCx");
-    TBranch *HM05MCy = (TBranch*) tree->FindBranch("HM05MCy");
-    TBranch *HL04MCx = (TBranch*) tree->FindBranch("HL04MCx");
-    TBranch *HL04MCy = (TBranch*) tree->FindBranch("HL04MCy");
-    TBranch *HL05MCx = (TBranch*) tree->FindBranch("HL05MCx");
-    TBranch *HL05MCy = (TBranch*) tree->FindBranch("HL05MCy");
-    TBranch *HO03MCx = (TBranch*) tree->FindBranch("HO03MCx");
-    TBranch *HO03MCy = (TBranch*) tree->FindBranch("HO03MCy");
-    TBranch *HO04MCx = (TBranch*) tree->FindBranch("HO04MCx");
-    TBranch *HO04MCy = (TBranch*) tree->FindBranch("HO04MCy");
-    TBranch *HG01MCx = (TBranch*) tree->FindBranch("HG01MCx");
-    TBranch *HG01MCy = (TBranch*) tree->FindBranch("HG01MCy");
-    TBranch *HG021MCx = (TBranch*) tree->FindBranch("HG021MCx");
-    TBranch *HG021MCy = (TBranch*) tree->FindBranch("HG021MCy");
-    TBranch *HG022MCx = (TBranch*) tree->FindBranch("HG022MCx");
-    TBranch *HG022MCy = (TBranch*) tree->FindBranch("HG022MCy");
+    TBranch *MC_HM04x = (TBranch*) tree->FindBranch("MC_HM04x");
+    TBranch *MC_HM04y = (TBranch*) tree->FindBranch("MC_HM04y");
+    TBranch *MC_HM05x = (TBranch*) tree->FindBranch("MC_HM05x");
+    TBranch *MC_HM05y = (TBranch*) tree->FindBranch("MC_HM05y");
+    TBranch *MC_HL04x = (TBranch*) tree->FindBranch("MC_HL04x");
+    TBranch *MC_HL04y = (TBranch*) tree->FindBranch("MC_HL04y");
+    TBranch *MC_HL05x = (TBranch*) tree->FindBranch("MC_HL05x");
+    TBranch *MC_HL05y = (TBranch*) tree->FindBranch("MC_HL05y");
+    TBranch *MC_HO03x = (TBranch*) tree->FindBranch("MC_HO03x");
+    TBranch *MC_HO03y = (TBranch*) tree->FindBranch("MC_HO03y");
+    TBranch *MC_HO04x = (TBranch*) tree->FindBranch("MC_HO04x");
+    TBranch *MC_HO04y = (TBranch*) tree->FindBranch("MC_HO04y");
+    TBranch *MC_HG01x = (TBranch*) tree->FindBranch("MC_HG01x");
+    TBranch *MC_HG01y = (TBranch*) tree->FindBranch("MC_HG01y");
+    TBranch *MC_HG021x = (TBranch*) tree->FindBranch("MC_HG021x");
+    TBranch *MC_HG021y = (TBranch*) tree->FindBranch("MC_HG021y");
+    TBranch *MC_HG022x = (TBranch*) tree->FindBranch("MC_HG022x");
+    TBranch *MC_HG022y = (TBranch*) tree->FindBranch("MC_HG022y");
     TBranch *recons = (TBranch*) tree->FindBranch("recons");
     TBranch *MC_yTr = (TBranch*) tree->FindBranch("MC_yTr");
     TBranch *MC_xTr = (TBranch*) tree->FindBranch("MC_xTr");
@@ -675,24 +675,24 @@ int main(int argc, char **argv)
       MC_Q2Tr->GetEntry(ip);
       MC_w->GetEntry(ip);
       recons->GetEntry(ip);
-      HM04MCx->GetEntry(ip);
-      HM04MCy->GetEntry(ip);
-      HM05MCx->GetEntry(ip);
-      HM05MCy->GetEntry(ip);
-      HL04MCx->GetEntry(ip);
-      HL04MCy->GetEntry(ip);
-      HL05MCx->GetEntry(ip);
-      HL05MCy->GetEntry(ip);
-      HO03MCx->GetEntry(ip);
-      HO03MCy->GetEntry(ip);
-      HO04MCx->GetEntry(ip);
-      HO04MCy->GetEntry(ip);
-      HG01MCx->GetEntry(ip);
-      HG01MCy->GetEntry(ip);
-      HG021MCx->GetEntry(ip);
-      HG021MCy->GetEntry(ip);
-      HG022MCx->GetEntry(ip);
-      HG022MCy->GetEntry(ip);
+      MC_HM04x->GetEntry(ip);
+      MC_HM04y->GetEntry(ip);
+      MC_HM05x->GetEntry(ip);
+      MC_HM05y->GetEntry(ip);
+      MC_HL04x->GetEntry(ip);
+      MC_HL04y->GetEntry(ip);
+      MC_HL05x->GetEntry(ip);
+      MC_HL05y->GetEntry(ip);
+      MC_HO03x->GetEntry(ip);
+      MC_HO03y->GetEntry(ip);
+      MC_HO04x->GetEntry(ip);
+      MC_HO04y->GetEntry(ip);
+      MC_HG01x->GetEntry(ip);
+      MC_HG01y->GetEntry(ip);
+      MC_HG021x->GetEntry(ip);
+      MC_HG021y->GetEntry(ip);
+      MC_HG022x->GetEntry(ip);
+      MC_HG022y->GetEntry(ip);
       MC_yTr->GetEntry(ip);
       MC_xTr->GetEntry(ip);
 
@@ -1209,23 +1209,23 @@ int main(int argc, char **argv)
             fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
             fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
             fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
-            fHM04MCx.push_back(HM04MCx->GetLeaf("HM04MCx")->GetValue());
-            fHM04MCy.push_back(HM04MCy->GetLeaf("HM04MCy")->GetValue());
-            fHM05MCx.push_back(HM05MCx->GetLeaf("HM05MCx")->GetValue());
-            fHM05MCy.push_back(HM05MCy->GetLeaf("HM05MCy")->GetValue());
+            fHM04MCx.push_back(MC_HM04x->GetLeaf("MC_HM04x")->GetValue());
+            fHM04MCy.push_back(MC_HM04y->GetLeaf("MC_HM04y")->GetValue());
+            fHM05MCx.push_back(MC_HM05x->GetLeaf("MC_HM05x")->GetValue());
+            fHM05MCy.push_back(MC_HM05y->GetLeaf("MC_HM05y")->GetValue());
           }
           if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
-            cout << ip << " " << HL04x->GetLeaf("HL04x")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue() << " " << HL04MCx->GetLeaf("HL04MCx")->GetValue() << " " << HL04MCy->GetLeaf("HL04MCy")->GetValue() 
-            << " " << HL04x->GetLeaf("HL04x")->GetValue()-HL04MCx->GetLeaf("HL04MCx")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue()-HL04MCy->GetLeaf("HL04MCy")->GetValue() << endl;
+            cout << ip << " " << HL04x->GetLeaf("HL04x")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue() << " " << MC_HL04x->GetLeaf("MC_HL04x")->GetValue() << " " << MC_HL04y->GetLeaf("MC_HL04y")->GetValue()
+            << " " << HL04x->GetLeaf("HL04x")->GetValue()-MC_HL04x->GetLeaf("MC_HL04x")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue()-MC_HL04y->GetLeaf("MC_HL04y")->GetValue() << endl;
             fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
             fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
             fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
-            fHL04MCx.push_back(HL04MCx->GetLeaf("HL04MCx")->GetValue());
-            fHL04MCy.push_back(HL04MCy->GetLeaf("HL04MCy")->GetValue());
-            fHL05MCx.push_back(HL05MCx->GetLeaf("HL05MCx")->GetValue());
-            fHL05MCy.push_back(HL05MCy->GetLeaf("HL05MCy")->GetValue());
+            fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
+            fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
+            fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
+            fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
           }
           if(int(trig&8) && !int(trig&4) && !int(trig&2) && !int(trig&512))
           {
@@ -1233,10 +1233,10 @@ int main(int argc, char **argv)
             fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
             fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
             fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
-            fHO03MCx.push_back(HO03MCx->GetLeaf("HO03MCx")->GetValue());
-            fHO03MCy.push_back(HO03MCy->GetLeaf("HO03MCy")->GetValue());
-            fHO04MCx.push_back(HO04MCx->GetLeaf("HO04MCx")->GetValue());
-            fHO04MCy.push_back(HO04MCy->GetLeaf("HO04MCy")->GetValue());
+            fHO03MCx.push_back(MC_HO03x->GetLeaf("MC_HO03x")->GetValue());
+            fHO03MCy.push_back(MC_HO03y->GetLeaf("MC_HO03y")->GetValue());
+            fHO04MCx.push_back(MC_HO04x->GetLeaf("MC_HO04x")->GetValue());
+            fHO04MCy.push_back(MC_HO04y->GetLeaf("MC_HO04y")->GetValue());
           }
           if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
           {
@@ -1246,12 +1246,12 @@ int main(int argc, char **argv)
             fHG021y.push_back(HG021y->GetLeaf("HG021y")->GetValue());
             fHG022x.push_back(HG022x->GetLeaf("HG022x")->GetValue());
             fHG022y.push_back(HG022y->GetLeaf("HG022y")->GetValue());
-            fHG01MCx.push_back(HG01MCx->GetLeaf("HG01MCx")->GetValue());
-            fHG01MCy.push_back(HG01MCy->GetLeaf("HG01MCy")->GetValue());
-            fHG021MCx.push_back(HG021MCx->GetLeaf("HG021MCx")->GetValue());
-            fHG021MCy.push_back(HG021MCy->GetLeaf("HG021MCy")->GetValue());
-            fHG022MCx.push_back(HG022MCx->GetLeaf("HG022MCx")->GetValue());
-            fHG022MCy.push_back(HG022MCy->GetLeaf("HG022MCy")->GetValue());
+            fHG01MCx.push_back(MC_HG01x->GetLeaf("MC_HG01x")->GetValue());
+            fHG01MCy.push_back(MC_HG01y->GetLeaf("MC_HG01y")->GetValue());
+            fHG021MCx.push_back(MC_HG021x->GetLeaf("MC_HG021x")->GetValue());
+            fHG021MCy.push_back(MC_HG021y->GetLeaf("MC_HG021y")->GetValue());
+            fHG022MCx.push_back(MC_HG022x->GetLeaf("MC_HG022x")->GetValue());
+            fHG022MCy.push_back(MC_HG022y->GetLeaf("MC_HG022y")->GetValue());
           }
         }
         if(fAllDISflag_MC)
