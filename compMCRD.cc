@@ -281,7 +281,7 @@ void save_kin_plots()
 
   for(int i=0; i<8; i++)
   {
-    cout << "pouet";
+    cout << i%2;
     cout << endl;
     int idx=int(i/2);
     if(i%2)
