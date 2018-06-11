@@ -284,6 +284,7 @@ void save_kin_plots()
     cout << endl;
     int idx=int(i/2);
     if(i%2)
+    {}  
     // {
     //   c1.cd(idx+3+int(idx/2)*2);
     //   for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
