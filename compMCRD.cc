@@ -2051,8 +2051,8 @@ void MCextraction(string pFilelist)
                 {
                   fCell++;
 
-                  // if((trig&2 || trig&4 || trig&8))
-                  if((trig&2 || trig&4 || trig&8 || trig&512))
+                  if((trig&2 || trig&4 || trig&8))
+                  // if((trig&2 || trig&4 || trig&8 || trig&512))
                   {
                     fTrig++;
 
@@ -2814,8 +2814,8 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        // if(!(trig&2 || trig&4 || trig&8)) continue;
-        if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+        if(!(trig&2 || trig&4 || trig&8)) continue;
+        // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
       }
       //2016 ---
       fTrig++;
