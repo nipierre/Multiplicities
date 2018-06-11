@@ -300,6 +300,7 @@ void save_kin_plots()
         fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
       }
       fError.clear();
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->SetMarkerStyle(21);
       fKinematicsRatio[idx][0]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][0]->SetMaximum(2.);
@@ -764,7 +765,6 @@ void save_kin_plots()
       fKinematicsRD[idx][0]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
       fKinematicsMC[idx][0]->Draw("SAME");
-      cout << "pouet" << endl;
       gPad->SetLogx();
       c1.Update();
       cout << ".";
