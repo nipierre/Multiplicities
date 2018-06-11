@@ -3294,6 +3294,7 @@ int main(int argc, char **argv)
   readKinCuts(argv[3]);
   RDextraction(argv[1]);
   MCextraction(argv[2]);
+  cout << "... Saving plots ..." << endl;
   save_kin_plots();
 
   return 0;
