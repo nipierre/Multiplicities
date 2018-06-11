@@ -281,18 +281,16 @@ void save_kin_plots()
 
   for(int i=0; i<8; i++)
   {
+    cout << "pouet";
     cout << endl;
     int idx=int(i/2);
     if(i%2)
     {
-      cout << "pouet";
       c1.cd(idx+3+int(idx/2)*2);
-      cout << "pouet";
       for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][0]->GetBinError(tt) && fKinematicsMC[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][0]->GetBinError(tt),2)):0));
       }
-      cout << "pouet";
       fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
       fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsRD[idx][0]->Clone();
@@ -303,7 +301,6 @@ void save_kin_plots()
         fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
       }
       fError.clear();
-      cout << "pouet";
       fKinematicsRatio[idx][0]->SetMarkerStyle(21);
       fKinematicsRatio[idx][0]->SetFillColor(kYellow-7);
       fKinematicsRatio[idx][0]->SetMaximum(2.);
@@ -312,12 +309,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][0]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(2,kFALSE);
-      cout << "pouet";
       for(int tt=0; tt<7; tt++)
       {
         l1[0][tt]->Draw();
       }
-      cout << "pouet";
       gPad->SetLogx();
       c1.Update();
       cout << ".";
