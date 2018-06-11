@@ -764,6 +764,7 @@ void save_kin_plots()
       fKinematicsRD[idx][0]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
       fKinematicsMC[idx][0]->Draw("SAME");
+      cout << "pouet" << endl;
       gPad->SetLogx();
       c1.Update();
       cout << ".";
