@@ -312,6 +312,7 @@ void save_kin_plots()
       {
         l1[0][tt]->Draw();
       }
+      cout << "pouet";
       gPad->SetLogx();
       cout << "pouet";
       c1.Update();
