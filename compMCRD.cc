@@ -310,7 +310,7 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
-        l1[0][tt]->Draw();
+        l1[0][tt]->Draw("SAME");
       }
       gPad->SetLogx();
       c1.Update();
