@@ -284,7 +284,7 @@ void save_kin_plots()
     cout << i%2;
     cout << endl;
     int idx=int(i/2);
-    if(i%2)
+    if(!i%2)
     {
       cout << "gvhbjn";
       c1.cd(idx+3+int(idx/2)*2);
