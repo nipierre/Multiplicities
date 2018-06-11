@@ -283,7 +283,7 @@ void save_kin_plots()
   {
     cout << endl;
     int idx=int(i/2);
-    if(!i%2)
+    if(i%2)
     {
       c1.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
@@ -310,9 +310,10 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(2,kFALSE);
       for(int tt=0; tt<7; tt++)
       {
-        l1[0][tt]->Draw("SAME");
+        l1[0][tt]->Draw();
       }
       gPad->SetLogx();
+      cout << "pouet";
       c1.Update();
       cout << ".";
       c2.cd(idx+3+int(idx/2)*2);
