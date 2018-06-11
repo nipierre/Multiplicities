@@ -313,8 +313,8 @@ void save_kin_plots()
         l1[0][tt]->Draw();
       }
       gPad->SetLogx();
-      cout << "pouet" << endl;
       c1.Update();
+      cout << "pouet" << endl;
       cout << ".";
       c2.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][1]->GetNbinsX(); tt++)
