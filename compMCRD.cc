@@ -312,8 +312,8 @@ void save_kin_plots()
       {
         l1[0][tt]->Draw();
       }
-      cout << "pouet" << endl;
       gPad->SetLogx();
+      cout << "pouet" << endl;
       c1.Update();
       cout << ".";
       c2.cd(idx+3+int(idx/2)*2);
