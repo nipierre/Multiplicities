@@ -298,29 +298,47 @@ void save_kin_plots()
       }
       cout << "pouet" << endl;
       fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
+      cout << "pouet" << endl;
       fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsRD[idx][0]->Clone();
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->SetStats(0);
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->Divide(fKinematicsMC[idx][0]);
+      cout << "pouet" << endl;
       for(int tt=0; tt<fKinematicsRatio[idx][0]->GetNbinsX(); tt++)
       {
         fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
       }
+      cout << "pouet" << endl;
       fError.clear();
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->SetMarkerStyle(21);
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->SetFillColor(kYellow-7);
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->SetMaximum(2.);
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->SetMinimum(0.);
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->Draw("PE2");
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->GetXaxis()->SetLabelSize(0.08);
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->GetYaxis()->SetLabelSize(0.08);
+      cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(2,kFALSE);
+      cout << "pouet" << endl;
       for(int tt=0; tt<7; tt++)
       {
         l1[0][tt]->Draw();
       }
+      cout << "pouet" << endl;
       gPad->SetLogx();
+      cout << "pouet" << endl;
       c1.Update();
+      cout << "pouet" << endl;
       cout << ".";
       // c2.cd(idx+3+int(idx/2)*2);
       // for(int tt=0; tt<fKinematicsRD[idx][1]->GetNbinsX(); tt++)
