@@ -278,16 +278,15 @@ void save_kin_plots()
   c30.Divide(1,1);
   c31.Divide(1,1);
   c32.Divide(1,1);
-  c1.Update();
 
   int idx=0;
 
-  for(int i=0; i<8; i++)
+  for(int i=0; i<4; i++)
   {
     cout << endl;
-    idx=int(i/2);
-    if(i%2)
-    {
+    // idx=int(i/2);
+    // if(i%2)
+    // {
     //   c1.cd(idx+3+int(idx/2)*2);
     //   for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
     //   {
@@ -753,10 +752,10 @@ void save_kin_plots()
     //     l1[16][tt]->Draw();
     //   }
     //   c27.Update();
-    }
+    // }
     else
     {
-      c1.cd(idx+1);
+      c1.cd(i+1);
       fKinematicsMC[idx][0]->Scale(fKinematicsRD[idx][1]->GetEntries()/fKinematicsMC[idx][0]->GetEntries());
       fKinematicsRD[idx][0]->SetLineColor(kRed);
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
@@ -781,7 +780,7 @@ void save_kin_plots()
       gPad->SetLogx();
       c1.Update();
       cout << ".";
-      c2.cd(idx+1);
+      c2.cd(i+1);
       fKinematicsMC[idx][1]->Scale(fKinematicsRD[idx][1]->GetEntries()/fKinematicsMC[idx][1]->GetEntries());
       fKinematicsRD[idx][1]->SetLineColor(kRed);
       fKinematicsMC[idx][1]->SetLineColor(kBlue);
@@ -806,7 +805,7 @@ void save_kin_plots()
       gPad->SetLogx();
       c2.Update();
       cout << ".";
-      c3.cd(idx+1);
+      c3.cd(i+1);
       fKinematicsMC[idx][2]->Scale(fKinematicsRD[idx][2]->GetEntries()/fKinematicsMC[idx][2]->GetEntries());
       fKinematicsRD[idx][2]->SetLineColor(kRed);
       fKinematicsMC[idx][2]->SetLineColor(kBlue);
@@ -830,7 +829,7 @@ void save_kin_plots()
       fKinematicsMC[idx][2]->Draw("SAME");
       c3.Update();
       cout << ".";
-      c4.cd(idx+1);
+      c4.cd(i+1);
       fKinematicsMC[idx][3]->Scale(fKinematicsRD[idx][3]->GetEntries()/fKinematicsMC[idx][3]->GetEntries());
       fKinematicsRD[idx][3]->SetLineColor(kRed);
       fKinematicsMC[idx][3]->SetLineColor(kBlue);
@@ -854,7 +853,7 @@ void save_kin_plots()
       fKinematicsMC[idx][3]->Draw("SAME");
       c4.Update();
       cout << ".";
-      c5.cd(idx+1);
+      c5.cd(i+1);
       fKinematicsMC[idx][4]->Scale(fKinematicsRD[idx][4]->GetEntries()/fKinematicsMC[idx][4]->GetEntries());
       fKinematicsRD[idx][4]->SetLineColor(kRed);
       fKinematicsMC[idx][4]->SetLineColor(kBlue);
@@ -878,7 +877,7 @@ void save_kin_plots()
       fKinematicsMC[idx][4]->Draw("SAME");
       c5.Update();
       cout << ".";
-      c6.cd(idx+1);
+      c6.cd(i+1);
       fKinematicsMC[idx][5]->Scale(fKinematicsRD[idx][5]->GetEntries()/fKinematicsMC[idx][5]->GetEntries());
       fKinematicsRD[idx][5]->SetLineColor(kRed);
       fKinematicsMC[idx][5]->SetLineColor(kBlue);
@@ -902,7 +901,7 @@ void save_kin_plots()
       fKinematicsMC[idx][5]->Draw("SAME");
       c6.Update();
       cout << ".";
-      c14.cd(idx+1);
+      c14.cd(i+1);
       fKinematicsMC[idx][6]->Scale(fKinematicsRD[idx][6]->GetEntries()/fKinematicsMC[idx][6]->GetEntries());
       fKinematicsRD[idx][6]->SetLineColor(kRed);
       fKinematicsMC[idx][6]->SetLineColor(kBlue);
@@ -926,7 +925,7 @@ void save_kin_plots()
       fKinematicsMC[idx][6]->Draw("SAME");
       c14.Update();
       cout << ".";
-      c15.cd(idx+1);
+      c15.cd(i+1);
       fKinematicsMC[idx][7]->Scale(fKinematicsRD[idx][7]->GetEntries()/fKinematicsMC[idx][7]->GetEntries());
       fKinematicsRD[idx][7]->SetLineColor(kRed);
       fKinematicsMC[idx][7]->SetLineColor(kBlue);
@@ -950,7 +949,7 @@ void save_kin_plots()
       fKinematicsMC[idx][7]->Draw("SAME");
       c15.Update();
       cout << ".";
-      c16.cd(idx+1);
+      c16.cd(i+1);
       fKinematicsMC[idx][8]->Scale(fKinematicsRD[idx][8]->GetEntries()/fKinematicsMC[idx][8]->GetEntries());
       fKinematicsRD[idx][8]->SetLineColor(kRed);
       fKinematicsMC[idx][8]->SetLineColor(kBlue);
@@ -974,7 +973,7 @@ void save_kin_plots()
       fKinematicsMC[idx][8]->Draw("SAME");
       c16.Update();
       cout << ".";
-      c17.cd(idx+1);
+      c17.cd(i+1);
       fKinematicsMC[idx][9]->Scale(fKinematicsRD[idx][9]->GetEntries()/fKinematicsMC[idx][9]->GetEntries());
       fKinematicsRD[idx][9]->SetLineColor(kRed);
       fKinematicsMC[idx][9]->SetLineColor(kBlue);
@@ -998,7 +997,7 @@ void save_kin_plots()
       fKinematicsMC[idx][9]->Draw("SAME");
       c17.Update();
       cout << ".";
-      c18.cd(idx+1);
+      c18.cd(i+1);
       fKinematicsMC[idx][10]->Scale(fKinematicsRD[idx][10]->GetEntries()/fKinematicsMC[idx][10]->GetEntries());
       fKinematicsRD[idx][10]->SetLineColor(kRed);
       fKinematicsMC[idx][10]->SetLineColor(kBlue);
@@ -1022,7 +1021,7 @@ void save_kin_plots()
       fKinematicsMC[idx][10]->Draw("SAME");
       c18.Update();
       cout << ".";
-      c19.cd(idx+1);
+      c19.cd(i+1);
       fKinematicsMC[idx][12]->Scale(fKinematicsRD[idx][12]->GetEntries()/fKinematicsMC[idx][12]->GetEntries());
       fKinematicsRD[idx][12]->SetLineColor(kRed);
       fKinematicsMC[idx][12]->SetLineColor(kBlue);
@@ -1046,7 +1045,7 @@ void save_kin_plots()
       fKinematicsMC[idx][12]->Draw("SAME");
       c19.Update();
       cout << ".";
-      c20.cd(idx+1);
+      c20.cd(i+1);
       fKinematicsMC[idx][13]->Scale(fKinematicsRD[idx][13]->GetEntries()/fKinematicsMC[idx][13]->GetEntries());
       fKinematicsRD[idx][13]->SetLineColor(kRed);
       fKinematicsMC[idx][13]->SetLineColor(kBlue);
@@ -1070,7 +1069,7 @@ void save_kin_plots()
       fKinematicsMC[idx][13]->Draw("SAME");
       c20.Update();
       cout << ".";
-      c21.cd(idx+1);
+      c21.cd(i+1);
       fKinematicsMC[idx][14]->Scale(fKinematicsRD[idx][14]->GetEntries()/fKinematicsMC[idx][14]->GetEntries());
       fKinematicsRD[idx][14]->SetLineColor(kRed);
       fKinematicsMC[idx][14]->SetLineColor(kBlue);
@@ -1094,7 +1093,7 @@ void save_kin_plots()
       fKinematicsMC[idx][14]->Draw("SAME");
       c21.Update();
       cout << ".";
-      c25.cd(idx+1);
+      c25.cd(i+1);
       fKinematicsMC[idx][15]->Scale(fKinematicsRD[idx][15]->GetEntries()/fKinematicsMC[idx][15]->GetEntries());
       fKinematicsRD[idx][15]->SetLineColor(kRed);
       fKinematicsMC[idx][15]->SetLineColor(kBlue);
@@ -1118,7 +1117,7 @@ void save_kin_plots()
       fKinematicsMC[idx][15]->Draw("SAME");
       c25.Update();
       cout << ".";
-      c27.cd(idx+1);
+      c27.cd(i+1);
       fKinematicsMC[idx][16]->Scale(fKinematicsRD[idx][16]->GetEntries()/fKinematicsMC[idx][16]->GetEntries());
       fKinematicsRD[idx][16]->SetLineColor(kRed);
       fKinematicsMC[idx][16]->SetLineColor(kBlue);
