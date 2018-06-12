@@ -316,7 +316,7 @@ void save_kin_plots()
         l1[0][tt]->Draw();
       }
       gPad->SetLogx();
-      c1.Modified();
+      c1.Update();
       cout << ".";
       c2.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][1]->GetNbinsX(); tt++)
@@ -346,7 +346,7 @@ void save_kin_plots()
         l1[1][tt]->Draw();
       }
       gPad->SetLogx();
-      c2.Modified();
+      c2.Update();
       cout << ".";
       c3.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][2]->GetNbinsX(); tt++)
@@ -375,7 +375,7 @@ void save_kin_plots()
       {
         l1[2][tt]->Draw();
       }
-      c3.Modified();
+      c3.Update();
       cout << ".";
       c4.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][3]->GetNbinsX(); tt++)
@@ -404,7 +404,7 @@ void save_kin_plots()
       {
         l1[3][tt]->Draw();
       }
-      c4.Modified();
+      c4.Update();
       cout << ".";
       c5.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][4]->GetNbinsX(); tt++)
@@ -433,7 +433,7 @@ void save_kin_plots()
       {
         l1[4][tt]->Draw();
       }
-      c5.Modified();
+      c5.Update();
       cout << ".";
       c6.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][5]->GetNbinsX(); tt++)
@@ -462,7 +462,7 @@ void save_kin_plots()
       {
         l1[5][tt]->Draw();
       }
-      c6.Modified();
+      c6.Update();
       cout << ".";
       c14.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][6]->GetNbinsX(); tt++)
@@ -491,7 +491,7 @@ void save_kin_plots()
       {
         l1[6][tt]->Draw();
       }
-      c14.Modified();
+      c14.Update();
       cout << ".";
       c15.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][7]->GetNbinsX(); tt++)
@@ -520,7 +520,7 @@ void save_kin_plots()
       {
         l1[7][tt]->Draw();
       }
-      c15.Modified();
+      c15.Update();
       cout << ".";
       c16.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][8]->GetNbinsX(); tt++)
@@ -549,7 +549,7 @@ void save_kin_plots()
       {
         l1[8][tt]->Draw();
       }
-      c16.Modified();
+      c16.Update();
       cout << ".";
       c17.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][9]->GetNbinsX(); tt++)
@@ -578,7 +578,7 @@ void save_kin_plots()
       {
         l1[9][tt]->Draw();
       }
-      c17.Modified();
+      c17.Update();
       cout << ".";
       c18.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][10]->GetNbinsX(); tt++)
@@ -607,7 +607,7 @@ void save_kin_plots()
       {
         l1[10][tt]->Draw();
       }
-      c18.Modified();
+      c18.Update();
       cout << ".";
       c19.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][12]->GetNbinsX(); tt++)
@@ -636,7 +636,7 @@ void save_kin_plots()
       {
         l1[12][tt]->Draw();
       }
-      c19.Modified();
+      c19.Update();
       cout << ".";
       c20.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][13]->GetNbinsX(); tt++)
@@ -665,7 +665,7 @@ void save_kin_plots()
       {
         l1[13][tt]->Draw();
       }
-      c20.Modified();
+      c20.Update();
       cout << ".";
       c21.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][14]->GetNbinsX(); tt++)
@@ -694,7 +694,7 @@ void save_kin_plots()
       {
         l1[14][tt]->Draw();
       }
-      c21.Modified();
+      c21.Update();
       cout << ".";
       c25.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][15]->GetNbinsX(); tt++)
@@ -723,7 +723,7 @@ void save_kin_plots()
       {
         l1[15][tt]->Draw();
       }
-      c25.Modified();
+      c25.Update();
       cout << ".";
       c27.cd(idx+3+int(idx/2)*2);
       for(int tt=0; tt<fKinematicsRD[idx][16]->GetNbinsX(); tt++)
@@ -752,7 +752,7 @@ void save_kin_plots()
       {
         l1[16][tt]->Draw();
       }
-      c27.Modified();
+      c27.Update();
     }
     else
     {
@@ -768,7 +768,7 @@ void save_kin_plots()
       fKinematicsMC[idx][0]->SetLineColor(kBlue);
       fKinematicsMC[idx][0]->Draw("SAME");
       gPad->SetLogx();
-      c1.Modified();
+      c1.Update();
       cout << ".";
       c2.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][1]->SetLineColor(kRed);
@@ -782,7 +782,7 @@ void save_kin_plots()
       fKinematicsMC[idx][1]->SetLineColor(kBlue);
       fKinematicsMC[idx][1]->Draw("SAME");
       gPad->SetLogx();
-      c2.Modified();
+      c2.Update();
       cout << ".";
       c3.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][2]->SetLineColor(kRed);
@@ -795,7 +795,7 @@ void save_kin_plots()
       fKinematicsRD[idx][2]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][2]->SetLineColor(kBlue);
       fKinematicsMC[idx][2]->Draw("SAME");
-      c3.Modified();
+      c3.Update();
       cout << ".";
       c4.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][3]->SetLineColor(kRed);
@@ -808,7 +808,7 @@ void save_kin_plots()
       fKinematicsRD[idx][3]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][3]->SetLineColor(kBlue);
       fKinematicsMC[idx][3]->Draw("SAME");
-      c4.Modified();
+      c4.Update();
       cout << ".";
       c5.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][4]->SetLineColor(kRed);
@@ -821,7 +821,7 @@ void save_kin_plots()
       fKinematicsRD[idx][4]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][4]->SetLineColor(kBlue);
       fKinematicsMC[idx][4]->Draw("SAME");
-      c5.Modified();
+      c5.Update();
       cout << ".";
       c6.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][5]->SetLineColor(kRed);
@@ -834,7 +834,7 @@ void save_kin_plots()
       fKinematicsRD[idx][5]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][5]->SetLineColor(kBlue);
       fKinematicsMC[idx][5]->Draw("SAME");
-      c6.Modified();
+      c6.Update();
       cout << ".";
       c14.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][6]->SetLineColor(kRed);
@@ -847,7 +847,7 @@ void save_kin_plots()
       fKinematicsRD[idx][6]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][6]->SetLineColor(kBlue);
       fKinematicsMC[idx][6]->Draw("SAME");
-      c14.Modified();
+      c14.Update();
       cout << ".";
       c15.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][7]->SetLineColor(kRed);
@@ -860,7 +860,7 @@ void save_kin_plots()
       fKinematicsRD[idx][7]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][7]->SetLineColor(kBlue);
       fKinematicsMC[idx][7]->Draw("SAME");
-      c15.Modified();
+      c15.Update();
       cout << ".";
       c16.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][8]->SetLineColor(kRed);
@@ -873,7 +873,7 @@ void save_kin_plots()
       fKinematicsRD[idx][8]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][8]->SetLineColor(kBlue);
       fKinematicsMC[idx][8]->Draw("SAME");
-      c16.Modified();
+      c16.Update();
       cout << ".";
       c17.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][9]->SetLineColor(kRed);
@@ -886,7 +886,7 @@ void save_kin_plots()
       fKinematicsRD[idx][9]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][9]->SetLineColor(kBlue);
       fKinematicsMC[idx][9]->Draw("SAME");
-      c17.Modified();
+      c17.Update();
       cout << ".";
       c18.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][10]->SetLineColor(kRed);
@@ -899,7 +899,7 @@ void save_kin_plots()
       fKinematicsRD[idx][10]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][10]->SetLineColor(kBlue);
       fKinematicsMC[idx][10]->Draw("SAME");
-      c18.Modified();
+      c18.Update();
       cout << ".";
       c19.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][12]->SetLineColor(kRed);
@@ -912,7 +912,7 @@ void save_kin_plots()
       fKinematicsRD[idx][12]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][12]->SetLineColor(kBlue);
       fKinematicsMC[idx][12]->Draw("SAME");
-      c19.Modified();
+      c19.Update();
       cout << ".";
       c20.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][13]->SetLineColor(kRed);
@@ -925,7 +925,7 @@ void save_kin_plots()
       fKinematicsRD[idx][13]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][13]->SetLineColor(kBlue);
       fKinematicsMC[idx][13]->Draw("SAME");
-      c20.Modified();
+      c20.Update();
       cout << ".";
       c21.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][14]->SetLineColor(kRed);
@@ -938,7 +938,7 @@ void save_kin_plots()
       fKinematicsRD[idx][14]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][14]->SetLineColor(kBlue);
       fKinematicsMC[idx][14]->Draw("SAME");
-      c21.Modified();
+      c21.Update();
       cout << ".";
       c25.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][15]->SetLineColor(kRed);
@@ -951,7 +951,7 @@ void save_kin_plots()
       fKinematicsRD[idx][15]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][15]->SetLineColor(kBlue);
       fKinematicsMC[idx][15]->Draw("SAME");
-      c25.Modified();
+      c25.Update();
       cout << ".";
       c27.cd(idx+1+int(idx/2)*2);
       fKinematicsRD[idx][16]->SetLineColor(kRed);
@@ -964,7 +964,7 @@ void save_kin_plots()
       fKinematicsRD[idx][16]->GetYaxis()->SetNdivisions(304,kTRUE);
       fKinematicsMC[idx][16]->SetLineColor(kBlue);
       fKinematicsMC[idx][16]->Draw("SAME");
-      c27.Modified();
+      c27.Update();
     }
   }
 
@@ -995,7 +995,7 @@ void save_kin_plots()
   {
     l1[11][tt]->Draw();
   }
-  c7.Modified();
+  c7.Update();
   c7.cd(1);
   fKinematicsRD[0][11]->SetLineColor(kRed);
   fKinematicsRD[0][11]->SetStats(0);
@@ -1007,7 +1007,7 @@ void save_kin_plots()
   fKinematicsRD[0][11]->GetYaxis()->SetNdivisions(304,kTRUE);
   fKinematicsMC[0][11]->SetLineColor(kBlue);
   fKinematicsMC[0][11]->Draw("SAME");
-  c7.Modified();
+  c7.Update();
 
   c29.cd(1);
   // for(int tt=0; tt<fKinematicsRD[0][11]->GetNbinsX(); tt++)
@@ -1025,7 +1025,7 @@ void save_kin_plots()
   // }
   // fKinematicsMC[0][11]->Draw("E2SAME");
   // fKinematicsMC[0][11]->Draw("SAME");
-  c29.Modified();
+  c29.Update();
 
   c8.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][0]->GetNbinsX(); tt++)
@@ -1055,7 +1055,7 @@ void save_kin_plots()
     l1[0][tt]->Draw();
   }
   gPad->SetLogx();
-  c8.Modified();
+  c8.Update();
   c8.cd(1);
   fKinematicsRD[4][0]->SetLineColor(kRed);
   fKinematicsRD[4][0]->SetStats(0);
@@ -1067,7 +1067,7 @@ void save_kin_plots()
   fKinematicsMC[4][0]->SetLineColor(kBlue);
   fKinematicsMC[4][0]->Draw("SAME");
   gPad->SetLogx();
-  c8.Modified();
+  c8.Update();
 
   c30.cd(1);
   // for(int tt=0; tt<fKinematicsRD[4][0]->GetNbinsX(); tt++)
@@ -1085,7 +1085,7 @@ void save_kin_plots()
   // fKinematicsMC[4][0]->Draw("E2SAME");
   // fKinematicsMC[4][0]->Draw("SAME");
   // gPad->SetLogx();
-  c30.Modified();
+  c30.Update();
 
   c9.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][1]->GetNbinsX(); tt++)
@@ -1115,7 +1115,7 @@ void save_kin_plots()
     l1[1][tt]->Draw();
   }
   gPad->SetLogx();
-  c9.Modified();
+  c9.Update();
   c9.cd(1);
   fKinematicsRD[4][1]->SetLineColor(kRed);
   fKinematicsRD[4][1]->SetStats(0);
@@ -1127,7 +1127,7 @@ void save_kin_plots()
   fKinematicsMC[4][1]->SetLineColor(kBlue);
   fKinematicsMC[4][1]->Draw("SAME");
   gPad->SetLogx();
-  c9.Modified();
+  c9.Update();
 
   c10.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][2]->GetNbinsX(); tt++)
@@ -1156,7 +1156,7 @@ void save_kin_plots()
   {
     l1[2][tt]->Draw();
   }
-  c10.Modified();
+  c10.Update();
   c10.cd(1);
   fKinematicsRD[4][2]->SetLineColor(kRed);
   fKinematicsRD[4][2]->SetStats(0);
@@ -1167,7 +1167,7 @@ void save_kin_plots()
   fKinematicsRD[4][2]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][2]->SetLineColor(kBlue);
   fKinematicsMC[4][2]->Draw("SAME");
-  c10.Modified();
+  c10.Update();
 
   c11.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][3]->GetNbinsX(); tt++)
@@ -1196,7 +1196,7 @@ void save_kin_plots()
   {
     l1[3][tt]->Draw();
   }
-  c11.Modified();
+  c11.Update();
   c11.cd(1);
   fKinematicsRD[4][3]->SetLineColor(kRed);
   fKinematicsRD[4][3]->SetStats(0);
@@ -1207,7 +1207,7 @@ void save_kin_plots()
   fKinematicsRD[4][3]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][3]->SetLineColor(kBlue);
   fKinematicsMC[4][3]->Draw("SAME");
-  c11.Modified();
+  c11.Update();
 
   c31.cd(1);
   // for(int tt=0; tt<fKinematicsRD[4][3]->GetNbinsX(); tt++)
@@ -1224,7 +1224,7 @@ void save_kin_plots()
   // }
   // fKinematicsMC[4][3]->Draw("E2SAME");
   // fKinematicsMC[4][3]->Draw("SAME");
-  c31.Modified();
+  c31.Update();
 
   c12.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][4]->GetNbinsX(); tt++)
@@ -1253,7 +1253,7 @@ void save_kin_plots()
   {
     l1[4][tt]->Draw();
   }
-  c12.Modified();
+  c12.Update();
   c12.cd(1);
   fKinematicsRD[4][4]->SetLineColor(kRed);
   fKinematicsRD[4][4]->SetStats(0);
@@ -1264,7 +1264,7 @@ void save_kin_plots()
   fKinematicsRD[4][4]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][4]->SetLineColor(kBlue);
   fKinematicsMC[4][4]->Draw("SAME");
-  c12.Modified();
+  c12.Update();
 
   c13.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
@@ -1293,7 +1293,7 @@ void save_kin_plots()
   {
     l1[5][tt]->Draw();
   }
-  c13.Modified();
+  c13.Update();
   c13.cd(1);
   fKinematicsRD[4][5]->SetLineColor(kRed);
   fKinematicsRD[4][5]->SetStats(0);
@@ -1304,7 +1304,7 @@ void save_kin_plots()
   fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][5]->SetLineColor(kBlue);
   fKinematicsMC[4][5]->Draw("SAME");
-  c13.Modified();
+  c13.Update();
 
   c32.cd(1);
   // for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
@@ -1321,7 +1321,7 @@ void save_kin_plots()
   // }
   // fKinematicsMC[4][5]->Draw("E2SAME");
   // fKinematicsMC[4][5]->Draw("SAME");
-  c32.Modified();
+  c32.Update();
 
   c22.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][12]->GetNbinsX(); tt++)
@@ -1350,7 +1350,7 @@ void save_kin_plots()
   {
     l1[12][tt]->Draw();
   }
-  c22.Modified();
+  c22.Update();
   c22.cd(1);
   fKinematicsRD[4][12]->SetLineColor(kRed);
   fKinematicsRD[4][12]->SetStats(0);
@@ -1361,7 +1361,7 @@ void save_kin_plots()
   fKinematicsRD[4][12]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][12]->SetLineColor(kBlue);
   fKinematicsMC[4][12]->Draw("SAME");
-  c22.Modified();
+  c22.Update();
 
   c23.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][13]->GetNbinsX(); tt++)
@@ -1390,7 +1390,7 @@ void save_kin_plots()
   {
     l1[13][tt]->Draw();
   }
-  c23.Modified();
+  c23.Update();
   c23.cd(1);
   fKinematicsRD[4][13]->SetLineColor(kRed);
   fKinematicsRD[4][13]->SetStats(0);
@@ -1401,7 +1401,7 @@ void save_kin_plots()
   fKinematicsRD[4][13]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][13]->SetLineColor(kBlue);
   fKinematicsMC[4][13]->Draw("SAME");
-  c23.Modified();
+  c23.Update();
 
   c24.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][14]->GetNbinsX(); tt++)
@@ -1430,7 +1430,7 @@ void save_kin_plots()
   {
     l1[14][tt]->Draw();
   }
-  c24.Modified();
+  c24.Update();
   c24.cd(1);
   fKinematicsRD[4][14]->SetLineColor(kRed);
   fKinematicsRD[4][14]->SetStats(0);
@@ -1441,7 +1441,7 @@ void save_kin_plots()
   fKinematicsRD[4][14]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][14]->SetLineColor(kBlue);
   fKinematicsMC[4][14]->Draw("SAME");
-  c24.Modified();
+  c24.Update();
 
   c26.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][15]->GetNbinsX(); tt++)
@@ -1470,7 +1470,7 @@ void save_kin_plots()
   {
     l1[15][tt]->Draw();
   }
-  c26.Modified();
+  c26.Update();
   c26.cd(1);
   fKinematicsRD[4][15]->SetLineColor(kRed);
   fKinematicsRD[4][15]->SetStats(0);
@@ -1481,7 +1481,7 @@ void save_kin_plots()
   fKinematicsRD[4][15]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][15]->SetLineColor(kBlue);
   fKinematicsMC[4][15]->Draw("SAME");
-  c26.Modified();
+  c26.Update();
 
   c28.cd(2);
   for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
@@ -1510,7 +1510,7 @@ void save_kin_plots()
   {
     l1[16][tt]->Draw();
   }
-  c28.Modified();
+  c28.Update();
   c28.cd(1);
   fKinematicsRD[4][16]->SetLineColor(kRed);
   fKinematicsRD[4][16]->SetStats(0);
@@ -1521,7 +1521,7 @@ void save_kin_plots()
   fKinematicsRD[4][16]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsMC[4][16]->SetLineColor(kBlue);
   fKinematicsMC[4][16]->Draw("SAME");
-  c28.Modified();
+  c28.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
