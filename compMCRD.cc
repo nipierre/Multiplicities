@@ -753,8 +753,8 @@ void save_kin_plots()
     //   }
     //   c27.Update();
     // }
-    else
-    {
+    // else
+    // {
       c1.cd(i+1);
       fKinematicsMC[idx][0]->Scale(fKinematicsRD[idx][1]->GetEntries()/fKinematicsMC[idx][0]->GetEntries());
       fKinematicsRD[idx][0]->SetLineColor(kRed);
@@ -1140,7 +1140,7 @@ void save_kin_plots()
       fKinematicsMC[idx][16]->Draw("E2SAME");
       fKinematicsMC[idx][16]->Draw("SAME");
       c27.Update();
-    }
+    // }
   }
 
   // c7.cd(2);
