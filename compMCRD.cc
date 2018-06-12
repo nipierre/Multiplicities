@@ -2393,7 +2393,7 @@ void MCextraction(string pFilelist)
         double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
         // MT
-        if(trig&2 && !trig&4 && !trig&8 && !trig&512)
+        if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
         {
           fQ2kinMC[0].push_back(Q2);
           fXBjkinMC[0].push_back(xBj);
@@ -2407,7 +2407,7 @@ void MCextraction(string pFilelist)
           fVertexMC[0].push_back(z->GetLeaf("z")->GetValue());
         }
         // LT
-        else if(trig&4 && !trig&2 && !trig&8 && !trig&512)
+        else if(int(trig&4) && !int(trig&2) && !int(trig&8)&& !int(trig&512))
         {
           fQ2kinMC[1].push_back(Q2);
           fXBjkinMC[1].push_back(xBj);
@@ -2421,7 +2421,7 @@ void MCextraction(string pFilelist)
           fVertexMC[1].push_back(z->GetLeaf("z")->GetValue());
         }
         // OT
-        else if(trig&8 && !trig&2 && !trig&4 && !trig&512)
+        else if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
         {
           fQ2kinMC[2].push_back(Q2);
           fXBjkinMC[2].push_back(xBj);
@@ -2435,7 +2435,7 @@ void MCextraction(string pFilelist)
           fVertexMC[2].push_back(z->GetLeaf("z")->GetValue());
         }
         // LAST
-        else if(trig&512 && !trig&4 && !trig&8 && !trig&2)
+        else if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
         {
           fQ2kinMC[3].push_back(Q2);
           fXBjkinMC[3].push_back(xBj);
@@ -2452,7 +2452,7 @@ void MCextraction(string pFilelist)
         {}
         // ALL TRIGGERS
         // if(trig&2 || trig&4 || trig&8)
-        if(trig&2 || trig&4 || trig&8 || trig&512)
+        if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
           fQ2kinMC[4].push_back(Q2);
           fXBjkinMC[4].push_back(xBj);
@@ -2596,7 +2596,7 @@ void MCextraction(string pFilelist)
           fPosRICH++;
 
           // MT
-          if(trig&2 && !trig&4 && !trig&8 && !trig&512)
+          if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
           {
             fKinematicsMC[0][3]->Fill(zBj);
             fKinematicsMC[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -2606,7 +2606,7 @@ void MCextraction(string pFilelist)
             fKinematicsMC[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
           // LT
-          else if(trig&4 && !trig&512 && !trig&8 && !trig&2)
+          else if(int(trig&4) && !int(trig&2) && !int(trig&8)&& !int(trig&512))
           {
             fKinematicsMC[1][3]->Fill(zBj);
             fKinematicsMC[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -2616,7 +2616,7 @@ void MCextraction(string pFilelist)
             fKinematicsMC[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
           // OT
-          else if(trig&8 && !trig&4 && !trig&512 && !trig&2)
+          else if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
           {
             fKinematicsMC[2][3]->Fill(zBj);
             fKinematicsMC[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -2626,7 +2626,7 @@ void MCextraction(string pFilelist)
             fKinematicsMC[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
           }
           // LAST
-          else if(trig&512 && !trig&4 && !trig&8 && !trig&2)
+          else if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
           {
             fKinematicsMC[3][3]->Fill(zBj);
             fKinematicsMC[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -2639,7 +2639,7 @@ void MCextraction(string pFilelist)
           {}
           // ALL TRIGGERS
           // if(trig&2 || trig&4 || trig&8)
-          if(trig&2 || trig&4 || trig&8 || trig&512)
+          if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
           {
             fKinematicsMC[4][3]->Fill(zBj);
             fKinematicsMC[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -3114,7 +3114,7 @@ void RDextraction(string pFilelist)
       else if(Y2016)
       {
         // if(!(trig&2 || trig&4 || trig&8)) continue;
-        if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+        if(!(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))) continue;
       }
       //2016 ---
       fTrig++;
@@ -3139,7 +3139,7 @@ void RDextraction(string pFilelist)
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
 
       // MT
-      if(trig&2 && !trig&4 && !trig&8 && !trig&512)
+      if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
       {
         fQ2kin[0].push_back(Q2);
         fXBjkin[0].push_back(xBj);
@@ -3153,7 +3153,7 @@ void RDextraction(string pFilelist)
         fVertex[0].push_back(z->GetLeaf("z")->GetValue());
       }
       // LT
-      else if(trig&4 && !trig&2 && !trig&8 && !trig&512)
+      else if(int(trig&4) && !int(trig&2) && !int(trig&8)&& !int(trig&512))
       {
         fQ2kin[1].push_back(Q2);
         fXBjkin[1].push_back(xBj);
@@ -3167,7 +3167,7 @@ void RDextraction(string pFilelist)
         fVertex[1].push_back(z->GetLeaf("z")->GetValue());
       }
       // OT
-      else if(trig&8 && !trig&2 && !trig&4 && !trig&512)
+      else if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
       {
         fQ2kin[2].push_back(Q2);
         fXBjkin[2].push_back(xBj);
@@ -3181,7 +3181,7 @@ void RDextraction(string pFilelist)
         fVertex[2].push_back(z->GetLeaf("z")->GetValue());
       }
       // LAST
-      else if(trig&512 && !trig&4 && !trig&8 && !trig&2)
+      else if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
       {
         fQ2kin[3].push_back(Q2);
         fXBjkin[3].push_back(xBj);
@@ -3200,7 +3200,7 @@ void RDextraction(string pFilelist)
       }
       // ALL TRIGGERS
       // if(trig&2 || trig&4 || trig&8)
-      if(trig&2 || trig&4 || trig&8 || trig&512)
+      if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
       {
         fQ2kin[4].push_back(Q2);
         fXBjkin[4].push_back(xBj);
@@ -3449,7 +3449,7 @@ void RDextraction(string pFilelist)
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
 
-        if(trig&2 && !trig&4 && !trig&8 && !trig&512)
+        if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
         {
           fKinematicsRD[0][3]->Fill(zBj);
           fKinematicsRD[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -3458,7 +3458,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        else if(trig&4 && !trig&512 && !trig&8 && !trig&2)
+        else if(int(trig&4) && !int(trig&2) && !int(trig&8)&& !int(trig&512))
         {
           fKinematicsRD[1][3]->Fill(zBj);
           fKinematicsRD[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -3467,7 +3467,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        else if(trig&8 && !trig&4 && !trig&512 && !trig&2)
+        else if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
         {
           fKinematicsRD[2][3]->Fill(zBj);
           fKinematicsRD[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -3476,7 +3476,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        else if(trig&512 && !trig&4 && !trig&8 && !trig&2)
+        else if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
         {
           fKinematicsRD[3][3]->Fill(zBj);
           fKinematicsRD[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -3488,7 +3488,7 @@ void RDextraction(string pFilelist)
         else
         {}
         // if(trig&2 || trig&4 || trig&8)
-        if(trig&2 || trig&4 || trig&8 || trig&512)
+        if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
           fKinematicsRD[4][3]->Fill(zBj);
           fKinematicsRD[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
