@@ -3151,6 +3151,7 @@ void RDextraction(string pFilelist)
       // LT
       if(int(trig&4) && !int(trig&2) && !int(trig&8)&& !int(trig&512))
       {
+        cout << "LT" << endl;
         fQ2kin[1].push_back(Q2);
         fXBjkin[1].push_back(xBj);
         fYBjkin[1].push_back(yBj);
@@ -3165,6 +3166,7 @@ void RDextraction(string pFilelist)
       // OT
       if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
       {
+        cout << "OT" << endl;
         fQ2kin[2].push_back(Q2);
         fXBjkin[2].push_back(xBj);
         fYBjkin[2].push_back(yBj);
@@ -3179,6 +3181,7 @@ void RDextraction(string pFilelist)
       // LAST
       if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
       {
+        cout << "LAST" << endl;
         fQ2kin[3].push_back(Q2);
         fXBjkin[3].push_back(xBj);
         fYBjkin[3].push_back(yBj);
@@ -3478,7 +3481,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
         }
-        
+
         // if(trig&2 || trig&4 || trig&8)
         if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
