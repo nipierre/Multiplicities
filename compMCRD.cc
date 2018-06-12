@@ -283,6 +283,7 @@ void save_kin_plots()
 
   for(int i=0; i<8; i++)
   {
+    cout << endl;
     idx=int(i/2);
     if(i%2)
     {
