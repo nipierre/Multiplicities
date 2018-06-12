@@ -1057,6 +1057,8 @@ void save_kin_plots()
   // gPad->SetLogx();
   // c8.Update();
   c8.cd(1);
+  fKinematicsRD[4][0]->Scale(1/fKinematicsRD[4][0]->GetEntries());
+  fKinematicsMC[4][0]->Scale(1/fKinematicsMC[4][0]->GetEntries());
   fKinematicsRD[4][0]->SetLineColor(kRed);
   fKinematicsRD[4][0]->SetStats(0);
   fKinematicsRD[4][0]->SetMinimum(0.);

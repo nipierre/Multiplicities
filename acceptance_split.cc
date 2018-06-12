@@ -1207,7 +1207,6 @@ int main(int argc, char **argv)
 
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
           {
-            cout << "pouet" << endl;
             fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
             fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
             fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
@@ -1219,8 +1218,6 @@ int main(int argc, char **argv)
           }
           if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
-            cout << ip << " " << HL04x->GetLeaf("HL04x")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue() << " " << MC_HL04x->GetLeaf("MC_HL04x")->GetValue() << " " << MC_HL04y->GetLeaf("MC_HL04y")->GetValue()
-            << " " << HL04x->GetLeaf("HL04x")->GetValue()-MC_HL04x->GetLeaf("MC_HL04x")->GetValue() << " " << HL04y->GetLeaf("HL04y")->GetValue()-MC_HL04y->GetLeaf("MC_HL04y")->GetValue() << endl;
             fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
             fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
