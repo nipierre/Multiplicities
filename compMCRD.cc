@@ -289,12 +289,14 @@ void save_kin_plots()
     cout << "pouet" << endl;
     if(i%2)
     {
-      c1.cd(3);
-      // c1.cd(idx+3+int(idx/2)*2);
+      cout << "pouet" << endl;
+      c1.cd(idx+3+int(idx/2)*2);
+      cout << "pouet" << endl;
       for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
       {
         fError.push_back((fKinematicsRD[idx][0]->GetBinError(tt) && fKinematicsMC[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC[idx][0]->GetBinError(tt),2)):0));
       }
+      cout << "pouet" << endl;
       fKinematicsRD[idx][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
       fKinematicsMC[idx][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
       fKinematicsRatio[idx][0] = (TH1F*)fKinematicsRD[idx][0]->Clone();
