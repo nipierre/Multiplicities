@@ -279,10 +279,12 @@ void save_kin_plots()
   c31.Divide(1,1);
   c32.Divide(1,1);
 
+  int idx=0;
+
   for(int i=0; i<8; i++)
   {
     cout << endl;
-    int idx=int(i/2);
+    idx=int(i/2);
     cout << idx;
     if(i%2)
     {
