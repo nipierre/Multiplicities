@@ -2351,7 +2351,7 @@ void MCextraction(string pFilelist)
                   fCell++;
 
                   // if((trig&2 || trig&4 || trig&8))
-                  if((trig&2 || trig&4 || trig&8 || trig&512))
+                  if((int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512)))
                   {
                     fTrig++;
 
