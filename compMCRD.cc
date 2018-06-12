@@ -337,7 +337,7 @@ void save_kin_plots()
       cout << "pouet6" << endl;
       gPad->SetLogx();
       cout << "pouet7" << endl;
-      c1.Update();
+      c1.Modified();
       cout << "pouet8" << endl;
 
       cout << "pouet8" << endl;cout << "pouet8" << endl;cout << "pouet8" << endl;
