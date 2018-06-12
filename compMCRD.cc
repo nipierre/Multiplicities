@@ -279,8 +279,6 @@ void save_kin_plots()
   c31.Divide(1,1);
   c32.Divide(1,1);
 
-  int i=0;
-
   for(int i=0; i<4; i++)
   {
     cout << endl;
@@ -1974,7 +1972,7 @@ void MCextraction(string pFilelist)
     TBranch *MC_charge = (TBranch*) tree->FindBranch("MCHadrons.charge");
     TBranch *MC_pid = (TBranch*) tree->FindBranch("MCHadrons.pid");
     TBranch *MC_recons = (TBranch*) tree->FindBranch("MCHadrons.recons");
-    TBranch *MC_recHadi = (TBranch*) tree->FindBranch("MCHadrons.recHadi");
+    TBranch *MC_recHadIdx = (TBranch*) tree->FindBranch("MCHadrons.recHadIdx");
 
     map<int,int> idMCrec[2][4];
     map<int,Double_t> pMCrec[2][4];
@@ -2071,7 +2069,7 @@ void MCextraction(string pFilelist)
       MC_charge->GetEntry(ip);
       MC_pid->GetEntry(ip);
       MC_recons->GetEntry(ip);
-      MC_recHadi->GetEntry(ip);
+      MC_recHadIdx->GetEntry(ip);
 
       // -------------------------------------------------------------------------
       // --------- Calculation ---------------------------------------------------
