@@ -278,6 +278,7 @@ void save_kin_plots()
   c30.Divide(1,1);
   c31.Divide(1,1);
   c32.Divide(1,1);
+  c1.Update();
 
   int idx=0;
 
@@ -1522,7 +1523,6 @@ void save_kin_plots()
   fKinematicsMC[4][16]->Draw("SAME");
   c28.Modified();
 
-c1.Update();
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
