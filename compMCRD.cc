@@ -321,24 +321,24 @@ void save_kin_plots()
       fKinematicsRatio[idx][0]->SetMaximum(2.);
       cout << "pouet" << endl;
       fKinematicsRatio[idx][0]->SetMinimum(0.);
-      cout << "pouet" << endl;
+      cout << "pouet1" << endl;
       fKinematicsRatio[idx][0]->Draw("PE2");
-      cout << "pouet" << endl;
+      cout << "pouet2" << endl;
       fKinematicsRatio[idx][0]->GetXaxis()->SetLabelSize(0.08);
-      cout << "pouet" << endl;
+      cout << "pouet3" << endl;
       fKinematicsRatio[idx][0]->GetYaxis()->SetLabelSize(0.08);
-      cout << "pouet" << endl;
+      cout << "pouet4" << endl;
       fKinematicsRatio[idx][0]->GetYaxis()->SetNdivisions(2,kFALSE);
-      cout << "pouet" << endl;
+      cout << "pouet5" << endl;
       for(int tt=0; tt<7; tt++)
       {
         l1[0][tt]->Draw();
       }
-      cout << "pouet" << endl;
+      cout << "pouet6" << endl;
       gPad->SetLogx();
-      cout << "pouet" << endl;
+      cout << "pouet7" << endl;
       c1.Update();
-      cout << "pouet" << endl;
+      cout << "pouet8" << endl;
       cout << ".";
       // c2.cd(idx+3+int(idx/2)*2);
       // for(int tt=0; tt<fKinematicsRD[idx][1]->GetNbinsX(); tt++)
