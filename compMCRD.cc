@@ -1522,6 +1522,7 @@ void save_kin_plots()
   fKinematicsMC[4][16]->Draw("SAME");
   c28.Modified();
 
+c1.Update();
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
