@@ -128,6 +128,7 @@ void create_kin_plots()
   fKinematics[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
+  fKinematics[6] = new TH1F("E_{#mu}", "E_{#mu}", 100, 140, 180);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHM04 = new TH2F("HM04Y1", "HM04Y1", 100, 0, 120, 100, -60, 60);
@@ -162,6 +163,7 @@ void create_kin_plots()
   fKinematicsMC[3] = new TH1F("z MC", "z MC", 100, 0, 1);
   fKinematicsMC[4] = new TH1F("W MC", "W MC", 100, 2, 18);
   fKinematicsMC[5] = new TH1F("#nu MC", "#nu MC", 100, 0, 160);
+  fKinematicsMC[6] = new TH1F("E_{#mu,MC}", "E_{#mu,MC}", 100, 140, 180);
   fKinematics2DMC = new TH2F("DIS kin space MC", "DIS kin space MC", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2DMC = new TH2F("Target xy MC", "Target xy MC", 100, -3, 3, 100, -3, 3);
   BinLogX(fKinematicsMC[0]);
@@ -202,6 +204,7 @@ void save_kin_plots()
   c37.Divide(1,1);
   c38.Divide(1,1);
   c39.Divide(1,1);
+  c40.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -298,6 +301,10 @@ void save_kin_plots()
   c39.cd(1);
   fHL05MCx2D->Draw("COLZ");
   c39.Update();
+  c40.cd(1);
+  fKinematics[6]->Draw();
+  fKinematicsMC[6]->Draw("SAME");
+  c40.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -330,6 +337,7 @@ void save_kin_plots()
   c37.Print("kinMC.pdf","pdf");
   c38.Print("kinMC.pdf","pdf");
   c39.Print("kinMC.pdf","pdf");
+  c40.Print("kinMC.pdf","pdf");
 
   c18.Divide(1,1);
   c19.Divide(1,1);
@@ -1200,6 +1208,7 @@ int main(int argc, char **argv)
           fYBjkin.push_back(yBj);
           fWBjkin.push_back(sqrt(wBj));
           fNukin.push_back(nu);
+          fMu.push_back(E_beam);
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
 
@@ -1259,6 +1268,7 @@ int main(int argc, char **argv)
           fYBjkinMC.push_back(yBj_MC);
           fWBjkinMC.push_back(sqrt(wBj_MC));
           fNukinMC.push_back(nu_MC);
+          fMuMC.push_back(MCE0);
           fXMC.push_back(MC_vx->GetLeaf("MC_vx")->GetValue());
           fYMC.push_back(MC_vy->GetLeaf("MC_vy")->GetValue());
         }
@@ -2418,6 +2428,7 @@ int main(int argc, char **argv)
       fKinematics[2]->Fill(fYBjkin[i]);
       fKinematics[4]->Fill(fWBjkin[i]);
       fKinematics[5]->Fill(fNukin[i]);
+      fKinematics[6]->Fill(fMu[i]);
       fKinematics2D->Fill(fXBjkin[i],fYBjkin[i]);
       fTarget2D->Fill(fX[i],fY[i]);
     }
@@ -2463,6 +2474,7 @@ int main(int argc, char **argv)
       fKinematicsMC[2]->Fill(fYBjkinMC[i]);
       fKinematicsMC[4]->Fill(fWBjkinMC[i]);
       fKinematicsMC[5]->Fill(fNukinMC[i]);
+      fKinematics[6]->Fill(fMuMC[i]);
       fKinematics2DMC->Fill(fXBjkinMC[i],fYBjkinMC[i]);
       fTarget2DMC->Fill(fXMC[i],fYMC[i]);
 

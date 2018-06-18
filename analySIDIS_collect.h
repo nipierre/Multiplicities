@@ -141,6 +141,8 @@ Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Multiplicities fMultiplicities[9][6][12];
 Wrapper fAcceptance[9][6][12];
+Multiplicities fMultiplicities_yavg[9][6][12];
+Wrapper fAcceptance_yavg[9][6][12];
 Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
 Recovery fMeanvalues[9][6][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
 Recovery_tank fMeanvalues_size[9][6][12];

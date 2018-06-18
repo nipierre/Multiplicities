@@ -48,6 +48,7 @@ vector<Double_t> fYBjkin;
 vector<Double_t> fWBj;
 vector<Double_t> fWBjkin;
 vector<Double_t> fNu;
+vector<Double_t> fMu;
 vector<Double_t> fNukin;
 
 vector<Double_t> fQ2_MC;
@@ -59,6 +60,7 @@ vector<Double_t> fYBjkinMC;
 vector<Double_t> fWBj_MC;
 vector<Double_t> fWBjkinMC;
 vector<Double_t> fNu_MC;
+vector<Double_t> fMuMC;
 vector<Double_t> fNukinMC;
 
 vector<Double_t> fX;
@@ -191,7 +193,7 @@ Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 
 //Draw
 
-TH1F* fKinematics[6];
+TH1F* fKinematics[7];
 TH2F* fKinematics2D;
 TH2F* fHM04;
 TH2F* fHM05;
@@ -248,8 +250,9 @@ TCanvas c36("HG02MCY1","HG02MCY1",3200,1600);
 TCanvas c37("HG02MCY2","HG02MCY2",3200,1600);
 TCanvas c38("HL04MCY1x","HL04MCY1x",3200,1600);
 TCanvas c39("HL05MCY1x","HL05MCY1x",3200,1600);
+TCanvas c40("E_{#mu}","E_{#mu}",3200,1600);
 
-TH1F* fKinematicsMC[6];
+TH1F* fKinematicsMC[7];
 TH2F* fKinematics2DMC;
 TH2F* fTarget2DMC;
 TCanvas c18("KinMC_Q^{2}","KinMC_Q^{2}",3200,1600);
