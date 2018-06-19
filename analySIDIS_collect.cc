@@ -279,13 +279,13 @@ int main()
   c7 = new TCanvas("Kaon_Multiplicities","Kaon_Multiplicities",3200,1600);
 
   TCanvas* c8;
-  c8 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
+  c8 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
 
   TCanvas* c9;
-  c9 = new TCanvas("Pion_Multiplicities","Pion_Multiplicities",3200,1600);
+  c9 = new TCanvas("Pion_Multiplicities_yavg","Pion_Multiplicities_yavg",3200,1600);
 
   TCanvas* c10;
-  c10 = new TCanvas("Kaon_Multiplicities","Kaon_Multiplicities",3200,1600);
+  c10 = new TCanvas("Kaon_Multiplicities_yavg","Kaon_Multiplicities_yavg",3200,1600);
 
   c5->SetFillColor(0);
   //c5->SetFrameFillStyle(4000);
