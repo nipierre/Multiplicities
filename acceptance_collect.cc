@@ -886,7 +886,7 @@ int main()
 
       for(int k=0; k<12; k++)
       {
-        // yavg(c,i,k);
+        yavg(c,i,k);
 
         fAcceptance_yavg[i][k].tab[c][0][0] = ((fNDIS_evt_yavg[0] && fNDIS_evt_MC_yavg[0] && fGnrt_yavg[0]) ? double((fRcstr_yavg[0]/fNDIS_evt_yavg[0])/(fGnrt_yavg[0]/fNDIS_evt_MC_yavg[0])) : 0);
         fAcceptance_yavg[i][k].tab[c][0][1] = ((fNDIS_evt_yavg[1] && fNDIS_evt_MC_yavg[1] && fGnrt_yavg[1]) ? double((fRcstr_yavg[1]/fNDIS_evt_yavg[1])/(fGnrt_yavg[1]/fNDIS_evt_MC_yavg[1])) : 0);
@@ -960,13 +960,13 @@ int main()
         fAcceptance_yavg[i][k].tab[c][0][3] << " " <<
         fAcceptance_yavg[i][k].tab[c][1][3] <<   endl;
 
-        p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
-        k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
-        h_y.push_back(fAcceptance_yavg[i][k].tab[c][0][3]);
-
-        p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][0]);
-        k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][1]);
-        h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][3]);
+        // p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
+        // k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
+        // h_y.push_back(fAcceptance_yavg[i][k].tab[c][0][3]);
+        //
+        // p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][0]);
+        // k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][1]);
+        // h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][3]);
       }
 
       for(int k=12; k>0; k--)
