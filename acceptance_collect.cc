@@ -997,15 +997,15 @@ int main()
 
       if(!c)
       {
-        H_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-        P_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-        K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-      }
-      else
-      {
         H_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         P_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         K_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+      }
+      else
+      {
+        H_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        P_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
       }
 
       H_y[c][i]->SetMarkerSize(3);
