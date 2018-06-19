@@ -584,8 +584,8 @@ int main()
           }
 
           bool p_corr_empty = 0;
-          bool k_corr_empty = 0;
-          bool h_corr_empty = 0;
+          // bool k_corr_empty = 0;
+          // bool h_corr_empty = 0;
 
           if(!(int(p_corr.size()))) p_corr_empty = 1;
           if(!(int(k_corr.size()))) k_corr_empty = 1;
