@@ -1520,7 +1520,7 @@ int main()
   c5.Update();
   c6.Update();
   c7.Update();
-  for(int i=0; i<12; i++) c8[i].Update();
+  for(int i=0; i<12; i++) c8[i]->Update();
   c9.Update();
   c10.Update();
   c11.Update();
