@@ -152,8 +152,8 @@ void create_kin_plots()
   fHO03MC = new TH2F("HO03MCY1", "HO03MCY1", 100, -60, 90, 100, -60, 60);
   fHO04MC = new TH2F("HO04MCY1", "HO04MCY1", 100, -100, 250, 100, -90, 90);
   fHG01MC = new TH2F("HG01MCY1", "HG01MCY1", 100, -100, 100, 100, -50, 50);
-  fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -100, 100, 100, -50, 50);
-  fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -100, 100, 100, -50, 50);
+  fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -20, 250, 100, -230, 230);
+  fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -250, 20, 100, -230, 230);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -303,6 +303,7 @@ void save_kin_plots()
   c39.Update();
   c40.cd(1);
   fKinematics[6]->Draw();
+  fKinematicsMC[6]->SetLineColor(kRed);
   fKinematicsMC[6]->Draw("SAME");
   c40.Update();
 
@@ -2474,7 +2475,7 @@ int main(int argc, char **argv)
       fKinematicsMC[2]->Fill(fYBjkinMC[i]);
       fKinematicsMC[4]->Fill(fWBjkinMC[i]);
       fKinematicsMC[5]->Fill(fNukinMC[i]);
-      fKinematics[6]->Fill(fMuMC[i]);
+      fKinematicsMC[6]->Fill(fMuMC[i]);
       fKinematics2DMC->Fill(fXBjkinMC[i],fYBjkinMC[i]);
       fTarget2DMC->Fill(fXMC[i],fYMC[i]);
 
