@@ -879,8 +879,8 @@ int main()
             P_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              P_[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi}}");
-              P_[c][i]->GetYaxis()->SetTitleSize(0.08);
+              P_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi}}");
+              P_y[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
             P_y[c][i]->Draw("SAMEP");
             P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
