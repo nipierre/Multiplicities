@@ -1541,6 +1541,9 @@ int main()
   for(int i=1; i<11; i++)
     c8[i]->Print(Form("%s/%d/hadron_acceptance_corr.pdf",dirroot,year),"pdf");
   c8[11]->Print(Form("%s/%d/hadron_acceptance_corr.pdf)",dirroot,year),"pdf");
+  c9.Print(Form("%s/%d/hadron_acceptance_yavg.pdf",dirroot,year));
+  c10.Print(Form("%s/%d/pion_acceptance_yavg.pdf",dirroot,year));
+  c11.Print(Form("%s/%d/kaon_acceptance_yavg.pdf",dirroot,year));
 
   ofs.close();
   ofs_yavg.close();
