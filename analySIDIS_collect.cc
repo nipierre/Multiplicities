@@ -817,7 +817,7 @@ int main()
             H_y[c][i]->Draw("SAMEPA");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(0.);
-            H_y[c][i]->SetMaximum(4.);
+            H_y[c][i]->SetMaximum(5.);
             H_y[c][i]->GetXaxis()->SetLabelSize(0.06);
             H_y[c][i]->GetYaxis()->SetLabelSize(0.06);
             H_y[c][i]->SetTitle("");
@@ -839,15 +839,15 @@ int main()
             H_y[c][i]->Draw("SAMEP");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(0.);
-            H_y[c][i]->SetMaximum(4.);
-            c8->Range(0.1,0.,0.9,4.);
+            H_y[c][i]->SetMaximum(5.);
+            c8->Range(0.1,0.,0.9,5.);
           }
           else
           {
             H_y[c][i]->Draw("SAMEP");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(0.);
-            H_y[c][i]->SetMaximum(4.);
+            H_y[c][i]->SetMaximum(5.);
           }
         }
         c8->Update();
@@ -1118,47 +1118,47 @@ int main()
   c8->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  fTitle.DrawLatex(0.5, 4.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
   c8->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  fTitle.DrawLatex(0.5, 4.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
   c8->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+  fTitle.DrawLatex(0.5, 4.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
   c8->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+  fTitle.DrawLatex(0.5, 4.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
   c8->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+  fTitle.DrawLatex(0.5, 4.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
   c8->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+  fTitle.DrawLatex(0.5, 4.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
   c8->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+  fTitle.DrawLatex(0.5, 4.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
   c8->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+  fTitle.DrawLatex(0.5, 4.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
   c8->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 1.4,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+  fTitle.DrawLatex(0.5, 4.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
   c9->cd(1);
   fTitle.SetTextSize(0.078);
