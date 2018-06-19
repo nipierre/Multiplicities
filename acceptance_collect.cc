@@ -50,6 +50,42 @@ Double_t RelDiff(int c, int x, int y, int z, int had)
 
 }
 
+void yavg(int c, int x, int z)
+{
+  for(int i=0; i<4; i++)
+  {
+    fRcstr_yavg[i]=0;
+    fNDIS_evt_yavg[i]=0;
+    fGnrt_yavg[i]=0;
+    fNDIS_evt_MC_yavg[i]=0;
+    fRcstr_c_yavg[i]=0;
+    fNDIS_evt_c_yavg[i]=0;
+  }
+  for(int i=0; i<6; i++)
+  {
+    fRcstr_yavg[0]+=fRcstr[x][i][z].tab[c][0][0];
+    fRcstr_yavg[1]+=fRcstr[x][i][z].tab[c][0][1];
+    fRcstr_yavg[2]+=fRcstr[x][i][z].tab[c][0][2];
+    fRcstr_yavg[3]+=fRcstr[x][i][z].tab[c][0][3];
+    fNDIS_evt_yavg[0]+=fNDIS_evt[0][x][i][z];
+    fNDIS_evt_yavg[1]+=fNDIS_evt[1][x][i][z];
+    fNDIS_evt_yavg[2]+=fNDIS_evt[2][x][i][z];
+    fGnrt_yavg[0]+=fGnrt[x][i][z].tab[c][0][0];
+    fGnrt_yavg[1]+=fGnrt[x][i][z].tab[c][0][1];
+    fGnrt_yavg[2]+=fGnrt[x][i][z].tab[c][0][2];
+    fGnrt_yavg[3]+=fGnrt[x][i][z].tab[c][0][3];
+    fNDIS_evt_MC_yavg[0]+=fNDIS_evt_MC[0][x][i][z];
+    fNDIS_evt_MC_yavg[1]+=fNDIS_evt_MC[1][x][i][z];
+    fNDIS_evt_MC_yavg[2]+=fNDIS_evt_MC[2][x][i][z];
+    fRcstr_c_yavg[0]+=fRcstr[x][i][z].tab[c][0][0];
+    fRcstr_c_yavg[1]+=fRcstr[x][i][z].tab[c][0][1];
+    fRcstr_c_yavg[2]+=fRcstr[x][i][z].tab[c][0][2];
+    fRcstr_c_yavg[3]+=fRcstr[x][i][z].tab[c][0][3];
+    fNDIS_evt_c_yavg[0]+=fNDIS_evt_c[0][x][i][z];
+    fNDIS_evt_c_yavg[1]+=fNDIS_evt_c[1][x][i][z];
+    fNDIS_evt_c_yavg[2]+=fNDIS_evt_c[2][x][i][z];
+  }
+}
 
 int main()
 {
@@ -261,8 +297,9 @@ int main()
   TCanvas c6("Pion_Acceptance","Pion_Acceptance",3200,1600);
   TCanvas c7("Kaon_Acceptance","Kaon_Acceptance",3200,1600);
   TCanvas* c8[12];
-  TCanvas c9("Pion_Acceptance_zvtx","Pion_Acceptance_zvtx",3200,1600);
-  TCanvas c10("Kaon_Acceptance_zvtx","Kaon_Acceptance_zvtx",3200,1600);
+  TCanvas c9("Hadron_Acceptance_yavg","Hadron_Acceptance_yavg",3200,1600);
+  TCanvas c10("Pion_Acceptance_yavg","Pion_Acceptance_yavg",3200,1600);
+  TCanvas c11("Kaon_Acceptance_yavg","Kaon_Acceptance_yavg",3200,1600);
 
   c5.SetFillColor(0);
   c6.SetFillColor(0);
@@ -279,6 +316,9 @@ int main()
   TGraphErrors* H_acc[2][9][6];
   TGraphErrors* P_acc[2][9][6];
   TGraphErrors* K_acc[2][9][6];
+  TGraphErrors* H_y[2][9];
+  TGraphErrors* P_y[2][9];
+  TGraphErrors* K_y[2][9];
   TGraphErrors* H_corr_zvtx[2][9][6][12];
   TGraphErrors* P_corr_zvtx[2][9][6][12];
   TGraphErrors* K_corr_zvtx[2][9][6][12];
@@ -294,6 +334,7 @@ int main()
   double zvtx_range[4] = {-281.19,-221.19,-161.19,-101.19};
 
   ofstream ofs(Form("%s/%d/acceptance.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_yavg(Form("%s/%d/acceptance_yavg.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_vtx(Form("%s/%d/reldiff_vtx.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
   ofstream lepto(Form("%s/%d/lepto.txt",dirroot,year), std::ofstream::out | std::ofstream::trunc);
 
@@ -301,6 +342,17 @@ int main()
   {
     for(int i=0; i<9; i++)
     {
+      std::vector<double> p_y;
+      std::vector<double> k_y;
+      std::vector<double> h_y;
+      std::vector<double> p_y_err;
+      std::vector<double> k_y_err;
+      std::vector<double> h_y_err;
+
+      std::vector<double> z_range_p_y;
+      std::vector<double> z_range_k_y;
+      std::vector<double> z_range_h_y;
+
       for(int j=0; j<6; j++)
       {
 
@@ -622,114 +674,6 @@ int main()
             c8[k]->Update();
           }
 
-          if(!p_corr_empty)
-          {
-            c9.cd(i+1);
-            if(P_corr_zvtx[c][i][j][k])
-            {
-              if(!c && j==3)
-              {
-                P_corr_zvtx[c][i][j][k]->Draw("SAMEPA");
-                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr_zvtx[c][i][j][k]->SetMinimum(0.);
-                P_corr_zvtx[c][i][j][k]->SetMaximum(3.);
-                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
-                P_corr_zvtx[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
-                P_corr_zvtx[c][i][j][k]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
-                {
-                  P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
-                  P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
-                }
-                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
-                P_corr_zvtx[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
-                {
-                  P_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
-                  P_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
-                }
-                P_corr_zvtx[c][i][0][k]->Draw("SAMEP");
-                P_corr_zvtx[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr_zvtx[c][i][0][k]->SetMinimum(0.);
-                P_corr_zvtx[c][i][0][k]->SetMaximum(3.);
-                P_corr_zvtx[c][i][1][k]->Draw("SAMEP");
-                P_corr_zvtx[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr_zvtx[c][i][1][k]->SetMinimum(0.);
-                P_corr_zvtx[c][i][1][k]->SetMaximum(3.);
-                P_corr_zvtx[c][i][2][k]->Draw("SAMEP");
-                P_corr_zvtx[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr_zvtx[c][i][2][k]->SetMinimum(0.);
-                P_corr_zvtx[c][i][2][k]->SetMaximum(3.);
-                c9.Range(-320,0.,-60,3.);
-              }
-              else
-              {
-                P_corr_zvtx[c][i][j][k]->Draw("SAMEP");
-                P_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                P_corr_zvtx[c][i][j][k]->SetMinimum(0.);
-                P_corr_zvtx[c][i][j][k]->SetMaximum(3.);
-              }
-            }
-            c9.Update();
-          }
-
-          if(!k_corr_empty)
-          {
-            c10.cd(i+1);
-            if(K_corr_zvtx[c][i][j][k])
-            {
-              if(!c && j==3)
-              {
-                K_corr_zvtx[c][i][j][k]->Draw("SAMEPA");
-                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                K_corr_zvtx[c][i][j][k]->SetMinimum(0.);
-                K_corr_zvtx[c][i][j][k]->SetMaximum(3.);
-                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
-                K_corr_zvtx[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
-                K_corr_zvtx[c][i][j][k]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
-                {
-                  K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
-                  K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
-                }
-                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
-                K_corr_zvtx[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
-                {
-                  K_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
-                  K_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
-                }
-                K_corr_zvtx[c][i][0][k]->Draw("SAMEP");
-                K_corr_zvtx[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
-                K_corr_zvtx[c][i][0][k]->SetMinimum(0.);
-                K_corr_zvtx[c][i][0][k]->SetMaximum(3.);
-                K_corr_zvtx[c][i][1][k]->Draw("SAMEP");
-                K_corr_zvtx[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
-                K_corr_zvtx[c][i][1][k]->SetMinimum(0.);
-                K_corr_zvtx[c][i][1][k]->SetMaximum(3.);
-                K_corr_zvtx[c][i][2][k]->Draw("SAMEP");
-                K_corr_zvtx[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
-                K_corr_zvtx[c][i][2][k]->SetMinimum(0.);
-                K_corr_zvtx[c][i][2][k]->SetMaximum(3.);
-                c10.Range(-320,0.,-60,3.);
-              }
-              else
-              {
-                K_corr_zvtx[c][i][j][k]->Draw("SAMEP");
-                K_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                K_corr_zvtx[c][i][j][k]->SetMinimum(0.);
-                K_corr_zvtx[c][i][j][k]->SetMaximum(3.);
-              }
-            }
-            c10.Update();
-          }
-
         }
 
         for(int k=12; k>0; k--)
@@ -938,6 +882,273 @@ int main()
           c7.Update();
         }
 
+      }
+
+      for(int k=0; k<12; k++)
+      {
+        yavg(c,i,k);
+
+        fAcceptance_yavg[i][k].tab[c][0][0] = ((fNDIS_evt_yavg[0] && fNDIS_evt_MC_yavg[0] && fGnrt_yavg[0]) ? double((fRcstr_yavg[0]/fNDIS_evt_yavg[0])/(fGnrt_yavg[0]/fNDIS_evt_MC_yavg[0])) : 0);
+        fAcceptance_yavg[i][k].tab[c][0][1] = ((fNDIS_evt_yavg[1] && fNDIS_evt_MC_yavg[1] && fGnrt_yavg[1]) ? double((fRcstr_yavg[1]/fNDIS_evt_yavg[1])/(fGnrt_yavg[1]/fNDIS_evt_MC_yavg[1])) : 0);
+        fAcceptance_yavg[i][k].tab[c][0][2] = ((fNDIS_evt_yavg[2] && fNDIS_evt_MC_yavg[2] && fGnrt_yavg[2]) ? double((fRcstr_yavg[2]/fNDIS_evt_yavg[2])/(fGnrt_yavg[2]/fNDIS_evt_MC_yavg[2])) : 0);
+        fAcceptance_yavg[i][k].tab[c][0][3] = ((fNDIS_evt_yavg[0] && fNDIS_evt_MC_yavg[0] && fGnrt_yavg[3]) ? double((fRcstr_yavg[3]/fNDIS_evt_yavg[0])/(fGnrt_yavg[3]/fNDIS_evt_MC_yavg[0])) : 0);
+
+        if(fAcceptance_yavg[i][k].tab[c][0][0]<0) fAcceptance_yavg[i][k].tab[c][0][0]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][1]<0) fAcceptance_yavg[i][k].tab[c][0][1]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][2]<0) fAcceptance_yavg[i][k].tab[c][0][2]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][3]<0) fAcceptance_yavg[i][k].tab[c][0][3]=0;
+
+        double rd_prime[3];
+        double rd[3];
+        double gd[3];
+        double rh_prime[4];
+        double rh[4];
+        double gh[4];
+
+        rd_prime[0] = fNDIS_evt_yavg[0] - fNDIS_evt_c_yavg[0];
+        rd_prime[1] = fNDIS_evt_yavg[1] - fNDIS_evt_c_yavg[1];
+        rd_prime[2] = fNDIS_evt_yavg[2] - fNDIS_evt_c_yavg[2];
+
+        rd[0] = fNDIS_evt_c_yavg[0];
+        rd[1] = fNDIS_evt_c_yavg[1];
+        rd[2] = fNDIS_evt_c_yavg[2];
+
+        gd[0] = fNDIS_evt_MC_yavg[0];
+        gd[1] = fNDIS_evt_MC_yavg[1];
+        gd[2] = fNDIS_evt_MC_yavg[2];
+
+        rh_prime[0] = fRcstr_yavg[0] - fRcstr_c_yavg[0];
+        rh_prime[1] = fRcstr_yavg[1] - fRcstr_c_yavg[1];
+        rh_prime[2] = fRcstr_yavg[2] - fRcstr_c_yavg[2];
+        rh_prime[3] = fRcstr_yavg[3] - fRcstr_c_yavg[3];
+
+        rh[0] = fRcstr_c_yavg[0];
+        rh[1] = fRcstr_c_yavg[1];
+        rh[2] = fRcstr_c_yavg[2];
+        rh[3] = fRcstr_c_yavg[3];
+
+        gh[0] = fGnrt_yavg[0];
+        gh[1] = fGnrt_yavg[1];
+        gh[2] = fGnrt_yavg[2];
+        gh[3] = fGnrt_yavg[3];
+
+        fAcceptance_yavg[i][k].tab[c][1][0] = sqrt(((rh[0]>0 && gh[0]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+                                                                            *((rh[0]+1)*(gh[0]-rh[0]+1)/(pow(gh[0]+2,2)*(gh[0]+3))+rh_prime[0]/pow(gh[0],2)+pow(rh_prime[0],2)/pow(gh[0],3))
+                                                                            +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[0]+rh_prime[0])/gh[0],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
+        fAcceptance_yavg[i][k].tab[c][1][1] = sqrt(((rh[1]>0 && gh[1]>0 && gd[1]>0 && ((rd[1]+rd_prime[1])!=0)) ? double(pow(gd[1]/(rd_prime[1]+rd[1]),2)
+                                                                            *((rh[1]+1)*(gh[1]-rh[1]+1)/(pow(gh[1]+2,2)*(gh[1]+3))+rh_prime[1]/pow(gh[1],2)+pow(rh_prime[1],2)/pow(gh[1],3))
+                                                                            +pow(gd[1]/(rd[1]+rd_prime[1]),4)*pow((rh[1]+rh_prime[1])/gh[1],2)*((rd[1]+1)*(gd[1]-rd[1]+1)/(pow(gd[1]+2,2)*(gd[1]+3))+rd_prime[1]/pow(gd[1],2)+pow(rd_prime[1],2)/pow(gd[1],3))) : 0));
+        fAcceptance_yavg[i][k].tab[c][1][2] = sqrt(((rh[2]>0 && gh[2]>0 && gd[2]>0 && ((rd[2]+rd_prime[2])!=0)) ? double(pow(gd[2]/(rd_prime[2]+rd[2]),2)
+                                                                            *((rh[2]+1)*(gh[2]-rh[2]+1)/(pow(gh[2]+2,2)*(gh[2]+3))+rh_prime[2]/pow(gh[2],2)+pow(rh_prime[2],2)/pow(gh[2],3))
+                                                                            +pow(gd[2]/(rd[2]+rd_prime[2]),4)*pow((rh[2]+rh_prime[2])/gh[2],2)*((rd[2]+1)*(gd[2]-rd[2]+1)/(pow(gd[2]+2,2)*(gd[2]+3))+rd_prime[2]/pow(gd[2],2)+pow(rd_prime[2],2)/pow(gd[2],3))) : 0));
+        fAcceptance_yavg[i][k].tab[c][1][3] = sqrt(((rh[3]>0 && gh[3]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+                                                                            *((rh[3]+1)*(gh[3]-rh[3]+1)/(pow(gh[3]+2,2)*(gh[3]+3))+rh_prime[3]/pow(gh[3],2)+pow(rh_prime[3],2)/pow(gh[3],3))
+                                                                            +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[3]+rh_prime[3])/gh[3],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
+
+        if(fAcceptance_yavg[i][k].tab[c][0][0]==0) fAcceptance_yavg[i][k].tab[c][1][0]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][1]==0) fAcceptance_yavg[i][k].tab[c][1][1]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][2]==0) fAcceptance_yavg[i][k].tab[c][1][2]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][3]==0) fAcceptance_yavg[i][k].tab[c][1][3]=0;
+
+        ofs_yavg << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
+        fAcceptance[i][j][k].tab[c][0][0] << " " <<
+        fAcceptance[i][j][k].tab[c][1][0] << " " <<
+        fAcceptance[i][j][k].tab[c][0][1] << " " <<
+        fAcceptance[i][j][k].tab[c][1][1] << " " <<
+        fAcceptance[i][j][k].tab[c][0][2] << " " <<
+        fAcceptance[i][j][k].tab[c][1][2] << " " <<
+        fAcceptance[i][j][k].tab[c][0][3] << " " <<
+        fAcceptance[i][j][k].tab[c][1][3] <<   endl;
+
+        p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
+        k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
+        h_y.push_back(fAcceptance_yavg[i][k].tab[c][0][3]);
+
+        p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][0]);
+        k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][1]);
+        h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][3]);
+      }
+
+      for(int k=12; k>0; k--)
+      {
+        if(!p_y[k-1]) {p_y.erase(p_y.begin()+k-1); p_y_err.erase(p_y_err.begin()+k-1); z_range_p_y.erase(z_range_p_y.begin()+k-1);}
+        if(!k_y[k-1]) {k_y.erase(k_y.begin()+k-1); k_y_err.erase(k_y_err.begin()+k-1); z_range_k_y.erase(z_range_k_y.begin()+k-1);}
+        if(!h_y[k-1]) {h_y.erase(h_y.begin()+k-1); h_y_err.erase(h_y_err.begin()+k-1); z_range_h_y.erase(z_range_h_y.begin()+k-1);}
+      }
+
+      bool p_y_empty = 0;
+      bool k_y_empty = 0;
+      bool h_y_empty = 0;
+
+      if(!(int(p_y.size()))) p_y_empty = 1;
+      if(!(int(k_y.size()))) k_y_empty = 1;
+      if(!(int(h_y.size()))) h_y_empty = 1;
+
+      H_y[c][i] = new TGraphErrors(int(h_y.size()),&(z_range_h_y[0]),&(h_y[0]),0,&(h_err_y[0]));
+      P_y[c][i] = new TGraphErrors(int(p_y.size()),&(z_range_p_y[0]),&(p_y[0]),0,&(p_err_y[0]));
+      K_y[c][i] = new TGraphErrors(int(k_y.size()),&(z_range_k_y[0]),&(k_y[0]),0,&(k_err_y[0]));
+
+      H_y[c][i]->SetMarkerColor(fMarkerColor[j]);
+      P_y[c][i]->SetMarkerColor(fMarkerColor[j]);
+      K_y[c][i]->SetMarkerColor(fMarkerColor[j]);
+
+      H_y[c][i]->SetMarkerSize(3);
+      P_y[c][i]->SetMarkerSize(3);
+      K_y[c][i]->SetMarkerSize(3);
+
+      H_y[c][i]->SetMarkerStyle(fMarkerStyle[j][c]);
+      P_y[c][i]->SetMarkerStyle(fMarkerStyle[j][c]);
+      K_y[c][i]->SetMarkerStyle(fMarkerStyle[j][c]);
+
+      H_y[c][i]->GetYaxis()->SetTitle("");
+      P_y[c][i]->GetYaxis()->SetTitle("");
+      K_y[c][i]->GetYaxis()->SetTitle("");
+
+      H_y[c][i]->GetXaxis()->SetTitle("");
+      P_y[c][i]->GetXaxis()->SetTitle("");
+      K_y[c][i]->GetXaxis()->SetTitle("");
+
+      H_y[c][i]->SetTitle("");
+      P_y[c][i]->SetTitle("");
+      K_y[c][i]->SetTitle("");
+
+      if(!h_y_empty)
+      {
+        c9.cd(i+1);
+        gPad->SetFillStyle(4000);
+        if(H_y[c][i])
+        {
+          if(!c)
+          {
+            H_y[c][i]->Draw("SAMEPA");
+            H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            H_y[c][i]->SetMinimum(0.);
+            H_y[c][i]->SetMaximum(2.);
+            H_y[c][i]->GetXaxis()->SetLabelSize(0.06);
+            H_y[c][i]->GetYaxis()->SetLabelSize(0.06);
+            H_y[c][i]->SetTitle("");
+            if(i>4) gPad->SetBottomMargin(.15);
+            if(i==0 || i==5) gPad->SetLeftMargin(.22);
+            if(i==8)
+            {
+              H_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              H_y[c][i]->GetXaxis()->SetTitleSize(0.08);
+              H_y[c][i]->GetXaxis()->SetTitleOffset(.8);
+            }
+            H_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            H_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            if(i==0)
+            {
+              H_y[c][i]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+              H_y[c][i]->GetYaxis()->SetTitleSize(0.08);
+            }
+            H_y[c][i]->Draw("SAMEP");
+            H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            H_y[c][i]->SetMinimum(0.);
+            H_y[c][i]->SetMaximum(2.);
+            c9.Range(0.1,0.,0.9,2.);
+          }
+          else
+          {
+            H_y[c][i]->Draw("SAMEP");
+            H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            H_y[c][i]->SetMinimum(0.);
+            H_y[c][i]->SetMaximum(2.);
+          }
+        }
+        c9.Update();
+      }
+
+      if(!p_y_empty)
+      {
+        c10.cd(i+1);
+        if(P_y[c][i])
+        {
+          if(!c)
+          {
+            P_y[c][i]->Draw("SAMEPA");
+            P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+            P_y[c][i]->SetMinimum(0.);
+            P_y[c][i]->SetMaximum(3.);
+            P_y[c][i]->GetXaxis()->SetLabelSize(0.06);
+            P_y[c][i]->GetYaxis()->SetLabelSize(0.06);
+            P_y[c][i]->SetTitle("");
+            if(i>4) gPad->SetBottomMargin(.15);
+            if(i==0 || i==5) gPad->SetLeftMargin(.22);
+            if(i==8)
+            {
+              P_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              P_y[c][i]->GetXaxis()->SetTitleSize(0.08);
+              P_y[c][i]->GetXaxis()->SetTitleOffset(.8);
+            }
+            P_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            P_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            if(i==0)
+            {
+              P_y[c][i]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
+              P_y[c][i]->GetYaxis()->SetTitleSize(0.08);
+            }
+            P_y[c][i]->Draw("SAMEP");
+            P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+            P_y[c][i]->SetMinimum(0.);
+            P_y[c][i]->SetMaximum(3.);
+            c10.Range(0.,0.,1.,3.);
+          }
+          else
+          {
+            P_y[c][i]->Draw("SAMEP");
+            P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+            P_y[c][i]->SetMinimum(0.);
+            P_y[c][i]->SetMaximum(3.);
+          }
+        }
+        c10.Update();
+      }
+
+      if(!k_y_empty)
+      {
+        c11.cd(i+1);
+        if(K_y[c][i])
+        {
+          if(!c)
+          {
+            K_y[c][i]->Draw("SAMEPA");
+            K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+            K_y[c][i]->SetMinimum(0.);
+            K_y[c][i]->SetMaximum(3.);
+            K_y[c][i]->GetXaxis()->SetLabelSize(0.06);
+            K_y[c][i]->GetYaxis()->SetLabelSize(0.06);
+            K_y[c][i]->SetTitle("");
+            if(i>4) gPad->SetBottomMargin(.15);
+            if(i==0 || i==5) gPad->SetLeftMargin(.22);
+            if(i==8)
+            {
+              K_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              K_y[c][i]->GetXaxis()->SetTitleSize(0.08);
+              K_y[c][i]->GetXaxis()->SetTitleOffset(.8);
+            }
+            K_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            K_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            if(i==0)
+            {
+              K_y[c][i]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
+              K_y[c][i]->GetYaxis()->SetTitleSize(0.08);
+            }
+            K_y[c][i]->Draw("SAMEP");
+            K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+            K_y[c][i]->SetMinimum(0.);
+            K_y[c][i]->SetMaximum(3.);
+            c11.Range(0.,0.,1.,3.);
+          }
+          else
+          {
+            K_y[c][i]->Draw("SAMEP");
+            K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+            K_y[c][i]->SetMinimum(0.);
+            K_y[c][i]->SetMaximum(3.);
+          }
+        }
+        c11.Update();
       }
     }
   }
@@ -1170,9 +1381,149 @@ int main()
     c8[i]->Update();
   }
 
+  c9.cd(1);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+
+  c9.cd(2);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+
+  c9.cd(3);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+
+  c9.cd(4);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+
+  c9.cd(5);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+
+  c9.cd(6);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+
+  c9.cd(7);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+
+  c9.cd(8);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+
+  c9.cd(9);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+  c10.cd(1);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+
+  c10.cd(2);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+
+  c10.cd(3);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+
+  c10.cd(4);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+
+  c10.cd(5);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+
+  c10.cd(6);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+
+  c10.cd(7);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+
+  c10.cd(8);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+
+  c10.cd(9);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+  c11.cd(1);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+
+  c11.cd(2);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+
+  c11.cd(3);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+
+  c11.cd(4);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+
+  c11.cd(5);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+
+  c11.cd(6);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+
+  c11.cd(7);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+
+  c11.cd(8);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+
+  c11.cd(9);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 1.8,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+
   c5.Update();
   c6.Update();
   c7.Update();
+  for(int i=0; i<12; i++) c8[i].Update();
+  c9.Update();
+  c10.Update();
+  c11.Update();
 
   c5.Print(Form("%s/%d/hadron_acceptance.pdf",dirroot,year));
   c6.Print(Form("%s/%d/pion_acceptance.pdf",dirroot,year));
@@ -1183,6 +1534,7 @@ int main()
   c8[11]->Print(Form("%s/%d/hadron_acceptance_corr.pdf)",dirroot,year),"pdf");
 
   ofs.close();
+  ofs_yavg.close();
   ofs_vtx.close();
 
   return 0;
