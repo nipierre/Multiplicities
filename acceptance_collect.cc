@@ -950,15 +950,15 @@ int main()
         if(fAcceptance_yavg[i][k].tab[c][0][2]==0) fAcceptance_yavg[i][k].tab[c][1][2]=0;
         if(fAcceptance_yavg[i][k].tab[c][0][3]==0) fAcceptance_yavg[i][k].tab[c][1][3]=0;
 
-        ofs_yavg << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-        fAcceptance[i][j][k].tab[c][0][0] << " " <<
-        fAcceptance[i][j][k].tab[c][1][0] << " " <<
-        fAcceptance[i][j][k].tab[c][0][1] << " " <<
-        fAcceptance[i][j][k].tab[c][1][1] << " " <<
-        fAcceptance[i][j][k].tab[c][0][2] << " " <<
-        fAcceptance[i][j][k].tab[c][1][2] << " " <<
-        fAcceptance[i][j][k].tab[c][0][3] << " " <<
-        fAcceptance[i][j][k].tab[c][1][3] <<   endl;
+        ofs_yavg << c << " " << fXrange[i] << " " << fZrange[k] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][0] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][0] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][1] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][1] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][2] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][2] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][3] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][3] <<   endl;
 
         p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
         k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
@@ -984,21 +984,30 @@ int main()
       if(!(int(k_y.size()))) k_y_empty = 1;
       if(!(int(h_y.size()))) h_y_empty = 1;
 
-      H_y[c][i] = new TGraphErrors(int(h_y.size()),&(z_range_h_y[0]),&(h_y[0]),0,&(h_err_y[0]));
-      P_y[c][i] = new TGraphErrors(int(p_y.size()),&(z_range_p_y[0]),&(p_y[0]),0,&(p_err_y[0]));
-      K_y[c][i] = new TGraphErrors(int(k_y.size()),&(z_range_k_y[0]),&(k_y[0]),0,&(k_err_y[0]));
+      H_y[c][i] = new TGraphErrors(int(h_y.size()),&(z_range_h_y[0]),&(h_y[0]),0,&(h_y_err[0]));
+      P_y[c][i] = new TGraphErrors(int(p_y.size()),&(z_range_p_y[0]),&(p_y[0]),0,&(p_y_err[0]));
+      K_y[c][i] = new TGraphErrors(int(k_y.size()),&(z_range_k_y[0]),&(k_y[0]),0,&(k_y_err[0]));
 
-      H_y[c][i]->SetMarkerColor(fMarkerColor[j]);
-      P_y[c][i]->SetMarkerColor(fMarkerColor[j]);
-      K_y[c][i]->SetMarkerColor(fMarkerColor[j]);
+      if(!c)
+      {
+        H_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        P_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+      }
+      else
+      {
+        H_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+        P_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+        K_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+      }
 
       H_y[c][i]->SetMarkerSize(3);
       P_y[c][i]->SetMarkerSize(3);
       K_y[c][i]->SetMarkerSize(3);
 
-      H_y[c][i]->SetMarkerStyle(fMarkerStyle[j][c]);
-      P_y[c][i]->SetMarkerStyle(fMarkerStyle[j][c]);
-      K_y[c][i]->SetMarkerStyle(fMarkerStyle[j][c]);
+      H_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
+      P_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
+      K_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
 
       H_y[c][i]->GetYaxis()->SetTitle("");
       P_y[c][i]->GetYaxis()->SetTitle("");
