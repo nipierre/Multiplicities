@@ -887,86 +887,86 @@ int main()
       for(int k=0; k<12; k++)
       {
         // yavg(c,i,k);
-        //
-        // fAcceptance_yavg[i][k].tab[c][0][0] = ((fNDIS_evt_yavg[0] && fNDIS_evt_MC_yavg[0] && fGnrt_yavg[0]) ? double((fRcstr_yavg[0]/fNDIS_evt_yavg[0])/(fGnrt_yavg[0]/fNDIS_evt_MC_yavg[0])) : 0);
-        // fAcceptance_yavg[i][k].tab[c][0][1] = ((fNDIS_evt_yavg[1] && fNDIS_evt_MC_yavg[1] && fGnrt_yavg[1]) ? double((fRcstr_yavg[1]/fNDIS_evt_yavg[1])/(fGnrt_yavg[1]/fNDIS_evt_MC_yavg[1])) : 0);
-        // fAcceptance_yavg[i][k].tab[c][0][2] = ((fNDIS_evt_yavg[2] && fNDIS_evt_MC_yavg[2] && fGnrt_yavg[2]) ? double((fRcstr_yavg[2]/fNDIS_evt_yavg[2])/(fGnrt_yavg[2]/fNDIS_evt_MC_yavg[2])) : 0);
-        // fAcceptance_yavg[i][k].tab[c][0][3] = ((fNDIS_evt_yavg[0] && fNDIS_evt_MC_yavg[0] && fGnrt_yavg[3]) ? double((fRcstr_yavg[3]/fNDIS_evt_yavg[0])/(fGnrt_yavg[3]/fNDIS_evt_MC_yavg[0])) : 0);
-        //
-        // if(fAcceptance_yavg[i][k].tab[c][0][0]<0) fAcceptance_yavg[i][k].tab[c][0][0]=0;
-        // if(fAcceptance_yavg[i][k].tab[c][0][1]<0) fAcceptance_yavg[i][k].tab[c][0][1]=0;
-        // if(fAcceptance_yavg[i][k].tab[c][0][2]<0) fAcceptance_yavg[i][k].tab[c][0][2]=0;
-        // if(fAcceptance_yavg[i][k].tab[c][0][3]<0) fAcceptance_yavg[i][k].tab[c][0][3]=0;
-        //
-        // double rd_prime[3];
-        // double rd[3];
-        // double gd[3];
-        // double rh_prime[4];
-        // double rh[4];
-        // double gh[4];
-        //
-        // rd_prime[0] = fNDIS_evt_yavg[0] - fNDIS_evt_c_yavg[0];
-        // rd_prime[1] = fNDIS_evt_yavg[1] - fNDIS_evt_c_yavg[1];
-        // rd_prime[2] = fNDIS_evt_yavg[2] - fNDIS_evt_c_yavg[2];
-        //
-        // rd[0] = fNDIS_evt_c_yavg[0];
-        // rd[1] = fNDIS_evt_c_yavg[1];
-        // rd[2] = fNDIS_evt_c_yavg[2];
-        //
-        // gd[0] = fNDIS_evt_MC_yavg[0];
-        // gd[1] = fNDIS_evt_MC_yavg[1];
-        // gd[2] = fNDIS_evt_MC_yavg[2];
-        //
-        // rh_prime[0] = fRcstr_yavg[0] - fRcstr_c_yavg[0];
-        // rh_prime[1] = fRcstr_yavg[1] - fRcstr_c_yavg[1];
-        // rh_prime[2] = fRcstr_yavg[2] - fRcstr_c_yavg[2];
-        // rh_prime[3] = fRcstr_yavg[3] - fRcstr_c_yavg[3];
-        //
-        // rh[0] = fRcstr_c_yavg[0];
-        // rh[1] = fRcstr_c_yavg[1];
-        // rh[2] = fRcstr_c_yavg[2];
-        // rh[3] = fRcstr_c_yavg[3];
-        //
-        // gh[0] = fGnrt_yavg[0];
-        // gh[1] = fGnrt_yavg[1];
-        // gh[2] = fGnrt_yavg[2];
-        // gh[3] = fGnrt_yavg[3];
-        //
-        // fAcceptance_yavg[i][k].tab[c][1][0] = sqrt(((rh[0]>0 && gh[0]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
-        //                                                                     *((rh[0]+1)*(gh[0]-rh[0]+1)/(pow(gh[0]+2,2)*(gh[0]+3))+rh_prime[0]/pow(gh[0],2)+pow(rh_prime[0],2)/pow(gh[0],3))
-        //                                                                     +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[0]+rh_prime[0])/gh[0],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
-        // fAcceptance_yavg[i][k].tab[c][1][1] = sqrt(((rh[1]>0 && gh[1]>0 && gd[1]>0 && ((rd[1]+rd_prime[1])!=0)) ? double(pow(gd[1]/(rd_prime[1]+rd[1]),2)
-        //                                                                     *((rh[1]+1)*(gh[1]-rh[1]+1)/(pow(gh[1]+2,2)*(gh[1]+3))+rh_prime[1]/pow(gh[1],2)+pow(rh_prime[1],2)/pow(gh[1],3))
-        //                                                                     +pow(gd[1]/(rd[1]+rd_prime[1]),4)*pow((rh[1]+rh_prime[1])/gh[1],2)*((rd[1]+1)*(gd[1]-rd[1]+1)/(pow(gd[1]+2,2)*(gd[1]+3))+rd_prime[1]/pow(gd[1],2)+pow(rd_prime[1],2)/pow(gd[1],3))) : 0));
-        // fAcceptance_yavg[i][k].tab[c][1][2] = sqrt(((rh[2]>0 && gh[2]>0 && gd[2]>0 && ((rd[2]+rd_prime[2])!=0)) ? double(pow(gd[2]/(rd_prime[2]+rd[2]),2)
-        //                                                                     *((rh[2]+1)*(gh[2]-rh[2]+1)/(pow(gh[2]+2,2)*(gh[2]+3))+rh_prime[2]/pow(gh[2],2)+pow(rh_prime[2],2)/pow(gh[2],3))
-        //                                                                     +pow(gd[2]/(rd[2]+rd_prime[2]),4)*pow((rh[2]+rh_prime[2])/gh[2],2)*((rd[2]+1)*(gd[2]-rd[2]+1)/(pow(gd[2]+2,2)*(gd[2]+3))+rd_prime[2]/pow(gd[2],2)+pow(rd_prime[2],2)/pow(gd[2],3))) : 0));
-        // fAcceptance_yavg[i][k].tab[c][1][3] = sqrt(((rh[3]>0 && gh[3]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
-        //                                                                     *((rh[3]+1)*(gh[3]-rh[3]+1)/(pow(gh[3]+2,2)*(gh[3]+3))+rh_prime[3]/pow(gh[3],2)+pow(rh_prime[3],2)/pow(gh[3],3))
-        //                                                                     +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[3]+rh_prime[3])/gh[3],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
-        //
-        // if(fAcceptance_yavg[i][k].tab[c][0][0]==0) fAcceptance_yavg[i][k].tab[c][1][0]=0;
-        // if(fAcceptance_yavg[i][k].tab[c][0][1]==0) fAcceptance_yavg[i][k].tab[c][1][1]=0;
-        // if(fAcceptance_yavg[i][k].tab[c][0][2]==0) fAcceptance_yavg[i][k].tab[c][1][2]=0;
-        // if(fAcceptance_yavg[i][k].tab[c][0][3]==0) fAcceptance_yavg[i][k].tab[c][1][3]=0;
-        //
-        // ofs_yavg << c << " " << fXrange[i] << " " << fZrange[k] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][0][0] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][1][0] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][0][1] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][1][1] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][0][2] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][1][2] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][0][3] << " " <<
-        // fAcceptance_yavg[i][k].tab[c][1][3] <<   endl;
-        //
-        // p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
-        // k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
-        // h_y.push_back(fAcceptance_yavg[i][k].tab[c][0][3]);
-        //
-        // p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][0]);
-        // k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][1]);
-        // h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][3]);
+
+        fAcceptance_yavg[i][k].tab[c][0][0] = ((fNDIS_evt_yavg[0] && fNDIS_evt_MC_yavg[0] && fGnrt_yavg[0]) ? double((fRcstr_yavg[0]/fNDIS_evt_yavg[0])/(fGnrt_yavg[0]/fNDIS_evt_MC_yavg[0])) : 0);
+        fAcceptance_yavg[i][k].tab[c][0][1] = ((fNDIS_evt_yavg[1] && fNDIS_evt_MC_yavg[1] && fGnrt_yavg[1]) ? double((fRcstr_yavg[1]/fNDIS_evt_yavg[1])/(fGnrt_yavg[1]/fNDIS_evt_MC_yavg[1])) : 0);
+        fAcceptance_yavg[i][k].tab[c][0][2] = ((fNDIS_evt_yavg[2] && fNDIS_evt_MC_yavg[2] && fGnrt_yavg[2]) ? double((fRcstr_yavg[2]/fNDIS_evt_yavg[2])/(fGnrt_yavg[2]/fNDIS_evt_MC_yavg[2])) : 0);
+        fAcceptance_yavg[i][k].tab[c][0][3] = ((fNDIS_evt_yavg[0] && fNDIS_evt_MC_yavg[0] && fGnrt_yavg[3]) ? double((fRcstr_yavg[3]/fNDIS_evt_yavg[0])/(fGnrt_yavg[3]/fNDIS_evt_MC_yavg[0])) : 0);
+
+        if(fAcceptance_yavg[i][k].tab[c][0][0]<0) fAcceptance_yavg[i][k].tab[c][0][0]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][1]<0) fAcceptance_yavg[i][k].tab[c][0][1]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][2]<0) fAcceptance_yavg[i][k].tab[c][0][2]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][3]<0) fAcceptance_yavg[i][k].tab[c][0][3]=0;
+
+        double rd_prime[3];
+        double rd[3];
+        double gd[3];
+        double rh_prime[4];
+        double rh[4];
+        double gh[4];
+
+        rd_prime[0] = fNDIS_evt_yavg[0] - fNDIS_evt_c_yavg[0];
+        rd_prime[1] = fNDIS_evt_yavg[1] - fNDIS_evt_c_yavg[1];
+        rd_prime[2] = fNDIS_evt_yavg[2] - fNDIS_evt_c_yavg[2];
+
+        rd[0] = fNDIS_evt_c_yavg[0];
+        rd[1] = fNDIS_evt_c_yavg[1];
+        rd[2] = fNDIS_evt_c_yavg[2];
+
+        gd[0] = fNDIS_evt_MC_yavg[0];
+        gd[1] = fNDIS_evt_MC_yavg[1];
+        gd[2] = fNDIS_evt_MC_yavg[2];
+
+        rh_prime[0] = fRcstr_yavg[0] - fRcstr_c_yavg[0];
+        rh_prime[1] = fRcstr_yavg[1] - fRcstr_c_yavg[1];
+        rh_prime[2] = fRcstr_yavg[2] - fRcstr_c_yavg[2];
+        rh_prime[3] = fRcstr_yavg[3] - fRcstr_c_yavg[3];
+
+        rh[0] = fRcstr_c_yavg[0];
+        rh[1] = fRcstr_c_yavg[1];
+        rh[2] = fRcstr_c_yavg[2];
+        rh[3] = fRcstr_c_yavg[3];
+
+        gh[0] = fGnrt_yavg[0];
+        gh[1] = fGnrt_yavg[1];
+        gh[2] = fGnrt_yavg[2];
+        gh[3] = fGnrt_yavg[3];
+
+        fAcceptance_yavg[i][k].tab[c][1][0] = sqrt(((rh[0]>0 && gh[0]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+                                                                            *((rh[0]+1)*(gh[0]-rh[0]+1)/(pow(gh[0]+2,2)*(gh[0]+3))+rh_prime[0]/pow(gh[0],2)+pow(rh_prime[0],2)/pow(gh[0],3))
+                                                                            +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[0]+rh_prime[0])/gh[0],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
+        fAcceptance_yavg[i][k].tab[c][1][1] = sqrt(((rh[1]>0 && gh[1]>0 && gd[1]>0 && ((rd[1]+rd_prime[1])!=0)) ? double(pow(gd[1]/(rd_prime[1]+rd[1]),2)
+                                                                            *((rh[1]+1)*(gh[1]-rh[1]+1)/(pow(gh[1]+2,2)*(gh[1]+3))+rh_prime[1]/pow(gh[1],2)+pow(rh_prime[1],2)/pow(gh[1],3))
+                                                                            +pow(gd[1]/(rd[1]+rd_prime[1]),4)*pow((rh[1]+rh_prime[1])/gh[1],2)*((rd[1]+1)*(gd[1]-rd[1]+1)/(pow(gd[1]+2,2)*(gd[1]+3))+rd_prime[1]/pow(gd[1],2)+pow(rd_prime[1],2)/pow(gd[1],3))) : 0));
+        fAcceptance_yavg[i][k].tab[c][1][2] = sqrt(((rh[2]>0 && gh[2]>0 && gd[2]>0 && ((rd[2]+rd_prime[2])!=0)) ? double(pow(gd[2]/(rd_prime[2]+rd[2]),2)
+                                                                            *((rh[2]+1)*(gh[2]-rh[2]+1)/(pow(gh[2]+2,2)*(gh[2]+3))+rh_prime[2]/pow(gh[2],2)+pow(rh_prime[2],2)/pow(gh[2],3))
+                                                                            +pow(gd[2]/(rd[2]+rd_prime[2]),4)*pow((rh[2]+rh_prime[2])/gh[2],2)*((rd[2]+1)*(gd[2]-rd[2]+1)/(pow(gd[2]+2,2)*(gd[2]+3))+rd_prime[2]/pow(gd[2],2)+pow(rd_prime[2],2)/pow(gd[2],3))) : 0));
+        fAcceptance_yavg[i][k].tab[c][1][3] = sqrt(((rh[3]>0 && gh[3]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+                                                                            *((rh[3]+1)*(gh[3]-rh[3]+1)/(pow(gh[3]+2,2)*(gh[3]+3))+rh_prime[3]/pow(gh[3],2)+pow(rh_prime[3],2)/pow(gh[3],3))
+                                                                            +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[3]+rh_prime[3])/gh[3],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
+
+        if(fAcceptance_yavg[i][k].tab[c][0][0]==0) fAcceptance_yavg[i][k].tab[c][1][0]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][1]==0) fAcceptance_yavg[i][k].tab[c][1][1]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][2]==0) fAcceptance_yavg[i][k].tab[c][1][2]=0;
+        if(fAcceptance_yavg[i][k].tab[c][0][3]==0) fAcceptance_yavg[i][k].tab[c][1][3]=0;
+
+        ofs_yavg << c << " " << fXrange[i] << " " << fZrange[k] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][0] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][0] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][1] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][1] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][2] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][2] << " " <<
+        fAcceptance_yavg[i][k].tab[c][0][3] << " " <<
+        fAcceptance_yavg[i][k].tab[c][1][3] <<   endl;
+
+        p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
+        k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
+        h_y.push_back(fAcceptance_yavg[i][k].tab[c][0][3]);
+
+        p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][0]);
+        k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][1]);
+        h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][3]);
       }
 
       for(int k=12; k>0; k--)
