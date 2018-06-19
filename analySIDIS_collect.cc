@@ -775,42 +775,42 @@ int main()
 
       if(!c)
       {
-        H_y[c][i][j]->SetMarkerColor(fMarkerColor[4]);
-        P_y[c][i][j]->SetMarkerColor(fMarkerColor[4]);
-        K_y[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+        H_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+        P_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+        K_y[c][i]->SetMarkerColor(fMarkerColor[4]);
       }
       else
       {
-        H_y[c][i][j]->SetMarkerColor(fMarkerColor[0]);
-        P_y[c][i][j]->SetMarkerColor(fMarkerColor[0]);
-        K_y[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+        H_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        P_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
       }
 
-      H_y[c][i][j]->SetMarkerSize(3);
-      P_y[c][i][j]->SetMarkerSize(3);
-      K_y[c][i][j]->SetMarkerSize(3);
+      H_y[c][i]->SetMarkerSize(3);
+      P_y[c][i]->SetMarkerSize(3);
+      K_y[c][i]->SetMarkerSize(3);
 
-      H_y[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
-      P_y[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
-      K_y[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+      H_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
+      P_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
+      K_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
 
-      H_y[c][i][j]->SetTitle("");
-      P_y[c][i][j]->SetTitle("");
-      K_y[c][i][j]->SetTitle("");
+      H_y[c][i]->SetTitle("");
+      P_y[c][i]->SetTitle("");
+      K_y[c][i]->SetTitle("");
 
-      H_y[c][i][j]->GetYaxis()->SetTitle("");
-      P_y[c][i][j]->GetYaxis()->SetTitle("");
-      K_y[c][i][j]->GetYaxis()->SetTitle("");
+      H_y[c][i]->GetYaxis()->SetTitle("");
+      P_y[c][i]->GetYaxis()->SetTitle("");
+      K_y[c][i]->GetYaxis()->SetTitle("");
 
-      H_y[c][i][j]->GetXaxis()->SetTitle("z");
-      P_y[c][i][j]->GetXaxis()->SetTitle("z");
-      K_y[c][i][j]->GetXaxis()->SetTitle("z");
+      H_y[c][i]->GetXaxis()->SetTitle("z");
+      P_y[c][i]->GetXaxis()->SetTitle("z");
+      K_y[c][i]->GetXaxis()->SetTitle("z");
 
       if(!h_y_empty)
       {
         c8->cd(i+1);
         gPad->SetFillStyle(4000);
-        if(H_y[c][i][j])
+        if(H_y[c][i])
         {
           if(!c)
           {
@@ -875,8 +875,8 @@ int main()
               P_y[c][i]->GetXaxis()->SetTitleSize(0.08);
               P_y[c][i]->GetXaxis()->SetTitleOffset(.8);
             }
-            P_[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
-            P_[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            P_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            P_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
               P_[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi}}");
