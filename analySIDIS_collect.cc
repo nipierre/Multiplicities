@@ -80,7 +80,7 @@ void fetch_yavg_acceptance(string pname)
     {
       for(int k=0; k<12; k++)
       {
-        for(int l=0; l<4; l++)
+        for(int l=0; l<3; l++)
         {
           acc_file >> dummy;
         }
