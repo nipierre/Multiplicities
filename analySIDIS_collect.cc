@@ -736,14 +736,14 @@ int main()
       {
         yavg(c,i,k);
 
-        p_y[c][i][j].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][0] ? Double_t(fBinning_yavg[0][0]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][0])) : 0));
-        k_y[c][i][j].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][1] ? Double_t(fBinning_yavg[0][1]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][1])) : 0));
-        h_y[c][i][j].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][3] ? Double_t(fBinning_yavg[0][3]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][3])) : 0));
-        p_y_err[c][i][j].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][0] ? Double_t(((fBinning_yavg[1][0]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][0],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][0],2)))
+        p_y[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][0] ? Double_t(fBinning_yavg[0][0]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][0])) : 0));
+        k_y[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][1] ? Double_t(fBinning_yavg[0][1]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][1])) : 0));
+        h_y[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][3] ? Double_t(fBinning_yavg[0][3]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][3])) : 0));
+        p_y_err[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][0] ? Double_t(((fBinning_yavg[1][0]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][0],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][0],2)))
                                                                                 + fAcceptance_yavg[i][k].tab[c][1][0]*pow(fBinning_yavg[0][0]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][0],2)),2)) : 0));
-        k_y_err[c][i][j].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][1] ? Double_t(((fBinning_yavg[1][1]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][1],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][1],2)))
+        k_y_err[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][1] ? Double_t(((fBinning_yavg[1][1]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][1],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][1],2)))
                                                                                 + fAcceptance_yavg[i][k].tab[c][1][1]*pow(fBinning_yavg[0][1]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][1],2)),2)) : 0));
-        h_y_err[c][i][j].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][3] ? Double_t(((fBinning_yavg[1][3]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][3],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][3],2)))
+        h_y_err[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][3] ? Double_t(((fBinning_yavg[1][3]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][3],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][3],2)))
                                                                                 + fAcceptance_yavg[i][k].tab[c][1][3]*pow(fBinning_yavg[0][3]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][3],2)),2)) : 0));
       }
 
@@ -890,10 +890,10 @@ int main()
           }
           else
           {
-            P_[c][i]->Draw("SAMEP");
-            P_[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            P_[c][i]->SetMinimum(0.);
-            P_[c][i]->SetMaximum(2.0);
+            P_y[c][i]->Draw("SAMEP");
+            P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            P_y[c][i]->SetMinimum(0.);
+            P_y[c][i]->SetMaximum(2.0);
           }
         }
         c9->Update();
