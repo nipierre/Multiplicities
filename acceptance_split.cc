@@ -1208,7 +1208,7 @@ int main(int argc, char **argv)
           fYBjkin.push_back(yBj);
           fWBjkin.push_back(sqrt(wBj));
           fNukin.push_back(nu);
-          fMu.push_back(E_beam);
+          fMu.push_back(E_beam->GetLeaf("E_beam")->GetValue());
           fX.push_back(x->GetLeaf("x")->GetValue());
           fY.push_back(y->GetLeaf("y")->GetValue());
 
