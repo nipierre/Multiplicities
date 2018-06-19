@@ -1264,12 +1264,12 @@ int main()
   c6->Print(Form("%s/pion_multiplicity_file.root",dirroot));
   c7->Print(Form("%s/kaon_multiplicity_file.pdf",dirroot));
   c7->Print(Form("%s/kaon_multiplicity_file.root",dirroot));
-  c8->Print(Form("%s/hadron_multiplicity_file.pdf",dirroot));
-  c8->Print(Form("%s/hadron_multiplicity_file.root",dirroot));
-  c9->Print(Form("%s/pion_multiplicity_file.pdf",dirroot));
-  c9->Print(Form("%s/pion_multiplicity_file.root",dirroot));
-  c10->Print(Form("%s/kaon_multiplicity_file.pdf",dirroot));
-  c10->Print(Form("%s/kaon_multiplicity_file.root",dirroot));
+  c8->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",dirroot));
+  c8->Print(Form("%s/hadron_multiplicity_yavg_file.root",dirroot));
+  c9->Print(Form("%s/pion_multiplicity_yavg_file.pdf",dirroot));
+  c9->Print(Form("%s/pion_multiplicity_yavg_file.root",dirroot));
+  c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",dirroot));
+  c10->Print(Form("%s/kaon_multiplicity_yavg_file.root",dirroot));
 
   ofs_p.close();
   ofs_k.close();
