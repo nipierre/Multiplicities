@@ -353,6 +353,13 @@ int main()
       std::vector<double> z_range_k_y;
       std::vector<double> z_range_h_y;
 
+      for(int l=0; l<12; l++)
+      {
+        z_range_p_y.push_back(z_range[l]);
+        z_range_k_y.push_back(z_range[l]);
+        z_range_h_y.push_back(z_range[l]);
+      }
+
       for(int j=0; j<6; j++)
       {
 
@@ -960,13 +967,13 @@ int main()
         fAcceptance_yavg[i][k].tab[c][0][3] << " " <<
         fAcceptance_yavg[i][k].tab[c][1][3] <<   endl;
 
-        // p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
-        // k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
-        // h_y.push_back(fAcceptance_yavg[i][k].tab[c][0][3]);
-        //
-        // p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][0]);
-        // k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][1]);
-        // h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][3]);
+        p_y.push_back(fAcceptance_yavg[i][k].tab[c][0][0]);
+        k_y.push_back(fAcceptance_yavg[i][k].tab[c][0][1]);
+        h_y.push_back(fAcceptance_yavg[i][k].tab[c][0][3]);
+
+        p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][0]);
+        k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][1]);
+        h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][1][3]);
       }
 
       for(int k=12; k>0; k--)
