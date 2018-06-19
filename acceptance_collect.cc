@@ -583,12 +583,12 @@ int main()
             if(!h_corr[l-1]) {h_corr.erase(h_corr.begin()+l-1); h_cerr.erase(h_cerr.begin()+l-1); zvtx_range_h.erase(zvtx_range_h.begin()+l-1);}
           }
 
-          bool p_corr_empty = 0;
-          bool k_corr_empty = 0;
+          // bool p_corr_empty = 0;
+          // bool k_corr_empty = 0;
           bool h_corr_empty = 0;
 
-          if(!(int(p_corr.size()))) p_corr_empty = 1;
-          if(!(int(k_corr.size()))) k_corr_empty = 1;
+          // if(!(int(p_corr.size()))) p_corr_empty = 1;
+          // if(!(int(k_corr.size()))) k_corr_empty = 1;
           if(!(int(h_corr.size()))) h_corr_empty = 1;
 
           H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
