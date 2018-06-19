@@ -10,7 +10,7 @@ LHAPDF = /sps/compass/npierre/LHAPDF6
 LHAPDF_INCL += -I$(LHAPDF)/include
 LHAPDF_LIBS += -L$(LHAPDF)/lib -lLHAPDF
 
-ifeq ($(debug),1)
+ifeq ($(DEBUG),1)
 CCFLAGS += -DDEBUG
 endif
 
