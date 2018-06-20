@@ -167,8 +167,8 @@ int main(int argc, char **argv)
     fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()));
     fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()));
 
-    ifstream dis_file(Form("rawmult/%d/DIS_%d.txt",year,periodName.c_str()));
-    ifstream had_file(Form("rawmult/%d/hadron_%d.txt",year,periodName.c_str()));
+    ifstream dis_file(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()));
+    ifstream had_file(Form("rawmult/%d/hadron_%s.txt",year,periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
