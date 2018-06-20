@@ -750,7 +750,7 @@ int main(int argc, char **argv)
   {
     periods >> periodBit;
     if(!periodBit) continue;
-    filelist = Form("%s/%s/filelist.txt",data_path,periodName)
+    filelist = Form("%s/%s/filelist.txt",data_path,periodName);
     ifstream list(filelist);
     string filename;
 
