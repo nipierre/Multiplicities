@@ -1774,12 +1774,13 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][2].push_back(res_vect[1][0]);
               pzcontainer.vec[1][3].push_back(res_vect[2][0]);
 
-              pzcontainer_err.vec[1][0].push_back(pow(res_vect_err[0],2));
-              pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[1],2));
-              pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[2],2));
+              pzcontainer_err.vec[1][0].push_back(zBj);
+              pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[0],2));
+              pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[1],2));
+              pzcontainer_err.vec[1][3].push_back(pow(res_vect_err[2],2));
 
               pzcontainer.vec[1][4].push_back(hadron_nb);
-              pzcontainer_err.vec[1][3].push_back(pow(hadron_nb,2));
+              pzcontainer_err.vec[1][4].push_back(hadron_nb);
 
               hadcontainer.vec.push_back(0);
   #ifdef DEBUG
@@ -1812,12 +1813,13 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][2].push_back(res_vect[1][0]);
               pzcontainer.vec[0][3].push_back(res_vect[2][0]);
 
-              pzcontainer_err.vec[0][0].push_back(pow(res_vect_err[0],2));
-              pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[1],2));
-              pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[2],2));
+              pzcontainer_err.vec[0][0].push_back(zBj);
+              pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[0],2));
+              pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[1],2));
+              pzcontainer_err.vec[0][3].push_back(pow(res_vect_err[2],2));
 
               pzcontainer.vec[0][4].push_back(hadron_nb);
-              pzcontainer_err.vec[0][3].push_back(pow(hadron_nb,2));
+              pzcontainer_err.vec[0][4].push_back(hadron_nb);
 
               hadcontainer.vec.push_back(1);
   #ifdef DEBUG
@@ -1832,7 +1834,7 @@ int main(int argc, char **argv)
               fHplus++;
 
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
-              pzcontainer_err.vec[1][3].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
+              pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
             }
             if(!fFlag[1][xbin][ybin][zbin])
@@ -1858,14 +1860,15 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][2].push_back(res_vect[1][0]);
               pzcontainer.vec[1][3].push_back(res_vect[2][0]);
 
-              pzcontainer_err.vec[1][0].push_back(pow(res_vect_err[0],2));
-              pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[1],2));
-              pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[2],2));
+              pzcontainer_err.vec[1][0].push_back(zBj);
+              pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[0],2));
+              pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[1],2));
+              pzcontainer_err.vec[1][3].push_back(pow(res_vect_err[2],2));
 
               if(!hadron_flag)
               {
                 pzcontainer.vec[1][4].push_back(0);
-                pzcontainer_err.vec[1][3].push_back(0);
+                pzcontainer_err.vec[1][4].push_back(0);
               }
 
               hadcontainer.vec.push_back(2);
@@ -1880,7 +1883,7 @@ int main(int argc, char **argv)
             {
               fHminus++;
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
-              pzcontainer_err.vec[0][3].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
+              pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
             }
             if(!fFlag[1][xbin][ybin][zbin])
@@ -1906,14 +1909,15 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][2].push_back(res_vect[1][0]);
               pzcontainer.vec[0][3].push_back(res_vect[2][0]);
 
-              pzcontainer_err.vec[0][0].push_back(pow(res_vect_err[0],2));
-              pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[1],2));
-              pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[2],2));
+              pzcontainer_err.vec[0][0].push_back(zBj);
+              pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[0],2));
+              pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[1],2));
+              pzcontainer_err.vec[0][3].push_back(pow(res_vect_err[2],2));
 
               if(!hadron_flag)
               {
                 pzcontainer.vec[0][4].push_back(0);
-                pzcontainer_err.vec[0][3].push_back(0);
+                pzcontainer_err.vec[0][4].push_back(0);
               }
 
               hadcontainer.vec.push_back(3);
@@ -1928,7 +1932,7 @@ int main(int argc, char **argv)
             {
               fHplus++;
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
-              pzcontainer_err.vec[1][3].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
+              pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
             }
             if(!fFlag[2][xbin][ybin][zbin])
@@ -1954,14 +1958,15 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][2].push_back(res_vect[1][0]);
               pzcontainer.vec[1][3].push_back(res_vect[2][0]);
 
-              pzcontainer_err.vec[1][0].push_back(pow(res_vect_err[0],2));
-              pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[1],2));
-              pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[2],2));
+              pzcontainer_err.vec[1][0].push_back(zBj);
+              pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[0],2));
+              pzcontainer_err.vec[1][2].push_back(pow(res_vect_err[1],2));
+              pzcontainer_err.vec[1][3].push_back(pow(res_vect_err[2],2));
 
               if(!hadron_flag)
               {
                 pzcontainer.vec[1][4].push_back(0);
-                pzcontainer_err.vec[1][3].push_back(0);
+                pzcontainer_err.vec[1][4].push_back(0);
               }
 
               hadcontainer.vec.push_back(0);
@@ -1976,7 +1981,7 @@ int main(int argc, char **argv)
             {
               fHminus++;
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
-              pzcontainer_err.vec[0][3].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
+              pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
             }
             if(!fFlag[2][xbin][ybin][zbin])
@@ -2002,14 +2007,15 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][2].push_back(res_vect[1][0]);
               pzcontainer.vec[0][3].push_back(res_vect[2][0]);
 
-              pzcontainer_err.vec[0][0].push_back(pow(res_vect_err[0],2));
-              pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[1],2));
-              pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[2],2));
+              pzcontainer_err.vec[0][0].push_back(zBj);
+              pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[0],2));
+              pzcontainer_err.vec[0][2].push_back(pow(res_vect_err[1],2));
+              pzcontainer_err.vec[0][3].push_back(pow(res_vect_err[2],2));
 
               if(!hadron_flag)
               {
                 pzcontainer.vec[0][4].push_back(0);
-                pzcontainer_err.vec[0][3].push_back(0);
+                pzcontainer_err.vec[0][4].push_back(0);
               }
 
               hadcontainer.vec.push_back(5);
@@ -2023,12 +2029,12 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHplus++;
-              pzcontainer.vec[1][0].push_back(zBj);
-              pzcontainer.vec[1][1].push_back(0); pzcontainer_err.vec[1][0].push_back(0);
-              pzcontainer.vec[1][2].push_back(0); pzcontainer_err.vec[1][1].push_back(0);
-              pzcontainer.vec[1][3].push_back(0); pzcontainer_err.vec[1][2].push_back(0);
+              pzcontainer.vec[1][0].push_back(zBj); pzcontainer_err.vec[1][0].push_back(zBj);
+              pzcontainer.vec[1][1].push_back(0); pzcontainer_err.vec[1][1].push_back(0);
+              pzcontainer.vec[1][2].push_back(0); pzcontainer_err.vec[1][2].push_back(0);
+              pzcontainer.vec[1][3].push_back(0); pzcontainer_err.vec[1][3].push_back(0);
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
-              pzcontainer_err.vec[1][3].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
+              pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadcontainer.vec.push_back(6);
             }
           }
@@ -2037,12 +2043,12 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHminus++;
-              pzcontainer.vec[0][0].push_back(zBj);
-              pzcontainer.vec[0][1].push_back(0); pzcontainer_err.vec[0][0].push_back(0);
-              pzcontainer.vec[0][2].push_back(0); pzcontainer_err.vec[0][1].push_back(0);
-              pzcontainer.vec[0][3].push_back(0); pzcontainer_err.vec[0][2].push_back(0);
+              pzcontainer.vec[0][0].push_back(zBj); pzcontainer_err.vec[0][0].push_back(zBj);
+              pzcontainer.vec[0][1].push_back(0); pzcontainer_err.vec[0][1].push_back(0);
+              pzcontainer.vec[0][2].push_back(0); pzcontainer_err.vec[0][2].push_back(0);
+              pzcontainer.vec[0][3].push_back(0); pzcontainer_err.vec[0][3].push_back(0);
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
-              pzcontainer_err.vec[0][3].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
+              pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadcontainer.vec.push_back(7);
             }
           }
@@ -2520,7 +2526,7 @@ int main(int argc, char **argv)
             for(int ll=0; ll<4; ll++)
             {
               fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
-              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll][l];
+              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
