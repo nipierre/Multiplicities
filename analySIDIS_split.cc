@@ -275,11 +275,11 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
   else if(0.8<=y && y<0.85) yb = 16;
   else yb = 17;
 
-  if(2006)
+  if(Y2006)
   {
     return 1;
   }
-  else if(2012 || 2016)
+  else if(Y2012 || Y2016)
   {
     return fInclusiveRCproton[xb][yb];
   }
@@ -326,11 +326,11 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   else if(0.75<=z && z<0.85) zb = 12;
   else zb = 13;
 
-  if(2006)
+  if(Y2006)
   {
     return 1;
   }
-  else if(2012 || 2016)
+  else if(Y2012 || Y2016)
   {
     return fSemiInclusiveRCproton[xb][yb][zb];
   }
