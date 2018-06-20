@@ -283,6 +283,7 @@ int main(int argc, char **argv)
         }
       }
     }
+  }
 
   TCanvas* c5;
   c5 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
