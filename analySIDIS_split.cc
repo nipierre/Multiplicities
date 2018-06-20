@@ -2348,166 +2348,166 @@ int main(int argc, char **argv)
 
       }
       cout << "\n" << endl;
-    }
 
-    // Loose cut
+      // Loose cut
 
-    for(int i=0; i<int(Q2loose.size()); i++)
-    {
-      if(0.004<=XBjloose[i] && XBjloose[i]<0.01) xbin = 0;
-      else if(0.01<=XBjloose[i] && XBjloose[i]<0.02) xbin = 1;
-      else if(0.02<=XBjloose[i] && XBjloose[i]<0.03) xbin = 2;
-      else if(0.03<=XBjloose[i] && XBjloose[i]<0.04) xbin = 3;
-      else if(0.04<=XBjloose[i] && XBjloose[i]<0.06) xbin = 4;
-      else if(0.06<=XBjloose[i] && XBjloose[i]<0.1) xbin = 5;
-      else if(0.1<=XBjloose[i] && XBjloose[i]<0.14) xbin = 6;
-      else if(0.1<=XBjloose[i] && XBjloose[i]<0.18) xbin = 7;
-      else xbin = 8;
-
-      if(0.1<YBjloose[i] && YBjloose[i]<0.15) ybin = 0;
-      else if(0.15<YBjloose[i] && YBjloose[i]<0.2) ybin = 1;
-      else if(0.2<YBjloose[i] && YBjloose[i]<0.3) ybin = 2;
-      else if(0.3<YBjloose[i] && YBjloose[i]<0.5) ybin = 3;
-      else if(0.5<YBjloose[i] && YBjloose[i]<0.7) ybin = 4;
-      else ybin = 5;
-
-      for(int j=0; j<2; j++)
+      for(int i=0; i<int(Q2loose.size()); i++)
       {
-        for(int l=0; l<int(Pvszloose[i].vec[j][0].size()); l++)
-        {
-          if(0.2<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.25) zbin = 0;
-          else if(0.25<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.30) zbin = 1;
-          else if(0.30<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.35) zbin = 2;
-          else if(0.35<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.40) zbin = 3;
-          else if(0.40<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.45) zbin = 4;
-          else if(0.45<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.50) zbin = 5;
-          else if(0.50<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.55) zbin = 6;
-          else if(0.55<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.60) zbin = 7;
-          else if(0.60<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.65) zbin = 8;
-          else if(0.65<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.70) zbin = 9;
-          else if(0.70<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.75) zbin = 10;
-          else zbin = 11;
+        if(0.004<=XBjloose[i] && XBjloose[i]<0.01) xbin = 0;
+        else if(0.01<=XBjloose[i] && XBjloose[i]<0.02) xbin = 1;
+        else if(0.02<=XBjloose[i] && XBjloose[i]<0.03) xbin = 2;
+        else if(0.03<=XBjloose[i] && XBjloose[i]<0.04) xbin = 3;
+        else if(0.04<=XBjloose[i] && XBjloose[i]<0.06) xbin = 4;
+        else if(0.06<=XBjloose[i] && XBjloose[i]<0.1) xbin = 5;
+        else if(0.1<=XBjloose[i] && XBjloose[i]<0.14) xbin = 6;
+        else if(0.1<=XBjloose[i] && XBjloose[i]<0.18) xbin = 7;
+        else xbin = 8;
 
-          for(int ll=0; ll<4; ll++)
+        if(0.1<YBjloose[i] && YBjloose[i]<0.15) ybin = 0;
+        else if(0.15<YBjloose[i] && YBjloose[i]<0.2) ybin = 1;
+        else if(0.2<YBjloose[i] && YBjloose[i]<0.3) ybin = 2;
+        else if(0.3<YBjloose[i] && YBjloose[i]<0.5) ybin = 3;
+        else if(0.5<YBjloose[i] && YBjloose[i]<0.7) ybin = 4;
+        else ybin = 5;
+
+        for(int j=0; j<2; j++)
+        {
+          for(int l=0; l<int(Pvszloose[i].vec[j][0].size()); l++)
           {
-            fBinning_loose[xbin][ybin][zbin].tab[j][0][ll] += Pvszloose[i].vec[j][ll+1][l];
+            if(0.2<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.25) zbin = 0;
+            else if(0.25<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.30) zbin = 1;
+            else if(0.30<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.35) zbin = 2;
+            else if(0.35<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.40) zbin = 3;
+            else if(0.40<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.45) zbin = 4;
+            else if(0.45<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.50) zbin = 5;
+            else if(0.50<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.55) zbin = 6;
+            else if(0.55<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.60) zbin = 7;
+            else if(0.60<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.65) zbin = 8;
+            else if(0.65<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.70) zbin = 9;
+            else if(0.70<Pvszloose[i].vec[j][0][l] && Pvszloose[i].vec[j][0][l]<0.75) zbin = 10;
+            else zbin = 11;
+
+            for(int ll=0; ll<4; ll++)
+            {
+              fBinning_loose[xbin][ybin][zbin].tab[j][0][ll] += Pvszloose[i].vec[j][ll+1][l];
+            }
+          }
+        }
+
+      }
+
+      // Severe cut
+
+      for(int i=0; i<int(Q2severe.size()); i++)
+      {
+        if(0.004<=XBjsevere[i] && XBjsevere[i]<0.01) xbin = 0;
+        else if(0.01<=XBjsevere[i] && XBjsevere[i]<0.02) xbin = 1;
+        else if(0.02<=XBjsevere[i] && XBjsevere[i]<0.03) xbin = 2;
+        else if(0.03<=XBjsevere[i] && XBjsevere[i]<0.04) xbin = 3;
+        else if(0.04<=XBjsevere[i] && XBjsevere[i]<0.06) xbin = 4;
+        else if(0.06<=XBjsevere[i] && XBjsevere[i]<0.1) xbin = 5;
+        else if(0.1<=XBjsevere[i] && XBjsevere[i]<0.14) xbin = 6;
+        else if(0.1<=XBjsevere[i] && XBjsevere[i]<0.18) xbin = 7;
+        else xbin = 8;
+
+        if(0.1<YBjsevere[i] && YBjsevere[i]<0.15) ybin = 0;
+        else if(0.15<YBjsevere[i] && YBjsevere[i]<0.2) ybin = 1;
+        else if(0.2<YBjsevere[i] && YBjsevere[i]<0.3) ybin = 2;
+        else if(0.3<YBjsevere[i] && YBjsevere[i]<0.5) ybin = 3;
+        else if(0.5<YBjsevere[i] && YBjsevere[i]<0.7) ybin = 4;
+        else ybin = 5;
+
+        for(int j=0; j<2; j++)
+        {
+          for(int l=0; l<int(Pvszsevere[i].vec[j][0].size()); l++)
+          {
+            if(0.2<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.25) zbin = 0;
+            else if(0.25<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.30) zbin = 1;
+            else if(0.30<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.35) zbin = 2;
+            else if(0.35<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.40) zbin = 3;
+            else if(0.40<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.45) zbin = 4;
+            else if(0.45<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.50) zbin = 5;
+            else if(0.50<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.55) zbin = 6;
+            else if(0.55<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.60) zbin = 7;
+            else if(0.60<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.65) zbin = 8;
+            else if(0.65<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.70) zbin = 9;
+            else if(0.70<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.75) zbin = 10;
+            else zbin = 11;
+
+            for(int ll=0; ll<4; ll++)
+            {
+              fBinning_severe[xbin][ybin][zbin].tab[j][0][ll] += Pvszsevere[i].vec[j][ll+1][l];
+            }
+          }
+        }
+
+      }
+
+      for(int i=0; i<int(Q2local.size()); i++)
+      {
+        if(0.004<=XBjlocal[i] && XBjlocal[i]<0.01) xbin = 0;
+        else if(0.01<=XBjlocal[i] && XBjlocal[i]<0.02) xbin = 1;
+        else if(0.02<=XBjlocal[i] && XBjlocal[i]<0.03) xbin = 2;
+        else if(0.03<=XBjlocal[i] && XBjlocal[i]<0.04) xbin = 3;
+        else if(0.04<=XBjlocal[i] && XBjlocal[i]<0.06) xbin = 4;
+        else if(0.06<=XBjlocal[i] && XBjlocal[i]<0.1) xbin = 5;
+        else if(0.1<=XBjlocal[i] && XBjlocal[i]<0.14) xbin = 6;
+        else if(0.1<=XBjlocal[i] && XBjlocal[i]<0.18) xbin = 7;
+        else xbin = 8;
+
+        if(0.1<YBjlocal[i] && YBjlocal[i]<0.15) ybin = 0;
+        else if(0.15<YBjlocal[i] && YBjlocal[i]<0.2) ybin = 1;
+        else if(0.2<YBjlocal[i] && YBjlocal[i]<0.3) ybin = 2;
+        else if(0.3<YBjlocal[i] && YBjlocal[i]<0.5) ybin = 3;
+        else if(0.5<YBjlocal[i] && YBjlocal[i]<0.7) ybin = 4;
+        else ybin = 5;
+
+        for(int j=0; j<2; j++)
+        {
+          for(int l=0; l<int(Pvszlocal[i].vec[j][0].size()); l++)
+          {
+            if(0.2<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.25) zbin = 0;
+            else if(0.25<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.30) zbin = 1;
+            else if(0.30<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.35) zbin = 2;
+            else if(0.35<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.40) zbin = 3;
+            else if(0.40<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.45) zbin = 4;
+            else if(0.45<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.50) zbin = 5;
+            else if(0.50<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.55) zbin = 6;
+            else if(0.55<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.60) zbin = 7;
+            else if(0.60<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.65) zbin = 8;
+            else if(0.65<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.70) zbin = 9;
+            else if(0.70<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.75) zbin = 10;
+            else zbin = 11;
+
+            if(kin_flag) fKinematics[3]->Fill(Pvszlocal[i].vec[j][0][l]);
+
+            for(int ll=0; ll<4; ll++)
+            {
+              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
+              //fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
+              fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
+              fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
+              fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
+              fMeanvalues[xbin][ybin][zbin].vec[j][ll][3].push_back(Pvszlocal[i].vec[j][0][l]);
+            }
           }
         }
       }
 
+      Pvszlocal.clear();
+      Pvsz_errlocal.clear();
+      XBjlocal.clear();
+      YBjlocal.clear();
+      Q2local.clear();
+      Pvszloose.clear();
+      XBjloose.clear();
+      YBjloose.clear();
+      Q2loose.clear();
+      Pvszsevere.clear();
+      XBjsevere.clear();
+      YBjsevere.clear();
+      Q2severe.clear();
     }
-
-    // Severe cut
-
-    for(int i=0; i<int(Q2severe.size()); i++)
-    {
-      if(0.004<=XBjsevere[i] && XBjsevere[i]<0.01) xbin = 0;
-      else if(0.01<=XBjsevere[i] && XBjsevere[i]<0.02) xbin = 1;
-      else if(0.02<=XBjsevere[i] && XBjsevere[i]<0.03) xbin = 2;
-      else if(0.03<=XBjsevere[i] && XBjsevere[i]<0.04) xbin = 3;
-      else if(0.04<=XBjsevere[i] && XBjsevere[i]<0.06) xbin = 4;
-      else if(0.06<=XBjsevere[i] && XBjsevere[i]<0.1) xbin = 5;
-      else if(0.1<=XBjsevere[i] && XBjsevere[i]<0.14) xbin = 6;
-      else if(0.1<=XBjsevere[i] && XBjsevere[i]<0.18) xbin = 7;
-      else xbin = 8;
-
-      if(0.1<YBjsevere[i] && YBjsevere[i]<0.15) ybin = 0;
-      else if(0.15<YBjsevere[i] && YBjsevere[i]<0.2) ybin = 1;
-      else if(0.2<YBjsevere[i] && YBjsevere[i]<0.3) ybin = 2;
-      else if(0.3<YBjsevere[i] && YBjsevere[i]<0.5) ybin = 3;
-      else if(0.5<YBjsevere[i] && YBjsevere[i]<0.7) ybin = 4;
-      else ybin = 5;
-
-      for(int j=0; j<2; j++)
-      {
-        for(int l=0; l<int(Pvszsevere[i].vec[j][0].size()); l++)
-        {
-          if(0.2<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.25) zbin = 0;
-          else if(0.25<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.30) zbin = 1;
-          else if(0.30<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.35) zbin = 2;
-          else if(0.35<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.40) zbin = 3;
-          else if(0.40<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.45) zbin = 4;
-          else if(0.45<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.50) zbin = 5;
-          else if(0.50<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.55) zbin = 6;
-          else if(0.55<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.60) zbin = 7;
-          else if(0.60<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.65) zbin = 8;
-          else if(0.65<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.70) zbin = 9;
-          else if(0.70<Pvszsevere[i].vec[j][0][l] && Pvszsevere[i].vec[j][0][l]<0.75) zbin = 10;
-          else zbin = 11;
-
-          for(int ll=0; ll<4; ll++)
-          {
-            fBinning_severe[xbin][ybin][zbin].tab[j][0][ll] += Pvszsevere[i].vec[j][ll+1][l];
-          }
-        }
-      }
-
-    }
-
-    for(int i=0; i<int(Q2local.size()); i++)
-    {
-      if(0.004<=XBjlocal[i] && XBjlocal[i]<0.01) xbin = 0;
-      else if(0.01<=XBjlocal[i] && XBjlocal[i]<0.02) xbin = 1;
-      else if(0.02<=XBjlocal[i] && XBjlocal[i]<0.03) xbin = 2;
-      else if(0.03<=XBjlocal[i] && XBjlocal[i]<0.04) xbin = 3;
-      else if(0.04<=XBjlocal[i] && XBjlocal[i]<0.06) xbin = 4;
-      else if(0.06<=XBjlocal[i] && XBjlocal[i]<0.1) xbin = 5;
-      else if(0.1<=XBjlocal[i] && XBjlocal[i]<0.14) xbin = 6;
-      else if(0.1<=XBjlocal[i] && XBjlocal[i]<0.18) xbin = 7;
-      else xbin = 8;
-
-      if(0.1<YBjlocal[i] && YBjlocal[i]<0.15) ybin = 0;
-      else if(0.15<YBjlocal[i] && YBjlocal[i]<0.2) ybin = 1;
-      else if(0.2<YBjlocal[i] && YBjlocal[i]<0.3) ybin = 2;
-      else if(0.3<YBjlocal[i] && YBjlocal[i]<0.5) ybin = 3;
-      else if(0.5<YBjlocal[i] && YBjlocal[i]<0.7) ybin = 4;
-      else ybin = 5;
-
-      for(int j=0; j<2; j++)
-      {
-        for(int l=0; l<int(Pvszlocal[i].vec[j][0].size()); l++)
-        {
-          if(0.2<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.25) zbin = 0;
-          else if(0.25<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.30) zbin = 1;
-          else if(0.30<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.35) zbin = 2;
-          else if(0.35<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.40) zbin = 3;
-          else if(0.40<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.45) zbin = 4;
-          else if(0.45<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.50) zbin = 5;
-          else if(0.50<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.55) zbin = 6;
-          else if(0.55<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.60) zbin = 7;
-          else if(0.60<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.65) zbin = 8;
-          else if(0.65<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.70) zbin = 9;
-          else if(0.70<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.75) zbin = 10;
-          else zbin = 11;
-
-          if(kin_flag) fKinematics[3]->Fill(Pvszlocal[i].vec[j][0][l]);
-
-          for(int ll=0; ll<4; ll++)
-          {
-            fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
-            //fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
-            fMeanvalues[xbin][ybin][zbin].vec[j][ll][3].push_back(Pvszlocal[i].vec[j][0][l]);
-          }
-        }
-      }
-    }
-
-    Pvszlocal.clear();
-    Pvsz_errlocal.clear();
-    XBjlocal.clear();
-    YBjlocal.clear();
-    Q2local.clear();
-    Pvszloose.clear();
-    XBjloose.clear();
-    YBjloose.clear();
-    Q2loose.clear();
-    Pvszsevere.clear();
-    XBjsevere.clear();
-    YBjsevere.clear();
-    Q2severe.clear();
   }
 
   if(kin_flag)
