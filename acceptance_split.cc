@@ -511,7 +511,7 @@ int main(int argc, char **argv)
     periods >> periodBit;
     if(!periodBit) continue;
 
-    ifstream list("%s/%s/filelist.txt",data_path,periodName.c_str());
+    ifstream list(Form("%s/%s/filelist.txt",data_path,periodName.c_str()));
     string filename;
     while(list >> filename)
     {
