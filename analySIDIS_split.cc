@@ -673,6 +673,48 @@ void save_kin_plots()
   c11.Print("kinSIDIS.pdf)","pdf");
 }
 
+void resetValues()
+{
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          fNDIS_evt[0][i][j][k]=0; fNDIS_evt_err[0][i][j][k]=0;
+          fBinning[i][j][k].tab[c][0][0] = 0; fBinning[i][j][k].tab[c][1][0] = 0;
+          fBinning[i][j][k].tab[c][0][1] = 0; fBinning[i][j][k].tab[c][1][1] = 0;
+          fBinning[i][j][k].tab[c][0][2] = 0; fBinning[i][j][k].tab[c][1][2] = 0;
+          fBinning[i][j][k].tab[c][0][3] = 0; fBinning[i][j][k].tab[c][1][3] = 0;
+          fBinning_loose[i][j][k].tab[c][0][0] = 0; fBinning_severe[i][j][k].tab[c][0][0] = 0;
+          fBinning_loose[i][j][k].tab[c][0][1] = 0; fBinning_severe[i][j][k].tab[c][0][1] = 0;
+          fBinning_loose[i][j][k].tab[c][0][2] = 0; fBinning_severe[i][j][k].tab[c][0][2] = 0;
+          fBinning_loose[i][j][k].tab[c][0][3] = 0; fBinning_severe[i][j][k].tab[c][0][3] = 0;
+
+          for(int ll=0; ll<4; ll++)
+          {
+            fMeanvalues_data[i][j][k].tab[c][ll][0]=0;
+            fMeanvalues_data[i][j][k].tab[c][ll][1]=0;
+            fMeanvalues_data[i][j][k].tab[c][ll][2]=0;
+            fMeanvalues_data[i][j][k].tab[c][ll][3]=0;
+            fMeanvalues_size[i][j][k].tab[c][ll][0]=0;
+            fMeanvalues_size[i][j][k].tab[c][ll][1]=0;
+            fMeanvalues_size[i][j][k].tab[c][ll][2]=0;
+            fMeanvalues_size[i][j][k].tab[c][ll][3]=0;
+            fMeanvalues[i][j][k].vec[c][ll][0].clear();
+            fMeanvalues[i][j][k].vec[c][ll][1].clear();
+            fMeanvalues[i][j][k].vec[c][ll][2].clear();
+            fMeanvalues[i][j][k].vec[c][ll][3].clear();
+          }
+
+        }
+      }
+    }
+  }
+}
+
 int main(int argc, char **argv)
 {
 
@@ -680,7 +722,7 @@ int main(int argc, char **argv)
   {
     cout << "ERROR : Not enough arguments." << endl;
     cout << "Asked : at least 1 *** Received : " << argc-1 << endl;
-    cout << "./analySIDIS_split filelist" << endl;
+    cout << "./analySIDIS_split periodFile" << endl;
 
     return 1;
   }
@@ -2484,7 +2526,7 @@ int main(int argc, char **argv)
             for(int ll=0; ll<4; ll++)
             {
               fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
-              //fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
+              fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
@@ -2508,6 +2550,84 @@ int main(int argc, char **argv)
       YBjsevere.clear();
       Q2severe.clear();
     }
+
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int c=0; c<2; c++)
+          {
+            for(int ll=0; ll<4; ll++)
+            {
+              for(int sv=0; sv<int(fMeanvalues[i][j][k].vec[c][ll][0].size()); sv++)
+              {
+                fMeanvalues_data[i][j][k].tab[c][ll][0] += fMeanvalues[i][j][k].vec[c][ll][0][sv];
+                fMeanvalues_data[i][j][k].tab[c][ll][1] += fMeanvalues[i][j][k].vec[c][ll][1][sv];
+                fMeanvalues_data[i][j][k].tab[c][ll][2] += fMeanvalues[i][j][k].vec[c][ll][2][sv];
+                fMeanvalues_data[i][j][k].tab[c][ll][3] += fMeanvalues[i][j][k].vec[c][ll][3][sv];
+              }
+
+              if(int(fMeanvalues[i][j][k].vec[c][ll][0].size()))
+              {
+                fMeanvalues_size[i][j][k].tab[c][ll][0] = int(fMeanvalues[i][j][k].vec[c][ll][0].size());
+                fMeanvalues_size[i][j][k].tab[c][ll][1] = int(fMeanvalues[i][j][k].vec[c][ll][1].size());
+                fMeanvalues_size[i][j][k].tab[c][ll][2] = int(fMeanvalues[i][j][k].vec[c][ll][2].size());
+                fMeanvalues_size[i][j][k].tab[c][ll][3] = int(fMeanvalues[i][j][k].vec[c][ll][3].size());
+              }
+            }
+          }
+        }
+      }
+    }
+
+    ofstream ofs_h(Form("rawmult/%d/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_d(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream xc(Form("rawmult/%d/xcheck_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+
+    for(int c=0; c<2; c++)
+    {
+      for(int i=0; i<9; i++)
+      {
+        for(int j=0; j<6; j++)
+        {
+          for(int k=0; k<12; k++)
+          {
+            if(!c)
+            {
+              ofs_d << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt_err[0][i][j][k];
+            }
+
+            for(int ll=0; ll<4; ll++)
+            {
+              ofs_d << " " << fMeanvalues_data[i][j][k].tab[c][ll][0] << " " <<
+                              fMeanvalues_data[i][j][k].tab[c][ll][1] << " " <<
+                              fMeanvalues_data[i][j][k].tab[c][ll][2] << " " <<
+                              fMeanvalues_data[i][j][k].tab[c][ll][3] << " " << fMeanvalues_size[i][j][k].tab[c][ll][0];
+            }
+            ofs_d << endl;
+
+            ofs_h << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " << fBinning_loose[i][j][k].tab[c][0][0] << " " << fBinning_severe[i][j][k].tab[c][0][0] << " " <<
+                     fBinning[i][j][k].tab[c][0][1] << " " << fBinning[i][j][k].tab[c][1][1] << " " << fBinning_loose[i][j][k].tab[c][0][1] << " " << fBinning_severe[i][j][k].tab[c][0][1] << " " <<
+                     fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " << fBinning_loose[i][j][k].tab[c][0][2] << " " << fBinning_severe[i][j][k].tab[c][0][2] << " " <<
+                     fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << " " << fBinning_loose[i][j][k].tab[c][0][3] << " " << fBinning_severe[i][j][k].tab[c][0][3] << " " << endl;
+
+  	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
+  		fNDIS_evt[0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][0][1] << " " <<
+  		fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][0][3] << endl;
+
+  	      }
+        }
+      }
+    }
+
+    ofs_h.close();
+    ofs_d.close();
+    xc.close();
+
+    resetValues();
+
   }
 
   if(kin_flag)
@@ -2529,37 +2649,6 @@ int main(int argc, char **argv)
       fRICHLH->Fill(fLHK[i],fLHpi[i]);
     }
     save_kin_plots();
-  }
-
-  for(int i=0; i<9; i++)
-  {
-    for(int j=0; j<6; j++)
-    {
-      for(int k=0; k<12; k++)
-      {
-        for(int c=0; c<2; c++)
-        {
-          for(int ll=0; ll<4; ll++)
-          {
-            for(int sv=0; sv<int(fMeanvalues[i][j][k].vec[c][ll][0].size()); sv++)
-            {
-              fMeanvalues_data[i][j][k].tab[c][ll][0] += fMeanvalues[i][j][k].vec[c][ll][0][sv];
-              fMeanvalues_data[i][j][k].tab[c][ll][1] += fMeanvalues[i][j][k].vec[c][ll][1][sv];
-              fMeanvalues_data[i][j][k].tab[c][ll][2] += fMeanvalues[i][j][k].vec[c][ll][2][sv];
-              fMeanvalues_data[i][j][k].tab[c][ll][3] += fMeanvalues[i][j][k].vec[c][ll][3][sv];
-            }
-
-            if(int(fMeanvalues[i][j][k].vec[c][ll][0].size()))
-            {
-              fMeanvalues_size[i][j][k].tab[c][ll][0] = int(fMeanvalues[i][j][k].vec[c][ll][0].size());
-              fMeanvalues_size[i][j][k].tab[c][ll][0] = int(fMeanvalues[i][j][k].vec[c][ll][1].size());
-              fMeanvalues_size[i][j][k].tab[c][ll][0] = int(fMeanvalues[i][j][k].vec[c][ll][2].size());
-              fMeanvalues_size[i][j][k].tab[c][ll][0] = int(fMeanvalues[i][j][k].vec[c][ll][3].size());
-            }
-          }
-        }
-      }
-    }
   }
 
 
@@ -2621,50 +2710,6 @@ int main(int argc, char **argv)
   "true protons : + " << fPplus_true << " - " << fPminus_true << "\n\n";
 
   shout.close();
-
-  ofstream ofs_h(Form("rawmult/%d/hadron_0.txt",year), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_d(Form("rawmult/%d/DIS_0.txt",year), std::ofstream::out | std::ofstream::trunc);
-  ofstream xc(Form("rawmult/%d/xcheck.txt",year), std::ofstream::out | std::ofstream::trunc);
-
-  for(int c=0; c<2; c++)
-  {
-    for(int i=0; i<9; i++)
-    {
-      for(int j=0; j<6; j++)
-      {
-        for(int k=0; k<12; k++)
-        {
-          if(!c)
-          {
-            ofs_d << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt_err[0][i][j][k];
-          }
-
-          for(int ll=0; ll<4; ll++)
-          {
-            ofs_d << " " << fMeanvalues_data[i][j][k].tab[c][ll][0] << " " <<
-                            fMeanvalues_data[i][j][k].tab[c][ll][1] << " " <<
-                            fMeanvalues_data[i][j][k].tab[c][ll][2] << " " <<
-                            fMeanvalues_data[i][j][k].tab[c][ll][3] << " " << fMeanvalues_size[i][j][k].tab[c][ll][0];
-          }
-          ofs_d << endl;
-
-          ofs_h << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " << fBinning_loose[i][j][k].tab[c][0][0] << " " << fBinning_severe[i][j][k].tab[c][0][0] << " " <<
-                   fBinning[i][j][k].tab[c][0][1] << " " << fBinning[i][j][k].tab[c][1][1] << " " << fBinning_loose[i][j][k].tab[c][0][1] << " " << fBinning_severe[i][j][k].tab[c][0][1] << " " <<
-                   fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " << fBinning_loose[i][j][k].tab[c][0][2] << " " << fBinning_severe[i][j][k].tab[c][0][2] << " " <<
-                   fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << " " << fBinning_loose[i][j][k].tab[c][0][3] << " " << fBinning_severe[i][j][k].tab[c][0][3] << " " << endl;
-
-	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-		fNDIS_evt[0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][0][1] << " " <<
-		fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][0][3] << endl;
-
-	}
-      }
-    }
-  }
-
-  ofs_h.close();
-  ofs_d.close();
-  xc.close();
 
   return 0;
 }
