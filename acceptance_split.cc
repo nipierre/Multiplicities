@@ -2466,10 +2466,10 @@ int main(int argc, char **argv)
       delete f;
     }
 
-    ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%d.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%d.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%d.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%d.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
     for(int c=0; c<2; c++)
     {
