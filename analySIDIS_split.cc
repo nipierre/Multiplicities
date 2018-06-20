@@ -2526,7 +2526,7 @@ int main(int argc, char **argv)
             fBinning[xbin][ybin][zbin].tab[j][1][0] += Pvsz_errlocal[i].vec[j][1][l];
             fBinning[xbin][ybin][zbin].tab[j][1][1] += Pvsz_errlocal[i].vec[j][2][l];
             fBinning[xbin][ybin][zbin].tab[j][1][2] += Pvsz_errlocal[i].vec[j][3][l];
-            // fBinning[xbin][ybin][zbin].tab[j][1][3] += Pvsz_errlocal[i].vec[j][4][l];
+            fBinning[xbin][ybin][zbin].tab[j][1][3] += Pvsz_errlocal[i].vec[j][4][l];
 
             for(int ll=0; ll<4; ll++)
             {
