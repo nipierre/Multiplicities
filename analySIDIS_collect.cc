@@ -15,7 +15,7 @@
 
 #include "analySIDIS_collect.h"
 
-#define dirroot "/sps/compass/npierre/Multiplicities"
+#define data_path "/sps/compass/npierre/Multiplicities"
 
 // Flags
 #define Y2006 0
@@ -134,8 +134,17 @@ void yavg(int c, int x, int z)
   }
 }
 
-int main()
+int main(int argc, char **argv)
 {
+
+  if(argc < 2)
+  {
+    cout << "ERROR : Not enough arguments." << endl;
+    cout << "Asked : at least 1 *** Received : " << argc-1 << endl;
+    cout << "./analySIDIS_collect periodFile" << endl;
+
+    return 1;
+  }
 
   //q_bin x_bin y_bin z_bin acc_pi acc_error_pi acc_k acc_error_k acc_p acc_error_p acc_h acc_error_h
 
@@ -147,13 +156,19 @@ int main()
 
   double dummy;
 
-  fetch_acceptance(Form("acceptance/%d/acceptance.txt",year));
-  fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg.txt",year));
-
-  for(int filen=0; filen<1/*5*/; filen++)
+  ifstream periods(argv[1]);
+  string filelist, periodName;
+  int periodBit;
+  while(periods >> periodName)
   {
-    ifstream dis_file(Form("rawmult/%d/DIS_%d.txt",year,filen));
-    ifstream had_file(Form("rawmult/%d/hadron_%d.txt",year,filen));
+    periods >> periodBit;
+    if(!periodBit) continue;
+
+    fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()));
+    fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()));
+
+    ifstream dis_file(Form("rawmult/%d/DIS_%d.txt",year,periodName.c_str()));
+    ifstream had_file(Form("rawmult/%d/hadron_%d.txt",year,periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
@@ -221,53 +236,53 @@ int main()
         }
       }
     }
-  }
 
-  double rich_sys_err;
 
-  for(int c=0; c<2; c++)
-  {
-    for(xbin=0; xbin<9; xbin++)
+    double rich_sys_err;
+
+    for(int c=0; c<2; c++)
     {
-      for(ybin=0; ybin<6; ybin++)
+      for(xbin=0; xbin<9; xbin++)
       {
-        for(zbin=0; zbin<12; zbin++)
+        for(ybin=0; ybin<6; ybin++)
         {
-          for(int ll=0; ll<4; ll++)
+          for(zbin=0; zbin<12; zbin++)
           {
-            rich_sys_err = max(abs(sqrt(fBinning[xbin][ybin][zbin].tab[c][1][ll])),
-                           max(abs(fBinning_loose[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll]),
-                               abs(fBinning_severe[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll])));
-
-            fRich_sys_err[xbin][ybin][zbin].tab[c][1][ll] = rich_sys_err;
-          }
-        }
-      }
-    }
-  }
-
-  for(int i=0; i<9; i++)
-  {
-    for(int j=0; j<6; j++)
-    {
-      for(int k=0; k<12; k++)
-      {
-        for(int c=0; c<2; c++)
-        {
-          for(int ll=0; ll<4; ll++)
-          {
-            if(int(fMeanvalues_size[i][j][k].tab[c][ll][0]))
+            for(int ll=0; ll<4; ll++)
             {
-              fMeanvalues_data[i][j][k].tab[c][ll][0] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
-              fMeanvalues_data[i][j][k].tab[c][ll][1] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
-              fMeanvalues_data[i][j][k].tab[c][ll][2] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
-              fMeanvalues_data[i][j][k].tab[c][ll][3] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+              rich_sys_err = max(abs(sqrt(fBinning[xbin][ybin][zbin].tab[c][1][ll])),
+                             max(abs(fBinning_loose[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll]),
+                                 abs(fBinning_severe[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll])));
+
+              fRich_sys_err[xbin][ybin][zbin].tab[c][1][ll] = rich_sys_err;
             }
           }
         }
       }
     }
-  }
+
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int c=0; c<2; c++)
+          {
+            for(int ll=0; ll<4; ll++)
+            {
+              if(int(fMeanvalues_size[i][j][k].tab[c][ll][0]))
+              {
+                fMeanvalues_data[i][j][k].tab[c][ll][0] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+                fMeanvalues_data[i][j][k].tab[c][ll][1] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+                fMeanvalues_data[i][j][k].tab[c][ll][2] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+                fMeanvalues_data[i][j][k].tab[c][ll][3] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+              }
+            }
+          }
+        }
+      }
+    }
 
   TCanvas* c5;
   c5 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
@@ -316,10 +331,10 @@ int main()
 
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
 
-  ofstream ofs_p(Form("%s/multiplicities_pion.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_t(Form("%s/multiplicities_raw.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_k(Form("%s/multiplicities_kaon.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_h(Form("%s/multiplicities_hadron.txt",dirroot), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), std::ofstream::out | std::ofstream::trunc);
 
   std::vector<Double_t> p_m[2][9][6];
   std::vector<Double_t> k_m[2][9][6];
@@ -1258,18 +1273,18 @@ int main()
   c9->Update();
   c10->Update();
 
-  c5->Print(Form("%s/hadron_multiplicity_file.pdf",dirroot));
-  c5->Print(Form("%s/hadron_multiplicity_file.root",dirroot));
-  c6->Print(Form("%s/pion_multiplicity_file.pdf",dirroot));
-  c6->Print(Form("%s/pion_multiplicity_file.root",dirroot));
-  c7->Print(Form("%s/kaon_multiplicity_file.pdf",dirroot));
-  c7->Print(Form("%s/kaon_multiplicity_file.root",dirroot));
-  c8->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",dirroot));
-  c8->Print(Form("%s/hadron_multiplicity_yavg_file.root",dirroot));
-  c9->Print(Form("%s/pion_multiplicity_yavg_file.pdf",dirroot));
-  c9->Print(Form("%s/pion_multiplicity_yavg_file.root",dirroot));
-  c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",dirroot));
-  c10->Print(Form("%s/kaon_multiplicity_yavg_file.root",dirroot));
+  c5->Print(Form("%s/hadron_multiplicity_file.pdf",data_path));
+  c5->Print(Form("%s/hadron_multiplicity_file.root",data_path));
+  c6->Print(Form("%s/pion_multiplicity_file.pdf",data_path));
+  c6->Print(Form("%s/pion_multiplicity_file.root",data_path));
+  c7->Print(Form("%s/kaon_multiplicity_file.pdf",data_path));
+  c7->Print(Form("%s/kaon_multiplicity_file.root",data_path));
+  c8->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",data_path));
+  c8->Print(Form("%s/hadron_multiplicity_yavg_file.root",data_path));
+  c9->Print(Form("%s/pion_multiplicity_yavg_file.pdf",data_path));
+  c9->Print(Form("%s/pion_multiplicity_yavg_file.root",data_path));
+  c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
+  c10->Print(Form("%s/kaon_multiplicity_yavg_file.root",data_path));
 
   ofs_p.close();
   ofs_k.close();

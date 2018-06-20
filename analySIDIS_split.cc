@@ -2630,7 +2630,6 @@ int main(int argc, char **argv)
     xc.close();
 
     resetValues();
-
   }
 
   if(kin_flag)
