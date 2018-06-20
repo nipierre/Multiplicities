@@ -768,6 +768,9 @@ int main(int argc, char **argv)
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
 
+  LoadInclusiveRadiativeCorrection();
+  LoadSemiInclusiveRadiativeCorrection();
+
   //----------------------------------------------------------------------------
   //--------- nu cut prep ------------------------------------------------------
   //----------------------------------------------------------------------------
