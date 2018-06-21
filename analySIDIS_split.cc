@@ -186,31 +186,27 @@ void LoadSemiInclusiveRadiativeCorrection()
   string sdum;
 
   ifstream proton(proton_sirc);
-  for(int i=0; i<9; i++)
-  {
-    proton >> sdum;
-#ifdef DEBUG
-    cout << " " << sdum;
-#endif
-  }
+
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
     {
-      proton >> sdum;
-#ifdef DEBUG
-      cout << sdum << "\t";
-#endif
-      proton >> sdum;
-#ifdef DEBUG
-      cout << sdum << "\t";
-#endif
-
       for(int k=0; k<14; k++)
       {
+        for(int l=0; l<7; l++)
+        {
+          proton >> sdum;
+#ifdef DEBUG
+          cout << sdum << "\t";
+#endif
+        }
         proton >> fSemiInclusiveRCproton[i][j][k];
 #ifdef DEBUG
         cout << " " << fSemiInclusiveRCproton[i][j][k];
+#endif
+        proton >> sdum;
+#ifdef DEBUG
+        cout << sdum << "\t";
 #endif
       }
 

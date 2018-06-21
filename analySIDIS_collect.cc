@@ -208,6 +208,12 @@ void savePeriod()
                                                                           pow(0.05*sqrt(fAcceptance_yavg[i][k].tab[c][1][l])*fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]
                                                                           *pow(fAcceptance_yavg[i][k].tab[c][0][l],2)),2)))
                                                                           : 0);
+          if(fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][0][l]<0)
+          {
+            fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][0][l] = 0 ;
+            fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][1][l] = 0 ;
+            fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][2][l] = 0 ;
+          }
         }
       }
     }
