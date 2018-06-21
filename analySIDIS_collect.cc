@@ -134,6 +134,16 @@ void yavg(int c, int x, int z)
   }
 }
 
+void savePeriod()
+{
+
+}
+
+void resetValues()
+{
+
+}
+
 int main(int argc, char **argv)
 {
 
@@ -283,6 +293,10 @@ int main(int argc, char **argv)
         }
       }
     }
+
+    savePeriod();
+
+    resetValues();
   }
 
   TCanvas* c5;

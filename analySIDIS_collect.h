@@ -141,6 +141,9 @@ Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Double_t fBinning_yavg[2][4];
 Multiplicities fMultiplicities[9][6][12];
+Multiplicities fMultiplicities_yavg[9][6][12];
+Multiplicities fMultiplicities_periods[11][9][6][12];
+Multiplicities fMultiplicities_yavg_periods[11][9][6][12];
 Wrapper fAcceptance[9][6][12];
 Wrapper fAcceptance_yavg[9][12];
 Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
