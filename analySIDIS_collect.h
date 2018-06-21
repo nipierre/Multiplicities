@@ -97,6 +97,8 @@ vector<Double_t> fXv;
 vector<Double_t> fYv;
 vector<Double_t> fZv;
 
+int fNumberPeriod;
+
 //Counting
 
 Double_t fBP = 0;
@@ -141,15 +143,17 @@ Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Double_t fBinning_yavg[2][4];
 Multiplicities fMultiplicities[9][6][12];
-Multiplicities fMultiplicities_yavg[9][6][12];
+Multiplicities fMultiplicities_yavg[9][12];
 Multiplicities fMultiplicities_periods[11][9][6][12];
-Multiplicities fMultiplicities_yavg_periods[11][9][6][12];
+Multiplicities fMultiplicities_yavg_periods[11][9][12];
 Wrapper fAcceptance[9][6][12];
 Wrapper fAcceptance_yavg[9][12];
 Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
 Recovery fMeanvalues[9][6][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
 Recovery_tank fMeanvalues_size[9][6][12];
+Recovery_tank fMeanvalues_size_periods[11][9][6][12];
 Recovery_tank fMeanvalues_data[9][6][12];
+Recovery_tank fMeanvalues_data_periods[11][9][6][12];
 Double_t fNDIS_evt[3][9][6][12];
 Double_t fNDIS_evt_yavg[2];
 Double_t fNDIS_evt_err[3][9][6][12];

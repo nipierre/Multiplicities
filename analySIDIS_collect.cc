@@ -116,6 +116,7 @@ void yavg(int c, int x, int z)
   {
     fBinning_yavg[0][i]=0;
     fBinning_yavg[1][i]=0;
+    fRich_sys_err_avg[1][0]=0;
   }
   fNDIS_evt_yavg[0]=0;
   fNDIS_evt_yavg[1]=0;
@@ -131,17 +132,116 @@ void yavg(int c, int x, int z)
     fBinning_yavg[1][3]+=fBinning[x][i][z].tab[c][1][3];
     fNDIS_evt_yavg[0]+=fNDIS_evt[0][x][i][z];
     fNDIS_evt_yavg[1]+=fNDIS_evt_err[0][x][i][z];
+    fRich_sys_err_yavg[1][0]+= fRich_sys_err[x][i][z].tab[c][1][0];
+    fRich_sys_err_yavg[1][1]+= fRich_sys_err[x][i][z].tab[c][1][1];
+    fRich_sys_err_yavg[1][2]+= fRich_sys_err[x][i][z].tab[c][1][2];
+    fRich_sys_err_yavg[1][3]+= fRich_sys_err[x][i][z].tab[c][1][3];
   }
 }
 
 void savePeriod()
 {
-
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      for(int k=0; k<12; k++)
+      {
+        for(int c=1; c>=0; c--)
+        {
+          if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+          {
+            fill(fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][0], fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][4], 0);
+          }
+          else if(!(fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])) : 0))
+          {
+            fill(fMultiplicities_periods[fNumberPeriod][i][j][k].tab[0], fMultiplicities_periods[fNumberPeriod][i][j][k].tab[2], 0);
+          }
+          else
+          {
+            for(int l=0; l<4; l++)
+            {
+              fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][0][l] = (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][l] ?
+                                                                              Double_t(fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][l]))
+                                                                              : 0);
+              fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][1][l] = (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][l] ?
+                                                                              Double_t(((fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
+                                                                              fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][l],2)))
+                                                                              + fAcceptance[i][j][k].tab[c][1][l]*pow(fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][l],2)),2))
+                                                                              : 0);
+              fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][2][l] = (fNDIS_evt[0][i][j][k] ?
+                                                                              Double_t(sqrt(pow(fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][l],2)+
+                                                                              pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][l])*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
+                                                                              *pow(fAcceptance[i][j][k].tab[c][0][l],2)),2)))
+                                                                              : 0);
+              for(int ll=0; ll<4; ll++)
+              {
+                fMeanvalues_data_periods[fNumberPeriod][i][j][k].tab[c][ll][l] = fMeanvalues_data[i][j][k].tab[c][ll][l];
+              }
+            }
+          }
+        }
+      }
+    }
+    for(int k=0; k<12; k++)
+    {
+      for(int c=1; c>=0; c--)
+      {
+        yavg(c,i,k);
+        for(int l=0; l<4; l++)
+        {
+          fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][0][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][l] ?
+                                                                          Double_t(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[0][l]))
+                                                                          : 0);
+          fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][1][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg[0][l] ?
+                                                                          Double_t(((fBinning_yavg[1][l]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][l],2)*
+                                                                          fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[0][l],2)))
+                                                                          + fAcceptance_yavg[1][l]*pow(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[0][l],2)),2))
+                                                                          : 0);
+          fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][2][l] = (fNDIS_evt_yavg[0] ?
+                                                                          Double_t(sqrt(pow(fRich_sys_err_yavg[1][l],2)/pow(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[0][l],2)+
+                                                                          pow(0.05*sqrt(fAcceptance_yavg[1][l])*fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]
+                                                                          *pow(fAcceptance_yavg[0][l],2)),2)))
+                                                                          : 0)
+        }
+      }
+    }
+  }
+  fNumberPeriod++;
 }
 
 void resetValues()
 {
-
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          if(!c)
+          {
+            fNDIS_evt[0][i][j][k] = 0;
+            fNDIS_evt_err[0][i][j][k] = 0;
+          }
+          for(int ll=0; ll<4; ll++)
+          {
+            fMeanvalues_data[i][j][k].tab[c][ll][0] = 0;
+            fMeanvalues_data[i][j][k].tab[c][ll][1] = 0;
+            fMeanvalues_data[i][j][k].tab[c][ll][2] = 0;
+            fMeanvalues_data[i][j][k].tab[c][ll][3] = 0;
+            fMeanvalues_size[i][j][k].tab[c][ll][0] = 0;
+            fBinning[i][j][k].tab[c][0][ll] = 0;
+            fBinning[i][j][k].tab[c][1][ll] = 0;
+            fBinning_loose[i][j][k].tab[c][0][ll] = 0;
+            fBinning_severe[i][j][k].tab[c][0][ll] = 0;
+            fRich_sys_err[xbin][ybin][zbin].tab[c][1][ll] = 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 int main(int argc, char **argv)
@@ -159,6 +259,7 @@ int main(int argc, char **argv)
   //q_bin x_bin y_bin z_bin acc_pi acc_error_pi acc_k acc_error_k acc_p acc_error_p acc_h acc_error_h
 
   int year=0;
+  fNumberPeriod=0;
 
   if(Y2006) year=2006;
   else if(Y2012) year=2012;
@@ -376,121 +477,39 @@ int main(int argc, char **argv)
     {
       for(int k=0; k<12; k++)
       {
-
         for(int c=1; c>=0; c--)
         {
-          // cout << c << " " << i << " " << j << " " << k << "   " << (fNDIS_evt[0][i][j][k] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k])) : 0) << " " <<
-          // fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
-          // fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " <<
-          // fNDIS_evt[1][i][j][k] << " " << fNDIS_evt[1][i][j][k] << " " <<
-          // fBinning[i][j][k].tab[c][0][1] << " " << fBinning[i][j][k].tab[c][1][1] << " " <<
-          // fNDIS_evt[2][i][j][k] << " " << fNDIS_evt[2][i][j][k] << " " <<
-          // fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " <<
-          // fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k] << " " <<
-          // fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << endl;
-
-          if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+          for(int l=0; l<4; l++)
           {
-            if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
-
-            ofs_p <<
-            "0" << " " << "0" << " " <<
-            "0" << " " << "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " ";
-
-            if(!c) ofs_p << endl;
-
-            if(c) ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
-
-            ofs_k <<
-            "0" << " " << "0" << " " <<
-            "0" << " " << "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " ";
-
-            if(!c) ofs_k << endl;
-
-            if(c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
-
-            ofs_h <<
-            "0" << " " << "0" << " " <<
-            "0" << " " << "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " ";
-
-            if(!c) ofs_h << endl;
-
-            p_m[c][i][j].push_back(0);
-            k_m[c][i][j].push_back(0);
-            h_m[c][i][j].push_back(0);
-            p_err[c][i][j].push_back(0);
-            k_err[c][i][j].push_back(0);
-            h_err[c][i][j].push_back(0);
+            for(int nP=0; nP<fNumberPeriod; nP++)
+            {
+              fMultiplicities[i][j][k].tab[c][0][l] += fMultiplicities_periods[nP][i][j][k].tab[c][0][l];
+              fMultiplicities[i][j][k].tab[c][1][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][1][l],2);
+              fMultiplicities[i][j][k].tab[c][2][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][2][l],2);
+              for(int ll=0; ll<4; ll++)
+              {
+                fMeanvalues_data[i][j][k].tab[0][ll][l] += fMeanvalues_data_periods[nP][i][j][k].tab[0][0][l];
+              }
+            }
+            fMultiplicities[i][j][k].tab[c][0][l] /= fNumberPeriod;
+            fMultiplicities[i][j][k].tab[c][1][l] = sqrt(fMultiplicities[i][j][k].tab[c][1][l]);
+            fMultiplicities[i][j][k].tab[c][2][l] = sqrt(fMultiplicities[i][j][k].tab[c][2][l]);
+            fMultiplicities[i][j][k].tab[c][1][l] /= fNumberPeriod;
+            fMultiplicities[i][j][k].tab[c][2][l] /= fNumberPeriod;
+            for(int ll=0; ll<4; ll++)
+            {
+              fMeanvalues_data[i][j][k].tab[0][ll][l] /= fNumberPeriod;
+            }
           }
-          else if(!(fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])) : 0))
-          {
-            if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
-
-            ofs_p <<
-            "0" << " " << "0" << " " <<
-            "0" << " " << "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " ";
-
-            if(!c) ofs_p << endl;
-
-            if(c) ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
-
-            ofs_k <<
-            "0" << " " << "0" << " " <<
-            "0" << " " << "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " ";
-
-            if(!c) ofs_k << endl;
-
-            if(c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
-
-            ofs_h <<
-            "0" << " " << "0" << " " <<
-            "0" << " " << "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " " <<
-            "0" << " ";
-
-            if(!c) ofs_h << endl;
-
-            p_m[c][i][j].push_back(0);
-            k_m[c][i][j].push_back(0);
-            h_m[c][i][j].push_back(0);
-            p_err[c][i][j].push_back(0);
-            k_err[c][i][j].push_back(0);
-            h_err[c][i][j].push_back(0);
-          }
-          else
-          {
             if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
             ofs_p <<
             fMeanvalues_data[i][j][k].tab[0][0][0] << " " << fMeanvalues_data[i][j][k].tab[0][0][1] << " " <<
             fMeanvalues_data[i][j][k].tab[0][0][2] << " " << fMeanvalues_data[i][j][k].tab[0][0][3] << " " <<
-            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])) : 0) << " " <<
-            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(((fBinning[i][j][k].tab[c][1][0]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][0],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][0]*pow(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][0],2)),2)) : 0) << " " <<
-            (fNDIS_evt[0][i][j][k] ? Double_t(sqrt(pow(fRich_sys_err[i][j][k].tab[c][1][0],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0],2)+pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][0])*fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][0],2)),2))) : 0) << " " <<
-            ((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])) : 0) ? 1 : 0) << " ";
+            fMultiplicities[i][j][k].tab[c][0][0] << " " <<
+            fMultiplicities[i][j][k].tab[c][1][0] << " " <<
+            fMultiplicities[i][j][k].tab[c][2][0] << " " <<
+            (fMultiplicities[i][j][k].tab[c][0][0] ? 1 : 0) << " ";
 
             if(!c) ofs_p << endl;
 
@@ -499,7 +518,7 @@ int main(int argc, char **argv)
             ofs_t <<
             fMeanvalues_data[i][j][k].tab[0][0][0] << " " << fMeanvalues_data[i][j][k].tab[0][0][1] << " " <<
             fMeanvalues_data[i][j][k].tab[0][0][2] << " " << fMeanvalues_data[i][j][k].tab[0][0][3] << " " <<
-            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k])) : 0) << " ";
+            fMultiplicities[i][j][k].tab[c][0][0] << " ";
 
             if(!c) ofs_t << endl;
 
@@ -508,11 +527,10 @@ int main(int argc, char **argv)
             ofs_k <<
             fMeanvalues_data[i][j][k].tab[0][1][0] << " " << fMeanvalues_data[i][j][k].tab[0][1][1] << " " <<
             fMeanvalues_data[i][j][k].tab[0][1][2] << " " << fMeanvalues_data[i][j][k].tab[0][1][3] << " " <<
-            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1])) : 0) << " " <<
-            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(((fBinning[i][j][k].tab[c][1][1]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][0],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][1]*pow(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][1],2)),2)) : 0) << " " <<
-            (fNDIS_evt[0][i][j][k] ? Double_t(sqrt(pow(fRich_sys_err[i][j][k].tab[c][1][1],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1],2)+pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][1])*fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][1],2)),2))) : 0) << " " <<
-            ((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1])) : 0) ? 1 : 0) << " ";
+            fMultiplicities[i][j][k].tab[c][0][1] << " " <<
+            fMultiplicities[i][j][k].tab[c][1][1] << " " <<
+            fMultiplicities[i][j][k].tab[c][2][1] << " " <<
+            (fMultiplicities[i][j][k].tab[c][0][1] ? 1 : 0) << " ";
 
             if(!c) ofs_k << endl;
 
@@ -521,23 +539,19 @@ int main(int argc, char **argv)
             ofs_h <<
             fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
             fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
-            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3])) : 0) << " " <<
-            (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(((fBinning[i][j][k].tab[c][1][3]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][3],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][0]*pow(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][0],2)),2)) : 0) << " " <<
-            (fNDIS_evt[0][i][j][k] ? Double_t(sqrt(pow(fRich_sys_err[i][j][k].tab[c][1][3],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3],2)+pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][3])*fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][3],2)),2))) : 0) << " " <<
-            ((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3])) : 0) ? 1 : 0) << " ";
+            fMultiplicities[i][j][k].tab[c][0][3] << " " <<
+            fMultiplicities[i][j][k].tab[c][1][3] << " " <<
+            fMultiplicities[i][j][k].tab[c][2][3] << " " <<
+            (fMultiplicities[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
 
             if(!c) ofs_h << endl;
 
-            p_m[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])+j*0.1) : 0));
-            k_m[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1])+j*0.1) : 0));
-            h_m[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3])+j*0.1) : 0));
-            p_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(((fBinning[i][j][k].tab[c][1][0]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][0],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][0]*pow(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][0],2)),2)) : 0));
-            k_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][1] ? Double_t(((fBinning[i][j][k].tab[c][1][1]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][1],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][1],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][1]*pow(fBinning[i][j][k].tab[c][0][1]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][1],2)),2)) : 0));
-            h_err[c][i][j].push_back((fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][3] ? Double_t(((fBinning[i][j][k].tab[c][1][3]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][3],2)*fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][3],2)))
-                                                                                    + fAcceptance[i][j][k].tab[c][1][3]*pow(fBinning[i][j][k].tab[c][0][3]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][3],2)),2)) : 0));
+            p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]+j*0.1);
+            k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]+j*0.1);
+            h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]+j*0.1);
+            p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0]+j*0.1);
+            k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1]+j*0.1);
+            h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3]+j*0.1);
           }
         }
       }
@@ -764,17 +778,27 @@ int main(int argc, char **argv)
     {
       for(int k=0; k<12; k++)
       {
-        yavg(c,i,k);
+        for(int l=0; l<4; l++)
+        {
+          for(int nP=0; nP<fNumberPeriod; nP++)
+          {
+            fMultiplicities_yavg[i][k].tab[c][0][l] += fMultiplicities_yavg_periods[nP][i][k].tab[c][0][l];
+            fMultiplicities_yavg[i][k].tab[c][1][l] += pow(fMultiplicities_yavg_periods[nP][i][k].tab[c][1][l],2);
+            fMultiplicities_yavg[i][k].tab[c][2][l] += pow(fMultiplicities_yavg_periods[nP][i][k].tab[c][2][l],2);
+          }
+          fMultiplicities_yavg[i][k].tab[c][0][l] /= fNumberPeriod;
+          fMultiplicities_yavg[i][k].tab[c][1][l] = sqrt(fMultiplicities_yavg[i][k].tab[c][1][l]);
+          fMultiplicities_yavg[i][k].tab[c][2][l] = sqrt(fMultiplicities_yavg[i][k].tab[c][2][l]);
+          fMultiplicities_yavg[i][k].tab[c][1][l] /= fNumberPeriod;
+          fMultiplicities_yavg[i][k].tab[c][2][l] /= fNumberPeriod;
+        }
 
-        p_y[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][0] ? Double_t(fBinning_yavg[0][0]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][0])) : 0));
-        k_y[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][1] ? Double_t(fBinning_yavg[0][1]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][1])) : 0));
-        h_y[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][3] ? Double_t(fBinning_yavg[0][3]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][3])) : 0));
-        p_y_err[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][0] ? Double_t(((fBinning_yavg[1][0]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][0],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][0],2)))
-                                                                                + fAcceptance_yavg[i][k].tab[c][1][0]*pow(fBinning_yavg[0][0]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][0],2)),2)) : 0));
-        k_y_err[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][1] ? Double_t(((fBinning_yavg[1][1]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][1],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][1],2)))
-                                                                                + fAcceptance_yavg[i][k].tab[c][1][1]*pow(fBinning_yavg[0][1]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][1],2)),2)) : 0));
-        h_y_err[c][i].push_back((fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][3] ? Double_t(((fBinning_yavg[1][3]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][3],2)*fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][3],2)))
-                                                                                + fAcceptance_yavg[i][k].tab[c][1][3]*pow(fBinning_yavg[0][3]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][3],2)),2)) : 0));
+        p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
+        k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
+        h_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][3]);
+        p_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][1][0]);
+        k_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
+        h_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][3]);
       }
 
       for(int l=0; l<12; l++)
