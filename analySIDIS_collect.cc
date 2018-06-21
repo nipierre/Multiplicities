@@ -202,7 +202,7 @@ void savePeriod()
                                                                           Double_t(sqrt(pow(fRich_sys_err_yavg[1][l],2)/pow(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][l],2)+
                                                                           pow(0.05*sqrt(fAcceptance_yavg[i][k].tab[c][1][l])*fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]
                                                                           *pow(fAcceptance_yavg[i][k].tab[c][0][l],2)),2)))
-                                                                          : 0)
+                                                                          : 0);
         }
       }
     }
