@@ -152,10 +152,10 @@ int main(int argc, char **argv)
 
     double dummyd;
 
-    ifstream DIS_file(Form("acceptance/%d/DIS/DIS_%d.txt",year,periodName.c_str()));
-    ifstream DIS_zvtx_file(Form("acceptance/%d/DIS/DIS_zvtx_%d.txt",year,periodName.c_str()));
-    ifstream had_file(Form("acceptance/%d/hadron/hadron_%d.txt",year,periodName.c_str()));
-    ifstream had_zvtx_file(Form("acceptance/%d/hadron/hadron_zvtx_%d.txt",year,periodName.c_str()));
+    ifstream DIS_file(Form("acceptance/%d/DIS/DIS_%s.txt",year,periodName.c_str()));
+    ifstream DIS_zvtx_file(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()));
+    ifstream had_file(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()));
+    ifstream had_zvtx_file(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
