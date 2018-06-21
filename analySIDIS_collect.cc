@@ -501,58 +501,58 @@ int main(int argc, char **argv)
               fMeanvalues_data[i][j][k].tab[0][ll][l] /= fNumberPeriod;
             }
           }
-            if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
-            ofs_p <<
-            fMeanvalues_data[i][j][k].tab[0][0][0] << " " << fMeanvalues_data[i][j][k].tab[0][0][1] << " " <<
-            fMeanvalues_data[i][j][k].tab[0][0][2] << " " << fMeanvalues_data[i][j][k].tab[0][0][3] << " " <<
-            fMultiplicities[i][j][k].tab[c][0][0] << " " <<
-            fMultiplicities[i][j][k].tab[c][1][0] << " " <<
-            fMultiplicities[i][j][k].tab[c][2][0] << " " <<
-            (fMultiplicities[i][j][k].tab[c][0][0] ? 1 : 0) << " ";
+          if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
-            if(!c) ofs_p << endl;
+          ofs_p <<
+          fMeanvalues_data[i][j][k].tab[0][0][0] << " " << fMeanvalues_data[i][j][k].tab[0][0][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][0][2] << " " << fMeanvalues_data[i][j][k].tab[0][0][3] << " " <<
+          fMultiplicities[i][j][k].tab[c][0][0] << " " <<
+          fMultiplicities[i][j][k].tab[c][1][0] << " " <<
+          fMultiplicities[i][j][k].tab[c][2][0] << " " <<
+          (fMultiplicities[i][j][k].tab[c][0][0] ? 1 : 0) << " ";
 
-            if(c) ofs_t << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+          if(!c) ofs_p << endl;
 
-            ofs_t <<
-            fMeanvalues_data[i][j][k].tab[0][0][0] << " " << fMeanvalues_data[i][j][k].tab[0][0][1] << " " <<
-            fMeanvalues_data[i][j][k].tab[0][0][2] << " " << fMeanvalues_data[i][j][k].tab[0][0][3] << " " <<
-            fMultiplicities[i][j][k].tab[c][0][0] << " ";
+          if(c) ofs_t << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
-            if(!c) ofs_t << endl;
+          ofs_t <<
+          fMeanvalues_data[i][j][k].tab[0][0][0] << " " << fMeanvalues_data[i][j][k].tab[0][0][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][0][2] << " " << fMeanvalues_data[i][j][k].tab[0][0][3] << " " <<
+          fMultiplicities[i][j][k].tab[c][0][0] << " ";
 
-            if (c) ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+          if(!c) ofs_t << endl;
 
-            ofs_k <<
-            fMeanvalues_data[i][j][k].tab[0][1][0] << " " << fMeanvalues_data[i][j][k].tab[0][1][1] << " " <<
-            fMeanvalues_data[i][j][k].tab[0][1][2] << " " << fMeanvalues_data[i][j][k].tab[0][1][3] << " " <<
-            fMultiplicities[i][j][k].tab[c][0][1] << " " <<
-            fMultiplicities[i][j][k].tab[c][1][1] << " " <<
-            fMultiplicities[i][j][k].tab[c][2][1] << " " <<
-            (fMultiplicities[i][j][k].tab[c][0][1] ? 1 : 0) << " ";
+          if (c) ofs_k << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
-            if(!c) ofs_k << endl;
+          ofs_k <<
+          fMeanvalues_data[i][j][k].tab[0][1][0] << " " << fMeanvalues_data[i][j][k].tab[0][1][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][1][2] << " " << fMeanvalues_data[i][j][k].tab[0][1][3] << " " <<
+          fMultiplicities[i][j][k].tab[c][0][1] << " " <<
+          fMultiplicities[i][j][k].tab[c][1][1] << " " <<
+          fMultiplicities[i][j][k].tab[c][2][1] << " " <<
+          (fMultiplicities[i][j][k].tab[c][0][1] ? 1 : 0) << " ";
 
-            if (c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+          if(!c) ofs_k << endl;
 
-            ofs_h <<
-            fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
-            fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
-            fMultiplicities[i][j][k].tab[c][0][3] << " " <<
-            fMultiplicities[i][j][k].tab[c][1][3] << " " <<
-            fMultiplicities[i][j][k].tab[c][2][3] << " " <<
-            (fMultiplicities[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
+          if (c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
-            if(!c) ofs_h << endl;
+          ofs_h <<
+          fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
+          fMultiplicities[i][j][k].tab[c][0][3] << " " <<
+          fMultiplicities[i][j][k].tab[c][1][3] << " " <<
+          fMultiplicities[i][j][k].tab[c][2][3] << " " <<
+          (fMultiplicities[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
 
-            p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]+j*0.1);
-            k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]+j*0.1);
-            h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]+j*0.1);
-            p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0]+j*0.1);
-            k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1]+j*0.1);
-            h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3]+j*0.1);
-          }
+          if(!c) ofs_h << endl;
+
+          p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]+j*0.1);
+          k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]+j*0.1);
+          h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]+j*0.1);
+          p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0]+j*0.1);
+          k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1]+j*0.1);
+          h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3]+j*0.1);
         }
       }
 
