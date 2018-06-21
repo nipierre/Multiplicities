@@ -116,7 +116,7 @@ void yavg(int c, int x, int z)
   {
     fBinning_yavg[0][i]=0;
     fBinning_yavg[1][i]=0;
-    fRich_sys_err_avg[1][0]=0;
+    fRich_sys_err_yavg[1][i]=0;
   }
   fNDIS_evt_yavg[0]=0;
   fNDIS_evt_yavg[1]=0;
@@ -191,17 +191,17 @@ void savePeriod()
         for(int l=0; l<4; l++)
         {
           fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][0][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][l] ?
-                                                                          Double_t(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[0][l]))
+                                                                          Double_t(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][l]))
                                                                           : 0);
-          fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][1][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg[0][l] ?
+          fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][1][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][l] ?
                                                                           Double_t(((fBinning_yavg[1][l]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][l],2)*
-                                                                          fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[0][l],2)))
-                                                                          + fAcceptance_yavg[1][l]*pow(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[0][l],2)),2))
+                                                                          fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][l],2)))
+                                                                          + fAcceptance_yavg[i][k].tab[c][1][l]*pow(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][l],2)),2))
                                                                           : 0);
           fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][2][l] = (fNDIS_evt_yavg[0] ?
-                                                                          Double_t(sqrt(pow(fRich_sys_err_yavg[1][l],2)/pow(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[0][l],2)+
-                                                                          pow(0.05*sqrt(fAcceptance_yavg[1][l])*fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]
-                                                                          *pow(fAcceptance_yavg[0][l],2)),2)))
+                                                                          Double_t(sqrt(pow(fRich_sys_err_yavg[1][l],2)/pow(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][l],2)+
+                                                                          pow(0.05*sqrt(fAcceptance_yavg[i][k].tab[c][1][l])*fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]
+                                                                          *pow(fAcceptance_yavg[i][k].tab[c][0][l],2)),2)))
                                                                           : 0)
         }
       }
