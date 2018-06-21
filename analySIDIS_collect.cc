@@ -155,7 +155,7 @@ void savePeriod()
           }
           else if(!(fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])) : 0))
           {
-            fill(fMultiplicities_periods[fNumberPeriod][i][j][k].tab[0], fMultiplicities_periods[fNumberPeriod][i][j][k].tab[2], 0);
+            fill(fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][0], fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][4], 0);
           }
           else
           {
