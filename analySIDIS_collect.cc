@@ -151,11 +151,15 @@ void savePeriod()
         {
           if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
           {
-            fill(fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][0], fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][4], 0);
+            for(int l=0; l<4; l++)
+              for(int ll=0; ll<4; ll++)
+                fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][l][ll]=0;
           }
           else if(!(fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])) : 0))
           {
-            fill(fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][0], fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][4], 0);
+            for(int l=0; l<4; l++)
+              for(int ll=0; ll<4; ll++)
+                fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][l][ll]=0;
           }
           else
           {
