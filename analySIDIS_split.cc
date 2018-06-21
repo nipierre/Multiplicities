@@ -196,18 +196,18 @@ void LoadSemiInclusiveRadiativeCorrection()
         for(int l=0; l<7; l++)
         {
           proton >> sdum;
-// #ifdef DEBUG
+#ifdef DEBUG
           cout << sdum << "\t";
-// #endif
+#endif
         }
         proton >> fSemiInclusiveRCproton[i][j][k];
-// #ifdef DEBUG
+#ifdef DEBUG
         cout << fSemiInclusiveRCproton[i][j][k] << "\t";
-// #endif
+#endif
         proton >> sdum;
-// #ifdef DEBUG
+#ifdef DEBUG
         cout << sdum << endl;
-// #endif
+#endif
       }
     }
   }
@@ -273,7 +273,8 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
   }
   else if(Y2012 || Y2016)
   {
-    return fInclusiveRCproton[xb][yb];
+    return 1;
+    // return fInclusiveRCproton[xb][yb];
   }
   else
   {
