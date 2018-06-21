@@ -178,6 +178,7 @@ void savePeriod()
                                                                               pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][l])*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
                                                                               *pow(fAcceptance[i][j][k].tab[c][0][l],2)),2)))
                                                                               : 0);
+              cout << fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][0][l] << " " << fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][1][l] << " " << fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][2][l] << endl;
               for(int ll=0; ll<4; ll++)
               {
                 fMeanvalues_data_periods[fNumberPeriod][i][j][k].tab[c][ll][l] = fMeanvalues_data[i][j][k].tab[c][ll][l];
@@ -1332,8 +1333,6 @@ int main(int argc, char **argv)
   ofs_p.close();
   ofs_k.close();
   ofs_h.close();
-
-  cout<< fNumberPeriod << endl;
 
   return 0;
 }
