@@ -206,13 +206,9 @@ void LoadSemiInclusiveRadiativeCorrection()
 // #endif
         proton >> sdum;
 // #ifdef DEBUG
-        cout << sdum << "\t";
+        cout << sdum << endl;
 // #endif
       }
-
-// #ifdef DEBUG
-      cout << endl;
-// #endif
     }
   }
   proton.close();
