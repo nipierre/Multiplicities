@@ -178,7 +178,6 @@ void savePeriod()
                                                                               pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][l])*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
                                                                               *pow(fAcceptance[i][j][k].tab[c][0][l],2)),2)))
                                                                               : 0);
-              cout << fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][0][l] << " " << fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][1][l] << " " << fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][2][l] << endl;
               for(int ll=0; ll<4; ll++)
               {
                 fMeanvalues_data_periods[fNumberPeriod][i][j][k].tab[c][ll][l] = fMeanvalues_data[i][j][k].tab[c][ll][l];
@@ -558,12 +557,12 @@ int main(int argc, char **argv)
 
           if(!c) ofs_h << endl;
 
-          p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]+j*0.1);
-          k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]+j*0.1);
-          h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]+j*0.1);
-          p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0]+j*0.1);
-          k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1]+j*0.1);
-          h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3]+j*0.1);
+          p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0] ? fMultiplicities[i][j][k].tab[c][0][0]+j*0.1 : 0);
+          k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1] ? fMultiplicities[i][j][k].tab[c][0][1]+j*0.1 : 0);
+          h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3] ? fMultiplicities[i][j][k].tab[c][0][3]+j*0.1 : 0);
+          p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? fMultiplicities[i][j][k].tab[c][1][0]+j*0.1 : 0);
+          k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? fMultiplicities[i][j][k].tab[c][1][1]+j*0.1 : 0);
+          h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? fMultiplicities[i][j][k].tab[c][1][3]+j*0.1 : 0);
         }
       }
 
