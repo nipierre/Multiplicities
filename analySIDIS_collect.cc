@@ -1333,5 +1333,7 @@ int main(int argc, char **argv)
   ofs_k.close();
   ofs_h.close();
 
+  cout<< fNumberPeriod << endl;
+
   return 0;
 }
