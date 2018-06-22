@@ -324,8 +324,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   }
   else if(Y2012 || Y2016)
   {
-    return 1;
-    // return fSemiInclusiveRCproton[xb][yb][zb];
+    return fSemiInclusiveRCproton[xb][yb][zb];
   }
   else
   {
@@ -1248,14 +1247,14 @@ int main(int argc, char **argv)
           {
             fFlag[2][xbin][ybin][i]=1;
           }
-          if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
+          if(fFlag[0][xbin][ybin][i] || fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i])
           {
             fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-           // fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-           // fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-           // fNDIS_evt_err[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj),2);
-           // fNDIS_evt_err[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err[1][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err[2][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           }
         }
 
@@ -1776,7 +1775,7 @@ int main(int argc, char **argv)
               pzcontainer_err.vec[1][3].push_back(pow(res_vect_err[2],2));
 
               pzcontainer.vec[1][4].push_back(hadron_nb);
-              pzcontainer_err.vec[1][4].push_back(hadron_nb);
+              pzcontainer_err.vec[1][4].push_back(pow(hadron_nb,2));
 
               hadcontainer.vec.push_back(0);
   #ifdef DEBUG
@@ -1815,7 +1814,7 @@ int main(int argc, char **argv)
               pzcontainer_err.vec[0][3].push_back(pow(res_vect_err[2],2));
 
               pzcontainer.vec[0][4].push_back(hadron_nb);
-              pzcontainer_err.vec[0][4].push_back(hadron_nb);
+              pzcontainer_err.vec[0][4].push_back(pow(hadron_nb,2));
 
               hadcontainer.vec.push_back(1);
   #ifdef DEBUG
