@@ -1252,8 +1252,8 @@ int main(int argc, char **argv)
           // fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
           // fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
           // fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
-          if(fAllDISflag)
-          {
+          // if(fAllDISflag)
+          // {
             fQ2kin.push_back(Q2);
             fXBjkin.push_back(xBj);
             fYBjkin.push_back(yBj);
@@ -1311,7 +1311,7 @@ int main(int argc, char **argv)
               fHG022MCx.push_back(MC_HG022x->GetLeaf("MC_HG022x")->GetValue());
               fHG022MCy.push_back(MC_HG022y->GetLeaf("MC_HG022y")->GetValue());
             }
-          }
+          // }
           if(fAllDISflag_MC)
           {
             fQ2kinMC.push_back(Q2_MC);
