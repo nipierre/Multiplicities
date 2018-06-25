@@ -1099,7 +1099,7 @@ int main(int argc, char **argv)
                   {
                     fCell++;
 
-                    if(/*(trig&2 || trig&4 || trig&8 || trig&512)*/true)
+                    if((trig&2 || trig&4 || trig&8 || trig&512))
                     {
                       fTrig++;
 
@@ -1261,6 +1261,7 @@ int main(int argc, char **argv)
 
             if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
             {
+              cout << "pouet" << endl;
               fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
               fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
               fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
