@@ -2549,11 +2549,14 @@ int main(int argc, char **argv)
       fHL05->Fill(fHL05x[i],fHL05y[i]);
       fHL04x1D->Fill(fHL04x[i]);
       fHL05x1D->Fill(fHL05x[i]);
-      fHL04MC->Fill(fHL04MCx[i],fHL04MCy[i]);
-      fHL05MC->Fill(fHL05MCx[i],fHL05MCy[i]);
       fHL04MCx2D->Fill(fHL04x[i]-fHL04MCx[i],fHL04y[i]-fHL04MCy[i]);
       fHL05MCx2D->Fill(fHL05x[i]-fHL05MCx[i],fHL05y[i]-fHL05MCy[i]);
       fHLx2D->Fill(fHL04x[i],fHL05x[i]);
+    }
+    for(int i=0; i<int(fHL04MCx.size()); i++)
+    {
+      fHL04MC->Fill(fHL04MCx[i],fHL04MCy[i]);
+      fHL05MC->Fill(fHL05MCx[i],fHL05MCy[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
     {
