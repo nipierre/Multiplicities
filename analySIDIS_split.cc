@@ -1247,14 +1247,14 @@ int main(int argc, char **argv)
           {
             fFlag[2][xbin][ybin][i]=1;
           }
-          if(fFlag[0][xbin][ybin][i] || fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i])
+          if(fFlag[0][xbin][ybin][i] /*|| fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i]*/)
           {
             fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            // fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            // fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err[1][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err[2][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            // fNDIS_evt_err[1][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            // fNDIS_evt_err[2][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           }
         }
 
