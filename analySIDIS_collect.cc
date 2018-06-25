@@ -572,7 +572,7 @@ int main(int argc, char **argv)
         }
       }
 
-      for(int c=1; c<2; c++)
+      for(int c=0; c<2; c++)
       {
         for(int l=0; l<12; l++)
         {
@@ -631,7 +631,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(H_mult[c][i][j])
           {
-            if(c)
+            if(!c && j==3)
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
@@ -811,6 +811,8 @@ int main(int argc, char **argv)
           fMultiplicities_yavg[i][k].tab[c][1][l] /= fNumberPeriod;
           fMultiplicities_yavg[i][k].tab[c][2][l] /= fNumberPeriod;
         }
+
+        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
