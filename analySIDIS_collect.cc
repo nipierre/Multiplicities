@@ -572,7 +572,7 @@ int main(int argc, char **argv)
         }
       }
 
-      for(int c=0; c<2; c++)
+      for(int c=1; c<2; c++)
       {
         for(int l=0; l<12; l++)
         {
@@ -631,7 +631,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(H_mult[c][i][j])
           {
-            if(!c && j==3)
+            if(c)
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
