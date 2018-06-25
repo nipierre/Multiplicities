@@ -1259,8 +1259,6 @@ int main(int argc, char **argv)
             fX.push_back(x->GetLeaf("x")->GetValue());
             fY.push_back(y->GetLeaf("y")->GetValue());
 
-            if(trig&2) cout << "pouet" << endl;
-
             if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
             {
               fHM04x.push_back(HM04x->GetLeaf("HM04x")->GetValue());
