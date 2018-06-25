@@ -566,9 +566,9 @@ int main(int argc, char **argv)
           p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0] ? fMultiplicities[i][j][k].tab[c][0][0]+j*0.1 : 0);
           k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1] ? fMultiplicities[i][j][k].tab[c][0][1]+j*0.1 : 0);
           h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3] ? fMultiplicities[i][j][k].tab[c][0][3]+j*0.1 : 0);
-          p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? fMultiplicities[i][j][k].tab[c][1][0]+j*0.1 : 0);
-          k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? fMultiplicities[i][j][k].tab[c][1][1]+j*0.1 : 0);
-          h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? fMultiplicities[i][j][k].tab[c][1][3]+j*0.1 : 0);
+          p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? fMultiplicities[i][j][k].tab[c][1][0] : 0);
+          k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? fMultiplicities[i][j][k].tab[c][1][1] : 0);
+          h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? fMultiplicities[i][j][k].tab[c][1][3] : 0);
         }
       }
 
@@ -816,8 +816,8 @@ int main(int argc, char **argv)
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
         h_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][3]);
         p_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][1][0]);
-        k_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
-        h_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][3]);
+        k_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][1][1]);
+        h_y_err[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][1][3]);
       }
 
       for(int l=0; l<12; l++)
