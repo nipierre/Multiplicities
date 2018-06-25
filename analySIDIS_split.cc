@@ -1156,7 +1156,6 @@ int main(int argc, char **argv)
         //2016 ---
         else if(Y2016)
         {
-          if(trig&2) cout << "pouet" << endl;
           if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
         }
         //2016 ---
