@@ -1248,10 +1248,10 @@ int main(int argc, char **argv)
 
         if(kin_flag)
         {
-          fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
-          fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
-          fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
-          fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
+          // fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
+          // fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
+          // fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
+          // fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
           if(fAllDISflag)
           {
             fQ2kin.push_back(Q2);
@@ -1280,10 +1280,10 @@ int main(int argc, char **argv)
               fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
               fHL05x.push_back(HL05x->GetLeaf("HL05x")->GetValue());
               fHL05y.push_back(HL05y->GetLeaf("HL05y")->GetValue());
-              // fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
-              // fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
-              // fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
-              // fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
+              fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
+              fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
+              fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
+              fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
             }
             if(int(trig&8) && !int(trig&4) && !int(trig&2) && !int(trig&512))
             {
