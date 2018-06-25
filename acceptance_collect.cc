@@ -1603,6 +1603,11 @@ int main(int argc, char **argv)
     ofs.close();
     ofs_yavg.close();
     ofs_vtx.close();
+
+    for(int i=0; i<12; i++)
+    {
+      delete c8[i];
+    }
   }
 
   return 0;
