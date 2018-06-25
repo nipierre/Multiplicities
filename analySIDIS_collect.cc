@@ -563,6 +563,8 @@ int main(int argc, char **argv)
 
           if(!c) ofs_h << endl;
 
+          cout << c << " " << i << " " << j << " " << k << " " << fMultiplicities[i][j][k].tab[c][0][3] << endl;
+
           p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0] ? fMultiplicities[i][j][k].tab[c][0][0]+j*0.1 : 0);
           k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1] ? fMultiplicities[i][j][k].tab[c][0][1]+j*0.1 : 0);
           h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3] ? fMultiplicities[i][j][k].tab[c][0][3]+j*0.1 : 0);
@@ -812,7 +814,7 @@ int main(int argc, char **argv)
           fMultiplicities_yavg[i][k].tab[c][2][l] /= fNumberPeriod;
         }
 
-        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << endl;
+        // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
