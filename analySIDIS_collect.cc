@@ -787,10 +787,10 @@ int main(int argc, char **argv)
           }
           c7->Update();
         }
+        z_range_p[c][i][j].clear();
+        z_range_k[c][i][j].clear();
+        z_range_h[c][i][j].clear();
       }
-      z_range_p[c][i][j].clear();
-      z_range_k[c][i][j].clear();
-      z_range_h[c][i][j].clear();
     }
 
     for(int c=0; c<2; c++)
@@ -1017,10 +1017,10 @@ int main(int argc, char **argv)
         }
         c10->Update();
       }
+      z_range_p_y[c][i].clear();
+      z_range_k_y[c][i].clear();
+      z_range_h_y[c][i].clear();
     }
-    z_range_p_y[c][i].clear();
-    z_range_k_y[c][i].clear();
-    z_range_h_y[c][i].clear();
   }
 
   TLatex fTitle;
