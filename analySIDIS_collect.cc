@@ -498,7 +498,7 @@ int main(int argc, char **argv)
               fMultiplicities[i][j][k].tab[c][2][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][2][l],2);
               for(int ll=0; ll<4; ll++)
               {
-                fMeanvalues_data[i][j][k].tab[0][ll][l] += fMeanvalues_data_periods[nP][i][j][k].tab[0][0][l];
+                fMeanvalues_data[i][j][k].tab[c][ll][l] += fMeanvalues_data_periods[nP][i][j][k].tab[c][ll][l];
               }
             }
             fMultiplicities[i][j][k].tab[c][0][l] /= fNumberPeriod;
@@ -508,7 +508,7 @@ int main(int argc, char **argv)
             fMultiplicities[i][j][k].tab[c][2][l] /= fNumberPeriod;
             for(int ll=0; ll<4; ll++)
             {
-              fMeanvalues_data[i][j][k].tab[0][ll][l] /= fNumberPeriod;
+              fMeanvalues_data[i][j][k].tab[c][ll][l] /= fNumberPeriod;
             }
           }
 
