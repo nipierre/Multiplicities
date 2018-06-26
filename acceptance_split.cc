@@ -1256,10 +1256,6 @@ int main(int argc, char **argv)
 
         if(kin_flag)
         {
-          fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
-          fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
-          fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
-          fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
           if(fAllDISflag)
           {
             fQ2kin.push_back(Q2);
@@ -1270,6 +1266,10 @@ int main(int argc, char **argv)
             fMu.push_back(E_beam->GetLeaf("E_beam")->GetValue());
             fX.push_back(x->GetLeaf("x")->GetValue());
             fY.push_back(y->GetLeaf("y")->GetValue());
+            fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
+            fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
+            fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
+            fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
 
             if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
             {
