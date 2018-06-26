@@ -214,6 +214,7 @@ void savePeriod()
             fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][2][l] = 0 ;
           }
         }
+        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][0][l] << endl;
       }
     }
   }
@@ -814,7 +815,7 @@ int main(int argc, char **argv)
           fMultiplicities_yavg[i][k].tab[c][2][l] /= fNumberPeriod;
         }
 
-        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << endl;
+        // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
