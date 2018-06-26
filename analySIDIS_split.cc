@@ -167,9 +167,9 @@ void LoadInclusiveRadiativeCorrection()
 
       for(int k=0; k<6; k++)
       {
-        proton >> fInclusiveRCproton[i][k+j*6] >> sdum;
+        proton >> fInclusiveRCproton[k+j*6][i] >> sdum;
 #ifdef DEBUG
-        cout << " " << fInclusiveRCproton[i][k+j*6] << sdum;
+        cout << " " << fInclusiveRCproton[k+j*6][i] << sdum;
 #endif
       }
 
@@ -218,54 +218,56 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
 {
   int xb, yb;
 
-  if(0.00005<x && x<0.00007) xb = 0;
-  else if(0.00007<=x && x<0.0001) xb = 1;
-  else if(0.0001<=x && x<0.0002) xb = 2;
-  else if(0.0002<=x && x<0.0003) xb = 3;
-  else if(0.0003<=x && x<0.0005) xb = 4;
-  else if(0.0005<=x && x<0.0007) xb = 5;
-  else if(0.0007<=x && x<0.001) xb = 6;
-  else if(0.001<=x && x<0.002) xb = 7;
-  else if(0.002<=x && x<0.004) xb = 8;
-  else if(0.004<=x && x<0.006) xb = 9;
-  else if(0.006<=x && x<0.008) xb = 10;
-  else if(0.008<=x && x<0.01) xb = 11;
-  else if(0.01<=x && x<0.013) xb = 12;
-  else if(0.013<=x && x<0.016) xb = 13;
-  else if(0.016<=x && x<0.02) xb = 14;
-  else if(0.02<=x && x<0.03) xb = 15;
-  else if(0.03<=x && x<0.04) xb = 16;
-  else if(0.04<=x && x<0.06) xb = 17;
-  else if(0.06<=x && x<0.08) xb = 18;
-  else if(0.08<=x && x<0.1) xb = 19;
-  else if(0.1<=x && x<0.15) xb = 20;
-  else if(0.15<=x && x<0.2) xb = 21;
-  else if(0.2<=x && x<0.3) xb = 22;
-  else if(0.3<=x && x<0.4) xb = 23;
-  else if(0.4<=x && x<0.5) xb = 24;
-  else if(0.5<=x && x<0.6) xb = 25;
-  else if(0.6<=x && x<0.7) xb = 26;
-  else if(0.7<=x && x<0.8) xb = 27;
-  else xb = 28;
+  if(0.0<x && x<0.00006) xb = 0;
+  else if(0.00006<=x && x<0.00085) xb = 1;
+  else if(0.0000.85<=x && x<0.00015) xb = 2;
+  else if(0.00015<=x && x<0.00025) xb = 3;
+  else if(0.00025<=x && x<0.0004) xb = 4;
+  else if(0.0004<=x && x<0.0006) xb = 5;
+  else if(0.0006<=x && x<0.0085) xb = 6;
+  else if(0.0085<=x && x<0.0015) xb = 7;
+  else if(0.0015<=x && x<0.003) xb = 8;
+  else if(0.003<=x && x<0.005) xb = 9;
+  else if(0.005<=x && x<0.007) xb = 10;
+  else if(0.007<=x && x<0.009) xb = 11;
+  else if(0.009<=x && x<0.0115) xb = 12;
+  else if(0.0115<=x && x<0.0145) xb = 13;
+  else if(0.0145<=x && x<0.018) xb = 14;
+  else if(0.018<=x && x<0.025) xb = 15;
+  else if(0.025<=x && x<0.035) xb = 16;
+  else if(0.035<=x && x<0.05) xb = 17;
+  else if(0.05<=x && x<0.07) xb = 18;
+  else if(0.07<=x && x<0.09) xb = 19;
+  else if(0.09<=x && x<0.125) xb = 20;
+  else if(0.125<=x && x<0.175) xb = 21;
+  else if(0.175<=x && x<0.25) xb = 22;
+  else if(0.25<=x && x<0.35) xb = 23;
+  else if(0.35<=x && x<0.45) xb = 24;
+  else if(0.45<=x && x<0.55) xb = 25;
+  else if(0.55<=x && x<0.65) xb = 26;
+  else if(0.65<=x && x<0.75) xb = 27;
+  else if(0.75<=x && x<0.85) xb = 28;
+  else xb = 29;
 
-  if(0.05<y && y<0.1) yb = 0;
-  else if(0.1<=y && y<0.15) yb = 1;
-  else if(0.15<=y && y<0.2) yb = 2;
-  else if(0.2<=y && y<0.25) yb = 3;
-  else if(0.25<=y && y<0.3) yb = 4;
-  else if(0.3<=y && y<0.35) yb = 5;
-  else if(0.3<=y && y<0.35) yb = 6;
-  else if(0.35<=y && y<0.4) yb = 7;
-  else if(0.4<=y && y<0.45) yb = 8;
-  else if(0.45<=y && y<0.5) yb = 9;
-  else if(0.5<=y && y<0.55) yb = 10;
-  else if(0.55<=y && y<0.6) yb = 11;
-  else if(0.6<=y && y<0.65) yb = 12;
-  else if(0.65<=y && y<0.7) yb = 13;
-  else if(0.7<=y && y<0.75) yb = 14;
-  else if(0.75<=y && y<0.8) yb = 15;
-  else if(0.8<=y && y<0.85) yb = 16;
-  else yb = 17;
+  if(0.0<y && y<0.7) yb = 0;
+  else if(0.7<=y && y<0.125) yb = 1;
+  else if(0.125<=y && y<0.175) yb = 2;
+  else if(0.175<=y && y<0.225) yb = 3;
+  else if(0.225<=y && y<0.275) yb = 4;
+  else if(0.275<=y && y<0.325) yb = 5;
+  else if(0.325<=y && y<0.375) yb = 6;
+  else if(0.375<=y && y<0.425) yb = 7;
+  else if(0.425<=y && y<0.475) yb = 8;
+  else if(0.475<=y && y<0.525) yb = 9;
+  else if(0.525<=y && y<0.575) yb = 10;
+  else if(0.575<=y && y<0.625) yb = 11;
+  else if(0.625<=y && y<0.675) yb = 12;
+  else if(0.675<=y && y<0.725) yb = 13;
+  else if(0.725<=y && y<0.775) yb = 14;
+  else if(0.775<=y && y<0.825) yb = 15;
+  else if(0.825<=y && y<0.875) yb = 16;
+  else if(0.875<=y && y<0.925) yb = 17;
+  else yb = 18;
 
   if(Y2006)
   {
