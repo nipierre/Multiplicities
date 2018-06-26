@@ -214,7 +214,7 @@ void savePeriod()
             fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][2][l] = 0 ;
           }
         }
-        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][0][l] << endl;
+        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg_periods[fNumberPeriod][i][k].tab[c][0][3] << endl;
       }
     }
   }
