@@ -305,11 +305,13 @@ void save_kin_plots()
   c26.cd(1);
   fHL04x1D->Draw();
   fHL04MCx1D->SetLineColor(kRed);
+  fHL04MCx1D->Scale(fHL04x1D->GetEntries()/fHL04MCx1D->GetEntries());
   fHL04MCx1D->Draw("SAME");
   c26.Update();
   c27.cd(1);
   fHL05x1D->Draw();
   fHL05MCx1D->SetLineColor(kRed);
+  fHL05MCx1D->Scale(fHL05x1D->GetEntries()/fHL05MCx1D->GetEntries());
   fHL05MCx1D->Draw("SAME");
   c27.Update();
   c28.cd(1);
