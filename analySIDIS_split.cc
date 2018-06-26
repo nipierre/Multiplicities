@@ -220,7 +220,7 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
 
   if(0.0<x && x<0.00006) xb = 0;
   else if(0.00006<=x && x<0.00085) xb = 1;
-  else if(0.0000.85<=x && x<0.00015) xb = 2;
+  else if(0.00085<=x && x<0.00015) xb = 2;
   else if(0.00015<=x && x<0.00025) xb = 3;
   else if(0.00025<=x && x<0.0004) xb = 4;
   else if(0.0004<=x && x<0.0006) xb = 5;
