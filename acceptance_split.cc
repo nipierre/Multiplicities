@@ -1275,10 +1275,10 @@ int main(int argc, char **argv)
               fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
               fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
               fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
-              // fHM04MCx.push_back(MC_HM04x->GetLeaf("MC_HM04x")->GetValue());
-              // fHM04MCy.push_back(MC_HM04y->GetLeaf("MC_HM04y")->GetValue());
-              // fHM05MCx.push_back(MC_HM05x->GetLeaf("MC_HM05x")->GetValue());
-              // fHM05MCy.push_back(MC_HM05y->GetLeaf("MC_HM05y")->GetValue());
+              fHM04MCx.push_back(MC_HM04x->GetLeaf("MC_HM04x")->GetValue());
+              fHM04MCy.push_back(MC_HM04y->GetLeaf("MC_HM04y")->GetValue());
+              fHM05MCx.push_back(MC_HM05x->GetLeaf("MC_HM05x")->GetValue());
+              fHM05MCy.push_back(MC_HM05y->GetLeaf("MC_HM05y")->GetValue());
             }
             if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
             {
