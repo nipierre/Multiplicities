@@ -178,6 +178,8 @@ void create_kin_plots()
   fHL05 = new TH2F("HL05X1", "HL05X1", 100, 60, 240, 100, -25, 25);
   fHL04x1D = new TH1F("HL04X1x", "HL04X1x", 1000, 50, 190);
   fHL05x1D = new TH1F("HL05X1x", "HL05X1x", 1000, 60, 240);
+  fHL04MCx1D = new TH1F("HL04MCX1x", "HL04MCX1x", 1000, 50, 190);
+  fHL05MCx1D = new TH1F("HL05MCX1x", "HL05MCX1x", 1000, 60, 240);
   fHLx2D = new TH2F("HLx2D", "HLx2D", 1000, 50, 190, 1000, 60, 240);
   fHO03 = new TH2F("HO03Y1", "HO03Y1", 100, -60, 90, 100, -60, 60);
   fHO04 = new TH2F("HO04Y1", "HO04Y1", 100, -100, 250, 100, -90, 90);
@@ -302,9 +304,13 @@ void save_kin_plots()
   c17.Update();
   c26.cd(1);
   fHL04x1D->Draw();
+  fHL04MCx1D->SetLineColor(kRed);
+  fHL04MCx1D->Draw("SAME");
   c26.Update();
   c27.cd(1);
   fHL05x1D->Draw();
+  fHL05MCx1D->SetLineColor(kRed);
+  fHL05MCx1D->Draw("SAME");
   c27.Update();
   c28.cd(1);
   fHLx2D->Draw("COLZ");
@@ -1248,10 +1254,10 @@ int main(int argc, char **argv)
 
         if(kin_flag)
         {
-          // fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
-          // fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
-          // fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
-          // fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
+          fHL04MCx.push_back(MC_HL04x->GetLeaf("MC_HL04x")->GetValue());
+          fHL04MCy.push_back(MC_HL04y->GetLeaf("MC_HL04y")->GetValue());
+          fHL05MCx.push_back(MC_HL05x->GetLeaf("MC_HL05x")->GetValue());
+          fHL05MCy.push_back(MC_HL05y->GetLeaf("MC_HL05y")->GetValue());
           if(fAllDISflag)
           {
             fQ2kin.push_back(Q2);
@@ -1269,10 +1275,10 @@ int main(int argc, char **argv)
               fHM04y.push_back(HM04y->GetLeaf("HM04y")->GetValue());
               fHM05x.push_back(HM05x->GetLeaf("HM05x")->GetValue());
               fHM05y.push_back(HM05y->GetLeaf("HM05y")->GetValue());
-              fHM04MCx.push_back(MC_HM04x->GetLeaf("MC_HM04x")->GetValue());
-              fHM04MCy.push_back(MC_HM04y->GetLeaf("MC_HM04y")->GetValue());
-              fHM05MCx.push_back(MC_HM05x->GetLeaf("MC_HM05x")->GetValue());
-              fHM05MCy.push_back(MC_HM05y->GetLeaf("MC_HM05y")->GetValue());
+              // fHM04MCx.push_back(MC_HM04x->GetLeaf("MC_HM04x")->GetValue());
+              // fHM04MCy.push_back(MC_HM04y->GetLeaf("MC_HM04y")->GetValue());
+              // fHM05MCx.push_back(MC_HM05x->GetLeaf("MC_HM05x")->GetValue());
+              // fHM05MCy.push_back(MC_HM05y->GetLeaf("MC_HM05y")->GetValue());
             }
             if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
             {
@@ -2557,6 +2563,8 @@ int main(int argc, char **argv)
     {
       fHL04MC->Fill(fHL04MCx[i],fHL04MCy[i]);
       fHL05MC->Fill(fHL05MCx[i],fHL05MCy[i]);
+      fHL04MCx1D->Fill(fHL04MCx[i]);
+      fHL05MCx1D->Fill(fHL05MCx[i]);
     }
     for(int i=0; i<int(fHO03x.size()); i++)
     {
