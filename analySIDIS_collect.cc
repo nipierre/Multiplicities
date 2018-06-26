@@ -92,7 +92,7 @@ void fetch_yavg_acceptance(string pname)
         acc_file >> fAcceptance_yavg[i][k].tab[c][1][2];
         acc_file >> fAcceptance_yavg[i][k].tab[c][0][3];
         acc_file >> fAcceptance_yavg[i][k].tab[c][1][3];
-#ifdef DEBUG
+// #ifdef DEBUG
         cout << fAcceptance_yavg[i][k].tab[c][0][0] << " " <<
         fAcceptance_yavg[i][k].tab[c][1][0] << " " <<
         fAcceptance_yavg[i][k].tab[c][0][1] << " " <<
@@ -101,7 +101,7 @@ void fetch_yavg_acceptance(string pname)
         fAcceptance_yavg[i][k].tab[c][1][2] << " " <<
         fAcceptance_yavg[i][k].tab[c][0][3] << " " <<
         fAcceptance_yavg[i][k].tab[c][1][3] << endl;
-#endif
+// #endif
       }
     }
   }
