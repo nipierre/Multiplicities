@@ -837,6 +837,8 @@ int main(int argc, char **argv)
         MC_recons->GetEntry(ip);
         MC_recHadIdx->GetEntry(ip);
 
+        trigmaskout << int(trig) << endl;
+
         // -------------------------------------------------------------------------
         // --------- Calculation ---------------------------------------------------
         // -------------------------------------------------------------------------
@@ -1325,7 +1327,6 @@ int main(int argc, char **argv)
 
         if(kin_flag)
         {
-          trigmaskout << int(trig) << endl;
           if(fAllDISflag)
           {
             fQ2kin.push_back(Q2);
