@@ -293,7 +293,7 @@ void save_kin_plots()
   c26.cd(1);
   fHL04x1D->Draw();
   fHL04MCx1D->SetLineColor(kRed);
-  fHL04MCx1D->Scale(fHL04x1D->GetEntries()/fHL04MCx1D->GetEntries());
+  // fHL04MCx1D->Scale(fHL04x1D->GetEntries()/fHL04MCx1D->GetEntries());
   fHL04MCx1D->Draw("SAME");
   TLine* l1[8]; TLine* l2[8]; TLine* l3[8]; TLine* l4[8];
   TLine* l5[8]; TLine* l6[8]; TLine* l7[8]; TLine* l8[8];
@@ -339,7 +339,7 @@ void save_kin_plots()
   c27.cd(1);
   fHL05x1D->Draw();
   fHL05MCx1D->SetLineColor(kRed);
-  fHL05MCx1D->Scale(fHL05x1D->GetEntries()/fHL05MCx1D->GetEntries());
+  // fHL05MCx1D->Scale(fHL05x1D->GetEntries()/fHL05MCx1D->GetEntries());
   fHL05MCx1D->Draw("SAME");
   TLine* l11[8]; TLine* l12[8]; TLine* l13[8]; TLine* l14[8];
   TLine* l15[8]; TLine* l16[8]; TLine* l17[8]; TLine* l18[8];
