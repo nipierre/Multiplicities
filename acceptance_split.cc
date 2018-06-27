@@ -302,36 +302,36 @@ void save_kin_plots()
   for(int i=0; i<8; i++)
   {
     detectpos = 62.0055;
-    subdetsize = 4*(2.2-.1);
-    l1[i] = new TLine(detectpos-subdetsize+i*(2.2-.1),0,detectpos-subdetsize+i*(2.2-.1),165);
-    l2[i] = new TLine(detectpos-subdetsize+i*(2.2-.1)+2.2,0,detectpos-subdetsize+i*(2.2-.1)+2.2,165);
+    subdetsize = 4*(2.2-.1)+1;
+    l1[i] = new TLine(detectpos-subdetsize+i*(2.2-.1),0,detectpos-subdetsize+i*(2.2-.1),270);
+    l2[i] = new TLine(detectpos-subdetsize+i*(2.2-.1)+2.2,0,detectpos-subdetsize+i*(2.2-.1)+2.2,270);
     l1[i]->Draw("SAME");
     l2[i]->Draw("SAME");
   }
   for(int i=0; i<8; i++)
   {
     detectpos = 82.0055;
-    subdetsize = 4*(3.2-.3);
-    l3[i] = new TLine(detectpos-subdetsize+i*(3.2-.3),0,detectpos-subdetsize+i*(3.2-.3),165);
-    l4[i] = new TLine(detectpos-subdetsize+i*(3.2-.3)+3.2,0,detectpos-subdetsize+i*(3.2-.3)+3.2,165);
+    subdetsize = 4*(3.2-.3)-1;
+    l3[i] = new TLine(detectpos-subdetsize+i*(3.2-.3),0,detectpos-subdetsize+i*(3.2-.3),270);
+    l4[i] = new TLine(detectpos-subdetsize+i*(3.2-.3)+3.2,0,detectpos-subdetsize+i*(3.2-.3)+3.2,270);
     l3[i]->Draw("SAME");
     l4[i]->Draw("SAME");
   }
   for(int i=0; i<8; i++)
   {
     detectpos = 112.0055;
-    subdetsize = 4*(4.7-.1);
-    l5[i] = new TLine(detectpos-subdetsize+i*(4.7-.1),0,detectpos-subdetsize+i*(4.7-.1),165);
-    l6[i] = new TLine(detectpos-subdetsize+i*(4.7-.1)+4.7,0,detectpos-subdetsize+i*(4.7-.1)+4.7,165);
+    subdetsize = 4*(4.7-.1)+1;
+    l5[i] = new TLine(detectpos-subdetsize+i*(4.7-.1),0,detectpos-subdetsize+i*(4.7-.1),270);
+    l6[i] = new TLine(detectpos-subdetsize+i*(4.7-.1)+4.7,0,detectpos-subdetsize+i*(4.7-.1)+4.7,270);
     l5[i]->Draw("SAME");
     l6[i]->Draw("SAME");
   }
   for(int i=0; i<8; i++)
   {
     detectpos = 156.0055;
-    subdetsize = 4*(6.7-.3);
-    l7[i] = new TLine(detectpos-subdetsize+i*(6.7-.3),0,detectpos-subdetsize+i*(6.7-.3),165);
-    l8[i] = new TLine(detectpos-subdetsize+i*(6.7-.3)+6.7,0,detectpos-subdetsize+i*(6.7-.3)+6.7,165);
+    subdetsize = 4*(6.7-.3)-1;
+    l7[i] = new TLine(detectpos-subdetsize+i*(6.7-.3),0,detectpos-subdetsize+i*(6.7-.3),270);
+    l8[i] = new TLine(detectpos-subdetsize+i*(6.7-.3)+6.7,0,detectpos-subdetsize+i*(6.7-.3)+6.7,270);
     l7[i]->Draw("SAME");
     l8[i]->Draw("SAME");
   }
