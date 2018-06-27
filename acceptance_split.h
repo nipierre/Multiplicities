@@ -1,8 +1,20 @@
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <set>
 #include <map>
 #include <utility>
+#include <TFile.h>
+#include <TH1F.h>
+#include <TH2F.h>
+#include <TCanvas.h>
+#include <TMatrixD.h>
+#include <TMatrixTUtils.h>
+#include <TTree.h>
+#include <TBranch.h>
+#include <TLeaf.h>
+#include <TLine.h>
 
 // COLORS
 
