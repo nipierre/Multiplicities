@@ -837,7 +837,7 @@ int main(int argc, char **argv)
         MC_recons->GetEntry(ip);
         MC_recHadIdx->GetEntry(ip);
 
-        trigmaskout << int(trig) << endl;
+        trigmaskout << int(trigMask->GetLeaf("trigMask")->GetValue()) << endl;
 
         // -------------------------------------------------------------------------
         // --------- Calculation ---------------------------------------------------
