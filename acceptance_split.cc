@@ -295,7 +295,8 @@ void save_kin_plots()
   fHL04MCx1D->SetLineColor(kRed);
   fHL04MCx1D->Scale(fHL04x1D->GetEntries()/fHL04MCx1D->GetEntries());
   fHL04MCx1D->Draw("SAME");
-  TLine* l1,l2;
+  TLine* l1;
+  TLine* l2;
   double subdetsize, detectpos;
   for(int i=0; i<8; i++)
   {
