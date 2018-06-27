@@ -1325,6 +1325,7 @@ int main(int argc, char **argv)
 
         if(kin_flag)
         {
+          trigmaskout << int(trig) << endl;
           if(fAllDISflag)
           {
             fQ2kin.push_back(Q2);
@@ -1335,7 +1336,6 @@ int main(int argc, char **argv)
             fMu.push_back(E_beam->GetLeaf("E_beam")->GetValue());
             fX.push_back(x->GetLeaf("x")->GetValue());
             fY.push_back(y->GetLeaf("y")->GetValue());
-            trigmaskout << int(trig) << endl;
             if(int(trig&4))
             {fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
