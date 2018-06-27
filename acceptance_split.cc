@@ -341,6 +341,46 @@ void save_kin_plots()
   fHL05MCx1D->SetLineColor(kRed);
   fHL05MCx1D->Scale(fHL05x1D->GetEntries()/fHL05MCx1D->GetEntries());
   fHL05MCx1D->Draw("SAME");
+  TLine* l11[8]; TLine* l12[8]; TLine* l13[8]; TLine* l14[8];
+  TLine* l15[8]; TLine* l16[8]; TLine* l17[8]; TLine* l18[8];
+
+  double subdetsize, detectpos;
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 77.4020;
+    subdetsize = 4*(2.7-.1)+.1;
+    l11[i] = new TLine(detectpos-subdetsize+i*(2.7-.1),0,detectpos-subdetsize+i*(2.7-.1),270);
+    l12[i] = new TLine(detectpos-subdetsize+i*(2.7-.1)+2.7,0,detectpos-subdetsize+i*(2.7-.1)+2.7,270);
+    l11[i]->Draw("SAME");
+    l12[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 103.4020;
+    subdetsize = 4*(4.2-.3)+.3;
+    l13[i] = new TLine(detectpos-subdetsize+i*(4.2-.3),0,detectpos-subdetsize+i*(4.2-.3),270);
+    l14[i] = new TLine(detectpos-subdetsize+i*(4.2-.3)+4.2,0,detectpos-subdetsize+i*(4.2-.3)+4.2,270);
+    l13[i]->Draw("SAME");
+    l14[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 143.4020;
+    subdetsize = 4*(6.2-.1)+.1;
+    l15[i] = new TLine(detectpos-subdetsize+i*(6.2-.1),0,detectpos-subdetsize+i*(6.2-.1),270);
+    l16[i] = new TLine(detectpos-subdetsize+i*(6.2-.1)+6.2,0,detectpos-subdetsize+i*(6.2-.1)+6.2,270);
+    l15[i]->Draw("SAME");
+    l16[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 201.4020;
+    subdetsize = 4*(8.7-.3)+.3;
+    l17[i] = new TLine(detectpos-subdetsize+i*(8.7-.3),0,detectpos-subdetsize+i*(8.7-.3),270);
+    l18[i] = new TLine(detectpos-subdetsize+i*(8.7-.3)+8.7,0,detectpos-subdetsize+i*(8.7-.3)+8.7,270);
+    l17[i]->Draw("SAME");
+    l18[i]->Draw("SAME");
+  }
   c27.Update();
   c28.cd(1);
   fHLx2D->Draw("COLZ");
