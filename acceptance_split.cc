@@ -295,8 +295,9 @@ void save_kin_plots()
   fHL04MCx1D->SetLineColor(kRed);
   fHL04MCx1D->Scale(fHL04x1D->GetEntries()/fHL04MCx1D->GetEntries());
   fHL04MCx1D->Draw("SAME");
-  TLine* l1;
-  TLine* l2;
+  TLine* l1[8]; TLine* l2[8]; TLine* l3[8]; TLine* l4[8];
+  TLine* l5[8]; TLine* l6[8]; TLine* l7[8]; TLine* l8[8];
+
   double subdetsize, detectpos;
   for(int i=0; i<8; i++)
   {
@@ -306,41 +307,33 @@ void save_kin_plots()
     l2 = new TLine(detectpos-subdetsize+i*(2.2-.1)+2.2,0,detectpos-subdetsize+i*(2.2-.1)+2.2,165);
     l1->Draw("SAME");
     l2->Draw("SAME");
-    delete l1;
-    delete l2;
   }
   for(int i=0; i<8; i++)
   {
     detectpos = 82.0055;
     subdetsize = 4*(3.2-.3);
-    l1 = new TLine(detectpos-subdetsize+i*(3.2-.3),0,detectpos-subdetsize+i*(3.2-.3),165);
-    l2 = new TLine(detectpos-subdetsize+i*(3.2-.3)+3.2,0,detectpos-subdetsize+i*(3.2-.3)+3.2,165);
-    l1->Draw("SAME");
-    l2->Draw("SAME");
-    delete l1;
-    delete l2;
+    l3 = new TLine(detectpos-subdetsize+i*(3.2-.3),0,detectpos-subdetsize+i*(3.2-.3),165);
+    l4 = new TLine(detectpos-subdetsize+i*(3.2-.3)+3.2,0,detectpos-subdetsize+i*(3.2-.3)+3.2,165);
+    l3->Draw("SAME");
+    l4->Draw("SAME");
   }
   for(int i=0; i<8; i++)
   {
     detectpos = 112.0055;
     subdetsize = 4*(4.7-.1);
-    l1 = new TLine(detectpos-subdetsize+i*(4.7-.1),0,detectpos-subdetsize+i*(4.7-.1),165);
-    l2 = new TLine(detectpos-subdetsize+i*(4.7-.1)+4.7,0,detectpos-subdetsize+i*(4.7-.1)+4.7,165);
-    l1->Draw("SAME");
-    l2->Draw("SAME");
-    delete l1;
-    delete l2;
+    l5 = new TLine(detectpos-subdetsize+i*(4.7-.1),0,detectpos-subdetsize+i*(4.7-.1),165);
+    l6 = new TLine(detectpos-subdetsize+i*(4.7-.1)+4.7,0,detectpos-subdetsize+i*(4.7-.1)+4.7,165);
+    l5->Draw("SAME");
+    l6->Draw("SAME");
   }
   for(int i=0; i<8; i++)
   {
     detectpos = 156.0055;
     subdetsize = 4*(6.7-.3);
-    l1 = new TLine(detectpos-subdetsize+i*(6.7-.3),0,detectpos-subdetsize+i*(6.7-.3),165);
-    l2 = new TLine(detectpos-subdetsize+i*(6.7-.3)+6.7,0,detectpos-subdetsize+i*(6.7-.3)+6.7,165);
-    l1->Draw("SAME");
-    l2->Draw("SAME");
-    delete l1;
-    delete l2;
+    l7 = new TLine(detectpos-subdetsize+i*(6.7-.3),0,detectpos-subdetsize+i*(6.7-.3),165);
+    l8 = new TLine(detectpos-subdetsize+i*(6.7-.3)+6.7,0,detectpos-subdetsize+i*(6.7-.3)+6.7,165);
+    l7->Draw("SAME");
+    l8->Draw("SAME");
   }
   c26.Update();
   c27.cd(1);
