@@ -578,6 +578,8 @@ int main(int argc, char **argv)
     fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
   }
 
+  ofstream trigmaskout("trigmask.dat", std::ofstream::out | std::ofstream::trunc);
+
   ifstream periods(argv[1]);
   string filelist, periodName;
   int periodBit;
@@ -1333,6 +1335,7 @@ int main(int argc, char **argv)
             fMu.push_back(E_beam->GetLeaf("E_beam")->GetValue());
             fX.push_back(x->GetLeaf("x")->GetValue());
             fY.push_back(y->GetLeaf("y")->GetValue());
+            trigmaskout << int(trig) << endl;
             if(int(trig&4))
             {fHL04x.push_back(HL04x->GetLeaf("HL04x")->GetValue());
             fHL04y.push_back(HL04y->GetLeaf("HL04y")->GetValue());
@@ -2702,6 +2705,8 @@ int main(int argc, char **argv)
   fMCKminus << " MC K-\n\n" <<
   fMCPplus << " MC p+\n\n" <<
   fMCPminus << " MC p-\n\n";
+
+  trigmaskout.close();
 
   return 0;
 }
