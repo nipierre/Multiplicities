@@ -114,7 +114,7 @@ void yavg(int c, int x, int z)
 {
   int BinningEntries[4] = {0,0,0,0};
   int DISEntries = 0;
-  int RichErrorEntries = 0;
+  int RichErrorEntries[4] = {0,0,0,0};
 
   for(int i=0; i<4; i++)
   {
