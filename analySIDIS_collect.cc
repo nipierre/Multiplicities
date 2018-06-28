@@ -112,40 +112,58 @@ void fetch_yavg_acceptance(string pname)
 
 void yavg(int c, int x, int z)
 {
+  int BinningEntries[4] = {0,0,0,0};
+  int DISEntries = 0;
+  int RichErrorEntries = 0;
+
   for(int i=0; i<4; i++)
   {
     fBinning_yavg[0][i]=0;
     fBinning_yavg[1][i]=0;
-    fRich_sys_err_yavg[1][i]=0;
+    fRich_sys_err_yavg[4]=0;
   }
   fNDIS_evt_yavg[0]=0;
   fNDIS_evt_yavg[1]=0;
   for(int i=0; i<6; i++)
   {
     fBinning_yavg[0][0]+=fBinning[x][i][z].tab[c][0][0];
+    if(fBinning[x][i][z].tab[c][0][0]) BinningEntries[0]++;
     fBinning_yavg[0][1]+=fBinning[x][i][z].tab[c][0][1];
+    if(fBinning[x][i][z].tab[c][0][1]) BinningEntries[1]++;
     fBinning_yavg[0][2]+=fBinning[x][i][z].tab[c][0][2];
+    if(fBinning[x][i][z].tab[c][0][2]) BinningEntries[2]++;
     fBinning_yavg[0][3]+=fBinning[x][i][z].tab[c][0][3];
+    if(fBinning[x][i][z].tab[c][0][3]) BinningEntries[3]++;
     fBinning_yavg[1][0]+=pow(fBinning[x][i][z].tab[c][1][0],2);
     fBinning_yavg[1][1]+=pow(fBinning[x][i][z].tab[c][1][1],2);
     fBinning_yavg[1][2]+=pow(fBinning[x][i][z].tab[c][1][2],2);
     fBinning_yavg[1][3]+=pow(fBinning[x][i][z].tab[c][1][3],2);
     fNDIS_evt_yavg[0]+=fNDIS_evt[0][x][i][z];
+    if(fNDIS_evt[0][x][i][z]) DISEntries++;
     fNDIS_evt_yavg[1]+=pow(fNDIS_evt_err[0][x][i][z],2);
     fRich_sys_err_yavg[1][0]+=pow(fRich_sys_err[x][i][z].tab[c][1][0],2);
+    if(fRich_sys_err[x][i][z].tab[c][1][0]) RichErrorEntries[0]++;
     fRich_sys_err_yavg[1][1]+=pow(fRich_sys_err[x][i][z].tab[c][1][1],2);
+    if(fRich_sys_err[x][i][z].tab[c][1][1]) RichErrorEntries[1]++;
     fRich_sys_err_yavg[1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
+    if(fRich_sys_err[x][i][z].tab[c][1][2]) RichErrorEntries[2]++;
     fRich_sys_err_yavg[1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
+    if(fRich_sys_err[x][i][z].tab[c][1][3]) RichErrorEntries[3]++;
   }
-  fBinning_yavg[1][0]=sqrt(fBinning_yavg[1][0]);
-  fBinning_yavg[1][1]=sqrt(fBinning_yavg[1][1]);
-  fBinning_yavg[1][2]=sqrt(fBinning_yavg[1][2]);
-  fBinning_yavg[1][3]=sqrt(fBinning_yavg[1][3]);
-  fNDIS_evt_yavg[1]=sqrt(fNDIS_evt_yavg[1]);
-  fRich_sys_err_yavg[1][0]=sqrt(fRich_sys_err_yavg[1][0]);
-  fRich_sys_err_yavg[1][1]=sqrt(fRich_sys_err_yavg[1][1]);
-  fRich_sys_err_yavg[1][2]=sqrt(fRich_sys_err_yavg[1][2]);
-  fRich_sys_err_yavg[1][3]=sqrt(fRich_sys_err_yavg[1][3]);
+  fBinning_yavg[0][0]=fBinning_yavg[1][0]/BinningEntries[0];
+  fBinning_yavg[0][1]=fBinning_yavg[1][1]/BinningEntries[1];
+  fBinning_yavg[0][2]=fBinning_yavg[1][2]/BinningEntries[2];
+  fBinning_yavg[0][3]=fBinning_yavg[1][3]/BinningEntries[3];
+  fBinning_yavg[1][0]=sqrt(fBinning_yavg[1][0])/BinningEntries[0];
+  fBinning_yavg[1][1]=sqrt(fBinning_yavg[1][1])/BinningEntries[1];
+  fBinning_yavg[1][2]=sqrt(fBinning_yavg[1][2])/BinningEntries[2];
+  fBinning_yavg[1][3]=sqrt(fBinning_yavg[1][3])/BinningEntries[3];
+  fNDIS_evt_yavg[0]=fNDIS_evt_yavg[0]/DISEntries;
+  fNDIS_evt_yavg[1]=sqrt(fNDIS_evt_yavg[1])/DISEntries;
+  fRich_sys_err_yavg[1][0]=sqrt(fRich_sys_err_yavg[1][0])/RichErrorEntries[0];
+  fRich_sys_err_yavg[1][1]=sqrt(fRich_sys_err_yavg[1][1])/RichErrorEntries[1];
+  fRich_sys_err_yavg[1][2]=sqrt(fRich_sys_err_yavg[1][2])/RichErrorEntries[2];
+  fRich_sys_err_yavg[1][3]=sqrt(fRich_sys_err_yavg[1][3])/RichErrorEntries[3];
 }
 
 void savePeriod()
