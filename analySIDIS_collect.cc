@@ -120,7 +120,7 @@ void yavg(int c, int x, int z)
   {
     fBinning_yavg[0][i]=0;
     fBinning_yavg[1][i]=0;
-    fRich_sys_err_yavg[i]=0;
+    fRich_sys_err_yavg[1][i]=0;
   }
   fNDIS_evt_yavg[0]=0;
   fNDIS_evt_yavg[1]=0;
