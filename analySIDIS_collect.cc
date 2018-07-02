@@ -150,20 +150,20 @@ void yavg(int c, int x, int z)
     fRich_sys_err_yavg[1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
     if(fRich_sys_err[x][i][z].tab[c][1][3]) RichErrorEntries[3]++;
   }
-  fBinning_yavg[0][0]=(BinningEntries[0]?fBinning_yavg[1][0]/BinningEntries[0]:0);
-  fBinning_yavg[0][1]=(BinningEntries[1]?fBinning_yavg[1][1]/BinningEntries[1]:0);
-  fBinning_yavg[0][2]=(BinningEntries[2]?fBinning_yavg[1][2]/BinningEntries[2]:0);
-  fBinning_yavg[0][3]=(BinningEntries[3]?fBinning_yavg[1][3]/BinningEntries[3]:0);
-  fBinning_yavg[1][0]=(BinningEntries[0]?sqrt(fBinning_yavg[1][0])/BinningEntries[0]:0);
-  fBinning_yavg[1][1]=(BinningEntries[1]?sqrt(fBinning_yavg[1][1])/BinningEntries[1]:0);
-  fBinning_yavg[1][2]=(BinningEntries[2]?sqrt(fBinning_yavg[1][2])/BinningEntries[2]:0);
-  fBinning_yavg[1][3]=(BinningEntries[3]?sqrt(fBinning_yavg[1][3])/BinningEntries[3]:0);
-  fNDIS_evt_yavg[0]=(DISEntries?fNDIS_evt_yavg[0]/DISEntries:0);
-  fNDIS_evt_yavg[1]=(DISEntries?sqrt(fNDIS_evt_yavg[1])/DISEntries:0);
-  fRich_sys_err_yavg[1][0]=(RichErrorEntries[0]?sqrt(fRich_sys_err_yavg[1][0])/RichErrorEntries[0]:0);
-  fRich_sys_err_yavg[1][1]=(RichErrorEntries[1]?sqrt(fRich_sys_err_yavg[1][1])/RichErrorEntries[1]:0);
-  fRich_sys_err_yavg[1][2]=(RichErrorEntries[2]?sqrt(fRich_sys_err_yavg[1][2])/RichErrorEntries[2]:0);
-  fRich_sys_err_yavg[1][3]=(RichErrorEntries[3]?sqrt(fRich_sys_err_yavg[1][3])/RichErrorEntries[3]:0);
+  // fBinning_yavg[0][0]=(BinningEntries[0]?fBinning_yavg[1][0]/BinningEntries[0]:0);
+  // fBinning_yavg[0][1]=(BinningEntries[1]?fBinning_yavg[1][1]/BinningEntries[1]:0);
+  // fBinning_yavg[0][2]=(BinningEntries[2]?fBinning_yavg[1][2]/BinningEntries[2]:0);
+  // fBinning_yavg[0][3]=(BinningEntries[3]?fBinning_yavg[1][3]/BinningEntries[3]:0);
+  // fBinning_yavg[1][0]=(BinningEntries[0]?sqrt(fBinning_yavg[1][0])/BinningEntries[0]:0);
+  // fBinning_yavg[1][1]=(BinningEntries[1]?sqrt(fBinning_yavg[1][1])/BinningEntries[1]:0);
+  // fBinning_yavg[1][2]=(BinningEntries[2]?sqrt(fBinning_yavg[1][2])/BinningEntries[2]:0);
+  // fBinning_yavg[1][3]=(BinningEntries[3]?sqrt(fBinning_yavg[1][3])/BinningEntries[3]:0);
+  // fNDIS_evt_yavg[0]=(DISEntries?fNDIS_evt_yavg[0]/DISEntries:0);
+  // fNDIS_evt_yavg[1]=(DISEntries?sqrt(fNDIS_evt_yavg[1])/DISEntries:0);
+  // fRich_sys_err_yavg[1][0]=(RichErrorEntries[0]?sqrt(fRich_sys_err_yavg[1][0])/RichErrorEntries[0]:0);
+  // fRich_sys_err_yavg[1][1]=(RichErrorEntries[1]?sqrt(fRich_sys_err_yavg[1][1])/RichErrorEntries[1]:0);
+  // fRich_sys_err_yavg[1][2]=(RichErrorEntries[2]?sqrt(fRich_sys_err_yavg[1][2])/RichErrorEntries[2]:0);
+  // fRich_sys_err_yavg[1][3]=(RichErrorEntries[3]?sqrt(fRich_sys_err_yavg[1][3])/RichErrorEntries[3]:0);
 }
 
 void savePeriod()
