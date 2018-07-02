@@ -360,6 +360,47 @@ void save_kin_plots()
 
   for(int i=0; i<8; i++) M04[i]->Draw("SAME");
 
+  TLine* m1[8]; TLine* m2[8]; TLine* m3[8]; TLine* m4[8];
+  TLine* m5[8]; TLine* m6[8]; TLine* m7[8]; TLine* m8[8];
+
+  double subdetsize, detectpos;
+  for(int i=0; i<8; i++)
+  {
+    detectpos = -24.1719;
+    subdetsize = 4*(2.1-.1)+.1;
+    m1[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1),120,detectpos-subdetsize+i*(2.1-.1));
+    m2[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1)+2.1,120,detectpos-subdetsize+i*(2.1-.1)+2.1);
+    m1[i]->Draw("SAME");
+    m2[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = -41.5719;
+    subdetsize = 4*(2.5-.1)+.1;
+    m3[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1),120,detectpos-subdetsize+i*(2.5-.1));
+    m4[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1)+2.5,120,detectpos-subdetsize+i*(2.5-.1)+2.5);
+    m3[i]->Draw("SAME");
+    m4[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 23.7216;
+    subdetsize = 4*(2.1-.1)+.1;
+    m5[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1),120,detectpos-subdetsize+i*(2.1-.1));
+    m6[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1)+2.1,120,detectpos-subdetsize+i*(2.1-.1)+2.1);
+    m5[i]->Draw("SAME");
+    m6[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 41.1216;
+    subdetsize = 4*(2.5-.1)+.1;
+    m7[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1),120,detectpos-subdetsize+i*(2.5-.1));
+    m8[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1)+2.5,120,detectpos-subdetsize+i*(2.5-.1)+2.5);
+    m7[i]->Draw("SAME");
+    m8[i]->Draw("SAME");
+  }
+
   // LADDER
   TLine* L04[2];
   L04[0] = new TLine(62.0055-4*(2.2-.1)+.1,20,156.0055-4*(6.7-.3)+.3+7*(6.7-.3)+6.7,20);
