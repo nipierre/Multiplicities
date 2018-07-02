@@ -358,7 +358,7 @@ void save_kin_plots()
   M04[6] = new TLine(0,41.1216-4*(2.5-.1)+.1+7*(2.5-.1)+2.5,120,41.1216-4*(2.5-.1)+.1+7*(2.5-.1)+2.5);
   M04[7] = new TLine(120,23.7216-4*(2.1-.1)+.1,120,41.1216-4*(2.5-.1)+.1+7*(2.5-.1)+2.5);
 
-  for(int i=0; i<8; i++) M04[i]->Draw("SAME");
+  for(int i=0; i<8; i++) {M04[i]->SetLineColor(kCyan-4); M04[i]->Draw("SAME");}
 
   TLine* m1[8]; TLine* m2[8]; TLine* m3[8]; TLine* m4[8];
   TLine* m5[8]; TLine* m6[8]; TLine* m7[8]; TLine* m8[8];
@@ -370,6 +370,8 @@ void save_kin_plots()
     subdetsize = 4*(2.1-.1)+.1;
     m1[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1),120,detectpos-subdetsize+i*(2.1-.1));
     m2[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1)+2.1,120,detectpos-subdetsize+i*(2.1-.1)+2.1);
+    m1[i]->SetLineColor(kCyan-4);
+    m2[i]->SetLineColor(kCyan-4);
     m1[i]->Draw("SAME");
     m2[i]->Draw("SAME");
   }
@@ -379,6 +381,8 @@ void save_kin_plots()
     subdetsize = 4*(2.5-.1)+.1;
     m3[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1),120,detectpos-subdetsize+i*(2.5-.1));
     m4[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1)+2.5,120,detectpos-subdetsize+i*(2.5-.1)+2.5);
+    m3[i]->SetLineColor(kCyan-4);
+    m4[i]->SetLineColor(kCyan-4);
     m3[i]->Draw("SAME");
     m4[i]->Draw("SAME");
   }
@@ -388,6 +392,8 @@ void save_kin_plots()
     subdetsize = 4*(2.1-.1)+.1;
     m5[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1),120,detectpos-subdetsize+i*(2.1-.1));
     m6[i] = new TLine(0,detectpos-subdetsize+i*(2.1-.1)+2.1,120,detectpos-subdetsize+i*(2.1-.1)+2.1);
+    m5[i]->SetLineColor(kCyan-4);
+    m6[i]->SetLineColor(kCyan-4);
     m5[i]->Draw("SAME");
     m6[i]->Draw("SAME");
   }
@@ -397,6 +403,8 @@ void save_kin_plots()
     subdetsize = 4*(2.5-.1)+.1;
     m7[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1),120,detectpos-subdetsize+i*(2.5-.1));
     m8[i] = new TLine(0,detectpos-subdetsize+i*(2.5-.1)+2.5,120,detectpos-subdetsize+i*(2.5-.1)+2.5);
+    m7[i]->SetLineColor(kCyan-4);
+    m8[i]->SetLineColor(kCyan-4);
     m7[i]->Draw("SAME");
     m8[i]->Draw("SAME");
   }
@@ -405,7 +413,7 @@ void save_kin_plots()
   TLine* L04[2];
   L04[0] = new TLine(62.0055-4*(2.2-.1)+.1,20,156.0055-4*(6.7-.3)+.3+7*(6.7-.3)+6.7,20);
   L04[1] = new TLine(62.0055-4*(2.2-.1)+.1,-20,156.0055-4*(6.7-.3)+.3+7*(6.7-.3)+6.7,-20);
-  L04[0]->Draw("SAME"); L04[1]->Draw("SAME");
+  L04[0]->SetLineColor(kMagenta-4); L04[0]->Draw("SAME"); L04[1]->SetLineColor(kMagenta-4); L04[1]->Draw("SAME");
 
   TLine* l1[8]; TLine* l2[8]; TLine* l3[8]; TLine* l4[8];
   TLine* l5[8]; TLine* l6[8]; TLine* l7[8]; TLine* l8[8];
@@ -416,6 +424,8 @@ void save_kin_plots()
     subdetsize = 4*(2.2-.1)+.1;
     l1[i] = new TLine(detectpos-subdetsize+i*(2.2-.1),-20,detectpos-subdetsize+i*(2.2-.1),20);
     l2[i] = new TLine(detectpos-subdetsize+i*(2.2-.1)+2.2,-20,detectpos-subdetsize+i*(2.2-.1)+2.2,20);
+    l1[i]->SetLineColor(kMagenta-4);
+    l2[i]->SetLineColor(kMagenta-4);
     l1[i]->Draw("SAME");
     l2[i]->Draw("SAME");
   }
@@ -425,6 +435,8 @@ void save_kin_plots()
     subdetsize = 4*(3.2-.3)+.3;
     l3[i] = new TLine(detectpos-subdetsize+i*(3.2-.3),-20,detectpos-subdetsize+i*(3.2-.3),20);
     l4[i] = new TLine(detectpos-subdetsize+i*(3.2-.3)+3.2,-20,detectpos-subdetsize+i*(3.2-.3)+3.2,20);
+    l3[i]->SetLineColor(kMagenta-4);
+    l4[i]->SetLineColor(kMagenta-4);
     l3[i]->Draw("SAME");
     l4[i]->Draw("SAME");
   }
@@ -434,6 +446,8 @@ void save_kin_plots()
     subdetsize = 4*(4.7-.1)+.1;
     l5[i] = new TLine(detectpos-subdetsize+i*(4.7-.1),-20,detectpos-subdetsize+i*(4.7-.1),20);
     l6[i] = new TLine(detectpos-subdetsize+i*(4.7-.1)+4.7,-20,detectpos-subdetsize+i*(4.7-.1)+4.7,20);
+    l5[i]->SetLineColor(kMagenta-4);
+    l6[i]->SetLineColor(kMagenta-4);
     l5[i]->Draw("SAME");
     l6[i]->Draw("SAME");
   }
@@ -443,6 +457,8 @@ void save_kin_plots()
     subdetsize = 4*(6.7-.3)+.3;
     l7[i] = new TLine(detectpos-subdetsize+i*(6.7-.3),-20,detectpos-subdetsize+i*(6.7-.3),20);
     l8[i] = new TLine(detectpos-subdetsize+i*(6.7-.3)+6.7,-20,detectpos-subdetsize+i*(6.7-.3)+6.7,20);
+    l7[i]->SetLineColor(kMagenta-4);
+    l8[i]->SetLineColor(kMagenta-4);
     l7[i]->Draw("SAME");
     l8[i]->Draw("SAME");
   }
@@ -456,7 +472,7 @@ void save_kin_plots()
   O04[4] = new TLine(113,-41.5,113,-13.5);
   O04[5] = new TLine(4,-41.5,4,41.5);
 
-  for(int i=0; i<6; i++) O04[i]->Draw("SAME");
+  for(int i=0; i<6; i++) {O04[i]->SetLineColor(kRed-7); O04[i]->Draw("SAME");}
 
   TLine* o1[4]; TLine* o2[8]; TLine* o3[20];
   TLine* o4[12]; TLine* o5[20];
@@ -466,79 +482,79 @@ void save_kin_plots()
   o1[2] = new TLine(168,.5,258,.5);
   o1[3] = new TLine(168,14.5,258,14.5);
 
-  for(int i=0; i<4; i++) o1[i]->Draw("SAME");
+  for(int i=0; i<4; i++) {o1[i]->SetLineColor(kRed-7); o1[i]->Draw("SAME");}
 
   o2[0] = new TLine(113,-13.5,258,-14.5);
   o2[1] = new TLine(113,-28.5,258,-28.5);
   o2[2] = new TLine(113,-27.5,258,-27.5);
-  o2[3] = new TLine(113,-32.5,258,-32.5);
+  o2[3] = new TLine(113,-42.5,258,-42.5);
   o2[4] = new TLine(113,13.5,258,14.5);
   o2[5] = new TLine(113,28.5,258,28.5);
   o2[6] = new TLine(113,27.5,258,27.5);
-  o2[7] = new TLine(113,32.5,258,32.5);
+  o2[7] = new TLine(113,42.5,258,42.5);
 
-  for(int i=0; i<8; i++) o2[i]->Draw("SAME");
+  for(int i=0; i<8; i++) {o2[i]->SetLineColor(kRed-7); o2[i]->Draw("SAME");}
 
-  o3[0] = new TLine(8,-31.5,258,-31.5);
-  o3[1] = new TLine(8,-46.5,258,-46.5);
-  o3[2] = new TLine(8,-45.5,258,-45.5);
-  o3[3] = new TLine(8,-60.5,258,-60.5);
-  o3[4] = new TLine(8,-59.5,258,-59.5);
-  o3[5] = new TLine(8,-74.5,258,-74.5);
-  o3[6] = new TLine(8,-73.5,258,-73.5);
-  o3[7] = new TLine(8,-88.5,258,-88.5);
-  o3[8] = new TLine(8,-87.5,258,-87.5);
-  o3[9] = new TLine(8,-102.5,258,-102.5);
-  o3[10] = new TLine(8,31.5,258,31.5);
-  o3[11] = new TLine(8,46.5,258,46.5);
-  o3[12] = new TLine(8,45.5,258,45.5);
-  o3[13] = new TLine(8,60.5,258,60.5);
-  o3[14] = new TLine(8,59.5,258,59.5);
-  o3[15] = new TLine(8,74.5,258,74.5);
-  o3[16] = new TLine(8,73.5,258,73.5);
-  o3[17] = new TLine(8,88.5,258,88.5);
-  o3[18] = new TLine(8,87.5,258,87.5);
-  o3[19] = new TLine(8,102.5,258,102.5);
+  o3[0] = new TLine(8,-41.5,258,-41.5);
+  o3[1] = new TLine(8,-56.5,258,-56.5);
+  o3[2] = new TLine(8,-55.5,258,-55.5);
+  o3[3] = new TLine(8,-70.5,258,-70.5);
+  o3[4] = new TLine(8,-69.5,258,-69.5);
+  o3[5] = new TLine(8,-84.5,258,-84.5);
+  o3[6] = new TLine(8,-83.5,258,-83.5);
+  o3[7] = new TLine(8,-98.5,258,-98.5);
+  o3[8] = new TLine(8,-97.5,258,-97.5);
+  o3[9] = new TLine(8,-112.5,258,-112.5);
+  o3[10] = new TLine(8,41.5,258,41.5);
+  o3[11] = new TLine(8,56.5,258,56.5);
+  o3[12] = new TLine(8,55.5,258,55.5);
+  o3[13] = new TLine(8,70.5,258,70.5);
+  o3[14] = new TLine(8,69.5,258,69.5);
+  o3[15] = new TLine(8,84.5,258,84.5);
+  o3[16] = new TLine(8,83.5,258,83.5);
+  o3[17] = new TLine(8,98.5,258,98.5);
+  o3[18] = new TLine(8,97.5,258,97.5);
+  o3[19] = new TLine(8,112.5,258,112.5);
 
-  for(int i=0; i<20; i++) o3[i]->Draw("SAME");
+  for(int i=0; i<20; i++) {o3[i]->SetLineColor(kRed-7); o3[i]->Draw("SAME");}
 
-  o4[0] = new TLine(-227,-.5,23,-.5);
-  o4[1] = new TLine(-227,.5,23,.5);
-  o4[2] = new TLine(-227,-14.5,23,-14.5);
-  o4[3] = new TLine(-227,-13.5,23,-13.5);
-  o4[4] = new TLine(-227,14.5,23,14.5);
-  o4[5] = new TLine(-227,13.5,23,13.5);
-  o4[6] = new TLine(-227,-28.5,23,-28.5);
-  o4[7] = new TLine(-227,-27.5,23,-27.5);
-  o4[8] = new TLine(-227,28.5,23,28.5);
-  o4[9] = new TLine(-227,27.5,23,27.5);
-  o4[10] = new TLine(-227,-32.5,23,-32.5);
-  o4[11] = new TLine(-227,32.5,23,32.5);
+  o4[0] = new TLine(-227,-.5,4,-.5);
+  o4[1] = new TLine(-227,.5,4,.5);
+  o4[2] = new TLine(-227,-14.5,4,-14.5);
+  o4[3] = new TLine(-227,-13.5,4,-13.5);
+  o4[4] = new TLine(-227,14.5,4,14.5);
+  o4[5] = new TLine(-227,13.5,4,13.5);
+  o4[6] = new TLine(-227,-28.5,4,-28.5);
+  o4[7] = new TLine(-227,-27.5,4,-27.5);
+  o4[8] = new TLine(-227,28.5,4,28.5);
+  o4[9] = new TLine(-227,27.5,4,27.5);
+  o4[10] = new TLine(-227,-42.5,4,-42.5);
+  o4[11] = new TLine(-227,42.5,4,42.5);
 
-  for(int i=0; i<12; i++) o4[i]->Draw("SAME");
+  for(int i=0; i<12; i++) {o4[i]->SetLineColor(kRed-7); o4[i]->Draw("SAME");}
 
-  o5[0] = new TLine(-227,-31.5,23,-31.5);
-  o5[1] = new TLine(-227,-46.5,23,-46.5);
-  o5[2] = new TLine(-227,-45.5,23,-45.5);
-  o5[3] = new TLine(-227,-60.5,23,-60.5);
-  o5[4] = new TLine(-227,-59.5,23,-59.5);
-  o5[5] = new TLine(-227,-74.5,23,-74.5);
-  o5[6] = new TLine(-227,-73.5,23,-73.5);
-  o5[7] = new TLine(-227,-88.5,23,-88.5);
-  o5[8] = new TLine(-227,-87.5,23,-87.5);
-  o5[9] = new TLine(-227,-102.5,23,-102.5);
-  o5[10] = new TLine(-227,31.5,23,31.5);
-  o5[11] = new TLine(-227,46.5,23,46.5);
-  o5[12] = new TLine(-227,45.5,23,45.5);
-  o5[13] = new TLine(-227,60.5,23,60.5);
-  o5[14] = new TLine(-227,59.5,23,59.5);
-  o5[15] = new TLine(-227,74.5,23,74.5);
-  o5[16] = new TLine(-227,73.5,23,73.5);
-  o5[17] = new TLine(-227,88.5,23,88.5);
-  o5[18] = new TLine(-227,87.5,23,87.5);
-  o5[19] = new TLine(-227,102.5,23,102.5);
+  o5[0] = new TLine(-227,-41.5,23,-41.5);
+  o5[1] = new TLine(-227,-56.5,23,-56.5);
+  o5[2] = new TLine(-227,-55.5,23,-55.5);
+  o5[3] = new TLine(-227,-70.5,23,-70.5);
+  o5[4] = new TLine(-227,-69.5,23,-69.5);
+  o5[5] = new TLine(-227,-84.5,23,-84.5);
+  o5[6] = new TLine(-227,-83.5,23,-83.5);
+  o5[7] = new TLine(-227,-98.5,23,-98.5);
+  o5[8] = new TLine(-227,-97.5,23,-97.5);
+  o5[9] = new TLine(-227,-112.5,23,-112.5);
+  o5[10] = new TLine(-227,41.5,23,41.5);
+  o5[11] = new TLine(-227,56.5,23,56.5);
+  o5[12] = new TLine(-227,55.5,23,55.5);
+  o5[13] = new TLine(-227,70.5,23,70.5);
+  o5[14] = new TLine(-227,69.5,23,69.5);
+  o5[15] = new TLine(-227,84.5,23,84.5);
+  o5[16] = new TLine(-227,83.5,23,83.5);
+  o5[17] = new TLine(-227,98.5,23,98.5);
+  o5[18] = new TLine(-227,97.5,23,97.5);
+  o5[19] = new TLine(-227,112.5,23,112.5);
 
-  for(int i=0; i<20; i++) o5[i]->Draw("SAME");
+  for(int i=0; i<20; i++) {o5[i]->SetLineColor(kRed-7); o5[i]->Draw("SAME");}
 
   // LAST
   // TLine* G02[4];
