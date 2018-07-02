@@ -120,6 +120,9 @@ vector<Double_t> fHG022MCx;
 vector<Double_t> fHG021MCy;
 vector<Double_t> fHG022MCy;
 
+vector<Double_t> fTCx;
+vector<Double_t> fTCy;
+
 //Misc
 
 set<Double_t> fLHsec_set;
@@ -266,7 +269,7 @@ TCanvas c37("HG02MCY2","HG02MCY2",3200,1600);
 TCanvas c38("HL04MCY1x","HL04MCY1x",3200,1600);
 TCanvas c39("HL05MCY1x","HL05MCY1x",3200,1600);
 TCanvas c40("E_{#mu}","E_{#mu}",3200,1600);
-TCanvas c40("Trigger_Coverage","Trigger_Coverage",3200,1600);
+TCanvas c41("Trigger_Coverage","Trigger_Coverage",3200,1600);
 
 TH1F* fKinematicsMC[7];
 TH2F* fKinematics2DMC;
