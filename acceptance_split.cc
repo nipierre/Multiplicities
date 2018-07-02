@@ -410,7 +410,6 @@ void save_kin_plots()
   TLine* l1[8]; TLine* l2[8]; TLine* l3[8]; TLine* l4[8];
   TLine* l5[8]; TLine* l6[8]; TLine* l7[8]; TLine* l8[8];
 
-  double subdetsize, detectpos;
   for(int i=0; i<8; i++)
   {
     detectpos = 62.0055;
