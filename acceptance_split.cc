@@ -721,6 +721,8 @@ int main(int argc, char **argv)
       TBranch *recons = (TBranch*) tree->FindBranch("recons");
       TBranch *MC_yTr = (TBranch*) tree->FindBranch("MC_yTr");
       TBranch *MC_xTr = (TBranch*) tree->FindBranch("MC_xTr");
+      TBranch *MC_TCx = (TBranch*) tree->FindBranch("MC_TCx");
+      TBranch *MC_TCy = (TBranch*) tree->FindBranch("MC_TCy");
 
       //MCHadrons
       TBranch *MC_p = (TBranch*) tree->FindBranch("MCHadrons.P");
@@ -844,6 +846,8 @@ int main(int argc, char **argv)
         MC_HG022y->GetEntry(ip);
         MC_yTr->GetEntry(ip);
         MC_xTr->GetEntry(ip);
+        TCx->GetEntry(ip);
+        TCy->GetEntry(ip);
 
         //MCHadrons
         MC_p->GetEntry(ip);
