@@ -456,7 +456,7 @@ void save_kin_plots()
   O04[4] = new TLine(113,-41.5,113,-13.5);
   O04[5] = new TLine(4,-41.5,4,41.5);
 
-  for(int i=0; i<16; i++) O04[i]->Draw("SAME");
+  for(int i=0; i<6; i++) O04[i]->Draw("SAME");
 
   TLine* o1[4]; TLine* o2[8]; TLine* o3[20];
   TLine* o4[12]; TLine* o5[20];
