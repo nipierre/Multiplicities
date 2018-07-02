@@ -344,7 +344,7 @@ void save_kin_plots()
   fKinematicsMC[6]->Draw("SAME");
   c40.Update();
   c41.cd(1);
-  fTrigCov->Draw();
+  fTrigCov->Draw("COLZ");
 
   // MIDDLE
   TLine* M04[8];
