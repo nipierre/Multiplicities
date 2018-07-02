@@ -233,6 +233,7 @@ TH2F* fHG01MC;
 TH2F* fHG021MC;
 TH2F* fHG022MC;
 TH2F* fTarget2D;
+TH2F* fTrigCov;
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
 TCanvas c3("Kin_y","Kin_y",3200,1600);
@@ -265,6 +266,7 @@ TCanvas c37("HG02MCY2","HG02MCY2",3200,1600);
 TCanvas c38("HL04MCY1x","HL04MCY1x",3200,1600);
 TCanvas c39("HL05MCY1x","HL05MCY1x",3200,1600);
 TCanvas c40("E_{#mu}","E_{#mu}",3200,1600);
+TCanvas c40("Trigger_Coverage","Trigger_Coverage",3200,1600);
 
 TH1F* fKinematicsMC[7];
 TH2F* fKinematics2DMC;

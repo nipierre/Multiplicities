@@ -185,6 +185,7 @@ void create_kin_plots()
   fHG01MC = new TH2F("HG01MCY1", "HG01MCY1", 100, -100, 100, 100, -50, 50);
   fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -20, 250, 100, -230, 230);
   fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -250, 20, 100, -230, 230);
+  fTrigCov = new TH2F("Trigger_Coverage", "Trigger_Coverage", 100, -250, 250, 100, -230, 230);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -293,93 +294,12 @@ void save_kin_plots()
   c26.cd(1);
   fHL04MCx1D->SetLineColor(kRed);
   fHL04MCx1D->Draw();
-  // fHL04MCx1D->Scale(fHL04x1D->GetEntries()/fHL04MCx1D->GetEntries());
   fHL04x1D->Draw("SAME");
-  TLine* l1[8]; TLine* l2[8]; TLine* l3[8]; TLine* l4[8];
-  TLine* l5[8]; TLine* l6[8]; TLine* l7[8]; TLine* l8[8];
-
-  double subdetsize, detectpos;
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 62.0055;
-    subdetsize = 4*(2.2-.1)+.1;
-    l1[i] = new TLine(detectpos-subdetsize+i*(2.2-.1),0,detectpos-subdetsize+i*(2.2-.1),270);
-    l2[i] = new TLine(detectpos-subdetsize+i*(2.2-.1)+2.2,0,detectpos-subdetsize+i*(2.2-.1)+2.2,270);
-    l1[i]->Draw("SAME");
-    l2[i]->Draw("SAME");
-  }
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 82.0055;
-    subdetsize = 4*(3.2-.3)+.3;
-    l3[i] = new TLine(detectpos-subdetsize+i*(3.2-.3),0,detectpos-subdetsize+i*(3.2-.3),270);
-    l4[i] = new TLine(detectpos-subdetsize+i*(3.2-.3)+3.2,0,detectpos-subdetsize+i*(3.2-.3)+3.2,270);
-    l3[i]->Draw("SAME");
-    l4[i]->Draw("SAME");
-  }
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 112.0055;
-    subdetsize = 4*(4.7-.1)+.1;
-    l5[i] = new TLine(detectpos-subdetsize+i*(4.7-.1),0,detectpos-subdetsize+i*(4.7-.1),270);
-    l6[i] = new TLine(detectpos-subdetsize+i*(4.7-.1)+4.7,0,detectpos-subdetsize+i*(4.7-.1)+4.7,270);
-    l5[i]->Draw("SAME");
-    l6[i]->Draw("SAME");
-  }
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 156.0055;
-    subdetsize = 4*(6.7-.3)+.3;
-    l7[i] = new TLine(detectpos-subdetsize+i*(6.7-.3),0,detectpos-subdetsize+i*(6.7-.3),270);
-    l8[i] = new TLine(detectpos-subdetsize+i*(6.7-.3)+6.7,0,detectpos-subdetsize+i*(6.7-.3)+6.7,270);
-    l7[i]->Draw("SAME");
-    l8[i]->Draw("SAME");
-  }
   c26.Update();
   c27.cd(1);
   fHL05MCx1D->SetLineColor(kRed);
   fHL05MCx1D->Draw();
-  // fHL05MCx1D->Scale(fHL05x1D->GetEntries()/fHL05MCx1D->GetEntries());
   fHL05x1D->Draw("SAME");
-  TLine* l11[8]; TLine* l12[8]; TLine* l13[8]; TLine* l14[8];
-  TLine* l15[8]; TLine* l16[8]; TLine* l17[8]; TLine* l18[8];
-
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 77.4020;
-    subdetsize = 4*(2.7-.1)+.1;
-    l11[i] = new TLine(detectpos-subdetsize+i*(2.7-.1),0,detectpos-subdetsize+i*(2.7-.1),340);
-    l12[i] = new TLine(detectpos-subdetsize+i*(2.7-.1)+2.7,0,detectpos-subdetsize+i*(2.7-.1)+2.7,340);
-    l11[i]->Draw("SAME");
-    l12[i]->Draw("SAME");
-  }
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 103.4020;
-    subdetsize = 4*(4.2-.3)+.3;
-    l13[i] = new TLine(detectpos-subdetsize+i*(4.2-.3),0,detectpos-subdetsize+i*(4.2-.3),340);
-    l14[i] = new TLine(detectpos-subdetsize+i*(4.2-.3)+4.2,0,detectpos-subdetsize+i*(4.2-.3)+4.2,340);
-    l13[i]->Draw("SAME");
-    l14[i]->Draw("SAME");
-  }
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 143.4020;
-    subdetsize = 4*(6.2-.1)+.1;
-    l15[i] = new TLine(detectpos-subdetsize+i*(6.2-.1),0,detectpos-subdetsize+i*(6.2-.1),340);
-    l16[i] = new TLine(detectpos-subdetsize+i*(6.2-.1)+6.2,0,detectpos-subdetsize+i*(6.2-.1)+6.2,340);
-    l15[i]->Draw("SAME");
-    l16[i]->Draw("SAME");
-  }
-  for(int i=0; i<8; i++)
-  {
-    detectpos = 201.4020;
-    subdetsize = 4*(8.7-.3)+.3;
-    l17[i] = new TLine(detectpos-subdetsize+i*(8.7-.3),0,detectpos-subdetsize+i*(8.7-.3),340);
-    l18[i] = new TLine(detectpos-subdetsize+i*(8.7-.3)+8.7,0,detectpos-subdetsize+i*(8.7-.3)+8.7,340);
-    l17[i]->Draw("SAME");
-    l18[i]->Draw("SAME");
-  }
   c27.Update();
   c28.cd(1);
   fHLx2D->Draw("COLZ");
@@ -422,6 +342,102 @@ void save_kin_plots()
   fKinematicsMC[6]->SetLineColor(kRed);
   fKinematicsMC[6]->Draw("SAME");
   c40.Update();
+  c41.cd(1);
+  fTrigCov->Draw();
+
+  // MIDDLE
+  TLine* M04[8];
+  M04[0] = new TLine(0,50,120,50);
+  M04[1] = new TLine(0,15,120,15);
+  M04[2] = new TLine(0,-15,120,-15);
+  M04[3] = new TLine(0,-50,120,-50);
+
+  M04[4] = new TLine(0,15,0,50);
+  M04[5] = new TLine(120,15,120,50);
+  M04[6] = new TLine(0,-15,0,-50);
+  M04[7] = new TLine(120,-15,120,-50);
+
+  for(int i=0; i<8; i++) M04[i]->Draw("SAME");
+
+  // LADDER
+  TLine* L04[2];
+  L04[0] = new TLine(62.0055-4*(2.2-.1)+.1,20,156.0055-4*(6.7-.3)+.3+7*(6.7-.3)+6.7,20);
+  L04[1] = new TLine(62.0055-4*(2.2-.1)+.1,-20,156.0055-4*(6.7-.3)+.3+7*(6.7-.3)+6.7,-20);
+  L04[0]->Draw("SAME"); L04[1]->Draw("SAME");
+
+  TLine* l1[8]; TLine* l2[8]; TLine* l3[8]; TLine* l4[8];
+  TLine* l5[8]; TLine* l6[8]; TLine* l7[8]; TLine* l8[8];
+
+  double subdetsize, detectpos;
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 62.0055;
+    subdetsize = 4*(2.2-.1)+.1;
+    l1[i] = new TLine(detectpos-subdetsize+i*(2.2-.1),-20,detectpos-subdetsize+i*(2.2-.1),20);
+    l2[i] = new TLine(detectpos-subdetsize+i*(2.2-.1)+2.2,-20,detectpos-subdetsize+i*(2.2-.1)+2.2,20);
+    l1[i]->Draw("SAME");
+    l2[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 82.0055;
+    subdetsize = 4*(3.2-.3)+.3;
+    l3[i] = new TLine(detectpos-subdetsize+i*(3.2-.3),-20,detectpos-subdetsize+i*(3.2-.3),20);
+    l4[i] = new TLine(detectpos-subdetsize+i*(3.2-.3)+3.2,-20,detectpos-subdetsize+i*(3.2-.3)+3.2,20);
+    l3[i]->Draw("SAME");
+    l4[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 112.0055;
+    subdetsize = 4*(4.7-.1)+.1;
+    l5[i] = new TLine(detectpos-subdetsize+i*(4.7-.1),-20,detectpos-subdetsize+i*(4.7-.1),20);
+    l6[i] = new TLine(detectpos-subdetsize+i*(4.7-.1)+4.7,-20,detectpos-subdetsize+i*(4.7-.1)+4.7,20);
+    l5[i]->Draw("SAME");
+    l6[i]->Draw("SAME");
+  }
+  for(int i=0; i<8; i++)
+  {
+    detectpos = 156.0055;
+    subdetsize = 4*(6.7-.3)+.3;
+    l7[i] = new TLine(detectpos-subdetsize+i*(6.7-.3),-20,detectpos-subdetsize+i*(6.7-.3),20);
+    l8[i] = new TLine(detectpos-subdetsize+i*(6.7-.3)+6.7,-20,detectpos-subdetsize+i*(6.7-.3)+6.7,20);
+    l7[i]->Draw("SAME");
+    l8[i]->Draw("SAME");
+  }
+
+  // OUTER
+  TLine* O04[16];
+  O04[0] = new TLine(-100,-12,0,-12);
+  O04[1] = new TLine(0,-12,0,-50);
+  O04[2] = new TLine(0,-50,115,-50);
+  O04[3] = new TLine(115,-50,115,-12);
+  O04[4] = new TLine(-115,-12,250,-12);
+  O04[5] = new TLine(-100,-90,-100,-12);
+  O04[6] = new TLine(-100,-90,250,-90);
+  O04[7] = new TLine(250,-90,250,-12);
+
+  O04[8] = new TLine(-100,12,0,12);
+  O04[9] = new TLine(0,12,0,50);
+  O04[10] = new TLine(0,50,115,50);
+  O04[11] = new TLine(115,50,115,12);
+  O04[12] = new TLine(-115,12,250,12);
+  O04[13] = new TLine(-100,90,-100,12);
+  O04[14] = new TLine(-100,90,250,90);
+  O04[15] = new TLine(250,90,250,12);
+
+  for(int i=0; i<16; i++) O04[i]->Draw("SAME");
+
+  // LAST
+  TLine* G02[4];
+  G02[0] = new TLine(-70,-40,70,-40);
+  G02[1] = new TLine(-70,-40,-70,40);
+  G02[2] = new TLine(-70,40,70,40);
+  G02[3] = new TLine(70,-40,70,40);
+
+  for(int i=0; i<4; i++) G02[i]->Draw("SAME");
+
+  c41.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -500,6 +516,7 @@ void save_kin_plots()
   c23.Print("kinMC.pdf","pdf");
   c24.Print("kinMC.pdf","pdf");
   c25.Print("kinMC.pdf)","pdf");
+  c41.Print("Trigger_Coverage.pdf");
 }
 
 int main(int argc, char **argv)
@@ -1327,6 +1344,8 @@ int main(int argc, char **argv)
 
         if(kin_flag)
         {
+          fTCx.push_back(TCx->GetLeaf("TCx")->GetValue();
+          fTCy.push_back(TCy->GetLeaf("TCy")->GetValue();
           if(fAllDISflag)
           {
             fQ2kin.push_back(Q2);
@@ -2600,6 +2619,10 @@ int main(int argc, char **argv)
 
   if(kin_flag)
   {
+    for(int i=0; i<int(fTCx.size()); i++)
+    {
+      fTrigCov->Fill(fTCx[i],fTCy[i]);
+    }
     for(int i=0; i<int(fQ2kin.size()); i++)
     {
       fKinematics[0]->Fill(fQ2kin[i]);
