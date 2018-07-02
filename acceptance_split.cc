@@ -185,7 +185,7 @@ void create_kin_plots()
   fHG01MC = new TH2F("HG01MCY1", "HG01MCY1", 100, -100, 100, 100, -50, 50);
   fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -20, 250, 100, -230, 230);
   fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -250, 20, 100, -230, 230);
-  fTrigCov = new TH2F("Trigger_Coverage", "Trigger_Coverage", 100, -250, 250, 100, -230, 230);
+  fTrigCov = new TH2F("Trigger_Coverage", "Trigger_Coverage", 100, -100, 250, 100, -90, 90);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -413,7 +413,7 @@ void save_kin_plots()
   O04[1] = new TLine(0,-12,0,-50);
   O04[2] = new TLine(0,-50,115,-50);
   O04[3] = new TLine(115,-50,115,-12);
-  O04[4] = new TLine(-115,-12,250,-12);
+  O04[4] = new TLine(-100,-12,250,-12);
   O04[5] = new TLine(-100,-90,-100,-12);
   O04[6] = new TLine(-100,-90,250,-90);
   O04[7] = new TLine(250,-90,250,-12);
@@ -422,7 +422,7 @@ void save_kin_plots()
   O04[9] = new TLine(0,12,0,50);
   O04[10] = new TLine(0,50,115,50);
   O04[11] = new TLine(115,50,115,12);
-  O04[12] = new TLine(-115,12,250,12);
+  O04[12] = new TLine(-100,12,250,12);
   O04[13] = new TLine(-100,90,-100,12);
   O04[14] = new TLine(-100,90,250,90);
   O04[15] = new TLine(250,90,250,12);
@@ -430,13 +430,13 @@ void save_kin_plots()
   for(int i=0; i<16; i++) O04[i]->Draw("SAME");
 
   // LAST
-  TLine* G02[4];
-  G02[0] = new TLine(-70,-40,70,-40);
-  G02[1] = new TLine(-70,-40,-70,40);
-  G02[2] = new TLine(-70,40,70,40);
-  G02[3] = new TLine(70,-40,70,40);
-
-  for(int i=0; i<4; i++) G02[i]->Draw("SAME");
+  // TLine* G02[4];
+  // G02[0] = new TLine(-70,-40,70,-40);
+  // G02[1] = new TLine(-70,-40,-70,40);
+  // G02[2] = new TLine(-70,40,70,40);
+  // G02[3] = new TLine(70,-40,70,40);
+  //
+  // for(int i=0; i<4; i++) G02[i]->Draw("SAME");
 
   c41.Update();
 
