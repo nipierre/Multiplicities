@@ -185,7 +185,7 @@ void create_kin_plots()
   fHG01MC = new TH2F("HG01MCY1", "HG01MCY1", 100, -100, 100, 100, -50, 50);
   fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -20, 250, 100, -230, 230);
   fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -250, 20, 100, -230, 230);
-  fTrigCov = new TH2F("Trigger_Coverage", "Trigger_Coverage", 100, -100, 250, 100, -90, 90);
+  fTrigCov = new TH2F("Trigger_Coverage", "Trigger_Coverage", 100, -227, 258, 100, -112, 112);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -344,6 +344,7 @@ void save_kin_plots()
   fKinematicsMC[6]->Draw("SAME");
   c40.Update();
   c41.cd(1);
+  gStyle->SetPalette(55,0)
   fTrigCov->Draw("COLZ");
 
   // MIDDLE
@@ -468,6 +469,88 @@ void save_kin_plots()
   O04[15] = new TLine(250,90,250,12);
 
   for(int i=0; i<16; i++) O04[i]->Draw("SAME");
+
+  TLine* o1[4]; TLine* o2[8]; TLine* o3[20];
+  TLine* o4[12]; TLine* o5[20];
+
+  o1[0] = new TLine(168,-14.5,258,-14.5);
+  o1[1] = new TLine(168,-.5,258,-.5);
+  o1[2] = new TLine(168,.5,258,.5);
+  o1[3] = new TLine(168,14.5,258,14.5);
+
+  for(int i=0; i<4; i++) o1[i]->Draw("SAME");
+
+  o2[0] = new TLine(113,-13.5,258,-14.5);
+  o2[1] = new TLine(113,-28.5,258,-28.5);
+  o2[2] = new TLine(113,-27.5,258,-27.5);
+  o2[3] = new TLine(113,-32.5,258,-32.5);
+  o2[4] = new TLine(113,13.5,258,14.5);
+  o2[5] = new TLine(113,28.5,258,28.5);
+  o2[6] = new TLine(113,27.5,258,27.5);
+  o2[7] = new TLine(113,32.5,258,32.5);
+
+  for(int i=0; i<8; i++) o2[i]->Draw("SAME");
+
+  o3[0] = new TLine(8,-31.5,258,-31.5);
+  o3[1] = new TLine(8,-46.5,258,-46.5);
+  o3[2] = new TLine(8,-45.5,258,-45.5);
+  o3[3] = new TLine(8,-60.5,258,-60.5);
+  o3[4] = new TLine(8,-59.5,258,-59.5);
+  o3[5] = new TLine(8,-74.5,258,-74.5);
+  o3[6] = new TLine(8,-73.5,258,-73.5);
+  o3[7] = new TLine(8,-88.5,258,-88.5);
+  o3[8] = new TLine(8,-87.5,258,-87.5);
+  o3[9] = new TLine(8,-102.5,258,-102.5);
+  o3[10] = new TLine(8,31.5,258,31.5);
+  o3[11] = new TLine(8,46.5,258,46.5);
+  o3[12] = new TLine(8,45.5,258,45.5);
+  o3[13] = new TLine(8,60.5,258,60.5);
+  o3[14] = new TLine(8,59.5,258,59.5);
+  o3[15] = new TLine(8,74.5,258,74.5);
+  o3[16] = new TLine(8,73.5,258,73.5);
+  o3[17] = new TLine(8,88.5,258,88.5);
+  o3[18] = new TLine(8,87.5,258,87.5);
+  o3[19] = new TLine(8,102.5,258,102.5);
+
+  for(int i=0; i<20; i++) o3[i]->Draw("SAME");
+
+  o4[0] = new TLine(-227,-.5,23,-.5);
+  o4[1] = new TLine(-227,.5,23,.5);
+  o4[2] = new TLine(-227,-14.5,23,-14.5);
+  o4[3] = new TLine(-227,-13.5,23,-13.5);
+  o4[4] = new TLine(-227,14.5,23,14.5);
+  o4[5] = new TLine(-227,13.5,23,13.5);
+  o4[6] = new TLine(-227,-28.5,23,-28.5);
+  o4[7] = new TLine(-227,-27.5,23,-27.5);
+  o4[8] = new TLine(-227,28.5,23,28.5);
+  o4[9] = new TLine(-227,27.5,23,27.5);
+  o4[10] = new TLine(-227,-32.5,23,-32.5);
+  o4[11] = new TLine(-227,32.5,23,32.5);
+
+  for(int i=0; i<12; i++) o4[i]->Draw("SAME");
+
+  o5[0] = new TLine(-227,-31.5,23,-31.5);
+  o5[1] = new TLine(-227,-46.5,23,-46.5);
+  o5[2] = new TLine(-227,-45.5,23,-45.5);
+  o5[3] = new TLine(-227,-60.5,23,-60.5);
+  o5[4] = new TLine(-227,-59.5,23,-59.5);
+  o5[5] = new TLine(-227,-74.5,23,-74.5);
+  o5[6] = new TLine(-227,-73.5,23,-73.5);
+  o5[7] = new TLine(-227,-88.5,23,-88.5);
+  o5[8] = new TLine(-227,-87.5,23,-87.5);
+  o5[9] = new TLine(-227,-102.5,23,-102.5);
+  o5[10] = new TLine(-227,31.5,23,31.5);
+  o5[11] = new TLine(-227,46.5,23,46.5);
+  o5[12] = new TLine(-227,45.5,23,45.5);
+  o5[13] = new TLine(-227,60.5,23,60.5);
+  o5[14] = new TLine(-227,59.5,23,59.5);
+  o5[15] = new TLine(-227,74.5,23,74.5);
+  o5[16] = new TLine(-227,73.5,23,73.5);
+  o5[17] = new TLine(-227,88.5,23,88.5);
+  o5[18] = new TLine(-227,87.5,23,87.5);
+  o5[19] = new TLine(-227,102.5,23,102.5);
+
+  for(int i=0; i<20; i++) o5[i]->Draw("SAME");
 
   // LAST
   // TLine* G02[4];
