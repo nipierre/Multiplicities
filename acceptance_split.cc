@@ -1348,8 +1348,8 @@ int main(int argc, char **argv)
 
         if(kin_flag)
         {
-          fTCx.push_back(MC_TCx->GetLeaf("TCx")->GetValue();
-          fTCy.push_back(MC_TCy->GetLeaf("TCy")->GetValue();
+          fTCx.push_back(MC_TCx->GetLeaf("TCx")->GetValue());
+          fTCy.push_back(MC_TCy->GetLeaf("TCy")->GetValue());
           if(fAllDISflag)
           {
             fQ2kin.push_back(Q2);
