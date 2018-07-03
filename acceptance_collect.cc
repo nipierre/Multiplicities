@@ -113,12 +113,27 @@ void yavg(int c, int x, int z)
     fNDIS_evt_c_yavg[2]+=fNDIS_evt_c[2][x][i][z];
     if(fNDIS_evt_c[2][x][i][z]) dis_c[2]++;
   }
-  fRcstr_yavg[0] /= rec[0]; fRcstr_yavg[1] /= rec[1]; fRcstr_yavg[2] /= rec[2]; fRcstr_yavg[3] /= rec[3];
-  fNDIS_evt_yavg[0] /= dis[0]; fNDIS_evt_yavg[1] /= dis[1]; fNDIS_evt_yavg[2] /= dis[2];
-  fGnrt_yavg[0] /= gen[0]; fGnrt_yavg[1] /= gen[1]; fGnrt_yavg[2] /= gen[2]; fGnrt_yavg[3] /= gen[3];
-  fNDIS_evt_MC_yavg[0] /= dis_MC[0]; fNDIS_evt_MC_yavg[1] /= dis_MC[1]; fNDIS_evt_MC_yavg[2] /= dis_MC[2];
-  fRcstr_c_yavg[0] /= rec_c[0]; fRcstr_c_yavg[1] /= rec_c[1]; fRcstr_c_yavg[2] /= rec_c[2]; fRcstr_c_yavg[3] /= rec_c[3];
-  fNDIS_evt_c_yavg[0] /= dis_c[0]; fNDIS_evt_c_yavg[1] /= dis_c[1]; fNDIS_evt_c_yavg[2] /= dis_c[2];
+  (rec[0] ? fRcstr_yavg[0] /= rec[0] : 0);
+  (rec[1] ? fRcstr_yavg[1] /= rec[1] : 0);
+  (rec[2] ? fRcstr_yavg[2] /= rec[2] : 0);
+  (rec[3] ? fRcstr_yavg[3] /= rec[3] : 0);
+  (dis[0] ? fNDIS_evt_yavg[0] /= dis[0] : 0);
+  (dis[1] ? fNDIS_evt_yavg[1] /= dis[1] : 0);
+  (dis[2] ? fNDIS_evt_yavg[2] /= dis[2] : 0);
+  (gen[0] ? fGnrt_yavg[0] /= gen[0] : 0);
+  (gen[1] ? fGnrt_yavg[1] /= gen[1] : 0);
+  (gen[2] ? fGnrt_yavg[2] /= gen[2] : 0);
+  (gen[3] ? fGnrt_yavg[3] /= gen[3] : 0);
+  (dis_MC[0] ? fNDIS_evt_MC_yavg[0] /= dis_MC[0] : 0);
+  (dis_MC[1] ? fNDIS_evt_MC_yavg[1] /= dis_MC[1] : 0);
+  (dis_MC[2] ? fNDIS_evt_MC_yavg[2] /= dis_MC[2] : 0);
+  (rec_c[0] ? fRcstr_c_yavg[0] /= rec_c[0] : 0);
+  (rec_c[1] ? fRcstr_c_yavg[1] /= rec_c[1] : 0);
+  (rec_c[2] ? fRcstr_c_yavg[2] /= rec_c[2] : 0);
+  (rec_c[3] ? fRcstr_c_yavg[3] /= rec_c[3] : 0);
+  (dis_c[0] ? fNDIS_evt_c_yavg[0] /= dis_c[0] : 0);
+  (dis_c[1] ? fNDIS_evt_c_yavg[1] /= dis_c[1] : 0);
+  (dis_c[2] ? fNDIS_evt_c_yavg[2] /= dis_c[2] : 0);
 }
 
 void resetValues()
