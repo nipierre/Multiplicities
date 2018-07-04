@@ -611,7 +611,7 @@ int main(int argc, char **argv)
           z_range_h[c][i][j].push_back(z_range[l]);
         }
 
-        cout << c << " " << i << " " << j << " " << k << " ";
+        cout << c << " " << i << " " << j << " ";
 
         for(int k=0; k<12; k++)
         {
