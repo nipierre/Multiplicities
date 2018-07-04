@@ -670,7 +670,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(H_mult[c][i][j])
           {
-            if(!c)
+            if(!c && j==0)
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
