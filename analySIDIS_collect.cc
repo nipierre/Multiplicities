@@ -520,29 +520,33 @@ int main(int argc, char **argv)
         {
           for(int l=0; l<4; l++)
           {
+            int multcount[3]={0,0,0};
+            int valuescount[4]={0,0,0,0};
             for(int nP=0; nP<fNumberPeriod; nP++)
             {
               fMultiplicities[i][j][k].tab[c][0][l] += fMultiplicities_periods[nP][i][j][k].tab[c][0][l];
+              if(fMultiplicities_periods[nP][i][j][k].tab[c][0][l]) multcount[0]++;
               fMultiplicities[i][j][k].tab[c][1][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][1][l],2);
+              if(fMultiplicities_periods[nP][i][j][k].tab[c][1][l]) multcount[1]++;
               fMultiplicities[i][j][k].tab[c][2][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][2][l],2);
+              if(fMultiplicities_periods[nP][i][j][k].tab[c][2][l]) multcount[2]++;
               if(c)
               {
                 for(int ll=0; ll<4; ll++)
                 {
                   fMeanvalues_data[i][j][k].tab[0][ll][l] += fMeanvalues_data_periods[nP][i][j][k].tab[0][ll][l];
+                  if(fMeanvalues_data_periods[nP][i][j][k].tab[0][ll][l]) valuescount[ll]++;
                 }
               }
             }
-            fMultiplicities[i][j][k].tab[c][0][l] /= fNumberPeriod;
-            fMultiplicities[i][j][k].tab[c][1][l] = sqrt(fMultiplicities[i][j][k].tab[c][1][l]);
-            fMultiplicities[i][j][k].tab[c][2][l] = sqrt(fMultiplicities[i][j][k].tab[c][2][l]);
-            fMultiplicities[i][j][k].tab[c][1][l] /= fNumberPeriod;
-            fMultiplicities[i][j][k].tab[c][2][l] /= fNumberPeriod;
+            fMultiplicities[i][j][k].tab[c][0][l] = (multcount[0] ? fMultiplicities[i][j][k].tab[c][0][l]/multcount[0] : 0);
+            fMultiplicities[i][j][k].tab[c][1][l] = (multcount[1] ? sqrt(fMultiplicities[i][j][k].tab[c][1][l])/multcount[1] : 0);
+            fMultiplicities[i][j][k].tab[c][2][l] = (multcount[1] ? sqrt(fMultiplicities[i][j][k].tab[c][2][l])/multcount[2] : 0);
             if(c)
             {
               for(int ll=0; ll<4; ll++)
               {
-                fMeanvalues_data[i][j][k].tab[0][ll][l] /= fNumberPeriod;
+                fMeanvalues_data[i][j][k].tab[0][ll][l] = (valuescount[ll] ? fMeanvalues_data[i][j][k].tab[0][ll][l]/valuescount[ll] : 0);
               }
             }
           }
