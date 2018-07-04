@@ -595,17 +595,17 @@ int main(int argc, char **argv)
               fAcceptance[i][j][k].tab[c][1][3] = 0;
             }*/
 
-            if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
-            {
-              fAcceptance[i][j][k].tab[c][0][0] = 0;
-              fAcceptance[i][j][k].tab[c][0][1] = 0;
-              fAcceptance[i][j][k].tab[c][0][2] = 0;
-              fAcceptance[i][j][k].tab[c][0][3] = 0;
-              fAcceptance[i][j][k].tab[c][1][0] = 0;
-              fAcceptance[i][j][k].tab[c][1][1] = 0;
-              fAcceptance[i][j][k].tab[c][1][2] = 0;
-              fAcceptance[i][j][k].tab[c][1][3] = 0;
-            }
+            // if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+            // {
+            //   fAcceptance[i][j][k].tab[c][0][0] = 0;
+            //   fAcceptance[i][j][k].tab[c][0][1] = 0;
+            //   fAcceptance[i][j][k].tab[c][0][2] = 0;
+            //   fAcceptance[i][j][k].tab[c][0][3] = 0;
+            //   fAcceptance[i][j][k].tab[c][1][0] = 0;
+            //   fAcceptance[i][j][k].tab[c][1][1] = 0;
+            //   fAcceptance[i][j][k].tab[c][1][2] = 0;
+            //   fAcceptance[i][j][k].tab[c][1][3] = 0;
+            // }
 
             //Output file
             //q_bin x_bin y_bin z_bin acc_pi acc_error_pi acc_k acc_error_k acc_p acc_error_p acc_h acc_error_h
@@ -656,17 +656,17 @@ int main(int argc, char **argv)
               fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = fAcceptance[i][j][k].tab[c][1][2];
               fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = fAcceptance[i][j][k].tab[c][1][3];
 
-              if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
-              {
-                fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = 0;
-                fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = 0;
-                fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = 0;
-                fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = 0;
-                fAcceptance_zvtx[i][j][k][l].tab[c][1][0] = 0;
-                fAcceptance_zvtx[i][j][k][l].tab[c][1][1] = 0;
-                fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = 0;
-                fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = 0;
-              }
+              // if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+              // {
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][0] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][1] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = 0;
+              // }
 
               p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][0] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][0]+j*0.1 : 0);
               k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][1] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][1]+j*0.1 : 0);

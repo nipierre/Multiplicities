@@ -611,6 +611,15 @@ int main(int argc, char **argv)
           z_range_h[c][i][j].push_back(z_range[l]);
         }
 
+        cout << c << " " << i << " " << j << " " << k << " ";
+
+        for(int k=0; k<12; k++)
+        {
+          cout << p_m[c][i][j][k] << " ";
+        }
+
+        cout << endl;
+
         for(int k=12; k>0; k--)
         {
           if(!p_m[c][i][j][k-1]) {p_m[c][i][j].erase(p_m[c][i][j].begin()+k-1); p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
