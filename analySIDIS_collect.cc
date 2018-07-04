@@ -670,7 +670,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(H_mult[c][i][j])
           {
-            if(!c && j==3)
+            if(!c)
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
@@ -694,18 +694,18 @@ int main(int argc, char **argv)
                 H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
                 H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              H_mult[c][i][0]->Draw("SAMEP");
-              H_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][0]->SetMinimum(0.);
-              H_mult[c][i][0]->SetMaximum(4.);
-              H_mult[c][i][1]->Draw("SAMEP");
-              H_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][1]->SetMinimum(0.);
-              H_mult[c][i][1]->SetMaximum(4.);
-              H_mult[c][i][2]->Draw("SAMEP");
-              H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][2]->SetMinimum(0.);
-              H_mult[c][i][2]->SetMaximum(4.);
+              // H_mult[c][i][0]->Draw("SAMEP");
+              // H_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+              // H_mult[c][i][0]->SetMinimum(0.);
+              // H_mult[c][i][0]->SetMaximum(4.);
+              // H_mult[c][i][1]->Draw("SAMEP");
+              // H_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+              // H_mult[c][i][1]->SetMinimum(0.);
+              // H_mult[c][i][1]->SetMaximum(4.);
+              // H_mult[c][i][2]->Draw("SAMEP");
+              // H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+              // H_mult[c][i][2]->SetMinimum(0.);
+              // H_mult[c][i][2]->SetMaximum(4.);
               c5->Range(0.1,0.,0.9,4.);
             }
             else
