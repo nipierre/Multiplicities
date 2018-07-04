@@ -511,6 +511,7 @@ int main(int argc, char **argv)
 
   for(int i=0; i<9; i++)
   {
+    int axisflag = 0;
     for(int j=0; j<6; j++)
     {
       for(int k=0; k<12; k++)
@@ -670,7 +671,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(H_mult[c][i][j])
           {
-            if(!c && j==0)
+            if(!c && !axisflag)
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
@@ -706,6 +707,7 @@ int main(int argc, char **argv)
               // H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
               // H_mult[c][i][2]->SetMinimum(0.);
               // H_mult[c][i][2]->SetMaximum(4.);
+              axisflag=1;
               c5->Range(0.1,0.,0.9,4.);
             }
             else
