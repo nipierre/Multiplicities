@@ -278,6 +278,7 @@ void save_kin_plots()
   c30.Divide(1,1);
   c31.Divide(1,1);
   c32.Divide(1,1);
+  c33.Divide(1,1);
 
   for(int i=0; i<4; i++)
   {
@@ -1556,7 +1557,7 @@ void save_kin_plots()
   fKinematicsRD[4][6]->Draw("PSAME");
   fKinematicsRD[4][6]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD[4][6]->GetYaxis()->SetLabelSize(0.03);
-  for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
+  for(int tt=0; tt<fKinematicsMC[4][6]->GetNbinsX(); tt++)
   {
     fKinematicsMC[4][6]->SetBinError(tt,sqrt(fKinematicsMC[4][6]->GetBinContent(tt)));
   }
