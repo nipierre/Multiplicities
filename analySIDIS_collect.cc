@@ -511,6 +511,7 @@ int main(int argc, char **argv)
 
   for(int i=0; i<9; i++)
   {
+    int axisflag = 0;
     for(int j=0; j<6; j++)
     {
       for(int k=0; k<12; k++)
@@ -519,29 +520,33 @@ int main(int argc, char **argv)
         {
           for(int l=0; l<4; l++)
           {
+            int multcount[3]={0,0,0};
+            int valuescount[4]={0,0,0,0};
             for(int nP=0; nP<fNumberPeriod; nP++)
             {
               fMultiplicities[i][j][k].tab[c][0][l] += fMultiplicities_periods[nP][i][j][k].tab[c][0][l];
+              if(fMultiplicities_periods[nP][i][j][k].tab[c][0][l]) multcount[0]++;
               fMultiplicities[i][j][k].tab[c][1][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][1][l],2);
+              if(fMultiplicities_periods[nP][i][j][k].tab[c][1][l]) multcount[1]++;
               fMultiplicities[i][j][k].tab[c][2][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][2][l],2);
+              if(fMultiplicities_periods[nP][i][j][k].tab[c][2][l]) multcount[2]++;
               if(c)
               {
                 for(int ll=0; ll<4; ll++)
                 {
                   fMeanvalues_data[i][j][k].tab[0][ll][l] += fMeanvalues_data_periods[nP][i][j][k].tab[0][ll][l];
+                  if(fMeanvalues_data_periods[nP][i][j][k].tab[0][ll][l]) valuescount[ll]++;
                 }
               }
             }
-            fMultiplicities[i][j][k].tab[c][0][l] /= fNumberPeriod;
-            fMultiplicities[i][j][k].tab[c][1][l] = sqrt(fMultiplicities[i][j][k].tab[c][1][l]);
-            fMultiplicities[i][j][k].tab[c][2][l] = sqrt(fMultiplicities[i][j][k].tab[c][2][l]);
-            fMultiplicities[i][j][k].tab[c][1][l] /= fNumberPeriod;
-            fMultiplicities[i][j][k].tab[c][2][l] /= fNumberPeriod;
+            fMultiplicities[i][j][k].tab[c][0][l] = (multcount[0] ? fMultiplicities[i][j][k].tab[c][0][l]/multcount[0] : 0);
+            fMultiplicities[i][j][k].tab[c][1][l] = (multcount[1] ? sqrt(fMultiplicities[i][j][k].tab[c][1][l])/multcount[1] : 0);
+            fMultiplicities[i][j][k].tab[c][2][l] = (multcount[1] ? sqrt(fMultiplicities[i][j][k].tab[c][2][l])/multcount[2] : 0);
             if(c)
             {
               for(int ll=0; ll<4; ll++)
               {
-                fMeanvalues_data[i][j][k].tab[0][ll][l] /= fNumberPeriod;
+                fMeanvalues_data[i][j][k].tab[0][ll][l] = (valuescount[ll] ? fMeanvalues_data[i][j][k].tab[0][ll][l]/valuescount[ll] : 0);
               }
             }
           }
@@ -593,9 +598,9 @@ int main(int argc, char **argv)
 
           // cout << c << " " << i << " " << j << " " << k << " " << fMultiplicities[i][j][k].tab[c][0][3] << endl;
 
-          p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0] ? fMultiplicities[i][j][k].tab[c][0][0]+j*0.1 : 0);
-          k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1] ? fMultiplicities[i][j][k].tab[c][0][1]+j*0.1 : 0);
-          h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3] ? fMultiplicities[i][j][k].tab[c][0][3]+j*0.1 : 0);
+          p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]>0 ? fMultiplicities[i][j][k].tab[c][0][0] : 0);
+          k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]>0 ? fMultiplicities[i][j][k].tab[c][0][1] : 0);
+          h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]>0 ? fMultiplicities[i][j][k].tab[c][0][3] : 0);
           p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? fMultiplicities[i][j][k].tab[c][1][0] : 0);
           k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? fMultiplicities[i][j][k].tab[c][1][1] : 0);
           h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? fMultiplicities[i][j][k].tab[c][1][3] : 0);
@@ -610,6 +615,15 @@ int main(int argc, char **argv)
           z_range_k[c][i][j].push_back(z_range[l]);
           z_range_h[c][i][j].push_back(z_range[l]);
         }
+
+        cout << c << " " << i << " " << j << " ";
+
+        for(int k=0; k<12; k++)
+        {
+          cout << p_m[c][i][j][k] << " ";
+        }
+
+        cout << endl;
 
         for(int k=12; k>0; k--)
         {
@@ -661,7 +675,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(H_mult[c][i][j])
           {
-            if(!c && j==3)
+            if(!c && !axisflag)
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
@@ -685,18 +699,19 @@ int main(int argc, char **argv)
                 H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
                 H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              H_mult[c][i][0]->Draw("SAMEP");
-              H_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][0]->SetMinimum(0.);
-              H_mult[c][i][0]->SetMaximum(4.);
-              H_mult[c][i][1]->Draw("SAMEP");
-              H_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][1]->SetMinimum(0.);
-              H_mult[c][i][1]->SetMaximum(4.);
-              H_mult[c][i][2]->Draw("SAMEP");
-              H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][2]->SetMinimum(0.);
-              H_mult[c][i][2]->SetMaximum(4.);
+              // H_mult[c][i][0]->Draw("SAMEP");
+              // H_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+              // H_mult[c][i][0]->SetMinimum(0.);
+              // H_mult[c][i][0]->SetMaximum(4.);
+              // H_mult[c][i][1]->Draw("SAMEP");
+              // H_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+              // H_mult[c][i][1]->SetMinimum(0.);
+              // H_mult[c][i][1]->SetMaximum(4.);
+              // H_mult[c][i][2]->Draw("SAMEP");
+              // H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+              // H_mult[c][i][2]->SetMinimum(0.);
+              // H_mult[c][i][2]->SetMaximum(4.);
+              axisflag=1;
               c5->Range(0.1,0.,0.9,4.);
             }
             else
