@@ -2482,7 +2482,7 @@ void MCextraction(string pFilelist)
           fYBjkinMC[4].push_back(yBj);
           fWBjkinMC[4].push_back(sqrt(wBj));
           fNukinMC[4].push_back(nu);
-          fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+          // fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
           fMupMC[4].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
           fThetaMC[4].push_back(theta_m);
           fPhiMC[4].push_back(phi_m);
