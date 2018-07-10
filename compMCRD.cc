@@ -2482,7 +2482,7 @@ void MCextraction(string pFilelist)
           fYBjkinMC[4].push_back(yBj);
           fWBjkinMC[4].push_back(sqrt(wBj));
           fNukinMC[4].push_back(nu);
-          // fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+          fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
           fMupMC[4].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
           fThetaMC[4].push_back(theta_m);
           fPhiMC[4].push_back(phi_m);
@@ -2491,7 +2491,7 @@ void MCextraction(string pFilelist)
         fXMC.push_back(x->GetLeaf("x")->GetValue());
         fYMC.push_back(y->GetLeaf("y")->GetValue());
       }
-      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+      // fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
@@ -3123,7 +3123,7 @@ void RDextraction(string pFilelist)
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
       fCell++;
 
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+      // fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // IM/O triggers
       //2006 ---
@@ -3232,7 +3232,7 @@ void RDextraction(string pFilelist)
         fYBjkin[4].push_back(yBj);
         fWBjkin[4].push_back(sqrt(wBj));
         fNukin[4].push_back(nu);
-        // fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+        fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
         fMup[4].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
         fTheta[4].push_back(theta_m);
         fPhi[4].push_back(phi_m);
