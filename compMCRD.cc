@@ -1544,6 +1544,26 @@ void save_kin_plots()
   fKinematicsMC[4][5]->Draw("SAME");
   c13.Update();
 
+  c33.cd(1);
+  fKinematicsMC[4][6]->Scale(fKinematicsRD[4][6]->GetEntries()/fKinematicsMC[4][6]->GetEntries());
+  fKinematicsRD[4][6]->SetLineColor(kRed);
+  fKinematicsMC[4][6]->SetLineColor(kBlue);
+  fKinematicsRD[4][6]->SetMinimum(0.);
+  fKinematicsRD[4][6]->SetMaximum(max(fKinematicsRD[4][6]->GetMaximum()*1.2,fKinematicsMC[4][6]->GetMaximum()*1.2));
+  fKinematicsRD[4][6]->GetYaxis()->SetNdivisions(304,kTRUE);
+  fKinematicsRD[4][6]->Draw("E2");
+  fKinematicsRD[4][6]->SetMarkerStyle(22);
+  fKinematicsRD[4][6]->Draw("PSAME");
+  fKinematicsRD[4][6]->GetXaxis()->SetLabelSize(0.03);
+  fKinematicsRD[4][6]->GetYaxis()->SetLabelSize(0.03);
+  for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
+  {
+    fKinematicsMC[4][6]->SetBinError(tt,sqrt(fKinematicsMC[4][6]->GetBinContent(tt)));
+  }
+  fKinematicsMC[4][6]->Draw("E2SAME");
+  fKinematicsMC[4][6]->Draw("SAME");
+  c33.Update();
+
   // c32.cd(1);
   // for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
   // {
@@ -1839,6 +1859,7 @@ void save_kin_plots()
   c11.Print("kinMCRD.pdf","pdf");
   c12.Print("kinMCRD.pdf","pdf");
   c13.Print("kinMCRD.pdf","pdf");
+  c33.Print("kinMCRD.pdf","pdf");
   c22.Print("kinMCRD.pdf","pdf");
   c23.Print("kinMCRD.pdf","pdf");
   c24.Print("kinMCRD.pdf","pdf");
@@ -2465,6 +2486,7 @@ void MCextraction(string pFilelist)
         fXMC.push_back(x->GetLeaf("x")->GetValue());
         fYMC.push_back(y->GetLeaf("y")->GetValue());
       }
+      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
@@ -3051,6 +3073,7 @@ void RDextraction(string pFilelist)
       }
       //Rcut study ---
 
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       //BMS (reconstructed beam track)
       if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
@@ -3200,7 +3223,7 @@ void RDextraction(string pFilelist)
         fYBjkin[4].push_back(yBj);
         fWBjkin[4].push_back(sqrt(wBj));
         fNukin[4].push_back(nu);
-        fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+        // fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
         fMup[4].push_back(E_mu_prim->GetLeaf("E_mu_prim")->GetValue());
         fTheta[4].push_back(theta_m);
         fPhi[4].push_back(phi_m);

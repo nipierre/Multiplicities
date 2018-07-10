@@ -238,6 +238,7 @@ TCanvas c29("photoelec","photoelec",2000,2000);
 TCanvas c30("Q^2","Q^2",2000,2000);
 TCanvas c31("nu","nu",2000,2000);
 TCanvas c32("z","z",2000,2000);
+TCanvas c33("E_mu","E_mu",3200,1600);
 
 vector<double> fError;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
