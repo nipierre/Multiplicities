@@ -1557,7 +1557,7 @@ void save_kin_plots()
   {
     fKinematicsRD[4][6]->SetBinError(tt,sqrt(fKinematicsRD[4][6]->GetBinContent(tt)/fKinematicsRD[4][6]->GetEntries()));
   }
-  fKinematicsRD[4][6]->Draw("E2");
+  //fKinematicsRD[4][6]->Draw("E2");
   fKinematicsRD[4][6]->SetMarkerStyle(22);
   fKinematicsRD[4][6]->Draw("PSAME");
   fKinematicsRD[4][6]->GetXaxis()->SetLabelSize(0.03);
@@ -1566,7 +1566,7 @@ void save_kin_plots()
   {
     fKinematicsMC[4][6]->SetBinError(tt,sqrt(fKinematicsMC[4][6]->GetBinContent(tt)/fKinematicsMC[4][6]->GetEntries()));
   }
-  fKinematicsMC[4][6]->Draw("E2SAME");
+  //fKinematicsMC[4][6]->Draw("E2SAME");
   fKinematicsMC[4][6]->Draw("SAME");
   c33.Update();
 
