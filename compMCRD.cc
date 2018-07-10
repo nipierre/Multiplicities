@@ -2745,7 +2745,7 @@ void MCextraction(string pFilelist)
     fKinematicsMC[4][9]->Fill(fPhiMC[4][i]);
     fKinematicsMC[4][10]->Fill(fVertexMC[4][i]);
   }
-  for(int i=0; i<int(fKinematicsMC[4][6]->size()); i++)
+  for(int i=0; i<int(fMuMC[4].size()); i++)
   {
     fKinematicsMC[4][6]->Fill(fMuMC[4][i]);
   }
@@ -3599,7 +3599,7 @@ void RDextraction(string pFilelist)
       fKinematicsRD[4][9]->Fill(fPhi[4][i]);
       fKinematicsRD[4][10]->Fill(fVertex[4][i]);
   }
-  for(int i=0; i<int(fKinematicsRD[4][6]->size()); i++)
+  for(int i=0; i<int(fMu[4].size()); i++)
   {
     fKinematicsRD[4][6]->Fill(fMu[4][i]);
   }
