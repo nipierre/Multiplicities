@@ -1552,6 +1552,10 @@ void save_kin_plots()
   fKinematicsRD[4][6]->SetMinimum(0.);
   fKinematicsRD[4][6]->SetMaximum(max(fKinematicsRD[4][6]->GetMaximum()*1.2,fKinematicsMC[4][6]->GetMaximum()*1.2));
   fKinematicsRD[4][6]->GetYaxis()->SetNdivisions(304,kTRUE);
+  for(int tt=0; tt<fKinematicsRD[4][6]->GetNbinsX(); tt++)
+  {
+    fKinematicsRD[4][6]->SetBinError(tt,sqrt(fKinematicsRD[4][6]->GetBinContent(tt)));
+  }
   fKinematicsRD[4][6]->Draw("E2");
   fKinematicsRD[4][6]->SetMarkerStyle(22);
   fKinematicsRD[4][6]->Draw("PSAME");
@@ -2735,11 +2739,15 @@ void MCextraction(string pFilelist)
     fKinematicsMC[4][2]->Fill(fYBjkinMC[4][i]);
     fKinematicsMC[4][4]->Fill(fWBjkinMC[4][i]);
     fKinematicsMC[4][5]->Fill(fNukinMC[4][i]);
-    fKinematicsMC[4][6]->Fill(fMuMC[4][i]);
+    // fKinematicsMC[4][6]->Fill(fMuMC[4][i]);
     fKinematicsMC[4][7]->Fill(fMupMC[4][i]);
     fKinematicsMC[4][8]->Fill(fThetaMC[4][i]);
     fKinematicsMC[4][9]->Fill(fPhiMC[4][i]);
     fKinematicsMC[4][10]->Fill(fVertexMC[4][i]);
+  }
+  for(int i=0; i<int(fKinematicsMC[4][6]->size()); i++)
+  {
+    fKinematicsMC[4][6]->Fill(fMuMC[4][i]);
   }
 }
 
@@ -3585,11 +3593,15 @@ void RDextraction(string pFilelist)
       fKinematicsRD[4][2]->Fill(fYBjkin[4][i]);
       fKinematicsRD[4][4]->Fill(fWBjkin[4][i]);
       fKinematicsRD[4][5]->Fill(fNukin[4][i]);
-      fKinematicsRD[4][6]->Fill(fMu[4][i]);
+      // fKinematicsRD[4][6]->Fill(fMu[4][i]);
       fKinematicsRD[4][7]->Fill(fMup[4][i]);
       fKinematicsRD[4][8]->Fill(fTheta[4][i]);
       fKinematicsRD[4][9]->Fill(fPhi[4][i]);
       fKinematicsRD[4][10]->Fill(fVertex[4][i]);
+  }
+  for(int i=0; i<int(fKinematicsRD[4][6]->size()); i++)
+  {
+    fKinematicsRD[4][6]->Fill(fMu[4][i]);
   }
 
 }
