@@ -1546,8 +1546,7 @@ void save_kin_plots()
   c13.Update();
 
   c33.cd(1);
-  fKinematicsMC[4][6]->Scale(1/fKinematicsMC[4][6]->GetEntries());
-  fKinematicsRD[4][6]->Scale(1/fKinematicsRD[4][6]->GetEntries());
+  fKinematicsMC[4][6]->Scale(fKinematicsRD[4][6]->GetEntries()/fKinematicsMC[4][6]->GetEntries());
   fKinematicsRD[4][6]->SetLineColor(kRed);
   fKinematicsMC[4][6]->SetLineColor(kBlue);
   fKinematicsRD[4][6]->SetMinimum(0.);
@@ -1555,18 +1554,18 @@ void save_kin_plots()
   fKinematicsRD[4][6]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][6]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][6]->SetBinError(tt,sqrt(fKinematicsRD[4][6]->GetBinContent(tt)/fKinematicsRD[4][6]->GetEntries()));
+    fKinematicsRD[4][6]->SetBinError(tt,sqrt(fKinematicsRD[4][6]->GetBinContent(tt)));
   }
-  //fKinematicsRD[4][6]->Draw("E2");
+  fKinematicsRD[4][6]->Draw("E2");
   fKinematicsRD[4][6]->SetMarkerStyle(22);
   fKinematicsRD[4][6]->Draw("PSAME");
   fKinematicsRD[4][6]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD[4][6]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][6]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][6]->SetBinError(tt,sqrt(fKinematicsMC[4][6]->GetBinContent(tt)/fKinematicsMC[4][6]->GetEntries()));
+    fKinematicsMC[4][6]->SetBinError(tt,sqrt(fKinematicsMC[4][6]->GetBinContent(tt)));
   }
-  //fKinematicsMC[4][6]->Draw("E2SAME");
+  fKinematicsMC[4][6]->Draw("E2SAME");
   fKinematicsMC[4][6]->Draw("SAME");
   c33.Update();
 
@@ -3083,8 +3082,6 @@ void RDextraction(string pFilelist)
       }
       //Rcut study ---
 
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-
       //BMS (reconstructed beam track)
       if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
       fBMS++;
@@ -3125,6 +3122,8 @@ void RDextraction(string pFilelist)
       // Cells crossing
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
       fCell++;
+
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // IM/O triggers
       //2006 ---
