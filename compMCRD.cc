@@ -2383,7 +2383,6 @@ void MCextraction(string pFilelist)
                     if((Q2>1))
                     {
                       fQ2test++;
-                      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
@@ -2410,6 +2409,8 @@ void MCextraction(string pFilelist)
           }
         }
       }
+
+      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // If all DIS tests are good, then event is saved
       if(fAllDISflag)
@@ -3082,6 +3083,8 @@ void RDextraction(string pFilelist)
       }
       //Rcut study ---
 
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+
       //BMS (reconstructed beam track)
       if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
       fBMS++;
@@ -3148,7 +3151,6 @@ void RDextraction(string pFilelist)
       // Q2 cut
       if(!(Q2>1)) continue;
       fQ2test++;
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // y cut
       if(!(fYmin<yBj && yBj<fYmax)) continue;
