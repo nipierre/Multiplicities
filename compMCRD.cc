@@ -763,7 +763,7 @@ void save_kin_plots()
       fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][0]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][0]->SetBinError(tt,sqrt(fKinematicsRD[i][0]->GetBinContent(tt)));
+        fKinematicsRD[i][0]->SetBinError(tt,1/sqrt(fKinematicsRD[i][0]->GetBinContent(tt)));
       }
       fKinematicsRD[i][0]->Draw("E2");
       fKinematicsRD[i][0]->SetMarkerStyle(22);
@@ -772,7 +772,7 @@ void save_kin_plots()
       fKinematicsRD[i][0]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][0]->SetBinError(tt,sqrt(fKinematicsMC[i][0]->GetBinContent(tt)));
+        fKinematicsMC[i][0]->SetBinError(tt,1/sqrt(fKinematicsMC[i][0]->GetBinContent(tt)));
       }
       fKinematicsMC[i][0]->Draw("E2SAME");
       fKinematicsMC[i][0]->Draw("SAME");
@@ -788,7 +788,7 @@ void save_kin_plots()
       fKinematicsRD[i][1]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][1]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][1]->SetBinError(tt,sqrt(fKinematicsRD[i][1]->GetBinContent(tt)));
+        fKinematicsRD[i][1]->SetBinError(tt,1/sqrt(fKinematicsRD[i][1]->GetBinContent(tt)));
       }
       fKinematicsRD[i][1]->Draw("E2");
       fKinematicsRD[i][1]->SetMarkerStyle(22);
@@ -797,7 +797,7 @@ void save_kin_plots()
       fKinematicsRD[i][1]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][1]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][1]->SetBinError(tt,sqrt(fKinematicsMC[i][1]->GetBinContent(tt)));
+        fKinematicsMC[i][1]->SetBinError(tt,1/sqrt(fKinematicsMC[i][1]->GetBinContent(tt)));
       }
       fKinematicsMC[i][1]->Draw("E2SAME");
       fKinematicsMC[i][1]->Draw("SAME");
@@ -813,7 +813,7 @@ void save_kin_plots()
       fKinematicsRD[i][2]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][2]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][2]->SetBinError(tt,sqrt(fKinematicsRD[i][2]->GetBinContent(tt)));
+        fKinematicsRD[i][2]->SetBinError(tt,1/sqrt(fKinematicsRD[i][2]->GetBinContent(tt)));
       }
       fKinematicsRD[i][2]->Draw("E2");
       fKinematicsRD[i][2]->SetMarkerStyle(22);
@@ -822,7 +822,7 @@ void save_kin_plots()
       fKinematicsRD[i][2]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][2]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][2]->SetBinError(tt,sqrt(fKinematicsMC[i][2]->GetBinContent(tt)));
+        fKinematicsMC[i][2]->SetBinError(tt,1/sqrt(fKinematicsMC[i][2]->GetBinContent(tt)));
       }
       fKinematicsMC[i][2]->Draw("E2SAME");
       fKinematicsMC[i][2]->Draw("SAME");
@@ -837,7 +837,7 @@ void save_kin_plots()
       fKinematicsRD[i][3]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][3]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][3]->SetBinError(tt,sqrt(fKinematicsRD[i][3]->GetBinContent(tt)));
+        fKinematicsRD[i][3]->SetBinError(tt,1/sqrt(fKinematicsRD[i][3]->GetBinContent(tt)));
       }
       fKinematicsRD[i][3]->Draw("E2");
       fKinematicsRD[i][3]->SetMarkerStyle(22);
@@ -846,7 +846,7 @@ void save_kin_plots()
       fKinematicsRD[i][3]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][3]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][3]->SetBinError(tt,sqrt(fKinematicsMC[i][3]->GetBinContent(tt)));
+        fKinematicsMC[i][3]->SetBinError(tt,1/sqrt(fKinematicsMC[i][3]->GetBinContent(tt)));
       }
       fKinematicsMC[i][3]->Draw("E2SAME");
       fKinematicsMC[i][3]->Draw("SAME");
@@ -861,7 +861,7 @@ void save_kin_plots()
       fKinematicsRD[i][4]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][4]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][4]->SetBinError(tt,sqrt(fKinematicsRD[i][4]->GetBinContent(tt)));
+        fKinematicsRD[i][4]->SetBinError(tt,1/sqrt(fKinematicsRD[i][4]->GetBinContent(tt)));
       }
       fKinematicsRD[i][4]->Draw("E2");
       fKinematicsRD[i][4]->SetMarkerStyle(22);
@@ -870,7 +870,7 @@ void save_kin_plots()
       fKinematicsRD[i][4]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][4]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][4]->SetBinError(tt,sqrt(fKinematicsMC[i][4]->GetBinContent(tt)));
+        fKinematicsMC[i][4]->SetBinError(tt,1/sqrt(fKinematicsMC[i][4]->GetBinContent(tt)));
       }
       fKinematicsMC[i][4]->Draw("E2SAME");
       fKinematicsMC[i][4]->Draw("SAME");
@@ -885,7 +885,7 @@ void save_kin_plots()
       fKinematicsRD[i][5]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][5]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][5]->SetBinError(tt,sqrt(fKinematicsRD[i][5]->GetBinContent(tt)));
+        fKinematicsRD[i][5]->SetBinError(tt,1/sqrt(fKinematicsRD[i][5]->GetBinContent(tt)));
       }
       fKinematicsRD[i][5]->Draw("E2");
       fKinematicsRD[i][5]->SetMarkerStyle(22);
@@ -894,7 +894,7 @@ void save_kin_plots()
       fKinematicsRD[i][5]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][5]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][5]->SetBinError(tt,sqrt(fKinematicsMC[i][5]->GetBinContent(tt)));
+        fKinematicsMC[i][5]->SetBinError(tt,1/sqrt(fKinematicsMC[i][5]->GetBinContent(tt)));
       }
       fKinematicsMC[i][5]->Draw("E2SAME");
       fKinematicsMC[i][5]->Draw("SAME");
@@ -909,7 +909,7 @@ void save_kin_plots()
       fKinematicsRD[i][6]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][6]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][6]->SetBinError(tt,sqrt(fKinematicsRD[i][6]->GetBinContent(tt)));
+        fKinematicsRD[i][6]->SetBinError(tt,1/sqrt(fKinematicsRD[i][6]->GetBinContent(tt)));
       }
       fKinematicsRD[i][6]->Draw("E2");
       fKinematicsRD[i][6]->SetMarkerStyle(22);
@@ -918,7 +918,7 @@ void save_kin_plots()
       fKinematicsRD[i][6]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][6]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][6]->SetBinError(tt,sqrt(fKinematicsMC[i][6]->GetBinContent(tt)));
+        fKinematicsMC[i][6]->SetBinError(tt,1/sqrt(fKinematicsMC[i][6]->GetBinContent(tt)));
       }
       fKinematicsMC[i][6]->Draw("E2SAME");
       fKinematicsMC[i][6]->Draw("SAME");
@@ -933,7 +933,7 @@ void save_kin_plots()
       fKinematicsRD[i][7]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][7]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][7]->SetBinError(tt,sqrt(fKinematicsRD[i][7]->GetBinContent(tt)));
+        fKinematicsRD[i][7]->SetBinError(tt,1/sqrt(fKinematicsRD[i][7]->GetBinContent(tt)));
       }
       fKinematicsRD[i][7]->Draw("E2");
       fKinematicsRD[i][7]->SetMarkerStyle(22);
@@ -942,7 +942,7 @@ void save_kin_plots()
       fKinematicsRD[i][7]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][7]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][7]->SetBinError(tt,sqrt(fKinematicsMC[i][7]->GetBinContent(tt)));
+        fKinematicsMC[i][7]->SetBinError(tt,1/sqrt(fKinematicsMC[i][7]->GetBinContent(tt)));
       }
       fKinematicsMC[i][7]->Draw("E2SAME");
       fKinematicsMC[i][7]->Draw("SAME");
@@ -957,7 +957,7 @@ void save_kin_plots()
       fKinematicsRD[i][8]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][8]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][8]->SetBinError(tt,sqrt(fKinematicsRD[i][8]->GetBinContent(tt)));
+        fKinematicsRD[i][8]->SetBinError(tt,1/sqrt(fKinematicsRD[i][8]->GetBinContent(tt)));
       }
       fKinematicsRD[i][8]->Draw("E2");
       fKinematicsRD[i][8]->SetMarkerStyle(22);
@@ -966,7 +966,7 @@ void save_kin_plots()
       fKinematicsRD[i][8]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][8]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][8]->SetBinError(tt,sqrt(fKinematicsMC[i][8]->GetBinContent(tt)));
+        fKinematicsMC[i][8]->SetBinError(tt,1/sqrt(fKinematicsMC[i][8]->GetBinContent(tt)));
       }
       fKinematicsMC[i][8]->Draw("E2SAME");
       fKinematicsMC[i][8]->Draw("SAME");
@@ -981,7 +981,7 @@ void save_kin_plots()
       fKinematicsRD[i][9]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][9]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][9]->SetBinError(tt,sqrt(fKinematicsRD[i][9]->GetBinContent(tt)));
+        fKinematicsRD[i][9]->SetBinError(tt,1/sqrt(fKinematicsRD[i][9]->GetBinContent(tt)));
       }
       fKinematicsRD[i][9]->Draw("E2");
       fKinematicsRD[i][9]->SetMarkerStyle(22);
@@ -990,7 +990,7 @@ void save_kin_plots()
       fKinematicsRD[i][9]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][9]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][9]->SetBinError(tt,sqrt(fKinematicsMC[i][9]->GetBinContent(tt)));
+        fKinematicsMC[i][9]->SetBinError(tt,1/sqrt(fKinematicsMC[i][9]->GetBinContent(tt)));
       }
       fKinematicsMC[i][9]->Draw("E2SAME");
       fKinematicsMC[i][9]->Draw("SAME");
@@ -1005,7 +1005,7 @@ void save_kin_plots()
       fKinematicsRD[i][10]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][10]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][10]->SetBinError(tt,sqrt(fKinematicsRD[i][10]->GetBinContent(tt)));
+        fKinematicsRD[i][10]->SetBinError(tt,1/sqrt(fKinematicsRD[i][10]->GetBinContent(tt)));
       }
       fKinematicsRD[i][10]->Draw("E2");
       fKinematicsRD[i][10]->SetMarkerStyle(22);
@@ -1014,7 +1014,7 @@ void save_kin_plots()
       fKinematicsRD[i][10]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][10]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][10]->SetBinError(tt,sqrt(fKinematicsMC[i][10]->GetBinContent(tt)));
+        fKinematicsMC[i][10]->SetBinError(tt,1/sqrt(fKinematicsMC[i][10]->GetBinContent(tt)));
       }
       fKinematicsMC[i][10]->Draw("E2SAME");
       fKinematicsMC[i][10]->Draw("SAME");
@@ -1029,7 +1029,7 @@ void save_kin_plots()
       fKinematicsRD[i][12]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][12]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][12]->SetBinError(tt,sqrt(fKinematicsRD[i][12]->GetBinContent(tt)));
+        fKinematicsRD[i][12]->SetBinError(tt,1/sqrt(fKinematicsRD[i][12]->GetBinContent(tt)));
       }
       fKinematicsRD[i][12]->Draw("E2");
       fKinematicsRD[i][12]->SetMarkerStyle(22);
@@ -1038,7 +1038,7 @@ void save_kin_plots()
       fKinematicsRD[i][12]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][12]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][12]->SetBinError(tt,sqrt(fKinematicsMC[i][12]->GetBinContent(tt)));
+        fKinematicsMC[i][12]->SetBinError(tt,1/sqrt(fKinematicsMC[i][12]->GetBinContent(tt)));
       }
       fKinematicsMC[i][12]->Draw("E2SAME");
       fKinematicsMC[i][12]->Draw("SAME");
@@ -1053,7 +1053,7 @@ void save_kin_plots()
       fKinematicsRD[i][13]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][13]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][13]->SetBinError(tt,sqrt(fKinematicsRD[i][13]->GetBinContent(tt)));
+        fKinematicsRD[i][13]->SetBinError(tt,1/sqrt(fKinematicsRD[i][13]->GetBinContent(tt)));
       }
       fKinematicsRD[i][13]->Draw("E2");
       fKinematicsRD[i][13]->SetMarkerStyle(22);
@@ -1062,7 +1062,7 @@ void save_kin_plots()
       fKinematicsRD[i][13]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][13]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][13]->SetBinError(tt,sqrt(fKinematicsMC[i][13]->GetBinContent(tt)));
+        fKinematicsMC[i][13]->SetBinError(tt,1/sqrt(fKinematicsMC[i][13]->GetBinContent(tt)));
       }
       fKinematicsMC[i][13]->Draw("E2SAME");
       fKinematicsMC[i][13]->Draw("SAME");
@@ -1077,7 +1077,7 @@ void save_kin_plots()
       fKinematicsRD[i][14]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][14]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][14]->SetBinError(tt,sqrt(fKinematicsRD[i][14]->GetBinContent(tt)));
+        fKinematicsRD[i][14]->SetBinError(tt,1/sqrt(fKinematicsRD[i][14]->GetBinContent(tt)));
       }
       fKinematicsRD[i][14]->Draw("E2");
       fKinematicsRD[i][14]->SetMarkerStyle(22);
@@ -1086,7 +1086,7 @@ void save_kin_plots()
       fKinematicsRD[i][14]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][14]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][14]->SetBinError(tt,sqrt(fKinematicsMC[i][14]->GetBinContent(tt)));
+        fKinematicsMC[i][14]->SetBinError(tt,1/sqrt(fKinematicsMC[i][14]->GetBinContent(tt)));
       }
       fKinematicsMC[i][14]->Draw("E2SAME");
       fKinematicsMC[i][14]->Draw("SAME");
@@ -1101,7 +1101,7 @@ void save_kin_plots()
       fKinematicsRD[i][15]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][15]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][15]->SetBinError(tt,sqrt(fKinematicsRD[i][15]->GetBinContent(tt)));
+        fKinematicsRD[i][15]->SetBinError(tt,1/sqrt(fKinematicsRD[i][15]->GetBinContent(tt)));
       }
       fKinematicsRD[i][15]->Draw("E2");
       fKinematicsRD[i][15]->SetMarkerStyle(22);
@@ -1110,7 +1110,7 @@ void save_kin_plots()
       fKinematicsRD[i][15]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][15]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][15]->SetBinError(tt,sqrt(fKinematicsMC[i][15]->GetBinContent(tt)));
+        fKinematicsMC[i][15]->SetBinError(tt,1/sqrt(fKinematicsMC[i][15]->GetBinContent(tt)));
       }
       fKinematicsMC[i][15]->Draw("E2SAME");
       fKinematicsMC[i][15]->Draw("SAME");
@@ -1125,7 +1125,7 @@ void save_kin_plots()
       fKinematicsRD[i][16]->GetYaxis()->SetNdivisions(304,kTRUE);
       for(int tt=0; tt<fKinematicsRD[i][16]->GetNbinsX(); tt++)
       {
-        fKinematicsRD[i][16]->SetBinError(tt,sqrt(fKinematicsRD[i][16]->GetBinContent(tt)));
+        fKinematicsRD[i][16]->SetBinError(tt,1/sqrt(fKinematicsRD[i][16]->GetBinContent(tt)));
       }
       fKinematicsRD[i][16]->Draw("E2");
       fKinematicsRD[i][16]->SetMarkerStyle(22);
@@ -1134,7 +1134,7 @@ void save_kin_plots()
       fKinematicsRD[i][16]->GetYaxis()->SetLabelSize(0.03);
       for(int tt=0; tt<fKinematicsMC[i][16]->GetNbinsX(); tt++)
       {
-        fKinematicsMC[i][16]->SetBinError(tt,sqrt(fKinematicsMC[i][16]->GetBinContent(tt)));
+        fKinematicsMC[i][16]->SetBinError(tt,1/sqrt(fKinematicsMC[i][16]->GetBinContent(tt)));
       }
       fKinematicsMC[i][16]->Draw("E2SAME");
       fKinematicsMC[i][16]->Draw("SAME");
@@ -1179,7 +1179,7 @@ void save_kin_plots()
   fKinematicsRD[0][11]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[0][11]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[0][11]->SetBinError(tt,sqrt(fKinematicsRD[0][11]->GetBinContent(tt)));
+    fKinematicsRD[0][11]->SetBinError(tt,1/sqrt(fKinematicsRD[0][11]->GetBinContent(tt)));
   }
   fKinematicsRD[0][11]->Draw("E2");
   fKinematicsRD[0][11]->SetMarkerStyle(22);
@@ -1188,7 +1188,7 @@ void save_kin_plots()
   fKinematicsRD[0][11]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[0][11]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[0][11]->SetBinError(tt,sqrt(fKinematicsMC[0][11]->GetBinContent(tt)));
+    fKinematicsMC[0][11]->SetBinError(tt,1/sqrt(fKinematicsMC[0][11]->GetBinContent(tt)));
   }
   fKinematicsMC[0][11]->Draw("E2SAME");
   fKinematicsMC[0][11]->Draw("SAME");
@@ -1232,7 +1232,7 @@ void save_kin_plots()
   fKinematicsRD[4][0]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][0]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][0]->SetBinError(tt,sqrt(fKinematicsRD[4][0]->GetBinContent(tt)));
+    fKinematicsRD[4][0]->SetBinError(tt,1/sqrt(fKinematicsRD[4][0]->GetBinContent(tt)));
   }
   fKinematicsRD[4][0]->Draw("E2");
   fKinematicsRD[4][0]->SetMarkerStyle(22);
@@ -1241,7 +1241,7 @@ void save_kin_plots()
   fKinematicsRD[4][0]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][0]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][0]->SetBinError(tt,sqrt(fKinematicsMC[4][0]->GetBinContent(tt)));
+    fKinematicsMC[4][0]->SetBinError(tt,1/sqrt(fKinematicsMC[4][0]->GetBinContent(tt)));
   }
   fKinematicsMC[4][0]->Draw("E2SAME");
   fKinematicsMC[4][0]->Draw("SAME");
@@ -1304,7 +1304,7 @@ void save_kin_plots()
   fKinematicsRD[4][1]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][1]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][1]->SetBinError(tt,sqrt(fKinematicsRD[4][1]->GetBinContent(tt)));
+    fKinematicsRD[4][1]->SetBinError(tt,1/sqrt(fKinematicsRD[4][1]->GetBinContent(tt)));
   }
   fKinematicsRD[4][1]->Draw("E2");
   fKinematicsRD[4][1]->SetMarkerStyle(22);
@@ -1313,7 +1313,7 @@ void save_kin_plots()
   fKinematicsRD[4][1]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][1]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][1]->SetBinError(tt,sqrt(fKinematicsMC[4][1]->GetBinContent(tt)));
+    fKinematicsMC[4][1]->SetBinError(tt,1/sqrt(fKinematicsMC[4][1]->GetBinContent(tt)));
   }
   fKinematicsMC[4][1]->Draw("E2SAME");
   fKinematicsMC[4][1]->Draw("SAME");
@@ -1357,7 +1357,7 @@ void save_kin_plots()
   fKinematicsRD[4][2]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][2]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][2]->SetBinError(tt,sqrt(fKinematicsRD[4][2]->GetBinContent(tt)));
+    fKinematicsRD[4][2]->SetBinError(tt,1/sqrt(fKinematicsRD[4][2]->GetBinContent(tt)));
   }
   fKinematicsRD[4][2]->Draw("E2");
   fKinematicsRD[4][2]->SetMarkerStyle(22);
@@ -1366,7 +1366,7 @@ void save_kin_plots()
   fKinematicsRD[4][2]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][2]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][2]->SetBinError(tt,sqrt(fKinematicsMC[4][2]->GetBinContent(tt)));
+    fKinematicsMC[4][2]->SetBinError(tt,1/sqrt(fKinematicsMC[4][2]->GetBinContent(tt)));
   }
   fKinematicsMC[4][2]->Draw("E2SAME");
   fKinematicsMC[4][2]->Draw("SAME");
@@ -1409,7 +1409,7 @@ void save_kin_plots()
   fKinematicsRD[4][3]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][3]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][3]->SetBinError(tt,sqrt(fKinematicsRD[4][3]->GetBinContent(tt)));
+    fKinematicsRD[4][3]->SetBinError(tt,1/sqrt(fKinematicsRD[4][3]->GetBinContent(tt)));
   }
   fKinematicsRD[4][3]->Draw("E2");
   fKinematicsRD[4][3]->SetMarkerStyle(22);
@@ -1418,7 +1418,7 @@ void save_kin_plots()
   fKinematicsRD[4][3]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][3]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][3]->SetBinError(tt,sqrt(fKinematicsMC[4][3]->GetBinContent(tt)));
+    fKinematicsMC[4][3]->SetBinError(tt,1/sqrt(fKinematicsMC[4][3]->GetBinContent(tt)));
   }
   fKinematicsMC[4][3]->Draw("E2SAME");
   fKinematicsMC[4][3]->Draw("SAME");
@@ -1478,7 +1478,7 @@ void save_kin_plots()
   fKinematicsRD[4][4]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][4]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][4]->SetBinError(tt,sqrt(fKinematicsRD[4][4]->GetBinContent(tt)));
+    fKinematicsRD[4][4]->SetBinError(tt,1/sqrt(fKinematicsRD[4][4]->GetBinContent(tt)));
   }
   fKinematicsRD[4][4]->Draw("E2");
   fKinematicsRD[4][4]->SetMarkerStyle(22);
@@ -1487,7 +1487,7 @@ void save_kin_plots()
   fKinematicsRD[4][4]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][4]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][4]->SetBinError(tt,sqrt(fKinematicsMC[4][4]->GetBinContent(tt)));
+    fKinematicsMC[4][4]->SetBinError(tt,1/sqrt(fKinematicsMC[4][4]->GetBinContent(tt)));
   }
   fKinematicsMC[4][4]->Draw("E2SAME");
   fKinematicsMC[4][4]->Draw("SAME");
@@ -1530,7 +1530,7 @@ void save_kin_plots()
   fKinematicsRD[4][5]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][5]->SetBinError(tt,sqrt(fKinematicsRD[4][5]->GetBinContent(tt)));
+    fKinematicsRD[4][5]->SetBinError(tt,1/sqrt(fKinematicsRD[4][5]->GetBinContent(tt)));
   }
   fKinematicsRD[4][5]->Draw("E2");
   fKinematicsRD[4][5]->SetMarkerStyle(22);
@@ -1539,7 +1539,7 @@ void save_kin_plots()
   fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][5]->SetBinError(tt,sqrt(fKinematicsMC[4][5]->GetBinContent(tt)));
+    fKinematicsMC[4][5]->SetBinError(tt,1/sqrt(fKinematicsMC[4][5]->GetBinContent(tt)));
   }
   fKinematicsMC[4][5]->Draw("E2SAME");
   fKinematicsMC[4][5]->Draw("SAME");
@@ -1623,7 +1623,7 @@ void save_kin_plots()
   fKinematicsRD[4][12]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][12]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][12]->SetBinError(tt,sqrt(fKinematicsRD[4][12]->GetBinContent(tt)));
+    fKinematicsRD[4][12]->SetBinError(tt,1/sqrt(fKinematicsRD[4][12]->GetBinContent(tt)));
   }
   fKinematicsRD[4][12]->Draw("E2");
   fKinematicsRD[4][12]->SetMarkerStyle(22);
@@ -1632,7 +1632,7 @@ void save_kin_plots()
   fKinematicsRD[4][12]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][12]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][12]->SetBinError(tt,sqrt(fKinematicsMC[4][12]->GetBinContent(tt)));
+    fKinematicsMC[4][12]->SetBinError(tt,1/sqrt(fKinematicsMC[4][12]->GetBinContent(tt)));
   }
   fKinematicsMC[4][12]->Draw("E2SAME");
   fKinematicsMC[4][12]->Draw("SAME");
@@ -1675,7 +1675,7 @@ void save_kin_plots()
   fKinematicsRD[4][13]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][13]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][13]->SetBinError(tt,sqrt(fKinematicsRD[4][13]->GetBinContent(tt)));
+    fKinematicsRD[4][13]->SetBinError(tt,1/sqrt(fKinematicsRD[4][13]->GetBinContent(tt)));
   }
   fKinematicsRD[4][13]->Draw("E2");
   fKinematicsRD[4][13]->SetMarkerStyle(22);
@@ -1684,7 +1684,7 @@ void save_kin_plots()
   fKinematicsRD[4][13]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][13]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][13]->SetBinError(tt,sqrt(fKinematicsMC[4][13]->GetBinContent(tt)));
+    fKinematicsMC[4][13]->SetBinError(tt,1/sqrt(fKinematicsMC[4][13]->GetBinContent(tt)));
   }
   fKinematicsMC[4][13]->Draw("E2SAME");
   fKinematicsMC[4][13]->Draw("SAME");
@@ -1727,7 +1727,7 @@ void save_kin_plots()
   fKinematicsRD[4][14]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][14]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][14]->SetBinError(tt,sqrt(fKinematicsRD[4][14]->GetBinContent(tt)));
+    fKinematicsRD[4][14]->SetBinError(tt,1/sqrt(fKinematicsRD[4][14]->GetBinContent(tt)));
   }
   fKinematicsRD[4][14]->Draw("E2");
   fKinematicsRD[4][14]->SetMarkerStyle(22);
@@ -1736,7 +1736,7 @@ void save_kin_plots()
   fKinematicsRD[4][14]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][14]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][14]->SetBinError(tt,sqrt(fKinematicsMC[4][14]->GetBinContent(tt)));
+    fKinematicsMC[4][14]->SetBinError(tt,1/sqrt(fKinematicsMC[4][14]->GetBinContent(tt)));
   }
   fKinematicsMC[4][14]->Draw("E2SAME");
   fKinematicsMC[4][14]->Draw("SAME");
@@ -1779,7 +1779,7 @@ void save_kin_plots()
   fKinematicsRD[4][15]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][15]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][15]->SetBinError(tt,sqrt(fKinematicsRD[4][15]->GetBinContent(tt)));
+    fKinematicsRD[4][15]->SetBinError(tt,1/sqrt(fKinematicsRD[4][15]->GetBinContent(tt)));
   }
   fKinematicsRD[4][15]->Draw("E2");
   fKinematicsRD[4][15]->SetMarkerStyle(22);
@@ -1788,7 +1788,7 @@ void save_kin_plots()
   fKinematicsRD[4][15]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][15]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][15]->SetBinError(tt,sqrt(fKinematicsMC[4][15]->GetBinContent(tt)));
+    fKinematicsMC[4][15]->SetBinError(tt,1/sqrt(fKinematicsMC[4][15]->GetBinContent(tt)));
   }
   fKinematicsMC[4][15]->Draw("E2SAME");
   fKinematicsMC[4][15]->Draw("SAME");
@@ -1831,7 +1831,7 @@ void save_kin_plots()
   fKinematicsRD[4][16]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][16]->SetBinError(tt,sqrt(fKinematicsRD[4][16]->GetBinContent(tt)));
+    fKinematicsRD[4][16]->SetBinError(tt,1/sqrt(fKinematicsRD[4][16]->GetBinContent(tt)));
   }
   fKinematicsRD[4][16]->Draw("E2");
   fKinematicsRD[4][16]->SetMarkerStyle(22);
@@ -1840,7 +1840,7 @@ void save_kin_plots()
   fKinematicsRD[4][16]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][16]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][16]->SetBinError(tt,sqrt(fKinematicsMC[4][16]->GetBinContent(tt)));
+    fKinematicsMC[4][16]->SetBinError(tt,1/sqrt(fKinematicsMC[4][16]->GetBinContent(tt)));
   }
   fKinematicsMC[4][16]->Draw("E2SAME");
   fKinematicsMC[4][16]->Draw("SAME");
@@ -2373,12 +2373,12 @@ void MCextraction(string pFilelist)
                 if(true)
                 {
                   fCell++;
-                  fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
                   // if((trig&2 || trig&4 || trig&8))
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
                   {
                     fTrig++;
+                    fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
                     // Q2 cut
                     if((Q2>1))
@@ -3122,7 +3122,6 @@ void RDextraction(string pFilelist)
       // Cells crossing
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
       fCell++;
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // IM/O triggers
       //2006 ---
@@ -3145,6 +3144,7 @@ void RDextraction(string pFilelist)
       }
       //2016 ---
       fTrig++;
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // Q2 cut
       if(!(Q2>1)) continue;
