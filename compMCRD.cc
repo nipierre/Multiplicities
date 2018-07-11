@@ -2378,12 +2378,12 @@ void MCextraction(string pFilelist)
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
                   {
                     fTrig++;
-                    fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
                     // Q2 cut
                     if((Q2>1))
                     {
                       fQ2test++;
+                      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
@@ -3144,11 +3144,11 @@ void RDextraction(string pFilelist)
       }
       //2016 ---
       fTrig++;
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // Q2 cut
       if(!(Q2>1)) continue;
       fQ2test++;
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // y cut
       if(!(fYmin<yBj && yBj<fYmax)) continue;
