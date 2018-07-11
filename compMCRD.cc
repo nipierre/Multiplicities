@@ -1554,7 +1554,7 @@ void save_kin_plots()
   fKinematicsRD[4][6]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][6]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][6]->SetBinError(tt,sqrt(fKinematicsRD[4][6]->GetBinContent(tt)));
+    fKinematicsRD[4][6]->SetBinError(tt,1/sqrt(fKinematicsRD[4][6]->GetBinContent(tt)));
   }
   fKinematicsRD[4][6]->Draw("E2");
   fKinematicsRD[4][6]->SetMarkerStyle(22);
@@ -1563,7 +1563,7 @@ void save_kin_plots()
   fKinematicsRD[4][6]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][6]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][6]->SetBinError(tt,sqrt(fKinematicsMC[4][6]->GetBinContent(tt)));
+    fKinematicsMC[4][6]->SetBinError(tt,1/sqrt(fKinematicsMC[4][6]->GetBinContent(tt)));
   }
   fKinematicsMC[4][6]->Draw("E2SAME");
   fKinematicsMC[4][6]->Draw("SAME");
