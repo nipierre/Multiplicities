@@ -2373,7 +2373,7 @@ void MCextraction(string pFilelist)
                 if(true)
                 {
                   fCell++;
-                  fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+
 
                   // if((trig&2 || trig&4 || trig&8))
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
@@ -2384,6 +2384,7 @@ void MCextraction(string pFilelist)
                     if((Q2>1))
                     {
                       fQ2test++;
+                      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
@@ -3122,7 +3123,6 @@ void RDextraction(string pFilelist)
       // Cells crossing
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
       fCell++;
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // IM/O triggers
       //2006 ---
@@ -3149,6 +3149,7 @@ void RDextraction(string pFilelist)
       // Q2 cut
       if(!(Q2>1)) continue;
       fQ2test++;
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // y cut
       if(!(fYmin<yBj && yBj<fYmax)) continue;
