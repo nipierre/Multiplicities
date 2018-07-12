@@ -2373,6 +2373,7 @@ void MCextraction(string pFilelist)
                 if(true)
                 {
                   fCell++;
+                  fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
                   // if((trig&2 || trig&4 || trig&8))
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
@@ -2409,8 +2410,6 @@ void MCextraction(string pFilelist)
           }
         }
       }
-
-      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // If all DIS tests are good, then event is saved
       if(fAllDISflag)
@@ -3083,8 +3082,6 @@ void RDextraction(string pFilelist)
       }
       //Rcut study ---
 
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-
       //BMS (reconstructed beam track)
       if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
       fBMS++;
@@ -3092,6 +3089,8 @@ void RDextraction(string pFilelist)
       // Energy of the muon beam
       if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
       fBEC++;
+
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       //2006 ---
       if(Y2006)
