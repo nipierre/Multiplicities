@@ -3090,8 +3090,6 @@ void RDextraction(string pFilelist)
       if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
       fBEC++;
 
-      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-
       //2006 ---
       if(Y2006)
       {
@@ -3124,6 +3122,7 @@ void RDextraction(string pFilelist)
       // Cells crossing
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
       fCell++;
+      fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       // IM/O triggers
       //2006 ---
