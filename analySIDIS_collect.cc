@@ -311,6 +311,7 @@ int main(int argc, char **argv)
   while(periods >> periodName)
   {
     periods >> periodBit;
+    cout << periodName << " ";
     if(!periodBit) continue;
 
     fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()));
@@ -616,14 +617,14 @@ int main(int argc, char **argv)
           z_range_h[c][i][j].push_back(z_range[l]);
         }
 
-        cout << c << " " << i << " " << j << " ";
-
-        for(int k=0; k<12; k++)
-        {
-          cout << p_m[c][i][j][k] << " ";
-        }
-
-        cout << endl;
+        // cout << c << " " << i << " " << j << " ";
+        //
+        // for(int k=0; k<12; k++)
+        // {
+        //   cout << p_m[c][i][j][k] << " ";
+        // }
+        //
+        // cout << endl;
 
         for(int k=12; k>0; k--)
         {
