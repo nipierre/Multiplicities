@@ -311,8 +311,10 @@ int main(int argc, char **argv)
   while(periods >> periodName)
   {
     periods >> periodBit;
-    cout << periodName << " ";
+
     if(!periodBit) continue;
+
+    cout << periodName << " ";
 
     fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()));
     fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()));
