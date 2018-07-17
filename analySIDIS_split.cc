@@ -2655,7 +2655,7 @@ int main(int argc, char **argv)
   fBEC << " Beam Energy Cuts\n\n" <<
   fTarg << " Event in Data Target\n\n" <<
   //fCell << " X Cells\n\n" <<
-  fTrig << " O&IM Triggers\n\n" <<
+  fTrig << " Triggers\n\n" <<
   fQ2test << " Q>1\n\n" <<
   fYBjtest << " 0.1<y<0.7\n\n" <<
   fWBjtest << " 5<W<17\n\n" <<
@@ -2685,9 +2685,9 @@ int main(int argc, char **argv)
   fBEC << " Beam Energy Cuts\n\n" <<
   fTarg << " Event in Data Target\n\n" <<
   //fCell << " X Cells\n\n" <<
-  fTrig << " O&IM Triggers\n\n" <<
+  fTrig << " Triggers\n\n" <<
   fQ2test << " Q>1\n\n" <<
-  fYBjtest << " 0.1<y<0.7\n\n" <<
+  fYBjtest << " 0.1<y<0.9\n\n" <<
   fWBjtest << " 5<W<17\n\n" <<
   fXX0test << " XX0\n\n" <<
   fMom << " Momentum\n\n" <<
