@@ -217,8 +217,8 @@ void create_kin_plots()
   }
   fKinematicsRD[0][11] = new TH1F("#phi_{e,prod.pl}","#phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("#phi_{e,prod.pl} Ratio","#phi_{e,prod.pl} Ratio", 50, 0, 3.5);
-  fThetaRDp = new TH2F("#theta_y RD", "#theta_y RD", 100, -3, 3, 100, 140, 160);
-  fThetaMCp = new TH2F("#theta_y MC", "#theta_y MC", 100, -3, 3, 100, 140, 160);
+  fThetaRDp = new TH2F("#theta_y RD", "#theta_y RD", 100, -0.05, 0.05, 100, 140, 180);
+  fThetaMCp = new TH2F("#theta_y MC", "#theta_y MC", 100, -0.05, 0.05, 100, 140, 180);
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
