@@ -217,8 +217,8 @@ void create_kin_plots()
   }
   fKinematicsRD[0][11] = new TH1F("#phi_{e,prod.pl}","#phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("#phi_{e,prod.pl} Ratio","#phi_{e,prod.pl} Ratio", 50, 0, 3.5);
-  fThetaRD = new TH2F("#theta_y RD", "#theta_y RD", 100, -3, 3, 100, 140, 160);
-  fThetaMC = new TH2F("#theta_y MC", "#theta_y MC", 100, -3, 3, 100, 140, 160);
+  fThetaRDp = new TH2F("#theta_y RD", "#theta_y RD", 100, -3, 3, 100, 140, 160);
+  fThetaMCp = new TH2F("#theta_y MC", "#theta_y MC", 100, -3, 3, 100, 140, 160);
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -1850,15 +1850,15 @@ void save_kin_plots()
   c28.Update();
 
   c34.cd(1);
-  fThetaRD->Draw("COLZ");
-  fThetaRD->GetXaxis()->SetTitle("#theta_y");
-  fThetaRD->GetYaxis()->SetTitle("p");
+  fThetaRDp->Draw("COLZ");
+  fThetaRDp->GetXaxis()->SetTitle("#theta_y");
+  fThetaRDp->GetYaxis()->SetTitle("p");
   c34.Update();
 
   c34.cd(2);
-  fThetaMC->Draw("COLZ");
-  fThetaMC->GetXaxis()->SetTitle("#theta_y");
-  fThetaMC->GetYaxis()->SetTitle("p");
+  fThetaMCp->Draw("COLZ");
+  fThetaMCp->GetXaxis()->SetTitle("#theta_y");
+  fThetaMCp->GetYaxis()->SetTitle("p");
   c34.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
@@ -2248,7 +2248,6 @@ void MCextraction(string pFilelist)
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
       double thetay_b = atan(p0y->GetLeaf("p0y")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
-      double phi_b = asin(p0x->GetLeaf("p0x")->GetValue()/sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)+pow(p0y->GetLeaf("p0y")->GetValue(),2)));
 
 
       // -----------------------------------------------------------------------
@@ -2774,7 +2773,7 @@ void MCextraction(string pFilelist)
   }
   for(int i=0; i<int(fThetaMCMu[0].size()); i++)
   {
-    fThetaMC->Fill(fThetaMCMu[0][i],fThetaMCMu[1][i]);
+    fThetaMCp->Fill(fThetaMCMu[0][i],fThetaMCMu[1][i]);
   }
 }
 
@@ -3083,8 +3082,6 @@ void RDextraction(string pFilelist)
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
       double thetay_b = asin(p0y->GetLeaf("p0y")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
-      double phi_b = asin(p0x->GetLeaf("p0x")->GetValue()/sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)+pow(p0y->GetLeaf("p0y")->GetValue(),2)));
-
 
       // Best Primary Vertex
       fBP++;
@@ -3638,7 +3635,7 @@ void RDextraction(string pFilelist)
   }
   for(int i=0; i<int(fThetaMu[0].size()); i++)
   {
-    fThetaRD->Fill(fThetaMu[0][i],fThetaMu[1][i]);
+    fThetaRDp->Fill(fThetaMu[0][i],fThetaMu[1][i]);
   }
 }
 

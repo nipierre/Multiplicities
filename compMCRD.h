@@ -206,9 +206,9 @@ Double_t fPmax;
 //Draw
 
 TH1F* fKinematicsRD[5][17];
-TH2F* fThetaRD;
+TH2F* fThetaRDp;
 TH1F* fKinematicsMC[5][17];
-TH2F* fThetaMC;
+TH2F* fThetaMCp;
 TH1F* fKinematicsRatio[5][17];
 TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
