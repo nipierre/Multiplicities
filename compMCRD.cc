@@ -2263,6 +2263,10 @@ void MCextraction(string pFilelist)
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
         fRmu++;
+        fThetaMCMu[1].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+                                    +pow(p0y->GetLeaf("p0y")->GetValue(),2)
+                                    +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+        fThetaMCMu[0].push_back(thetay_b);
 
         if(Y2012)
         {
@@ -2393,11 +2397,6 @@ void MCextraction(string pFilelist)
                 if(true)
                 {
                   fCell++;
-                  fThetaMCMu[1].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
-                                              +pow(p0y->GetLeaf("p0y")->GetValue(),2)
-                                              +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-                  fThetaMCMu[0].push_back(thetay_b);
-
 
                   // if((trig&2 || trig&4 || trig&8))
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
@@ -3090,6 +3089,11 @@ void RDextraction(string pFilelist)
       if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
       fRmu++;
 
+      fThetaMu[1].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+                                +pow(p0y->GetLeaf("p0y")->GetValue(),2)
+                                +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+      fThetaMu[0].push_back(thetay_b);
+
       Double_t mxc, myc;
 
       if(Y2012 || RCUTSTUDY_ON)
@@ -3152,10 +3156,6 @@ void RDextraction(string pFilelist)
       // Cells crossing
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
       fCell++;
-      fThetaMu[1].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
-                                +pow(p0y->GetLeaf("p0y")->GetValue(),2)
-                                +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-      fThetaMu[0].push_back(thetay_b);
 
       // IM/O triggers
       //2006 ---
