@@ -21,6 +21,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
+#define DUMMY_ACC 1
 #define RCUTSTUDY_ON 0
 
 using namespace std;
@@ -108,6 +109,48 @@ void fetch_yavg_acceptance(string pname)
 
   acc_file.close();
 
+}
+
+void dummy_acceptance()
+{
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          fAcceptance[i][j][k].tab[c][0][0]=1;
+          fAcceptance[i][j][k].tab[c][1][0]=0;
+          fAcceptance[i][j][k].tab[c][0][1]=1;
+          fAcceptance[i][j][k].tab[c][1][1]=0;
+          fAcceptance[i][j][k].tab[c][0][2]=1;
+          fAcceptance[i][j][k].tab[c][1][2]=0;
+          fAcceptance[i][j][k].tab[c][0][3]=1;
+          fAcceptance[i][j][k].tab[c][1][3]=0;
+        }
+      }
+    }
+  }
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int k=0; k<12; k++)
+      {
+        fAcceptance_yavg[i][k].tab[c][0][0]=1;
+        fAcceptance_yavg[i][k].tab[c][1][0]=0;
+        fAcceptance_yavg[i][k].tab[c][0][1]=1;
+        fAcceptance_yavg[i][k].tab[c][1][1]=0;
+        fAcceptance_yavg[i][k].tab[c][0][2]=1;
+        fAcceptance_yavg[i][k].tab[c][1][2]=0;
+        fAcceptance_yavg[i][k].tab[c][0][3]=1;
+        fAcceptance_yavg[i][k].tab[c][1][3]=0;
+      }
+    }
+  }
 }
 
 void yavg(int c, int x, int z)
@@ -316,8 +359,15 @@ int main(int argc, char **argv)
 
     cout << periodName << " ";
 
-    fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()));
-    fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()));
+    if(!DUMMY_ACC)
+    {
+      fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()));
+      fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()));
+    }
+    else
+    {
+      dummy_acceptance();
+    }
 
     ifstream dis_file(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()));
     ifstream had_file(Form("rawmult/%d/hadron_%s.txt",year,periodName.c_str()));
