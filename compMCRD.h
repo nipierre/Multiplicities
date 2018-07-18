@@ -65,6 +65,7 @@ vector<Double_t> fNu;
 vector<Double_t> fNukin[5];
 vector<Double_t> fMu[5];
 vector<Double_t> fMup[5];
+vector<Double_t> fThetaMu[2];
 vector<Double_t> fTheta[5];
 vector<Double_t> fPhi[5];
 vector<Double_t> fVertex[5];
@@ -81,6 +82,7 @@ vector<Double_t> fNu_MC;
 vector<Double_t> fNukinMC[5];
 vector<Double_t> fMuMC[5];
 vector<Double_t> fMupMC[5];
+vector<Double_t> fThetaMCMu[2];
 vector<Double_t> fThetaMC[5];
 vector<Double_t> fPhiMC[5];
 vector<Double_t> fVertexMC[5];
@@ -204,7 +206,9 @@ Double_t fPmax;
 //Draw
 
 TH1F* fKinematicsRD[5][17];
+TH2F* fThetaRD;
 TH1F* fKinematicsMC[5][17];
+TH2F* fThetaMC;
 TH1F* fKinematicsRatio[5][17];
 TCanvas c1("Kin_Q^{2} Trigger","Kin_Q^{2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
@@ -239,6 +243,7 @@ TCanvas c30("Q^2","Q^2",2000,2000);
 TCanvas c31("nu","nu",2000,2000);
 TCanvas c32("z","z",2000,2000);
 TCanvas c33("E_mu","E_mu",3200,1600);
+TCanvas c34("Thetay_mu","Thetay_mu",3200,1600);
 
 vector<double> fError;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
