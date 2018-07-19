@@ -169,6 +169,17 @@ void yavg()
       {
         for(int i=0; i<6; i++)
         {
+          for(auto period; fPeriods)
+          {
+            fBinning_yavg_period[period][x][z].tab[c][0][0]+=fBinning_period[period][x][i][z].tab[c][0][0];
+            fBinning_yavg_period[period][x][z].tab[c][0][1]+=fBinning_period[period][x][i][z].tab[c][0][1];
+            fBinning_yavg_period[period][x][z].tab[c][0][2]+=fBinning_period[period][x][i][z].tab[c][0][2];
+            fBinning_yavg_period[period][x][z].tab[c][0][3]+=fBinning_period[period][x][i][z].tab[c][0][3];
+            fBinning_yavg_period[period][x][z].tab[c][1][0]+=fBinning_period[period][x][i][z].tab[c][1][0];
+            fBinning_yavg_period[period][x][z].tab[c][1][1]+=fBinning_period[period][x][i][z].tab[c][1][1];
+            fBinning_yavg_period[period][x][z].tab[c][1][2]+=fBinning_period[period][x][i][z].tab[c][1][2];
+            fBinning_yavg_period[period][x][z].tab[c][1][3]+=fBinning_period[period][x][i][z].tab[c][1][3];
+          }
           fBinning_yavg[x][z].tab[c][0][0]+=fBinning[x][i][z].tab[c][0][0];
           fBinning_yavg[x][z].tab[c][0][1]+=fBinning[x][i][z].tab[c][0][1];
           fBinning_yavg[x][z].tab[c][0][2]+=fBinning[x][i][z].tab[c][0][2];

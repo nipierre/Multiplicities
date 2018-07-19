@@ -144,6 +144,7 @@ Wrapper fBinning_period[11][9][6][12];
 Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Wrapper fBinning_yavg[9][12];
+Wrapper fBinning_yavg_period[11][9][12];
 Multiplicities fMultiplicities[9][6][12];
 Multiplicities fMultiplicities_yavg[9][12];
 Wrapper fAcceptance[11][9][6][12];
