@@ -211,22 +211,21 @@ void weight_acceptance()
 {
   for(int i=0; i<9; i++)
   {
-    for(int j=0; j<6; j++)
+    for(int k=0; k<12; k++)
     {
-      for(int k=0; k<12; k++)
+      for(int c=1; c>=0; c--)
       {
-        for(int c=1; c>=0; c--)
+        for(int l=0; l<4; l++)
         {
-          for(int l=0; l<4; l++)
+          for(auto period : fPeriods)
           {
-            for(auto period : fPeriods)
-            {
-              fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l];
-              fAcceptance_weighted[i][j][k].tab[c][1][l] += pow(fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][1][l]/fBinning[i][j][k].tab[c][0][l],2);
-              cout << fBinning_yavg_period[period][i][k].tab[c][0][l] << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fAcceptance_yavg[period][i][k].tab[c][0][l] << endl;
+              for(int j=0; j<6; j++)
+              {
+                fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l];
+                fAcceptance_weighted[i][j][k].tab[c][1][l] += pow(fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][1][l]/fBinning[i][j][k].tab[c][0][l],2);
+              }
               fAcceptance_yavg_weighted[i][k].tab[c][0][l] += fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][0][l]/fBinning_yavg[i][k].tab[c][0][l];
               fAcceptance_yavg_weighted[i][k].tab[c][1][l] += pow(fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][1][l]/fBinning_yavg[i][k].tab[c][0][l],2);
-            }
           }
         }
       }
