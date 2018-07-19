@@ -857,7 +857,7 @@ int main(int argc, char **argv)
       {
         for(int l=0; l<4; l++)
         {
-          cout << i << " " << k << " " << fNDIS_evt_yavg[0][i][k] << " " << fNDIS_evt_yavg[0][i][k] << endl;
+          cout << i << " " << k << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << endl;
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
                                                   Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
                                                   : 0);
