@@ -161,27 +161,36 @@ void dummy_acceptance()
 
 void yavg()
 {
-  for(int i=0; i<6; i++)
+  for(int c=0; c<2; c++)
   {
-    fBinning_yavg[x][z].tab[c][0][0]+=fBinning[x][i][z].tab[c][0][0];
-    fBinning_yavg[x][z].tab[c][0][1]+=fBinning[x][i][z].tab[c][0][1];
-    fBinning_yavg[x][z].tab[c][0][2]+=fBinning[x][i][z].tab[c][0][2];
-    fBinning_yavg[x][z].tab[c][0][3]+=fBinning[x][i][z].tab[c][0][3];
-    fBinning_yavg[x][z].tab[c][1][0]+=fBinning[x][i][z].tab[c][1][0];
-    fBinning_yavg[x][z].tab[c][1][1]+=fBinning[x][i][z].tab[c][1][1];
-    fBinning_yavg[x][z].tab[c][1][2]+=fBinning[x][i][z].tab[c][1][2];
-    fBinning_yavg[x][z].tab[c][1][3]+=fBinning[x][i][z].tab[c][1][3];
-    fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
-    fNDIS_evt_yavg[1][x][z]+=fNDIS_evt_err[0][x][i][z];
-    fRich_sys_err_yavg[x][z].tab[c][1][0]+=pow(fRich_sys_err[x][i][z].tab[c][1][0],2);
-    fRich_sys_err_yavg[x][z].tab[c][1][1]+=pow(fRich_sys_err[x][i][z].tab[c][1][1],2);
-    fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
-    fRich_sys_err_yavg[x][z].tab[c][1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
+    for(int x=0; x<9; x++)
+    {
+      for(int z=0; z<12; z++)
+      {
+        for(int i=0; i<6; i++)
+        {
+          fBinning_yavg[x][z].tab[c][0][0]+=fBinning[x][i][z].tab[c][0][0];
+          fBinning_yavg[x][z].tab[c][0][1]+=fBinning[x][i][z].tab[c][0][1];
+          fBinning_yavg[x][z].tab[c][0][2]+=fBinning[x][i][z].tab[c][0][2];
+          fBinning_yavg[x][z].tab[c][0][3]+=fBinning[x][i][z].tab[c][0][3];
+          fBinning_yavg[x][z].tab[c][1][0]+=fBinning[x][i][z].tab[c][1][0];
+          fBinning_yavg[x][z].tab[c][1][1]+=fBinning[x][i][z].tab[c][1][1];
+          fBinning_yavg[x][z].tab[c][1][2]+=fBinning[x][i][z].tab[c][1][2];
+          fBinning_yavg[x][z].tab[c][1][3]+=fBinning[x][i][z].tab[c][1][3];
+          fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
+          fNDIS_evt_yavg[1][x][z]+=fNDIS_evt_err[0][x][i][z];
+          fRich_sys_err_yavg[x][z].tab[c][1][0]+=pow(fRich_sys_err[x][i][z].tab[c][1][0],2);
+          fRich_sys_err_yavg[x][z].tab[c][1][1]+=pow(fRich_sys_err[x][i][z].tab[c][1][1],2);
+          fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
+          fRich_sys_err_yavg[x][z].tab[c][1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
+        }
+        fRich_sys_err_yavg[x][z].tab[c][1][0]=sqrt(fRich_sys_err_yavg[1][0]);
+        fRich_sys_err_yavg[x][z].tab[c][1][1]=sqrt(fRich_sys_err_yavg[1][1]);
+        fRich_sys_err_yavg[x][z].tab[c][1][2]=sqrt(fRich_sys_err_yavg[1][2]);
+        fRich_sys_err_yavg[x][z].tab[c][1][3]=sqrt(fRich_sys_err_yavg[1][3]);
+      }
+    }
   }
-  fRich_sys_err_yavg[x][z].tab[c][1][0]=sqrt(fRich_sys_err_yavg[1][0]);
-  fRich_sys_err_yavg[x][z].tab[c][1][1]=sqrt(fRich_sys_err_yavg[1][1]);
-  fRich_sys_err_yavg[x][z].tab[c][1][2]=sqrt(fRich_sys_err_yavg[1][2]);
-  fRich_sys_err_yavg[x][z].tab[c][1][3]=sqrt(fRich_sys_err_yavg[1][3]);
 }
 
 void weight_acceptance()
