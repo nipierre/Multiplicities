@@ -157,6 +157,7 @@ Recovery_tank fMeanvalues_size[9][6][12];
 Recovery_tank fMeanvalues_size_periods[11][9][6][12];
 Recovery_tank fMeanvalues_data[9][6][12];
 Recovery_tank fMeanvalues_data_periods[11][9][6][12];
+Recovery_tank fMeanvalues_temp[9][6][12];
 Double_t fNDIS_evt[3][9][6][12];
 Double_t fNDIS_evt_yavg[2];
 Double_t fNDIS_evt_err[3][9][6][12];
