@@ -21,7 +21,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define DUMMY_ACC 1
+#define DUMMY_ACC 0
 #define RCUTSTUDY_ON 0
 
 using namespace std;
