@@ -143,7 +143,7 @@ Wrapper fBinning[9][6][12];
 Wrapper fBinning_period[11][9][6][12];
 Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
-Double_t fBinning_yavg[2][4];
+Wrapper fBinning_yavg[9][12];
 Multiplicities fMultiplicities[9][6][12];
 Multiplicities fMultiplicities_yavg[9][12];
 Wrapper fAcceptance[11][9][6][12];
@@ -151,7 +151,7 @@ Wrapper fAcceptance_weighted[9][6][12];
 Wrapper fAcceptance_yavg[11][9][12];
 Wrapper fAcceptance_yavg_weighted[9][12];
 Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
-Double_t fRich_sys_err_yavg[2][4];
+Wrapper fRich_sys_err_yavg[9][12];
 Recovery fMeanvalues[9][6][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
 Recovery_tank fMeanvalues_size[9][6][12];
 Recovery_tank fMeanvalues_size_periods[11][9][6][12];
@@ -159,7 +159,7 @@ Recovery_tank fMeanvalues_data[9][6][12];
 Recovery_tank fMeanvalues_data_periods[11][9][6][12];
 Recovery_tank fMeanvalues_temp[9][6][12];
 Double_t fNDIS_evt[3][9][6][12];
-Double_t fNDIS_evt_yavg[2];
+Double_t fNDIS_evt_yavg[3][9][12];
 Double_t fNDIS_evt_err[3][9][6][12];
 Int_t xbin, ybin, zbin;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};

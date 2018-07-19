@@ -159,60 +159,29 @@ void dummy_acceptance()
   }
 }
 
-void yavg(int c, int x, int z)
+void yavg()
 {
-  int BinningEntries[4] = {0,0,0,0};
-  int DISEntries = 0;
-  int RichErrorEntries[4] = {0,0,0,0};
-
-  for(int i=0; i<4; i++)
-  {
-    fBinning_yavg[0][i]=0;
-    fBinning_yavg[1][i]=0;
-    fRich_sys_err_yavg[1][i]=0;
-  }
-  fNDIS_evt_yavg[0]=0;
-  fNDIS_evt_yavg[1]=0;
   for(int i=0; i<6; i++)
   {
-    fBinning_yavg[0][0]+=fBinning[x][i][z].tab[c][0][0];
-    if(fBinning[x][i][z].tab[c][0][0]) BinningEntries[0]++;
-    fBinning_yavg[0][1]+=fBinning[x][i][z].tab[c][0][1];
-    if(fBinning[x][i][z].tab[c][0][1]) BinningEntries[1]++;
-    fBinning_yavg[0][2]+=fBinning[x][i][z].tab[c][0][2];
-    if(fBinning[x][i][z].tab[c][0][2]) BinningEntries[2]++;
-    fBinning_yavg[0][3]+=fBinning[x][i][z].tab[c][0][3];
-    if(fBinning[x][i][z].tab[c][0][3]) BinningEntries[3]++;
-    fBinning_yavg[1][0]+=pow(fBinning[x][i][z].tab[c][1][0],2);
-    fBinning_yavg[1][1]+=pow(fBinning[x][i][z].tab[c][1][1],2);
-    fBinning_yavg[1][2]+=pow(fBinning[x][i][z].tab[c][1][2],2);
-    fBinning_yavg[1][3]+=pow(fBinning[x][i][z].tab[c][1][3],2);
-    fNDIS_evt_yavg[0]+=fNDIS_evt[0][x][i][z];
-    if(fNDIS_evt[0][x][i][z]) DISEntries++;
-    fNDIS_evt_yavg[1]+=pow(fNDIS_evt_err[0][x][i][z],2);
-    fRich_sys_err_yavg[1][0]+=pow(fRich_sys_err[x][i][z].tab[c][1][0],2);
-    if(fRich_sys_err[x][i][z].tab[c][1][0]) RichErrorEntries[0]++;
-    fRich_sys_err_yavg[1][1]+=pow(fRich_sys_err[x][i][z].tab[c][1][1],2);
-    if(fRich_sys_err[x][i][z].tab[c][1][1]) RichErrorEntries[1]++;
-    fRich_sys_err_yavg[1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
-    if(fRich_sys_err[x][i][z].tab[c][1][2]) RichErrorEntries[2]++;
-    fRich_sys_err_yavg[1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
-    if(fRich_sys_err[x][i][z].tab[c][1][3]) RichErrorEntries[3]++;
+    fBinning_yavg[x][z].tab[c][0][0]+=fBinning[x][i][z].tab[c][0][0];
+    fBinning_yavg[x][z].tab[c][0][1]+=fBinning[x][i][z].tab[c][0][1];
+    fBinning_yavg[x][z].tab[c][0][2]+=fBinning[x][i][z].tab[c][0][2];
+    fBinning_yavg[x][z].tab[c][0][3]+=fBinning[x][i][z].tab[c][0][3];
+    fBinning_yavg[x][z].tab[c][1][0]+=fBinning[x][i][z].tab[c][1][0];
+    fBinning_yavg[x][z].tab[c][1][1]+=fBinning[x][i][z].tab[c][1][1];
+    fBinning_yavg[x][z].tab[c][1][2]+=fBinning[x][i][z].tab[c][1][2];
+    fBinning_yavg[x][z].tab[c][1][3]+=fBinning[x][i][z].tab[c][1][3];
+    fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
+    fNDIS_evt_yavg[1][x][z]+=fNDIS_evt_err[0][x][i][z];
+    fRich_sys_err_yavg[x][z].tab[c][1][0]+=pow(fRich_sys_err[x][i][z].tab[c][1][0],2);
+    fRich_sys_err_yavg[x][z].tab[c][1][1]+=pow(fRich_sys_err[x][i][z].tab[c][1][1],2);
+    fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
+    fRich_sys_err_yavg[x][z].tab[c][1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
   }
-  fBinning_yavg[0][0]=(BinningEntries[0]?fBinning_yavg[0][0]/BinningEntries[0]:0);
-  fBinning_yavg[0][1]=(BinningEntries[1]?fBinning_yavg[0][1]/BinningEntries[1]:0);
-  fBinning_yavg[0][2]=(BinningEntries[2]?fBinning_yavg[0][2]/BinningEntries[2]:0);
-  fBinning_yavg[0][3]=(BinningEntries[3]?fBinning_yavg[0][3]/BinningEntries[3]:0);
-  fBinning_yavg[1][0]=(BinningEntries[0]?sqrt(fBinning_yavg[1][0])/BinningEntries[0]:0);
-  fBinning_yavg[1][1]=(BinningEntries[1]?sqrt(fBinning_yavg[1][1])/BinningEntries[1]:0);
-  fBinning_yavg[1][2]=(BinningEntries[2]?sqrt(fBinning_yavg[1][2])/BinningEntries[2]:0);
-  fBinning_yavg[1][3]=(BinningEntries[3]?sqrt(fBinning_yavg[1][3])/BinningEntries[3]:0);
-  fNDIS_evt_yavg[0]=(DISEntries?fNDIS_evt_yavg[0]/DISEntries:0);
-  fNDIS_evt_yavg[1]=(DISEntries?sqrt(fNDIS_evt_yavg[1])/DISEntries:0);
-  fRich_sys_err_yavg[1][0]=(RichErrorEntries[0]?sqrt(fRich_sys_err_yavg[1][0])/RichErrorEntries[0]:0);
-  fRich_sys_err_yavg[1][1]=(RichErrorEntries[1]?sqrt(fRich_sys_err_yavg[1][1])/RichErrorEntries[1]:0);
-  fRich_sys_err_yavg[1][2]=(RichErrorEntries[2]?sqrt(fRich_sys_err_yavg[1][2])/RichErrorEntries[2]:0);
-  fRich_sys_err_yavg[1][3]=(RichErrorEntries[3]?sqrt(fRich_sys_err_yavg[1][3])/RichErrorEntries[3]:0);
+  fRich_sys_err_yavg[x][z].tab[c][1][0]=sqrt(fRich_sys_err_yavg[1][0]);
+  fRich_sys_err_yavg[x][z].tab[c][1][1]=sqrt(fRich_sys_err_yavg[1][1]);
+  fRich_sys_err_yavg[x][z].tab[c][1][2]=sqrt(fRich_sys_err_yavg[1][2]);
+  fRich_sys_err_yavg[x][z].tab[c][1][3]=sqrt(fRich_sys_err_yavg[1][3]);
 }
 
 void weight_acceptance()
@@ -464,6 +433,7 @@ int main(int argc, char **argv)
     resetValues();
   }
 
+  yavg();
   weight_acceptance();
   weight_meanvalues();
 
@@ -863,22 +833,21 @@ int main(int argc, char **argv)
     {
       for(int k=0; k<12; k++)
       {
-        yavg(c,i,k);
         for(int l=0; l<4; l++)
         {
-          fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
-                                                                          Double_t(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
-                                                                          : 0);
-          fMultiplicities_yavg[i][k].tab[c][1][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
-                                                                          Double_t(((fBinning_yavg[1][l]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][l],2)*
-                                                                          fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l],2)))
-                                                                          + fAcceptance_yavg_weighted[i][k].tab[c][1][l]*pow(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg_weighted[i][k].tab[c][0][l],2)),2))
-                                                                          : 0);
-          fMultiplicities_yavg[i][k].tab[c][2][l] = (fNDIS_evt_yavg[0] ?
-                                                                          Double_t(sqrt(pow(fRich_sys_err_yavg[1][l],2)/pow(fNDIS_evt_yavg0]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l],2)+
-                                                                          pow(0.05*sqrt(fAcceptance_yavg_weighted[i][k].tab[c][1][l])*fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]
-                                                                          *pow(fAcceptance_yavg_weighted[i][k].tab[c][0][l],2)),2)))
-                                                                          : 0);
+          fMultiplicities_yavg[i][j][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][j][k] && fAcceptance_yavg_weighted[i][j][k].tab[c][0][l] ?
+                                                  Double_t(fBinning_yavg[i][j][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][j][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][j][k].tab[c][0][l]))
+                                                  : 0);
+          fMultiplicities_yavg[i][j][k].tab[c][1][l] = (fNDIS_evt_yavg[0][i][j][k] && fAcceptance_yavg_weighted[i][j][k].tab[c][0][l] ?
+                                                  Double_t(((fBinning_yavg[i][j][k].tab[c][1][l]/pow(fNDIS_evt_yavg[0][i][j][k],2)-pow(fBinning_yavg[i][j][k].tab[c][0][l],2)*
+                                                  fNDIS_evt_yavg[1][i][j][k]/pow(fNDIS_evt_yavg[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg_weighted[i][j][k].tab[c][0][l],2)))
+                                                  + fAcceptance_yavg_weighted[i][j][k].tab[c][1][l]*pow(fBinning_yavg[i][j][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_yavg_weighted[i][j][k].tab[c][0][l],2)),2))
+                                                  : 0);
+          fMultiplicities_yavg[i][j][k].tab[c][2][l] = (fNDIS_evt_yavg[0][i][j][k] ?
+                                                  Double_t(sqrt(pow(fRich_sys_err_yavg[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt_yavg[0][i][j][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][j][k].tab[c][0][l],2)+
+                                                  pow(0.05*sqrt(fAcceptance_yavg_weighted[i][j][k].tab[c][1][l])*fBinning_yavg[i][j][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][j][k]*fZ_bin_width[k]
+                                                  *pow(fAcceptance_yavg_weighted[i][j][k].tab[c][0][l],2)),2)))
+                                                  : 0);
           if(fMultiplicities_yavg[i][k].tab[c][0][l]<0)
           {
             fMultiplicities_yavg[i][k].tab[c][0][l] = 0 ;
