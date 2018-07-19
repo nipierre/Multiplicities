@@ -184,10 +184,10 @@ void yavg()
           fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
           fRich_sys_err_yavg[x][z].tab[c][1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
         }
-        fRich_sys_err_yavg[x][z].tab[c][1][0]=sqrt(fRich_sys_err_yavg[1][0]);
-        fRich_sys_err_yavg[x][z].tab[c][1][1]=sqrt(fRich_sys_err_yavg[1][1]);
-        fRich_sys_err_yavg[x][z].tab[c][1][2]=sqrt(fRich_sys_err_yavg[1][2]);
-        fRich_sys_err_yavg[x][z].tab[c][1][3]=sqrt(fRich_sys_err_yavg[1][3]);
+        fRich_sys_err_yavg[x][z].tab[c][1][0]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][0]);
+        fRich_sys_err_yavg[x][z].tab[c][1][1]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][1]);
+        fRich_sys_err_yavg[x][z].tab[c][1][2]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][2]);
+        fRich_sys_err_yavg[x][z].tab[c][1][3]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][3]);
       }
     }
   }
