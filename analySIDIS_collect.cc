@@ -26,7 +26,7 @@
 
 using namespace std;
 
-void fetch_acceptance(string pname)
+void fetch_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
   double dummy;
@@ -43,23 +43,23 @@ void fetch_acceptance(string pname)
           {
             acc_file >> dummy;
           }
-          acc_file >> fAcceptance[i][j][k].tab[c][0][0];
-          acc_file >> fAcceptance[i][j][k].tab[c][1][0];
-          acc_file >> fAcceptance[i][j][k].tab[c][0][1];
-          acc_file >> fAcceptance[i][j][k].tab[c][1][1];
-          acc_file >> fAcceptance[i][j][k].tab[c][0][2];
-          acc_file >> fAcceptance[i][j][k].tab[c][1][2];
-          acc_file >> fAcceptance[i][j][k].tab[c][0][3];
-          acc_file >> fAcceptance[i][j][k].tab[c][1][3];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][0][0];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][1][0];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][0][1];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][1][1];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][0][2];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][1][2];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][0][3];
+          acc_file >> fAcceptance[np][i][j][k].tab[c][1][3];
 #ifdef DEBUG
-          cout << fAcceptance[i][j][k].tab[c][0][0] << " " <<
-          fAcceptance[i][j][k].tab[c][1][0] << " " <<
-          fAcceptance[i][j][k].tab[c][0][1] << " " <<
-          fAcceptance[i][j][k].tab[c][1][1] << " " <<
-          fAcceptance[i][j][k].tab[c][0][2] << " " <<
-          fAcceptance[i][j][k].tab[c][1][2] << " " <<
-          fAcceptance[i][j][k].tab[c][0][3] << " " <<
-          fAcceptance[i][j][k].tab[c][1][3] << endl;
+          cout << fAcceptance[np][i][j][k].tab[c][0][0] << " " <<
+          fAcceptance[np][i][j][k].tab[c][1][0] << " " <<
+          fAcceptance[np][i][j][k].tab[c][0][1] << " " <<
+          fAcceptance[np][i][j][k].tab[c][1][1] << " " <<
+          fAcceptance[np][i][j][k].tab[c][0][2] << " " <<
+          fAcceptance[np][i][j][k].tab[c][1][2] << " " <<
+          fAcceptance[np][i][j][k].tab[c][0][3] << " " <<
+          fAcceptance[np][i][j][k].tab[c][1][3] << endl;
 #endif
         }
       }
@@ -70,7 +70,7 @@ void fetch_acceptance(string pname)
 
 }
 
-void fetch_yavg_acceptance(string pname)
+void fetch_yavg_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
   double dummy;
@@ -85,23 +85,23 @@ void fetch_yavg_acceptance(string pname)
         {
           acc_file >> dummy;
         }
-        acc_file >> fAcceptance_yavg[i][k].tab[c][0][0];
-        acc_file >> fAcceptance_yavg[i][k].tab[c][1][0];
-        acc_file >> fAcceptance_yavg[i][k].tab[c][0][1];
-        acc_file >> fAcceptance_yavg[i][k].tab[c][1][1];
-        acc_file >> fAcceptance_yavg[i][k].tab[c][0][2];
-        acc_file >> fAcceptance_yavg[i][k].tab[c][1][2];
-        acc_file >> fAcceptance_yavg[i][k].tab[c][0][3];
-        acc_file >> fAcceptance_yavg[i][k].tab[c][1][3];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][0];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][0];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][1];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][1];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][2];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][2];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][3];
+        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][3];
 #ifdef DEBUG
-        cout << fAcceptance_yavg[i][k].tab[c][0][0] << " " <<
-        fAcceptance_yavg[i][k].tab[c][1][0] << " " <<
-        fAcceptance_yavg[i][k].tab[c][0][1] << " " <<
-        fAcceptance_yavg[i][k].tab[c][1][1] << " " <<
-        fAcceptance_yavg[i][k].tab[c][0][2] << " " <<
-        fAcceptance_yavg[i][k].tab[c][1][2] << " " <<
-        fAcceptance_yavg[i][k].tab[c][0][3] << " " <<
-        fAcceptance_yavg[i][k].tab[c][1][3] << endl;
+        cout << fAcceptance_yavg[np][i][k].tab[c][0][0] << " " <<
+        fAcceptance_yavg[np][i][k].tab[c][1][0] << " " <<
+        fAcceptance_yavg[np][i][k].tab[c][0][1] << " " <<
+        fAcceptance_yavg[np][i][k].tab[c][1][1] << " " <<
+        fAcceptance_yavg[np][i][k].tab[c][0][2] << " " <<
+        fAcceptance_yavg[np][i][k].tab[c][1][2] << " " <<
+        fAcceptance_yavg[np][i][k].tab[c][0][3] << " " <<
+        fAcceptance_yavg[np][i][k].tab[c][1][3] << endl;
 #endif
       }
     }
@@ -121,14 +121,17 @@ void dummy_acceptance()
       {
         for(int k=0; k<12; k++)
         {
-          fAcceptance[i][j][k].tab[c][0][0]=1;
-          fAcceptance[i][j][k].tab[c][1][0]=0;
-          fAcceptance[i][j][k].tab[c][0][1]=1;
-          fAcceptance[i][j][k].tab[c][1][1]=0;
-          fAcceptance[i][j][k].tab[c][0][2]=1;
-          fAcceptance[i][j][k].tab[c][1][2]=0;
-          fAcceptance[i][j][k].tab[c][0][3]=1;
-          fAcceptance[i][j][k].tab[c][1][3]=0;
+          for(int np=0; np<11; np++)
+          {
+            fAcceptance[np][i][j][k].tab[c][0][0]=1;
+            fAcceptance[np][i][j][k].tab[c][1][0]=0;
+            fAcceptance[np][i][j][k].tab[c][0][1]=1;
+            fAcceptance[np][i][j][k].tab[c][1][1]=0;
+            fAcceptance[np][i][j][k].tab[c][0][2]=1;
+            fAcceptance[np][i][j][k].tab[c][1][2]=0;
+            fAcceptance[np][i][j][k].tab[c][0][3]=1;
+            fAcceptance[np][i][j][k].tab[c][1][3]=0;
+          }
         }
       }
     }
@@ -140,14 +143,17 @@ void dummy_acceptance()
     {
       for(int k=0; k<12; k++)
       {
-        fAcceptance_yavg[i][k].tab[c][0][0]=1;
-        fAcceptance_yavg[i][k].tab[c][1][0]=0;
-        fAcceptance_yavg[i][k].tab[c][0][1]=1;
-        fAcceptance_yavg[i][k].tab[c][1][1]=0;
-        fAcceptance_yavg[i][k].tab[c][0][2]=1;
-        fAcceptance_yavg[i][k].tab[c][1][2]=0;
-        fAcceptance_yavg[i][k].tab[c][0][3]=1;
-        fAcceptance_yavg[i][k].tab[c][1][3]=0;
+        for(int np=0; np<11; np++)
+        {
+          fAcceptance_yavg[np][i][k].tab[c][0][0]=1;
+          fAcceptance_yavg[np][i][k].tab[c][1][0]=0;
+          fAcceptance_yavg[np][i][k].tab[c][0][1]=1;
+          fAcceptance_yavg[np][i][k].tab[c][1][1]=0;
+          fAcceptance_yavg[np][i][k].tab[c][0][2]=1;
+          fAcceptance_yavg[np][i][k].tab[c][1][2]=0;
+          fAcceptance_yavg[np][i][k].tab[c][0][3]=1;
+          fAcceptance_yavg[np][i][k].tab[c][1][3]=0;
+        }
       }
     }
   }
@@ -219,17 +225,9 @@ void savePeriod()
       {
         for(int c=1; c>=0; c--)
         {
-          if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+          for(int l=0; l<4; l++)
           {
-            for(int l=0; l<4; l++)
-              for(int ll=0; ll<4; ll++)
-                fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][l][ll]=0;
-          }
-          else if(!(fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][0] ? Double_t(fBinning[i][j][k].tab[c][0][0]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][0])) : 0))
-          {
-            for(int l=0; l<4; l++)
-              for(int ll=0; ll<4; ll++)
-                fMultiplicities_periods[fNumberPeriod][i][j][k].tab[c][l][ll]=0;
+
           }
           else
           {
@@ -288,7 +286,62 @@ void savePeriod()
       }
     }
   }
-  fNumberPeriod++;
+}
+
+void weight_acceptance()
+{
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      for(int k=0; k<12; k++)
+      {
+        for(int c=1; c>=0; c--)
+        {
+          for(int l=0; l<4; l++)
+          {
+            for(auto period : fPeriods)
+            {
+              fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l];
+              fAcceptance_weighted[i][j][k].tab[c][1][l] += pow(fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][1][l]/fBinning[i][j][k].tab[c][0][l],2);
+              fAcceptance_yavg_weighted[i][j][k].tab[c][0][l] += fBinning_yavg_period[period][i][j][k].tab[c][0][l]*fAcceptance_yavg[period][i][j][k].tab[c][0][l]/fBinning_yavg[i][j][k].tab[c][0][l];
+              fAcceptance_yavg_weighted[i][j][k].tab[c][1][l] += pow(fBinning_yavg_period[period][i][j][k].tab[c][0][l]*fAcceptance_yavg[period][i][j][k].tab[c][1][l]/fBinning_yavg[i][j][k].tab[c][0][l],2);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+void weight_meanvalues()
+{
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      for(int k=0; k<12; k++)
+      {
+        for(int c=1; c>=0; c--)
+        {
+          for(int l=0; l<4; l++)
+          {
+            for(auto period : fPeriods)
+            {
+              fMeanvalues_size[i][j][k].tab[c][ll][0] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0];
+            }
+            for(auto period : fPeriods)
+            {
+              fMeanvalues_data[i][j][k].tab[c][ll][0] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0]/fMeanvalues_size[i][j][k].tab[c][ll][0];
+              fMeanvalues_data[i][j][k].tab[c][ll][1] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][1]/fMeanvalues_size[i][j][k].tab[c][ll][0];
+              fMeanvalues_data[i][j][k].tab[c][ll][2] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][2]/fMeanvalues_size[i][j][k].tab[c][ll][0];
+              fMeanvalues_data[i][j][k].tab[c][ll][3] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][3]/fMeanvalues_size[i][j][k].tab[c][ll][0];
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 void resetValues()
@@ -301,23 +354,14 @@ void resetValues()
       {
         for(int k=0; k<12; k++)
         {
-          if(!c)
-          {
-            fNDIS_evt[0][i][j][k] = 0;
-            fNDIS_evt_err[0][i][j][k] = 0;
-          }
           for(int ll=0; ll<4; ll++)
           {
-            fMeanvalues_data[i][j][k].tab[c][ll][0] = 0;
-            fMeanvalues_data[i][j][k].tab[c][ll][1] = 0;
-            fMeanvalues_data[i][j][k].tab[c][ll][2] = 0;
-            fMeanvalues_data[i][j][k].tab[c][ll][3] = 0;
+            fMeanvalues_temp[i][j][k].tab[c][ll][0] = 0;
+            fMeanvalues_temp[i][j][k].tab[c][ll][1] = 0;
+            fMeanvalues_temp[i][j][k].tab[c][ll][2] = 0;
+            fMeanvalues_temp[i][j][k].tab[c][ll][3] = 0;
             fMeanvalues_size[i][j][k].tab[c][ll][0] = 0;
-            fBinning[i][j][k].tab[c][0][ll] = 0;
-            fBinning[i][j][k].tab[c][1][ll] = 0;
-            fBinning_loose[i][j][k].tab[c][0][ll] = 0;
-            fBinning_severe[i][j][k].tab[c][0][ll] = 0;
-            fRich_sys_err[xbin][ybin][zbin].tab[c][1][ll] = 0;
+            fBinning_temp[i][j][k].tab[c][0][ll] = 0;
           }
         }
       }
@@ -348,11 +392,35 @@ int main(int argc, char **argv)
 
   double dummy;
 
+  double rich_sys_err;
+
+  for(int c=0; c<2; c++)
+  {
+    for(xbin=0; xbin<9; xbin++)
+    {
+      for(ybin=0; ybin<6; ybin++)
+      {
+        for(zbin=0; zbin<12; zbin++)
+        {
+          for(int ll=0; ll<4; ll++)
+          {
+            rich_sys_err = max(abs(sqrt(fBinning[xbin][ybin][zbin].tab[c][1][ll])),
+                           max(abs(fBinning_loose[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll]),
+                               abs(fBinning_severe[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll])));
+
+            fRich_sys_err[xbin][ybin][zbin].tab[c][1][ll] = rich_sys_err;
+          }
+        }
+      }
+    }
+  }
+
   ifstream periods(argv[1]);
   string filelist, periodName;
   int periodBit;
   while(periods >> periodName)
   {
+    fNumberPeriod++;
     periods >> periodBit;
 
     if(!periodBit) continue;
@@ -361,8 +429,8 @@ int main(int argc, char **argv)
 
     if(!DUMMY_ACC)
     {
-      fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()));
-      fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()));
+      fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
+      fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
     }
     else
     {
@@ -391,19 +459,19 @@ int main(int argc, char **argv)
             for(int ll=0; ll<4; ll++)
             {
               dis_file >> dummy;
-              fMeanvalues_data[i][j][k].tab[c][ll][0] += dummy;
+              fMeanvalues_temp[i][j][k].tab[c][ll][0] += dummy;
               dis_file >> dummy;
-              fMeanvalues_data[i][j][k].tab[c][ll][1] += dummy;
+              fMeanvalues_temp[i][j][k].tab[c][ll][1] += dummy;
               dis_file >> dummy;
-              fMeanvalues_data[i][j][k].tab[c][ll][2] += dummy;
+              fMeanvalues_temp[i][j][k].tab[c][ll][2] += dummy;
               dis_file >> dummy;
-              fMeanvalues_data[i][j][k].tab[c][ll][3] += dummy;
+              fMeanvalues_temp[i][j][k].tab[c][ll][3] += dummy;
               dis_file >> dummy;
               fMeanvalues_size[i][j][k].tab[c][ll][0] += dummy;
             }
 
             had_file >> dummy;
-            fBinning[i][j][k].tab[c][0][0] += dummy;
+            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][0] += dummy;
             had_file >> dummy;
             fBinning[i][j][k].tab[c][1][0] += dummy;
             had_file >> dummy;
@@ -411,7 +479,7 @@ int main(int argc, char **argv)
             had_file >> dummy;
             fBinning_severe[i][j][k].tab[c][0][0] += dummy;
             had_file >> dummy;
-            fBinning[i][j][k].tab[c][0][1] += dummy;
+            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][1] += dummy;
             had_file >> dummy;
             fBinning[i][j][k].tab[c][1][1] += dummy;
             had_file >> dummy;
@@ -419,7 +487,7 @@ int main(int argc, char **argv)
             had_file >> dummy;
             fBinning_severe[i][j][k].tab[c][0][1] += dummy;
             had_file >> dummy;
-            fBinning[i][j][k].tab[c][0][2] += dummy;
+            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][2] += dummy;
             had_file >> dummy;
             fBinning[i][j][k].tab[c][1][2] += dummy;
             had_file >> dummy;
@@ -427,7 +495,7 @@ int main(int argc, char **argv)
             had_file >> dummy;
             fBinning_severe[i][j][k].tab[c][0][2] += dummy;
             had_file >> dummy;
-            fBinning[i][j][k].tab[c][0][3] += dummy;
+            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][3] += dummy;
             had_file >> dummy;
             fBinning[i][j][k].tab[c][1][3] += dummy;
             had_file >> dummy;
@@ -440,29 +508,6 @@ int main(int argc, char **argv)
     }
 
 
-    double rich_sys_err;
-
-    for(int c=0; c<2; c++)
-    {
-      for(xbin=0; xbin<9; xbin++)
-      {
-        for(ybin=0; ybin<6; ybin++)
-        {
-          for(zbin=0; zbin<12; zbin++)
-          {
-            for(int ll=0; ll<4; ll++)
-            {
-              rich_sys_err = max(abs(sqrt(fBinning[xbin][ybin][zbin].tab[c][1][ll])),
-                             max(abs(fBinning_loose[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll]),
-                                 abs(fBinning_severe[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll])));
-
-              fRich_sys_err[xbin][ybin][zbin].tab[c][1][ll] = rich_sys_err;
-            }
-          }
-        }
-      }
-    }
-
     for(int i=0; i<9; i++)
     {
       for(int j=0; j<6; j++)
@@ -473,21 +518,22 @@ int main(int argc, char **argv)
           {
             for(int ll=0; ll<4; ll++)
             {
+              fBinning[i][j][k].tab[c][0][ll] += fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][ll];
               if(int(fMeanvalues_size[i][j][k].tab[c][ll][0]))
               {
-                fMeanvalues_data[i][j][k].tab[c][ll][0] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
-                fMeanvalues_data[i][j][k].tab[c][ll][1] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
-                fMeanvalues_data[i][j][k].tab[c][ll][2] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
-                fMeanvalues_data[i][j][k].tab[c][ll][3] /= int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+                fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0] = fMeanvalues_temp[i][j][k].tab[c][ll][0]/int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+                fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][1] = fMeanvalues_temp[i][j][k].tab[c][ll][1]/int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+                fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][2] = fMeanvalues_temp[i][j][k].tab[c][ll][2]/int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
+                fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][3] = fMeanvalues_temp[i][j][k].tab[c][ll][3]/int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
               }
+              fMeanvalues_size_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0] = fMeanvalues_size[i][j][k].tab[c][ll][0];
             }
           }
         }
       }
     }
 
-    savePeriod();
-
+    fPeriods.push_back(fNumberPeriod-1);
     resetValues();
   }
 
@@ -573,36 +619,28 @@ int main(int argc, char **argv)
         {
           for(int l=0; l<4; l++)
           {
-            int multcount[3]={0,0,0};
-            int valuescount[4]={0,0,0,0};
-            for(int nP=0; nP<fNumberPeriod; nP++)
+            fMultiplicities[i][j][k].tab[c][0][l] = (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][l] ?
+                                                    Double_t(fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][l]))
+                                                    : 0);
+            fMultiplicities[i][j][k].tab[c][1][l] = (fNDIS_evt[0][i][j][k] && fAcceptance[i][j][k].tab[c][0][l] ?
+                                                    Double_t(((fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
+                                                    fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][l],2)))
+                                                    + fAcceptance[i][j][k].tab[c][1][l]*pow(fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[i][j][k].tab[c][0][l],2)),2))
+                                                    : 0);
+            fMultiplicities[i][j][k].tab[c][2][l] = (fNDIS_evt[0][i][j][k] ?
+                                                    Double_t(sqrt(pow(fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance[i][j][k].tab[c][0][l],2)+
+                                                    pow(0.05*sqrt(fAcceptance[i][j][k].tab[c][1][l])*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
+                                                    *pow(fAcceptance[i][j][k].tab[c][0][l],2)),2)))
+                                                    : 0);
+
+            if(fMultiplicities[i][j][k].tab[c][0][l]<0)
             {
-              fMultiplicities[i][j][k].tab[c][0][l] += fMultiplicities_periods[nP][i][j][k].tab[c][0][l];
-              if(fMultiplicities_periods[nP][i][j][k].tab[c][0][l]) multcount[0]++;
-              fMultiplicities[i][j][k].tab[c][1][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][1][l],2);
-              if(fMultiplicities_periods[nP][i][j][k].tab[c][1][l]) multcount[1]++;
-              fMultiplicities[i][j][k].tab[c][2][l] += pow(fMultiplicities_periods[nP][i][j][k].tab[c][2][l],2);
-              if(fMultiplicities_periods[nP][i][j][k].tab[c][2][l]) multcount[2]++;
-              if(c)
-              {
-                for(int ll=0; ll<4; ll++)
-                {
-                  fMeanvalues_data[i][j][k].tab[0][ll][l] += fMeanvalues_data_periods[nP][i][j][k].tab[0][ll][l];
-                  if(fMeanvalues_data_periods[nP][i][j][k].tab[0][ll][l]) valuescount[ll]++;
-                }
-              }
-            }
-            fMultiplicities[i][j][k].tab[c][0][l] = (multcount[0] ? fMultiplicities[i][j][k].tab[c][0][l]/multcount[0] : 0);
-            fMultiplicities[i][j][k].tab[c][1][l] = (multcount[1] ? sqrt(fMultiplicities[i][j][k].tab[c][1][l])/multcount[1] : 0);
-            fMultiplicities[i][j][k].tab[c][2][l] = (multcount[1] ? sqrt(fMultiplicities[i][j][k].tab[c][2][l])/multcount[2] : 0);
-            if(c)
-            {
-              for(int ll=0; ll<4; ll++)
-              {
-                fMeanvalues_data[i][j][k].tab[0][ll][l] = (valuescount[ll] ? fMeanvalues_data[i][j][k].tab[0][ll][l]/valuescount[ll] : 0);
-              }
+              fMultiplicities[i][j][k].tab[c][0][l] = 0 ;
+              fMultiplicities[i][j][k].tab[c][1][l] = 0 ;
+              fMultiplicities[i][j][k].tab[c][2][l] = 0 ;
             }
           }
+
 
           if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
@@ -895,19 +933,28 @@ int main(int argc, char **argv)
     {
       for(int k=0; k<12; k++)
       {
+        yavg(c,i,k);
         for(int l=0; l<4; l++)
         {
-          for(int nP=0; nP<fNumberPeriod; nP++)
+          fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][l] ?
+                                                                          Double_t(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][l]))
+                                                                          : 0);
+          fMultiplicities_yavg[i][k].tab[c][1][l] = (fNDIS_evt_yavg[0] && fAcceptance_yavg[i][k].tab[c][0][l] ?
+                                                                          Double_t(((fBinning_yavg[1][l]/pow(fNDIS_evt_yavg[0],2)-pow(fBinning_yavg[0][l],2)*
+                                                                          fNDIS_evt_yavg[1]/pow(fNDIS_evt_yavg[0],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][l],2)))
+                                                                          + fAcceptance_yavg[i][k].tab[c][1][l]*pow(fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]*pow(fAcceptance_yavg[i][k].tab[c][0][l],2)),2))
+                                                                          : 0);
+          fMultiplicities_yavg[i][k].tab[c][2][l] = (fNDIS_evt_yavg[0] ?
+                                                                          Double_t(sqrt(pow(fRich_sys_err_yavg[1][l],2)/pow(fNDIS_evt_yavg[0]*fZ_bin_width[k]*fAcceptance_yavg[i][k].tab[c][0][l],2)+
+                                                                          pow(0.05*sqrt(fAcceptance_yavg[i][k].tab[c][1][l])*fBinning_yavg[0][l]/(fNDIS_evt_yavg[0]*fZ_bin_width[k]
+                                                                          *pow(fAcceptance_yavg[i][k].tab[c][0][l],2)),2)))
+                                                                          : 0);
+          if(fMultiplicities_yavg[i][k].tab[c][0][l]<0)
           {
-            fMultiplicities_yavg[i][k].tab[c][0][l] += fMultiplicities_yavg_periods[nP][i][k].tab[c][0][l];
-            fMultiplicities_yavg[i][k].tab[c][1][l] += pow(fMultiplicities_yavg_periods[nP][i][k].tab[c][1][l],2);
-            fMultiplicities_yavg[i][k].tab[c][2][l] += pow(fMultiplicities_yavg_periods[nP][i][k].tab[c][2][l],2);
+            fMultiplicities_yavg[i][k].tab[c][0][l] = 0 ;
+            fMultiplicities_yavg[i][k].tab[c][1][l] = 0 ;
+            fMultiplicities_yavg[i][k].tab[c][2][l] = 0 ;
           }
-          fMultiplicities_yavg[i][k].tab[c][0][l] /= fNumberPeriod;
-          fMultiplicities_yavg[i][k].tab[c][1][l] = sqrt(fMultiplicities_yavg[i][k].tab[c][1][l]);
-          fMultiplicities_yavg[i][k].tab[c][2][l] = sqrt(fMultiplicities_yavg[i][k].tab[c][2][l]);
-          fMultiplicities_yavg[i][k].tab[c][1][l] /= fNumberPeriod;
-          fMultiplicities_yavg[i][k].tab[c][2][l] /= fNumberPeriod;
         }
 
         // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_yavg[i][k].tab[c][2][3] << endl;
