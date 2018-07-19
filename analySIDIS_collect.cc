@@ -223,6 +223,7 @@ void weight_acceptance()
             {
               fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l];
               fAcceptance_weighted[i][j][k].tab[c][1][l] += pow(fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][1][l]/fBinning[i][j][k].tab[c][0][l],2);
+              cout << fBinning_yavg_period[period][i][k].tab[c][0][l] << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fAcceptance_yavg[period][i][k].tab[c][0][l] << endl;
               fAcceptance_yavg_weighted[i][k].tab[c][0][l] += fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][0][l]/fBinning_yavg[i][k].tab[c][0][l];
               fAcceptance_yavg_weighted[i][k].tab[c][1][l] += pow(fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][1][l]/fBinning_yavg[i][k].tab[c][0][l],2);
             }
@@ -857,7 +858,7 @@ int main(int argc, char **argv)
       {
         for(int l=0; l<4; l++)
         {
-          cout << i << " " << k << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << " " << fAcceptance_yavg_weighted[i][k].tab[c][0][l] << endl;
+          // cout << i << " " << k << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << " " << fAcceptance_yavg_weighted[i][k].tab[c][0][l] << endl;
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
                                                   Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]))//*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
                                                   : 0);
