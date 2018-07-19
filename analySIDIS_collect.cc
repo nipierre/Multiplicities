@@ -167,7 +167,6 @@ void yavg()
     {
       for(int z=0; z<12; z++)
       {
-        cout << x << " " << z << endl;
         for(int i=0; i<6; i++)
         {
           for(auto period : fPeriods)
@@ -189,18 +188,16 @@ void yavg()
           fBinning_yavg[x][z].tab[c][1][1]+=fBinning[x][i][z].tab[c][1][1];
           fBinning_yavg[x][z].tab[c][1][2]+=fBinning[x][i][z].tab[c][1][2];
           fBinning_yavg[x][z].tab[c][1][3]+=fBinning[x][i][z].tab[c][1][3];
-          if(fBinning[x][i][z].tab[c][0][3])
+          if(!c && fBinning[x][i][z].tab[c][0][3])
           {
             fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
             fNDIS_evt_yavg[1][x][z]+=fNDIS_evt_err[0][x][i][z];
           }
-          cout << fBinning[x][i][z].tab[c][0][3] << " " << fNDIS_evt[0][x][i][z] << endl;
           fRich_sys_err_yavg[x][z].tab[c][1][0]+=pow(fRich_sys_err[x][i][z].tab[c][1][0],2);
           fRich_sys_err_yavg[x][z].tab[c][1][1]+=pow(fRich_sys_err[x][i][z].tab[c][1][1],2);
           fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
           fRich_sys_err_yavg[x][z].tab[c][1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
         }
-        cout << fBinning_yavg[x][z].tab[c][0][3] << " " << fNDIS_evt_yavg[0][x][z] << endl;
         fRich_sys_err_yavg[x][z].tab[c][1][0]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][0]);
         fRich_sys_err_yavg[x][z].tab[c][1][1]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][1]);
         fRich_sys_err_yavg[x][z].tab[c][1][2]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][2]);
@@ -860,7 +857,6 @@ int main(int argc, char **argv)
       {
         for(int l=0; l<4; l++)
         {
-          cout << i << " " << k << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << endl;
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
                                                   Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
                                                   : 0);
