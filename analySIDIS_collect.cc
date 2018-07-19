@@ -188,8 +188,11 @@ void yavg()
           fBinning_yavg[x][z].tab[c][1][1]+=fBinning[x][i][z].tab[c][1][1];
           fBinning_yavg[x][z].tab[c][1][2]+=fBinning[x][i][z].tab[c][1][2];
           fBinning_yavg[x][z].tab[c][1][3]+=fBinning[x][i][z].tab[c][1][3];
-          fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
-          fNDIS_evt_yavg[1][x][z]+=fNDIS_evt_err[0][x][i][z];
+          if(fBinning[x][i][z].tab[c][0][3])
+          {
+            fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
+            fNDIS_evt_yavg[1][x][z]+=fNDIS_evt_err[0][x][i][z];
+          }
           fRich_sys_err_yavg[x][z].tab[c][1][0]+=pow(fRich_sys_err[x][i][z].tab[c][1][0],2);
           fRich_sys_err_yavg[x][z].tab[c][1][1]+=pow(fRich_sys_err[x][i][z].tab[c][1][1],2);
           fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
@@ -855,7 +858,7 @@ int main(int argc, char **argv)
         for(int l=0; l<4; l++)
         {
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
-                                                  Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]))//*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
+                                                  Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
                                                   : 0);
           fMultiplicities_yavg[i][k].tab[c][1][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
                                                   Double_t(((fBinning_yavg[i][k].tab[c][1][l]/pow(fNDIS_evt_yavg[0][i][k],2)-pow(fBinning_yavg[i][k].tab[c][0][l],2)*
