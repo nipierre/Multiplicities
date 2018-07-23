@@ -1668,7 +1668,7 @@ int main(int argc, char **argv)
             zBj = 0;
           }
 
-          fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)*10^3);
+          fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)*1000);
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
