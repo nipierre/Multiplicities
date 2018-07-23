@@ -595,6 +595,7 @@ void create_kin_plots()
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
+  fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 100, 0, 60, 100, 0, 60);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
@@ -653,6 +654,9 @@ void save_kin_plots()
   c11.cd(1);
   fHO04->Draw("COLZ");
   c11.Update();
+  c12.cd(1);
+  fKinematicsRICH->Draw("COLZ");
+  c12.Update();
 
   c1.Print("kinSIDIS.pdf(","pdf");
   c2.Print("kinSIDIS.pdf","pdf");
@@ -664,7 +668,8 @@ void save_kin_plots()
   c8.Print("kinSIDIS.pdf","pdf");
   c9.Print("kinSIDIS.pdf","pdf");
   c10.Print("kinSIDIS.pdf","pdf");
-  c11.Print("kinSIDIS.pdf)","pdf");
+  c11.Print("kinSIDIS.pdf","pdf");
+  c12.Print("kinSIDIS.pdf)","pdf");
 }
 
 void resetValues()
@@ -1164,7 +1169,8 @@ int main(int argc, char **argv)
         fTrig++;
 
         // Q2 cut
-        if(!(Q2>1)) continue;
+        // if(!(Q2>1)) continue;
+        if(!(Q2>0.85)) continue;
         fQ2test++;
 
         // y cut
@@ -1660,6 +1666,8 @@ int main(int argc, char **argv)
           {
             zBj = 0;
           }
+
+          fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;

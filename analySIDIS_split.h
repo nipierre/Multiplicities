@@ -207,6 +207,7 @@ studyxy fR_xy[24];
 
 TH1F* fKinematics[6];
 TH2F* fKinematics2D;
+TH2F* fKinematicsRICH;
 TH2F* fHO03;
 TH2F* fHO04;
 TH2F* fTarget2D;
