@@ -223,6 +223,7 @@ TCanvas c8("target_xy","target_xy",3200,1600);
 TCanvas c9("RICH LH","RICH LH",3200,1600);
 TCanvas c10("HO03","HO03",3200,1600);
 TCanvas c11("HO04","HO04",3200,1600);
+TCanvas c12("RICH_spec","RICH_spec",3200,1600);
 
 //Graphic Style
 

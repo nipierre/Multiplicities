@@ -618,6 +618,7 @@ void save_kin_plots()
   c9.Divide(1,1);
   c10.Divide(1,1);
   c11.Divide(1,1);
+  c12.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
