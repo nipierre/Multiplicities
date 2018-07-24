@@ -2250,7 +2250,6 @@ void MCextraction(string pFilelist)
       // --------- DIS Selection -----------------------------------------------
       // -----------------------------------------------------------------------
 
-      Double_t mxc, myc;
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
       double thetay_b = atan(p0y->GetLeaf("p0y")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
@@ -2273,11 +2272,6 @@ void MCextraction(string pFilelist)
                                     +pow(p0y->GetLeaf("p0y")->GetValue(),2)
                                     +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
         fThetaMCMu[0].push_back(thetay_b);
-
-        if(Y2012)
-        {
-          CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-        }
 
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
@@ -3099,28 +3093,6 @@ void RDextraction(string pFilelist)
                                 +pow(p0y->GetLeaf("p0y")->GetValue(),2)
                                 +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
       fThetaMu[0].push_back(thetay_b);
-
-      Double_t mxc, myc;
-
-      if(Y2012 || RCUTSTUDY_ON)
-      {
-        CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-      }
-
-      //Rcut study ---
-      if(RCUTSTUDY_ON)
-      {
-        fRstudy[zlabbin].vec.push_back(sqrt((pow(x->GetLeaf("x")->GetValue()-mxc,2)+pow(y->GetLeaf("y")->GetValue()-myc,2))));
-        fRstudy_xy[zlabbin].vec[0].push_back(x->GetLeaf("x")->GetValue());
-        fRstudy_xy[zlabbin].vec[1].push_back(y->GetLeaf("y")->GetValue());
-
-        if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
-        fTarg++;
-
-        fR_xy[zlabbin].vec[0].push_back(x->GetLeaf("x")->GetValue());
-        fR_xy[zlabbin].vec[1].push_back(y->GetLeaf("y")->GetValue());
-      }
-      //Rcut study ---
 
       //BMS (reconstructed beam track)
       if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;

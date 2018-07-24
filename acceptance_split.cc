@@ -1187,8 +1187,6 @@ int main(int argc, char **argv)
         // --------- DIS Selection -----------------------------------------------
         // -----------------------------------------------------------------------
 
-        Double_t mxc, myc;
-
         // -----------------------------------------------------------------------
         //  Data -----------------------------------------------------------------
         // -----------------------------------------------------------------------
@@ -1203,11 +1201,6 @@ int main(int argc, char **argv)
         if((0<E_beam->GetLeaf("E_beam")->GetValue()))
         {
           fRmu++;
-
-          if(Y2012)
-          {
-            CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-          }
 
           //BMS (reconstructed beam track)
           if(true/*(backPropFlag->GetLeaf("backPropFlag")->GetValue())*/) //not used in acceptance
@@ -1381,11 +1374,6 @@ int main(int argc, char **argv)
 
         if((0<MCE0))
         {
-
-          if(Y2012)
-          {
-            CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-          }
 
           // Energy of the muon beam
           if((140<=MCE0 && MCE0<=180))

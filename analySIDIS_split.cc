@@ -950,43 +950,6 @@ int main(int argc, char **argv)
         RICHx->GetEntry(ip);
         RICHy->GetEntry(ip);
 
-        // -------------------------------------------------------------------------
-        // --------- Calculation ---------------------------------------------------
-        // -------------------------------------------------------------------------
-
-        Double_t zlab = z->GetLeaf("z")->GetValue();
-        Int_t zlabbin;
-
-        if(Y2012 || RCUTSTUDY_ON)
-        {
-          if(!(-311.2<zlab && zlab<-71.2)) continue;
-
-          if(-311.2<=zlab && zlab<-301.2) zlabbin = 0;
-          else if(-301.2<=zlab && zlab<-291.2) zlabbin = 1;
-          else if(-291.2<=zlab && zlab<-281.2) zlabbin = 2;
-          else if(-281.2<=zlab && zlab<-271.2) zlabbin = 3;
-          else if(-271.2<=zlab && zlab<-261.2) zlabbin = 4;
-          else if(-261.2<=zlab && zlab<-251.2) zlabbin = 5;
-          else if(-251.2<=zlab && zlab<-241.2) zlabbin = 6;
-          else if(-241.2<=zlab && zlab<-231.2) zlabbin = 7;
-          else if(-231.2<=zlab && zlab<-221.2) zlabbin = 8;
-          else if(-221.2<=zlab && zlab<-211.2) zlabbin = 9;
-          else if(-211.2<=zlab && zlab<-201.2) zlabbin = 10;
-          else if(-201.2<=zlab && zlab<-191.2) zlabbin = 11;
-          else if(-191.2<=zlab && zlab<-181.2) zlabbin = 12;
-          else if(-181.2<=zlab && zlab<-171.2) zlabbin = 13;
-          else if(-171.2<=zlab && zlab<-161.2) zlabbin = 14;
-          else if(-161.2<=zlab && zlab<-151.2) zlabbin = 15;
-          else if(-151.2<=zlab && zlab<-141.2) zlabbin = 16;
-          else if(-141.2<=zlab && zlab<-131.2) zlabbin = 17;
-          else if(-131.2<=zlab && zlab<-121.2) zlabbin = 18;
-          else if(-121.2<=zlab && zlab<-111.2) zlabbin = 19;
-          else if(-111.2<=zlab && zlab<-101.2) zlabbin = 20;
-          else if(-101.2<=zlab && zlab<-91.2) zlabbin = 21;
-          else if(-91.2<=zlab && zlab<-81.2) zlabbin = 22;
-          else zlabbin = 23;
-        }
-
         //--------------------------------------------------------------------------
         //--------- Kinematics -----------------------------------------------------
         //--------------------------------------------------------------------------

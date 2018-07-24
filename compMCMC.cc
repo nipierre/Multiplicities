@@ -1717,7 +1717,6 @@ void MC1extraction(string pFilelist)
       // --------- DIS Selection -----------------------------------------------
       // -----------------------------------------------------------------------
 
-      Double_t mxc, myc;
 
       // -----------------------------------------------------------------------
       //  Data -----------------------------------------------------------------
@@ -1732,11 +1731,6 @@ void MC1extraction(string pFilelist)
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
         fRmu++;
-
-        if(Y2012)
-        {
-          CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-        }
 
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
