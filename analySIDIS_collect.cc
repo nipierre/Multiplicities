@@ -614,9 +614,9 @@ int main(int argc, char **argv)
           p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]>0 ? fMultiplicities[i][j][k].tab[c][0][0]+0.1*j : 0);
           k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]>0 ? fMultiplicities[i][j][k].tab[c][0][1]+0.1*j : 0);
           h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]>0 ? fMultiplicities[i][j][k].tab[c][0][3]+0.1*j : 0);
-          p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? fMultiplicities[i][j][k].tab[c][1][0] : 0);
-          k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? fMultiplicities[i][j][k].tab[c][1][1] : 0);
-          h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? fMultiplicities[i][j][k].tab[c][1][3] : 0);
+          p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? sqrt(fMultiplicities[i][j][k].tab[c][1][0]) : 0);
+          k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? sqrt(fMultiplicities[i][j][k].tab[c][1][1]) : 0);
+          h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? sqrt(fMultiplicities[i][j][k].tab[c][1][3]) : 0);
         }
       }
 
