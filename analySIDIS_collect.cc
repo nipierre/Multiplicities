@@ -547,6 +547,7 @@ int main(int argc, char **argv)
   TGraphErrors* rK_y;
 
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
+  Double_t x_range[9] = {.008,.015,.025,.035,.05,.08,.12,.16,.29};
 
   ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), std::ofstream::out | std::ofstream::trunc);
