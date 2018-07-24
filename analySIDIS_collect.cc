@@ -1250,7 +1250,7 @@ int main(int argc, char **argv)
   rP_y->GetXaxis()->SetTitle("z");
   rK_y->GetXaxis()->SetTitle("z");
 
-  c11->cd(i+1);
+  c11->cd(1);
   gPad->SetFillStyle(4000);
   sH_y->Draw("PA");
   sH_y->GetXaxis()->SetLimits(0.001,0.5);
@@ -1269,7 +1269,7 @@ int main(int argc, char **argv)
   c11->Range(0.1,0.,0.9,5.);
   c11->Update();
 
-  c12->cd(i+1);
+  c12->cd(1);
   gPad->SetFillStyle(4000);
   sP_y->Draw("PA");
   sP_y->GetXaxis()->SetLimits(0.001,0.5);
@@ -1288,7 +1288,7 @@ int main(int argc, char **argv)
   c12->Range(0.1,0.,0.9,5.);
   c12->Update();
 
-  c13->cd(i+1);
+  c13->cd(1);
   gPad->SetFillStyle(4000);
   sK_y->Draw("PA");
   sK_y->GetXaxis()->SetLimits(0.001,0.5);
@@ -1307,7 +1307,7 @@ int main(int argc, char **argv)
   c13->Range(0.1,0.,0.9,5.);
   c13->Update();
 
-  c14->cd(i+1);
+  c14->cd(1);
   gPad->SetFillStyle(4000);
   rH_y->Draw("PA");
   rH_y->GetXaxis()->SetLimits(0.001,0.5);
@@ -1326,7 +1326,7 @@ int main(int argc, char **argv)
   c14->Range(0.1,0.,0.9,5.);
   c14->Update();
 
-  c15->cd(i+1);
+  c15->cd(1);
   gPad->SetFillStyle(4000);
   rP_y->Draw("PA");
   rP_y->GetXaxis()->SetLimits(0.001,0.5);
@@ -1345,7 +1345,7 @@ int main(int argc, char **argv)
   c15->Range(0.1,0.,0.9,5.);
   c15->Update();
 
-  c16->cd(i+1);
+  c16->cd(1);
   gPad->SetFillStyle(4000);
   rK_y->Draw("PA");
   rK_y->GetXaxis()->SetLimits(0.001,0.5);
@@ -1363,8 +1363,6 @@ int main(int argc, char **argv)
   rK_y->GetYaxis()->SetTitleSize(0.08);
   c16->Range(0.1,0.,0.9,5.);
   c16->Update();
-
-  }
 
   TLatex fTitle;
 
