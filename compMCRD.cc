@@ -2389,11 +2389,6 @@ void MCextraction(string pFilelist)
                 if(true)
                 {
                   fCell++;
-                  fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
-                                              +pow(p0y->GetLeaf("p0y")->GetValue(),2)
-                                              +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-                  fThetaMCMu[1].push_back(thetax_b);
-                  fThetaMCMu[0].push_back(thetay_b);
 
                   // if((trig&2 || trig&4 || trig&8))
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
@@ -2405,6 +2400,11 @@ void MCextraction(string pFilelist)
                     {
                       fQ2test++;
                       fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+                      fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+                                                  +pow(p0y->GetLeaf("p0y")->GetValue(),2)
+                                                  +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+                      fThetaMCMu[1].push_back(thetax_b);
+                      fThetaMCMu[0].push_back(thetay_b);
 
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
@@ -3093,12 +3093,6 @@ void RDextraction(string pFilelist)
       if(/*!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/false) continue;
       fCell++;
 
-      fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
-                                +pow(p0y->GetLeaf("p0y")->GetValue(),2)
-                                +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-      fThetaMu[1].push_back(thetax_b);
-      fThetaMu[0].push_back(thetay_b);
-
       // IM/O triggers
       //2006 ---
       if(Y2006)
@@ -3126,6 +3120,11 @@ void RDextraction(string pFilelist)
       fQ2test++;
       fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
+      fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+                                +pow(p0y->GetLeaf("p0y")->GetValue(),2)
+                                +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+      fThetaMu[1].push_back(thetax_b);
+      fThetaMu[0].push_back(thetay_b);
 
       // y cut
       if(!(fYmin<yBj && yBj<fYmax)) continue;
