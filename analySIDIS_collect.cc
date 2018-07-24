@@ -1279,7 +1279,7 @@ int main(int argc, char **argv)
   sH_y->Draw("PA");
   sH_y->GetXaxis()->SetLimits(0.001,0.5);
   sH_y->SetMinimum(0.);
-  sH_y->SetMaximum(5.);
+  sH_y->SetMaximum(2.);
   sH_y->GetXaxis()->SetLabelSize(0.06);
   sH_y->GetYaxis()->SetLabelSize(0.06);
   sH_y->SetTitle("");
@@ -1291,6 +1291,7 @@ int main(int argc, char **argv)
   sH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^+}}+#font[12]{M}^{#font[ 12]{h^-}}");
   sH_y->GetYaxis()->SetTitleSize(0.08);
   c11->Range(0.1,0.,0.9,5.);
+  gPad->SetLogx();
   c11->Update();
 
   c12->cd(1);
@@ -1298,7 +1299,7 @@ int main(int argc, char **argv)
   sP_y->Draw("PA");
   sP_y->GetXaxis()->SetLimits(0.001,0.5);
   sP_y->SetMinimum(0.);
-  sP_y->SetMaximum(5.);
+  sP_y->SetMaximum(2.);
   sP_y->GetXaxis()->SetLabelSize(0.06);
   sP_y->GetYaxis()->SetLabelSize(0.06);
   sP_y->SetTitle("");
@@ -1310,6 +1311,7 @@ int main(int argc, char **argv)
   sP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^+}}+#font[12]{M}^{#font[ 12]{#pi^-}}");
   sP_y->GetYaxis()->SetTitleSize(0.08);
   c12->Range(0.1,0.,0.9,5.);
+  gPad->SetLogx();
   c12->Update();
 
   c13->cd(1);
@@ -1317,18 +1319,14 @@ int main(int argc, char **argv)
   sK_y->Draw("PA");
   sK_y->GetXaxis()->SetLimits(0.001,0.5);
   sK_y->SetMinimum(0.);
-  sK_y->SetMaximum(5.);
-  sK_y->GetXaxis()->SetLabelSize(0.06);
-  sK_y->GetYaxis()->SetLabelSize(0.06);
+  sK_y->SetMaximum(2.);
   sK_y->SetTitle("");
   sK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
-  sK_y->GetXaxis()->SetTitleSize(0.08);
-  sK_y->GetXaxis()->SetTitleOffset(.8);
   sK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#K^+}}+#font[12]{M}^{#font[ 12]{#K^-}}");
-  sK_y->GetYaxis()->SetTitleSize(0.08);
   c13->Range(0.1,0.,0.9,5.);
+  gPad->SetLogx();
   c13->Update();
 
   c14->cd(1);
@@ -1336,18 +1334,14 @@ int main(int argc, char **argv)
   rH_y->Draw("PA");
   rH_y->GetXaxis()->SetLimits(0.001,0.5);
   rH_y->SetMinimum(0.);
-  rH_y->SetMaximum(5.);
-  rH_y->GetXaxis()->SetLabelSize(0.06);
-  rH_y->GetYaxis()->SetLabelSize(0.06);
+  rH_y->SetMaximum(2.);
   rH_y->SetTitle("");
   rH_y->GetXaxis()->SetTitle("#font[ 12]{x}");
-  rH_y->GetXaxis()->SetTitleSize(0.08);
-  rH_y->GetXaxis()->SetTitleOffset(.8);
   rH_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rH_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^+}}+#font[12]{M}^{#font[ 12]{h^-}}");
-  rH_y->GetYaxis()->SetTitleSize(0.08);
   c14->Range(0.1,0.,0.9,5.);
+  gPad->SetLogx();
   c14->Update();
 
   c15->cd(1);
@@ -1355,18 +1349,14 @@ int main(int argc, char **argv)
   rP_y->Draw("PA");
   rP_y->GetXaxis()->SetLimits(0.001,0.5);
   rP_y->SetMinimum(0.);
-  rP_y->SetMaximum(5.);
-  rP_y->GetXaxis()->SetLabelSize(0.06);
-  rP_y->GetYaxis()->SetLabelSize(0.06);
+  rP_y->SetMaximum(2.);
   rP_y->SetTitle("");
   rP_y->GetXaxis()->SetTitle("#font[ 12]{x}");
-  rP_y->GetXaxis()->SetTitleSize(0.08);
-  rP_y->GetXaxis()->SetTitleOffset(.8);
   rP_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^+}}+#font[12]{M}^{#font[ 12]{#pi^-}}");
-  rP_y->GetYaxis()->SetTitleSize(0.08);
   c15->Range(0.1,0.,0.9,5.);
+  gPad->SetLogx();
   c15->Update();
 
   c16->cd(1);
@@ -1374,18 +1364,14 @@ int main(int argc, char **argv)
   rK_y->Draw("PA");
   rK_y->GetXaxis()->SetLimits(0.001,0.5);
   rK_y->SetMinimum(0.);
-  rK_y->SetMaximum(5.);
-  rK_y->GetXaxis()->SetLabelSize(0.06);
-  rK_y->GetYaxis()->SetLabelSize(0.06);
+  rK_y->SetMaximum(2.);
   rK_y->SetTitle("");
   rK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
-  rK_y->GetXaxis()->SetTitleSize(0.08);
-  rK_y->GetXaxis()->SetTitleOffset(.8);
   rK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#K^+}}+#font[12]{M}^{#font[ 12]{#K^-}}");
-  rK_y->GetYaxis()->SetTitleSize(0.08);
   c16->Range(0.1,0.,0.9,5.);
+  gPad->SetLogx();
   c16->Update();
 
   TLatex fTitle;
