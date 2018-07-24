@@ -1201,12 +1201,12 @@ int main(int argc, char **argv)
     if(!rh_y[k-1]) {rh_y.erase(rh_y.begin()+k-1); rh_y_err.erase(rh_y_err.begin()+k-1); rx_range_h_y.erase(rx_range_h_y.begin()+k-1);}
   }
 
-  sH_y = new TGraphErrors(Int_t(sh_y[c][i].size()),&(sx_range_h_y[c][i][0]),&(sh_y[c][i][0]),0,&(sh_y_err[c][i][0]));
-  sP_y = new TGraphErrors(Int_t(sp_y[c][i].size()),&(sx_range_p_y[c][i][0]),&(sp_y[c][i][0]),0,&(sp_y_err[c][i][0]));
-  sK_y = new TGraphErrors(Int_t(sk_y[c][i].size()),&(sx_range_k_y[c][i][0]),&(sk_y[c][i][0]),0,&(sk_y_err[c][i][0]));
-  rH_y = new TGraphErrors(Int_t(rh_y[c][i].size()),&(rx_range_h_y[c][i][0]),&(rh_y[c][i][0]),0,&(rh_y_err[c][i][0]));
-  rP_y = new TGraphErrors(Int_t(rp_y[c][i].size()),&(rx_range_p_y[c][i][0]),&(rp_y[c][i][0]),0,&(rp_y_err[c][i][0]));
-  rK_y = new TGraphErrors(Int_t(rk_y[c][i].size()),&(rx_range_k_y[c][i][0]),&(rk_y[c][i][0]),0,&(rk_y_err[c][i][0]));
+  sH_y = new TGraphErrors(Int_t(sh_y.size()),&(sx_range_h_y[0]),&(sh_y[0]),0,&(sh_y_err[0]));
+  sP_y = new TGraphErrors(Int_t(sp_y.size()),&(sx_range_p_y[0]),&(sp_y[0]),0,&(sp_y_err[0]));
+  sK_y = new TGraphErrors(Int_t(sk_y.size()),&(sx_range_k_y[0]),&(sk_y[0]),0,&(sk_y_err[0]));
+  rH_y = new TGraphErrors(Int_t(rh_y.size()),&(rx_range_h_y[0]),&(rh_y[0]),0,&(rh_y_err[0]));
+  rP_y = new TGraphErrors(Int_t(rp_y.size()),&(rx_range_p_y[0]),&(rp_y[0]),0,&(rp_y_err[0]));
+  rK_y = new TGraphErrors(Int_t(rk_y.size()),&(rx_range_k_y[0]),&(rk_y[0]),0,&(rk_y_err[0]));
 
   sH_y->SetMarkerColor(fMarkerColor[0]);
   sP_y->SetMarkerColor(fMarkerColor[0]);
