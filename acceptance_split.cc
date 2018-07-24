@@ -1281,7 +1281,7 @@ int main(int argc, char **argv)
               //2012 ---
               else if(Y2012)
               {
-                if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin]))
+                if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
                 {
                   fTarg++;
 
@@ -1325,7 +1325,7 @@ int main(int argc, char **argv)
               //2016 ---
               else if(Y2016)
               {
-                if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),1.5))
+                if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
                 {
                   fTarg++;
 
@@ -1430,7 +1430,7 @@ int main(int argc, char **argv)
             //2012 ---
             else if(Y2012)
             {
-              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin]))
+              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
                 // Q2 cut
                 if((Q2_MC>1))
@@ -1456,7 +1456,7 @@ int main(int argc, char **argv)
             //2016 ---
             else if(Y2016)
             {
-              if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue(),1.5))
+              if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue()))
               {
                 // Q2 cut
                 if((Q2_MC>1))

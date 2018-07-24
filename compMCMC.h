@@ -113,6 +113,7 @@ Double_t fNu_min[3][12];
 vector<Double_t> fXv;
 vector<Double_t> fYv;
 vector<Double_t> fZv;
+vector<Double_t> fRv;
 hadiden fRstudy[24];
 studyxy fRstudy_xy[24];
 

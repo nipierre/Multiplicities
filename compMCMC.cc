@@ -1810,7 +1810,7 @@ void MC1extraction(string pFilelist)
             //2012 ---
             else if(Y2012)
             {
-              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin]))
+              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
                 fTarg++;
 
@@ -1854,7 +1854,7 @@ void MC1extraction(string pFilelist)
             //2016 ---
             else if(Y2016)
             {
-              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),1.5))
+              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
                 fTarg++;
 
@@ -2695,7 +2695,7 @@ void MC2extraction(string pFilelist)
             //2012 ---
             else if(Y2012)
             {
-              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin]))
+              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
                 fTarg++;
 
@@ -2739,7 +2739,7 @@ void MC2extraction(string pFilelist)
             //2016 ---
             else if(Y2016)
             {
-              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),1.5))
+              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
                 fTarg++;
 

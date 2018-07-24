@@ -1090,29 +1090,6 @@ int main(int argc, char **argv)
         if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
         fRmu++;
 
-        Double_t mxc, myc;
-
-        if(Y2012 || RCUTSTUDY_ON)
-        {
-          CellCenter(z->GetLeaf("z")->GetValue(), mxc, myc);
-        }
-
-        //Rcut study ---
-        if(RCUTSTUDY_ON)
-        {
-          fRstudy[zlabbin].vec.push_back(sqrt((pow(x->GetLeaf("x")->GetValue()-mxc,2)+pow(y->GetLeaf("y")->GetValue()-myc,2))));
-          fRstudy_xy[zlabbin].vec[0].push_back(x->GetLeaf("x")->GetValue());
-          fRstudy_xy[zlabbin].vec[1].push_back(y->GetLeaf("y")->GetValue());
-
-          if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin])) continue;
-          fTarg++;
-
-          fR_xy[zlabbin].vec[0].push_back(x->GetLeaf("x")->GetValue());
-          fR_xy[zlabbin].vec[1].push_back(y->GetLeaf("y")->GetValue());
-        }
-        //Rcut study ---
-
-
         //BMS (reconstructed beam track)
         if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
         fBMS++;
@@ -1139,13 +1116,13 @@ int main(int argc, char **argv)
         //2012 ---
         else if(Y2012)
         {
-          if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),fRcutval[zlabbin])) continue;
+          if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
         }
         //2012 ---
         //2016 ---
         else if(Y2016)
         {
-          if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue(),1.5)) continue;
+          if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
         }
         //2016 ---
         fTarg++;
