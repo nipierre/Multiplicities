@@ -82,7 +82,7 @@ vector<Double_t> fNu_MC;
 vector<Double_t> fNukinMC[5];
 vector<Double_t> fMuMC[5];
 vector<Double_t> fMupMC[5];
-vector<Double_t> fThetaMCMu[2];
+vector<Double_t> fThetaMCMu[3];
 vector<Double_t> fThetaMC[5];
 vector<Double_t> fPhiMC[5];
 vector<Double_t> fVertexMC[5];
