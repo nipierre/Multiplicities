@@ -224,11 +224,11 @@ void create_kin_plots()
   fKinematicsRD[0][11] = new TH1F("#phi_{e,prod.pl}","#phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("#phi_{e,prod.pl} Ratio","#phi_{e,prod.pl} Ratio", 50, 0, 3.5);
   fThetaRDp[0] = new TH2F("#theta_y RD", "#theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaRDp[1] = new TH2F("#theta_x RD", "#theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaRDp[2] = new TH2F("#theta_xy RD", "#theta_y RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
+  fThetaRDp[1] = new TH2F("#theta_x RD", "#theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaRDp[2] = new TH2F("#theta_xy RD", "#theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
   fThetaMCp[0] = new TH2F("#theta_y MC", "#theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaMCp[1] = new TH2F("#theta_x MC", "#theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaMCp[2] = new TH2F("#theta_xy MC", "#theta_y MC", 100, -0.005, 0.005, 100, -0.005, 0.005);
+  fThetaMCp[1] = new TH2F("#theta_x MC", "#theta_x MC", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaMCp[2] = new TH2F("#theta_xy MC", "#theta_xy MC", 100, -0.005, 0.005, 100, -0.005, 0.005);
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -1875,26 +1875,26 @@ void save_kin_plots()
 
   c35.cd(1);
   fThetaRDp[1]->Draw("COLZ");
-  fThetaRDp[1]->GetXaxis()->SetTitle("#theta_y");
+  fThetaRDp[1]->GetXaxis()->SetTitle("#theta_x");
   fThetaRDp[1]->GetYaxis()->SetTitle("p");
   c35.Update();
 
   c35.cd(2);
   fThetaMCp[1]->Draw("COLZ");
-  fThetaMCp[1]->GetXaxis()->SetTitle("#theta_y");
+  fThetaMCp[1]->GetXaxis()->SetTitle("#theta_x");
   fThetaMCp[1]->GetYaxis()->SetTitle("p");
   c35.Update();
 
   c36.cd(1);
   fThetaRDp[2]->Draw("COLZ");
   fThetaRDp[2]->GetXaxis()->SetTitle("#theta_y");
-  fThetaRDp[2]->GetYaxis()->SetTitle("p");
+  fThetaRDp[2]->GetYaxis()->SetTitle("#theta_x");
   c36.Update();
 
   c36.cd(2);
   fThetaMCp[2]->Draw("COLZ");
   fThetaMCp[2]->GetXaxis()->SetTitle("#theta_y");
-  fThetaMCp[2]->GetYaxis()->SetTitle("p");
+  fThetaMCp[2]->GetYaxis()->SetTitle("#theta_x");
   c36.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
