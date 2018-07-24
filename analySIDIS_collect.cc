@@ -477,6 +477,24 @@ int main(int argc, char **argv)
   TCanvas* c10;
   c10 = new TCanvas("Kaon_Multiplicities_yavg","Kaon_Multiplicities_yavg",3200,1600);
 
+  TCanvas* c11;
+  c11 = new TCanvas("Hadron_Multiplicities_sum","Hadron_Multiplicities_sum",3200,1600);
+
+  TCanvas* c12;
+  c12 = new TCanvas("Pion_Multiplicities_sum","Pion_Multiplicities_sum",3200,1600);
+
+  TCanvas* c13;
+  c13 = new TCanvas("Kaon_Multiplicities_sum","Kaon_Multiplicities_sum",3200,1600);
+
+  TCanvas* c14;
+  c14 = new TCanvas("Hadron_Multiplicities_ratio","Hadron_Multiplicities_ratio",3200,1600);
+
+  TCanvas* c15;
+  c15 = new TCanvas("Pion_Multiplicities_ratio","Pion_Multiplicities_ratio",3200,1600);
+
+  TCanvas* c16;
+  c16 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
+
   c5->SetFillColor(0);
   //c5->SetFrameFillStyle(4000);
   c6->SetFillColor(0);
@@ -489,6 +507,18 @@ int main(int argc, char **argv)
   //c9->SetFrameFillStyle(4000);
   c10->SetFillColor(0);
   //c10->SetFrameFillStyle(4000);
+  c11->SetFillColor(0);
+  //c11->SetFrameFillStyle(4000);
+  c12->SetFillColor(0);
+  //c12->SetFrameFillStyle(4000);
+  c13->SetFillColor(0);
+  //c13->SetFrameFillStyle(4000);
+  c14->SetFillColor(0);
+  //c14->SetFrameFillStyle(4000);
+  c15->SetFillColor(0);
+  //c15->SetFrameFillStyle(4000);
+  c16->SetFillColor(0);
+  //c16->SetFrameFillStyle(4000);
 
   c5->Divide(5,2,0,0);
   c6->Divide(5,2,0,0);
@@ -496,6 +526,12 @@ int main(int argc, char **argv)
   c8->Divide(5,2,0,0);
   c9->Divide(5,2,0,0);
   c10->Divide(5,2,0,0);
+  c11->Divide(1,1);
+  c12->Divide(1,1);
+  c13->Divide(1,1);
+  c14->Divide(1,1);
+  c15->Divide(1,1);
+  c16->Divide(1,1);
 
   TGraphErrors* H_mult[2][9][6];
   TGraphErrors* P_mult[2][9][6];
@@ -503,6 +539,12 @@ int main(int argc, char **argv)
   TGraphErrors* H_y[2][9];
   TGraphErrors* P_y[2][9];
   TGraphErrors* K_y[2][9];
+  TGraphErrors* sH_y;
+  TGraphErrors* sP_y;
+  TGraphErrors* sK_y;
+  TGraphErrors* rH_y;
+  TGraphErrors* rP_y;
+  TGraphErrors* rK_y;
 
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
 
@@ -529,6 +571,24 @@ int main(int argc, char **argv)
   std::vector<Double_t> z_range_p_y[2][9];
   std::vector<Double_t> z_range_k_y[2][9];
   std::vector<Double_t> z_range_h_y[2][9];
+  std::vector<Double_t> sp_y;
+  std::vector<Double_t> sk_y;
+  std::vector<Double_t> sh_y;
+  std::vector<Double_t> sp_y_err;
+  std::vector<Double_t> sk_y_err;
+  std::vector<Double_t> sh_y_err;
+  std::vector<Double_t> sx_range_p_y;
+  std::vector<Double_t> sx_range_k_y;
+  std::vector<Double_t> sx_range_h_y;
+  std::vector<Double_t> rp_y;
+  std::vector<Double_t> rk_y;
+  std::vector<Double_t> rh_y;
+  std::vector<Double_t> rp_y_err;
+  std::vector<Double_t> rk_y_err;
+  std::vector<Double_t> rh_y_err;
+  std::vector<Double_t> rx_range_p_y;
+  std::vector<Double_t> rx_range_k_y;
+  std::vector<Double_t> rx_range_h_y;
 
   for(int i=0; i<9; i++)
   {
@@ -851,6 +911,9 @@ int main(int argc, char **argv)
       }
     }
 
+    Double MultiplicitiesSum[2][2][3];
+    Double MultiplicitiesRatio[2][2][3];
+
     for(int c=0; c<2; c++)
     {
       for(int k=0; k<12; k++)
@@ -887,6 +950,19 @@ int main(int argc, char **argv)
         p_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][0]));
         k_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][1]));
         h_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][3]));
+
+        MultiplicitiesSum[0][c][0] += fMultiplicities_yavg[i][k].tab[c][0][0]*fZ_bin_width[k];
+        MultiplicitiesSum[0][c][1] += fMultiplicities_yavg[i][k].tab[c][0][1]*fZ_bin_width[k];
+        MultiplicitiesSum[0][c][3] += fMultiplicities_yavg[i][k].tab[c][0][3]*fZ_bin_width[k];
+        MultiplicitiesRatio[0][c][0] += fMultiplicities_yavg[i][k].tab[c][0][0]*fZ_bin_width[k];
+        MultiplicitiesRatio[0][c][1] += fMultiplicities_yavg[i][k].tab[c][0][1]*fZ_bin_width[k];
+        MultiplicitiesRatio[0][c][3] += fMultiplicities_yavg[i][k].tab[c][0][3]*fZ_bin_width[k];
+        MultiplicitiesSum[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*fZ_bin_width[k];
+        MultiplicitiesSum[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*fZ_bin_width[k];
+        MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*fZ_bin_width[k];
+        MultiplicitiesRatio[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*fZ_bin_width[k];
+        MultiplicitiesRatio[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*fZ_bin_width[k];
+        MultiplicitiesRatio[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*fZ_bin_width[k];
       }
 
       for(int l=0; l<12; l++)
@@ -1090,6 +1166,217 @@ int main(int argc, char **argv)
       z_range_k_y[c][i].clear();
       z_range_h_y[c][i].clear();
     }
+    sp_y.push_back(MultiplicitiesSum[0][0][0]+MultiplicitiesSum[0][1][0]);
+    sk_y.push_back(MultiplicitiesSum[0][0][1]+MultiplicitiesSum[0][1][1]);
+    sh_y.push_back(MultiplicitiesSum[0][0][3]+MultiplicitiesSum[0][1][3]);
+    sp_y_err.push_back(sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]));
+    sk_y_err.push_back(sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]));
+    sh_y_err.push_back(sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]));
+    rp_y.push_back(MultiplicitiesSum[0][1][0] ? MultiplicitiesSum[0][0][0]/MultiplicitiesSum[0][1][0] : 0);
+    rk_y.push_back(MultiplicitiesSum[0][1][1] ? MultiplicitiesSum[0][0][1]/MultiplicitiesSum[0][1][1] : 0);
+    rh_y.push_back(MultiplicitiesSum[0][1][3] ? MultiplicitiesSum[0][0][3]/MultiplicitiesSum[0][1][3] : 0);
+    rp_y_err.push_back(sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]));
+    rk_y_err.push_back(sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]));
+    rh_y_err.push_back(sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]));
+  }
+
+  for(int l=0; l<9; l++)
+  {
+    sx_range_p_y.push_back(x_range[l]);
+    sx_range_k_y.push_back(x_range[l]);
+    sx_range_h_y.push_back(x_range[l]);
+    rx_range_p_y.push_back(x_range[l]);
+    rx_range_k_y.push_back(x_range[l]);
+    rx_range_h_y.push_back(x_range[l]);
+  }
+
+  for(int k=9; k>0; k--)
+  {
+    if(!sp_y[k-1]) {sp_y.erase(sp_y.begin()+k-1); sp_y_err.erase(sp_y_err.begin()+k-1); sx_range_p_y.erase(sx_range_p_y.begin()+k-1);}
+    if(!sk_y[k-1]) {sk_y.erase(sk_y.begin()+k-1); sk_y_err.erase(sk_y_err.begin()+k-1); sx_range_k_y.erase(sx_range_k_y.begin()+k-1);}
+    if(!sh_y[k-1]) {sh_y.erase(sh_y.begin()+k-1); sh_y_err.erase(sh_y_err.begin()+k-1); sx_range_h_y.erase(sx_range_h_y.begin()+k-1);}
+    if(!rp_y[k-1]) {rp_y.erase(rp_y.begin()+k-1); rp_y_err.erase(rp_y_err.begin()+k-1); rx_range_p_y.erase(rx_range_p_y.begin()+k-1);}
+    if(!rk_y[k-1]) {rk_y.erase(rk_y.begin()+k-1); rk_y_err.erase(rk_y_err.begin()+k-1); rx_range_k_y.erase(rx_range_k_y.begin()+k-1);}
+    if(!rh_y[k-1]) {rh_y.erase(rh_y.begin()+k-1); rh_y_err.erase(rh_y_err.begin()+k-1); rx_range_h_y.erase(rx_range_h_y.begin()+k-1);}
+  }
+
+  bool sp_y_empty = 0;
+  bool rp_y_empty = 0;
+  bool sk_y_empty = 0;
+  bool rk_y_empty = 0;
+  bool sh_y_empty = 0;
+  bool rh_y_empty = 0;
+
+  if(!(Int_t(sp_y[c][i].size()))) sp_y_empty = 1;
+  if(!(Int_t(sk_y[c][i].size()))) sk_y_empty = 1;
+  if(!(Int_t(sh_y[c][i].size()))) sh_y_empty = 1;
+  if(!(Int_t(rp_y[c][i].size()))) rp_y_empty = 1;
+  if(!(Int_t(rk_y[c][i].size()))) rk_y_empty = 1;
+  if(!(Int_t(rh_y[c][i].size()))) rh_y_empty = 1;
+
+  sH_y[c][i] = new TGraphErrors(Int_t(sh_y[c][i].size()),&(sx_range_h_y[c][i][0]),&(sh_y[c][i][0]),0,&(sh_y_err[c][i][0]));
+  sP_y[c][i] = new TGraphErrors(Int_t(sp_y[c][i].size()),&(sx_range_p_y[c][i][0]),&(sp_y[c][i][0]),0,&(sp_y_err[c][i][0]));
+  sK_y[c][i] = new TGraphErrors(Int_t(sk_y[c][i].size()),&(sx_range_k_y[c][i][0]),&(sk_y[c][i][0]),0,&(sk_y_err[c][i][0]));
+  rH_y[c][i] = new TGraphErrors(Int_t(rh_y[c][i].size()),&(rx_range_h_y[c][i][0]),&(rh_y[c][i][0]),0,&(rh_y_err[c][i][0]));
+  rP_y[c][i] = new TGraphErrors(Int_t(rp_y[c][i].size()),&(rx_range_p_y[c][i][0]),&(rp_y[c][i][0]),0,&(rp_y_err[c][i][0]));
+  rK_y[c][i] = new TGraphErrors(Int_t(rk_y[c][i].size()),&(rx_range_k_y[c][i][0]),&(rk_y[c][i][0]),0,&(rk_y_err[c][i][0]));
+
+  sH_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+  sP_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+  sK_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+  rH_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+  rP_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+  rK_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+
+  sH_y[c][i]->SetMarkerSize(3);
+  sP_y[c][i]->SetMarkerSize(3);
+  sK_y[c][i]->SetMarkerSize(3);
+  rH_y[c][i]->SetMarkerSize(3);
+  rP_y[c][i]->SetMarkerSize(3);
+  rK_y[c][i]->SetMarkerSize(3);
+
+  sH_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
+  sP_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
+  sK_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
+  rH_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
+  rP_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
+  rK_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
+
+  sH_y[c][i]->SetTitle("");
+  sP_y[c][i]->SetTitle("");
+  sK_y[c][i]->SetTitle("");
+  rH_y[c][i]->SetTitle("");
+  rP_y[c][i]->SetTitle("");
+  rK_y[c][i]->SetTitle("");
+
+  sH_y[c][i]->GetYaxis()->SetTitle("");
+  sP_y[c][i]->GetYaxis()->SetTitle("");
+  sK_y[c][i]->GetYaxis()->SetTitle("");
+  rH_y[c][i]->GetYaxis()->SetTitle("");
+  rP_y[c][i]->GetYaxis()->SetTitle("");
+  rK_y[c][i]->GetYaxis()->SetTitle("");
+
+  sH_y[c][i]->GetXaxis()->SetTitle("z");
+  sP_y[c][i]->GetXaxis()->SetTitle("z");
+  sK_y[c][i]->GetXaxis()->SetTitle("z");
+  rH_y[c][i]->GetXaxis()->SetTitle("z");
+  rP_y[c][i]->GetXaxis()->SetTitle("z");
+  rK_y[c][i]->GetXaxis()->SetTitle("z");
+
+  c11->cd(i+1);
+  gPad->SetFillStyle(4000);
+  sH_y->Draw("PA");
+  sH_y->GetXaxis()->SetLimits(0.001,0.5);
+  sH_y->SetMinimum(0.);
+  sH_y->SetMaximum(5.);
+  sH_y->GetXaxis()->SetLabelSize(0.06);
+  sH_y->GetYaxis()->SetLabelSize(0.06);
+  sH_y->SetTitle("");
+  sH_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  sH_y->GetXaxis()->SetTitleSize(0.08);
+  sH_y->GetXaxis()->SetTitleOffset(.8);
+  sH_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  sH_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  sH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^+}}+#font[12]{M}^{#font[ 12]{h^-}}");
+  sH_y->GetYaxis()->SetTitleSize(0.08);
+  c11->Range(0.1,0.,0.9,5.);
+  c11->Update();
+
+  c12->cd(i+1);
+  gPad->SetFillStyle(4000);
+  sP_y->Draw("PA");
+  sP_y->GetXaxis()->SetLimits(0.001,0.5);
+  sP_y->SetMinimum(0.);
+  sP_y->SetMaximum(5.);
+  sP_y->GetXaxis()->SetLabelSize(0.06);
+  sP_y->GetYaxis()->SetLabelSize(0.06);
+  sP_y->SetTitle("");
+  sP_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  sP_y->GetXaxis()->SetTitleSize(0.08);
+  sP_y->GetXaxis()->SetTitleOffset(.8);
+  sP_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  sP_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  sP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^+}}+#font[12]{M}^{#font[ 12]{#pi^-}}");
+  sP_y->GetYaxis()->SetTitleSize(0.08);
+  c12->Range(0.1,0.,0.9,5.);
+  c12->Update();
+
+  c13->cd(i+1);
+  gPad->SetFillStyle(4000);
+  sK_y->Draw("PA");
+  sK_y->GetXaxis()->SetLimits(0.001,0.5);
+  sK_y->SetMinimum(0.);
+  sK_y->SetMaximum(5.);
+  sK_y->GetXaxis()->SetLabelSize(0.06);
+  sK_y->GetYaxis()->SetLabelSize(0.06);
+  sK_y->SetTitle("");
+  sK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  sK_y->GetXaxis()->SetTitleSize(0.08);
+  sK_y->GetXaxis()->SetTitleOffset(.8);
+  sK_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  sK_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  sK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#K^+}}+#font[12]{M}^{#font[ 12]{#K^-}}");
+  sK_y->GetYaxis()->SetTitleSize(0.08);
+  c13->Range(0.1,0.,0.9,5.);
+  c13->Update();
+
+  c14->cd(i+1);
+  gPad->SetFillStyle(4000);
+  rH_y->Draw("PA");
+  rH_y->GetXaxis()->SetLimits(0.001,0.5);
+  rH_y->SetMinimum(0.);
+  rH_y->SetMaximum(5.);
+  rH_y->GetXaxis()->SetLabelSize(0.06);
+  rH_y->GetYaxis()->SetLabelSize(0.06);
+  rH_y->SetTitle("");
+  rH_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  rH_y->GetXaxis()->SetTitleSize(0.08);
+  rH_y->GetXaxis()->SetTitleOffset(.8);
+  rH_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  rH_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  rH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^+}}+#font[12]{M}^{#font[ 12]{h^-}}");
+  rH_y->GetYaxis()->SetTitleSize(0.08);
+  c14->Range(0.1,0.,0.9,5.);
+  c14->Update();
+
+  c15->cd(i+1);
+  gPad->SetFillStyle(4000);
+  rP_y->Draw("PA");
+  rP_y->GetXaxis()->SetLimits(0.001,0.5);
+  rP_y->SetMinimum(0.);
+  rP_y->SetMaximum(5.);
+  rP_y->GetXaxis()->SetLabelSize(0.06);
+  rP_y->GetYaxis()->SetLabelSize(0.06);
+  rP_y->SetTitle("");
+  rP_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  rP_y->GetXaxis()->SetTitleSize(0.08);
+  rP_y->GetXaxis()->SetTitleOffset(.8);
+  rP_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  rP_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  rP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^+}}+#font[12]{M}^{#font[ 12]{#pi^-}}");
+  rP_y->GetYaxis()->SetTitleSize(0.08);
+  c15->Range(0.1,0.,0.9,5.);
+  c15->Update();
+
+  c16->cd(i+1);
+  gPad->SetFillStyle(4000);
+  rK_y->Draw("PA");
+  rK_y->GetXaxis()->SetLimits(0.001,0.5);
+  rK_y->SetMinimum(0.);
+  rK_y->SetMaximum(5.);
+  rK_y->GetXaxis()->SetLabelSize(0.06);
+  rK_y->GetYaxis()->SetLabelSize(0.06);
+  rK_y->SetTitle("");
+  rK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  rK_y->GetXaxis()->SetTitleSize(0.08);
+  rK_y->GetXaxis()->SetTitleOffset(.8);
+  rK_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  rK_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  rK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#K^+}}+#font[12]{M}^{#font[ 12]{#K^-}}");
+  rK_y->GetYaxis()->SetTitleSize(0.08);
+  c16->Range(0.1,0.,0.9,5.);
+  c16->Update();
+
   }
 
   TLatex fTitle;
@@ -1402,6 +1689,12 @@ int main(int argc, char **argv)
   c8->Update();
   c9->Update();
   c10->Update();
+  c11->Update();
+  c12->Update();
+  c13->Update();
+  c14->Update();
+  c15->Update();
+  c16->Update();
 
   c5->Print(Form("%s/hadron_multiplicity_file.pdf",data_path));
   c5->Print(Form("%s/hadron_multiplicity_file.root",data_path));
@@ -1415,6 +1708,18 @@ int main(int argc, char **argv)
   c9->Print(Form("%s/pion_multiplicity_yavg_file.root",data_path));
   c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
   c10->Print(Form("%s/kaon_multiplicity_yavg_file.root",data_path));
+  c11->Print(Form("%s/hadron_multiplicity_sum_file.pdf",data_path));
+  c11->Print(Form("%s/hadron_multiplicity_sum_file.root",data_path));
+  c12->Print(Form("%s/pion_multiplicity_sum_file.pdf",data_path));
+  c12->Print(Form("%s/pion_multiplicity_sum_file.root",data_path));
+  c13->Print(Form("%s/kaon_multiplicity_sum_file.pdf",data_path));
+  c13->Print(Form("%s/kaon_multiplicity_sum_file.root",data_path));
+  c14->Print(Form("%s/hadron_multiplicity_ratio_file.pdf",data_path));
+  c14->Print(Form("%s/hadron_multiplicity_ratio_file.root",data_path));
+  c15->Print(Form("%s/pion_multiplicity_ratio_file.pdf",data_path));
+  c15->Print(Form("%s/pion_multiplicity_ratio_file.root",data_path));
+  c16->Print(Form("%s/kaon_multiplicity_ratio_file.pdf",data_path));
+  c16->Print(Form("%s/kaon_multiplicity_ratio_file.root",data_path));
 
   ofs_p.close();
   ofs_k.close();
