@@ -911,8 +911,8 @@ int main(int argc, char **argv)
       }
     }
 
-    Double MultiplicitiesSum[2][2][3];
-    Double MultiplicitiesRatio[2][2][3];
+    Double_t MultiplicitiesSum[2][2][3];
+    Double_t MultiplicitiesRatio[2][2][3];
 
     for(int c=0; c<2; c++)
     {
