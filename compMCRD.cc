@@ -3090,7 +3090,7 @@ void RDextraction(string pFilelist)
       fTarg++;
 
       // Cells crossing
-      if(/*!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/true) continue;
+      if(/*!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/false) continue;
       fCell++;
 
       fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
