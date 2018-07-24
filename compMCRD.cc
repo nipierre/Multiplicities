@@ -223,8 +223,12 @@ void create_kin_plots()
   }
   fKinematicsRD[0][11] = new TH1F("#phi_{e,prod.pl}","#phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("#phi_{e,prod.pl} Ratio","#phi_{e,prod.pl} Ratio", 50, 0, 3.5);
-  fThetaRDp = new TH2F("#theta_y RD", "#theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaMCp = new TH2F("#theta_y MC", "#theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaRDp[0] = new TH2F("#theta_y RD", "#theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaRDp[1] = new TH2F("#theta_x RD", "#theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaRDp[2] = new TH2F("#theta_xy RD", "#theta_y RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
+  fThetaMCp[0] = new TH2F("#theta_y MC", "#theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaMCp[1] = new TH2F("#theta_x MC", "#theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaMCp[2] = new TH2F("#theta_xy MC", "#theta_y MC", 100, -0.005, 0.005, 100, -0.005, 0.005);
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -288,6 +292,8 @@ void save_kin_plots()
   c32.Divide(1,1);
   c33.Divide(1,1);
   c34.Divide(2,1);
+  c35.Divide(2,1);
+  c36.Divide(2,1);
 
   for(int i=0; i<4; i++)
   {
@@ -1856,16 +1862,40 @@ void save_kin_plots()
   c28.Update();
 
   c34.cd(1);
-  fThetaRDp->Draw("COLZ");
-  fThetaRDp->GetXaxis()->SetTitle("#theta_y");
-  fThetaRDp->GetYaxis()->SetTitle("p");
+  fThetaRDp[0]->Draw("COLZ");
+  fThetaRDp[0]->GetXaxis()->SetTitle("#theta_y");
+  fThetaRDp[0]->GetYaxis()->SetTitle("p");
   c34.Update();
 
   c34.cd(2);
-  fThetaMCp->Draw("COLZ");
-  fThetaMCp->GetXaxis()->SetTitle("#theta_y");
-  fThetaMCp->GetYaxis()->SetTitle("p");
+  fThetaMCp[0]->Draw("COLZ");
+  fThetaMCp[0]->GetXaxis()->SetTitle("#theta_y");
+  fThetaMCp[0]->GetYaxis()->SetTitle("p");
   c34.Update();
+
+  c35.cd(1);
+  fThetaRDp[1]->Draw("COLZ");
+  fThetaRDp[1]->GetXaxis()->SetTitle("#theta_y");
+  fThetaRDp[1]->GetYaxis()->SetTitle("p");
+  c35.Update();
+
+  c35.cd(2);
+  fThetaMCp[1]->Draw("COLZ");
+  fThetaMCp[1]->GetXaxis()->SetTitle("#theta_y");
+  fThetaMCp[1]->GetYaxis()->SetTitle("p");
+  c35.Update();
+
+  c36.cd(1);
+  fThetaRDp[2]->Draw("COLZ");
+  fThetaRDp[2]->GetXaxis()->SetTitle("#theta_y");
+  fThetaRDp[2]->GetYaxis()->SetTitle("p");
+  c36.Update();
+
+  c36.cd(2);
+  fThetaMCp[2]->Draw("COLZ");
+  fThetaMCp[2]->GetXaxis()->SetTitle("#theta_y");
+  fThetaMCp[2]->GetYaxis()->SetTitle("p");
+  c36.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
@@ -1887,6 +1917,8 @@ void save_kin_plots()
   c13.Print("kinMCRD.pdf","pdf");
   c33.Print("kinMCRD.pdf","pdf");
   c34.Print("kinMCRD.pdf","pdf");
+  c35.Print("kinMCRD.pdf","pdf");
+  c36.Print("kinMCRD.pdf","pdf");
   c22.Print("kinMCRD.pdf","pdf");
   c23.Print("kinMCRD.pdf","pdf");
   c24.Print("kinMCRD.pdf","pdf");
@@ -2216,6 +2248,7 @@ void MCextraction(string pFilelist)
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
       double thetay_b = atan(p0y->GetLeaf("p0y")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
+      double thetax_b = atan(p0x->GetLeaf("p0x")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
 
 
       // -----------------------------------------------------------------------
@@ -2231,9 +2264,10 @@ void MCextraction(string pFilelist)
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
         fRmu++;
-        fThetaMCMu[1].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+        fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
                                     +pow(p0y->GetLeaf("p0y")->GetValue(),2)
                                     +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+        fThetaMCMu[1].push_back(thetax_b);
         fThetaMCMu[0].push_back(thetay_b);
 
         //BMS (reconstructed beam track)
@@ -2735,7 +2769,9 @@ void MCextraction(string pFilelist)
   }
   for(int i=0; i<int(fThetaMCMu[0].size()); i++)
   {
-    fThetaMCp->Fill(fThetaMCMu[0][i],fThetaMCMu[1][i]);
+    fThetaMCp[0]->Fill(fThetaMCMu[0][i],fThetaMCMu[2][i]);
+    fThetaMCp[1]->Fill(fThetaMCMu[1][i],fThetaMCMu[2][i]);
+    fThetaMCp[2]->Fill(fThetaMCMu[0][i],fThetaMCMu[1][i]);
   }
 }
 
@@ -3007,6 +3043,7 @@ void RDextraction(string pFilelist)
       double theta_m = asin(sqrt(pow(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)+pow(p1y->GetLeaf("p1y")->GetValue()/sqrt(pow(E_mu_prim->GetLeaf("E_mu_prim")->GetValue(),2)-pow(fM_mu,2)),2)));
       double phi_m = asin(p1x->GetLeaf("p1x")->GetValue()/sqrt(pow(p1x->GetLeaf("p1x")->GetValue(),2)+pow(p1y->GetLeaf("p1y")->GetValue(),2)));
       double thetay_b = asin(p0y->GetLeaf("p0y")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
+      double thetax_b = atan(p0x->GetLeaf("p0x")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
 
       // Best Primary Vertex
       fBP++;
@@ -3015,9 +3052,10 @@ void RDextraction(string pFilelist)
       if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
       fRmu++;
 
-      fThetaMu[1].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+      fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
                                 +pow(p0y->GetLeaf("p0y")->GetValue(),2)
                                 +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+      fThetaMu[1].push_back(thetax_b);
       fThetaMu[0].push_back(thetay_b);
 
       //BMS (reconstructed beam track)
@@ -3540,7 +3578,9 @@ void RDextraction(string pFilelist)
   }
   for(int i=0; i<int(fThetaMu[0].size()); i++)
   {
-    fThetaRDp->Fill(fThetaMu[0][i],fThetaMu[1][i]);
+    fThetaRDp[0]->Fill(fThetaMu[0][i],fThetaMu[2][i]);
+    fThetaRDp[1]->Fill(fThetaMu[1][i],fThetaMu[2][i]);
+    fThetaRDp[2]->Fill(fThetaMu[0][i],fThetaMu[1][i]);
   }
 }
 
