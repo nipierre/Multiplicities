@@ -1201,68 +1201,54 @@ int main(int argc, char **argv)
     if(!rh_y[k-1]) {rh_y.erase(rh_y.begin()+k-1); rh_y_err.erase(rh_y_err.begin()+k-1); rx_range_h_y.erase(rx_range_h_y.begin()+k-1);}
   }
 
-  bool sp_y_empty = 0;
-  bool rp_y_empty = 0;
-  bool sk_y_empty = 0;
-  bool rk_y_empty = 0;
-  bool sh_y_empty = 0;
-  bool rh_y_empty = 0;
+  sH_y = new TGraphErrors(Int_t(sh_y[c][i].size()),&(sx_range_h_y[c][i][0]),&(sh_y[c][i][0]),0,&(sh_y_err[c][i][0]));
+  sP_y = new TGraphErrors(Int_t(sp_y[c][i].size()),&(sx_range_p_y[c][i][0]),&(sp_y[c][i][0]),0,&(sp_y_err[c][i][0]));
+  sK_y = new TGraphErrors(Int_t(sk_y[c][i].size()),&(sx_range_k_y[c][i][0]),&(sk_y[c][i][0]),0,&(sk_y_err[c][i][0]));
+  rH_y = new TGraphErrors(Int_t(rh_y[c][i].size()),&(rx_range_h_y[c][i][0]),&(rh_y[c][i][0]),0,&(rh_y_err[c][i][0]));
+  rP_y = new TGraphErrors(Int_t(rp_y[c][i].size()),&(rx_range_p_y[c][i][0]),&(rp_y[c][i][0]),0,&(rp_y_err[c][i][0]));
+  rK_y = new TGraphErrors(Int_t(rk_y[c][i].size()),&(rx_range_k_y[c][i][0]),&(rk_y[c][i][0]),0,&(rk_y_err[c][i][0]));
 
-  if(!(Int_t(sp_y[c][i].size()))) sp_y_empty = 1;
-  if(!(Int_t(sk_y[c][i].size()))) sk_y_empty = 1;
-  if(!(Int_t(sh_y[c][i].size()))) sh_y_empty = 1;
-  if(!(Int_t(rp_y[c][i].size()))) rp_y_empty = 1;
-  if(!(Int_t(rk_y[c][i].size()))) rk_y_empty = 1;
-  if(!(Int_t(rh_y[c][i].size()))) rh_y_empty = 1;
+  sH_y->SetMarkerColor(fMarkerColor[0]);
+  sP_y->SetMarkerColor(fMarkerColor[0]);
+  sK_y->SetMarkerColor(fMarkerColor[0]);
+  rH_y->SetMarkerColor(fMarkerColor[0]);
+  rP_y->SetMarkerColor(fMarkerColor[0]);
+  rK_y->SetMarkerColor(fMarkerColor[0]);
 
-  sH_y[c][i] = new TGraphErrors(Int_t(sh_y[c][i].size()),&(sx_range_h_y[c][i][0]),&(sh_y[c][i][0]),0,&(sh_y_err[c][i][0]));
-  sP_y[c][i] = new TGraphErrors(Int_t(sp_y[c][i].size()),&(sx_range_p_y[c][i][0]),&(sp_y[c][i][0]),0,&(sp_y_err[c][i][0]));
-  sK_y[c][i] = new TGraphErrors(Int_t(sk_y[c][i].size()),&(sx_range_k_y[c][i][0]),&(sk_y[c][i][0]),0,&(sk_y_err[c][i][0]));
-  rH_y[c][i] = new TGraphErrors(Int_t(rh_y[c][i].size()),&(rx_range_h_y[c][i][0]),&(rh_y[c][i][0]),0,&(rh_y_err[c][i][0]));
-  rP_y[c][i] = new TGraphErrors(Int_t(rp_y[c][i].size()),&(rx_range_p_y[c][i][0]),&(rp_y[c][i][0]),0,&(rp_y_err[c][i][0]));
-  rK_y[c][i] = new TGraphErrors(Int_t(rk_y[c][i].size()),&(rx_range_k_y[c][i][0]),&(rk_y[c][i][0]),0,&(rk_y_err[c][i][0]));
+  sH_y->SetMarkerSize(3);
+  sP_y->SetMarkerSize(3);
+  sK_y->SetMarkerSize(3);
+  rH_y->SetMarkerSize(3);
+  rP_y->SetMarkerSize(3);
+  rK_y->SetMarkerSize(3);
 
-  sH_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-  sP_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-  sK_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-  rH_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-  rP_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-  rK_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+  sH_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  sP_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  sK_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  rH_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  rP_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  rK_y->SetMarkerStyle(fMarkerStyle[0][1]);
 
-  sH_y[c][i]->SetMarkerSize(3);
-  sP_y[c][i]->SetMarkerSize(3);
-  sK_y[c][i]->SetMarkerSize(3);
-  rH_y[c][i]->SetMarkerSize(3);
-  rP_y[c][i]->SetMarkerSize(3);
-  rK_y[c][i]->SetMarkerSize(3);
+  sH_y->SetTitle("");
+  sP_y->SetTitle("");
+  sK_y->SetTitle("");
+  rH_y->SetTitle("");
+  rP_y->SetTitle("");
+  rK_y->SetTitle("");
 
-  sH_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
-  sP_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
-  sK_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
-  rH_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
-  rP_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
-  rK_y[c][i]->SetMarkerStyle(fMarkerStyle[0][1]);
+  sH_y->GetYaxis()->SetTitle("");
+  sP_y->GetYaxis()->SetTitle("");
+  sK_y->GetYaxis()->SetTitle("");
+  rH_y->GetYaxis()->SetTitle("");
+  rP_y->GetYaxis()->SetTitle("");
+  rK_y->GetYaxis()->SetTitle("");
 
-  sH_y[c][i]->SetTitle("");
-  sP_y[c][i]->SetTitle("");
-  sK_y[c][i]->SetTitle("");
-  rH_y[c][i]->SetTitle("");
-  rP_y[c][i]->SetTitle("");
-  rK_y[c][i]->SetTitle("");
-
-  sH_y[c][i]->GetYaxis()->SetTitle("");
-  sP_y[c][i]->GetYaxis()->SetTitle("");
-  sK_y[c][i]->GetYaxis()->SetTitle("");
-  rH_y[c][i]->GetYaxis()->SetTitle("");
-  rP_y[c][i]->GetYaxis()->SetTitle("");
-  rK_y[c][i]->GetYaxis()->SetTitle("");
-
-  sH_y[c][i]->GetXaxis()->SetTitle("z");
-  sP_y[c][i]->GetXaxis()->SetTitle("z");
-  sK_y[c][i]->GetXaxis()->SetTitle("z");
-  rH_y[c][i]->GetXaxis()->SetTitle("z");
-  rP_y[c][i]->GetXaxis()->SetTitle("z");
-  rK_y[c][i]->GetXaxis()->SetTitle("z");
+  sH_y->GetXaxis()->SetTitle("z");
+  sP_y->GetXaxis()->SetTitle("z");
+  sK_y->GetXaxis()->SetTitle("z");
+  rH_y->GetXaxis()->SetTitle("z");
+  rP_y->GetXaxis()->SetTitle("z");
+  rK_y->GetXaxis()->SetTitle("z");
 
   c11->cd(i+1);
   gPad->SetFillStyle(4000);
