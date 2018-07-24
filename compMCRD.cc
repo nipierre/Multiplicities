@@ -2264,11 +2264,6 @@ void MCextraction(string pFilelist)
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
         fRmu++;
-        fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
-                                    +pow(p0y->GetLeaf("p0y")->GetValue(),2)
-                                    +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-        fThetaMCMu[1].push_back(thetax_b);
-        fThetaMCMu[0].push_back(thetay_b);
 
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
@@ -2394,6 +2389,11 @@ void MCextraction(string pFilelist)
                 if(true)
                 {
                   fCell++;
+                  fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+                                              +pow(p0y->GetLeaf("p0y")->GetValue(),2)
+                                              +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+                  fThetaMCMu[1].push_back(thetax_b);
+                  fThetaMCMu[0].push_back(thetay_b);
 
                   // if((trig&2 || trig&4 || trig&8))
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
@@ -3052,12 +3052,6 @@ void RDextraction(string pFilelist)
       if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
       fRmu++;
 
-      fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
-                                +pow(p0y->GetLeaf("p0y")->GetValue(),2)
-                                +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-      fThetaMu[1].push_back(thetax_b);
-      fThetaMu[0].push_back(thetay_b);
-
       //BMS (reconstructed beam track)
       if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
       fBMS++;
@@ -3096,8 +3090,14 @@ void RDextraction(string pFilelist)
       fTarg++;
 
       // Cells crossing
-      if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
+      if(/*!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/true) continue;
       fCell++;
+
+      fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+                                +pow(p0y->GetLeaf("p0y")->GetValue(),2)
+                                +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+      fThetaMu[1].push_back(thetax_b);
+      fThetaMu[0].push_back(thetay_b);
 
       // IM/O triggers
       //2006 ---
