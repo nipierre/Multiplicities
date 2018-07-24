@@ -39,21 +39,22 @@ void InitTargetFile(string pfile)
   fin.open(tstr);
   while(fin.is_open() && !fin.eof())
   {
-    float z, x, y, dummy;
-    fin >> z >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> x >> y;
+    float z, x, y, r, dummy;
+    fin >> z >> dummy >> dummy >> dummy >> dummy >> r >> dummy >> x >> y;
     fZv.push_back(z);
     fXv.push_back(x);
     fYv.push_back(y);
+    fRv.push_back(r);
   }
   cout<<"INFO : Target cell description loaded"<<endl;
 }
 
-void CellCenter(Double_t z, Double_t& xc, Double_t& yc)
+void CellCenter(Double_t z, Double_t& xc, Double_t& yc, Double_t& R)
 {
   xc = 1000000;
   yc = 1000000;
 
-  for(int i = 0; i < int(fZv.size()-1); i++)
+  for(Int_t i = 0; i < int(fZv.size()-1); i++)
   {
     Double_t z1 = fZv[i];
     Double_t z2 = fZv[i+1];
@@ -67,21 +68,26 @@ void CellCenter(Double_t z, Double_t& xc, Double_t& yc)
     Double_t yc1 = fYv[i];
     Double_t yc2 = fYv[i+1];
 
+    Double_t rc1 = fRv[i];
+    Double_t rc2 = fRv[i+1];
+
     Double_t dxcdz = (xc2-xc1)/(z2-z1);
     Double_t dycdz = (yc2-yc1)/(z2-z1);
+    Double_t drcdz = (rc2-rc1)/(z2-z1);
 
     Double_t dz = z-z1;
     xc = xc1 + dxcdz*dz;
     yc = yc1 + dycdz*dz;
+    R = rc1 + drcdz*dz;
 
     break;
   }
 }
 
-bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx, Double_t R)
+bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
 {
-  Double_t xc, yc;
-  CellCenter(zvtx, xc, yc);
+  Double_t xc, yc, R;
+  CellCenter(zvtx, xc, yc, R);
   Double_t dx = xvtx-xc;
   Double_t dy = yvtx-yc;
   Double_t r = sqrt(dx*dx + dy*dy);
