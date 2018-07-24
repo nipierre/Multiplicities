@@ -914,18 +914,30 @@ int main(int argc, char **argv)
 
     Double_t MultiplicitiesSum[2][2][3];
     Double_t MultiplicitiesRatio[2][2][3];
-    MultiplicitiesSum[0][c][0] = 0;
-    MultiplicitiesSum[0][c][1] = 0;
-    MultiplicitiesSum[0][c][3] = 0;
-    MultiplicitiesRatio[0][c][0] = 0;
-    MultiplicitiesRatio[0][c][1] = 0;
-    MultiplicitiesRatio[0][c][3] = 0;
-    MultiplicitiesSum[1][c][0] = 0;
-    MultiplicitiesSum[1][c][1] = 0;
-    MultiplicitiesSum[1][c][3] = 0;
-    MultiplicitiesRatio[1][c][0] = 0;
-    MultiplicitiesRatio[1][c][1] = 0;
-    MultiplicitiesRatio[1][c][3] = 0;
+    MultiplicitiesSum[0][0][0] = 0;
+    MultiplicitiesSum[0][1][0] = 0;
+    MultiplicitiesSum[0][0][1] = 0;
+    MultiplicitiesSum[0][1][1] = 0;
+    MultiplicitiesSum[0][0][3] = 0;
+    MultiplicitiesSum[0][1][3] = 0;
+    MultiplicitiesRatio[0][0][0] = 0;
+    MultiplicitiesRatio[0][1][0] = 0;
+    MultiplicitiesRatio[0][0][1] = 0;
+    MultiplicitiesRatio[0][1][1] = 0;
+    MultiplicitiesRatio[0][0][3] = 0;
+    MultiplicitiesRatio[0][1][3] = 0;
+    MultiplicitiesSum[1][0][0] = 0;
+    MultiplicitiesSum[1][1][0] = 0;
+    MultiplicitiesSum[1][0][1] = 0;
+    MultiplicitiesSum[1][1][1] = 0;
+    MultiplicitiesSum[1][0][3] = 0;
+    MultiplicitiesSum[1][1][3] = 0;
+    MultiplicitiesRatio[1][0][0] = 0;
+    MultiplicitiesRatio[1][1][0] = 0;
+    MultiplicitiesRatio[1][0][1] = 0;
+    MultiplicitiesRatio[1][1][1] = 0;
+    MultiplicitiesRatio[1][0][3] = 0;
+    MultiplicitiesRatio[1][1][3] = 0;
 
     for(int c=0; c<2; c++)
     {
