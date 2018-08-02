@@ -1846,7 +1846,7 @@ void save_kin_plots()
   fKinematicsRD[4][16]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][16]->SetBinError(tt,1/sqrt(fKinematicsRD[4][16]->GetBinContent(tt)));
+    fKinematicsRD[4][16]->SetBinError(tt,(fKinematicsRD[4][16]->GetBinContent(tt) ? 1/sqrt(fKinematicsRD[4][16]->GetBinContent(tt)):0));
   }
   fKinematicsRD[4][16]->Draw("E2");
   fKinematicsRD[4][16]->SetMarkerStyle(22);
@@ -1855,7 +1855,7 @@ void save_kin_plots()
   fKinematicsRD[4][16]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][16]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][16]->SetBinError(tt,1/sqrt(fKinematicsMC[4][16]->GetBinContent(tt)));
+    fKinematicsMC[4][16]->SetBinError(tt,(fKinematicsMC[4][16]->GetBinContent(tt) ? 1/sqrt(fKinematicsMC[4][16]->GetBinContent(tt)):0));
   }
   fKinematicsMC[4][16]->Draw("E2SAME");
   fKinematicsMC[4][16]->Draw("SAME");
@@ -2390,7 +2390,6 @@ void MCextraction(string pFilelist)
                 {
                   fCell++;
 
-                  // if((trig&2 || trig&4 || trig&8))
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
                   {
                     fTrig++;
@@ -2493,7 +2492,6 @@ void MCextraction(string pFilelist)
         }
 
         // ALL TRIGGERS
-        // if(trig&2 || trig&4 || trig&8)
         if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
           fQ2kinMC[4].push_back(Q2);
@@ -2679,7 +2677,6 @@ void MCextraction(string pFilelist)
           }
 
           // ALL TRIGGERS
-          // if(trig&2 || trig&4 || trig&8)
           if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
           {
             fKinematicsMC[4][3]->Fill(zBj);
@@ -3109,7 +3106,6 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        // if(!(trig&2 || trig&4 || trig&8)) continue;
         if(!(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))) continue;
       }
       //2016 ---
