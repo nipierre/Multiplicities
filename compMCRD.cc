@@ -256,6 +256,37 @@ void create_kin_plots()
   }
 }
 
+void plotting_device(int i, int j)
+{
+  for(int tt=0; tt<fKinematicsMC[i][j]->GetNbinsX(); tt++)
+  {
+    fError.push_back(fKinematicsMC[i][j]->GetBinError(tt));
+  }
+  Double_t scale = fKinematicsRD[i][j]->GetEntries()/fKinematicsMC[i][j]->GetEntries();
+  fKinematicsMC[i][j]->Scale(fKinematicsRD[i][j]->GetEntries()/fKinematicsMC[i][j]->GetEntries());
+  fKinematicsRD[i][j]->SetLineColor(kRed);
+  fKinematicsMC[i][j]->SetLineColor(kBlue);
+  fKinematicsRD[i][j]->SetMinimum(0.);
+  fKinematicsRD[i][j]->SetMaximum(max(fKinematicsRD[i][j]->GetMaximum()*1.2,fKinematicsMC[i][j]->GetMaximum()*1.2));
+  fKinematicsRD[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  {
+    fKinematicsRD[i][j]->SetBinError(tt,sqrt(fKinematicsRD[i][j]->GetBinContent(tt)));
+  }
+  fKinematicsRD[i][j]->Draw("E2");
+  fKinematicsRD[i][j]->SetMarkerStyle(22);
+  fKinematicsRD[i][j]->Draw("PSAME");
+  fKinematicsRD[i][j]->GetXaxis()->SetLabelSize(0.03);
+  fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
+  for(int tt=0; tt<fKinematicsMC[i][j]->GetNbinsX(); tt++)
+  {
+    fKinematicsMC[i][j]->SetBinError(tt,scale*fError[tt]);
+  }
+  fError.clear();
+  fKinematicsMC[i][j]->Draw("E2SAME");
+  fKinematicsMC[i][j]->Draw("PSAME");
+}
+
 void save_kin_plots()
 {
   c1.Divide(2,2);
@@ -770,33 +801,34 @@ void save_kin_plots()
     // else
     // {
       c1.cd(i+1);
-      for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
-      {
-        fError.push_back(fKinematicsMC[i][0]->GetBinError(tt));
-      }
-      Double_t scale = fKinematicsRD[i][0]->GetEntries()/fKinematicsMC[i][0]->GetEntries();
-      fKinematicsMC[i][0]->Scale(fKinematicsRD[i][0]->GetEntries()/fKinematicsMC[i][0]->GetEntries());
-      fKinematicsRD[i][0]->SetLineColor(kRed);
-      fKinematicsMC[i][0]->SetLineColor(kBlue);
-      fKinematicsRD[i][0]->SetMinimum(0.);
-      fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsMC[i][0]->GetMaximum()*1.2));
-      fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
-      for(int tt=0; tt<fKinematicsRD[i][0]->GetNbinsX(); tt++)
-      {
-        fKinematicsRD[i][0]->SetBinError(tt,sqrt(fKinematicsRD[i][0]->GetBinContent(tt)));
-      }
-      fKinematicsRD[i][0]->Draw("E2");
-      fKinematicsRD[i][0]->SetMarkerStyle(22);
-      fKinematicsRD[i][0]->Draw("PSAME");
-      fKinematicsRD[i][0]->GetXaxis()->SetLabelSize(0.03);
-      fKinematicsRD[i][0]->GetYaxis()->SetLabelSize(0.03);
-      for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
-      {
-        fKinematicsMC[i][0]->SetBinError(tt,scale*fError[tt]);
-      }
-      fError.clear();
-      fKinematicsMC[i][0]->Draw("E2SAME");
-      fKinematicsMC[i][0]->Draw("PSAME");
+      plotting_device(i,0);
+      // for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
+      // {
+      //   fError.push_back(fKinematicsMC[i][0]->GetBinError(tt));
+      // }
+      // Double_t scale = fKinematicsRD[i][0]->GetEntries()/fKinematicsMC[i][0]->GetEntries();
+      // fKinematicsMC[i][0]->Scale(fKinematicsRD[i][0]->GetEntries()/fKinematicsMC[i][0]->GetEntries());
+      // fKinematicsRD[i][0]->SetLineColor(kRed);
+      // fKinematicsMC[i][0]->SetLineColor(kBlue);
+      // fKinematicsRD[i][0]->SetMinimum(0.);
+      // fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsMC[i][0]->GetMaximum()*1.2));
+      // fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
+      // for(int tt=0; tt<fKinematicsRD[i][0]->GetNbinsX(); tt++)
+      // {
+      //   fKinematicsRD[i][0]->SetBinError(tt,sqrt(fKinematicsRD[i][0]->GetBinContent(tt)));
+      // }
+      // fKinematicsRD[i][0]->Draw("E2");
+      // fKinematicsRD[i][0]->SetMarkerStyle(22);
+      // fKinematicsRD[i][0]->Draw("PSAME");
+      // fKinematicsRD[i][0]->GetXaxis()->SetLabelSize(0.03);
+      // fKinematicsRD[i][0]->GetYaxis()->SetLabelSize(0.03);
+      // for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
+      // {
+      //   fKinematicsMC[i][0]->SetBinError(tt,scale*fError[tt]);
+      // }
+      // fError.clear();
+      // fKinematicsMC[i][0]->Draw("E2SAME");
+      // fKinematicsMC[i][0]->Draw("PSAME");
       gPad->SetLogx();
       c1.Update();
 
