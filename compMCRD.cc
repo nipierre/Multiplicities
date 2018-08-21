@@ -796,7 +796,7 @@ void save_kin_plots()
       // }
       // fKinematicsRD[i][0]->Draw("E2");
       fKinematicsRD[i][0]->SetMarkerStyle(22);
-      fKinematicsRD[i][0]->Draw("P");
+      fKinematicsRD[i][0]->Draw();
       fKinematicsRD[i][0]->GetXaxis()->SetLabelSize(0.03);
       fKinematicsRD[i][0]->GetYaxis()->SetLabelSize(0.03);
       // for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
@@ -804,7 +804,7 @@ void save_kin_plots()
       //   fKinematicsMC[i][0]->SetBinError(tt,1/sqrt(fKinematicsMC[i][0]->GetBinContent(tt)));
       // }
       // fKinematicsMC[i][0]->Draw("E2SAME");
-      fKinematicsMC[i][0]->Draw("PSAME");
+      fKinematicsMC[i][0]->Draw("SAME");
       fKinematicsRatio[i][0]->SetMarkerStyle(21);
       fKinematicsRatio[i][0]->SetFillColor(kYellow-7);
       fKinematicsRatio[i][0]->SetMaximum(2.);
@@ -817,7 +817,7 @@ void save_kin_plots()
       TGaxis* ax1 = new TGaxis(gPad->GetUxmax(), gPad->GetUymin(),
                    gPad->GetUxmax(), gPad->GetUymax(),
                    hmin, rightmax, 510, "+LG");
-      ax1->Draw();
+      ax1->Draw("SAME");
       fKinematicsRatio[i][0]->GetXaxis()->SetLabelSize(0.08);
       fKinematicsRatio[i][0]->GetYaxis()->SetLabelSize(0.08);
       fKinematicsRatio[i][0]->GetYaxis()->SetNdivisions(2,kFALSE);
