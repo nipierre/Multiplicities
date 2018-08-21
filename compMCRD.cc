@@ -796,7 +796,7 @@ void save_kin_plots()
       }
       fError.clear();
       fKinematicsMC[i][0]->Draw("E2SAME");
-      fKinematicsMC[i][0]->Draw("SAME");
+      fKinematicsMC[i][0]->Draw("PSAME");
       gPad->SetLogx();
       c1.Update();
 
