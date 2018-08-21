@@ -791,20 +791,6 @@ void save_kin_plots()
       }
       fKinematicsMC[i][0]->Draw("E2SAME");
       fKinematicsMC[i][0]->Draw("SAME");
-      fKinematicsRatio[i][0]->SetMarkerStyle(21);
-      fKinematicsRatio[i][0]->SetFillColor(kYellow-7);
-      fKinematicsRatio[i][0]->SetMaximum(2.);
-      fKinematicsRatio[i][0]->SetMinimum(0.);
-      fKinematicsRatio[i][0]->Draw("PE2");
-      fKinematicsRatio[i][0]->GetXaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[i][0]->GetYaxis()->SetLabelSize(0.08);
-      fKinematicsRatio[i][0]->GetYaxis()->SetNdivisions(2,kFALSE);
-      for(int tt=0; tt<7; tt++)
-      {
-        l1[0][tt]->Draw();
-      }
-      gPad->SetLogx();
-      c1.Update();
       gPad->SetLogx();
       c1.Update();
 
