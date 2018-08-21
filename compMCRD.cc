@@ -811,10 +811,10 @@ void save_kin_plots()
       fKinematicsRatio[i][0]->SetMinimum(0.);
       Double_t hmin = fKinematicsRatio[i][0]->GetMinimum();
       Float_t rightmax = 1.1*fKinematicsRatio[i][0]->GetMaximum();
-      Float_t scale = 100/rightmax;
+      Float_t scale = max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsMC[i][0]->GetMaximum()*1.2)/rightmax;
       fKinematicsRatio[i][0]->Scale(scale);
       fKinematicsRatio[i][0]->Draw("PE2SAME");
-      TGaxis* ax1 = new TGaxis(100, 0, 100, 2,
+      TGaxis* ax1 = new TGaxis(100, 0, 100, max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsMC[i][0]->GetMaximum()*1.2),
                    hmin, rightmax, 510, "+LG");
       ax1->Draw("SAME");
       fKinematicsRatio[i][0]->GetXaxis()->SetLabelSize(0.08);
