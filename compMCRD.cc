@@ -776,19 +776,19 @@ void save_kin_plots()
       fKinematicsRD[i][0]->SetMinimum(0.);
       fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsMC[i][0]->GetMaximum()*1.2));
       fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
-      for(int tt=0; tt<fKinematicsRD[i][0]->GetNbinsX(); tt++)
-      {
-        fKinematicsRD[i][0]->SetBinError(tt,sqrt(fKinematicsRD[i][0]->GetBinContent(tt)));
-      }
+      // for(int tt=0; tt<fKinematicsRD[i][0]->GetNbinsX(); tt++)
+      // {
+      //   fKinematicsRD[i][0]->SetBinError(tt,sqrt(fKinematicsRD[i][0]->GetBinContent(tt)));
+      // }
       fKinematicsRD[i][0]->Draw("E2");
       fKinematicsRD[i][0]->SetMarkerStyle(22);
       fKinematicsRD[i][0]->Draw("PSAME");
       fKinematicsRD[i][0]->GetXaxis()->SetLabelSize(0.03);
       fKinematicsRD[i][0]->GetYaxis()->SetLabelSize(0.03);
-      for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
-      {
-        fKinematicsMC[i][0]->SetBinError(tt,sqrt(fKinematicsMC[i][0]->GetBinContent(tt)));
-      }
+      // for(int tt=0; tt<fKinematicsMC[i][0]->GetNbinsX(); tt++)
+      // {
+      //   fKinematicsMC[i][0]->SetBinError(tt,sqrt(fKinematicsMC[i][0]->GetBinContent(tt)));
+      // }
       fKinematicsMC[i][0]->Draw("E2SAME");
       fKinematicsMC[i][0]->Draw("SAME");
       gPad->SetLogx();
@@ -1847,7 +1847,7 @@ void save_kin_plots()
   fKinematicsRD[4][16]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[4][16]->SetBinError(tt,(fKinematicsRD[4][16]->GetBinContent(tt) ? 1/sqrt(fKinematicsRD[4][16]->GetBinContent(tt)):0));
+    fKinematicsRD[4][16]->SetBinError(tt,sqrt(fKinematicsRD[4][16]->GetBinContent(tt)));
   }
   fKinematicsRD[4][16]->Draw("E2");
   fKinematicsRD[4][16]->SetMarkerStyle(22);
@@ -1856,7 +1856,7 @@ void save_kin_plots()
   fKinematicsRD[4][16]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[4][16]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[4][16]->SetBinError(tt,(fKinematicsMC[4][16]->GetBinContent(tt) ? 1/sqrt(fKinematicsMC[4][16]->GetBinContent(tt)):0));
+    fKinematicsMC[4][16]->SetBinError(tt,sqrt(fKinematicsMC[4][16]->GetBinContent(tt)));
   }
   fKinematicsMC[4][16]->Draw("E2SAME");
   fKinematicsMC[4][16]->Draw("SAME");
