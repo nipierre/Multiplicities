@@ -774,7 +774,7 @@ void save_kin_plots()
       {
         fError.push_back(fKinematicsMC[i][0]->GetBinError(tt));
       }
-      int scale = fKinematicsRD[i][0]->GetEntries()/fKinematicsMC[i][0]->GetEntries();
+      Double_t scale = fKinematicsRD[i][0]->GetEntries()/fKinematicsMC[i][0]->GetEntries();
       fKinematicsMC[i][0]->Scale(fKinematicsRD[i][0]->GetEntries()/fKinematicsMC[i][0]->GetEntries());
       fKinematicsRD[i][0]->SetLineColor(kRed);
       fKinematicsMC[i][0]->SetLineColor(kBlue);
