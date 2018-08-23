@@ -32,8 +32,8 @@ void printProgress(int event, int total)
     int val = (int) (percentage * 100);
     int lpad = (int) (percentage * PBWIDTH);
     int rpad = PBWIDTH - lpad;
-    printf ("\r Progress%s %3d%% [%.*s%*s] (%d/%d)", points[int(event/24)%6].c_str(), val, lpad, PBSTR, rpad, "", event, total);
-    fflush (stdout);
+    // printf ("\r Progress%s %3d%% [%.*s%*s] (%d/%d)", points[int(event/24)%6].c_str(), val, lpad, PBSTR, rpad, "", event, total);
+    // fflush (stdout);
 }
 
 // Fusion sort
@@ -1190,27 +1190,27 @@ int main(int argc, char **argv)
           fFlag[2][xbin][ybin][i]=0;
 
           // nu cut
-          // if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
-          // {
-          //   fFlag[0][xbin][ybin][i]=1;
-          // }
-          // if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
-          // {
-          //   fFlag[1][xbin][ybin][i]=1;
-          // }
-          // if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
-          // {
-          //   fFlag[2][xbin][ybin][i]=1;
-          // }
-          // if(fFlag[0][xbin][ybin][i] || fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i])
-          // {
-          //   fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-          //   fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-          //   fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-          //   fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          //   fNDIS_evt_err[1][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          //   fNDIS_evt_err[2][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          // }
+          if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
+          {
+            fFlag[0][xbin][ybin][i]=1;
+          }
+          if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
+          {
+            fFlag[1][xbin][ybin][i]=1;
+          }
+          if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
+          {
+            fFlag[2][xbin][ybin][i]=1;
+          }
+          if(fFlag[0][xbin][ybin][i] || fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i])
+          {
+            fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err[1][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err[2][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          }
         }
 
         // -------------------------------------------------------------------------
@@ -2310,6 +2310,8 @@ int main(int argc, char **argv)
           {
 
           }
+
+          cout << xbin << " "  << ybin << " " << zbin << endl;
 
         }
 
