@@ -32,8 +32,8 @@ void printProgress(int event, int total)
     int val = (int) (percentage * 100);
     int lpad = (int) (percentage * PBWIDTH);
     int rpad = PBWIDTH - lpad;
-    // printf ("\r Progress%s %3d%% [%.*s%*s] (%d/%d)", points[int(event/24)%6].c_str(), val, lpad, PBSTR, rpad, "", event, total);
-    // fflush (stdout);
+    printf ("\r Progress%s %3d%% [%.*s%*s] (%d/%d)", points[int(event/24)%6].c_str(), val, lpad, PBSTR, rpad, "", event, total);
+    fflush (stdout);
 }
 
 // Fusion sort
@@ -1788,7 +1788,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
             if(!fFlag[1][xbin][ybin][zbin])
             {
@@ -1838,7 +1837,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
             if(!fFlag[1][xbin][ybin][zbin])
             {
@@ -1888,7 +1886,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
             if(!fFlag[2][xbin][ybin][zbin])
             {
@@ -1938,7 +1935,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
             if(!fFlag[2][xbin][ybin][zbin])
             {
@@ -1992,7 +1988,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadcontainer.vec.push_back(6);
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==7)
@@ -2007,7 +2002,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadcontainer.vec.push_back(7);
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else
@@ -2316,7 +2310,6 @@ int main(int argc, char **argv)
           {
 
           }
-
         }
 
         //Misc
@@ -2483,7 +2476,7 @@ int main(int argc, char **argv)
 
             for(int ll=0; ll<4; ll++)
             {
-              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
+              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l]; cout << xbin << " "  << ybin << " " << zbin << endl;
               fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
