@@ -2476,7 +2476,7 @@ int main(int argc, char **argv)
 
             for(int ll=0; ll<4; ll++)
             {
-              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l]; cout << xbin << " "  << ybin << " " << zbin << endl;
+              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l]; cout << xbin << " "  << ybin << " " << zbin << " " <<  Pvszlocal[i].vec[j][ll+1][l] << endl;
               fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
