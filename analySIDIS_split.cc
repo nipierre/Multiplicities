@@ -332,7 +332,8 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   }
   else if(Y2012 || Y2016)
   {
-    return fSemiInclusiveRCproton[xb][yb][zb];
+    //return fSemiInclusiveRCproton[xb][yb][zb];
+    return 1;
   }
   else
   {
@@ -1738,7 +1739,6 @@ int main(int argc, char **argv)
   #ifdef DEBUG
               cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
   #endif
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==1)
@@ -1778,7 +1778,6 @@ int main(int argc, char **argv)
   #ifdef DEBUG
               cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
   #endif
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==2)
@@ -1829,7 +1828,6 @@ int main(int argc, char **argv)
   #ifdef DEBUG
               cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
   #endif
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==3)
@@ -1879,7 +1877,6 @@ int main(int argc, char **argv)
   #ifdef DEBUG
               cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
   #endif
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==4)
@@ -1929,7 +1926,6 @@ int main(int argc, char **argv)
   #ifdef DEBUG
               cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
   #endif
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==5)
@@ -1979,7 +1975,6 @@ int main(int argc, char **argv)
   #ifdef DEBUG
               cout << res_vect[0][0] << " " << res_vect[1][0] << " " << res_vect[2][0] << endl;
   #endif
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==6)
@@ -1994,7 +1989,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadcontainer.vec.push_back(6);
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else if(fId==7)
@@ -2009,7 +2003,6 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadcontainer.vec.push_back(7);
-              cout << xbin << " "  << ybin << " " << zbin << endl;
             }
           }
           else
