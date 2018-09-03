@@ -256,7 +256,7 @@ void create_kin_plots()
   }
 }
 
-void plotting_device(int i, int j)
+void plotting_device(int i, int j, int norm)
 {
   for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
   {
@@ -266,10 +266,10 @@ void plotting_device(int i, int j)
   {
     fErrorMC.push_back(fKinematicsMC[i][j]->GetBinError(tt));
   }
-  Double_t scaleRD = 1/fKinematicsRD[2][j]->GetEntries();
-  Double_t scaleMC = 1/fKinematicsMC[2][j]->GetEntries();
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[2][j]->GetEntries());
-  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[2][j]->GetEntries());
+  Double_t scaleRD = 1/fKinematicsRD[norm][j]->GetEntries();
+  Double_t scaleMC = 1/fKinematicsMC[norm][j]->GetEntries();
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[norm][j]->GetEntries());
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[norm][j]->GetEntries());
   fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsMC[i][j]->SetLineColor(kBlue);
   fKinematicsRD[i][j]->SetMinimum(0.);
@@ -807,70 +807,70 @@ void save_kin_plots()
     // else
     // {
       c1.cd(i+1);
-      plotting_device(i,0);
+      plotting_device(i,0,2);
       gPad->SetLogx();
       c1.Update();
 
 
       c2.cd(i+1);
-      plotting_device(i,1);
+      plotting_device(i,1,2);
       gPad->SetLogx();
       c2.Update();
 
       c3.cd(i+1);
-      plotting_device(i,2);
+      plotting_device(i,2,2);
       c3.Update();
 
       c4.cd(i+1);
-      plotting_device(i,3);
+      plotting_device(i,3,2);
       c4.Update();
 
       c5.cd(i+1);
-      plotting_device(i,4);
+      plotting_device(i,4,2);
       c5.Update();
 
       c6.cd(i+1);
-      plotting_device(i,5);
+      plotting_device(i,5,2);
       c6.Update();
 
       c14.cd(i+1);
-      plotting_device(i,6);
+      plotting_device(i,6,2);
       c14.Update();
 
       c15.cd(i+1);
-      plotting_device(i,7);
+      plotting_device(i,7,2);
       c15.Update();
 
       c16.cd(i+1);
-      plotting_device(i,8);
+      plotting_device(i,8,2);
       c16.Update();
 
       c17.cd(i+1);
-      plotting_device(i,9);
+      plotting_device(i,9,2);
       c17.Update();
 
       c18.cd(i+1);
-      plotting_device(i,10);
+      plotting_device(i,10,2);
       c18.Update();
 
       c19.cd(i+1);
-      plotting_device(i,12);
+      plotting_device(i,12,2);
       c19.Update();
 
       c20.cd(i+1);
-      plotting_device(i,13);
+      plotting_device(i,13,2);
       c20.Update();
 
       c21.cd(i+1);
-      plotting_device(i,14);
+      plotting_device(i,14,2);
       c21.Update();
 
       c25.cd(i+1);
-      plotting_device(i,15);
+      plotting_device(i,15,2);
       c25.Update();
 
       c27.cd(i+1);
-      plotting_device(i,16);
+      plotting_device(i,16,2);
       c27.Update();
     // }
   }
@@ -904,7 +904,7 @@ void save_kin_plots()
   // }
   // c7.Update();
   c7.cd(1);
-  plotting_device(0,11);
+  plotting_device(0,11,0);
   c7.Update();
 
   // c8.cd(2);
@@ -937,7 +937,7 @@ void save_kin_plots()
   // gPad->SetLogx();
   // c8.Update();
   c8.cd(1);
-  plotting_device(4,0);
+  plotting_device(4,0,4);
   gPad->SetLogx();
   c8.Update();
 
@@ -989,7 +989,7 @@ void save_kin_plots()
   // gPad->SetLogx();
   // c9.Update();
   c9.cd(1);
-  plotting_device(4,1);
+  plotting_device(4,1,4);
   gPad->SetLogx();
   c9.Update();
 
@@ -1022,7 +1022,7 @@ void save_kin_plots()
   // }
   // c10.Update();
   c10.cd(1);
-  plotting_device(4,2);
+  plotting_device(4,2,4);
   c10.Update();
 
   // c11.cd(2);
@@ -1054,7 +1054,7 @@ void save_kin_plots()
   // }
   // c11.Update();
   c11.cd(1);
-  plotting_device(4,3);
+  plotting_device(4,3,4);
   c11.Update();
 
   // c31.cd(1);
@@ -1103,7 +1103,7 @@ void save_kin_plots()
   // }
   // c12.Update();
   c12.cd(1);
-  plotting_device(4,4);
+  plotting_device(4,4,4);
   c12.Update();
 
   // c13.cd(2);
@@ -1135,11 +1135,11 @@ void save_kin_plots()
   // }
   // c13.Update();
   c13.cd(1);
-  plotting_device(4,5);
+  plotting_device(4,5,4);
   c13.Update();
 
   c33.cd(1);
-  plotting_device(4,6);
+  plotting_device(4,6,4);
   c33.Update();
 
   // c32.cd(1);
@@ -1188,7 +1188,7 @@ void save_kin_plots()
   // }
   // c22.Update();
   c22.cd(1);
-  plotting_device(4,12);
+  plotting_device(4,12,4);
   c22.Update();
 
   // c23.cd(2);
@@ -1220,7 +1220,7 @@ void save_kin_plots()
   // }
   // c23.Update();
   c23.cd(1);
-  plotting_device(4,13);
+  plotting_device(4,13,4);
   c23.Update();
 
   // c24.cd(2);
@@ -1252,7 +1252,7 @@ void save_kin_plots()
   // }
   // c24.Update();
   c24.cd(1);
-  plotting_device(4,14);
+  plotting_device(4,14,4);
   c24.Update();
 
   // c26.cd(2);
@@ -1284,7 +1284,7 @@ void save_kin_plots()
   // }
   // c26.Update();
   c26.cd(1);
-  plotting_device(4,15);
+  plotting_device(4,15,4);
   c26.Update();
 
   // c28.cd(2);
@@ -1316,7 +1316,7 @@ void save_kin_plots()
   // }
   // c28.Update();
   c28.cd(1);
-  plotting_device(4,16);
+  plotting_device(4,16,4);
   c28.Update();
 
   c34.cd(1);
