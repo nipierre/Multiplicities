@@ -807,70 +807,70 @@ void save_kin_plots()
     // else
     // {
       c1.cd(i+1);
-      plotting_device(i,0,2);
+      plotting_device(i,0,0);
       gPad->SetLogx();
       c1.Update();
 
 
       c2.cd(i+1);
-      plotting_device(i,1,2);
+      plotting_device(i,1,0);
       gPad->SetLogx();
       c2.Update();
 
       c3.cd(i+1);
-      plotting_device(i,2,2);
+      plotting_device(i,2,0);
       c3.Update();
 
       c4.cd(i+1);
-      plotting_device(i,3,2);
+      plotting_device(i,3,0);
       c4.Update();
 
       c5.cd(i+1);
-      plotting_device(i,4,2);
+      plotting_device(i,4,0);
       c5.Update();
 
       c6.cd(i+1);
-      plotting_device(i,5,2);
+      plotting_device(i,5,0);
       c6.Update();
 
       c14.cd(i+1);
-      plotting_device(i,6,2);
+      plotting_device(i,6,0);
       c14.Update();
 
       c15.cd(i+1);
-      plotting_device(i,7,2);
+      plotting_device(i,7,0);
       c15.Update();
 
       c16.cd(i+1);
-      plotting_device(i,8,2);
+      plotting_device(i,8,0);
       c16.Update();
 
       c17.cd(i+1);
-      plotting_device(i,9,2);
+      plotting_device(i,9,0);
       c17.Update();
 
       c18.cd(i+1);
-      plotting_device(i,10,2);
+      plotting_device(i,10,0);
       c18.Update();
 
       c19.cd(i+1);
-      plotting_device(i,12,2);
+      plotting_device(i,12,0);
       c19.Update();
 
       c20.cd(i+1);
-      plotting_device(i,13,2);
+      plotting_device(i,13,0);
       c20.Update();
 
       c21.cd(i+1);
-      plotting_device(i,14,2);
+      plotting_device(i,14,0);
       c21.Update();
 
       c25.cd(i+1);
-      plotting_device(i,15,2);
+      plotting_device(i,15,0);
       c25.Update();
 
       c27.cd(i+1);
-      plotting_device(i,16,2);
+      plotting_device(i,16,0);
       c27.Update();
     // }
   }
