@@ -268,8 +268,8 @@ void plotting_device(int i, int j)
   }
   Double_t scaleRD = 1/fKinematicsRD[i][2]->GetEntries();
   Double_t scaleMC = 1/fKinematicsMC[i][2]->GetEntries();
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
-  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][2]->GetEntries());
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][2]->GetEntries());
   fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsMC[i][j]->SetLineColor(kBlue);
   fKinematicsRD[i][j]->SetMinimum(0.);
