@@ -258,12 +258,18 @@ void create_kin_plots()
 
 void plotting_device(int i, int j)
 {
+  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  {
+    fErrorRD.push_back(fKinematicsRD[i][j]->GetBinError(tt));
+  }
   for(int tt=0; tt<fKinematicsMC[i][j]->GetNbinsX(); tt++)
   {
-    fError.push_back(fKinematicsMC[i][j]->GetBinError(tt));
+    fErrorMC.push_back(fKinematicsMC[i][j]->GetBinError(tt));
   }
-  Double_t scale = fKinematicsRD[i][j]->GetEntries()/fKinematicsMC[i][j]->GetEntries();
-  fKinematicsMC[i][j]->Scale(fKinematicsRD[i][j]->GetEntries()/fKinematicsMC[i][j]->GetEntries());
+  Double_t scaleRD = 1/fKinematicsRD[i][2]->GetEntries();
+  Double_t scaleMC = 1/fKinematicsMC[i][2]->GetEntries();
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
   fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsMC[i][j]->SetLineColor(kBlue);
   fKinematicsRD[i][j]->SetMinimum(0.);
@@ -271,7 +277,7 @@ void plotting_device(int i, int j)
   fKinematicsRD[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
   for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
   {
-    fKinematicsRD[i][j]->SetBinError(tt,sqrt(fKinematicsRD[i][j]->GetBinContent(tt)));
+    fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
   }
   fKinematicsRD[i][j]->Draw("E2");
   fKinematicsRD[i][j]->SetMarkerStyle(22);
@@ -280,9 +286,9 @@ void plotting_device(int i, int j)
   fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[i][j]->GetNbinsX(); tt++)
   {
-    fKinematicsMC[i][j]->SetBinError(tt,scale*fError[tt]);
+    fKinematicsMC[i][j]->SetBinError(tt,scaleMC*fErrorMC[tt]);
   }
-  fError.clear();
+  fErrorRD.clear(); fErrorMC.clear();
   fKinematicsMC[i][j]->Draw("E2SAME");
   fKinematicsMC[i][j]->Draw("PSAME");
 }

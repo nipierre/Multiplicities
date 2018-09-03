@@ -249,7 +249,7 @@ TCanvas c34("Thetay_mu","Thetay_mu",3200,1600);
 TCanvas c35("Thetax_mu","Thetay_mu",3200,1600);
 TCanvas c36("Thetaxy_mu","Thetay_mu",3200,1600);
 
-vector<double> fError;
+vector<double> fError, fErrorRD, fErrorMC;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
 
 TLine* l1[17][7];
