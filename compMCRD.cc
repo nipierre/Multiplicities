@@ -266,10 +266,10 @@ void plotting_device(int i, int j)
   {
     fErrorMC.push_back(fKinematicsMC[i][j]->GetBinError(tt));
   }
-  Double_t scaleRD = 1/fKinematicsRD[i][2]->GetEntries();
-  Double_t scaleMC = 1/fKinematicsMC[i][2]->GetEntries();
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][2]->GetEntries());
-  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][2]->GetEntries());
+  Double_t scaleRD = 1/fKinematicsRD[2][j]->GetEntries();
+  Double_t scaleMC = 1/fKinematicsMC[2][j]->GetEntries();
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[2][j]->GetEntries());
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[2][j]->GetEntries());
   fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsMC[i][j]->SetLineColor(kBlue);
   fKinematicsRD[i][j]->SetMinimum(0.);
