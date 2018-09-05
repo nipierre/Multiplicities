@@ -16,7 +16,7 @@ endif
 
 all : analySIDIS acceptance comparison extractor plotter
 analySIDIS : analySIDIS_split analySIDIS_collect
-acceptance : accsplit acccollect
+acceptance : accsplit accfuse acccollect
 comparison : compMCRD compMCMC
 extractor : FFExtractor
 plotter : FFPlotter
@@ -36,6 +36,9 @@ analySIDIS_collect: analySIDIS_collect.cc analySIDIS_collect.h
 accsplit: acceptance_split.cc acceptance_split.h
 	@echo 'Building acceptance package..'
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+
+accfuse: acceptance_fuse.cc acceptance_fuse.h
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROO
 
 acccollect: acceptance_collect.cc acceptance_collect.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
