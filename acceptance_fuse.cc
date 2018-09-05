@@ -38,10 +38,10 @@ int main(int argc, char **argv)
 
   while(list >> filename)
   {
-    ifstream DIS_file(Form("%s/DIS_%s.txt",filename.c_str(),periodName));
-    ifstream DIS_zvtx_file(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),periodName));
-    ifstream had_file(Form("%s/hadron_%s.txt",filename.c_str(),periodName));
-    ifstream had_zvtx_file(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),periodName));
+    ifstream DIS_file(Form("%s/DIS_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream DIS_zvtx_file(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_file(Form("%s/hadron_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_zvtx_file(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
