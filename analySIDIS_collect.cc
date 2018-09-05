@@ -949,11 +949,12 @@ int main(int argc, char **argv)
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
                                                   Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
                                                   : 0);
-          fMultiplicities_yavg[i][k].tab[c][1][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
-                                                  Double_t(((fBinning_yavg[i][k].tab[c][1][l]/pow(fNDIS_evt_yavg[0][i][k],2)-pow(fBinning_yavg[i][k].tab[c][0][l],2)*
-                                                  fNDIS_evt_yavg[1][i][k]/pow(fNDIS_evt_yavg[0][i][k],4))/(pow(fZ_bin_width[k]*1,2)))
-                                                  + 0*pow(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*pow(1,2)),2))
-                                                  : 0);
+          // fMultiplicities_yavg[i][k].tab[c][1][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
+          //                                         Double_t(((fBinning_yavg[i][k].tab[c][1][l]/pow(fNDIS_evt_yavg[0][i][k],2)-pow(fBinning_yavg[i][k].tab[c][0][l],2)*
+          //                                         fNDIS_evt_yavg[1][i][k]/pow(fNDIS_evt_yavg[0][i][k],4))/(pow(fZ_bin_width[k]*1,2)))
+          //                                         + 0*pow(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*pow(1,2)),2))
+          //                                         : 0);
+                                                  fMultiplicities_yavg[i][k].tab[c][1][l] = 0;
           fMultiplicities_yavg[i][k].tab[c][2][l] = (fNDIS_evt_yavg[0][i][k] ?
                                                   Double_t(sqrt(pow(fRich_sys_err_yavg[i][k].tab[c][1][l],2)/pow(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l],2)+
                                                   pow(0.05*sqrt(fAcceptance_yavg_weighted[i][k].tab[c][1][l])*fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]
