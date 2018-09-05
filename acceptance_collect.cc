@@ -569,7 +569,7 @@ int main(int argc, char **argv)
             if(fAcceptance[i][j][k].tab[c][0][2]==0) fAcceptance[i][j][k].tab[c][1][2]=0;
             if(fAcceptance[i][j][k].tab[c][0][3]==0) fAcceptance[i][j][k].tab[c][1][3]=0;
 
-            /*if((fAcceptance[i][j][k].tab[c][0][3] != 0) && (fAcceptance[i][j][k].tab[c][1][3] > fAcceptance[i][j][k].tab[c][0][3]))
+            if((fAcceptance[i][j][k].tab[c][0][3] != 0) && (fAcceptance[i][j][k].tab[c][1][3] > fAcceptance[i][j][k].tab[c][0][3]))
             {
               fAcceptance[i][j][k].tab[c][0][0] = 0;
               fAcceptance[i][j][k].tab[c][0][1] = 0;
@@ -593,19 +593,22 @@ int main(int argc, char **argv)
               fAcceptance[i][j][k].tab[c][1][1] = 0;
               fAcceptance[i][j][k].tab[c][1][2] = 0;
               fAcceptance[i][j][k].tab[c][1][3] = 0;
-            }*/
+            }
 
-            // if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
-            // {
-            //   fAcceptance[i][j][k].tab[c][0][0] = 0;
-            //   fAcceptance[i][j][k].tab[c][0][1] = 0;
-            //   fAcceptance[i][j][k].tab[c][0][2] = 0;
-            //   fAcceptance[i][j][k].tab[c][0][3] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][0] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][1] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][2] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][3] = 0;
-            // }
+            if((j==4 && k==6) 
+	    || (i==0 && j==5 && k==3) 
+	    || (i>5 && j==3 && k==11)
+	    || (i>6 && j==4 && k==5))
+            {
+               fAcceptance[i][j][k].tab[c][0][0] = 0;
+               fAcceptance[i][j][k].tab[c][0][1] = 0;
+               fAcceptance[i][j][k].tab[c][0][2] = 0;
+               fAcceptance[i][j][k].tab[c][0][3] = 0;
+               fAcceptance[i][j][k].tab[c][1][0] = 0;
+               fAcceptance[i][j][k].tab[c][1][1] = 0;
+               fAcceptance[i][j][k].tab[c][1][2] = 0;
+               fAcceptance[i][j][k].tab[c][1][3] = 0;
+            }
 
             //Output file
             //q_bin x_bin y_bin z_bin acc_pi acc_error_pi acc_k acc_error_k acc_p acc_error_p acc_h acc_error_h
