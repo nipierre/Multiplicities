@@ -28,17 +28,20 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  string cFilelist = argv[1];
+  string cFilelist = argv[2];
+  string periodName = argv[1];
+  int year = 2016;
+  int dummyd;
 
-  ifstream list(cFilelist);
+  ifstream list(cFilelist.c_str());
   string filename;
 
   while(list >> filename)
   {
-    ifstream DIS_file(Form("%s/DIS_%s.txt",filename.c_str(),period));
-    ifstream DIS_zvtx_file(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),period));
-    ifstream had_file(Form("%s/hadron_%s.txt",filename.c_str(),period));
-    ifstream had_zvtx_file(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),period));
+    ifstream DIS_file(Form("%s/DIS_%s.txt",filename.c_str(),periodName));
+    ifstream DIS_zvtx_file(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),periodName));
+    ifstream had_file(Form("%s/hadron_%s.txt",filename.c_str(),periodName));
+    ifstream had_zvtx_file(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),periodName));
 
     for(int c=0; c<2; c++)
     {
