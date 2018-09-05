@@ -38,7 +38,7 @@ accsplit: acceptance_split.cc acceptance_split.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 accfuse: acceptance_fuse.cc acceptance_fuse.h
-	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROO
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 acccollect: acceptance_collect.cc acceptance_collect.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
