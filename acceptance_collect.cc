@@ -403,12 +403,14 @@ int main(int argc, char **argv)
     c7.SetFillColor(0);
     c9.SetFillColor(0);
     c10.SetFillColor(0);
+    c11.SetFillColor(0);
 
     c5.Divide(5,2,0,0);
     c6.Divide(5,2,0,0);
     c7.Divide(5,2,0,0);
     c9.Divide(5,2,0,0);
     c10.Divide(5,2,0,0);
+    c11.Divide(5,2,0,0);
 
     TGraphErrors* H_acc[2][9][6];
     TGraphErrors* P_acc[2][9][6];
