@@ -459,14 +459,20 @@ int main(int argc, char **argv)
   weight_acceptance();
   weight_meanvalues();
 
-  TCanvas* c5;
-  c5 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
+  TCanvas* c51;
+  c51 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
+  TCanvas* c52;
+  c52 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
 
-  TCanvas* c6;
-  c6 = new TCanvas("Pion_Multiplicities","Pion_Multiplicities",3200,1600);
+  TCanvas* c61;
+  c61 = new TCanvas("Pion_Multiplicities","Pion_Multiplicities",3200,1600);
+  TCanvas* c62;
+  c62 = new TCanvas("Pion_Multiplicities","Pion_Multiplicities",3200,1600);
 
-  TCanvas* c7;
-  c7 = new TCanvas("Kaon_Multiplicities","Kaon_Multiplicities",3200,1600);
+  TCanvas* c71;
+  c71 = new TCanvas("Kaon_Multiplicities","Kaon_Multiplicities",3200,1600);
+  TCanvas* c72;
+  c72 = new TCanvas("Kaon_Multiplicities","Kaon_Multiplicities",3200,1600);
 
   TCanvas* c8;
   c8 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
@@ -495,34 +501,28 @@ int main(int argc, char **argv)
   TCanvas* c16;
   c16 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
 
-  c5->SetFillColor(0);
-  //c5->SetFrameFillStyle(4000);
-  c6->SetFillColor(0);
-  //c6->SetFrameFillStyle(4000);
-  c7->SetFillColor(0);
-  //c7->SetFrameFillStyle(4000);
+  c51->SetFillColor(0);
+  c52->SetFillColor(0);
+  c61->SetFillColor(0);
+  c62->SetFillColor(0);
+  c71->SetFillColor(0);
+  c72->SetFillColor(0);
   c8->SetFillColor(0);
-  //c8->SetFrameFillStyle(4000);
   c9->SetFillColor(0);
-  //c9->SetFrameFillStyle(4000);
   c10->SetFillColor(0);
-  //c10->SetFrameFillStyle(4000);
   c11->SetFillColor(0);
-  //c11->SetFrameFillStyle(4000);
   c12->SetFillColor(0);
-  //c12->SetFrameFillStyle(4000);
   c13->SetFillColor(0);
-  //c13->SetFrameFillStyle(4000);
   c14->SetFillColor(0);
-  //c14->SetFrameFillStyle(4000);
   c15->SetFillColor(0);
-  //c15->SetFrameFillStyle(4000);
   c16->SetFillColor(0);
-  //c16->SetFrameFillStyle(4000);
 
-  c5->Divide(5,2,0,0);
-  c6->Divide(5,2,0,0);
-  c7->Divide(5,2,0,0);
+  c51->Divide(5,2,0,0);
+  c52->Divide(5,2,0,0);
+  c61->Divide(5,2,0,0);
+  c62->Divide(5,2,0,0);
+  c71->Divide(5,2,0,0);
+  c72->Divide(5,2,0,0);
   c8->Divide(5,2,0,0);
   c9->Divide(5,2,0,0);
   c10->Divide(5,2,0,0);
@@ -593,7 +593,13 @@ int main(int argc, char **argv)
 
   for(int i=0; i<9; i++)
   {
-    int axisflag = 0;
+    int axisflagh1 = 0;
+    int axisflagh2 = 0;
+    int axisflagp1 = 0;
+    int axisflagp2 = 0;
+    int axisflagk1 = 0;
+    int axisflagk2 = 0;
+
     for(int j=0; j<6; j++)
     {
       for(int k=0; k<12; k++)
@@ -745,11 +751,11 @@ int main(int argc, char **argv)
 
         if(!h_m_empty)
         {
-          c5->cd(i+1);
-          gPad->SetFillStyle(4000);
+          if(c) c51->cd(i+1);
+          else c52->cd(i+1);
           if(H_mult[c][i][j])
           {
-            if(!c && !axisflag)
+            if((!c && !axisflagh1) || (c && !axisflagh2))
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
@@ -770,23 +776,14 @@ int main(int argc, char **argv)
               H_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}+ #font[ 12]{#delta}");
+                if(c) H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{+}}}+ #font[ 12]{#delta}");
+                else H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{-}}}+ #font[ 12]{#delta}");
                 H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              // H_mult[c][i][0]->Draw("SAMEP");
-              // H_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-              // H_mult[c][i][0]->SetMinimum(0.);
-              // H_mult[c][i][0]->SetMaximum(4.);
-              // H_mult[c][i][1]->Draw("SAMEP");
-              // H_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-              // H_mult[c][i][1]->SetMinimum(0.);
-              // H_mult[c][i][1]->SetMaximum(4.);
-              // H_mult[c][i][2]->Draw("SAMEP");
-              // H_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-              // H_mult[c][i][2]->SetMinimum(0.);
-              // H_mult[c][i][2]->SetMaximum(4.);
-              axisflag=1;
-              c5->Range(0.1,0.,0.9,4.);
+              if(!c) axisflagh1=1;
+              else axisflagh2=1;
+              if(c) c51->Range(0.1,0.,0.9,4.);
+              else c52->Range(0.1,0.,0.9,4.);
             }
             else
             {
@@ -796,20 +793,22 @@ int main(int argc, char **argv)
               H_mult[c][i][j]->SetMaximum(4.);
             }
           }
-          c5->Update();
+          if(c) c51->Update();
+          else c52->Update();
         }
 
         if(!p_m_empty)
         {
-          c6->cd(i+1);
+          if(c) c61->cd(i+1);
+          else c62->cd(i+1);
           if(P_mult[c][i][j])
           {
-            if(!c && j==3)
+            if((!c && !axisflagp1) || (c && !axisflagp2))
             {
               P_mult[c][i][j]->Draw("SAMEPA");
               P_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               P_mult[c][i][j]->SetMinimum(0.);
-              P_mult[c][i][j]->SetMaximum(2.0);
+              P_mult[c][i][j]->SetMaximum(4.);
               P_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               P_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               P_mult[c][i][j]->SetTitle("");
@@ -825,45 +824,39 @@ int main(int argc, char **argv)
               P_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                P_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi}}+ #font[ 12]{#delta}");
+                if(c) P_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{+}}}+ #font[ 12]{#delta}");
+                else P_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{-}}}+ #font[ 12]{#delta}");
                 P_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              P_mult[c][i][0]->Draw("SAMEP");
-              P_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-              P_mult[c][i][0]->SetMinimum(0.);
-              P_mult[c][i][0]->SetMaximum(2.);
-              P_mult[c][i][1]->Draw("SAMEP");
-              P_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-              P_mult[c][i][1]->SetMinimum(0.);
-              P_mult[c][i][1]->SetMaximum(2.);
-              P_mult[c][i][2]->Draw("SAMEP");
-              P_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-              P_mult[c][i][2]->SetMinimum(0.);
-              P_mult[c][i][2]->SetMaximum(2.);
-              c6->Range(0.1,0.,0.9,2.);
+              if(!c) axisflagp1=1;
+              else axisflagp2=1;
+              if(c) c61->Range(0.1,0.,0.9,4.);
+              else c62->Range(0.1,0.,0.9,4.);
             }
             else
             {
               P_mult[c][i][j]->Draw("SAMEP");
               P_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               P_mult[c][i][j]->SetMinimum(0.);
-              P_mult[c][i][j]->SetMaximum(2.0);
+              P_mult[c][i][j]->SetMaximum(4.);
             }
           }
-          c6->Update();
+          if(c) c61->Update();
+          else c62->Update();
         }
 
         if(!k_m_empty)
         {
-          c7->cd(i+1);
+          if(c) c71->cd(i+1);
+          else c72->cd(i+1);
           if(K_mult[c][i][j])
           {
-            if(!c && j==3)
+            if((!c && !axisflagk1) || (c && !axisflagk2))
             {
               K_mult[c][i][j]->Draw("SAMEPA");
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               K_mult[c][i][j]->SetMinimum(0.);
-              K_mult[c][i][j]->SetMaximum(1.);
+              K_mult[c][i][j]->SetMaximum(4.);
               K_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               K_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               K_mult[c][i][j]->SetTitle("");
@@ -879,32 +872,25 @@ int main(int argc, char **argv)
               K_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}+ #font[ 12]{#delta}");
+                if(c) K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}+ #font[ 12]{#delta}");
+                else K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{-}}}+ #font[ 12]{#delta}");
                 K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              K_mult[c][i][0]->Draw("SAMEP");
-              K_mult[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-              K_mult[c][i][0]->SetMinimum(0.);
-              K_mult[c][i][0]->SetMaximum(1.);
-              K_mult[c][i][1]->Draw("SAMEP");
-              K_mult[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-              K_mult[c][i][1]->SetMinimum(0.);
-              K_mult[c][i][1]->SetMaximum(1.);
-              K_mult[c][i][2]->Draw("SAMEP");
-              K_mult[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-              K_mult[c][i][2]->SetMinimum(0.);
-              K_mult[c][i][2]->SetMaximum(1.);
-              c7->Range(0.1,.0,0.9,1.);
+              if(!c) axisflagk1=1;
+              else axisflagk2=1;
+              if(c) c71->Range(0.1,0.,0.9,4.);
+              else c72->Range(0.1,0.,0.9,4.);
             }
             else
             {
               K_mult[c][i][j]->Draw("SAMEP");
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               K_mult[c][i][j]->SetMinimum(0.);
-              K_mult[c][i][j]->SetMaximum(1.);
+              K_mult[c][i][j]->SetMaximum(4.);
             }
           }
-          c7->Update();
+          if(c) c71->Update();
+          else c72->Update();
         }
         z_range_p[c][i][j].clear();
         z_range_k[c][i][j].clear();
@@ -1668,9 +1654,12 @@ int main(int argc, char **argv)
   fTitle.DrawLatex(0.5, 1.4,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
 
-  c5->Update();
-  c6->Update();
-  c7->Update();
+  c51->Update();
+  c52->Update();
+  c61->Update();
+  c62->Update();
+  c71->Update();
+  c72->Update();
   c8->Update();
   c9->Update();
   c10->Update();
@@ -1681,30 +1670,21 @@ int main(int argc, char **argv)
   c15->Update();
   c16->Update();
 
-  c5->Print(Form("%s/hadron_multiplicity_file.pdf",data_path));
-  c5->Print(Form("%s/hadron_multiplicity_file.root",data_path));
-  c6->Print(Form("%s/pion_multiplicity_file.pdf",data_path));
-  c6->Print(Form("%s/pion_multiplicity_file.root",data_path));
-  c7->Print(Form("%s/kaon_multiplicity_file.pdf",data_path));
-  c7->Print(Form("%s/kaon_multiplicity_file.root",data_path));
+  c51->Print(Form("%s/hadron_multiplicity_file.pdf(",data_path),"pdf");
+  c52->Print(Form("%s/hadron_multiplicity_file.pdf)",data_path),"pdf");
+  c61->Print(Form("%s/pion_multiplicity_file.pdf(",data_path),"pdf");
+  c62->Print(Form("%s/pion_multiplicity_file.pdf)",data_path),"pdf");
+  c71->Print(Form("%s/kaon_multiplicity_file.pdf(",data_path),"pdf");
+  c72->Print(Form("%s/kaon_multiplicity_file.pdf)",data_path),"pdf");
   c8->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",data_path));
-  c8->Print(Form("%s/hadron_multiplicity_yavg_file.root",data_path));
   c9->Print(Form("%s/pion_multiplicity_yavg_file.pdf",data_path));
-  c9->Print(Form("%s/pion_multiplicity_yavg_file.root",data_path));
   c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
-  c10->Print(Form("%s/kaon_multiplicity_yavg_file.root",data_path));
   c11->Print(Form("%s/hadron_multiplicity_sum_file.pdf",data_path));
-  c11->Print(Form("%s/hadron_multiplicity_sum_file.root",data_path));
   c12->Print(Form("%s/pion_multiplicity_sum_file.pdf",data_path));
-  c12->Print(Form("%s/pion_multiplicity_sum_file.root",data_path));
   c13->Print(Form("%s/kaon_multiplicity_sum_file.pdf",data_path));
-  c13->Print(Form("%s/kaon_multiplicity_sum_file.root",data_path));
   c14->Print(Form("%s/hadron_multiplicity_ratio_file.pdf",data_path));
-  c14->Print(Form("%s/hadron_multiplicity_ratio_file.root",data_path));
   c15->Print(Form("%s/pion_multiplicity_ratio_file.pdf",data_path));
-  c15->Print(Form("%s/pion_multiplicity_ratio_file.root",data_path));
   c16->Print(Form("%s/kaon_multiplicity_ratio_file.pdf",data_path));
-  c16->Print(Form("%s/kaon_multiplicity_ratio_file.root",data_path));
 
   ofs_p.close();
   ofs_k.close();
