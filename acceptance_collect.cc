@@ -629,10 +629,10 @@ int main(int argc, char **argv)
             (fAcceptance[i][j][k].tab[c][0][2] ? Double_t((fGnrt[i][j][k].tab[c][0][2]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][2],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
             (fAcceptance[i][j][k].tab[c][0][3] ? Double_t((fGnrt[i][j][k].tab[c][0][3]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][3],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " << endl;
 
-            fAcceptance[i][j][k].tab[c][0][0] = ((fAcceptance[i][j][k].tab[c][0][0]) ? (fAcceptance[i][j][k].tab[c][0][0]+j*0.1) : 0);
-            fAcceptance[i][j][k].tab[c][0][1] = ((fAcceptance[i][j][k].tab[c][0][1]) ? (fAcceptance[i][j][k].tab[c][0][1]+j*0.1) : 0);
-            fAcceptance[i][j][k].tab[c][0][2] = ((fAcceptance[i][j][k].tab[c][0][2]) ? (fAcceptance[i][j][k].tab[c][0][2]+j*0.1) : 0);
-            fAcceptance[i][j][k].tab[c][0][3] = ((fAcceptance[i][j][k].tab[c][0][3]) ? (fAcceptance[i][j][k].tab[c][0][3]+j*0.1) : 0);
+            fAcceptance[i][j][k].tab[c][0][0] = ((fAcceptance[i][j][k].tab[c][0][0]) ? (fAcceptance[i][j][k].tab[c][0][0]) : 0);
+            fAcceptance[i][j][k].tab[c][0][1] = ((fAcceptance[i][j][k].tab[c][0][1]) ? (fAcceptance[i][j][k].tab[c][0][1]) : 0);
+            fAcceptance[i][j][k].tab[c][0][2] = ((fAcceptance[i][j][k].tab[c][0][2]) ? (fAcceptance[i][j][k].tab[c][0][2]) : 0);
+            fAcceptance[i][j][k].tab[c][0][3] = ((fAcceptance[i][j][k].tab[c][0][3]) ? (fAcceptance[i][j][k].tab[c][0][3]) : 0);
 
             p_a.push_back(fAcceptance[i][j][k].tab[c][0][0]);
             k_a.push_back(fAcceptance[i][j][k].tab[c][0][1]);
@@ -671,9 +671,9 @@ int main(int argc, char **argv)
               //   fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = 0;
               // }
 
-              p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][0] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][0]+j*0.1 : 0);
-              k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][1] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][1]+j*0.1 : 0);
-              h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][3] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][3]+j*0.1 : 0);
+              p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][0] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][0] : 0);
+              k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][1] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][1] : 0);
+              h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][3] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][3] : 0);
 
               p_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][0]);
               k_cerr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][1][1]);
