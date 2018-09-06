@@ -1325,13 +1325,13 @@ int main(int argc, char **argv)
   rP_y->Draw("PA");
   rP_y->GetXaxis()->SetLimits(0.006,0.5);
   rP_y->SetMinimum(0.);
-  rP_y->SetMaximum(2.);
+  rP_y->SetMaximum(4.);
   rP_y->SetTitle("");
   rP_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   rP_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{+}}}/#font[12]{M}^{#font[ 12]{#pi^{-}}}");
-  c15->Range(0.1,0.,0.9,5.);
+  c15->Range(0.1,0.,0.9,4.);
   gPad->SetLogx();
   c15->Update();
 
@@ -1340,13 +1340,13 @@ int main(int argc, char **argv)
   rK_y->Draw("PA");
   rK_y->GetXaxis()->SetLimits(0.006,0.5);
   rK_y->SetMinimum(0.);
-  rK_y->SetMaximum(2.);
+  rK_y->SetMaximum(2.7);
   rK_y->SetTitle("");
   rK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   rK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}/#font[12]{M}^{#font[ 12]{K^{-}}}");
-  c16->Range(0.1,0.,0.9,5.);
+  c16->Range(0.1,0.,0.9,2.7);
   gPad->SetLogx();
   c16->Update();
 
