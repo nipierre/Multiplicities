@@ -893,7 +893,7 @@ int main(int argc, char **argv)
               if(!c && j==3)
               {
                 P_acc[c][i][j]->Draw("SAMEPA");
-                P_acc[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
+                P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
                 P_acc[c][i][j]->SetMinimum(0.);
                 P_acc[c][i][j]->SetMaximum(1.2);
                 P_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
@@ -915,15 +915,15 @@ int main(int argc, char **argv)
                   P_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
                 }
                 P_acc[c][i][0]->Draw("SAMEP");
-                P_acc[c][i][0]->GetXaxis()->SetLimits(-0.05,1.05);
+                P_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
                 P_acc[c][i][0]->SetMinimum(0.);
                 P_acc[c][i][0]->SetMaximum(1.2);
                 P_acc[c][i][1]->Draw("SAMEP");
-                P_acc[c][i][1]->GetXaxis()->SetLimits(-0.05,1.05);
+                P_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
                 P_acc[c][i][1]->SetMinimum(0.);
                 P_acc[c][i][1]->SetMaximum(1.2);
                 P_acc[c][i][2]->Draw("SAMEP");
-                P_acc[c][i][2]->GetXaxis()->SetLimits(-0.05,1.05);
+                P_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
                 P_acc[c][i][2]->SetMinimum(0.);
                 P_acc[c][i][2]->SetMaximum(1.2);
                 c6.Range(0.,0.,1.,1.2);
@@ -931,7 +931,7 @@ int main(int argc, char **argv)
               else
               {
                 P_acc[c][i][j]->Draw("SAMEP");
-                P_acc[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
+                P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
                 P_acc[c][i][j]->SetMinimum(0.);
                 P_acc[c][i][j]->SetMaximum(1.2);
               }
@@ -947,7 +947,7 @@ int main(int argc, char **argv)
               if(!c && j==3)
               {
                 K_acc[c][i][j]->Draw("SAMEPA");
-                K_acc[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
+                K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
                 K_acc[c][i][j]->SetMinimum(0.);
                 K_acc[c][i][j]->SetMaximum(1.2);
                 K_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
@@ -969,15 +969,15 @@ int main(int argc, char **argv)
                   K_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
                 }
                 K_acc[c][i][0]->Draw("SAMEP");
-                K_acc[c][i][0]->GetXaxis()->SetLimits(-0.05,1.05);
+                K_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
                 K_acc[c][i][0]->SetMinimum(0.);
                 K_acc[c][i][0]->SetMaximum(1.2);
                 K_acc[c][i][1]->Draw("SAMEP");
-                K_acc[c][i][1]->GetXaxis()->SetLimits(-0.05,1.05);
+                K_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
                 K_acc[c][i][1]->SetMinimum(0.);
                 K_acc[c][i][1]->SetMaximum(1.2);
                 K_acc[c][i][2]->Draw("SAMEP");
-                K_acc[c][i][2]->GetXaxis()->SetLimits(-0.05,1.05);
+                K_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
                 K_acc[c][i][2]->SetMinimum(0.);
                 K_acc[c][i][2]->SetMaximum(1.2);
                 c7.Range(0.,0.,1.,1.2);
@@ -985,7 +985,7 @@ int main(int argc, char **argv)
               else
               {
                 K_acc[c][i][j]->Draw("SAMEP");
-                K_acc[c][i][j]->GetXaxis()->SetLimits(-0.05,1.05);
+                K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
                 K_acc[c][i][j]->SetMinimum(0.);
                 K_acc[c][i][j]->SetMaximum(1.2);
               }
@@ -1187,7 +1187,7 @@ int main(int argc, char **argv)
             if(!c)
             {
               P_y[c][i]->Draw("SAMEPA");
-              P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+              P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               P_y[c][i]->SetMinimum(0.);
               P_y[c][i]->SetMaximum(1.2);
               P_y[c][i]->GetXaxis()->SetLabelSize(0.06);
@@ -1209,7 +1209,7 @@ int main(int argc, char **argv)
                 P_y[c][i]->GetYaxis()->SetTitleSize(0.08);
               }
               P_y[c][i]->Draw("SAMEP");
-              P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+              P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               P_y[c][i]->SetMinimum(0.);
               P_y[c][i]->SetMaximum(1.2);
               c10.Range(0.,0.,1.,1.2);
@@ -1217,7 +1217,7 @@ int main(int argc, char **argv)
             else
             {
               P_y[c][i]->Draw("SAMEP");
-              P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+              P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               P_y[c][i]->SetMinimum(0.);
               P_y[c][i]->SetMaximum(1.2);
             }
@@ -1233,7 +1233,7 @@ int main(int argc, char **argv)
             if(!c)
             {
               K_y[c][i]->Draw("SAMEPA");
-              K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+              K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               K_y[c][i]->SetMinimum(0.);
               K_y[c][i]->SetMaximum(1.2);
               K_y[c][i]->GetXaxis()->SetLabelSize(0.06);
@@ -1255,7 +1255,7 @@ int main(int argc, char **argv)
                 K_y[c][i]->GetYaxis()->SetTitleSize(0.08);
               }
               K_y[c][i]->Draw("SAMEP");
-              K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+              K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               K_y[c][i]->SetMinimum(0.);
               K_y[c][i]->SetMaximum(1.2);
               c11.Range(0.,0.,1.,1.2);
@@ -1263,7 +1263,7 @@ int main(int argc, char **argv)
             else
             {
               K_y[c][i]->Draw("SAMEP");
-              K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
+              K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               K_y[c][i]->SetMinimum(0.);
               K_y[c][i]->SetMaximum(1.2);
             }
