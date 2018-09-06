@@ -691,7 +691,7 @@ int main(int argc, char **argv)
             }
 
             bool h_corr_empty = 0;
-    
+
             if(!(int(h_corr.size()))) h_corr_empty = 1;
 
             H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
@@ -1135,7 +1135,7 @@ int main(int argc, char **argv)
               H_y[c][i]->Draw("SAMEPA");
               H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               H_y[c][i]->SetMinimum(0.);
-              H_y[c][i]->SetMaximum(2.);
+              H_y[c][i]->SetMaximum(1.2);
               H_y[c][i]->GetXaxis()->SetLabelSize(0.06);
               H_y[c][i]->GetYaxis()->SetLabelSize(0.06);
               H_y[c][i]->SetTitle("");
@@ -1157,15 +1157,15 @@ int main(int argc, char **argv)
               H_y[c][i]->Draw("SAMEP");
               H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               H_y[c][i]->SetMinimum(0.);
-              H_y[c][i]->SetMaximum(2.);
-              c9.Range(0.1,0.,0.9,2.);
+              H_y[c][i]->SetMaximum(1.2);
+              c9.Range(0.1,0.,0.9,1.2);
             }
             else
             {
               H_y[c][i]->Draw("SAMEP");
               H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
               H_y[c][i]->SetMinimum(0.);
-              H_y[c][i]->SetMaximum(2.);
+              H_y[c][i]->SetMaximum(1.2);
             }
           }
           c9.Update();
@@ -1181,7 +1181,7 @@ int main(int argc, char **argv)
               P_y[c][i]->Draw("SAMEPA");
               P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
               P_y[c][i]->SetMinimum(0.);
-              P_y[c][i]->SetMaximum(3.);
+              P_y[c][i]->SetMaximum(1.2);
               P_y[c][i]->GetXaxis()->SetLabelSize(0.06);
               P_y[c][i]->GetYaxis()->SetLabelSize(0.06);
               P_y[c][i]->SetTitle("");
@@ -1203,15 +1203,15 @@ int main(int argc, char **argv)
               P_y[c][i]->Draw("SAMEP");
               P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
               P_y[c][i]->SetMinimum(0.);
-              P_y[c][i]->SetMaximum(3.);
-              c10.Range(0.,0.,1.,3.);
+              P_y[c][i]->SetMaximum(1.2);
+              c10.Range(0.,0.,1.,1.2);
             }
             else
             {
               P_y[c][i]->Draw("SAMEP");
               P_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
               P_y[c][i]->SetMinimum(0.);
-              P_y[c][i]->SetMaximum(3.);
+              P_y[c][i]->SetMaximum(1.2);
             }
           }
           c10.Update();
@@ -1227,7 +1227,7 @@ int main(int argc, char **argv)
               K_y[c][i]->Draw("SAMEPA");
               K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
               K_y[c][i]->SetMinimum(0.);
-              K_y[c][i]->SetMaximum(3.);
+              K_y[c][i]->SetMaximum(1.2);
               K_y[c][i]->GetXaxis()->SetLabelSize(0.06);
               K_y[c][i]->GetYaxis()->SetLabelSize(0.06);
               K_y[c][i]->SetTitle("");
@@ -1249,15 +1249,15 @@ int main(int argc, char **argv)
               K_y[c][i]->Draw("SAMEP");
               K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
               K_y[c][i]->SetMinimum(0.);
-              K_y[c][i]->SetMaximum(3.);
-              c11.Range(0.,0.,1.,3.);
+              K_y[c][i]->SetMaximum(1.2);
+              c11.Range(0.,0.,1.,1.2);
             }
             else
             {
               K_y[c][i]->Draw("SAMEP");
               K_y[c][i]->GetXaxis()->SetLimits(-0.05,1.05);
               K_y[c][i]->SetMinimum(0.);
-              K_y[c][i]->SetMaximum(3.);
+              K_y[c][i]->SetMaximum(1.2);
             }
           }
           c11.Update();
