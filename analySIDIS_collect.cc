@@ -460,19 +460,19 @@ int main(int argc, char **argv)
   weight_meanvalues();
 
   TCanvas* c51;
-  c51 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
+  c51 = new TCanvas("Hadron_Multiplicities_plus","Hadron_Multiplicities_plus",3200,1600);
   TCanvas* c52;
-  c52 = new TCanvas("Hadron_Multiplicities","Hadron_Multiplicities",3200,1600);
+  c52 = new TCanvas("Hadron_Multiplicities_minus","Hadron_Multiplicities_minus",3200,1600);
 
   TCanvas* c61;
-  c61 = new TCanvas("Pion_Multiplicities","Pion_Multiplicities",3200,1600);
+  c61 = new TCanvas("Pion_Multiplicities_plus","Pion_Multiplicities_plus",3200,1600);
   TCanvas* c62;
-  c62 = new TCanvas("Pion_Multiplicities","Pion_Multiplicities",3200,1600);
+  c62 = new TCanvas("Pion_Multiplicities_minus","Pion_Multiplicities_minus",3200,1600);
 
   TCanvas* c71;
-  c71 = new TCanvas("Kaon_Multiplicities","Kaon_Multiplicities",3200,1600);
+  c71 = new TCanvas("Kaon_Multiplicities_plus","Kaon_Multiplicities_plus",3200,1600);
   TCanvas* c72;
-  c72 = new TCanvas("Kaon_Multiplicities","Kaon_Multiplicities",3200,1600);
+  c72 = new TCanvas("Kaon_Multiplicities_minus","Kaon_Multiplicities_minus",3200,1600);
 
   TCanvas* c8;
   c8 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
