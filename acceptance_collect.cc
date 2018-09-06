@@ -691,12 +691,8 @@ int main(int argc, char **argv)
             }
 
             bool p_corr_empty = 0;
-            bool k_corr_empty = 0;
-            bool h_corr_empty = 0;
 
             if(!(int(p_corr.size()))) p_corr_empty = 1;
-            if(!(int(k_corr.size()))) k_corr_empty = 1;
-            if(!(int(h_corr.size()))) h_corr_empty = 1;
 
             H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
             P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
