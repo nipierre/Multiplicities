@@ -606,7 +606,7 @@ int main(int argc, char **argv)
             || (i==6 && j==3 && k==10)
             || (i==7 && j==3 && k>7)
             || (i==8 && j==3 && k>6)
-            || (i>6 && j==5 && k==2))
+            || (i>5 && j==5 && k==2))
             {
                fAcceptance[i][j][k].tab[c][0][0] = 0;
                fAcceptance[i][j][k].tab[c][0][1] = 0;
