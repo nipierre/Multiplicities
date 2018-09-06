@@ -1295,13 +1295,13 @@ int main(int argc, char **argv)
   sK_y->Draw("PA");
   sK_y->GetXaxis()->SetLimits(0.006,0.5);
   sK_y->SetMinimum(0.);
-  sK_y->SetMaximum(2.);
+  sK_y->SetMaximum(0.15);
   sK_y->SetTitle("");
   sK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   sK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}+#font[12]{M}^{#font[ 12]{K^{-}}}");
-  c13->Range(0.1,0.,0.9,5.);
+  c13->Range(0.1,0.,0.9,0.15);
   gPad->SetLogx();
   c13->Update();
 
