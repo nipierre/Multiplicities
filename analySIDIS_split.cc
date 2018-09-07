@@ -1616,8 +1616,6 @@ int main(int argc, char **argv)
             zBj = 0;
           }
 
-          if(kin_flag && (!charge->GetLeaf("Hadrons.charge")->GetValue(i))) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
-
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
           fXX0test++;
@@ -1636,6 +1634,8 @@ int main(int argc, char **argv)
 
           // Non null charge
           if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
+          
+          if(kin_flag ) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
 
           Int_t theta_bin, mom_bin;
           TMatrixD res_vect(3,1);
