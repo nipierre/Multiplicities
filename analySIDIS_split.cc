@@ -601,7 +601,7 @@ void create_kin_plots()
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
-  fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 100, 0, 60, 100, 0, 60);
+  fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 100, 0, 40, 100, 20, 60);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
@@ -663,6 +663,7 @@ void save_kin_plots()
   c11.Update();
   c12.cd(1);
   fKinematicsRICH->Draw("COLZ");
+  gPad->SetLogz();
   c12.Update();
 
   c1.Print("kinSIDIS.pdf(","pdf");
@@ -1634,7 +1635,7 @@ int main(int argc, char **argv)
 
           // Non null charge
           if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
-          
+
           if(kin_flag ) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
 
           Int_t theta_bin, mom_bin;
