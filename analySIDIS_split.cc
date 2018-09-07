@@ -1616,7 +1616,7 @@ int main(int argc, char **argv)
             zBj = 0;
           }
 
-          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
+          if(kin_flag && (!charge->GetLeaf("Hadrons.charge")->GetValue(i))) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
