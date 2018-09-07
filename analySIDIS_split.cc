@@ -859,6 +859,7 @@ int main(int argc, char **argv)
       TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
       TBranch *charge = (TBranch*) tree->FindBranch("Hadrons.charge");
       TBranch *thRICH = (TBranch*) tree->FindBranch("Hadrons.thRICH");
+      TBranch *thC = (TBranch*) tree->FindBranch("Hadrons.thC");
       TBranch *LH = (TBranch*) tree->FindBranch("Hadrons.LH");
       TBranch *MCpid = (TBranch*) tree->FindBranch("Hadrons.MCpid");
       TBranch *MM01x = (TBranch*) tree->FindBranch("Hadrons.MM01x");
@@ -935,6 +936,7 @@ int main(int argc, char **argv)
         HCAL->GetEntry(ip);
         charge->GetEntry(ip);
         thRICH->GetEntry(ip);
+        thC->GetEntry(ip);
         LH->GetEntry(ip);
         MCpid->GetEntry(ip);
         MM01x->GetEntry(ip);
@@ -1614,7 +1616,7 @@ int main(int argc, char **argv)
             zBj = 0;
           }
 
-          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)*1000);
+          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
