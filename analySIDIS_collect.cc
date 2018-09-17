@@ -1167,9 +1167,9 @@ int main(int argc, char **argv)
     rp_y.push_back(MultiplicitiesSum[0][0][0] ? MultiplicitiesSum[0][1][0]/MultiplicitiesSum[0][0][0] : 0);
     rk_y.push_back(MultiplicitiesSum[0][0][1] ? MultiplicitiesSum[0][1][1]/MultiplicitiesSum[0][0][1] : 0);
     rh_y.push_back(MultiplicitiesSum[0][0][3] ? MultiplicitiesSum[0][1][3]/MultiplicitiesSum[0][0][3] : 0);
-    rp_y_err.push_back(sqrt((MultiplicitiesSum[1][0][0]+MultiplicitiesSum[0][1][0]*MultiplicitiesSum[1][1][0]/MultiplicitiesSum[0][0][0])/MultiplicitiesSum[0][0][0]));
-    rk_y_err.push_back(sqrt((MultiplicitiesSum[1][0][1]+MultiplicitiesSum[0][1][1]*MultiplicitiesSum[1][1][1]/MultiplicitiesSum[0][0][1])/MultiplicitiesSum[0][0][1]));
-    rh_y_err.push_back(sqrt((MultiplicitiesSum[1][0][3]+MultiplicitiesSum[0][1][3]*MultiplicitiesSum[1][1][3]/MultiplicitiesSum[0][0][3])/MultiplicitiesSum[0][0][3]));
+    rp_y_err.push_back(sqrt((MultiplicitiesSum[1][1][0]+MultiplicitiesSum[0][1][0]*MultiplicitiesSum[1][0][0]/MultiplicitiesSum[0][0][0])/MultiplicitiesSum[0][0][0]));
+    rk_y_err.push_back(sqrt((MultiplicitiesSum[1][1][1]+MultiplicitiesSum[0][1][1]*MultiplicitiesSum[1][0][1]/MultiplicitiesSum[0][0][1])/MultiplicitiesSum[0][0][1]));
+    rh_y_err.push_back(sqrt((MultiplicitiesSum[1][1][3]+MultiplicitiesSum[0][1][3]*MultiplicitiesSum[1][0][3]/MultiplicitiesSum[0][0][3])/MultiplicitiesSum[0][0][3]));
   }
 
   for(int l=0; l<9; l++)
