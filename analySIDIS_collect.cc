@@ -898,8 +898,7 @@ int main(int argc, char **argv)
       }
     }
 
-    cout << "flush" << endl;
-    Double_t MultiplicitiesSum[2][2][3];
+    Double_t MultiplicitiesSum[2][2][4];
     MultiplicitiesSum[0][0][0] = 0;
     MultiplicitiesSum[0][1][0] = 0;
     MultiplicitiesSum[0][0][1] = 0;
@@ -956,10 +955,6 @@ int main(int argc, char **argv)
         MultiplicitiesSum[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
-
-        cout << MultiplicitiesSum[1][c][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2)
-        << " " << MultiplicitiesSum[1][c][1] << " " << fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2)
-        << " " << MultiplicitiesSum[1][c][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2) << endl;
       }
 
       for(int l=0; l<12; l++)
