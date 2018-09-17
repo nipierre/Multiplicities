@@ -1636,7 +1636,7 @@ int main(int argc, char **argv)
           // Non null charge
           if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
 
-          if(kin_flag ) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
+          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
 
           Int_t theta_bin, mom_bin;
           TMatrixD res_vect(3,1);
