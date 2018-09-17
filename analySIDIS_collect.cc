@@ -1173,6 +1173,8 @@ int main(int argc, char **argv)
     rk_y_err.push_back(sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]));
     rh_y_err.push_back(sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]));
     cout << MultiplicitiesSum[0][0][0]+MultiplicitiesSum[0][1][0] << " " << MultiplicitiesSum[0][1][0]/MultiplicitiesSum[0][0][0] << " " << sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]) << endl;
+    cout << MultiplicitiesSum[0][0][1]+MultiplicitiesSum[0][1][1] << " " << MultiplicitiesSum[0][1][1]/MultiplicitiesSum[0][0][1] << " " << sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]) << endl;
+    cout << MultiplicitiesSum[0][0][3]+MultiplicitiesSum[0][1][3] << " " << MultiplicitiesSum[0][1][3]/MultiplicitiesSum[0][0][3] << " " << sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]) << endl;
   }
 
   for(int l=0; l<9; l++)
