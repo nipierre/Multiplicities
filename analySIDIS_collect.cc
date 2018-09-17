@@ -898,6 +898,7 @@ int main(int argc, char **argv)
       }
     }
 
+    cout << "flush" << endl;
     Double_t MultiplicitiesSum[2][2][3];
     MultiplicitiesSum[0][0][0] = 0;
     MultiplicitiesSum[0][1][0] = 0;
