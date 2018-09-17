@@ -918,7 +918,7 @@ int main(int argc, char **argv)
       {
         for(int l=0; l<4; l++)
         {
-          cout << l << " " << fXrange[i] << " " << fZrange[k] << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << " " << fAcceptance_yavg_weighted[i][k].tab[c][0][l] << endl;
+          // cout << l << " " << fXrange[i] << " " << fZrange[k] << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << " " << fAcceptance_yavg_weighted[i][k].tab[c][0][l] << endl;
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
                                                   Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
                                                   : 0);
@@ -940,7 +940,7 @@ int main(int argc, char **argv)
           }
         }
 
-        // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_yavg[i][k].tab[c][2][3] << endl;
+        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0] << " " << fMultiplicities_yavg[i][k].tab[c][2][0] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
@@ -1162,19 +1162,14 @@ int main(int argc, char **argv)
     sk_y.push_back(MultiplicitiesSum[0][0][1]+MultiplicitiesSum[0][1][1]);
     sh_y.push_back(MultiplicitiesSum[0][0][3]+MultiplicitiesSum[0][1][3]);
     sp_y_err.push_back(sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]));
-    // sp_y_err.push_back(0);
     sk_y_err.push_back(sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]));
     sh_y_err.push_back(sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]));
     rp_y.push_back(MultiplicitiesSum[0][0][0] ? MultiplicitiesSum[0][1][0]/MultiplicitiesSum[0][0][0] : 0);
     rk_y.push_back(MultiplicitiesSum[0][0][1] ? MultiplicitiesSum[0][1][1]/MultiplicitiesSum[0][0][1] : 0);
     rh_y.push_back(MultiplicitiesSum[0][0][3] ? MultiplicitiesSum[0][1][3]/MultiplicitiesSum[0][0][3] : 0);
     rp_y_err.push_back(sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]));
-    // rp_y_err.push_back(0);
     rk_y_err.push_back(sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]));
     rh_y_err.push_back(sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]));
-    cout << MultiplicitiesSum[0][0][0]+MultiplicitiesSum[0][1][0] << " " << MultiplicitiesSum[0][1][0]/MultiplicitiesSum[0][0][0] << " " << sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]) << endl;
-    cout << MultiplicitiesSum[0][0][1]+MultiplicitiesSum[0][1][1] << " " << MultiplicitiesSum[0][1][1]/MultiplicitiesSum[0][0][1] << " " << sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]) << endl;
-    cout << MultiplicitiesSum[0][0][3]+MultiplicitiesSum[0][1][3] << " " << MultiplicitiesSum[0][1][3]/MultiplicitiesSum[0][0][3] << " " << sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]) << endl;
   }
 
   for(int l=0; l<9; l++)
