@@ -662,6 +662,7 @@ void save_kin_plots()
   fHO04->Draw("COLZ");
   c11.Update();
   c12.cd(1);
+  fKinematicsRICH->SetStats(0);
   fKinematicsRICH->Draw("COLZ");
   gPad->SetLogz();
   c12.Update();
