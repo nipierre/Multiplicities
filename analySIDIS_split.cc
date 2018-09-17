@@ -600,9 +600,9 @@ void create_kin_plots()
   fKinematics[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
-  fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 500, -3, 0, 500, 0.1, 0.7);
+  fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 200, -3, 0, 200, 0.1, 0.7);
   fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 500, 0, 40, 500, 20, 60);
-  fTarget2D = new TH2F("Target xy", "Target xy", 500, -3, 3, 500, -3, 3);
+  fTarget2D = new TH2F("Target xy", "Target xy", 200, -3, 3, 200, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
   fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 2, 100, -2, 2);
