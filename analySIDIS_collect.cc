@@ -940,7 +940,7 @@ int main(int argc, char **argv)
           }
         }
 
-        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0] << " " << fMultiplicities_yavg[i][k].tab[c][2][0] << endl;
+        // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0] << " " << fMultiplicities_yavg[i][k].tab[c][2][0] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
@@ -955,6 +955,10 @@ int main(int argc, char **argv)
         MultiplicitiesSum[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
+
+        cout << MultiplicitiesSum[1][c][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2)
+        << " " << MultiplicitiesSum[1][c][1] << " " << fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2)
+        << " " << MultiplicitiesSum[1][c][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2) << endl;
       }
 
       for(int l=0; l<12; l++)
