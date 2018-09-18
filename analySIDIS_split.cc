@@ -1230,6 +1230,8 @@ int main(int argc, char **argv)
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
         {
 
+          fHadrons++;
+
           fLHsec_set.clear();
           if(fLHsec_tab) delete fLHsec_tab;
 
@@ -1677,6 +1679,7 @@ int main(int argc, char **argv)
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
+          fZtest++;
 
           if(0.2<zBj && zBj<0.25) zbin = 0;
           else if(0.25<zBj && zBj<0.30) zbin = 1;
@@ -2647,10 +2650,12 @@ int main(int argc, char **argv)
   fQ2test << " Q>1\n\n" <<
   fYBjtest << " 0.1<y<0.9\n\n" <<
   fWBjtest << " 5<W<17\n\n" <<
+  fHadrons << " Hadrons\n\n" <<
   fXX0test << " XX0\n\n" <<
   fMom << " Momentum\n\n" <<
   fTRICH << " Theta RICH\n\n" <<
   fPosRICH << " Position RICH\n\n" <<
+  fZtest << " 0.2<z<0.85\n\n" <<
   fHplus << " h+\n\n" <<
   fHminus << " h-\n\n" <<
   fPiplus << " pi+\n\n" <<
