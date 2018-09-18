@@ -18,7 +18,8 @@ using namespace std;
 #define Y2012 0
 #define Y2016 1
 #define RCUTSTUDY_ON 0
-#define MOMENTUM 3
+#define MOMENTUM 12
+#define YMAX 0.7
 
 // Progress bar
 
@@ -1125,7 +1126,7 @@ int main(int argc, char **argv)
         fQ2test++;
 
         // y cut
-        if(!(0.1<yBj && yBj<0.9)) continue;
+        if(!(0.1<yBj && yBj<YMAX)) continue;
         fYBjtest++;
 
         // W cut
@@ -2648,7 +2649,7 @@ int main(int argc, char **argv)
   //fCell << " X Cells\n\n" <<
   fTrig << " Triggers\n\n" <<
   fQ2test << " Q>1\n\n" <<
-  fYBjtest << " 0.1<y<0.9\n\n" <<
+  fYBjtest << " 0.1<y<" << YMAX <<"\n\n" <<
   fWBjtest << " 5<W<17\n\n" <<
   fHadrons << " Hadrons\n\n" <<
   fXX0test << " XX0\n\n" <<
