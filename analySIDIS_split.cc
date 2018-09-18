@@ -1058,7 +1058,7 @@ int main(int argc, char **argv)
         fRmu++;
 
         //BMS (reconstructed beam track)
-        if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
+        // if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
         fBMS++;
 
         // Energy of the muon beam
@@ -1089,7 +1089,7 @@ int main(int argc, char **argv)
         //2016 ---
         else if(Y2016)
         {
-          if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
+          // if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
         }
         //2016 ---
         fTarg++;
