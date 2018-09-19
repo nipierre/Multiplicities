@@ -2645,17 +2645,19 @@ int main(int argc, char **argv)
 
 
   cout <<
-  fBP << " Best Primary (entries in disevent.root)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0)\n\n" <<
-  fBMS << " BMS\n\n" <<
-  fBEC << " Beam Energy Cuts\n\n" <<
-  fTarg << " Event in Data Target\n\n" <<
+  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%%)\n\n" <<
+  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%%)\n\n" <<
+  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
+  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
+  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%%)\n\n" <<
   //fCell << " X Cells\n\n" <<
-  fTrig << " Triggers\n\n" <<
-  fQ2test << " Q>1\n\n" <<
-  fYBjtest << " 0.1<y<0.7\n\n" <<
-  fWBjtest << " 5<W<17\n\n" <<
-  fXBjtest << " 0.004<Xbj<0.4\n\n" <<
+  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
+  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
+  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
+  fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%%)\n\n" <<
+  fYBjtest << " 0.1<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%%)\n\n" <<
+  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%%)\n\n" <<
+  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%%)\n\n" <<
   fXX0test << " XX0\n\n" <<
   fMom << " Momentum\n\n" <<
   fTRICH << " Theta RICH\n\n" <<
