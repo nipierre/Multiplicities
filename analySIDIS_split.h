@@ -146,6 +146,7 @@ Double_t fBP = 0;
 Double_t fRmu = 0;
 Double_t fBMS = 0;
 Double_t fBEC = 0;
+Double_t fVtx = 0;
 Double_t fTarg = 0;
 Double_t fCell = 0;
 Double_t fTrig = 0;

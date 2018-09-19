@@ -1090,9 +1090,9 @@ int main(int argc, char **argv)
         if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
         fBEC++;
 
-        // Energy of the muon beam
+        // Vertex position
         if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
-        fBEC++;
+        fVtx++;
 
         //2006 ---
         if(Y2006)
@@ -2649,6 +2649,7 @@ int main(int argc, char **argv)
   fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%%)\n\n" <<
   fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
   fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
+  fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%%)\n\n" <<
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%%)\n\n" <<
   //fCell << " X Cells\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
