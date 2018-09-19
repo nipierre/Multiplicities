@@ -1130,7 +1130,7 @@ int main(int argc, char **argv)
         if(!(mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10)) continue;
         fMupchi2++;
 
-        if(!(MZfirst->GetLeaf("MZfirst")->GetValue()<10)) continue;
+        if(!(MZfirst->GetLeaf("MZfirst")->GetValue()<350)) continue;
         fMZfirst++;
 
         // IM/O triggers
