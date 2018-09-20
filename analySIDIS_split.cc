@@ -1098,6 +1098,10 @@ int main(int argc, char **argv)
         if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
         fVtx++;
 
+        // Cells crossing
+        if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
+        fCell++;
+
         //2006 ---
         if(Y2006)
         {
@@ -1126,10 +1130,6 @@ int main(int argc, char **argv)
         }
         //2016 ---
         fTarg++;
-
-        // Cells crossing
-        //if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
-        //fCell++;
 
         if(!(mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10)) continue;
         fMupchi2++;
@@ -2654,8 +2654,8 @@ int main(int argc, char **argv)
   fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
   fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
   fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%%)\n\n" <<
+  fCell << " X Cells\n\n" <<
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%%)\n\n" <<
-  //fCell << " X Cells\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
@@ -2686,8 +2686,8 @@ int main(int argc, char **argv)
   fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%%)\n\n" <<
   fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
   fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
+  fCell << " X Cells\n\n" <<
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%%)\n\n" <<
-  //fCell << " X Cells\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
