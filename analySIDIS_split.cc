@@ -23,9 +23,9 @@ using namespace std;
 #define MOMENTUM 12
 #define XMIN 0.003
 #define XMAX 0.7
-#define YMIN 0.1
-#define YMAX 0.7
-#define HXX0LIMIT 15
+#define YMIN 0.05
+#define YMAX 0.9
+#define HXX0LIMIT 10
 
 // Progress bar
 
