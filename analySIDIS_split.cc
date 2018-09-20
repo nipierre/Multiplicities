@@ -2651,11 +2651,11 @@ int main(int argc, char **argv)
   cout <<
   fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%%)\n\n" <<
   fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%%)\n\n" <<
-  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
-  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
-  fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%%)\n\n" <<
-  fCell << " X Cells\n\n" <<
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%%)\n\n" <<
+  fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%%)\n\n" <<
+  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
+  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
+  fCell << " X Cells\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
