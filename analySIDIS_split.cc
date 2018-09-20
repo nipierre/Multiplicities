@@ -161,7 +161,7 @@ bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
   Double_t dy = yvtx-yc;
   Double_t r = sqrt(dx*dx + dy*dy);
 
-  return( r <= R );
+  return( r < 1.9 && yc < 1.2 );
 }
 
 void LoadInclusiveRadiativeCorrection()
@@ -2660,7 +2660,7 @@ int main(int argc, char **argv)
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
   fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%%)\n\n" <<
-  fYBjtest << " 0.1<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%%)\n\n" <<
+  fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%%)\n\n" <<
   fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%%)\n\n" <<
   fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%%)\n\n" <<
   fXX0test << " XX0\n\n" <<
