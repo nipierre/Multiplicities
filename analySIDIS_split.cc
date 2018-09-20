@@ -1085,23 +1085,6 @@ int main(int argc, char **argv)
         if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
         fRmu++;
 
-        //BMS (reconstructed beam track)
-        // if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
-        if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
-        fBMS++;
-
-        // Energy of the muon beam
-        if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
-        fBEC++;
-
-        // Vertex position
-        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
-        fVtx++;
-
-        // Cells crossing
-        if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
-        fCell++;
-
         //2006 ---
         if(Y2006)
         {
@@ -1130,6 +1113,23 @@ int main(int argc, char **argv)
         }
         //2016 ---
         fTarg++;
+
+        // Vertex position
+        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
+        fVtx++;
+
+        // Energy of the muon beam
+        if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
+        fBEC++;
+
+        //BMS (reconstructed beam track)
+        // if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
+        if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
+        fBMS++;
+
+        // Cells crossing
+        if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
+        fCell++;
 
         if(!(mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10)) continue;
         fMupchi2++;
