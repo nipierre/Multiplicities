@@ -1123,8 +1123,8 @@ int main(int argc, char **argv)
         fBEC++;
 
         //BMS (reconstructed beam track)
-        if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
-        // if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
+        // if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
+        if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
         fBMS++;
 
         // Cells crossing
