@@ -1123,8 +1123,8 @@ int main(int argc, char **argv)
         fBEC++;
 
         //BMS (reconstructed beam track)
-        // if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
-        if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
+        if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
+        // if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
         fBMS++;
 
         // Cells crossing
@@ -2655,7 +2655,7 @@ int main(int argc, char **argv)
   fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%%)\n\n" <<
   fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
   fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
-  fCell << " X Cells\n\n" <<
+  fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%%)\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
