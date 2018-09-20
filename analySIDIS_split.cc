@@ -846,6 +846,7 @@ int main(int argc, char **argv)
       TBranch *p1z = (TBranch*) tree->FindBranch("p1z");
       TBranch *E_beam = (TBranch*) tree->FindBranch("E_beam");
       TBranch *E_mu_prim = (TBranch*) tree->FindBranch("E_mu_prim");
+      TBranch *Charge = (TBranch*) tree->FindBranch("Charge");
       TBranch *XX0 = (TBranch*) tree->FindBranch("XX0");
       TBranch *HM04x = (TBranch*) tree->FindBranch("HM04x");
       TBranch *HM04y = (TBranch*) tree->FindBranch("HM04y");
@@ -931,6 +932,7 @@ int main(int argc, char **argv)
         p1z->GetEntry(ip);
         E_beam->GetEntry(ip);
         E_mu_prim->GetEntry(ip);
+        Charge->GetEntry(ip);
         XX0->GetEntry(ip);
         HM04x->GetEntry(ip);
         HM04y->GetEntry(ip);
@@ -1072,6 +1074,8 @@ int main(int argc, char **argv)
         // -------------------------------------------------------------------------
         // --------- DIS Selection -------------------------------------------------
         // -------------------------------------------------------------------------
+
+        if(!(Charge->GetLeaf("Charge")->GetValue()==1)) continue;
 
         // Best Primary Vertex
         fBP++;
