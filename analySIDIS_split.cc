@@ -25,7 +25,7 @@ using namespace std;
 #define XMAX 0.4
 #define YMIN 0.1
 #define YMAX 0.7
-#define HXX0LIMIT 15
+#define HXX0LIMIT 10
 
 // Progress bar
 
