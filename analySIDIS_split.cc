@@ -156,8 +156,7 @@ void CellCenter(Double_t z, Double_t& xc, Double_t& yc, Double_t& R)
 bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
 {
   Double_t xc, yc, R;
-  xc=yc=0;
-  // CellCenter(zvtx, xc, yc, R);
+  CellCenter(zvtx, xc, yc, R);
   Double_t dx = xvtx-xc;
   Double_t dy = yvtx-yc;
   Double_t r = sqrt(dx*dx + dy*dy);
