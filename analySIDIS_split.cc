@@ -21,10 +21,10 @@ using namespace std;
 #define ASYM 0
 #define RCUTSTUDY_ON 0
 #define MOMENTUM 12
-#define XMIN 0.003
-#define XMAX 0.13
-#define YMIN 0.2
-#define YMAX 0.9
+#define XMIN 0.004
+#define XMAX 0.4
+#define YMIN 0.1
+#define YMAX 0.7
 #define HXX0LIMIT 15
 
 // Progress bar
@@ -1075,7 +1075,7 @@ int main(int argc, char **argv)
         // --------- DIS Selection -------------------------------------------------
         // -------------------------------------------------------------------------
 
-        if(!(Charge->GetLeaf("Charge")->GetValue()==1)) continue;
+        // if(!(Charge->GetLeaf("Charge")->GetValue()==1)) continue;
 
         // Best Primary Vertex
         fBP++;
@@ -1150,7 +1150,7 @@ int main(int argc, char **argv)
         //2016 ---
         else if(Y2016)
         {
-          // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+          if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
         }
         //2016 ---
         fTrig++;
@@ -1165,7 +1165,7 @@ int main(int argc, char **argv)
         fYBjtest++;
 
         // W cut
-        if(!(5<sqrt(wBj) /*&& sqrt(wBj)<17*/)) continue;
+        if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
         fWBjtest++;
 
         // x cut
@@ -2667,7 +2667,7 @@ int main(int argc, char **argv)
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
-  fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
+  fQ2test << " Q2>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
   fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
   fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
   fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
@@ -2704,7 +2704,7 @@ int main(int argc, char **argv)
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
-  fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
+  fQ2test << " Q2>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
   fYBjtest << " 0.1<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
   fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
   fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
