@@ -25,7 +25,7 @@ using namespace std;
 #define XMAX 0.4
 #define YMIN 0.1
 #define YMAX 0.7
-#define HXX0LIMIT 10
+#define HXX0LIMIT 15
 
 // Progress bar
 
@@ -608,7 +608,7 @@ void create_kin_plots()
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.9);
-  fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 500, 0, 40, 500, 20, 60);
+  fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 500, 0, 60, 500, 20, 60);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
@@ -1672,10 +1672,6 @@ int main(int argc, char **argv)
           if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
           fHZlast++;
 
-          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
-          fMom++;
-
           // Theta cut
           if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
           fTRICH++;
@@ -1684,10 +1680,14 @@ int main(int argc, char **argv)
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
           fPosRICH++;
 
+          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
+
+          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+          fMom++;
+
           // Non null charge
           if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
-
-          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
 
           Int_t theta_bin, mom_bin;
           TMatrixD res_vect(3,1);
