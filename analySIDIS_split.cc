@@ -2675,11 +2675,15 @@ int main(int argc, char **argv)
   fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%%)\n\n" <<
   fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%%)\n\n" <<
   fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%%)\n\n" <<
-  fXX0test << " XX0\n\n" <<
-  fMom << " Momentum\n\n" <<
-  fTRICH << " Theta RICH\n\n" <<
-  fPosRICH << " Position RICH\n\n" <<
-  fZtest << " 0.2<z<0.85\n\n" <<
+  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%%)\n\n" <<
+  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%%)\n\n" <<
+  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%%)\n\n" <<
+  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%%)\n\n" <<
+  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%%)\n\n" <<
+  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%%)\n\n" <<
+  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%%)\n\n" <<
+  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%%)\n\n" <<
+  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%%)\n\n" <<
   fHplus << " h+\n\n" <<
   fHminus << " h-\n\n" <<
   fPiplus << " pi+\n\n" <<
