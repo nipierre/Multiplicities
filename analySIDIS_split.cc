@@ -21,10 +21,10 @@ using namespace std;
 #define ASYM 0
 #define RCUTSTUDY_ON 0
 #define MOMENTUM 12
-#define XMIN 0.004
-#define XMAX 0.4
-#define YMIN 0.1
-#define YMAX 0.7
+#define XMIN 0.003
+#define XMAX 0.13
+#define YMIN 0.2
+#define YMAX 0.9
 #define HXX0LIMIT 15
 
 // Progress bar
@@ -1075,7 +1075,7 @@ int main(int argc, char **argv)
         // --------- DIS Selection -------------------------------------------------
         // -------------------------------------------------------------------------
 
-        // if(!(Charge->GetLeaf("Charge")->GetValue()==1)) continue;
+        if(!(Charge->GetLeaf("Charge")->GetValue()==1)) continue;
 
         // Best Primary Vertex
         fBP++;
@@ -1153,7 +1153,7 @@ int main(int argc, char **argv)
         //2016 ---
         else if(Y2016)
         {
-          if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+          // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
         }
         //2016 ---
         fTrig++;
