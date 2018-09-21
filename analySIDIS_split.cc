@@ -1153,7 +1153,7 @@ int main(int argc, char **argv)
         //2016 ---
         else if(Y2016)
         {
-          // if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
+          if(!(trig&2 || trig&4 || trig&8 || trig&512)) continue;
         }
         //2016 ---
         fTrig++;
@@ -2667,6 +2667,7 @@ int main(int argc, char **argv)
   fMom << " Momentum\n\n" <<
   fTRICH << " Theta RICH\n\n" <<
   fPosRICH << " Position RICH\n\n" <<
+  fZtest << " 0.2<z<0.85\n\n" <<
   fHplus << " h+\n\n" <<
   fHminus << " h-\n\n" <<
   fPiplus << " pi+\n\n" <<
