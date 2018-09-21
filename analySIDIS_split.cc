@@ -1110,13 +1110,10 @@ int main(int argc, char **argv)
         else if(Y2016)
         {
           if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
+          if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
         }
         //2016 ---
         fTarg++;
-
-        // Vertex position
-        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
-        fVtx++;
 
         // Energy of the muon beam
         if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
@@ -2664,7 +2661,6 @@ int main(int argc, char **argv)
   fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
   fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
-  fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%)\n\n" <<
   fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
   fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
   fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
