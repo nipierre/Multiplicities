@@ -39,7 +39,7 @@ void printProgress(int event, int total)
     int val = (int) (percentage * 100);
     int lpad = (int) (percentage * PBWIDTH);
     int rpad = PBWIDTH - lpad;
-    printf ("\r Progress%s %3d%% [%.*s%*s] (%d/%d)", points[int(event/24)%6].c_str(), val, lpad, PBSTR, rpad, "", event, total);
+    printf ("\r Progress%s %3d% [%.*s%*s] (%d/%d)", points[int(event/24)%6].c_str(), val, lpad, PBSTR, rpad, "", event, total);
     fflush (stdout);
 }
 
@@ -156,8 +156,7 @@ void CellCenter(Double_t z, Double_t& xc, Double_t& yc, Double_t& R)
 bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
 {
   Double_t xc, yc, R;
-  xc = yc = 0;
-  // CellCenter(zvtx, xc, yc, R);
+  CellCenter(zvtx, xc, yc, R);
   Double_t dx = xvtx-xc;
   Double_t dy = yvtx-yc;
   Double_t r = sqrt(dx*dx + dy*dy);
@@ -2662,29 +2661,29 @@ int main(int argc, char **argv)
 
 
   cout <<
-  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%%)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%%)\n\n" <<
-  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%%)\n\n" <<
-  fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%%)\n\n" <<
-  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
-  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
-  fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%%)\n\n" <<
-  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
-  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
-  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
-  fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%%)\n\n" <<
-  fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%%)\n\n" <<
-  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%%)\n\n" <<
-  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%%)\n\n" <<
-  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%%)\n\n" <<
-  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%%)\n\n" <<
-  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%%)\n\n" <<
-  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%%)\n\n" <<
-  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%%)\n\n" <<
-  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%%)\n\n" <<
-  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%%)\n\n" <<
-  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%%)\n\n" <<
-  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%%)\n\n" <<
+  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
+  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
+  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
+  fVtx << " Vertex Position (" << float(fVtx)/float(fBP)*100 << "%)\n\n" <<
+  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
+  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
+  fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
+  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
+  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
+  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
+  fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
+  fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%)\n\n" <<
+  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%)\n\n" <<
+  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%)\n\n" <<
+  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%)\n\n" <<
+  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%)\n\n" <<
   fHplus << " h+\n\n" <<
   fHminus << " h-\n\n" <<
   fPiplus << " pi+\n\n" <<
@@ -2700,28 +2699,28 @@ int main(int argc, char **argv)
   ofstream shout(Form("rawmult/%d/shout.txt",year), std::ofstream::out | std::ofstream::trunc);
 
   shout <<
-  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%%)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%%)\n\n" <<
-  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%%)\n\n" <<
-  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%%)\n\n" <<
+  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
+  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
+  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
+  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
   fCell << " X Cells\n\n" <<
-  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%%)\n\n" <<
-  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%%)\n\n" <<
-  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%%)\n\n" <<
-  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%%)\n\n" <<
-  fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%%)\n\n" <<
-  fYBjtest << " 0.1<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%%)\n\n" <<
-  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%%)\n\n" <<
-  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%%)\n\n" <<
-  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%%)\n\n" <<
-  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%%)\n\n" <<
-  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%%)\n\n" <<
-  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%%)\n\n" <<
-  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%%)\n\n" <<
-  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%%)\n\n" <<
-  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%%)\n\n" <<
-  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%%)\n\n" <<
-  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%%)\n\n" <<
+  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
+  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
+  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
+  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
+  fQ2test << " Q>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
+  fYBjtest << " 0.1<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%)\n\n" <<
+  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%)\n\n" <<
+  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%)\n\n" <<
+  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%)\n\n" <<
+  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%)\n\n" <<
   fHplus << " h+\n\n" <<
   fHminus << " h-\n\n" <<
   fPiplus << " pi+\n\n" <<
