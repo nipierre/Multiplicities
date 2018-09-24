@@ -2703,7 +2703,7 @@ int main(int argc, char **argv)
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
   fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
   fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
-  fMuchi2 << " BMS (" << float(fMuchi2)/float(fBP)*100 << "%)\n\n" <<
+  fMuchi2 << " Mu chi2/ndf > 10 (" << float(fMuchi2)/float(fBP)*100 << "%)\n\n" <<
   fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
