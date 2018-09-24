@@ -80,7 +80,6 @@ vector<Double_t> fHO04x;
 vector<Double_t> fHO04y;
 vector<bool>     fSaved;
 vector<bool>     fCellCrossed;
-vector<bool>     fBackPropFlag;
 
 //Hadrons
 vector<Double_t> fP;
@@ -145,6 +144,7 @@ vector<Double_t> fRv;
 Double_t fBP = 0;
 Double_t fRmu = 0;
 Double_t fBMS = 0;
+Double_t fMuchi2 = 0;
 Double_t fBEC = 0;
 Double_t fVtx = 0;
 Double_t fTarg = 0;

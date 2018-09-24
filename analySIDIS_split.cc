@@ -863,7 +863,7 @@ int main(int argc, char **argv)
       TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
       TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
       TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
-      TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
+      TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
       //Hadrons
       TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
@@ -949,7 +949,7 @@ int main(int argc, char **argv)
         beam_chi2->GetEntry(ip);
         mu_prim_chi2->GetEntry(ip);
         cellsCrossed->GetEntry(ip);
-        backPropFlag->GetEntry(ip);
+        BMS->GetEntry(ip);
 
         //Hadrons
         p->GetEntry(ip);
@@ -1080,8 +1080,7 @@ int main(int argc, char **argv)
         // Best Primary Vertex
         fBP++;
 
-        // Reconstructed muon
-        // if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
+        // IsMuPrim
         if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
         fRmu++;
 
@@ -1119,10 +1118,13 @@ int main(int argc, char **argv)
         if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
         fBEC++;
 
-        //BMS (reconstructed beam track)
-        // if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
-        if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
+        // BMS
+        if(!(BMS->GetLeaf("BMS")->GetValue()>3)) continue;
         fBMS++;
+
+        // Chi2 beam
+        if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
+        fMuchi2++;
 
         // Cells crossing
         if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
@@ -2663,6 +2665,7 @@ int main(int argc, char **argv)
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
   fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
   fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
+  fMuchi2 << " BMS (" << float(fMuchi2)/float(fBP)*100 << "%)\n\n" <<
   fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
@@ -2697,15 +2700,16 @@ int main(int argc, char **argv)
   shout <<
   fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
   fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
-  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
-  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
-  fCell << " X Cells\n\n" <<
   fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
+  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
+  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
+  fMuchi2 << " BMS (" << float(fMuchi2)/float(fBP)*100 << "%)\n\n" <<
+  fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
   fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
   fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
   fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
   fQ2test << " Q2>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
-  fYBjtest << " 0.1<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
   fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
   fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
   fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%)\n\n" <<
