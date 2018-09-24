@@ -17,8 +17,15 @@ using namespace std;
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
+#define MULT 1
+#define ASYM 0
 #define RCUTSTUDY_ON 0
-#define MOMENTUM 3
+#define MOMENTUM 12
+#define XMIN 0.004
+#define XMAX 0.4
+#define YMIN 0.1
+#define YMAX 0.7
+#define HXX0LIMIT 15
 
 // Progress bar
 
@@ -154,7 +161,7 @@ bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
   Double_t dy = yvtx-yc;
   Double_t r = sqrt(dx*dx + dy*dy);
 
-  return( r <= R );
+  return( r < 1.9 && yc < 1.2 );
 }
 
 void LoadInclusiveRadiativeCorrection()
@@ -600,8 +607,8 @@ void create_kin_plots()
   fKinematics[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
-  fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
-  fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 500, 0, 40, 500, 20, 60);
+  fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.9);
+  fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 500, 0, 60, 500, 20, 60);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
@@ -662,6 +669,7 @@ void save_kin_plots()
   fHO04->Draw("COLZ");
   c11.Update();
   c12.cd(1);
+  fKinematicsRICH->SetStats(0);
   fKinematicsRICH->Draw("COLZ");
   gPad->SetLogz();
   c12.Update();
@@ -838,6 +846,7 @@ int main(int argc, char **argv)
       TBranch *p1z = (TBranch*) tree->FindBranch("p1z");
       TBranch *E_beam = (TBranch*) tree->FindBranch("E_beam");
       TBranch *E_mu_prim = (TBranch*) tree->FindBranch("E_mu_prim");
+      TBranch *Charge = (TBranch*) tree->FindBranch("Charge");
       TBranch *XX0 = (TBranch*) tree->FindBranch("XX0");
       TBranch *HM04x = (TBranch*) tree->FindBranch("HM04x");
       TBranch *HM04y = (TBranch*) tree->FindBranch("HM04y");
@@ -848,6 +857,11 @@ int main(int argc, char **argv)
       TBranch *HO04x = (TBranch*) tree->FindBranch("HO04x");
       TBranch *HO04y = (TBranch*) tree->FindBranch("HO04y");
       TBranch *saved = (TBranch*) tree->FindBranch("saved");
+      TBranch *BPV = (TBranch*) tree->FindBranch("BPV");
+      TBranch *isMuPrim = (TBranch*) tree->FindBranch("isMuPrim");
+      TBranch *MZfirst = (TBranch*) tree->FindBranch("MZfirst");
+      TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
+      TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
       TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
       TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
 
@@ -875,6 +889,9 @@ int main(int argc, char **argv)
       TBranch *Z2By = (TBranch*) tree->FindBranch("Hadrons.Z2By");
       TBranch *RICHx = (TBranch*) tree->FindBranch("Hadrons.RICHx");
       TBranch *RICHy = (TBranch*) tree->FindBranch("Hadrons.RICHy");
+      TBranch *chi2_hadron = (TBranch*) tree->FindBranch("Hadrons.chi2_hadron");
+      TBranch *HZfirst = (TBranch*) tree->FindBranch("Hadrons.HZfirst");
+      TBranch *HZlast = (TBranch*) tree->FindBranch("Hadrons.HZlast");
 
       // Loopy loop over the events
       Int_t N = (Int_t) tree->GetEntries();
@@ -915,6 +932,7 @@ int main(int argc, char **argv)
         p1z->GetEntry(ip);
         E_beam->GetEntry(ip);
         E_mu_prim->GetEntry(ip);
+        Charge->GetEntry(ip);
         XX0->GetEntry(ip);
         HM04x->GetEntry(ip);
         HM04y->GetEntry(ip);
@@ -925,6 +943,11 @@ int main(int argc, char **argv)
         HO04x->GetEntry(ip);
         HO04y->GetEntry(ip);
         saved->GetEntry(ip);
+        BPV->GetEntry(ip);
+        isMuPrim->GetEntry(ip);
+        MZfirst->GetEntry(ip);
+        beam_chi2->GetEntry(ip);
+        mu_prim_chi2->GetEntry(ip);
         cellsCrossed->GetEntry(ip);
         backPropFlag->GetEntry(ip);
 
@@ -952,6 +975,9 @@ int main(int argc, char **argv)
         Z2By->GetEntry(ip);
         RICHx->GetEntry(ip);
         RICHy->GetEntry(ip);
+        chi2_hadron->GetEntry(ip);
+        HZfirst->GetEntry(ip);
+        HZlast->GetEntry(ip);
 
         //--------------------------------------------------------------------------
         //--------- Kinematics -----------------------------------------------------
@@ -1049,20 +1075,15 @@ int main(int argc, char **argv)
         // --------- DIS Selection -------------------------------------------------
         // -------------------------------------------------------------------------
 
+        // if(!(Charge->GetLeaf("Charge")->GetValue()==1)) continue;
+
         // Best Primary Vertex
         fBP++;
 
         // Reconstructed muon
-        if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
+        // if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
+        if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
         fRmu++;
-
-        //BMS (reconstructed beam track)
-        if(!(backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
-        fBMS++;
-
-        // Energy of the muon beam
-        if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
-        fBEC++;
 
         //2006 ---
         if(Y2006)
@@ -1089,13 +1110,29 @@ int main(int argc, char **argv)
         else if(Y2016)
         {
           if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
+          if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
         }
         //2016 ---
         fTarg++;
 
+        // Energy of the muon beam
+        if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
+        fBEC++;
+
+        //BMS (reconstructed beam track)
+        // if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
+        if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
+        fBMS++;
+
         // Cells crossing
-        //if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
-        //fCell++;
+        if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
+        fCell++;
+
+        if(!(mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10)) continue;
+        fMupchi2++;
+
+        if(!(MZfirst->GetLeaf("MZfirst")->GetValue()<350)) continue;
+        fMZfirst++;
 
         // IM/O triggers
         //2006 ---
@@ -1119,12 +1156,12 @@ int main(int argc, char **argv)
         fTrig++;
 
         // Q2 cut
-        // if(!(Q2>1)) continue;
-        if(!(Q2>0.85)) continue;
+        if(!(Q2>1)) continue;
+        // if(!(Q2>0.85)) continue;
         fQ2test++;
 
         // y cut
-        if(!(0.1<yBj && yBj<0.9)) continue;
+        if(!(YMIN<yBj && yBj<YMAX)) continue;
         fYBjtest++;
 
         // W cut
@@ -1132,7 +1169,7 @@ int main(int argc, char **argv)
         fWBjtest++;
 
         // x cut
-        if(!(0.004<xBj && xBj<0.4)) continue;
+        if(!(XMIN<xBj && xBj<XMAX)) continue;
         fXBjtest++;
 
         if(kin_flag)
@@ -1228,6 +1265,8 @@ int main(int argc, char **argv)
 
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
         {
+
+          fHadrons++;
 
           fLHsec_set.clear();
           if(fLHsec_tab) delete fLHsec_tab;
@@ -1618,12 +1657,20 @@ int main(int argc, char **argv)
           }
 
           // Maximum radiation length cumulated
-          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
+          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < HXX0LIMIT)) continue;
           fXX0test++;
 
-          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
-          fMom++;
+          // Chi2/ndf
+          if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
+          fChi2Hadron++;
+
+          // Zfirst
+          if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
+          fHZfirst++;
+
+          // Zlast
+          if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+          fHZlast++;
 
           // Theta cut
           if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
@@ -1633,10 +1680,14 @@ int main(int argc, char **argv)
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
           fPosRICH++;
 
+          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
+
+          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+          fMom++;
+
           // Non null charge
           if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
-
-          if(kin_flag ) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
 
           Int_t theta_bin, mom_bin;
           TMatrixD res_vect(3,1);
@@ -1676,6 +1727,7 @@ int main(int argc, char **argv)
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
+          fZtest++;
 
           if(0.2<zBj && zBj<0.25) zbin = 0;
           else if(0.25<zBj && zBj<0.30) zbin = 1;
@@ -2606,21 +2658,28 @@ int main(int argc, char **argv)
 
 
   cout <<
-  fBP << " Best Primary (entries in disevent.root)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0)\n\n" <<
-  fBMS << " BMS\n\n" <<
-  fBEC << " Beam Energy Cuts\n\n" <<
-  fTarg << " Event in Data Target\n\n" <<
-  //fCell << " X Cells\n\n" <<
-  fTrig << " Triggers\n\n" <<
-  fQ2test << " Q>1\n\n" <<
-  fYBjtest << " 0.1<y<0.7\n\n" <<
-  fWBjtest << " 5<W<17\n\n" <<
-  fXBjtest << " 0.004<Xbj<0.4\n\n" <<
-  fXX0test << " XX0\n\n" <<
-  fMom << " Momentum\n\n" <<
-  fTRICH << " Theta RICH\n\n" <<
-  fPosRICH << " Position RICH\n\n" <<
+  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
+  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
+  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
+  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
+  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
+  fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
+  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
+  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
+  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
+  fQ2test << " Q2>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
+  fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%)\n\n" <<
+  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%)\n\n" <<
+  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%)\n\n" <<
+  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%)\n\n" <<
+  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%)\n\n" <<
   fHplus << " h+\n\n" <<
   fHminus << " h-\n\n" <<
   fPiplus << " pi+\n\n" <<
@@ -2636,20 +2695,28 @@ int main(int argc, char **argv)
   ofstream shout(Form("rawmult/%d/shout.txt",year), std::ofstream::out | std::ofstream::trunc);
 
   shout <<
-  fBP << " Best Primary (entries in disevent.root)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0)\n\n" <<
-  fBMS << " BMS\n\n" <<
-  fBEC << " Beam Energy Cuts\n\n" <<
-  fTarg << " Event in Data Target\n\n" <<
-  //fCell << " X Cells\n\n" <<
-  fTrig << " Triggers\n\n" <<
-  fQ2test << " Q>1\n\n" <<
-  fYBjtest << " 0.1<y<0.9\n\n" <<
-  fWBjtest << " 5<W<17\n\n" <<
-  fXX0test << " XX0\n\n" <<
-  fMom << " Momentum\n\n" <<
-  fTRICH << " Theta RICH\n\n" <<
-  fPosRICH << " Position RICH\n\n" <<
+  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
+  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
+  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
+  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
+  fCell << " X Cells\n\n" <<
+  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
+  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
+  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
+  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
+  fQ2test << " Q2>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
+  fYBjtest << " 0.1<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
+  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%)\n\n" <<
+  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%)\n\n" <<
+  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%)\n\n" <<
+  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%)\n\n" <<
+  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%)\n\n" <<
+  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%)\n\n" <<
+  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%)\n\n" <<
   fHplus << " h+\n\n" <<
   fHminus << " h-\n\n" <<
   fPiplus << " pi+\n\n" <<

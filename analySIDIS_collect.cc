@@ -898,32 +898,19 @@ int main(int argc, char **argv)
       }
     }
 
-    Double_t MultiplicitiesSum[2][2][3];
-    Double_t MultiplicitiesRatio[2][2][3];
+    Double_t MultiplicitiesSum[2][2][4];
     MultiplicitiesSum[0][0][0] = 0;
     MultiplicitiesSum[0][1][0] = 0;
     MultiplicitiesSum[0][0][1] = 0;
     MultiplicitiesSum[0][1][1] = 0;
     MultiplicitiesSum[0][0][3] = 0;
     MultiplicitiesSum[0][1][3] = 0;
-    MultiplicitiesRatio[0][0][0] = 0;
-    MultiplicitiesRatio[0][1][0] = 0;
-    MultiplicitiesRatio[0][0][1] = 0;
-    MultiplicitiesRatio[0][1][1] = 0;
-    MultiplicitiesRatio[0][0][3] = 0;
-    MultiplicitiesRatio[0][1][3] = 0;
     MultiplicitiesSum[1][0][0] = 0;
     MultiplicitiesSum[1][1][0] = 0;
     MultiplicitiesSum[1][0][1] = 0;
     MultiplicitiesSum[1][1][1] = 0;
     MultiplicitiesSum[1][0][3] = 0;
     MultiplicitiesSum[1][1][3] = 0;
-    MultiplicitiesRatio[1][0][0] = 0;
-    MultiplicitiesRatio[1][1][0] = 0;
-    MultiplicitiesRatio[1][0][1] = 0;
-    MultiplicitiesRatio[1][1][1] = 0;
-    MultiplicitiesRatio[1][0][3] = 0;
-    MultiplicitiesRatio[1][1][3] = 0;
 
     for(int c=0; c<2; c++)
     {
@@ -931,7 +918,7 @@ int main(int argc, char **argv)
       {
         for(int l=0; l<4; l++)
         {
-          cout << l << " " << fXrange[i] << " " << fZrange[k] << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << " " << fAcceptance_yavg_weighted[i][k].tab[c][0][l] << endl;
+          // cout << l << " " << fXrange[i] << " " << fZrange[k] << " " << fBinning_yavg[i][k].tab[c][0][l] << " " << fNDIS_evt_yavg[0][i][k] << " " << fAcceptance_yavg_weighted[i][k].tab[c][0][l] << endl;
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][l] ?
                                                   Double_t(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][l]))
                                                   : 0);
@@ -953,7 +940,7 @@ int main(int argc, char **argv)
           }
         }
 
-        // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_yavg[i][k].tab[c][2][3] << endl;
+        // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0] << " " << fMultiplicities_yavg[i][k].tab[c][2][0] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
@@ -965,15 +952,9 @@ int main(int argc, char **argv)
         MultiplicitiesSum[0][c][0] += fMultiplicities_yavg[i][k].tab[c][0][0]*fZ_bin_width[k];
         MultiplicitiesSum[0][c][1] += fMultiplicities_yavg[i][k].tab[c][0][1]*fZ_bin_width[k];
         MultiplicitiesSum[0][c][3] += fMultiplicities_yavg[i][k].tab[c][0][3]*fZ_bin_width[k];
-        MultiplicitiesRatio[0][c][0] += fMultiplicities_yavg[i][k].tab[c][0][0]*fZ_bin_width[k];
-        MultiplicitiesRatio[0][c][1] += fMultiplicities_yavg[i][k].tab[c][0][1]*fZ_bin_width[k];
-        MultiplicitiesRatio[0][c][3] += fMultiplicities_yavg[i][k].tab[c][0][3]*fZ_bin_width[k];
         MultiplicitiesSum[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
-        MultiplicitiesRatio[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
-        MultiplicitiesRatio[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
-        MultiplicitiesRatio[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
       }
 
       for(int l=0; l<12; l++)
@@ -1186,9 +1167,9 @@ int main(int argc, char **argv)
     rp_y.push_back(MultiplicitiesSum[0][0][0] ? MultiplicitiesSum[0][1][0]/MultiplicitiesSum[0][0][0] : 0);
     rk_y.push_back(MultiplicitiesSum[0][0][1] ? MultiplicitiesSum[0][1][1]/MultiplicitiesSum[0][0][1] : 0);
     rh_y.push_back(MultiplicitiesSum[0][0][3] ? MultiplicitiesSum[0][1][3]/MultiplicitiesSum[0][0][3] : 0);
-    rp_y_err.push_back(sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]));
-    rk_y_err.push_back(sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]));
-    rh_y_err.push_back(sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]));
+    rp_y_err.push_back(sqrt((MultiplicitiesSum[1][1][0]+MultiplicitiesSum[0][1][0]*MultiplicitiesSum[1][0][0]/MultiplicitiesSum[0][0][0])/MultiplicitiesSum[0][0][0]));
+    rk_y_err.push_back(sqrt((MultiplicitiesSum[1][1][1]+MultiplicitiesSum[0][1][1]*MultiplicitiesSum[1][0][1]/MultiplicitiesSum[0][0][1])/MultiplicitiesSum[0][0][1]));
+    rh_y_err.push_back(sqrt((MultiplicitiesSum[1][1][3]+MultiplicitiesSum[0][1][3]*MultiplicitiesSum[1][0][3]/MultiplicitiesSum[0][0][3])/MultiplicitiesSum[0][0][3]));
   }
 
   for(int l=0; l<9; l++)
@@ -1264,14 +1245,14 @@ int main(int argc, char **argv)
   gPad->SetFillStyle(4000);
   sH_y->Draw("PA");
   sH_y->GetXaxis()->SetLimits(0.006,0.5);
-  sH_y->SetMinimum(0.);
-  sH_y->SetMaximum(2.);
+  sH_y->SetMinimum(0.6);
+  sH_y->SetMaximum(1.2);
   sH_y->SetTitle("");
   sH_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   sH_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sH_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{+}}}+#font[12]{M}^{#font[ 12]{h^{-}}}");
-  c11->Range(0.1,0.,0.9,5.);
+  c11->Range(0.1,0.6,0.9,1.2);
   gPad->SetLogx();
   c11->Update();
 
@@ -1279,14 +1260,14 @@ int main(int argc, char **argv)
   gPad->SetFillStyle(4000);
   sP_y->Draw("PA");
   sP_y->GetXaxis()->SetLimits(0.006,0.5);
-  sP_y->SetMinimum(0.);
-  sP_y->SetMaximum(2.);
+  sP_y->SetMinimum(0.5);
+  sP_y->SetMaximum(0.95);
   sP_y->SetTitle("");
   sP_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   sP_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sP_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{+}}}+#font[12]{M}^{#font[ 12]{#pi^{-}}}");
-  c12->Range(0.1,0.,0.9,5.);
+  c12->Range(0.1,0.5,0.9,0.95);
   gPad->SetLogx();
   c12->Update();
 
@@ -1294,14 +1275,14 @@ int main(int argc, char **argv)
   gPad->SetFillStyle(4000);
   sK_y->Draw("PA");
   sK_y->GetXaxis()->SetLimits(0.006,0.5);
-  sK_y->SetMinimum(0.);
-  sK_y->SetMaximum(0.15);
+  sK_y->SetMinimum(0.08);
+  sK_y->SetMaximum(0.2);
   sK_y->SetTitle("");
   sK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   sK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}+#font[12]{M}^{#font[ 12]{K^{-}}}");
-  c13->Range(0.1,0.,0.9,0.15);
+  c13->Range(0.1,0.08,0.9,0.2);
   gPad->SetLogx();
   c13->Update();
 
@@ -1309,14 +1290,14 @@ int main(int argc, char **argv)
   gPad->SetFillStyle(4000);
   rH_y->Draw("PA");
   rH_y->GetXaxis()->SetLimits(0.006,0.5);
-  rH_y->SetMinimum(0.);
-  rH_y->SetMaximum(2.);
+  rH_y->SetMinimum(0.9);
+  rH_y->SetMaximum(2.4);
   rH_y->SetTitle("");
   rH_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   rH_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rH_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{+}}}/#font[12]{M}^{#font[ 12]{h^{-}}}");
-  c14->Range(0.1,0.,0.9,5.);
+  c14->Range(0.1,0.9,0.9,2.4);
   gPad->SetLogx();
   c14->Update();
 
@@ -1324,14 +1305,14 @@ int main(int argc, char **argv)
   gPad->SetFillStyle(4000);
   rP_y->Draw("PA");
   rP_y->GetXaxis()->SetLimits(0.006,0.5);
-  rP_y->SetMinimum(0.);
-  rP_y->SetMaximum(4.);
+  rP_y->SetMinimum(0.9);
+  rP_y->SetMaximum(1.8);
   rP_y->SetTitle("");
   rP_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   rP_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{+}}}/#font[12]{M}^{#font[ 12]{#pi^{-}}}");
-  c15->Range(0.1,0.,0.9,4.);
+  c15->Range(0.1,0.9,0.9,1.8);
   gPad->SetLogx();
   c15->Update();
 
@@ -1339,14 +1320,14 @@ int main(int argc, char **argv)
   gPad->SetFillStyle(4000);
   rK_y->Draw("PA");
   rK_y->GetXaxis()->SetLimits(0.006,0.5);
-  rK_y->SetMinimum(0.);
-  rK_y->SetMaximum(4.);
+  rK_y->SetMinimum(0.9);
+  rK_y->SetMaximum(3.5);
   rK_y->SetTitle("");
   rK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   rK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}/#font[12]{M}^{#font[ 12]{K^{-}}}");
-  c16->Range(0.1,0.,0.9,4.);
+  c16->Range(0.1,0.9,0.9,3.5);
   gPad->SetLogx();
   c16->Update();
 
