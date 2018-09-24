@@ -1057,7 +1057,7 @@ int main(int argc, char **argv)
         fRmu++;
 
         //BMS (reconstructed beam track)
-        if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
+        if(!(backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
         fBMS++;
 
         // Energy of the muon beam
