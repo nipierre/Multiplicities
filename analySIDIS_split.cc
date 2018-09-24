@@ -161,7 +161,7 @@ bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
   Double_t dy = yvtx-yc;
   Double_t r = sqrt(dx*dx + dy*dy);
 
-  return( r < 1.9 && yc < 1.2 );
+  return( r < 1.9 && yvtx < 1.2 );
 }
 
 void LoadInclusiveRadiativeCorrection()
