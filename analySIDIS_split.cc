@@ -2663,7 +2663,7 @@ int main(int argc, char **argv)
   cout << "\n\n";
   cout << "             ********* Cut flow for Reconstructed DIS events after cuts ********* " << endl;
   cout << "             -------------------------------------------------------------------- " << endl;
-  cout << "             from " << fFilesNumber << " file(s)" endl;
+  cout << "             from " << fFilesNumber << " file(s)" << endl;
 
   for(int j=0; j<2; j++)
   {
@@ -2681,7 +2681,7 @@ int main(int argc, char **argv)
   cout << '|' << setw(50) << "Best Primary (entries in disevent.root)" << '|' << setw(10) << fBP << '|' << setw(10) << float(fBP)/float(fBP)*100 << '|' << setw(10) << float(fBP)/float(fBP)*100 << endl;
   cout << '|' << setw(50) << "Mu' found (0,1,1,30,0)" << '|' << setw(10) << fRmu << '|' << setw(10) << float(fRmu)/float(fBP)*100 << '|' << setw(10) << float(fRmu)/float(fBP)*100 << endl;
   cout << '|' << setw(50) << "Vertex in Target" << '|' << setw(10) << fTarg << '|' << setw(10) << float(fTarg)/float(fBP)*100 << '|' << setw(10) << float(fTarg)/float(fRmu)*100 << endl;
-  cout << '|' << setw(50) << "140 < E_mu < 180" << '|' << setw(10) << fBEC << '|' << setw(10) << float(fBPEC)/float(fBP)*100 << '|' << setw(10) << float(fBPEC)/float(fTarg)*100 << endl;
+  cout << '|' << setw(50) << "140 < E_mu < 180" << '|' << setw(10) << fBEC << '|' << setw(10) << float(fBEC)/float(fBP)*100 << '|' << setw(10) << float(fBEC)/float(fTarg)*100 << endl;
   cout << '|' << setw(50) << "BMS" << '|' << setw(10) << fBMS << '|' << setw(10) << float(fBMS)/float(fBP)*100 << '|' << setw(10) << float(fBMS)/float(fBEC)*100 << endl;
   cout << '|' << setw(50) << "Mu chi2/ndf < 10" << '|' << setw(10) << fMuchi2 << '|' << setw(10) << float(fMuchi2)/float(fBP)*100 << '|' << setw(10) << float(fMuchi2)/float(fBMS)*100 << endl;
   cout << '|' << setw(50) << "Beam tarck X Cell" << '|' << setw(10) << fCell << '|' << setw(10) << float(fCell)/float(fBP)*100 << '|' << setw(10) << float(fCell)/float(fMuchi2)*100 << endl;
@@ -2696,7 +2696,7 @@ int main(int argc, char **argv)
   cout << "\n\n";
   cout << "             ********* Cut flow for Reconstructed hadrons after cuts ********* " << endl;
   cout << "             ----------------------------------------------------------------- " << endl;
-  cout << "             from " << fFilesNumber << " file(s)" endl;
+  cout << "             from " << fFilesNumber << " file(s)" << endl;
 
   for(int j=0; j<2; j++)
   {
@@ -2717,8 +2717,8 @@ int main(int argc, char **argv)
   cout << '|' << setw(50) << "Zfirst < 350 cm" << '|' << setw(10) << fHZfirst << '|' << setw(10) << float(fHZfirst)/float(fBP)*100 << '|' << setw(10) << float(fHZfirst)/float(fChi2Hadron)*100 << endl;
   cout << '|' << setw(50) << "Zlast > 350 cm" << '|' << setw(10) << fHZlast << '|' << setw(10) << float(fHZlast)/float(fBP)*100 << '|' << setw(10) << float(fHZlast)/float(fHZfirst)*100 << endl;
   cout << '|' << setw(50) << "0.01 < theta_RICH < 0.12" << '|' << setw(10) << fTRICH << '|' << setw(10) << float(fTRICH)/float(fBP)*100 << '|' << setw(10) << float(fTRICH)/float(fHZlast)*100 << endl;
-  cout << '|' << setw(50) << "Rich Pipe" << '|' << setw(10) << fPosRich << '|' << setw(10) << float(fPosRich)/float(fBP)*100 << '|' << setw(10) << float(fPosRich)/float(fTRICH)*100 << endl;
-  cout << '|' << setw(50) << MOMENTUM << " < p_h < 40" << '|' << setw(10) << fMom << '|' << setw(10) << float(fMom)/float(fBP)*100 << '|' << setw(10) << float(fMom)/float(fPosRich)*100 << endl;
+  cout << '|' << setw(50) << "Rich Pipe" << '|' << setw(10) << fPosRICH << '|' << setw(10) << float(fPosRICH)/float(fBP)*100 << '|' << setw(10) << float(fPosRICH)/float(fTRICH)*100 << endl;
+  cout << '|' << setw(50) << MOMENTUM << " < p_h < 40" << '|' << setw(10) << fMom << '|' << setw(10) << float(fMom)/float(fBP)*100 << '|' << setw(10) << float(fMom)/float(fPosRICH)*100 << endl;
   cout << '|' << setw(50) << "0.2 < z < 0.85" << '|' << setw(10) << fZtest << '|' << setw(10) << float(fZtest)/float(fBP)*100 << '|' << setw(10) << float(fZtest)/float(fMom)*100 << endl;
 
 
