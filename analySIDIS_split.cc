@@ -1733,6 +1733,8 @@ int main(int argc, char **argv)
           if(!(0.2<zBj && zBj<0.85)) continue;
           fZtest++;
 
+          if(kin_flag) fKinematics[3]->Fill(zBj);
+
           if(0.2<zBj && zBj<0.25) zbin = 0;
           else if(0.25<zBj && zBj<0.30) zbin = 1;
           else if(0.30<zBj && zBj<0.35) zbin = 2;
@@ -2530,8 +2532,6 @@ int main(int argc, char **argv)
             else if(0.65<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.70) zbin = 9;
             else if(0.70<Pvszlocal[i].vec[j][0][l] && Pvszlocal[i].vec[j][0][l]<0.75) zbin = 10;
             else zbin = 11;
-
-            if(kin_flag) fKinematics[3]->Fill(Pvszlocal[i].vec[j][0][l]);
 
             for(int ll=0; ll<4; ll++)
             {
