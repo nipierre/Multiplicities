@@ -2738,20 +2738,20 @@ int main(int argc, char **argv)
   }
 
   cout << '|' << setw(15) << "Hadron"
-       << '|' << setw(15) << "h+" << '|' << << setw(15) << "h-"
-       << '|' << setw(15) << "pi+" << '|' << << setw(15) << "pi-"
-       << '|' << setw(15) << "K+" << '|' << << setw(15) << "K-"
-       << '|' << setw(15) << "p+" << '|' << << setw(15) << "p-" << endl;
+       << '|' << setw(15) << "h+" << '|' << setw(15) << "h-"
+       << '|' << setw(15) << "pi+" << '|' << setw(15) << "pi-"
+       << '|' << setw(15) << "K+" << '|' << setw(15) << "K-"
+       << '|' << setw(15) << "p+" << '|' << setw(15) << "p-" << endl;
   cout << '|' << setw(15) << "ID"
-       << '|' << setw(15) << fHplus << '|' << << setw(15) << fHminus
-       << '|' << setw(15) << fPiplus << '|' << << setw(15) << fPiminus
-       << '|' << setw(15) << fKplus << '|' << << setw(15) << fKminus
-       << '|' << setw(15) << fPplus << '|' << << setw(15) << fPminus << endl;
+       << '|' << setw(15) << fHplus << '|' << setw(15) << fHminus
+       << '|' << setw(15) << fPiplus << '|' << setw(15) << fPiminus
+       << '|' << setw(15) << fKplus << '|' << setw(15) << fKminus
+       << '|' << setw(15) << fPplus << '|' << setw(15) << fPminus << endl;
   cout << '|' << setw(15) << "True ID"
-       << '|' << setw(15) << fHplus << '|' << << setw(15) << fHminus
-       << '|' << setw(15) << fPiplus_true << '|' << << setw(15) << fPiminus_true
-       << '|' << setw(15) << fKplus_true << '|' << << setw(15) << fKminus_true
-       << '|' << setw(15) << fPplus_true << '|' << << setw(15) << fPminus_true << endl;
+       << '|' << setw(15) << fHplus << '|' << setw(15) << fHminus
+       << '|' << setw(15) << fPiplus_true << '|' << setw(15) << fPiminus_true
+       << '|' << setw(15) << fKplus_true << '|' << setw(15) << fKminus_true
+       << '|' << setw(15) << fPplus_true << '|' << setw(15) << fPminus_true << endl;
 
   ofstream shout(Form("rawmult/%d/shout.txt",year), std::ofstream::out | std::ofstream::trunc);
 
