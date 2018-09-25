@@ -852,22 +852,18 @@ void MCextraction(string pFilelist)
       fAllDISflag = 0;
 
       // Best Primary Vertex
-      fBP++;
 
       // Reconstructed muon
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
-        fRmu++;
 
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
         {
-          fBMS++;
 
           // Energy of the muon beam
           if((140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180))
           {
-            fBEC++;
 
             //2006 ---
             if(Y2006)
@@ -884,37 +880,30 @@ void MCextraction(string pFilelist)
                           ||(z->GetLeaf("z")->GetValue() > (-30+2+8) && z->GetLeaf("z")->GetValue() < (30+2-1))
                           ||(z->GetLeaf("z")->GetValue() > (35+2+6) && z->GetLeaf("z")->GetValue() < (65+2-1)))))
                 {
-                  fTarg++;
 
                   // Cells crossing
                   if(true)
                   {
-                    fCell++;
 
                     // IM/O triggers
                     if((trig&8 || trig&256))
                     {
-                      fTrig++;
 
                       // Q2 cut
                       if((Q2>1))
                       {
-                        fQ2test++;
 
                         // y cut
                         if((fYmin<yBj && yBj<fYmax))
                         {
-                          fYBjtest++;
 
                           // W cut
                           if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                           {
-                            fWBjtest++;
 
                             // x cut
                             if((fXmin<xBj && xBj<fXmax))
                             {
-                              fXBjtest++;
                               fAllDISflag = 1;
                             }
                           }
@@ -933,34 +922,27 @@ void MCextraction(string pFilelist)
             {
               if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
-                fTarg++;
 
                 // Cells crossing
                 if(true)
                 {
-                  fCell++;
 
                   if((trig&2 || trig&4 || trig&8))
                   {
-                    fTrig++;
 
                     // Q2 cut
                     if((Q2>1))
                     {
-                      fQ2test++;
 
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
                       {
-                        fYBjtest++;
 
                         // W cut
                         if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
-                          fWBjtest++;
                           if((fXmin<xBj && xBj<fXmax))
                           {
-                            fXBjtest++;
                             fAllDISflag = 1;
                           }
                         }
@@ -977,21 +959,17 @@ void MCextraction(string pFilelist)
             {
               if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
-                fTarg++;
 
                 // Cells crossing
                 if(true)
                 {
-                  fCell++;
 
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
                   {
-                    fTrig++;
 
                     // Q2 cut
                     if((Q2>1))
                     {
-                      fQ2test++;
                       fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
                       fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
                                                   +pow(p0y->GetLeaf("p0y")->GetValue(),2)
@@ -1002,15 +980,12 @@ void MCextraction(string pFilelist)
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
                       {
-                        fYBjtest++;
 
                         // W cut
                         if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
-                          fWBjtest++;
                           if((fXmin<xBj && xBj<fXmax))
                           {
-                            fXBjtest++;
                             fAllDISflag = 1;
                           }
                         }
@@ -1215,19 +1190,15 @@ void MCextraction(string pFilelist)
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
-          fXX0test++;
-
-          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
-          fMom++;
 
           // Theta cut
           if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
-          fTRICH++;
 
           // RICH position cut
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
-          fPosRICH++;
+
+          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+          if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -1653,11 +1624,9 @@ void RDextraction(string pFilelist)
       double thetax_b = atan(p0x->GetLeaf("p0x")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
 
       // Best Primary Vertex
-      fBP++;
 
       // IsMuPrim
       if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
-      fRmu++;
 
       //2006 ---
       if(Y2006)
@@ -1687,29 +1656,22 @@ void RDextraction(string pFilelist)
         if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
-      fTarg++;
 
       // Energy of the muon beam
       if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
-      fBEC++;
 
       // BMS
       if(!(BMS->GetLeaf("BMS")->GetValue()>3)) continue;
-      fBMS++;
 
       // Chi2 beam
       if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
-      fMuchi2++;
 
       // Cells crossing
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
-      fCell++;
 
       if(!(mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10)) continue;
-      fMupchi2++;
 
       if(!(MZfirst->GetLeaf("MZfirst")->GetValue()<350)) continue;
-      fMZfirst++;
 
       // IM/O triggers
       //2006 ---
@@ -1730,11 +1692,9 @@ void RDextraction(string pFilelist)
         if(!(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))) continue;
       }
       //2016 ---
-      fTrig++;
 
       // Q2 cut
       if(!(Q2>1)) continue;
-      fQ2test++;
       fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
@@ -1745,15 +1705,12 @@ void RDextraction(string pFilelist)
 
       // y cut
       if(!(fYmin<yBj && yBj<fYmax)) continue;
-      fYBjtest++;
 
       // W cut
       if(!(fWmin<sqrt(wBj) && sqrt(wBj)<fWmax)) continue;
-      fWBjtest++;
 
       // x cut
       if(!(fXmin<xBj && xBj<fXmax)) continue;
-      fXBjtest++;
 
       // MT
       if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2046,31 +2003,24 @@ void RDextraction(string pFilelist)
 
         // Maximum radiation length cumulated
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
-        fXX0test++;
 
         // Chi2/ndf
         if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
-        fChi2Hadron++;
 
         // Zfirst
         if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
-        fHZfirst++;
 
         // Zlast
         if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
-        fHZlast++;
 
         // Theta cut
         if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
-        fTRICH++;
 
         // RICH position cut
         if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
-        fPosRICH++;
 
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
         if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
-        fMom++;
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;

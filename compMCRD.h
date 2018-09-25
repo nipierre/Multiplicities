@@ -41,16 +41,6 @@
 
 using namespace std;
 
-//Structs
-
-struct Wrapper { Double_t tab[2][2][4]; };
-struct Pvsz { vector<Double_t> vec[2][5]; };
-struct hadiden { vector<Double_t> vec; };
-struct studyxy { vector<Double_t> vec[2]; };
-struct Recovery { vector<Double_t> vec[2][4][4]; };
-struct Recovery_tank { Double_t tab[2][4][4]; };
-
-
 //Qty containers
 
 vector<Double_t> fQ2;
@@ -95,10 +85,6 @@ vector<Double_t> fXMC;
 vector<Double_t> fYMC;
 vector<Double_t> fZMC;
 
-vector<Pvsz> fPvsz;
-vector<Pvsz> fPvsz_err;
-vector<hadiden> fHadiden;
-
 //Misc
 
 set<Double_t> fLHsec_set;
@@ -119,52 +105,6 @@ studyxy fRstudy_xy[24];
 bool fAllDISflag;
 bool fAllDISflag_MC;
 
-//Counting
-
-Double_t fBP = 0;
-Double_t fRmu = 0;
-Double_t fBMS = 0;
-Double_t fMuchi2 = 0;
-Double_t fBEC = 0;
-Double_t fVtx = 0;
-Double_t fTarg = 0;
-Double_t fCell = 0;
-Double_t fTrig = 0;
-Double_t fMupchi2 = 0;
-Double_t fMZfirst = 0;
-Double_t fQ2test = 0;
-Double_t fYBjtest = 0;
-Double_t fXBjtest = 0;
-Double_t fWBjtest = 0;
-Double_t fHadrons = 0;
-Double_t fXX0test = 0;
-Double_t fChi2Hadron = 0;
-Double_t fHZfirst = 0;
-Double_t fHZlast = 0;
-Double_t fMom = 0;
-Double_t fTRICH = 0;
-Double_t fPosRICH = 0;
-Double_t fZtest = 0;
-Double_t fHplus = 0;
-Double_t fHminus = 0;
-Double_t fPiplus = 0;
-Double_t fPiminus = 0;
-Double_t fKplus = 0;
-Double_t fKminus = 0;
-Double_t fPplus = 0;
-Double_t fPminus = 0;
-Double_t fPiplus_true = 0;
-Double_t fPiminus_true = 0;
-Double_t fKplus_true = 0;
-Double_t fKminus_true = 0;
-Double_t fPplus_true = 0;
-Double_t fPminus_true = 0;
-Double_t fPiplus_err = 0;
-Double_t fPiminus_err = 0;
-Double_t fKplus_err = 0;
-Double_t fKminus_err = 0;
-Double_t fPplus_err = 0;
-Double_t fPminus_err = 0;
 
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
 
