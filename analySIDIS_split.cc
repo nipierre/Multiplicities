@@ -17,8 +17,6 @@ using namespace std;
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define MULT 1
-#define ASYM 0
 #define RCUTSTUDY_ON 0
 #define MOMENTUM 12
 #define XMIN 0.004
