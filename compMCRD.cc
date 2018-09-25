@@ -362,43 +362,43 @@ void save_kin_plots()
     c6.Update();
 
     c14.cd(i+1);
-    plotting_device(i,6,0);
+    // plotting_device(i,6,0);
     c14.Update();
 
     c15.cd(i+1);
-    plotting_device(i,7,0);
+    // plotting_device(i,7,0);
     c15.Update();
 
     c16.cd(i+1);
-    plotting_device(i,8,0);
+    // plotting_device(i,8,0);
     c16.Update();
 
     c17.cd(i+1);
-    plotting_device(i,9,0);
+    // plotting_device(i,9,0);
     c17.Update();
 
     c18.cd(i+1);
-    plotting_device(i,10,0);
+    // plotting_device(i,10,0);
     c18.Update();
 
     c19.cd(i+1);
-    plotting_device(i,12,0);
+    // plotting_device(i,12,0);
     c19.Update();
 
     c20.cd(i+1);
-    plotting_device(i,13,0);
+    // plotting_device(i,13,0);
     c20.Update();
 
     c21.cd(i+1);
-    plotting_device(i,14,0);
+    // plotting_device(i,14,0);
     c21.Update();
 
     c25.cd(i+1);
-    plotting_device(i,15,0);
+    // plotting_device(i,15,0);
     c25.Update();
 
     c27.cd(i+1);
-    plotting_device(i,16,0);
+    // plotting_device(i,16,0);
     c27.Update();
   }
 
