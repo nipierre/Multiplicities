@@ -92,7 +92,7 @@ bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
   Double_t dy = yvtx-yc;
   Double_t r = sqrt(dx*dx + dy*dy);
 
-  return( r <= R );
+  return( r < 1.9 && yvtx < 1.2 );
 }
 
 void BinLogX(TH1*h)
@@ -2241,10 +2241,6 @@ void RDextraction(string pFilelist)
   Double_t wBj = 0;
   Double_t nu = 0;
 
-  // Target cells
-  if(Y2012) InitTargetFile(target_file_2012);
-  else if(Y2016) InitTargetFile(target_file_2016);
-
   // List of files
 
   ifstream list(pFilelist);
@@ -2282,6 +2278,7 @@ void RDextraction(string pFilelist)
     TBranch *p1z = (TBranch*) tree->FindBranch("p1z");
     TBranch *E_beam = (TBranch*) tree->FindBranch("E_beam");
     TBranch *E_mu_prim = (TBranch*) tree->FindBranch("E_mu_prim");
+    TBranch *Charge = (TBranch*) tree->FindBranch("Charge");
     TBranch *XX0 = (TBranch*) tree->FindBranch("XX0");
     TBranch *HM04x = (TBranch*) tree->FindBranch("HM04x");
     TBranch *HM04y = (TBranch*) tree->FindBranch("HM04y");
@@ -2292,20 +2289,24 @@ void RDextraction(string pFilelist)
     TBranch *HO04x = (TBranch*) tree->FindBranch("HO04x");
     TBranch *HO04y = (TBranch*) tree->FindBranch("HO04y");
     TBranch *saved = (TBranch*) tree->FindBranch("saved");
+    TBranch *BPV = (TBranch*) tree->FindBranch("BPV");
+    TBranch *isMuPrim = (TBranch*) tree->FindBranch("isMuPrim");
+    TBranch *MZfirst = (TBranch*) tree->FindBranch("MZfirst");
+    TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
+    TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
-    TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
+    TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
     //Hadrons
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
-    TBranch *pt = (TBranch*) tree->FindBranch("Hadrons.pt");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
-    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
     TBranch *charge = (TBranch*) tree->FindBranch("Hadrons.charge");
     TBranch *thRICH = (TBranch*) tree->FindBranch("Hadrons.thRICH");
+    TBranch *thC = (TBranch*) tree->FindBranch("Hadrons.thC");
     TBranch *LH = (TBranch*) tree->FindBranch("Hadrons.LH");
     TBranch *MCpid = (TBranch*) tree->FindBranch("Hadrons.MCpid");
     TBranch *MM01x = (TBranch*) tree->FindBranch("Hadrons.MM01x");
@@ -2320,6 +2321,9 @@ void RDextraction(string pFilelist)
     TBranch *Z2By = (TBranch*) tree->FindBranch("Hadrons.Z2By");
     TBranch *RICHx = (TBranch*) tree->FindBranch("Hadrons.RICHx");
     TBranch *RICHy = (TBranch*) tree->FindBranch("Hadrons.RICHy");
+    TBranch *chi2_hadron = (TBranch*) tree->FindBranch("Hadrons.chi2_hadron");
+    TBranch *HZfirst = (TBranch*) tree->FindBranch("Hadrons.HZfirst");
+    TBranch *HZlast = (TBranch*) tree->FindBranch("Hadrons.HZlast");
 
     // Loopy loop over the events
     Int_t N = (Int_t) tree->GetEntries();
@@ -2360,6 +2364,7 @@ void RDextraction(string pFilelist)
       p1z->GetEntry(ip);
       E_beam->GetEntry(ip);
       E_mu_prim->GetEntry(ip);
+      Charge->GetEntry(ip);
       XX0->GetEntry(ip);
       HM04x->GetEntry(ip);
       HM04y->GetEntry(ip);
@@ -2370,20 +2375,24 @@ void RDextraction(string pFilelist)
       HO04x->GetEntry(ip);
       HO04y->GetEntry(ip);
       saved->GetEntry(ip);
+      BPV->GetEntry(ip);
+      isMuPrim->GetEntry(ip);
+      MZfirst->GetEntry(ip);
+      beam_chi2->GetEntry(ip);
+      mu_prim_chi2->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
-      backPropFlag->GetEntry(ip);
+      BMS->GetEntry(ip);
 
       //Hadrons
       p->GetEntry(ip);
-      pt->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
-      ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
       charge->GetEntry(ip);
       thRICH->GetEntry(ip);
+      thC->GetEntry(ip);
       LH->GetEntry(ip);
       MCpid->GetEntry(ip);
       MM01x->GetEntry(ip);
@@ -2398,6 +2407,9 @@ void RDextraction(string pFilelist)
       Z2By->GetEntry(ip);
       RICHx->GetEntry(ip);
       RICHy->GetEntry(ip);
+      chi2_hadron->GetEntry(ip);
+      HZfirst->GetEntry(ip);
+      HZlast->GetEntry(ip);
 
       //--------------------------------------------------------------------------
       //--------- Kinematics -----------------------------------------------------
@@ -2503,17 +2515,9 @@ void RDextraction(string pFilelist)
       // Best Primary Vertex
       fBP++;
 
-      // Reconstructed muon
-      if(!(0<E_beam->GetLeaf("E_beam")->GetValue())) continue;
+      // IsMuPrim
+      if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
       fRmu++;
-
-      //BMS (reconstructed beam track)
-      if((backPropFlag->GetLeaf("backPropFlag")->GetValue())) continue;
-      fBMS++;
-
-      // Energy of the muon beam
-      if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
-      fBEC++;
 
       //2006 ---
       if(Y2006)
@@ -2540,13 +2544,32 @@ void RDextraction(string pFilelist)
       else if(Y2016)
       {
         if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
+        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
       fTarg++;
 
+      // Energy of the muon beam
+      if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
+      fBEC++;
+
+      // BMS
+      if(!(BMS->GetLeaf("BMS")->GetValue()>3)) continue;
+      fBMS++;
+
+      // Chi2 beam
+      if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
+      fMuchi2++;
+
       // Cells crossing
-      if(/*!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/false) continue;
+      if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
       fCell++;
+
+      if(!(mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10)) continue;
+      fMupchi2++;
+
+      if(!(MZfirst->GetLeaf("MZfirst")->GetValue()<350)) continue;
+      fMZfirst++;
 
       // IM/O triggers
       //2006 ---
@@ -2885,9 +2908,17 @@ void RDextraction(string pFilelist)
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
         fXX0test++;
 
-        // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-        if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
-        fMom++;
+        // Chi2/ndf
+        if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
+        fChi2Hadron++;
+
+        // Zfirst
+        if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
+        fHZfirst++;
+
+        // Zlast
+        if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+        fHZlast++;
 
         // Theta cut
         if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
@@ -2896,6 +2927,10 @@ void RDextraction(string pFilelist)
         // RICH position cut
         if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
         fPosRICH++;
+
+        // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+        if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
+        fMom++;
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
