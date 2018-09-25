@@ -1644,11 +1644,11 @@ int main(int argc, char **argv)
           // z calculation
           if(nu)
           {
-            if(fId == 2 || fId == 3)
-              zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu;
-            else if(fId == 4 || fId == 5)
-              zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
-            else
+            // if(fId == 2 || fId == 3)
+            //   zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu;
+            // else if(fId == 4 || fId == 5)
+            //   zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
+            // else
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
           }
           else
