@@ -185,6 +185,9 @@ Double_t fKplus_err = 0;
 Double_t fKminus_err = 0;
 Double_t fPplus_err = 0;
 Double_t fPminus_err = 0;
+Double_t fFilesNumber = 0;
+vector<Int_t> fPeriodBit;
+vector<string> fPeriodName;
 
 Double_t fInclusiveRCproton[30][19];
 Double_t fSemiInclusiveRCproton[9][6][14];
