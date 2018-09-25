@@ -334,6 +334,7 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
+    cout << i << endl;
     c1.cd(i+1);
     plotting_device(i,0,0);
     gPad->SetLogx();
@@ -356,9 +357,9 @@ void save_kin_plots()
     plotting_device(i,4,0);
     c5.Update();
 
-    // c6.cd(i+1);
-    // plotting_device(i,5,0);
-    // c6.Update();
+    c6.cd(i+1);
+    plotting_device(i,5,0);
+    c6.Update();
 
     c14.cd(i+1);
     plotting_device(i,6,0);
