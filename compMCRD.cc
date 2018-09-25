@@ -296,7 +296,7 @@ void plotting_device(int i, int j, int norm)
 
 void save_kin_plots()
 {
-  c1.Divide(2,2);
+  c1->Divide(2,2);
   c2.Divide(2,2);
   c3.Divide(2,2);
   c4.Divide(2,2);
@@ -335,10 +335,10 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
-    c1.cd(i+1);
+    c1->cd(i+1);
     plotting_device(i,0,0);
     gPad->SetLogx();
-    c1.Update();
+    c1->Update();
 
     c2.cd(i+1);
     plotting_device(i,1,0);
@@ -492,7 +492,7 @@ void save_kin_plots()
   fThetaMCp[2]->GetYaxis()->SetTitle("theta_x");
   c36.Update();
 
-  c1.Print("kinMCRD.pdf(","pdf");
+  c1->Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
   c4.Print("kinMCRD.pdf","pdf");
