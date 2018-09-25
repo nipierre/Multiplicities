@@ -2677,21 +2677,21 @@ int main(int argc, char **argv)
     cout << endl;
   }
 
-  cout << '|' << setw(50) << "Cut" << '|' << setw(10) << "Events" << '|' << setw(10) << "Abs." << '|' << setw(10) << "Rel." << endl;
-  cout << '|' << setw(50) << "Best Primary (entries in disevent.root)" << '|' << setw(10) << fBP << '|' << setw(10) << float(fBP)/float(fBP)*100 << '|' << setw(10) << float(fBP)/float(fBP)*100 << endl;
-  cout << '|' << setw(50) << "Mu' found (0,1,1,30,0)" << '|' << setw(10) << fRmu << '|' << setw(10) << float(fRmu)/float(fBP)*100 << '|' << setw(10) << float(fRmu)/float(fBP)*100 << endl;
-  cout << '|' << setw(50) << "Vertex in Target" << '|' << setw(10) << fTarg << '|' << setw(10) << float(fTarg)/float(fBP)*100 << '|' << setw(10) << float(fTarg)/float(fRmu)*100 << endl;
-  cout << '|' << setw(50) << "140 < E_mu < 180" << '|' << setw(10) << fBEC << '|' << setw(10) << float(fBEC)/float(fBP)*100 << '|' << setw(10) << float(fBEC)/float(fTarg)*100 << endl;
-  cout << '|' << setw(50) << "BMS" << '|' << setw(10) << fBMS << '|' << setw(10) << float(fBMS)/float(fBP)*100 << '|' << setw(10) << float(fBMS)/float(fBEC)*100 << endl;
-  cout << '|' << setw(50) << "Mu chi2/ndf < 10" << '|' << setw(10) << fMuchi2 << '|' << setw(10) << float(fMuchi2)/float(fBP)*100 << '|' << setw(10) << float(fMuchi2)/float(fBMS)*100 << endl;
-  cout << '|' << setw(50) << "Beam tarck X Cell" << '|' << setw(10) << fCell << '|' << setw(10) << float(fCell)/float(fBP)*100 << '|' << setw(10) << float(fCell)/float(fMuchi2)*100 << endl;
-  cout << '|' << setw(50) << "Mu' chi2/ndf < 10" << '|' << setw(10) << fMupchi2 << '|' << setw(10) << float(fMupchi2)/float(fBP)*100 << '|' << setw(10) << float(fMupchi2)/float(fCell)*100 << endl;
-  cout << '|' << setw(50) << "Mu' Zfirst < 350" << '|' << setw(10) << fMZfirst << '|' << setw(10) << float(fMZfirst)/float(fBP)*100 << '|' << setw(10) << float(fMZfirst)/float(fMupchi2)*100 << endl;
-  cout << '|' << setw(50) << "Triggers MT/LT/OT/LAST" << '|' << setw(10) << fTrig << '|' << setw(10) << float(fTrig)/float(fBP)*100 << '|' << setw(10) << float(fTrig)/float(fMZfirst)*100 << endl;
-  cout << '|' << setw(50) << "Q2 > 1" << '|' << setw(10) << fQ2test << '|' << setw(10) << float(fQ2test)/float(fBP)*100 << '|' << setw(10) << float(fQ2test)/float(fTrig)*100 << endl;
-  cout << '|' << setw(50) << YMIN <<" < y < " << YMAX << '|' << setw(10) << fYBjtest << '|' << setw(10) << float(fYBjtest)/float(fBP)*100 << '|' << setw(10) << float(fYBjtest)/float(fQ2test)*100 << endl;
-  cout << '|' << setw(50) << "5 < W < 17" << '|' << setw(10) << fWBjtest << '|' << setw(10) << float(fWBjtest)/float(fBP)*100 << '|' << setw(10) << float(fWBjtest)/float(fYBjtest)*100 << endl;
-  cout << '|' << setw(50) << XMIN <<" < x < " << XMAX << '|' << setw(10) << fXBjtest << '|' << setw(10) << float(fXBjtest)/float(fBP)*100 << '|' << setw(10) << float(fXBjtest)/float(fWBjtest)*100 << endl;
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << '|' << endl;
+  cout << '|' << setw(30) << "Best Primary Vertex" << '|' << setw(15) << fBP << '|' << setw(15) << float(fBP)/float(fBP)*100 << '|' << setw(15) << float(fBP)/float(fBP)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' found (0,1,1,30,0)" << '|' << setw(15) << fRmu << '|' << setw(15) << float(fRmu)/float(fBP)*100 << '|' << setw(15) << float(fRmu)/float(fBP)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarg << '|' << setw(15) << float(fTarg)/float(fBP)*100 << '|' << setw(15) << float(fTarg)/float(fRmu)*100 << '|' << endl;
+  cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBEC << '|' << setw(15) << float(fBEC)/float(fBP)*100 << '|' << setw(15) << float(fBEC)/float(fTarg)*100 << '|' << endl;
+  cout << '|' << setw(30) << "BMS" << '|' << setw(15) << fBMS << '|' << setw(15) << float(fBMS)/float(fBP)*100 << '|' << setw(15) << float(fBMS)/float(fBEC)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu chi2/ndf < 10" << '|' << setw(15) << fMuchi2 << '|' << setw(15) << float(fMuchi2)/float(fBP)*100 << '|' << setw(15) << float(fMuchi2)/float(fBMS)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Beam tarck X Cell" << '|' << setw(15) << fCell << '|' << setw(15) << float(fCell)/float(fBP)*100 << '|' << setw(15) << float(fCell)/float(fMuchi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' chi2/ndf < 10" << '|' << setw(15) << fMupchi2 << '|' << setw(15) << float(fMupchi2)/float(fBP)*100 << '|' << setw(15) << float(fMupchi2)/float(fCell)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' Zfirst < 350" << '|' << setw(15) << fMZfirst << '|' << setw(15) << float(fMZfirst)/float(fBP)*100 << '|' << setw(15) << float(fMZfirst)/float(fMupchi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Triggers MT/LT/OT/LAST" << '|' << setw(15) << fTrig << '|' << setw(15) << float(fTrig)/float(fBP)*100 << '|' << setw(15) << float(fTrig)/float(fMZfirst)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Q2 > 1" << '|' << setw(15) << fQ2test << '|' << setw(15) << float(fQ2test)/float(fBP)*100 << '|' << setw(15) << float(fQ2test)/float(fTrig)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.1 < y < 0.7" << '|' << setw(15) << fYBjtest << '|' << setw(15) << float(fYBjtest)/float(fBP)*100 << '|' << setw(15) << float(fYBjtest)/float(fQ2test)*100 << '|' << endl;
+  cout << '|' << setw(30) << "5 < W < 17" << '|' << setw(15) << fWBjtest << '|' << setw(15) << float(fWBjtest)/float(fBP)*100 << '|' << setw(15) << float(fWBjtest)/float(fYBjtest)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.004 < x < 0.4" << '|' << setw(15) << fXBjtest << '|' << setw(15) << float(fXBjtest)/float(fBP)*100 << '|' << setw(15) << float(fXBjtest)/float(fWBjtest)*100 << '|' << endl;
 
   cout << "\n\n";
   cout << "             ********* Cut flow for Reconstructed hadrons after cuts ********* " << endl;
@@ -2710,16 +2710,16 @@ int main(int argc, char **argv)
     cout << endl;
   }
 
-  cout << '|' << setw(50) << "Cut" << '|' << setw(10) << "Events" << '|' << setw(10) << "Abs." << '|' << setw(10) << "Rel." << endl;
-  cout << '|' << setw(50) << "Hadrons" << '|' << setw(10) << fHadrons << '|' << setw(10) << float(fHadrons)/float(fHadrons)*100 << '|' << setw(10) << float(fHadrons)/float(fHadrons)*100 << endl;
-  cout << '|' << setw(50) << "XX0 < " << HXX0LIMIT << '|' << setw(10) << fXX0test << '|' << setw(10) << float(fXX0test)/float(fBP)*100 << '|' << setw(10) << float(fXX0test)/float(fHadrons)*100 << endl;
-  cout << '|' << setw(50) << "Chi2/ndf > 10" << '|' << setw(10) << fChi2Hadron << '|' << setw(10) << float(fChi2Hadron)/float(fBP)*100 << '|' << setw(10) << float(fChi2Hadron)/float(fXX0test)*100 << endl;
-  cout << '|' << setw(50) << "Zfirst < 350 cm" << '|' << setw(10) << fHZfirst << '|' << setw(10) << float(fHZfirst)/float(fBP)*100 << '|' << setw(10) << float(fHZfirst)/float(fChi2Hadron)*100 << endl;
-  cout << '|' << setw(50) << "Zlast > 350 cm" << '|' << setw(10) << fHZlast << '|' << setw(10) << float(fHZlast)/float(fBP)*100 << '|' << setw(10) << float(fHZlast)/float(fHZfirst)*100 << endl;
-  cout << '|' << setw(50) << "0.01 < theta_RICH < 0.12" << '|' << setw(10) << fTRICH << '|' << setw(10) << float(fTRICH)/float(fBP)*100 << '|' << setw(10) << float(fTRICH)/float(fHZlast)*100 << endl;
-  cout << '|' << setw(50) << "Rich Pipe" << '|' << setw(10) << fPosRICH << '|' << setw(10) << float(fPosRICH)/float(fBP)*100 << '|' << setw(10) << float(fPosRICH)/float(fTRICH)*100 << endl;
-  cout << '|' << setw(50) << MOMENTUM << " < p_h < 40" << '|' << setw(10) << fMom << '|' << setw(10) << float(fMom)/float(fBP)*100 << '|' << setw(10) << float(fMom)/float(fPosRICH)*100 << endl;
-  cout << '|' << setw(50) << "0.2 < z < 0.85" << '|' << setw(10) << fZtest << '|' << setw(10) << float(fZtest)/float(fBP)*100 << '|' << setw(10) << float(fZtest)/float(fMom)*100 << endl;
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << endl;
+  cout << '|' << setw(30) << "Hadrons" << '|' << setw(15) << fHadrons << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << endl;
+  cout << '|' << setw(30) << "XX0 < " << HXX0LIMIT << '|' << setw(15) << fXX0test << '|' << setw(15) << float(fXX0test)/float(fBP)*100 << '|' << setw(15) << float(fXX0test)/float(fHadrons)*100 << endl;
+  cout << '|' << setw(30) << "Chi2/ndf > 10" << '|' << setw(15) << fChi2Hadron << '|' << setw(15) << float(fChi2Hadron)/float(fBP)*100 << '|' << setw(15) << float(fChi2Hadron)/float(fXX0test)*100 << endl;
+  cout << '|' << setw(30) << "Zfirst < 350 cm" << '|' << setw(15) << fHZfirst << '|' << setw(15) << float(fHZfirst)/float(fBP)*100 << '|' << setw(15) << float(fHZfirst)/float(fChi2Hadron)*100 << endl;
+  cout << '|' << setw(30) << "Zlast > 350 cm" << '|' << setw(15) << fHZlast << '|' << setw(15) << float(fHZlast)/float(fBP)*100 << '|' << setw(15) << float(fHZlast)/float(fHZfirst)*100 << endl;
+  cout << '|' << setw(30) << "0.01 < theta_RICH < 0.12" << '|' << setw(15) << fTRICH << '|' << setw(15) << float(fTRICH)/float(fBP)*100 << '|' << setw(15) << float(fTRICH)/float(fHZlast)*100 << endl;
+  cout << '|' << setw(30) << "Rich Pipe" << '|' << setw(15) << fPosRICH << '|' << setw(15) << float(fPosRICH)/float(fBP)*100 << '|' << setw(15) << float(fPosRICH)/float(fTRICH)*100 << endl;
+  cout << '|' << setw(30) << "12 < p_h < 40" << '|' << setw(15) << fMom << '|' << setw(15) << float(fMom)/float(fBP)*100 << '|' << setw(15) << float(fMom)/float(fPosRICH)*100 << endl;
+  cout << '|' << setw(30) << "0.2 < z < 0.85" << '|' << setw(15) << fZtest << '|' << setw(15) << float(fZtest)/float(fBP)*100 << '|' << setw(15) << float(fZtest)/float(fMom)*100 << endl;
 
 
   cout <<
