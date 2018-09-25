@@ -21,7 +21,7 @@ using namespace std;
 #define MOMENTUM 12
 #define XMIN 0.004
 #define XMAX 0.4
-#define YMIN 0.1
+#define YMIN 0.05
 #define YMAX 0.7
 #define HXX0LIMIT 15
 
@@ -605,7 +605,7 @@ void create_kin_plots()
   fKinematics[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
-  fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.9);
+  fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0, 0.9);
   fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 500, 0, 60, 500, 20, 60);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
@@ -1648,11 +1648,11 @@ int main(int argc, char **argv)
           // z calculation
           if(nu)
           {
-            // if(fId == 2 || fId == 3)
-            //   zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu;
-            // else if(fId == 4 || fId == 5)
-            //   zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
-            // else
+            if(fId == 2 || fId == 3)
+              zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_K,2))/nu;
+            else if(fId == 4 || fId == 5)
+              zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_p,2))/nu;
+            else
               zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
           }
           else
@@ -2712,7 +2712,7 @@ int main(int argc, char **argv)
 
   cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << endl;
   cout << '|' << setw(30) << "Hadrons" << '|' << setw(15) << fHadrons << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << endl;
-  cout << '|' << setw(30) << "XX0 < " << HXX0LIMIT << '|' << setw(15) << fXX0test << '|' << setw(15) << float(fXX0test)/float(fBP)*100 << '|' << setw(15) << float(fXX0test)/float(fHadrons)*100 << endl;
+  cout << '|' << setw(30) << "XX0 < 15" << '|' << setw(15) << fXX0test << '|' << setw(15) << float(fXX0test)/float(fBP)*100 << '|' << setw(15) << float(fXX0test)/float(fHadrons)*100 << endl;
   cout << '|' << setw(30) << "Chi2/ndf > 10" << '|' << setw(15) << fChi2Hadron << '|' << setw(15) << float(fChi2Hadron)/float(fBP)*100 << '|' << setw(15) << float(fChi2Hadron)/float(fXX0test)*100 << endl;
   cout << '|' << setw(30) << "Zfirst < 350 cm" << '|' << setw(15) << fHZfirst << '|' << setw(15) << float(fHZfirst)/float(fBP)*100 << '|' << setw(15) << float(fHZfirst)/float(fChi2Hadron)*100 << endl;
   cout << '|' << setw(30) << "Zlast > 350 cm" << '|' << setw(15) << fHZlast << '|' << setw(15) << float(fHZlast)/float(fBP)*100 << '|' << setw(15) << float(fHZlast)/float(fHZfirst)*100 << endl;
