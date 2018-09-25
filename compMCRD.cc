@@ -182,6 +182,7 @@ void readKinCuts(string pFile)
 
 void create_kin_plots()
 {
+  c1 = new TCanvas("Kin_Q2 Trigger","Kin_Q2} Trigger",3200,1600);
   for(int i=0; i<5; i++)
   {
     fKinematicsRD[i][0] = new TH1F(Form("Q2 %s",trigname[i].c_str()), Form("Q2 %s",trigname[i].c_str()), 50, -1, 2);
