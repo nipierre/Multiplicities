@@ -1437,20 +1437,6 @@ void RDextraction(string pFilelist)
     // Loopy loop over the events
     Int_t N = (Int_t) tree->GetEntries();
 
-    vector<Pvsz> Pvszlocal;
-    vector<Pvsz> Pvszloose;
-    vector<Pvsz> Pvszsevere;
-    vector<Pvsz> Pvsz_errlocal;
-    vector<Double_t> XBjlocal;
-    vector<Double_t> YBjlocal;
-    vector<Double_t> Q2local;
-    vector<Double_t> XBjloose;
-    vector<Double_t> YBjloose;
-    vector<Double_t> Q2loose;
-    vector<Double_t> XBjsevere;
-    vector<Double_t> YBjsevere;
-    vector<Double_t> Q2severe;
-
     for (Int_t ip = 0; ip < N; ip++)
     {
 
@@ -1815,12 +1801,6 @@ void RDextraction(string pFilelist)
       // -------------------------------------------------------------------------
       // --------- Hadrons Selection ---------------------------------------------
       // -------------------------------------------------------------------------
-
-      Pvsz pzcontainer;
-      Pvsz pzcontainer_loose;
-      Pvsz pzcontainer_severe;
-      Pvsz pzcontainer_err;
-      hadiden hadcontainer;
 
       for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
       {
