@@ -458,38 +458,38 @@ void save_kin_plots()
 
   c34.cd(1);
   fThetaRDp[0]->Draw("COLZ");
-  fThetaRDp[0]->GetXaxis()->SetTitle("#theta_y");
+  fThetaRDp[0]->GetXaxis()->SetTitle("theta_y");
   fThetaRDp[0]->GetYaxis()->SetTitle("p");
   c34.Update();
 
   c34.cd(2);
   fThetaMCp[0]->Draw("COLZ");
-  fThetaMCp[0]->GetXaxis()->SetTitle("#theta_y");
+  fThetaMCp[0]->GetXaxis()->SetTitle("theta_y");
   fThetaMCp[0]->GetYaxis()->SetTitle("p");
   c34.Update();
 
   c35.cd(1);
   fThetaRDp[1]->Draw("COLZ");
-  fThetaRDp[1]->GetXaxis()->SetTitle("#theta_x");
+  fThetaRDp[1]->GetXaxis()->SetTitle("theta_x");
   fThetaRDp[1]->GetYaxis()->SetTitle("p");
   c35.Update();
 
   c35.cd(2);
   fThetaMCp[1]->Draw("COLZ");
-  fThetaMCp[1]->GetXaxis()->SetTitle("#theta_x");
+  fThetaMCp[1]->GetXaxis()->SetTitle("theta_x");
   fThetaMCp[1]->GetYaxis()->SetTitle("p");
   c35.Update();
 
   c36.cd(1);
   fThetaRDp[2]->Draw("COLZ");
-  fThetaRDp[2]->GetXaxis()->SetTitle("#theta_y");
-  fThetaRDp[2]->GetYaxis()->SetTitle("#theta_x");
+  fThetaRDp[2]->GetXaxis()->SetTitle("theta_y");
+  fThetaRDp[2]->GetYaxis()->SetTitle("theta_x");
   c36.Update();
 
   c36.cd(2);
   fThetaMCp[2]->Draw("COLZ");
-  fThetaMCp[2]->GetXaxis()->SetTitle("#theta_y");
-  fThetaMCp[2]->GetYaxis()->SetTitle("#theta_x");
+  fThetaMCp[2]->GetXaxis()->SetTitle("theta_y");
+  fThetaMCp[2]->GetYaxis()->SetTitle("theta_x");
   c36.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
