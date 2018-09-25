@@ -524,10 +524,6 @@ void save_kin_plots()
   c16.Print("kinMCRD.pdf","pdf");
   c17.Print("kinMCRD.pdf","pdf");
   c18.Print("kinMCRD.pdf)","pdf");
-  c29.Print("photoelec.pdf","pdf");
-  c30.Print("Q2.pdf","pdf");
-  c31.Print("z.pdf","pdf");
-  c32.Print("nu.pdf","pdf");
 }
 
 void MCextraction(string pFilelist)
