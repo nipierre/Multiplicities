@@ -2721,42 +2721,37 @@ int main(int argc, char **argv)
   cout << '|' << setw(30) << "12 < p_h < 40" << '|' << setw(15) << fMom << '|' << setw(15) << float(fMom)/float(fBP)*100 << '|' << setw(15) << float(fMom)/float(fPosRICH)*100 << endl;
   cout << '|' << setw(30) << "0.2 < z < 0.85" << '|' << setw(15) << fZtest << '|' << setw(15) << float(fZtest)/float(fBP)*100 << '|' << setw(15) << float(fZtest)/float(fMom)*100 << endl;
 
+  cout << "\n\n";
+  cout << "             ********* Hadron Content (h,pi,K,p) ********* " << endl;
+  cout << "             --------------------------------------------- " << endl;
 
-  cout <<
-  fBP << "Best Primary (entries in disevent.root)" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
-  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
-  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
-  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
-  fMuchi2 << " Mu chi2/ndf < 10 (" << float(fMuchi2)/float(fBP)*100 << "%)\n\n" <<
-  fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
-  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
-  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
-  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
-  fQ2test << " Q2>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
-  fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
-  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
-  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
-  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%)\n\n" <<
-  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%)\n\n" <<
-  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%)\n\n" <<
-  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%)\n\n" <<
-  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%)\n\n" <<
-  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%)\n\n" <<
-  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%)\n\n" <<
-  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%)\n\n" <<
-  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%)\n\n" <<
-  fHplus << " h+\n\n" <<
-  fHminus << " h-\n\n" <<
-  fPiplus << " pi+\n\n" <<
-  fPiminus << " pi-\n\n" <<
-  fKplus << " K+\n\n" <<
-  fKminus << " K-\n\n" <<
-  fPplus << " p+\n\n" <<
-  fPminus << " p-\n\n" <<
-  "true pions : + " << fPiplus_true << " - " << fPiminus_true << "\n\n" <<
-  "true kaons : + " << fKplus_true << " - " << fKminus_true << "\n\n" <<
-  "true protons : + " << fPplus_true << " - " << fPminus_true << "\n\n";
+  for(int j=0; j<2; j++)
+  {
+    for(int i=0; i<int(fPeriodBit.size()); i++)
+    {
+      if(!j)
+        cout << setw(6) << fPeriodName[i];
+      else
+        cout << setw(6) << fPeriodBit[i];
+    }
+    cout << endl;
+  }
+
+  cout << '|' << setw(15) << "Hadron"
+       << '|' << setw(15) << "h+" << '|' << << setw(15) << "h-"
+       << '|' << setw(15) << "pi+" << '|' << << setw(15) << "pi-"
+       << '|' << setw(15) << "K+" << '|' << << setw(15) << "K-"
+       << '|' << setw(15) << "p+" << '|' << << setw(15) << "p-" << endl;
+  cout << '|' << setw(15) << "ID"
+       << '|' << setw(15) << fHplus << '|' << << setw(15) << fHminus
+       << '|' << setw(15) << fPiplus << '|' << << setw(15) << fPiminus
+       << '|' << setw(15) << fKplus << '|' << << setw(15) << fKminus
+       << '|' << setw(15) << fPplus << '|' << << setw(15) << fPminus << endl;
+  cout << '|' << setw(15) << "True ID"
+       << '|' << setw(15) << fHplus << '|' << << setw(15) << fHminus
+       << '|' << setw(15) << fPiplus_true << '|' << << setw(15) << fPiminus_true
+       << '|' << setw(15) << fKplus_true << '|' << << setw(15) << fKminus_true
+       << '|' << setw(15) << fPplus_true << '|' << << setw(15) << fPminus_true << endl;
 
   ofstream shout(Form("rawmult/%d/shout.txt",year), std::ofstream::out | std::ofstream::trunc);
 
