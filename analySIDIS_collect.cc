@@ -161,7 +161,7 @@ void dummy_acceptance()
 
 void yavg()
 {
-  int pMean[4];
+  int pMean;
 
   for(int c=0; c<2; c++)
   {
@@ -169,21 +169,21 @@ void yavg()
     {
       for(int z=0; z<12; z++)
       {
-        pMean[0] = pMean[1] = pMean[2] = pMean[3] = 0;
+        pMean = 0;
         for(int l=0; l<4; l++)
         {
           for(int i=0; i<6; i++)
           {
             fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l];
-            if(fMultiplicities[x][i][z].tab[c][0][l]) pMean[l]++;
+            if(fMultiplicities[x][i][z].tab[c][0][l]) pMean++;
             fMultiplicities_yavg[x][z].tab[c][1][l]+=fMultiplicities[x][i][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]+=fMultiplicities[x][i][z].tab[c][2][l];
           }
-          if(pMean[l])
+          if(pMean)
           {
-            fMultiplicities_yavg[x][z].tab[c][0][l]/=pMean[l];
-            fMultiplicities_yavg[x][z].tab[c][1][l]/=pow(pMean[l],2);
-            fMultiplicities_yavg[x][z].tab[c][2][l]/=pow(pMean[l],2);
+            fMultiplicities_yavg[x][z].tab[c][0][l]/=pMean;
+            fMultiplicities_yavg[x][z].tab[c][1][l]/=pow(pMean,2);
+            fMultiplicities_yavg[x][z].tab[c][2][l]/=pow(pMean,2);
           }
         }
       }
