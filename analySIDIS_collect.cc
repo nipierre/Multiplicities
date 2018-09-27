@@ -161,7 +161,7 @@ void dummy_acceptance()
 
 void yavg()
 {
-  int pMean[3];
+  int pMean[4];
 
   for(int c=0; c<2; c++)
   {
