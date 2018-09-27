@@ -214,22 +214,22 @@ void yavg()
           fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
           fRich_sys_err_yavg[x][z].tab[c][1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
         }
-        if(pMeanPeriod[period][0])
+        if(pMean[0])
         {
           fBinning_yavg[x][z].tab[c][0][0]/=pMean[0];
           fBinning_yavg[x][z].tab[c][1][0]/=pow(pMean[0],2);
         }
-        if(pMeanPeriod[period][1])
+        if(pMean[1])
         {
           fBinning_yavg[x][z].tab[c][0][1]/=pMean[1];
           fBinning_yavg[x][z].tab[c][1][1]/=pow(pMean[1],2);
         }
-        if(pMeanPeriod[period][2])
+        if(pMean[2])
         {
           fBinning_yavg[x][z].tab[c][0][2]/=pMean[2];
           fBinning_yavg[x][z].tab[c][1][2]/=pow(pMean[2],2);
         }
-        if(pMeanPeriod[period][3])
+        if(pMean[3])
         {
           fBinning_yavg[x][z].tab[c][0][3]/=pMean[3];
           fBinning_yavg[x][z].tab[c][1][3]/=pow(pMean[3],2);
