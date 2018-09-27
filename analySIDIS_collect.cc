@@ -169,9 +169,9 @@ void yavg()
     {
       for(int z=0; z<12; z++)
       {
-        pMean = 0;
         for(int l=0; l<4; l++)
         {
+          pMean = 0;
           for(int i=0; i<6; i++)
           {
             fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l];
@@ -605,7 +605,7 @@ int main(int argc, char **argv)
                                                     *pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2)))
                                                     : 0);
 
-            if(fMultiplicities[i][j][k].tab[c][0][l]<0 || fMultiplicities[i][j][k].tab[c][0][l]*0.9<fMultiplicities[i][j][k].tab[c][1][l])
+            if(fMultiplicities[i][j][k].tab[c][0][l]<0 /*|| fMultiplicities[i][j][k].tab[c][0][l]*0.9<fMultiplicities[i][j][k].tab[c][1][l]*/)
             {
               fMultiplicities[i][j][k].tab[c][0][l] = 0 ;
               fMultiplicities[i][j][k].tab[c][1][l] = 0 ;
