@@ -161,6 +161,8 @@ void dummy_acceptance()
 
 void yavg()
 {
+  int pMean[3];
+
   for(int c=0; c<2; c++)
   {
     for(int x=0; x<9; x++)
@@ -172,7 +174,7 @@ void yavg()
         {
           for(int i=0; i<6; i++)
           {
-            fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l]fMultiplicities[x][i][z].tab[c][0][l];
+            fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l];
             if(fMultiplicities[x][i][z].tab[c][0][l]) pMean[l]++;
             fMultiplicities_yavg[x][z].tab[c][1][l]+=fMultiplicities[x][i][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]+=fMultiplicities[x][i][z].tab[c][2][l];
