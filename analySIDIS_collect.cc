@@ -712,13 +712,13 @@ int main(int argc, char **argv)
         P_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
         K_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
 
-        H_mult[c][i][j]->SetMarkerSize(3);
-        P_mult[c][i][j]->SetMarkerSize(3);
-        K_mult[c][i][j]->SetMarkerSize(3);
+        H_mult[c][i][j]->SetMarkerSize(2);
+        P_mult[c][i][j]->SetMarkerSize(2);
+        K_mult[c][i][j]->SetMarkerSize(2);
 
-        H_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
-        P_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
-        K_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
+        H_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        P_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        K_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
 
         H_mult[c][i][j]->SetTitle("");
         P_mult[c][i][j]->SetTitle("");
@@ -968,9 +968,9 @@ int main(int argc, char **argv)
         K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
       }
 
-      H_y[c][i]->SetMarkerSize(3);
-      P_y[c][i]->SetMarkerSize(3);
-      K_y[c][i]->SetMarkerSize(3);
+      H_y[c][i]->SetMarkerSize(2);
+      P_y[c][i]->SetMarkerSize(2);
+      K_y[c][i]->SetMarkerSize(2);
 
       H_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
       P_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
