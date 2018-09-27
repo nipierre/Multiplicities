@@ -21,8 +21,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define DUMMY_ACC 1
-#define RCUTSTUDY_ON 0
+#define DUMMY_ACC 0
 
 using namespace std;
 
@@ -903,12 +902,12 @@ int main(int argc, char **argv)
       {
         for(int l=0; l<4; l++)
         {
-          if(fMultiplicities_yavg[i][k].tab[c][0][l]<0)
-          {
-            fMultiplicities_yavg[i][k].tab[c][0][l] = 0 ;
-            fMultiplicities_yavg[i][k].tab[c][1][l] = 0 ;
-            fMultiplicities_yavg[i][k].tab[c][2][l] = 0 ;
-          }
+          // if(fMultiplicities_yavg[i][k].tab[c][0][l]<0)
+          // {
+          //   fMultiplicities_yavg[i][k].tab[c][0][l] = 0 ;
+          //   fMultiplicities_yavg[i][k].tab[c][1][l] = 0 ;
+          //   fMultiplicities_yavg[i][k].tab[c][2][l] = 0 ;
+          // }
         }
 
         // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0] << " " << fMultiplicities_yavg[i][k].tab[c][2][0] << endl;
