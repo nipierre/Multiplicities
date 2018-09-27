@@ -182,53 +182,54 @@ void readKinCuts(string pFile)
 
 void create_kin_plots()
 {
+  c1 = new TCanvas("Kin_Q2 Trigger","Kin_Q2} Trigger",3200,1600);
   for(int i=0; i<5; i++)
   {
-    fKinematicsRD[i][0] = new TH1F(Form("Q^{2} %s",trigname[i].c_str()), Form("Q^{2} %s",trigname[i].c_str()), 50, -1, 2);
+    fKinematicsRD[i][0] = new TH1F(Form("Q2 %s",trigname[i].c_str()), Form("Q2 %s",trigname[i].c_str()), 50, -1, 2);
     fKinematicsRD[i][1] = new TH1F(Form("x_{Bj} %s",trigname[i].c_str()), Form("x_{Bj} %s",trigname[i].c_str()), 50, -3, 0);
     fKinematicsRD[i][2] = new TH1F(Form("y %s",trigname[i].c_str()), Form("y %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsRD[i][3] = new TH1F(Form("z %s",trigname[i].c_str()), Form("z %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsRD[i][4] = new TH1F(Form("W %s",trigname[i].c_str()), Form("W %s",trigname[i].c_str()), 50, 2, 18);
-    fKinematicsRD[i][5] = new TH1F(Form("#nu %s",trigname[i].c_str()), Form("#nu %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD[i][6] = new TH1F(Form("E_{#mu} %s",trigname[i].c_str()), Form("E_{#mu} %s",trigname[i].c_str()), 50, 140, 180);
-    fKinematicsRD[i][7] = new TH1F(Form("E_{#mu'} %s",trigname[i].c_str()), Form("E_{#mu'} %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD[i][8] = new TH1F(Form("#theta %s",trigname[i].c_str()), Form("#theta %s",trigname[i].c_str()), 50, 0, 0.05);
-    fKinematicsRD[i][9] = new TH1F(Form("#phi %s",trigname[i].c_str()), Form("#phi %s",trigname[i].c_str()), 50, -1.7, 1.7);
+    fKinematicsRD[i][5] = new TH1F(Form("nu %s",trigname[i].c_str()), Form("nu %s",trigname[i].c_str()), 50, 0, 160);
+    fKinematicsRD[i][6] = new TH1F(Form("E_{mu} %s",trigname[i].c_str()), Form("E_{mu} %s",trigname[i].c_str()), 50, 140, 180);
+    fKinematicsRD[i][7] = new TH1F(Form("E_{mu'} %s",trigname[i].c_str()), Form("E_{mu'} %s",trigname[i].c_str()), 50, 0, 160);
+    fKinematicsRD[i][8] = new TH1F(Form("theta %s",trigname[i].c_str()), Form("theta %s",trigname[i].c_str()), 50, 0, 0.05);
+    fKinematicsRD[i][9] = new TH1F(Form("phi %s",trigname[i].c_str()), Form("phi %s",trigname[i].c_str()), 50, -1.7, 1.7);
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 50, -320, -70);
     fKinematicsRD[i][12] = new TH1F(Form("p_{hadron+e} %s",trigname[i].c_str()), Form("p_{hadron+e} %s",trigname[i].c_str()), 50, 0, 40);
-    fKinematicsRD[i][13] = new TH1F(Form("#theta_{hadron+e} %s",trigname[i].c_str()), Form("#theta_{hadron+e} %s",trigname[i].c_str()), 50, 0, 0.25);
-    fKinematicsRD[i][14] = new TH1F(Form("#phi_{hadron+e,lab} %s",trigname[i].c_str()), Form("#phi_{hadron+e,lab} %s",trigname[i].c_str()), 50, -3.5, 3.5);
-    fKinematicsRD[i][15] = new TH1F(Form("#phi_{hadron+e,prod.pl} %s",trigname[i].c_str()), Form("#phi_{hadron+e,prod.pl} %s",trigname[i].c_str()), 50, 0, 3.5);
+    fKinematicsRD[i][13] = new TH1F(Form("theta_{hadron+e} %s",trigname[i].c_str()), Form("theta_{hadron+e} %s",trigname[i].c_str()), 50, 0, 0.25);
+    fKinematicsRD[i][14] = new TH1F(Form("phi_{hadron+e,lab} %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsRD[i][15] = new TH1F(Form("phi_{hadron+e,prod.pl} %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} %s",trigname[i].c_str()), 50, 0, 3.5);
     fKinematicsRD[i][16] = new TH1F(Form("p_{T} %s",trigname[i].c_str()), Form("p_{T} %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsMC[i][0] = new TH1F(Form("Q^{2} Ratio %s",trigname[i].c_str()), Form("Q^{2} Ratio %s",trigname[i].c_str()), 50, -1, 2);
+    fKinematicsMC[i][0] = new TH1F(Form("Q2 Ratio %s",trigname[i].c_str()), Form("Q2 Ratio %s",trigname[i].c_str()), 50, -1, 2);
     fKinematicsMC[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 50, -3, 0);
     fKinematicsMC[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsMC[i][3] = new TH1F(Form("z Ratio %s",trigname[i].c_str()), Form("z Ratio %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsMC[i][4] = new TH1F(Form("W Ratio %s",trigname[i].c_str()), Form("W Ratio %s",trigname[i].c_str()), 50, 2, 18);
-    fKinematicsMC[i][5] = new TH1F(Form("#nu Ratio %s",trigname[i].c_str()), Form("#nu Ratio %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsMC[i][6] = new TH1F(Form("E_{#mu} Ratio %s",trigname[i].c_str()), Form("E_{#mu} Ratio %s",trigname[i].c_str()), 50, 140, 180);
-    fKinematicsMC[i][7] = new TH1F(Form("E_{#mu'} Ratio %s",trigname[i].c_str()), Form("E_{#mu'} Ratio %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsMC[i][8] = new TH1F(Form("#theta Ratio %s",trigname[i].c_str()), Form("#theta Ratio %s",trigname[i].c_str()), 50, 0, 0.05);
-    fKinematicsMC[i][9] = new TH1F(Form("#phi Ratio %s",trigname[i].c_str()), Form("#phi Ratio %s",trigname[i].c_str()), 50, -1.7, 1.7);
+    fKinematicsMC[i][5] = new TH1F(Form("nu Ratio %s",trigname[i].c_str()), Form("nu Ratio %s",trigname[i].c_str()), 50, 0, 160);
+    fKinematicsMC[i][6] = new TH1F(Form("E_{mu} Ratio %s",trigname[i].c_str()), Form("E_{mu} Ratio %s",trigname[i].c_str()), 50, 140, 180);
+    fKinematicsMC[i][7] = new TH1F(Form("E_{mu'} Ratio %s",trigname[i].c_str()), Form("E_{mu'} Ratio %s",trigname[i].c_str()), 50, 0, 160);
+    fKinematicsMC[i][8] = new TH1F(Form("theta Ratio %s",trigname[i].c_str()), Form("theta Ratio %s",trigname[i].c_str()), 50, 0, 0.05);
+    fKinematicsMC[i][9] = new TH1F(Form("phi Ratio %s",trigname[i].c_str()), Form("phi Ratio %s",trigname[i].c_str()), 50, -1.7, 1.7);
     fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -320, -70);
     fKinematicsMC[i][12] = new TH1F(Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 40);
-    fKinematicsMC[i][13] = new TH1F(Form("#theta_{hadron+e} Ratio %s",trigname[i].c_str()), Form("#theta_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 0.25);
-    fKinematicsMC[i][14] = new TH1F(Form("#phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
-    fKinematicsMC[i][15] = new TH1F(Form("#phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), Form("#phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
+    fKinematicsMC[i][13] = new TH1F(Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 0.25);
+    fKinematicsMC[i][14] = new TH1F(Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsMC[i][15] = new TH1F(Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
     fKinematicsMC[i][16] = new TH1F(Form("p_{T} Ratio %s",trigname[i].c_str()), Form("p_{T} Ratio %s",trigname[i].c_str()), 50, 0, 3);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
     BinLogX(fKinematicsMC[i][1]);
   }
-  fKinematicsRD[0][11] = new TH1F("#phi_{e,prod.pl}","#phi_{e,prod.pl}", 50, 0, 3.5);
-  fKinematicsMC[0][11] = new TH1F("#phi_{e,prod.pl} Ratio","#phi_{e,prod.pl} Ratio", 50, 0, 3.5);
-  fThetaRDp[0] = new TH2F("#theta_y RD", "#theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaRDp[1] = new TH2F("#theta_x RD", "#theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaRDp[2] = new TH2F("#theta_xy RD", "#theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
-  fThetaMCp[0] = new TH2F("#theta_y MC", "#theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaMCp[1] = new TH2F("#theta_x MC", "#theta_x MC", 100, -0.005, 0.005, 100, 140, 180);
-  fThetaMCp[2] = new TH2F("#theta_xy MC", "#theta_xy MC", 100, -0.005, 0.005, 100, -0.005, 0.005);
+  fKinematicsRD[0][11] = new TH1F("phi_{e,prod.pl}","phi_{e,prod.pl}", 50, 0, 3.5);
+  fKinematicsMC[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
+  fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
+  fThetaMCp[0] = new TH2F("theta_y MC", "theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaMCp[1] = new TH2F("theta_x MC", "theta_x MC", 100, -0.005, 0.005, 100, 140, 180);
+  fThetaMCp[2] = new TH2F("theta_xy MC", "theta_xy MC", 100, -0.005, 0.005, 100, -0.005, 0.005);
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -295,7 +296,7 @@ void plotting_device(int i, int j, int norm)
 
 void save_kin_plots()
 {
-  c1.Divide(2,2);
+  c1->Divide(2,2);
   c2.Divide(2,2);
   c3.Divide(2,2);
   c4.Divide(2,2);
@@ -334,806 +335,99 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
-    cout << endl;
-    // i=int(i/2);
-    // if(i%2)
-    // {
-    //   c1.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][0]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][0]->GetBinError(tt) && fKinematicsMC[i][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][0]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][0]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][0]->Scale(1/fKinematicsRD[2][0]->GetEntries());
-    //   fKinematicsMC[i][0]->Scale(1/fKinematicsMC[2][0]->GetEntries());
-    //   fKinematicsRatio[i][0] = (TH1F*)fKinematicsRD[i][0]->Clone();
-    //   fKinematicsRatio[i][0]->SetStats(0);
-    //   fKinematicsRatio[i][0]->Divide(fKinematicsMC[i][0]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][0]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][0]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][0]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][0]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][0]->SetMaximum(2.);
-    //   fKinematicsRatio[i][0]->SetMinimum(0.);
-    //   fKinematicsRatio[i][0]->Draw("PE2");
-    //   fKinematicsRatio[i][0]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][0]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][0]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[0][tt]->Draw();
-    //   }
-    //   gPad->SetLogx();
-    //   c1.Update();
-    //   cout << ".";
-    //   c2.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][1]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][1]->GetBinError(tt) && fKinematicsMC[i][1]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][1]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][1]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][1]->Scale(1/fKinematicsRD[2][1]->GetEntries());
-    //   fKinematicsMC[i][1]->Scale(1/fKinematicsMC[2][1]->GetEntries());
-    //   fKinematicsRatio[i][1] = (TH1F*)fKinematicsRD[i][1]->Clone();
-    //   fKinematicsRatio[i][1]->SetStats(0);
-    //   fKinematicsRatio[i][1]->Divide(fKinematicsMC[i][1]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][1]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][1]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][1]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][1]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][1]->SetMaximum(2.);
-    //   fKinematicsRatio[i][1]->SetMinimum(0.);
-    //   fKinematicsRatio[i][1]->Draw("PE2");
-    //   fKinematicsRatio[i][1]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][1]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][1]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[1][tt]->Draw();
-    //   }
-    //   gPad->SetLogx();
-    //   c2.Update();
-    //   cout << ".";
-    //   c3.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][2]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][2]->GetBinError(tt) && fKinematicsMC[i][2]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][2]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][2]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][2]->Scale(1/fKinematicsRD[2][2]->GetEntries());
-    //   fKinematicsMC[i][2]->Scale(1/fKinematicsMC[2][2]->GetEntries());
-    //   fKinematicsRatio[i][2] = (TH1F*)fKinematicsRD[i][2]->Clone();
-    //   fKinematicsRatio[i][2]->SetStats(0);
-    //   fKinematicsRatio[i][2]->Divide(fKinematicsMC[i][2]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][2]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][2]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][2]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][2]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][2]->SetMaximum(2.);
-    //   fKinematicsRatio[i][2]->SetMinimum(0.);
-    //   fKinematicsRatio[i][2]->Draw("PE2");
-    //   fKinematicsRatio[i][2]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][2]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][2]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[2][tt]->Draw();
-    //   }
-    //   c3.Update();
-    //   cout << ".";
-    //   c4.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][3]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][3]->GetBinError(tt) && fKinematicsMC[i][3]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][3]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][3]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][3]->Scale(1/fKinematicsRD[2][3]->GetEntries());
-    //   fKinematicsMC[i][3]->Scale(1/fKinematicsMC[2][3]->GetEntries());
-    //   fKinematicsRatio[i][3] = (TH1F*)fKinematicsRD[i][3]->Clone();
-    //   fKinematicsRatio[i][3]->SetStats(0);
-    //   fKinematicsRatio[i][3]->Divide(fKinematicsMC[i][3]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][3]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][3]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][3]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][3]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][3]->SetMaximum(2.);
-    //   fKinematicsRatio[i][3]->SetMinimum(0.);
-    //   fKinematicsRatio[i][3]->Draw("PE2");
-    //   fKinematicsRatio[i][3]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][3]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][3]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[3][tt]->Draw();
-    //   }
-    //   c4.Update();
-    //   cout << ".";
-    //   c5.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][4]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][4]->GetBinError(tt) && fKinematicsMC[i][4]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][4]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][4]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][4]->Scale(1/fKinematicsRD[2][4]->GetEntries());
-    //   fKinematicsMC[i][4]->Scale(1/fKinematicsMC[2][4]->GetEntries());
-    //   fKinematicsRatio[i][4] = (TH1F*)fKinematicsRD[i][4]->Clone();
-    //   fKinematicsRatio[i][4]->SetStats(0);
-    //   fKinematicsRatio[i][4]->Divide(fKinematicsMC[i][4]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][4]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][4]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][4]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][4]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][4]->SetMaximum(2.);
-    //   fKinematicsRatio[i][4]->SetMinimum(0.);
-    //   fKinematicsRatio[i][4]->Draw("PE2");
-    //   fKinematicsRatio[i][4]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][4]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][4]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[4][tt]->Draw();
-    //   }
-    //   c5.Update();
-    //   cout << ".";
-    //   c6.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][5]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][5]->GetBinError(tt) && fKinematicsMC[i][5]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][5]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][5]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][5]->Scale(1/fKinematicsRD[2][5]->GetEntries());
-    //   fKinematicsMC[i][5]->Scale(1/fKinematicsMC[2][5]->GetEntries());
-    //   fKinematicsRatio[i][5] = (TH1F*)fKinematicsRD[i][5]->Clone();
-    //   fKinematicsRatio[i][5]->SetStats(0);
-    //   fKinematicsRatio[i][5]->Divide(fKinematicsMC[i][5]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][5]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][5]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][5]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][5]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][5]->SetMaximum(2.);
-    //   fKinematicsRatio[i][5]->SetMinimum(0.);
-    //   fKinematicsRatio[i][5]->Draw("PE2");
-    //   fKinematicsRatio[i][5]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][5]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][5]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[5][tt]->Draw();
-    //   }
-    //   c6.Update();
-    //   cout << ".";
-    //   c14.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][6]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][6]->GetBinError(tt) && fKinematicsMC[i][6]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][6]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][6]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][6]->Scale(1/fKinematicsRD[2][6]->GetEntries());
-    //   fKinematicsMC[i][6]->Scale(1/fKinematicsMC[2][6]->GetEntries());
-    //   fKinematicsRatio[i][6] = (TH1F*)fKinematicsRD[i][6]->Clone();
-    //   fKinematicsRatio[i][6]->SetStats(0);
-    //   fKinematicsRatio[i][6]->Divide(fKinematicsMC[i][6]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][6]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][6]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][6]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][6]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][6]->SetMaximum(2.);
-    //   fKinematicsRatio[i][6]->SetMinimum(0.);
-    //   fKinematicsRatio[i][6]->Draw("PE2");
-    //   fKinematicsRatio[i][6]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][6]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][6]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[6][tt]->Draw();
-    //   }
-    //   c14.Update();
-    //   cout << ".";
-    //   c15.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][7]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][7]->GetBinError(tt) && fKinematicsMC[i][7]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][7]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][7]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][7]->Scale(1/fKinematicsRD[2][7]->GetEntries());
-    //   fKinematicsMC[i][7]->Scale(1/fKinematicsMC[2][7]->GetEntries());
-    //   fKinematicsRatio[i][7] = (TH1F*)fKinematicsRD[i][7]->Clone();
-    //   fKinematicsRatio[i][7]->SetStats(0);
-    //   fKinematicsRatio[i][7]->Divide(fKinematicsMC[i][7]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][7]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][7]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][7]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][7]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][7]->SetMaximum(2.);
-    //   fKinematicsRatio[i][7]->SetMinimum(0.);
-    //   fKinematicsRatio[i][7]->Draw("PE2");
-    //   fKinematicsRatio[i][7]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][7]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][7]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[7][tt]->Draw();
-    //   }
-    //   c15.Update();
-    //   cout << ".";
-    //   c16.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][8]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][8]->GetBinError(tt) && fKinematicsMC[i][8]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][8]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][8]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][8]->Scale(1/fKinematicsRD[2][8]->GetEntries());
-    //   fKinematicsMC[i][8]->Scale(1/fKinematicsMC[2][8]->GetEntries());
-    //   fKinematicsRatio[i][8] = (TH1F*)fKinematicsRD[i][8]->Clone();
-    //   fKinematicsRatio[i][8]->SetStats(0);
-    //   fKinematicsRatio[i][8]->Divide(fKinematicsMC[i][8]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][8]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][8]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][8]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][8]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][8]->SetMaximum(2.);
-    //   fKinematicsRatio[i][8]->SetMinimum(0.);
-    //   fKinematicsRatio[i][8]->Draw("PE2");
-    //   fKinematicsRatio[i][8]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][8]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][8]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[8][tt]->Draw();
-    //   }
-    //   c16.Update();
-    //   cout << ".";
-    //   c17.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][9]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][9]->GetBinError(tt) && fKinematicsMC[i][9]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][9]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][9]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][9]->Scale(1/fKinematicsRD[2][9]->GetEntries());
-    //   fKinematicsMC[i][9]->Scale(1/fKinematicsMC[2][9]->GetEntries());
-    //   fKinematicsRatio[i][9] = (TH1F*)fKinematicsRD[i][9]->Clone();
-    //   fKinematicsRatio[i][9]->SetStats(0);
-    //   fKinematicsRatio[i][9]->Divide(fKinematicsMC[i][9]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][9]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][9]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][9]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][9]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][9]->SetMaximum(2.);
-    //   fKinematicsRatio[i][9]->SetMinimum(0.);
-    //   fKinematicsRatio[i][9]->Draw("PE2");
-    //   fKinematicsRatio[i][9]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][9]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][9]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[9][tt]->Draw();
-    //   }
-    //   c17.Update();
-    //   cout << ".";
-    //   c18.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][10]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][10]->GetBinError(tt) && fKinematicsMC[i][10]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][10]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][10]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][10]->Scale(1/fKinematicsRD[2][10]->GetEntries());
-    //   fKinematicsMC[i][10]->Scale(1/fKinematicsMC[2][10]->GetEntries());
-    //   fKinematicsRatio[i][10] = (TH1F*)fKinematicsRD[i][10]->Clone();
-    //   fKinematicsRatio[i][10]->SetStats(0);
-    //   fKinematicsRatio[i][10]->Divide(fKinematicsMC[i][10]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][10]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][10]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][10]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][10]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][10]->SetMaximum(2.);
-    //   fKinematicsRatio[i][10]->SetMinimum(0.);
-    //   fKinematicsRatio[i][10]->Draw("PE2");
-    //   fKinematicsRatio[i][10]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][10]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][10]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[10][tt]->Draw();
-    //   }
-    //   c18.Update();
-    //   cout << ".";
-    //   c19.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][12]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][12]->GetBinError(tt) && fKinematicsMC[i][12]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][12]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][12]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][12]->Scale(1/fKinematicsRD[2][12]->GetEntries());
-    //   fKinematicsMC[i][12]->Scale(1/fKinematicsMC[2][12]->GetEntries());
-    //   fKinematicsRatio[i][12] = (TH1F*)fKinematicsRD[i][12]->Clone();
-    //   fKinematicsRatio[i][12]->SetStats(0);
-    //   fKinematicsRatio[i][12]->Divide(fKinematicsMC[i][12]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][12]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][12]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][12]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][12]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][12]->SetMaximum(2.);
-    //   fKinematicsRatio[i][12]->SetMinimum(0.);
-    //   fKinematicsRatio[i][12]->Draw("PE2");
-    //   fKinematicsRatio[i][12]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][12]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][12]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[12][tt]->Draw();
-    //   }
-    //   c19.Update();
-    //   cout << ".";
-    //   c20.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][13]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][13]->GetBinError(tt) && fKinematicsMC[i][13]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][13]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][13]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][13]->Scale(1/fKinematicsRD[2][13]->GetEntries());
-    //   fKinematicsMC[i][13]->Scale(1/fKinematicsMC[2][13]->GetEntries());
-    //   fKinematicsRatio[i][13] = (TH1F*)fKinematicsRD[i][13]->Clone();
-    //   fKinematicsRatio[i][13]->SetStats(0);
-    //   fKinematicsRatio[i][13]->Divide(fKinematicsMC[i][13]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][13]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][13]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][13]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][13]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][13]->SetMaximum(2.);
-    //   fKinematicsRatio[i][13]->SetMinimum(0.);
-    //   fKinematicsRatio[i][13]->Draw("PE2");
-    //   fKinematicsRatio[i][13]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][13]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][13]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[13][tt]->Draw();
-    //   }
-    //   c20.Update();
-    //   cout << ".";
-    //   c21.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][14]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][14]->GetBinError(tt) && fKinematicsMC[i][14]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][14]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][14]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][14]->Scale(1/fKinematicsRD[2][14]->GetEntries());
-    //   fKinematicsMC[i][14]->Scale(1/fKinematicsMC[2][14]->GetEntries());
-    //   fKinematicsRatio[i][14] = (TH1F*)fKinematicsRD[i][14]->Clone();
-    //   fKinematicsRatio[i][14]->SetStats(0);
-    //   fKinematicsRatio[i][14]->Divide(fKinematicsMC[i][14]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][14]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][14]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][14]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][14]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][14]->SetMaximum(2.);
-    //   fKinematicsRatio[i][14]->SetMinimum(0.);
-    //   fKinematicsRatio[i][14]->Draw("PE2");
-    //   fKinematicsRatio[i][14]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][14]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][14]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[14][tt]->Draw();
-    //   }
-    //   c21.Update();
-    //   cout << ".";
-    //   c25.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][15]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][15]->GetBinError(tt) && fKinematicsMC[i][15]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][15]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][15]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][15]->Scale(1/fKinematicsRD[2][15]->GetEntries());
-    //   fKinematicsMC[i][15]->Scale(1/fKinematicsMC[2][15]->GetEntries());
-    //   fKinematicsRatio[i][15] = (TH1F*)fKinematicsRD[i][15]->Clone();
-    //   fKinematicsRatio[i][15]->SetStats(0);
-    //   fKinematicsRatio[i][15]->Divide(fKinematicsMC[i][15]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][15]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][15]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][15]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][15]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][15]->SetMaximum(2.);
-    //   fKinematicsRatio[i][15]->SetMinimum(0.);
-    //   fKinematicsRatio[i][15]->Draw("PE2");
-    //   fKinematicsRatio[i][15]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][15]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][15]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[15][tt]->Draw();
-    //   }
-    //   c25.Update();
-    //   cout << ".";
-    //   c27.cd(i+3+int(i/2)*2);
-    //   for(int tt=0; tt<fKinematicsRD[i][16]->GetNbinsX(); tt++)
-    //   {
-    //     fError.push_back((fKinematicsRD[i][16]->GetBinError(tt) && fKinematicsMC[i][16]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[i][16]->GetBinError(tt),2)+pow(1/fKinematicsMC[i][16]->GetBinError(tt),2)):0));
-    //   }
-    //   fKinematicsRD[i][16]->Scale(1/fKinematicsRD[2][16]->GetEntries());
-    //   fKinematicsMC[i][16]->Scale(1/fKinematicsMC[2][16]->GetEntries());
-    //   fKinematicsRatio[i][16] = (TH1F*)fKinematicsRD[i][16]->Clone();
-    //   fKinematicsRatio[i][16]->SetStats(0);
-    //   fKinematicsRatio[i][16]->Divide(fKinematicsMC[i][16]);
-    //   for(int tt=0; tt<fKinematicsRatio[i][16]->GetNbinsX(); tt++)
-    //   {
-    //     fKinematicsRatio[i][16]->SetBinError(tt,fError[tt]);
-    //   }
-    //   fError.clear();
-    //   fKinematicsRatio[i][16]->SetMarkerStyle(21);
-    //   fKinematicsRatio[i][16]->SetFillColor(kYellow-7);
-    //   fKinematicsRatio[i][16]->SetMaximum(2.);
-    //   fKinematicsRatio[i][16]->SetMinimum(0.);
-    //   fKinematicsRatio[i][16]->Draw("PE2");
-    //   fKinematicsRatio[i][16]->GetXaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][16]->GetYaxis()->SetLabelSize(0.08);
-    //   fKinematicsRatio[i][16]->GetYaxis()->SetNdivisions(2,kFALSE);
-    //   for(int tt=0; tt<7; tt++)
-    //   {
-    //     l1[16][tt]->Draw();
-    //   }
-    //   c27.Update();
-    // }
-    // else
-    // {
-      c1.cd(i+1);
-      plotting_device(i,0,0);
-      gPad->SetLogx();
-      c1.Update();
+    c1->cd(i+1);
+    plotting_device(i,0,0);
+    gPad->SetLogx();
+    c1->Update();
 
+    c2.cd(i+1);
+    plotting_device(i,1,0);
+    gPad->SetLogx();
+    c2.Update();
 
-      c2.cd(i+1);
-      plotting_device(i,1,0);
-      gPad->SetLogx();
-      c2.Update();
+    c3.cd(i+1);
+    plotting_device(i,2,0);
+    c3.Update();
 
-      c3.cd(i+1);
-      plotting_device(i,2,0);
-      c3.Update();
+    c4.cd(i+1);
+    plotting_device(i,3,0);
+    c4.Update();
 
-      c4.cd(i+1);
-      plotting_device(i,3,0);
-      c4.Update();
+    c5.cd(i+1);
+    plotting_device(i,4,0);
+    c5.Update();
 
-      c5.cd(i+1);
-      plotting_device(i,4,0);
-      c5.Update();
+    c6.cd(i+1);
+    plotting_device(i,5,0);
+    c6.Update();
 
-      c6.cd(i+1);
-      plotting_device(i,5,0);
-      c6.Update();
+    c14.cd(i+1);
+    plotting_device(i,6,0);
+    c14.Update();
 
-      c14.cd(i+1);
-      plotting_device(i,6,0);
-      c14.Update();
+    c15.cd(i+1);
+    plotting_device(i,7,0);
+    c15.Update();
 
-      c15.cd(i+1);
-      plotting_device(i,7,0);
-      c15.Update();
+    c16.cd(i+1);
+    plotting_device(i,8,0);
+    c16.Update();
 
-      c16.cd(i+1);
-      plotting_device(i,8,0);
-      c16.Update();
+    c17.cd(i+1);
+    plotting_device(i,9,0);
+    c17.Update();
 
-      c17.cd(i+1);
-      plotting_device(i,9,0);
-      c17.Update();
+    c18.cd(i+1);
+    plotting_device(i,10,0);
+    c18.Update();
 
-      c18.cd(i+1);
-      plotting_device(i,10,0);
-      c18.Update();
+    c19.cd(i+1);
+    plotting_device(i,12,0);
+    c19.Update();
 
-      c19.cd(i+1);
-      plotting_device(i,12,0);
-      c19.Update();
+    c20.cd(i+1);
+    plotting_device(i,13,0);
+    c20.Update();
 
-      c20.cd(i+1);
-      plotting_device(i,13,0);
-      c20.Update();
+    c21.cd(i+1);
+    plotting_device(i,14,0);
+    c21.Update();
 
-      c21.cd(i+1);
-      plotting_device(i,14,0);
-      c21.Update();
+    c25.cd(i+1);
+    plotting_device(i,15,0);
+    c25.Update();
 
-      c25.cd(i+1);
-      plotting_device(i,15,0);
-      c25.Update();
-
-      c27.cd(i+1);
-      plotting_device(i,16,0);
-      c27.Update();
-    // }
+    c27.cd(i+1);
+    plotting_device(i,16,0);
+    c27.Update();
   }
 
-  // c7.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[0][11]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[0][11]->GetBinError(tt) && fKinematicsMC[0][11]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[0][11]->GetBinError(tt),2)+pow(1/fKinematicsMC[0][11]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[0][11]->Scale(1/fKinematicsRD[0][11]->GetEntries());
-  // fKinematicsMC[0][11]->Scale(1/fKinematicsMC[0][11]->GetEntries());
-  // fKinematicsRatio[0][11] = (TH1F*)fKinematicsRD[0][11]->Clone();
-  // fKinematicsRatio[0][11]->SetStats(0);
-  // fKinematicsRatio[0][11]->Divide(fKinematicsMC[0][11]);
-  // for(int tt=0; tt<fKinematicsRatio[0][11]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[0][11]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[0][11]->SetMarkerStyle(21);
-  // fKinematicsRatio[0][11]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[0][11]->SetMaximum(2.);
-  // fKinematicsRatio[0][11]->SetMinimum(0.);
-  // fKinematicsRatio[0][11]->Draw("PE2");
-  // fKinematicsRatio[0][11]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[0][11]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[0][11]->GetYaxis()->SetNdivisions(2,kTRUE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[11][tt]->Draw();
-  // }
-  // c7.Update();
   c7.cd(1);
   plotting_device(0,11,0);
   c7.Update();
 
-  // c8.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][0]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][0]->GetBinError(tt) && fKinematicsMC[4][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][0]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][0]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][0]->Scale(1/fKinematicsRD[4][0]->GetEntries());
-  // fKinematicsMC[4][0]->Scale(1/fKinematicsMC[4][0]->GetEntries());
-  // fKinematicsRatio[4][0] = (TH1F*)fKinematicsRD[4][0]->Clone();
-  // fKinematicsRatio[4][0]->SetStats(0);
-  // fKinematicsRatio[4][0]->Divide(fKinematicsMC[4][0]);
-  // for(int tt=0; tt<fKinematicsRatio[4][0]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][0]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][0]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][0]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][0]->SetMaximum(2.);
-  // fKinematicsRatio[4][0]->SetMinimum(0.);
-  // fKinematicsRatio[4][0]->Draw("PE2");
-  // fKinematicsRatio[4][0]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][0]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][0]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[0][tt]->Draw();
-  // }
-  // gPad->SetLogx();
-  // c8.Update();
   c8.cd(1);
   plotting_device(4,0,4);
   gPad->SetLogx();
   c8.Update();
 
-  // c30.cd(1);
-  // for(int tt=0; tt<fKinematicsRD[4][0]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRD[4][0]->SetBinError(tt,sqrt(fKinematicsRD[4][0]->GetBinContent(tt)));
-  // }
-  // fKinematicsRD[4][0]->Draw("E2");
-  // fKinematicsRD[4][0]->Draw("SAME");
-  // fKinematicsRD[4][0]->GetXaxis()->SetLabelSize(0.03);
-  // fKinematicsRD[4][0]->GetYaxis()->SetLabelSize(0.03);
-  // for(int tt=0; tt<fKinematicsMC[4][0]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsMC[4][0]->SetBinError(tt,sqrt(fKinematicsMC[4][0]->GetBinContent(tt)));
-  // }
-  // fKinematicsMC[4][0]->Draw("E2SAME");
-  // fKinematicsMC[4][0]->Draw("SAME");
-  // gPad->SetLogx();
-  // c30.Update();
-
-  // c9.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][1]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][1]->GetBinError(tt) && fKinematicsMC[4][1]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][1]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][1]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][1]->Scale(1/fKinematicsRD[4][1]->GetEntries());
-  // fKinematicsMC[4][1]->Scale(1/fKinematicsMC[4][1]->GetEntries());
-  // fKinematicsRatio[4][1] = (TH1F*)fKinematicsRD[4][1]->Clone();
-  // fKinematicsRatio[4][1]->SetStats(0);
-  // fKinematicsRatio[4][1]->Divide(fKinematicsMC[4][1]);
-  // for(int tt=0; tt<fKinematicsRatio[4][1]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][1]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][1]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][1]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][1]->SetMaximum(2.);
-  // fKinematicsRatio[4][1]->SetMinimum(0.);
-  // fKinematicsRatio[4][1]->Draw("PE2");
-  // fKinematicsRatio[4][1]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][1]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][1]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[1][tt]->Draw();
-  // }
-  // gPad->SetLogx();
-  // c9.Update();
   c9.cd(1);
   plotting_device(4,1,4);
   gPad->SetLogx();
   c9.Update();
 
-  // c10.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][2]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][2]->GetBinError(tt) && fKinematicsMC[4][2]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][2]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][2]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][2]->Scale(1/fKinematicsRD[4][2]->GetEntries());
-  // fKinematicsMC[4][2]->Scale(1/fKinematicsMC[4][2]->GetEntries());
-  // fKinematicsRatio[4][2] = (TH1F*)fKinematicsRD[4][2]->Clone();
-  // fKinematicsRatio[4][2]->SetStats(0);
-  // fKinematicsRatio[4][2]->Divide(fKinematicsMC[4][2]);
-  // for(int tt=0; tt<fKinematicsRatio[4][2]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][2]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][2]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][2]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][2]->SetMaximum(2.);
-  // fKinematicsRatio[4][2]->SetMinimum(0.);
-  // fKinematicsRatio[4][2]->Draw("PE2");
-  // fKinematicsRatio[4][2]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][2]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][2]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[2][tt]->Draw();
-  // }
-  // c10.Update();
   c10.cd(1);
   plotting_device(4,2,4);
   c10.Update();
 
-  // c11.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][3]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][3]->GetBinError(tt) && fKinematicsMC[4][3]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][3]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][3]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][3]->Scale(1/fKinematicsRD[4][3]->GetEntries());
-  // fKinematicsMC[4][3]->Scale(1/fKinematicsMC[4][3]->GetEntries());
-  // fKinematicsRatio[4][3] = (TH1F*)fKinematicsRD[4][3]->Clone();
-  // fKinematicsRatio[4][3]->SetStats(0);
-  // fKinematicsRatio[4][3]->Divide(fKinematicsMC[4][3]);
-  // for(int tt=0; tt<fKinematicsRatio[4][3]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][3]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][3]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][3]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][3]->SetMaximum(2.);
-  // fKinematicsRatio[4][3]->SetMinimum(0.);
-  // fKinematicsRatio[4][3]->Draw("PE2");
-  // fKinematicsRatio[4][3]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][3]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][3]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[3][tt]->Draw();
-  // }
-  // c11.Update();
   c11.cd(1);
   plotting_device(4,3,4);
   c11.Update();
 
-  // c31.cd(1);
-  // for(int tt=0; tt<fKinematicsRD[4][3]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRD[4][3]->SetBinError(tt,sqrt(fKinematicsRD[4][3]->GetBinContent(tt)));
-  // }
-  // fKinematicsRD[4][3]->Draw("E2");
-  // fKinematicsRD[4][3]->Draw("SAME");
-  // fKinematicsRD[4][3]->GetXaxis()->SetLabelSize(0.03);
-  // fKinematicsRD[4][3]->GetYaxis()->SetLabelSize(0.03);
-  // for(int tt=0; tt<fKinematicsMC[4][3]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsMC[4][3]->SetBinError(tt,sqrt(fKinematicsMC[4][3]->GetBinContent(tt)));
-  // }
-  // fKinematicsMC[4][3]->Draw("E2SAME");
-  // fKinematicsMC[4][3]->Draw("SAME");
-  // c31.Update();
-
-  // c12.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][4]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][4]->GetBinError(tt) && fKinematicsMC[4][4]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][4]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][4]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][4]->Scale(1/fKinematicsRD[4][4]->GetEntries());
-  // fKinematicsMC[4][4]->Scale(1/fKinematicsMC[4][4]->GetEntries());
-  // fKinematicsRatio[4][4] = (TH1F*)fKinematicsRD[4][4]->Clone();
-  // fKinematicsRatio[4][4]->SetStats(0);
-  // fKinematicsRatio[4][4]->Divide(fKinematicsMC[4][4]);
-  // for(int tt=0; tt<fKinematicsRatio[4][4]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][4]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][4]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][4]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][4]->SetMaximum(2.);
-  // fKinematicsRatio[4][4]->SetMinimum(0.);
-  // fKinematicsRatio[4][4]->Draw("PE2");
-  // fKinematicsRatio[4][4]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][4]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][4]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[4][tt]->Draw();
-  // }
-  // c12.Update();
   c12.cd(1);
   plotting_device(4,4,4);
   c12.Update();
 
-  // c13.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][5]->GetBinError(tt) && fKinematicsMC[4][5]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][5]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][5]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][5]->Scale(1/fKinematicsRD[4][5]->GetEntries());
-  // fKinematicsMC[4][5]->Scale(1/fKinematicsMC[4][5]->GetEntries());
-  // fKinematicsRatio[4][5] = (TH1F*)fKinematicsRD[4][5]->Clone();
-  // fKinematicsRatio[4][5]->SetStats(0);
-  // fKinematicsRatio[4][5]->Divide(fKinematicsMC[4][5]);
-  // for(int tt=0; tt<fKinematicsRatio[4][5]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][5]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][5]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][5]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][5]->SetMaximum(2.);
-  // fKinematicsRatio[4][5]->SetMinimum(0.);
-  // fKinematicsRatio[4][5]->Draw("PE2");
-  // fKinematicsRatio[4][5]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][5]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][5]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[5][tt]->Draw();
-  // }
-  // c13.Update();
   c13.cd(1);
   plotting_device(4,5,4);
   c13.Update();
@@ -1142,220 +436,63 @@ void save_kin_plots()
   plotting_device(4,6,4);
   c33.Update();
 
-  // c32.cd(1);
-  // for(int tt=0; tt<fKinematicsRD[4][5]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRD[4][5]->SetBinError(tt,sqrt(fKinematicsRD[4][5]->GetBinContent(tt)));
-  // }
-  // fKinematicsRD[4][5]->Draw("E2");
-  // fKinematicsRD[4][5]->Draw("SAME");
-  // fKinematicsRD[4][5]->GetXaxis()->SetLabelSize(0.03);
-  // fKinematicsRD[4][5]->GetYaxis()->SetLabelSize(0.03);
-  // for(int tt=0; tt<fKinematicsMC[4][5]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsMC[4][5]->SetBinError(tt,sqrt(fKinematicsMC[4][5]->GetBinContent(tt)));
-  // }
-  // fKinematicsMC[4][5]->Draw("E2SAME");
-  // fKinematicsMC[4][5]->Draw("SAME");
-  // c32.Update();
-
-  // c22.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][12]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][12]->GetBinError(tt) && fKinematicsMC[4][12]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][12]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][12]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][12]->Scale(1/fKinematicsRD[4][12]->GetEntries());
-  // fKinematicsMC[4][12]->Scale(1/fKinematicsMC[4][12]->GetEntries());
-  // fKinematicsRatio[4][12] = (TH1F*)fKinematicsRD[4][12]->Clone();
-  // fKinematicsRatio[4][12]->SetStats(0);
-  // fKinematicsRatio[4][12]->Divide(fKinematicsMC[4][12]);
-  // for(int tt=0; tt<fKinematicsRatio[4][12]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][12]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][12]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][12]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][12]->SetMaximum(2.);
-  // fKinematicsRatio[4][12]->SetMinimum(0.);
-  // fKinematicsRatio[4][12]->Draw("PE2");
-  // fKinematicsRatio[4][12]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][12]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][12]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[12][tt]->Draw();
-  // }
-  // c22.Update();
   c22.cd(1);
   plotting_device(4,12,4);
   c22.Update();
 
-  // c23.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][13]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][13]->GetBinError(tt) && fKinematicsMC[4][13]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][13]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][13]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][13]->Scale(1/fKinematicsRD[4][13]->GetEntries());
-  // fKinematicsMC[4][13]->Scale(1/fKinematicsMC[4][13]->GetEntries());
-  // fKinematicsRatio[4][13] = (TH1F*)fKinematicsRD[4][13]->Clone();
-  // fKinematicsRatio[4][13]->SetStats(0);
-  // fKinematicsRatio[4][13]->Divide(fKinematicsMC[4][13]);
-  // for(int tt=0; tt<fKinematicsRatio[4][13]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][13]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][13]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][13]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][13]->SetMaximum(2.);
-  // fKinematicsRatio[4][13]->SetMinimum(0.);
-  // fKinematicsRatio[4][13]->Draw("PE2");
-  // fKinematicsRatio[4][13]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][13]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][13]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[13][tt]->Draw();
-  // }
-  // c23.Update();
   c23.cd(1);
   plotting_device(4,13,4);
   c23.Update();
 
-  // c24.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][14]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][14]->GetBinError(tt) && fKinematicsMC[4][14]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][14]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][14]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][14]->Scale(1/fKinematicsRD[4][14]->GetEntries());
-  // fKinematicsMC[4][14]->Scale(1/fKinematicsMC[4][14]->GetEntries());
-  // fKinematicsRatio[4][14] = (TH1F*)fKinematicsRD[4][14]->Clone();
-  // fKinematicsRatio[4][14]->SetStats(0);
-  // fKinematicsRatio[4][14]->Divide(fKinematicsMC[4][14]);
-  // for(int tt=0; tt<fKinematicsRatio[4][14]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][14]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][14]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][14]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][14]->SetMaximum(2.);
-  // fKinematicsRatio[4][14]->SetMinimum(0.);
-  // fKinematicsRatio[4][14]->Draw("PE2");
-  // fKinematicsRatio[4][14]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][14]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][14]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[14][tt]->Draw();
-  // }
-  // c24.Update();
   c24.cd(1);
   plotting_device(4,14,4);
   c24.Update();
 
-  // c26.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][15]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][15]->GetBinError(tt) && fKinematicsMC[4][15]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][15]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][15]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][15]->Scale(1/fKinematicsRD[4][15]->GetEntries());
-  // fKinematicsMC[4][15]->Scale(1/fKinematicsMC[4][15]->GetEntries());
-  // fKinematicsRatio[4][15] = (TH1F*)fKinematicsRD[4][15]->Clone();
-  // fKinematicsRatio[4][15]->SetStats(0);
-  // fKinematicsRatio[4][15]->Divide(fKinematicsMC[4][15]);
-  // for(int tt=0; tt<fKinematicsRatio[4][15]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][15]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][15]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][15]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][15]->SetMaximum(2.);
-  // fKinematicsRatio[4][15]->SetMinimum(0.);
-  // fKinematicsRatio[4][15]->Draw("PE2");
-  // fKinematicsRatio[4][15]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][15]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][15]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[15][tt]->Draw();
-  // }
-  // c26.Update();
   c26.cd(1);
   plotting_device(4,15,4);
   c26.Update();
 
-  // c28.cd(2);
-  // for(int tt=0; tt<fKinematicsRD[4][16]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[4][16]->GetBinError(tt) && fKinematicsMC[4][16]->GetBinError(tt) ? sqrt(pow(1/fKinematicsRD[4][16]->GetBinError(tt),2)+pow(1/fKinematicsMC[4][16]->GetBinError(tt),2)):0));
-  // }
-  // fKinematicsRD[4][16]->Scale(1/fKinematicsRD[4][16]->GetEntries());
-  // fKinematicsMC[4][16]->Scale(1/fKinematicsMC[4][16]->GetEntries());
-  // fKinematicsRatio[4][16] = (TH1F*)fKinematicsRD[4][16]->Clone();
-  // fKinematicsRatio[4][16]->SetStats(0);
-  // fKinematicsRatio[4][16]->Divide(fKinematicsMC[4][16]);
-  // for(int tt=0; tt<fKinematicsRatio[4][16]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRatio[4][16]->SetBinError(tt,fError[tt]);
-  // }
-  // fError.clear();
-  // fKinematicsRatio[4][16]->SetMarkerStyle(21);
-  // fKinematicsRatio[4][16]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[4][16]->SetMaximum(2.);
-  // fKinematicsRatio[4][16]->SetMinimum(0.);
-  // fKinematicsRatio[4][16]->Draw("PE2");
-  // fKinematicsRatio[4][16]->GetXaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][16]->GetYaxis()->SetLabelSize(0.08);
-  // fKinematicsRatio[4][16]->GetYaxis()->SetNdivisions(2,kFALSE);
-  // for(int tt=0; tt<7; tt++)
-  // {
-  //   l1[16][tt]->Draw();
-  // }
-  // c28.Update();
   c28.cd(1);
   plotting_device(4,16,4);
   c28.Update();
 
   c34.cd(1);
   fThetaRDp[0]->Draw("COLZ");
-  fThetaRDp[0]->GetXaxis()->SetTitle("#theta_y");
+  fThetaRDp[0]->GetXaxis()->SetTitle("theta_y");
   fThetaRDp[0]->GetYaxis()->SetTitle("p");
   c34.Update();
 
   c34.cd(2);
   fThetaMCp[0]->Draw("COLZ");
-  fThetaMCp[0]->GetXaxis()->SetTitle("#theta_y");
+  fThetaMCp[0]->GetXaxis()->SetTitle("theta_y");
   fThetaMCp[0]->GetYaxis()->SetTitle("p");
   c34.Update();
 
   c35.cd(1);
   fThetaRDp[1]->Draw("COLZ");
-  fThetaRDp[1]->GetXaxis()->SetTitle("#theta_x");
+  fThetaRDp[1]->GetXaxis()->SetTitle("theta_x");
   fThetaRDp[1]->GetYaxis()->SetTitle("p");
   c35.Update();
 
   c35.cd(2);
   fThetaMCp[1]->Draw("COLZ");
-  fThetaMCp[1]->GetXaxis()->SetTitle("#theta_x");
+  fThetaMCp[1]->GetXaxis()->SetTitle("theta_x");
   fThetaMCp[1]->GetYaxis()->SetTitle("p");
   c35.Update();
 
   c36.cd(1);
   fThetaRDp[2]->Draw("COLZ");
-  fThetaRDp[2]->GetXaxis()->SetTitle("#theta_y");
-  fThetaRDp[2]->GetYaxis()->SetTitle("#theta_x");
+  fThetaRDp[2]->GetXaxis()->SetTitle("theta_y");
+  fThetaRDp[2]->GetYaxis()->SetTitle("theta_x");
   c36.Update();
 
   c36.cd(2);
   fThetaMCp[2]->Draw("COLZ");
-  fThetaMCp[2]->GetXaxis()->SetTitle("#theta_y");
-  fThetaMCp[2]->GetYaxis()->SetTitle("#theta_x");
+  fThetaMCp[2]->GetXaxis()->SetTitle("theta_y");
+  fThetaMCp[2]->GetYaxis()->SetTitle("theta_x");
   c36.Update();
 
-  c1.Print("kinMCRD.pdf(","pdf");
+  c1->Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
   c4.Print("kinMCRD.pdf","pdf");
@@ -1387,10 +524,6 @@ void save_kin_plots()
   c16.Print("kinMCRD.pdf","pdf");
   c17.Print("kinMCRD.pdf","pdf");
   c18.Print("kinMCRD.pdf)","pdf");
-  c29.Print("photoelec.pdf","pdf");
-  c30.Print("Q2.pdf","pdf");
-  c31.Print("z.pdf","pdf");
-  c32.Print("nu.pdf","pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -1716,22 +849,18 @@ void MCextraction(string pFilelist)
       fAllDISflag = 0;
 
       // Best Primary Vertex
-      fBP++;
 
       // Reconstructed muon
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
-        fRmu++;
 
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
         {
-          fBMS++;
 
           // Energy of the muon beam
           if((140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180))
           {
-            fBEC++;
 
             //2006 ---
             if(Y2006)
@@ -1748,37 +877,30 @@ void MCextraction(string pFilelist)
                           ||(z->GetLeaf("z")->GetValue() > (-30+2+8) && z->GetLeaf("z")->GetValue() < (30+2-1))
                           ||(z->GetLeaf("z")->GetValue() > (35+2+6) && z->GetLeaf("z")->GetValue() < (65+2-1)))))
                 {
-                  fTarg++;
 
                   // Cells crossing
                   if(true)
                   {
-                    fCell++;
 
                     // IM/O triggers
                     if((trig&8 || trig&256))
                     {
-                      fTrig++;
 
                       // Q2 cut
                       if((Q2>1))
                       {
-                        fQ2test++;
 
                         // y cut
                         if((fYmin<yBj && yBj<fYmax))
                         {
-                          fYBjtest++;
 
                           // W cut
                           if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                           {
-                            fWBjtest++;
 
                             // x cut
                             if((fXmin<xBj && xBj<fXmax))
                             {
-                              fXBjtest++;
                               fAllDISflag = 1;
                             }
                           }
@@ -1797,34 +919,27 @@ void MCextraction(string pFilelist)
             {
               if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
-                fTarg++;
 
                 // Cells crossing
                 if(true)
                 {
-                  fCell++;
 
                   if((trig&2 || trig&4 || trig&8))
                   {
-                    fTrig++;
 
                     // Q2 cut
                     if((Q2>1))
                     {
-                      fQ2test++;
 
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
                       {
-                        fYBjtest++;
 
                         // W cut
                         if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
-                          fWBjtest++;
                           if((fXmin<xBj && xBj<fXmax))
                           {
-                            fXBjtest++;
                             fAllDISflag = 1;
                           }
                         }
@@ -1841,21 +956,17 @@ void MCextraction(string pFilelist)
             {
               if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
-                fTarg++;
 
                 // Cells crossing
                 if(true)
                 {
-                  fCell++;
 
                   if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
                   {
-                    fTrig++;
 
                     // Q2 cut
                     if((Q2>1))
                     {
-                      fQ2test++;
                       fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
                       fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
                                                   +pow(p0y->GetLeaf("p0y")->GetValue(),2)
@@ -1866,15 +977,12 @@ void MCextraction(string pFilelist)
                       // y cut
                       if((fYmin<yBj && yBj<fYmax))
                       {
-                        fYBjtest++;
 
                         // W cut
                         if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                         {
-                          fWBjtest++;
                           if((fXmin<xBj && xBj<fXmax))
                           {
-                            fXBjtest++;
                             fAllDISflag = 1;
                           }
                         }
@@ -2079,19 +1187,15 @@ void MCextraction(string pFilelist)
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
-          fXX0test++;
-
-          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
-          fMom++;
 
           // Theta cut
           if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
-          fTRICH++;
 
           // RICH position cut
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
-          fPosRICH++;
+
+          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+          if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2330,20 +1434,6 @@ void RDextraction(string pFilelist)
     // Loopy loop over the events
     Int_t N = (Int_t) tree->GetEntries();
 
-    vector<Pvsz> Pvszlocal;
-    vector<Pvsz> Pvszloose;
-    vector<Pvsz> Pvszsevere;
-    vector<Pvsz> Pvsz_errlocal;
-    vector<Double_t> XBjlocal;
-    vector<Double_t> YBjlocal;
-    vector<Double_t> Q2local;
-    vector<Double_t> XBjloose;
-    vector<Double_t> YBjloose;
-    vector<Double_t> Q2loose;
-    vector<Double_t> XBjsevere;
-    vector<Double_t> YBjsevere;
-    vector<Double_t> Q2severe;
-
     for (Int_t ip = 0; ip < N; ip++)
     {
 
@@ -2517,11 +1607,9 @@ void RDextraction(string pFilelist)
       double thetax_b = atan(p0x->GetLeaf("p0x")->GetValue()/sqrt(pow(E_beam->GetLeaf("E_beam")->GetValue(),2)-pow(fM_mu,2)));
 
       // Best Primary Vertex
-      fBP++;
 
       // IsMuPrim
       if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
-      fRmu++;
 
       //2006 ---
       if(Y2006)
@@ -2551,29 +1639,22 @@ void RDextraction(string pFilelist)
         if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
-      fTarg++;
 
       // Energy of the muon beam
       if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
-      fBEC++;
 
       // BMS
       if(!(BMS->GetLeaf("BMS")->GetValue()>3)) continue;
-      fBMS++;
 
       // Chi2 beam
       if(!(beam_chi2->GetLeaf("beam_chi2")->GetValue()<10)) continue;
-      fMuchi2++;
 
       // Cells crossing
       if(!(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())) continue;
-      fCell++;
 
       if(!(mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10)) continue;
-      fMupchi2++;
 
       if(!(MZfirst->GetLeaf("MZfirst")->GetValue()<350)) continue;
-      fMZfirst++;
 
       // IM/O triggers
       //2006 ---
@@ -2594,11 +1675,9 @@ void RDextraction(string pFilelist)
         if(!(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))) continue;
       }
       //2016 ---
-      fTrig++;
 
       // Q2 cut
       if(!(Q2>1)) continue;
-      fQ2test++;
       fMu[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
       fThetaMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
@@ -2609,15 +1688,12 @@ void RDextraction(string pFilelist)
 
       // y cut
       if(!(fYmin<yBj && yBj<fYmax)) continue;
-      fYBjtest++;
 
       // W cut
       if(!(fWmin<sqrt(wBj) && sqrt(wBj)<fWmax)) continue;
-      fWBjtest++;
 
       // x cut
       if(!(fXmin<xBj && xBj<fXmax)) continue;
-      fXBjtest++;
 
       // MT
       if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2722,12 +1798,6 @@ void RDextraction(string pFilelist)
       // -------------------------------------------------------------------------
       // --------- Hadrons Selection ---------------------------------------------
       // -------------------------------------------------------------------------
-
-      Pvsz pzcontainer;
-      Pvsz pzcontainer_loose;
-      Pvsz pzcontainer_severe;
-      Pvsz pzcontainer_err;
-      hadiden hadcontainer;
 
       for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
       {
@@ -2910,31 +1980,24 @@ void RDextraction(string pFilelist)
 
         // Maximum radiation length cumulated
         if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
-        fXX0test++;
 
         // Chi2/ndf
         if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
-        fChi2Hadron++;
 
         // Zfirst
         if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
-        fHZfirst++;
 
         // Zlast
         if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
-        fHZlast++;
 
         // Theta cut
         if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
-        fTRICH++;
 
         // RICH position cut
         if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
-        fPosRICH++;
 
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
         if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
-        fMom++;
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
