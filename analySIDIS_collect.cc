@@ -174,6 +174,7 @@ void yavg()
           for(int i=0; i<6; i++)
           {
             fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l];
+            cout << fMultiplicities[x][i][z].tab[c][0][l] << endl;
             if(fMultiplicities[x][i][z].tab[c][0][l]) pMean++;
             fMultiplicities_yavg[x][z].tab[c][1][l]+=fMultiplicities[x][i][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]+=fMultiplicities[x][i][z].tab[c][2][l];
