@@ -178,7 +178,7 @@ void yavg()
             fMultiplicities_yavg[x][z].tab[c][1][l]+=fMultiplicities[x][i][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]+=fMultiplicities[x][i][z].tab[c][2][l];
           }
-          cout << fMultiplicities_yavg[x][z].tab[c][0][l] << " " << pMean << endl;
+          if(l==3) cout << fMultiplicities_yavg[x][z].tab[c][0][l] << " " << pMean << endl;
           if(pMean)
           {
             fMultiplicities_yavg[x][z].tab[c][0][l]/=pMean;
