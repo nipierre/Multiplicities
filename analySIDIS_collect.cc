@@ -162,7 +162,7 @@ void dummy_acceptance()
 void yavg()
 {
   int pMean[3];
-  int pMeanPeriod[fPeriods][3];
+  int pMeanPeriod[fNumberPeriod][3];
 
   for(int c=0; c<2; c++)
   {
@@ -214,24 +214,50 @@ void yavg()
           fRich_sys_err_yavg[x][z].tab[c][1][2]+=pow(fRich_sys_err[x][i][z].tab[c][1][2],2);
           fRich_sys_err_yavg[x][z].tab[c][1][3]+=pow(fRich_sys_err[x][i][z].tab[c][1][3],2);
         }
-        fBinning_yavg[x][z].tab[c][0][0]/=pMean[0];
-        fBinning_yavg[x][z].tab[c][0][1]/=pMean[1];
-        fBinning_yavg[x][z].tab[c][0][2]/=pMean[2];
-        fBinning_yavg[x][z].tab[c][0][3]/=pMean[3];
-        fBinning_yavg[x][z].tab[c][1][0]/=pow(pMean[0],2);
-        fBinning_yavg[x][z].tab[c][1][1]/=pow(pMean[1],2);
-        fBinning_yavg[x][z].tab[c][1][2]/=pow(pMean[2],2);
-        fBinning_yavg[x][z].tab[c][1][3]/=pow(pMean[3],2);
+        if(pMeanPeriod[period][0])
+        {
+          fBinning_yavg[x][z].tab[c][0][0]/=pMean[0];
+          fBinning_yavg[x][z].tab[c][1][0]/=pow(pMean[0],2);
+        }
+        if(pMeanPeriod[period][1])
+        {
+          fBinning_yavg[x][z].tab[c][0][1]/=pMean[1];
+          fBinning_yavg[x][z].tab[c][1][1]/=pow(pMean[1],2);
+        }
+        if(pMeanPeriod[period][2])
+        {
+          fBinning_yavg[x][z].tab[c][0][2]/=pMean[2];
+          fBinning_yavg[x][z].tab[c][1][2]/=pow(pMean[2],2);
+        }
+        if(pMeanPeriod[period][3])
+        {
+          fBinning_yavg[x][z].tab[c][0][3]/=pMean[3];
+          fBinning_yavg[x][z].tab[c][1][3]/=pow(pMean[3],2);
+        }
+
+
         for(auto period : fPeriods)
         {
-          fBinning_yavg_period[period][x][z].tab[c][0][0]/=pMeanPeriod[period][0];
-          fBinning_yavg_period[period][x][z].tab[c][0][1]/=pMeanPeriod[period][1];
-          fBinning_yavg_period[period][x][z].tab[c][0][2]/=pMeanPeriod[period][2];
-          fBinning_yavg_period[period][x][z].tab[c][0][3]/=pMeanPeriod[period][3];
-          fBinning_yavg_period[period][x][z].tab[c][1][0]/=pow(pMeanPeriod[period][0],2);
-          fBinning_yavg_period[period][x][z].tab[c][1][1]/=pow(pMeanPeriod[period][1],2);
-          fBinning_yavg_period[period][x][z].tab[c][1][2]/=pow(pMeanPeriod[period][2],2);
-          fBinning_yavg_period[period][x][z].tab[c][1][3]/=pow(pMeanPeriod[period][3],2);
+          if(pMeanPeriod[period][0])
+          {
+            fBinning_yavg_period[period][x][z].tab[c][0][0]/=pMeanPeriod[period][0];
+            fBinning_yavg_period[period][x][z].tab[c][1][0]/=pow(pMeanPeriod[period][0],2);
+          }
+          if(pMeanPeriod[period][1])
+          {
+            fBinning_yavg_period[period][x][z].tab[c][0][1]/=pMeanPeriod[period][1];
+            fBinning_yavg_period[period][x][z].tab[c][1][1]/=pow(pMeanPeriod[period][1],2);
+          }
+          if(pMeanPeriod[period][2])
+          {
+            fBinning_yavg_period[period][x][z].tab[c][0][2]/=pMeanPeriod[period][2];
+            fBinning_yavg_period[period][x][z].tab[c][1][2]/=pow(pMeanPeriod[period][2],2);
+          }
+          if(pMeanPeriod[period][3])
+          {
+            fBinning_yavg_period[period][x][z].tab[c][0][3]/=pMeanPeriod[period][3];
+            fBinning_yavg_period[period][x][z].tab[c][1][3]/=pow(pMeanPeriod[period][3],2);
+          }
         }
         fRich_sys_err_yavg[x][z].tab[c][1][0]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][0]);
         fRich_sys_err_yavg[x][z].tab[c][1][1]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][1]);
