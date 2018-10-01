@@ -17,13 +17,15 @@ using namespace std;
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define RCUTSTUDY_ON 0
 #define MOMENTUM 12
 #define XMIN 0.004
 #define XMAX 0.4
 #define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
+
+#define IRC 0
+#define SIRC 0
 
 // Progress bar
 
@@ -280,7 +282,7 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
   else if(0.875<=y && y<0.925) yb = 17;
   else yb = 18;
 
-  if(Y2006)
+  if(Y2006 || !IRC)
   {
     return 1;
   }
@@ -331,7 +333,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   else if(0.75<=z && z<0.85) zb = 12;
   else zb = 13;
 
-  if(Y2006)
+  if(Y2006 || !SIRC)
   {
     return 1;
   }

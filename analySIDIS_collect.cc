@@ -21,7 +21,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define DUMMY_ACC 0
+#define NO_ACC 0
 
 using namespace std;
 
@@ -330,7 +330,7 @@ int main(int argc, char **argv)
 
     cout << periodName << " ";
 
-    if(!DUMMY_ACC)
+    if(!NO_ACC)
     {
       fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
       fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
