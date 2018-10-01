@@ -1079,7 +1079,7 @@ int main(int argc, char **argv)
         // --------- DIS Selection -------------------------------------------------
         // -------------------------------------------------------------------------
 
-        if(!(Charge->GetLeaf("Charge")->GetValue()==1)) continue;
+        if(!(Charge->GetLeaf("Charge")->GetValue()==-1)) continue;
 
         // Best Primary Vertex
         fBP++;
