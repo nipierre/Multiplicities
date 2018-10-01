@@ -25,7 +25,7 @@ using namespace std;
 #define HXX0LIMIT 15
 
 #define IRC 1
-#define SIRC 0
+#define SIRC 1
 
 // Progress bar
 
