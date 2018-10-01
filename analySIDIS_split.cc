@@ -25,7 +25,7 @@ using namespace std;
 #define HXX0LIMIT 15
 
 #define IRC 1
-#define SIRC 1
+#define SIRC 0
 
 // Progress bar
 
@@ -1771,8 +1771,6 @@ int main(int argc, char **argv)
               res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_p[theta_bin][mom_bin][rce];
               hadron_nb = 1;
-
-              cout << GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj) << endl;
 
               res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
