@@ -153,6 +153,7 @@ Wrapper fBinning_zavg_period[11][9];
 Multiplicities fMultiplicities[9][6][12];
 Multiplicities fMultiplicities_yavg[9][12];
 Multiplicities fMultiplicities_zavg[9];
+Wrapper fDiffractiveVectorMeson[9][6][12];
 Wrapper fAcceptance[11][9][6][12];
 Wrapper fAcceptance_weighted[9][6][12];
 Wrapper fAcceptance_yavg[11][9][12];

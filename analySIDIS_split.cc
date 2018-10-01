@@ -21,7 +21,7 @@ using namespace std;
 #define MOMENTUM 12
 #define XMIN 0.004
 #define XMAX 0.4
-#define YMIN 0.05
+#define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
 
