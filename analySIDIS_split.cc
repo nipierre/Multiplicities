@@ -24,8 +24,8 @@ using namespace std;
 #define YMAX 0.7
 #define HXX0LIMIT 15
 
-#define IRC 0
-#define SIRC 0
+#define IRC 1
+#define SIRC 1
 
 // Progress bar
 
@@ -288,7 +288,8 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
   }
   else if(Y2012 || Y2016)
   {
-    return fInclusiveRCproton[xb][yb];
+    // return fInclusiveRCproton[xb][yb];
+    return 0;
   }
   else
   {
@@ -339,7 +340,8 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   }
   else if(Y2012 || Y2016)
   {
-    return fSemiInclusiveRCproton[xb][yb][zb];
+    // return fSemiInclusiveRCproton[xb][yb][zb];
+    return 1;
   }
   else
   {
