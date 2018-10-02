@@ -213,7 +213,6 @@ Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
 
 void LoadDiffVectorMesonCorrection()
 {
-  string sdum;
   int x,y,z;
   double dis,had;
 
@@ -222,7 +221,6 @@ void LoadDiffVectorMesonCorrection()
   while(DVM >> x)
   {
     DVM >> y >> z;
-    DVM >> sdum;
     DVM >> had >> dis;
     fDiffVectorMeson[1][x][y][z][0] = fDiffVectorMeson[1][x][y][z][3] = had/dis;
     DVM >> had >> dis;
