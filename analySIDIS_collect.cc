@@ -180,9 +180,9 @@ void LoadSemiInclusiveRadiativeCorrection()
 #endif
         }
         proton >> fSemiInclusiveRCproton[i][j][k];
-// #ifdef DEBUG
+#ifdef DEBUG
         cout << fSemiInclusiveRCproton[i][j][k] << "\t";
-// #endif
+#endif
         proton >> sdum;
 #ifdef DEBUG
         cout << sdum << endl;
@@ -367,6 +367,8 @@ int main(int argc, char **argv)
       }
     }
   }
+
+  LoadSemiInclusiveRadiativeCorrection();
 
   ifstream periods(argv[1]);
   string filelist, periodName;
