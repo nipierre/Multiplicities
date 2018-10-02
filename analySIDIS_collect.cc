@@ -193,7 +193,7 @@ void LoadSemiInclusiveRadiativeCorrection()
   proton.close();
 }
 
-Double_t GetSemiInclusiveRadiativeCorrection(Int_t xb, Int_t yb, Int_t zb)
+Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
 {
   if(Y2006 || !SIRC)
   {
