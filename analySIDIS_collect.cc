@@ -21,7 +21,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define NO_ACC 0
+#define NO_ACC 1
 
 using namespace std;
 
