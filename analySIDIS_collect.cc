@@ -23,7 +23,7 @@
 #define Y2012 0
 #define Y2016 1
 #define SIRC 1
-#define NO_ACC 1
+#define NO_ACC 0
 
 using namespace std;
 
