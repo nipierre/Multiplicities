@@ -193,42 +193,8 @@ void LoadSemiInclusiveRadiativeCorrection()
   proton.close();
 }
 
-Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
+Double_t GetSemiInclusiveRadiativeCorrection(Double_t xb, Double_t yb, Double_t zb)
 {
-  int xb, yb, zb;
-
-  if(0.004<x && x<0.01) xb = 0;
-  else if(0.01<=x && x<0.02) xb = 1;
-  else if(0.02<=x && x<0.03) xb = 2;
-  else if(0.03<=x && x<0.04) xb = 3;
-  else if(0.04<=x && x<0.06) xb = 4;
-  else if(0.06<=x && x<0.1) xb = 5;
-  else if(0.1<=x && x<0.14) xb = 6;
-  else if(0.14<=x && x<0.18) xb = 7;
-  else xb = 8;
-
-  if(0.1<y && y<0.15) yb = 0;
-  else if(0.15<=y && y<0.2) yb = 1;
-  else if(0.2<=y && y<0.3) yb = 2;
-  else if(0.3<=y && y<0.5) yb = 3;
-  else if(0.5<=y && y<0.7) yb = 4;
-  else yb = 5;
-
-  if(0<z && z<0.2) zb = 0;
-  else if(0.2<z && z<0.25) zb = 1;
-  else if(0.25<=z && z<0.30) zb = 2;
-  else if(0.30<=z && z<0.35) zb = 3;
-  else if(0.35<=z && z<0.40) zb = 4;
-  else if(0.40<=z && z<0.45) zb = 5;
-  else if(0.45<=z && z<0.50) zb = 6;
-  else if(0.50<=z && z<0.55) zb = 7;
-  else if(0.55<=z && z<0.60) zb = 8;
-  else if(0.60<=z && z<0.65) zb = 9;
-  else if(0.65<=z && z<0.70) zb = 10;
-  else if(0.70<=z && z<0.75) zb = 11;
-  else if(0.75<=z && z<0.85) zb = 12;
-  else zb = 13;
-
   if(Y2006 || !SIRC)
   {
     return 1;
@@ -679,16 +645,16 @@ int main(int argc, char **argv)
           for(int l=0; l<4; l++)
           {
             fMultiplicities[i][j][k].tab[c][0][l] = (fBinning[i][j][k].tab[c][0][l] && fNDIS_evt[0][i][j][k] && fAcceptance_weighted[i][j][k].tab[c][0][3] ?
-                                                    Double_t(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3]))
+                                                    Double_t(GetSemiInclusiveRadiativeCorrection(i,k,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3]))
                                                     : 0);
             fMultiplicities[i][j][k].tab[c][1][l] = (fNDIS_evt[0][i][j][k] && fAcceptance_weighted[i][j][k].tab[c][0][3] ?
-                                                    Double_t(((GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
+                                                    Double_t(((GetSemiInclusiveRadiativeCorrection(i,k,k+1)*fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
                                                     fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3],2)))
-                                                    + fAcceptance_weighted[i][j][k].tab[c][1][3]*pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][3],2)),2))
+                                                    + fAcceptance_weighted[i][j][k].tab[c][1][3]*pow(GetSemiInclusiveRadiativeCorrection(i,k,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][3],2)),2))
                                                     : 0);
             fMultiplicities[i][j][k].tab[c][2][l] = (fNDIS_evt[0][i][j][k] ?
-                                                    Double_t(sqrt(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3],2)+
-                                                    pow(0.05*sqrt(fAcceptance_weighted[i][j][k].tab[c][1][3])*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
+                                                    Double_t(sqrt(pow(GetSemiInclusiveRadiativeCorrection(i,k,k+1)*fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3],2)+
+                                                    pow(0.05*sqrt(fAcceptance_weighted[i][j][k].tab[c][1][3])*GetSemiInclusiveRadiativeCorrection(i,k,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
                                                     *pow(fAcceptance_weighted[i][j][k].tab[c][0][3],2)),2)))
                                                     : 0);
 

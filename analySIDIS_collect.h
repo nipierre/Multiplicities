@@ -100,6 +100,8 @@ vector<Double_t> fZv;
 int fNumberPeriod;
 vector<int> fPeriods;
 
+Double_t fSemiInclusiveRCproton[9][6][14];
+
 //Counting
 
 Double_t fBP = 0;
