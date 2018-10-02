@@ -17,6 +17,7 @@
 
 #define data_path "/sps/compass/npierre/Multiplicities"
 #define proton_sirc "data/proton_semi_inclusive_RC.txt"
+#define DVM_2006 "data/DVM_2006.dat"
 
 // Flags
 #define Y2006 0
@@ -210,6 +211,30 @@ Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
   }
 }
 
+void LoadDiffVectorMesonCorrection()
+{
+  string sdum;
+  int x,y,z;
+  double dis,had;
+
+  ifstream DVM(DVM_2006);
+
+  while(proton >> x)
+  {
+    DVM >> y >> z;
+    DVM >> sdum;
+    DVM >> had >> dis;
+    fDiffVectorMeson[1][x][y][z][0] = fDiffVectorMeson[1][x][y][z][3] = had/dis;
+    DVM >> had >> dis;
+    fDiffVectorMeson[0][x][y][z][0] = fDiffVectorMeson[0][x][y][z][3] = had/dis;
+    DVM >> had >> dis;
+    fDiffVectorMeson[1][x][y][z][1] = had/dis;
+    DVM >> had >> dis;
+    fDiffVectorMeson[0][x][y][z][1] = had/dis;
+  }
+  DVM.close();
+}
+
 void yavg()
 {
   int pMean;
@@ -369,6 +394,7 @@ int main(int argc, char **argv)
   }
 
   LoadSemiInclusiveRadiativeCorrection();
+  LoadDiffVectorMesonCorrection();
 
   ifstream periods(argv[1]);
   string filelist, periodName;
@@ -645,16 +671,16 @@ int main(int argc, char **argv)
           for(int l=0; l<4; l++)
           {
             fMultiplicities[i][j][k].tab[c][0][l] = (fBinning[i][j][k].tab[c][0][l] && fNDIS_evt[0][i][j][k] && fAcceptance_weighted[i][j][k].tab[c][0][3] ?
-                                                    Double_t(GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3]))
+                                                    Double_t(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3]))
                                                     : 0);
             fMultiplicities[i][j][k].tab[c][1][l] = (fNDIS_evt[0][i][j][k] && fAcceptance_weighted[i][j][k].tab[c][0][3] ?
-                                                    Double_t(((GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
+                                                    Double_t(((fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
                                                     fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))/(pow(fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3],2)))
-                                                    + fAcceptance_weighted[i][j][k].tab[c][1][3]*pow(GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][3],2)),2))
+                                                    + fAcceptance_weighted[i][j][k].tab[c][1][3]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][3],2)),2))
                                                     : 0);
             fMultiplicities[i][j][k].tab[c][2][l] = (fNDIS_evt[0][i][j][k] ?
-                                                    Double_t(sqrt(pow(GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3],2)+
-                                                    pow(0.05*sqrt(fAcceptance_weighted[i][j][k].tab[c][1][3])*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
+                                                    Double_t(sqrt(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][3],2)+
+                                                    pow(0.05*sqrt(fAcceptance_weighted[i][j][k].tab[c][1][3])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
                                                     *pow(fAcceptance_weighted[i][j][k].tab[c][0][3],2)),2)))
                                                     : 0);
 
