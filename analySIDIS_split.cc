@@ -24,8 +24,8 @@ using namespace std;
 #define YMAX 0.7
 #define HXX0LIMIT 15
 
-#define IRC 0
-#define SIRC 0
+#define IRC 1
+#define SIRC 1
 
 // Progress bar
 
