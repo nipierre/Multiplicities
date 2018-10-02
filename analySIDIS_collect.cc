@@ -219,7 +219,7 @@ void LoadDiffVectorMesonCorrection()
 
   ifstream DVM(DVM_2006);
 
-  while(proton >> x)
+  while(DVM >> x)
   {
     DVM >> y >> z;
     DVM >> sdum;
