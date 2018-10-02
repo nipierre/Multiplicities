@@ -201,7 +201,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
   }
   else if(Y2012 || Y2016)
   {
-    return fSemiInclusiveRCproton[xb][yb][zb];
+    return 1/fSemiInclusiveRCproton[xb][yb][zb];
   }
   else
   {
