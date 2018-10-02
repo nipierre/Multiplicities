@@ -222,13 +222,13 @@ void LoadDiffVectorMesonCorrection()
   {
     DVM >> y >> z;
     DVM >> had >> dis;
-    fDiffVectorMeson[1][x][y][z][0] = fDiffVectorMeson[1][x][y][z][3] = had/dis;
+    fDiffVectorMeson[1][x-1][y-1][z-1][0] = fDiffVectorMeson[1][x-1][y-1][z-1][3] = had/dis;
     DVM >> had >> dis;
-    fDiffVectorMeson[0][x][y][z][0] = fDiffVectorMeson[0][x][y][z][3] = had/dis;
+    fDiffVectorMeson[0][x-1][y-1][z-1][0] = fDiffVectorMeson[0][x-1][y-1][z-1][3] = had/dis;
     DVM >> had >> dis;
-    fDiffVectorMeson[1][x][y][z][1] = had/dis;
+    fDiffVectorMeson[1][x-1][y-1][z-1][1] = had/dis;
     DVM >> had >> dis;
-    fDiffVectorMeson[0][x][y][z][1] = had/dis;
+    fDiffVectorMeson[0][x-1][y-1][z-1][1] = had/dis;
   }
   DVM.close();
 }
