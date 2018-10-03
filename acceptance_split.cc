@@ -908,6 +908,7 @@ int main(int argc, char **argv)
         p1z->GetEntry(ip);
         E_beam->GetEntry(ip);
         E_mu_prim->GetEntry(ip);
+        Charge->GetEntry(ip);
         XX0->GetEntry(ip);
         HM04x->GetEntry(ip);
         HM04y->GetEntry(ip);
