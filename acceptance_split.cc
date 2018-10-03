@@ -1478,7 +1478,7 @@ int main(int argc, char **argv)
             else if(Y2016)
             {
               if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue())
-                  && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71)
+                  && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71))
               {
                 // Q2 cut
                 if((Q2_MC>1))
@@ -2900,18 +2900,6 @@ int main(int argc, char **argv)
   cout << "\n\n";
   cout << "             ********* Hadron Content (h,pi,K,p) ********* " << endl;
   cout << "             --------------------------------------------- " << endl;
-
-  for(int j=0; j<2; j++)
-  {
-    for(int i=0; i<int(fPeriodBit.size()); i++)
-    {
-      if(!j)
-        cout << setw(6) << fPeriodName[i];
-      else
-        cout << setw(6) << fPeriodBit[i];
-    }
-    cout << endl;
-  }
 
   cout << '|' << setw(15) << "Hadron"
        << '|' << setw(15) << "h+" << '|' << setw(15) << "h-"
