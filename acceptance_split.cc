@@ -762,7 +762,7 @@ int main(int argc, char **argv)
       TBranch *spillNo = (TBranch*) tree->FindBranch("spillNo");
       TBranch *evtInSpill = (TBranch*) tree->FindBranch("evtInSpill");
       TBranch *trigMask = (TBranch*) tree->FindBranch("trigMask");
-      //TBranch *evNo = (TBranch*) tree->FindBranch("evNo");
+      TBranch *evNo = (TBranch*) tree->FindBranch("evNo");
       TBranch *x = (TBranch*) tree->FindBranch("x");
       TBranch *y = (TBranch*) tree->FindBranch("y");
       TBranch *z = (TBranch*) tree->FindBranch("z");
@@ -774,6 +774,7 @@ int main(int argc, char **argv)
       TBranch *p1z = (TBranch*) tree->FindBranch("p1z");
       TBranch *E_beam = (TBranch*) tree->FindBranch("E_beam");
       TBranch *E_mu_prim = (TBranch*) tree->FindBranch("E_mu_prim");
+      TBranch *Charge = (TBranch*) tree->FindBranch("Charge");
       TBranch *XX0 = (TBranch*) tree->FindBranch("XX0");
       TBranch *HM04x = (TBranch*) tree->FindBranch("HM04x");
       TBranch *HM04y = (TBranch*) tree->FindBranch("HM04y");
@@ -793,9 +794,14 @@ int main(int argc, char **argv)
       TBranch *HG021y = (TBranch*) tree->FindBranch("HG021y");
       TBranch *HG022x = (TBranch*) tree->FindBranch("HG022x");
       TBranch *HG022y = (TBranch*) tree->FindBranch("HG022y");
-      //TBranch *saved = (TBranch*) tree->FindBranch("saved");
+      TBranch *saved = (TBranch*) tree->FindBranch("saved");
+      TBranch *BPV = (TBranch*) tree->FindBranch("BPV");
+      TBranch *isMuPrim = (TBranch*) tree->FindBranch("isMuPrim");
+      TBranch *MZfirst = (TBranch*) tree->FindBranch("MZfirst");
+      TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
+      TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
       TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
-      TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
+      TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
       //Hadrons
       TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
@@ -820,6 +826,9 @@ int main(int argc, char **argv)
       //TBranch *Z2By = (TBranch*) tree->FindBranch("Hadrons.Z2By");
       TBranch *RICHx = (TBranch*) tree->FindBranch("Hadrons.RICHx");
       TBranch *RICHy = (TBranch*) tree->FindBranch("Hadrons.RICHy");
+      TBranch *chi2_hadron = (TBranch*) tree->FindBranch("Hadrons.chi2_hadron");
+      TBranch *HZfirst = (TBranch*) tree->FindBranch("Hadrons.HZfirst");
+      TBranch *HZlast = (TBranch*) tree->FindBranch("Hadrons.HZlast");
 
       //DISMCEvt
       TBranch *MC_vx = (TBranch*) tree->FindBranch("MC_vx");
@@ -887,7 +896,7 @@ int main(int argc, char **argv)
         spillNo->GetEntry(ip);
         evtInSpill->GetEntry(ip);
         trigMask->GetEntry(ip);
-        //evNo->GetEntry(ip);
+        evNo->GetEntry(ip);
         x->GetEntry(ip);
         y->GetEntry(ip);
         z->GetEntry(ip);
@@ -918,9 +927,14 @@ int main(int argc, char **argv)
         HG021y->GetEntry(ip);
         HG022x->GetEntry(ip);
         HG022y->GetEntry(ip);
-        //saved->GetEntry(ip);
+        saved->GetEntry(ip);
+        BPV->GetEntry(ip);
+        isMuPrim->GetEntry(ip);
+        MZfirst->GetEntry(ip);
+        beam_chi2->GetEntry(ip);
+        mu_prim_chi2->GetEntry(ip);
         cellsCrossed->GetEntry(ip);
-        backPropFlag->GetEntry(ip);
+        BMS->GetEntry(ip);
 
         //Hadrons
         p->GetEntry(ip);
@@ -945,6 +959,9 @@ int main(int argc, char **argv)
         //Z2By->GetEntry(ip);
         RICHx->GetEntry(ip);
         RICHy->GetEntry(ip);
+        chi2_hadron->GetEntry(ip);
+        HZfirst->GetEntry(ip);
+        HZlast->GetEntry(ip);
 
         //DISMCEvt
         MC_vx->GetEntry(ip);
@@ -1198,7 +1215,7 @@ int main(int argc, char **argv)
         fBP++;
 
         // Reconstructed muon
-        if((0<E_beam->GetLeaf("E_beam")->GetValue()))
+        if((0<isMuPrim->GetLeaf("isMuPrim")->GetValue()))
         {
           fRmu++;
 
@@ -1318,37 +1335,53 @@ int main(int argc, char **argv)
               //2016 ---
               else if(Y2016)
               {
-                if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
+                if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())
+                    && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
                 {
                   fTarg++;
 
-                  // Cells crossing
-                  if(true/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())*/)
+                  if((beam_chi2->GetLeaf("beam_chi2")->GetValue()<10))
                   {
-                    fCell++;
+                    fMuchi2++;
 
-                    if((trig&2 || trig&4 || trig&8 || trig&512))
+                    // Cells crossing
+                    if((cellsCrossed->GetLeaf("cellsCrossed")->GetValue()))
                     {
-                      fTrig++;
+                      fCell++;
 
-                      // Q2 cut
-                      if((Q2>1))
+                      if((mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10))
                       {
-                        fQ2test++;
+                        fMupchi2++;
 
-                        // y cut
-                        if((0.1<yBj && yBj<0.9))
+                        if((MZfirst->GetLeaf("MZfirst")->GetValue()<350))
                         {
-                          fYBjtest++;
+                          fMZfirst++;
 
-                          // W cut
-                          if((5<sqrt(wBj) && sqrt(wBj)<17))
+                          if((trig&2 || trig&4 || trig&8 || trig&512))
                           {
-                            fWBjtest++;
-                            if((0.004<xBj && xBj<0.4))
+                            fTrig++;
+
+                            // Q2 cut
+                            if((Q2>1))
                             {
-                              fXBjtest++;
-                              fAllDISflag = 1;
+                              fQ2test++;
+
+                              // y cut
+                              if((0.1<yBj && yBj<0.9))
+                              {
+                                fYBjtest++;
+
+                                // W cut
+                                if((5<sqrt(wBj) && sqrt(wBj)<17))
+                                {
+                                  fWBjtest++;
+                                  if((0.004<xBj && xBj<0.4))
+                                  {
+                                    fXBjtest++;
+                                    fAllDISflag = 1;
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -1444,7 +1477,8 @@ int main(int argc, char **argv)
             //2016 ---
             else if(Y2016)
             {
-              if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue()))
+              if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue())
+                  && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71)
               {
                 // Q2 cut
                 if((Q2_MC>1))
@@ -2380,6 +2414,18 @@ int main(int argc, char **argv)
             if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
             fXX0test++;
 
+            // Chi2/ndf
+            if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
+            fChi2Hadron++;
+
+            // Zfirst
+            if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
+            fHZfirst++;
+
+            // Zlast
+            if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+            fHZlast++;
+
             // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
             if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
             fMom++;
@@ -2816,37 +2862,72 @@ int main(int argc, char **argv)
     save_kin_plots();
   }
 
-  cout <<
-  fBP << " Best Primary (entries in disevent.root)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0)\n\n" <<
-  fBMS << " BMS\n\n" <<
-  fBEC << " Beam Energy Cuts\n\n" <<
-  fTarg << " Event in Data Target\n\n" <<
-  fCell << " X Cells\n\n" <<
-  fTrig << " O&IM Triggers\n\n" <<
-  fQ2test << " Q>1\n\n" <<
-  fYBjtest << " 0.1<y<0.7\n\n" <<
-  fWBjtest << " 5<W<17\n\n" <<
-  fXX0test << " XX0\n\n" <<
-  fMom << " Momentum\n\n" <<
-  fTRICH << " Theta RICH\n\n" <<
-  fPosRICH << " Position RICH\n\n" <<
-  fHplus << " h+\n\n" <<
-  fHminus << " h-\n\n" <<
-  fPiplus << " pi+\n\n" <<
-  fPiminus << " pi-\n\n" <<
-  fKplus << " K+\n\n" <<
-  fKminus << " K-\n\n" <<
-  fPplus << " p+\n\n" <<
-  fPminus << " p-\n\n" <<
-  fMCHplus << " MC h+\n\n" <<
-  fMCHminus << " MC h-\n\n" <<
-  fMCPiplus << " MC pi+\n\n" <<
-  fMCPiminus << " MC pi-\n\n" <<
-  fMCKplus << " MC K+\n\n" <<
-  fMCKminus << " MC K-\n\n" <<
-  fMCPplus << " MC p+\n\n" <<
-  fMCPminus << " MC p-\n\n";
+  cout << "\n\n";
+  cout << "             ********* Cut flow for Reconstructed DIS events after cuts ********* " << endl;
+  cout << "             -------------------------------------------------------------------- " << endl;
+
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << '|' << endl;
+  cout << '|' << setw(30) << "Best Primary Vertex" << '|' << setw(15) << fBP << '|' << setw(15) << float(fBP)/float(fBP)*100 << '|' << setw(15) << float(fBP)/float(fBP)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' found (0,1,1,30,0)" << '|' << setw(15) << fRmu << '|' << setw(15) << float(fRmu)/float(fBP)*100 << '|' << setw(15) << float(fRmu)/float(fBP)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarg << '|' << setw(15) << float(fTarg)/float(fBP)*100 << '|' << setw(15) << float(fTarg)/float(fRmu)*100 << '|' << endl;
+  cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBEC << '|' << setw(15) << float(fBEC)/float(fBP)*100 << '|' << setw(15) << float(fBEC)/float(fTarg)*100 << '|' << endl;
+  cout << '|' << setw(30) << "BMS" << '|' << setw(15) << fBMS << '|' << setw(15) << float(fBMS)/float(fBP)*100 << '|' << setw(15) << float(fBMS)/float(fBEC)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu chi2/ndf < 10" << '|' << setw(15) << fMuchi2 << '|' << setw(15) << float(fMuchi2)/float(fBP)*100 << '|' << setw(15) << float(fMuchi2)/float(fBMS)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Beam tarck X Cell" << '|' << setw(15) << fCell << '|' << setw(15) << float(fCell)/float(fBP)*100 << '|' << setw(15) << float(fCell)/float(fMuchi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' chi2/ndf < 10" << '|' << setw(15) << fMupchi2 << '|' << setw(15) << float(fMupchi2)/float(fBP)*100 << '|' << setw(15) << float(fMupchi2)/float(fCell)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' Zfirst < 350" << '|' << setw(15) << fMZfirst << '|' << setw(15) << float(fMZfirst)/float(fBP)*100 << '|' << setw(15) << float(fMZfirst)/float(fMupchi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Triggers MT/LT/OT/LAST" << '|' << setw(15) << fTrig << '|' << setw(15) << float(fTrig)/float(fBP)*100 << '|' << setw(15) << float(fTrig)/float(fMZfirst)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Q2 > 1" << '|' << setw(15) << fQ2test << '|' << setw(15) << float(fQ2test)/float(fBP)*100 << '|' << setw(15) << float(fQ2test)/float(fTrig)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.1 < y < 0.7" << '|' << setw(15) << fYBjtest << '|' << setw(15) << float(fYBjtest)/float(fBP)*100 << '|' << setw(15) << float(fYBjtest)/float(fQ2test)*100 << '|' << endl;
+  cout << '|' << setw(30) << "5 < W < 17" << '|' << setw(15) << fWBjtest << '|' << setw(15) << float(fWBjtest)/float(fBP)*100 << '|' << setw(15) << float(fWBjtest)/float(fYBjtest)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.004 < x < 0.4" << '|' << setw(15) << fXBjtest << '|' << setw(15) << float(fXBjtest)/float(fBP)*100 << '|' << setw(15) << float(fXBjtest)/float(fWBjtest)*100 << '|' << endl;
+
+  cout << "\n\n";
+  cout << "             ********* Cut flow for Reconstructed hadrons after cuts ********* " << endl;
+  cout << "             ----------------------------------------------------------------- " << endl;
+
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << endl;
+  cout << '|' << setw(30) << "Hadrons" << '|' << setw(15) << fHadrons << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << endl;
+  cout << '|' << setw(30) << "XX0 < 15" << '|' << setw(15) << fXX0test << '|' << setw(15) << float(fXX0test)/float(fHadrons)*100 << '|' << setw(15) << float(fXX0test)/float(fHadrons)*100 << endl;
+  cout << '|' << setw(30) << "Chi2/ndf > 10" << '|' << setw(15) << fChi2Hadron << '|' << setw(15) << float(fChi2Hadron)/float(fHadrons)*100 << '|' << setw(15) << float(fChi2Hadron)/float(fXX0test)*100 << endl;
+  cout << '|' << setw(30) << "Zfirst < 350 cm" << '|' << setw(15) << fHZfirst << '|' << setw(15) << float(fHZfirst)/float(fHadrons)*100 << '|' << setw(15) << float(fHZfirst)/float(fChi2Hadron)*100 << endl;
+  cout << '|' << setw(30) << "Zlast > 350 cm" << '|' << setw(15) << fHZlast << '|' << setw(15) << float(fHZlast)/float(fHadrons)*100 << '|' << setw(15) << float(fHZlast)/float(fHZfirst)*100 << endl;
+  cout << '|' << setw(30) << "0.01 < theta_RICH < 0.12" << '|' << setw(15) << fTRICH << '|' << setw(15) << float(fTRICH)/float(fHadrons)*100 << '|' << setw(15) << float(fTRICH)/float(fHZlast)*100 << endl;
+  cout << '|' << setw(30) << "Rich Pipe" << '|' << setw(15) << fPosRICH << '|' << setw(15) << float(fPosRICH)/float(fHadrons)*100 << '|' << setw(15) << float(fPosRICH)/float(fTRICH)*100 << endl;
+  cout << '|' << setw(30) << "12 < p_h < 40" << '|' << setw(15) << fMom << '|' << setw(15) << float(fMom)/float(fHadrons)*100 << '|' << setw(15) << float(fMom)/float(fPosRICH)*100 << endl;
+  cout << '|' << setw(30) << "0.2 < z < 0.85" << '|' << setw(15) << fZtest << '|' << setw(15) << float(fZtest)/float(fHadrons)*100 << '|' << setw(15) << float(fZtest)/float(fMom)*100 << endl;
+
+  cout << "\n\n";
+  cout << "             ********* Hadron Content (h,pi,K,p) ********* " << endl;
+  cout << "             --------------------------------------------- " << endl;
+
+  for(int j=0; j<2; j++)
+  {
+    for(int i=0; i<int(fPeriodBit.size()); i++)
+    {
+      if(!j)
+        cout << setw(6) << fPeriodName[i];
+      else
+        cout << setw(6) << fPeriodBit[i];
+    }
+    cout << endl;
+  }
+
+  cout << '|' << setw(15) << "Hadron"
+       << '|' << setw(15) << "h+" << '|' << setw(15) << "h-"
+       << '|' << setw(15) << "pi+" << '|' << setw(15) << "pi-"
+       << '|' << setw(15) << "K+" << '|' << setw(15) << "K-"
+       << '|' << setw(15) << "p+" << '|' << setw(15) << "p-" << endl;
+  cout << '|' << setw(15) << "ID"
+       << '|' << setw(15) << fHplus << '|' << setw(15) << fHminus
+       << '|' << setw(15) << fPiplus << '|' << setw(15) << fPiminus
+       << '|' << setw(15) << fKplus << '|' << setw(15) << fKminus
+       << '|' << setw(15) << fPplus << '|' << setw(15) << fPminus << endl;
+  cout << '|' << setw(15) << "True ID"
+       << '|' << setw(15) << fHplus << '|' << setw(15) << fHminus
+       << '|' << setw(15) << fPiplus_true << '|' << setw(15) << fPiminus_true
+       << '|' << setw(15) << fKplus_true << '|' << setw(15) << fKminus_true
+       << '|' << setw(15) << fPplus_true << '|' << setw(15) << fPminus_true << endl;
 
   trigmaskout.close();
 
