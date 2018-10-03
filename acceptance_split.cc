@@ -2338,6 +2338,8 @@ int main(int argc, char **argv)
         {
           for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
           {
+
+            fHadrons++;
             // **********************************************************************
 
             // Hadron identification cuts ------------------------------------------
@@ -2440,6 +2442,7 @@ int main(int argc, char **argv)
 
             // z cut
             if(!(0.2<zBj && zBj<0.85)) continue;
+            fZtest++;
 
             if(0.2<zBj && zBj<0.25) zbin = 0;
             else if(0.25<=zBj && zBj<0.30) zbin = 1;
