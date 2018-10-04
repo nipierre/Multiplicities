@@ -290,14 +290,14 @@ void yweightedavg()
         {
           for(int i=0; i<6; i++)
           {
-            if(fMultiplicities[x][i][z].tab[c][1][l])
+            if(fMultiplicities[x][i][z].tab[c][0][l])
             {
               fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l]/fMultiplicities[x][i][z].tab[c][1][l];
               fMultiplicities_yavg[x][z].tab[c][1][l]+=1/fMultiplicities[x][i][z].tab[c][1][l];
               fMultiplicities_yavg[x][z].tab[c][2][l]+=1/fMultiplicities[x][i][z].tab[c][2][l];
             }
           }
-          if(fMultiplicities_yavg[x][z].tab[c][1][l])
+          if(fMultiplicities_yavg[x][z].tab[c][0][l])
           {
             fMultiplicities_yavg[x][z].tab[c][1][l]=1/fMultiplicities_yavg[x][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]=1/fMultiplicities_yavg[x][z].tab[c][2][l];
