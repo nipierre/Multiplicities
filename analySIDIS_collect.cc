@@ -26,6 +26,7 @@
 #define DVMC 0
 #define SIRC 1
 #define NO_ACC 0
+#define YMULT 1 // 1: Mean, 2: Weighted Mean, 3: Integration (1 y-bin)
 
 using namespace std;
 
@@ -259,6 +260,100 @@ void yavg()
             fMultiplicities_yavg[x][z].tab[c][0][l]/=pMean;
             fMultiplicities_yavg[x][z].tab[c][1][l]/=pow(pMean,2);
             fMultiplicities_yavg[x][z].tab[c][2][l]/=pow(pMean,2);
+          }
+        }
+      }
+    }
+  }
+}
+
+void yweightedavg()
+{
+  for(int c=0; c<2; c++)
+  {
+    for(int x=0; x<9; x++)
+    {
+      for(int z=0; z<12; z++)
+      {
+        for(int l=0; l<4; l++)
+        {
+          for(int i=0; i<6; i++)
+          {
+            fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l]/fMultiplicities[x][i][z].tab[c][1][l];
+            fMultiplicities_yavg[x][z].tab[c][1][l]+=1/fMultiplicities[x][i][z].tab[c][1][l];
+            fMultiplicities_yavg[x][z].tab[c][2][l]+=1/fMultiplicities[x][i][z].tab[c][2][l];
+          }
+          if(fMultiplicities_yavg[x][z].tab[c][1][l])
+          {
+            fMultiplicities_yavg[x][z].tab[c][0][l]/=fMultiplicities_yavg[x][z].tab[c][1][l];
+          }
+        }
+      }
+    }
+  }
+}
+
+void yintegrated()
+{
+  for(int c=0; c<2; c++)
+  {
+    for(int x=0; x<9; x++)
+    {
+      for(int z=0; z<12; z++)
+      {
+        for(int l=0; l<4; l++)
+        {
+          for(int i=0; i<6; i++)
+          {
+            for(auto period : fPeriods)
+            {
+              fBinning_yavg_period[period][x][z].tab[c][0][l]+=fBinning_period[period][x][i][z].tab[c][0][l];
+              fBinning_yavg_period[period][x][z].tab[c][1][l]+=fBinning_period[period][x][i][z].tab[c][1][l];
+              fBinning_yavg_period[period][x][z].tab[c][2][l]+=fBinning_period[period][x][i][z].tab[c][2][l];
+            }
+            fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
+            fNDIS_evt_err_yavg[0][x][z]+=fNDIS_evt_err[0][x][i][z];
+            fBinning_yavg[x][z].tab[c][0][l]+=fBinning[x][i][z].tab[c][0][l];
+            fBinning_yavg[x][z].tab[c][1][l]+=fBinning[x][i][z].tab[c][1][l];
+            fBinning_yavg[x][z].tab[c][2][l]+=fBinning[x][i][z].tab[c][2][l];
+            fRich_sys_err_yavg[x][z].tab[c][1][l]+=pow(fRich_sys_err[x][i][z].tab[c][1][l],2);
+          }
+          fRich_sys_err_yavg[x][z].tab[c][1][l]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][l]);
+        }
+      }
+    }
+  }
+}
+
+void compMultiplicitiesIntegratedY()
+{
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int k=0; k<12; k++)
+      {
+        for(int l=0; l<4; l++)
+        {
+          fMultiplicities_yavg[i][k].tab[c][0][l] = (fBinning_yavg[i][k].tab[c][0][l] && fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][3] ?
+                                                  fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][3]))
+                                                  : 0);
+          fMultiplicities_yavg[i][k].tab[c][1][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][3] ?
+                                                  Double_t(((fBinning_yavg[i][k].tab[c][1][l]/pow(fNDIS_evt_yavg[0][i][k],2)-pow(fBinning_yavg[i][k].tab[c][0][l],2)*
+                                                  fNDIS_evt_err_yavg[0][i][k]/pow(fNDIS_evt_yavg[0][i][k],4))/(pow(fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)))
+                                                  + fAcceptance_yavg_weighted[i][k].tab[c][1][3]*pow(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*pow(fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)),2))
+                                                  : 0);
+          fMultiplicities_yavg[i][k].tab[c][2][l] = (fNDIS_evt_yavg[0][i][k] ?
+                                                  Double_t(sqrt(pow(fRich_sys_err_yavg[x][z].tab[c][1][l],2)/pow(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)+
+                                                  pow(0.05*sqrt(fAcceptance_yavg_weighted[i][k].tab[c][1][3])*fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]
+                                                  *pow(fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)),2)))
+                                                  : 0);
+
+          if(fMultiplicities_yavg[i][k].tab[c][0][l]<0 || fMultiplicities_yavg[i][k].tab[c][0][l]*0.9<fMultiplicities_yavg[i][k].tab[c][1][l])
+          {
+            fMultiplicities_yavg[i][k].tab[c][0][l] = 0 ;
+            fMultiplicities_yavg[i][k].tab[c][1][l] = 0 ;
+            fMultiplicities_yavg[i][k].tab[c][2][l] = 0 ;
           }
         }
       }
@@ -517,8 +612,10 @@ int main(int argc, char **argv)
     resetValues();
   }
 
+  if(YMULT == 3) yintegrated();
   weight_acceptance();
   weight_meanvalues();
+  if(YMULT == 3) compMultiplicitiesIntegratedY();
 
   TCanvas* c51;
   c51 = new TCanvas("Hadron_Multiplicities_plus","Hadron_Multiplicities_plus",3200,1600);
@@ -973,7 +1070,8 @@ int main(int argc, char **argv)
     MultiplicitiesSum[1][0][3] = 0;
     MultiplicitiesSum[1][1][3] = 0;
 
-    yavg();
+    if(YMULT == 1) yavg();
+    else if(YMULT == 2) yweightedavg();
 
     for(int c=0; c<2; c++)
     {
