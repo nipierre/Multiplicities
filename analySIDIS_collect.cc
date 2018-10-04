@@ -24,8 +24,8 @@
 #define Y2012 0
 #define Y2016 1
 #define DVMC 0
-#define SIRC 1
-#define NO_ACC 0
+#define SIRC 0
+#define NO_ACC 1
 #define YMULT 1 // 1: Mean, 2: Weighted Mean, 3: Integration (1 y-bin)
 
 using namespace std;
@@ -218,21 +218,32 @@ void LoadDiffVectorMesonCorrection()
   int x,y,z;
   double dis,had;
 
-  ifstream DVM(DVM_2006);
-
-  while(DVM >> x)
+  if(DVMC)
   {
-    DVM >> y >> z;
-    DVM >> had >> dis;
-    fDiffVectorMeson[1][x-1][y-1][z-1][0] = fDiffVectorMeson[1][x-1][y-1][z-1][3] = (DVMC ? had/dis : 1);
-    DVM >> had >> dis;
-    fDiffVectorMeson[0][x-1][y-1][z-1][0] = fDiffVectorMeson[0][x-1][y-1][z-1][3] = (DVMC ? had/dis : 1);
-    DVM >> had >> dis;
-    fDiffVectorMeson[1][x-1][y-1][z-1][1] = (DVMC ? had/dis : 1);
-    DVM >> had >> dis;
-    fDiffVectorMeson[0][x-1][y-1][z-1][1] = (DVMC ? had/dis : 1);
+    ifstream DVM(DVM_2006);
+
+    while(DVM >> x)
+    {
+      DVM >> y >> z;
+      DVM >> had >> dis;
+      fDiffVectorMeson[1][x-1][y-1][z-1][0] = fDiffVectorMeson[1][x-1][y-1][z-1][3] = (DVMC ? had/dis : 1);
+      DVM >> had >> dis;
+      fDiffVectorMeson[0][x-1][y-1][z-1][0] = fDiffVectorMeson[0][x-1][y-1][z-1][3] = (DVMC ? had/dis : 1);
+      DVM >> had >> dis;
+      fDiffVectorMeson[1][x-1][y-1][z-1][1] = (DVMC ? had/dis : 1);
+      DVM >> had >> dis;
+      fDiffVectorMeson[0][x-1][y-1][z-1][1] = (DVMC ? had/dis : 1);
+    }
+    DVM.close();
   }
-  DVM.close();
+  else
+  {
+    for(int i=0; i<9;i++)
+      for(int j=0; j<6;j++)
+        for(int k=0; k<12;k++)
+          for(int l=0; l<4;l++)
+            fDiffVectorMeson[0][i][j][k][l] = fDiffVectorMeson[0][i][j][k][l] = 1
+  }
 }
 
 void yavg()
