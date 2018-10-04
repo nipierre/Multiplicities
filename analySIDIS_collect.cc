@@ -336,7 +336,7 @@ void compMultiplicitiesIntegratedY()
         for(int l=0; l<4; l++)
         {
           fMultiplicities_yavg[i][k].tab[c][0][l] = (fBinning_yavg[i][k].tab[c][0][l] && fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][3] ?
-                                                  fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][3]))
+                                                  fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][3])
                                                   : 0);
           fMultiplicities_yavg[i][k].tab[c][1][l] = (fNDIS_evt_yavg[0][i][k] && fAcceptance_yavg_weighted[i][k].tab[c][0][3] ?
                                                   Double_t(((fBinning_yavg[i][k].tab[c][1][l]/pow(fNDIS_evt_yavg[0][i][k],2)-pow(fBinning_yavg[i][k].tab[c][0][l],2)*
@@ -344,7 +344,7 @@ void compMultiplicitiesIntegratedY()
                                                   + fAcceptance_yavg_weighted[i][k].tab[c][1][3]*pow(fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*pow(fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)),2))
                                                   : 0);
           fMultiplicities_yavg[i][k].tab[c][2][l] = (fNDIS_evt_yavg[0][i][k] ?
-                                                  Double_t(sqrt(pow(fRich_sys_err_yavg[x][z].tab[c][1][l],2)/pow(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)+
+                                                  Double_t(sqrt(pow(fRich_sys_err_yavg[i][k].tab[c][1][l],2)/pow(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]*fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)+
                                                   pow(0.05*sqrt(fAcceptance_yavg_weighted[i][k].tab[c][1][3])*fBinning_yavg[i][k].tab[c][0][l]/(fNDIS_evt_yavg[0][i][k]*fZ_bin_width[k]
                                                   *pow(fAcceptance_yavg_weighted[i][k].tab[c][0][3],2)),2)))
                                                   : 0);
