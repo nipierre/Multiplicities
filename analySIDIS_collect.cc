@@ -325,13 +325,11 @@ void yintegrated()
             {
               fBinning_yavg_period[period][x][z].tab[c][0][l]+=fBinning_period[period][x][i][z].tab[c][0][l];
               fBinning_yavg_period[period][x][z].tab[c][1][l]+=fBinning_period[period][x][i][z].tab[c][1][l];
-              fBinning_yavg_period[period][x][z].tab[c][2][l]+=fBinning_period[period][x][i][z].tab[c][2][l];
             }
             fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
             fNDIS_evt_err_yavg[0][x][z]+=fNDIS_evt_err[0][x][i][z];
             fBinning_yavg[x][z].tab[c][0][l]+=fBinning[x][i][z].tab[c][0][l];
             fBinning_yavg[x][z].tab[c][1][l]+=fBinning[x][i][z].tab[c][1][l];
-            fBinning_yavg[x][z].tab[c][2][l]+=fBinning[x][i][z].tab[c][2][l];
             fRich_sys_err_yavg[x][z].tab[c][1][l]+=pow(fRich_sys_err[x][i][z].tab[c][1][l],2);
           }
           fRich_sys_err_yavg[x][z].tab[c][1][l]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][l]);
