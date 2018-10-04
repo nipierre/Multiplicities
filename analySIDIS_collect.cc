@@ -242,7 +242,7 @@ void LoadDiffVectorMesonCorrection()
       for(int j=0; j<6;j++)
         for(int k=0; k<12;k++)
           for(int l=0; l<4;l++)
-            fDiffVectorMeson[0][i][j][k][l] = fDiffVectorMeson[0][i][j][k][l] = 1;
+            fDiffVectorMeson[0][i][j][k][l] = fDiffVectorMeson[1][i][j][k][l] = 1;
   }
 }
 
