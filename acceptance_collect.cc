@@ -885,7 +885,7 @@ int main(int argc, char **argv)
                   H_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
                   H_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
                   H_acc[c][i][j]->SetTitle("");
-                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(j==5) gPad->SetBottomMargin(.15);
                   if(i==0) gPad->SetLeftMargin(.22);
                   if(i==8 && j==5)
                   {
@@ -931,7 +931,7 @@ int main(int argc, char **argv)
                   P_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
                   P_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
                   P_acc[c][i][j]->SetTitle("");
-                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(j==5) gPad->SetBottomMargin(.15);
                   if(i==0) gPad->SetLeftMargin(.22);
                   if(i==8 && j==5)
                   {
@@ -941,7 +941,7 @@ int main(int argc, char **argv)
                   }
                   P_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
                   P_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-                  if(i==1 && j==0)
+                  if(i==2 && j==0)
                   {
                     P_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
                     P_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
@@ -977,7 +977,7 @@ int main(int argc, char **argv)
                   K_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
                   K_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
                   K_acc[c][i][j]->SetTitle("");
-                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(j==5) gPad->SetBottomMargin(.15);
                   if(i==0) gPad->SetLeftMargin(.22);
                   if(i==8 && j==5)
                   {
@@ -987,7 +987,7 @@ int main(int argc, char **argv)
                   }
                   K_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
                   K_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-                  if(i==1 && j==0)
+                  if(i==2 && j==0)
                   {
                     K_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
                     K_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
@@ -1026,7 +1026,7 @@ int main(int argc, char **argv)
                   H_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
                   H_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
                   H_acc[c][i][j]->SetTitle("");
-                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(j==5) gPad->SetBottomMargin(.15);
                   if(i==0 || i==5) gPad->SetLeftMargin(.22);
                   if(i==8)
                   {
@@ -1036,7 +1036,7 @@ int main(int argc, char **argv)
                   }
                   H_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
                   H_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-                  if(i==0)
+                  if(i==2 && j==0)
                   {
                     H_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
                     H_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
