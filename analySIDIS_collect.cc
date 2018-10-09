@@ -723,6 +723,9 @@ int main(int argc, char **argv)
   TGraphAsymmErrors* H_sys[2][9][5];
   TGraphAsymmErrors* P_sys[2][9][5];
   TGraphAsymmErrors* K_sys[2][9][5];
+  TGraphAsymmErrors* H_ysys[2][9];
+  TGraphAsymmErrors* P_ysys[2][9];
+  TGraphAsymmErrors* K_ysys[2][9];
 
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
   Double_t x_range[9] = {.008,.015,.025,.035,.05,.08,.12,.16,.29};
@@ -754,6 +757,9 @@ int main(int argc, char **argv)
   std::vector<Double_t> p_y_err[2][9];
   std::vector<Double_t> k_y_err[2][9];
   std::vector<Double_t> h_y_err[2][9];
+  std::vector<Double_t> p_y_sys[2][9];
+  std::vector<Double_t> k_y_sys[2][9];
+  std::vector<Double_t> h_y_sys[2][9];
   std::vector<Double_t> z_range_p_y[2][9];
   std::vector<Double_t> z_range_k_y[2][9];
   std::vector<Double_t> z_range_h_y[2][9];
@@ -1147,6 +1153,9 @@ int main(int argc, char **argv)
         p_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][0]));
         k_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][1]));
         h_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][3]));
+        p_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][0]));
+        k_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][1]));
+        h_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][3]));
 
         MultiplicitiesSum[0][c][0] += fMultiplicities_yavg[i][k].tab[c][0][0]*fZ_bin_width[k];
         MultiplicitiesSum[0][c][1] += fMultiplicities_yavg[i][k].tab[c][0][1]*fZ_bin_width[k];
@@ -1165,9 +1174,9 @@ int main(int argc, char **argv)
 
       for(int k=12; k>0; k--)
       {
-        if(!p_y[c][i][k-1]) {p_y[c][i].erase(p_y[c][i].begin()+k-1); p_y_err[c][i].erase(p_y_err[c][i].begin()+k-1); z_range_p_y[c][i].erase(z_range_p_y[c][i].begin()+k-1);}
-        if(!k_y[c][i][k-1]) {k_y[c][i].erase(k_y[c][i].begin()+k-1); k_y_err[c][i].erase(k_y_err[c][i].begin()+k-1); z_range_k_y[c][i].erase(z_range_k_y[c][i].begin()+k-1);}
-        if(!h_y[c][i][k-1]) {h_y[c][i].erase(h_y[c][i].begin()+k-1); h_y_err[c][i].erase(h_y_err[c][i].begin()+k-1); z_range_h_y[c][i].erase(z_range_h_y[c][i].begin()+k-1);}
+        if(!p_y[c][i][k-1]) {p_y[c][i].erase(p_y[c][i].begin()+k-1); p_y_err[c][i].erase(p_y_err[c][i].begin()+k-1); p_y_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1); z_range_p_y[c][i].erase(z_range_p_y[c][i].begin()+k-1);}
+        if(!k_y[c][i][k-1]) {k_y[c][i].erase(k_y[c][i].begin()+k-1); k_y_err[c][i].erase(k_y_err[c][i].begin()+k-1); k_y_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1); z_range_k_y[c][i].erase(z_range_k_y[c][i].begin()+k-1);}
+        if(!h_y[c][i][k-1]) {h_y[c][i].erase(h_y[c][i].begin()+k-1); h_y_err[c][i].erase(h_y_err[c][i].begin()+k-1); h_y_sys[c][i][j].erase(h_sys[c][i][j].begin()+k-1); z_range_h_y[c][i].erase(z_range_h_y[c][i].begin()+k-1);}
       }
 
       bool p_y_empty = 0;
@@ -1181,18 +1190,27 @@ int main(int argc, char **argv)
       H_y[c][i] = new TGraphErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&(h_y[c][i][0]),0,&(h_y_err[c][i][0]));
       P_y[c][i] = new TGraphErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&(p_y[c][i][0]),0,&(p_y_err[c][i][0]));
       K_y[c][i] = new TGraphErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&(k_y[c][i][0]),0,&(k_y_err[c][i][0]));
+      H_ysys[c][i] = new TGraphErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&h_yoffset[0], &errorx[0], &errorx[0], 0, &(h_y_sys[c][i][j][0]));
+      P_ysys[c][i] = new TGraphErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_y_sys[c][i][j][0]));
+      K_ysys[c][i] = new TGraphErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_y_sys[c][i][j][0]));
 
       if(!c)
       {
         H_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         P_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         K_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+        H_ysys[c][i]->SetMarkerColor(fMarkerColor[4]);
+        P_ysys[c][i]->SetMarkerColor(fMarkerColor[4]);
+        K_ysys[c][i]->SetMarkerColor(fMarkerColor[4]);
       }
       else
       {
         H_y[c][i]->SetMarkerColor(fMarkerColor[0]);
         P_y[c][i]->SetMarkerColor(fMarkerColor[0]);
         K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        H_ysys[c][i]->SetMarkerColor(fMarkerColor[4]);
+        P_ysys[c][i]->SetMarkerColor(fMarkerColor[4]);
+        K_ysys[c][i]->SetMarkerColor(fMarkerColor[4]);
       }
 
       H_y[c][i]->SetMarkerSize(2);
@@ -1245,7 +1263,9 @@ int main(int argc, char **argv)
               H_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}");
               H_y[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
+            lsys.Draw();
             H_y[c][i]->Draw("SAMEP");
+            H_ysys[c][i]->Draw("SAMEP");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(-0.5);
             H_y[c][i]->SetMaximum(4.);
@@ -1254,6 +1274,7 @@ int main(int argc, char **argv)
           else
           {
             H_y[c][i]->Draw("SAMEP");
+            H_ysys[c][i]->Draw("SAMEP");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(-0.5);
             H_y[c][i]->SetMaximum(4.);
@@ -1291,7 +1312,9 @@ int main(int argc, char **argv)
               P_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi}}");
               P_y[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
+            lsys.Draw();
             P_y[c][i]->Draw("SAMEP");
+            P_ysys[c][i]->Draw("SAMEP");
             P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             P_y[c][i]->SetMinimum(-0.5);
             P_y[c][i]->SetMaximum(3.5);
@@ -1300,6 +1323,7 @@ int main(int argc, char **argv)
           else
           {
             P_y[c][i]->Draw("SAMEP");
+            P_ysys[c][i]->Draw("SAMEP");
             P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             P_y[c][i]->SetMinimum(-0.5);
             P_y[c][i]->SetMaximum(3.5);
@@ -1337,7 +1361,9 @@ int main(int argc, char **argv)
               K_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}");
               K_y[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
+            lsys.Draw();
             K_y[c][i]->Draw("SAMEP");
+            K_ysys[c][i]->Draw("SAMEP");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             K_y[c][i]->SetMinimum(-0.5);
             K_y[c][i]->SetMaximum(0.8);
@@ -1346,6 +1372,7 @@ int main(int argc, char **argv)
           else
           {
             K_y[c][i]->Draw("SAMEP");
+            K_ysys[c][i]->Draw("SAMEP");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             K_y[c][i]->SetMinimum(-0.5);
             K_y[c][i]->SetMaximum(0.8);
