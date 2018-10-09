@@ -718,8 +718,16 @@ int main(int argc, char **argv)
   TGraphErrors* rP_y;
   TGraphErrors* rK_y;
 
+  TGraphAsymmErrors* H_sys[2][9][5];
+  TGraphAsymmErrors* P_sys[2][9][5];
+  TGraphAsymmErrors* K_sys[2][9][5];
+
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
   Double_t x_range[9] = {.008,.015,.025,.035,.05,.08,.12,.16,.29};
+  Double_t errorx[12] = {0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.1/2};
+  Double_t h_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
+  Double_t p_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
+  Double_t k_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
 
   ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), std::ofstream::out | std::ofstream::trunc);
@@ -732,6 +740,9 @@ int main(int argc, char **argv)
   std::vector<Double_t> p_err[2][9][6];
   std::vector<Double_t> k_err[2][9][6];
   std::vector<Double_t> h_err[2][9][6];
+  std::vector<Double_t> p_sys[2][9][6];
+  std::vector<Double_t> k_sys[2][9][6];
+  std::vector<Double_t> h_sys[2][9][6];
   std::vector<Double_t> z_range_p[2][9][6];
   std::vector<Double_t> z_range_k[2][9][6];
   std::vector<Double_t> z_range_h[2][9][6];
@@ -863,6 +874,9 @@ int main(int argc, char **argv)
           p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? sqrt(fMultiplicities[i][j][k].tab[c][1][0]) : 0);
           k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? sqrt(fMultiplicities[i][j][k].tab[c][1][1]) : 0);
           h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? sqrt(fMultiplicities[i][j][k].tab[c][1][3]) : 0);
+          p_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][0] ? sqrt(fMultiplicities[i][j][k].tab[c][2][0]) : 0);
+          k_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][1] ? sqrt(fMultiplicities[i][j][k].tab[c][2][1]) : 0);
+          h_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][3] ? sqrt(fMultiplicities[i][j][k].tab[c][2][3]) : 0);
         }
       }
 
@@ -886,9 +900,9 @@ int main(int argc, char **argv)
 
         for(int k=12; k>0; k--)
         {
-          if(!p_m[c][i][j][k-1]) {p_m[c][i][j].erase(p_m[c][i][j].begin()+k-1); p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
-          if(!k_m[c][i][j][k-1]) {k_m[c][i][j].erase(k_m[c][i][j].begin()+k-1); k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
-          if(!h_m[c][i][j][k-1]) {h_m[c][i][j].erase(h_m[c][i][j].begin()+k-1); h_err[c][i][j].erase(h_err[c][i][j].begin()+k-1); z_range_h[c][i][j].erase(z_range_h[c][i][j].begin()+k-1);}
+          if(!p_m[c][i][j][k-1]) {p_m[c][i][j].erase(p_m[c][i][j].begin()+k-1); p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1); z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
+          if(!k_m[c][i][j][k-1]) {k_m[c][i][j].erase(k_m[c][i][j].begin()+k-1); k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1); z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
+          if(!h_m[c][i][j][k-1]) {h_m[c][i][j].erase(h_m[c][i][j].begin()+k-1); h_err[c][i][j].erase(h_err[c][i][j].begin()+k-1); h_sys[c][i][j].erase(h_sys[c][i][j].begin()+k-1); z_range_h[c][i][j].erase(z_range_h[c][i][j].begin()+k-1);}
         }
 
         bool p_m_empty = 0;
@@ -902,6 +916,9 @@ int main(int argc, char **argv)
         H_mult[c][i][j] = new TGraphErrors(Int_t(h_m[c][i][j].size()),&(z_range_h[c][i][j][0]),&(h_m[c][i][j][0]),0,&(h_err[c][i][j][0]));
         P_mult[c][i][j] = new TGraphErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p_m[c][i][j][0]),0,&(p_err[c][i][j][0]));
         K_mult[c][i][j] = new TGraphErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k_m[c][i][j][0]),0,&(k_err[c][i][j][0]));
+        H_sys[c][i][j] = new TGraphAsymmErrors(Int_t(h_m[c][i][j].size()),&(z_range_h[c][i][j][0]), &errorx[0], &errorx[0], &h_yoffset[0],0,&(h_sys[c][i][j][0]));
+        P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &errorx[0], &errorx[0], &p_yoffset[0],0,&(p_sys[c][i][j][0]));
+        K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &errorx[0], &errorx[0], &k_yoffset[0],0,&(k_sys[c][i][j][0]));
 
         H_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
         P_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
@@ -927,6 +944,9 @@ int main(int argc, char **argv)
         P_mult[c][i][j]->GetXaxis()->SetTitle("z");
         K_mult[c][i][j]->GetXaxis()->SetTitle("z");
 
+        H_sys[c][i][j]->SetFillColor(fMarkerColor[j])
+        P_sys[c][i][j]->SetFillColor(fMarkerColor[j])
+        K_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
 
         if(!h_m_empty)
         {
@@ -939,7 +959,7 @@ int main(int argc, char **argv)
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][j]->SetMinimum(-0.4);
-              H_mult[c][i][j]->SetMaximum(4.5);
+              H_mult[c][i][j]->SetMaximum(5.);
               H_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               H_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               H_mult[c][i][j]->SetTitle("");
@@ -960,17 +980,19 @@ int main(int argc, char **argv)
                 H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               lsys.Draw();
+              if(j==3) H_sys[c][i][j]->Draw("SAME3");
               if(!c) axisflagh1=1;
               else axisflagh2=1;
-              if(c) c51->Range(0.1,-0.4,0.9,4.5);
-              else c52->Range(0.1,-0.4,0.9,4.5);
+              if(c) c51->Range(0.1,-0.4,0.9,5.);
+              else c52->Range(0.1,-0.4,0.9,5.);
             }
             else
             {
               H_mult[c][i][j]->Draw("SAMEP");
+              if(j==3) H_sys[c][i][j]->Draw("SAME3");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][j]->SetMinimum(-0.4);
-              H_mult[c][i][j]->SetMaximum(4.5);
+              H_mult[c][i][j]->SetMaximum(5.);
             }
           }
           if(c) c51->Update();
@@ -1009,6 +1031,7 @@ int main(int argc, char **argv)
                 P_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               lsys.Draw();
+              if(j==3) P_sys[c][i][j]->Draw("SAME3");
               if(!c) axisflagp1=1;
               else axisflagp2=1;
               if(c) c61->Range(0.1,-0.4,0.9,4.);
@@ -1017,6 +1040,7 @@ int main(int argc, char **argv)
             else
             {
               P_mult[c][i][j]->Draw("SAMEP");
+              if(j==3) P_sys[c][i][j]->Draw("SAME3");
               P_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               P_mult[c][i][j]->SetMinimum(-0.4);
               P_mult[c][i][j]->SetMaximum(4.);
@@ -1058,6 +1082,7 @@ int main(int argc, char **argv)
                 K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
               lsys.Draw();
+              if(j==3) K_sys[c][i][j]->Draw("SAME3");
               if(!c) axisflagk1=1;
               else axisflagk2=1;
               if(c) c71->Range(0.1,-0.06,0.9,0.8);
@@ -1066,6 +1091,7 @@ int main(int argc, char **argv)
             else
             {
               K_mult[c][i][j]->Draw("SAMEP");
+              if(j==3) K_sys[c][i][j]->Draw("SAME3");
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               K_mult[c][i][j]->SetMinimum(-0.06);
               K_mult[c][i][j]->SetMaximum(0.8);
