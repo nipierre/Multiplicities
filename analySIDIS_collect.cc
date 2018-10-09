@@ -938,7 +938,7 @@ int main(int argc, char **argv)
             {
               H_mult[c][i][j]->Draw("SAMEPA");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][j]->SetMinimum(-0.3);
+              H_mult[c][i][j]->SetMinimum(-0.4);
               H_mult[c][i][j]->SetMaximum(4.5);
               H_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               H_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
@@ -962,14 +962,14 @@ int main(int argc, char **argv)
               lsys.Draw();
               if(!c) axisflagh1=1;
               else axisflagh2=1;
-              if(c) c51->Range(0.1,-0.3,0.9,4.5);
-              else c52->Range(0.1,-0.3,0.9,4.5);
+              if(c) c51->Range(0.1,-0.4,0.9,4.5);
+              else c52->Range(0.1,-0.4,0.9,4.5);
             }
             else
             {
               H_mult[c][i][j]->Draw("SAMEP");
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              H_mult[c][i][j]->SetMinimum(-0.3);
+              H_mult[c][i][j]->SetMinimum(-0.4);
               H_mult[c][i][j]->SetMaximum(4.5);
             }
           }
@@ -987,7 +987,7 @@ int main(int argc, char **argv)
             {
               P_mult[c][i][j]->Draw("SAMEPA");
               P_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P_mult[c][i][j]->SetMinimum(-0.3);
+              P_mult[c][i][j]->SetMinimum(-0.4);
               P_mult[c][i][j]->SetMaximum(4.);
               P_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               P_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
@@ -1011,14 +1011,14 @@ int main(int argc, char **argv)
               lsys.Draw();
               if(!c) axisflagp1=1;
               else axisflagp2=1;
-              if(c) c61->Range(0.1,-0.3,0.9,4.);
-              else c62->Range(0.1,-0.3,0.9,4.);
+              if(c) c61->Range(0.1,-0.4,0.9,4.);
+              else c62->Range(0.1,-0.4,0.9,4.);
             }
             else
             {
               P_mult[c][i][j]->Draw("SAMEP");
               P_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P_mult[c][i][j]->SetMinimum(-0.3);
+              P_mult[c][i][j]->SetMinimum(-0.4);
               P_mult[c][i][j]->SetMaximum(4.);
             }
           }
@@ -1036,7 +1036,7 @@ int main(int argc, char **argv)
             {
               K_mult[c][i][j]->Draw("SAMEPA");
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              K_mult[c][i][j]->SetMinimum(-0.04);
+              K_mult[c][i][j]->SetMinimum(-0.06);
               K_mult[c][i][j]->SetMaximum(0.8);
               K_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               K_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
@@ -1060,14 +1060,14 @@ int main(int argc, char **argv)
               lsys.Draw();
               if(!c) axisflagk1=1;
               else axisflagk2=1;
-              if(c) c71->Range(0.1,-0.04,0.9,0.8);
-              else c72->Range(0.1,-0.04,0.9,0.8);
+              if(c) c71->Range(0.1,-0.06,0.9,0.8);
+              else c72->Range(0.1,-0.06,0.9,0.8);
             }
             else
             {
               K_mult[c][i][j]->Draw("SAMEP");
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              K_mult[c][i][j]->SetMinimum(-0.04);
+              K_mult[c][i][j]->SetMinimum(-0.06);
               K_mult[c][i][j]->SetMaximum(0.8);
             }
           }
@@ -1608,20 +1608,20 @@ int main(int argc, char **argv)
   c61->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  fTitle.DrawLatex(0.5, 3.7,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
   c62->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  fTitle.DrawLatex(0.5, 3.7,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
   c61->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  fTitle.DrawLatex(0.5, 3.7,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
   c62->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  fTitle.DrawLatex(0.5, 3.7,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
   c61->cd(3);
   fTitle.SetTextSize(0.078);
