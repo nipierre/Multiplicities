@@ -27,6 +27,7 @@ LOG
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
+#define SPREAD 1
 
 // Outputs
 #define dirroot "/sps/compass/npierre/Multiplicities/acceptance"
@@ -404,10 +405,22 @@ int main(int argc, char **argv)
     c9.SetFillColor(0);
     c10.SetFillColor(0);
     c11.SetFillColor(0);
+    c12.SetFillColor(0);
+    c13.SetFillColor(0);
+    c14.SetFillColor(0);
 
-    c5.Divide(5,2,0,0);
-    c6.Divide(5,2,0,0);
-    c7.Divide(5,2,0,0);
+    if(SPREAD)
+    {
+      c5.Divide(9,5,0,0);
+      c6.Divide(9,5,0,0);
+      c7.Divide(9,5,0,0);
+    }
+    else
+    {
+      c5.Divide(5,2,0,0);
+      c6.Divide(5,2,0,0);
+      c7.Divide(5,2,0,0);
+    }
     c9.Divide(5,2,0,0);
     c10.Divide(5,2,0,0);
     c11.Divide(5,2,0,0);
@@ -607,6 +620,7 @@ int main(int argc, char **argv)
             || (i==7 && j==3 && k>7)
             || (i==8 && j==3 && k>6)
             || (i>5 && j==5 && k==2))
+            || (j==1 && k<4))
             {
                fAcceptance[i][j][k].tab[c][0][0] = 0;
                fAcceptance[i][j][k].tab[c][0][1] = 0;
@@ -806,17 +820,44 @@ int main(int argc, char **argv)
           P_acc[c][i][j] = new TGraphErrors(int(p_a.size()),&(z_range_p[0]),&(p_a[0]),0,&(p_err[0]));
           K_acc[c][i][j] = new TGraphErrors(int(k_a.size()),&(z_range_k[0]),&(k_a[0]),0,&(k_err[0]));
 
-          H_acc[c][i][j]->SetMarkerColor(fMarkerColor[j]);
-          P_acc[c][i][j]->SetMarkerColor(fMarkerColor[j]);
-          K_acc[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+          if(SPREAD)
+          {
+            if(!c)
+            {
+              H_acc[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+              P_acc[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+              K_acc[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+            }
+            else
+            {
+              H_acc[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+              P_acc[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+              K_acc[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+            }
+          }
+          else
+          {
+            H_acc[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+            P_acc[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+            K_acc[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+          }
 
           H_acc[c][i][j]->SetMarkerSize(3);
           P_acc[c][i][j]->SetMarkerSize(3);
           K_acc[c][i][j]->SetMarkerSize(3);
 
-          H_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
-          P_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
-          K_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
+          if(SPREAD)
+          {
+            H_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+            P_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+            K_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+          }
+          else
+          {
+            H_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
+            P_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
+            K_acc[c][i][j]->SetMarkerStyle(fMarkerStyle[j][c]);
+          }
 
           H_acc[c][i][j]->GetYaxis()->SetTitle("");
           P_acc[c][i][j]->GetYaxis()->SetTitle("");
@@ -830,167 +871,335 @@ int main(int argc, char **argv)
           P_acc[c][i][j]->SetTitle("");
           K_acc[c][i][j]->SetTitle("");
 
-          if(!h_a_empty)
+          if(SPREAD)
           {
-            c5.cd(i+1);
-            gPad->SetFillStyle(4000);
-            if(H_acc[c][i][j])
+            if(!h_a_empty)
             {
-              if(!c && j==3)
+              c5.cd(i+1+9*j);
+              gPad->SetFillStyle(4000);
+              if(H_acc[c][i][j])
               {
-                H_acc[c][i][j]->Draw("SAMEPA");
-                H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-                H_acc[c][i][j]->SetMinimum(0.);
-                H_acc[c][i][j]->SetMaximum(1.2);
-                H_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-                H_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-                H_acc[c][i][j]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
+                if(!c)
                 {
-                  H_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  H_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-                  H_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  H_acc[c][i][j]->Draw("SAMEPA");
+                  H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][j]->SetMinimum(0.);
+                  H_acc[c][i][j]->SetMaximum(1.2);
+                  H_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+                  H_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+                  H_acc[c][i][j]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0) gPad->SetLeftMargin(.22);
+                  if(i==8 && j==5)
+                  {
+                    H_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    H_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                    H_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  H_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  H_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==1 && j==0)
+                  {
+                    H_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                    H_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  H_acc[c][i][0]->Draw("SAMEP");
+                  H_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][0]->SetMinimum(0.);
+                  H_acc[c][i][0]->SetMaximum(1.2);
+                  H_acc[c][i][1]->Draw("SAMEP");
+                  H_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][1]->SetMinimum(0.);
+                  H_acc[c][i][1]->SetMaximum(1.2);
+                  H_acc[c][i][2]->Draw("SAMEP");
+                  H_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][2]->SetMinimum(0.);
+                  H_acc[c][i][2]->SetMaximum(1.2);
+                  c5.Range(0.1,0.,0.9,1.2);
                 }
-                H_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-                H_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
+                else
                 {
-                  H_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
-                  H_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  H_acc[c][i][j]->Draw("SAMEP");
+                  H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][j]->SetMinimum(0.);
+                  H_acc[c][i][j]->SetMaximum(1.2);
                 }
-                H_acc[c][i][0]->Draw("SAMEP");
-                H_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-                H_acc[c][i][0]->SetMinimum(0.);
-                H_acc[c][i][0]->SetMaximum(1.2);
-                H_acc[c][i][1]->Draw("SAMEP");
-                H_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-                H_acc[c][i][1]->SetMinimum(0.);
-                H_acc[c][i][1]->SetMaximum(1.2);
-                H_acc[c][i][2]->Draw("SAMEP");
-                H_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-                H_acc[c][i][2]->SetMinimum(0.);
-                H_acc[c][i][2]->SetMaximum(1.2);
-                c5.Range(0.1,0.,0.9,1.2);
               }
-              else
-              {
-                H_acc[c][i][j]->Draw("SAMEP");
-                H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-                H_acc[c][i][j]->SetMinimum(0.);
-                H_acc[c][i][j]->SetMaximum(1.2);
-              }
+              c5.Update();
             }
-            c5.Update();
-          }
 
-          if(!p_a_empty)
-          {
-            c6.cd(i+1);
-            if(P_acc[c][i][j])
+            if(!p_a_empty)
             {
-              if(!c && j==3)
+              c6.cd(i+1+9*j);
+              if(P_acc[c][i][j])
               {
-                P_acc[c][i][j]->Draw("SAMEPA");
-                P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-                P_acc[c][i][j]->SetMinimum(0.);
-                P_acc[c][i][j]->SetMaximum(1.2);
-                P_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-                P_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-                P_acc[c][i][j]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
+                if(!c)
                 {
-                  P_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  P_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-                  P_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  P_acc[c][i][j]->Draw("SAMEPA");
+                  P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][j]->SetMinimum(0.);
+                  P_acc[c][i][j]->SetMaximum(1.2);
+                  P_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+                  P_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+                  P_acc[c][i][j]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0) gPad->SetLeftMargin(.22);
+                  if(i==8 && j==5)
+                  {
+                    P_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    P_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                    P_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  P_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  P_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==1 && j==0)
+                  {
+                    P_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
+                    P_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  P_acc[c][i][0]->Draw("SAMEP");
+                  P_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][0]->SetMinimum(0.);
+                  P_acc[c][i][0]->SetMaximum(1.2);
+                  P_acc[c][i][1]->Draw("SAMEP");
+                  P_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][1]->SetMinimum(0.);
+                  P_acc[c][i][1]->SetMaximum(1.2);
+                  P_acc[c][i][2]->Draw("SAMEP");
+                  P_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][2]->SetMinimum(0.);
+                  P_acc[c][i][2]->SetMaximum(1.2);
+                  c6.Range(0.,0.,1.,1.2);
                 }
-                P_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-                P_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
+                else
                 {
-                  P_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
-                  P_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  P_acc[c][i][j]->Draw("SAMEP");
+                  P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][j]->SetMinimum(0.);
+                  P_acc[c][i][j]->SetMaximum(1.2);
                 }
-                P_acc[c][i][0]->Draw("SAMEP");
-                P_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-                P_acc[c][i][0]->SetMinimum(0.);
-                P_acc[c][i][0]->SetMaximum(1.2);
-                P_acc[c][i][1]->Draw("SAMEP");
-                P_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-                P_acc[c][i][1]->SetMinimum(0.);
-                P_acc[c][i][1]->SetMaximum(1.2);
-                P_acc[c][i][2]->Draw("SAMEP");
-                P_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-                P_acc[c][i][2]->SetMinimum(0.);
-                P_acc[c][i][2]->SetMaximum(1.2);
-                c6.Range(0.,0.,1.,1.2);
               }
-              else
-              {
-                P_acc[c][i][j]->Draw("SAMEP");
-                P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-                P_acc[c][i][j]->SetMinimum(0.);
-                P_acc[c][i][j]->SetMaximum(1.2);
-              }
+              c6.Update();
             }
-            c6.Update();
-          }
 
-          if(!k_a_empty)
-          {
-            c7.cd(i+1);
-            if(K_acc[c][i][j])
+            if(!k_a_empty)
             {
-              if(!c && j==3)
+              c7.cd(i+1+9*j);
+              if(K_acc[c][i][j])
               {
-                K_acc[c][i][j]->Draw("SAMEPA");
-                K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-                K_acc[c][i][j]->SetMinimum(0.);
-                K_acc[c][i][j]->SetMaximum(1.2);
-                K_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-                K_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-                K_acc[c][i][j]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
+                if(!c)
                 {
-                  K_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  K_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-                  K_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  K_acc[c][i][j]->Draw("SAMEPA");
+                  K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][j]->SetMinimum(0.);
+                  K_acc[c][i][j]->SetMaximum(1.2);
+                  K_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+                  K_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+                  K_acc[c][i][j]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0) gPad->SetLeftMargin(.22);
+                  if(i==8 && j==5)
+                  {
+                    K_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    K_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                    K_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  K_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  K_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==1 && j==0)
+                  {
+                    K_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
+                    K_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  K_acc[c][i][0]->Draw("SAMEP");
+                  K_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][0]->SetMinimum(0.);
+                  K_acc[c][i][0]->SetMaximum(1.2);
+                  K_acc[c][i][1]->Draw("SAMEP");
+                  K_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][1]->SetMinimum(0.);
+                  K_acc[c][i][1]->SetMaximum(1.2);
+                  K_acc[c][i][2]->Draw("SAMEP");
+                  K_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][2]->SetMinimum(0.);
+                  K_acc[c][i][2]->SetMaximum(1.2);
+                  c7.Range(0.,0.,1.,1.2);
                 }
-                K_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-                K_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
+                else
                 {
-                  K_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
-                  K_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  K_acc[c][i][j]->Draw("SAMEP");
+                  K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][j]->SetMinimum(0.);
+                  K_acc[c][i][j]->SetMaximum(1.2);
                 }
-                K_acc[c][i][0]->Draw("SAMEP");
-                K_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-                K_acc[c][i][0]->SetMinimum(0.);
-                K_acc[c][i][0]->SetMaximum(1.2);
-                K_acc[c][i][1]->Draw("SAMEP");
-                K_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-                K_acc[c][i][1]->SetMinimum(0.);
-                K_acc[c][i][1]->SetMaximum(1.2);
-                K_acc[c][i][2]->Draw("SAMEP");
-                K_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-                K_acc[c][i][2]->SetMinimum(0.);
-                K_acc[c][i][2]->SetMaximum(1.2);
-                c7.Range(0.,0.,1.,1.2);
               }
-              else
-              {
-                K_acc[c][i][j]->Draw("SAMEP");
-                K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-                K_acc[c][i][j]->SetMinimum(0.);
-                K_acc[c][i][j]->SetMaximum(1.2);
-              }
+              c7.Update();
             }
-            c7.Update();
+          }
+          else
+          {
+            if(!h_a_empty)
+            {
+              c5.cd(i+1);
+              gPad->SetFillStyle(4000);
+              if(H_acc[c][i][j])
+              {
+                if(!c && j==3)
+                {
+                  H_acc[c][i][j]->Draw("SAMEPA");
+                  H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][j]->SetMinimum(0.);
+                  H_acc[c][i][j]->SetMaximum(1.2);
+                  H_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+                  H_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+                  H_acc[c][i][j]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                  if(i==8)
+                  {
+                    H_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    H_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                    H_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  H_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  H_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==0)
+                  {
+                    H_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                    H_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  H_acc[c][i][0]->Draw("SAMEP");
+                  H_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][0]->SetMinimum(0.);
+                  H_acc[c][i][0]->SetMaximum(1.2);
+                  H_acc[c][i][1]->Draw("SAMEP");
+                  H_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][1]->SetMinimum(0.);
+                  H_acc[c][i][1]->SetMaximum(1.2);
+                  H_acc[c][i][2]->Draw("SAMEP");
+                  H_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][2]->SetMinimum(0.);
+                  H_acc[c][i][2]->SetMaximum(1.2);
+                  c5.Range(0.1,0.,0.9,1.2);
+                }
+                else
+                {
+                  H_acc[c][i][j]->Draw("SAMEP");
+                  H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][j]->SetMinimum(0.);
+                  H_acc[c][i][j]->SetMaximum(1.2);
+                }
+              }
+              c5.Update();
+            }
+
+            if(!p_a_empty)
+            {
+              c6.cd(i+1);
+              if(P_acc[c][i][j])
+              {
+                if(!c && j==3)
+                {
+                  P_acc[c][i][j]->Draw("SAMEPA");
+                  P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][j]->SetMinimum(0.);
+                  P_acc[c][i][j]->SetMaximum(1.2);
+                  P_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+                  P_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+                  P_acc[c][i][j]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                  if(i==8)
+                  {
+                    P_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    P_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                    P_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  P_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  P_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==0)
+                  {
+                    P_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
+                    P_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  P_acc[c][i][0]->Draw("SAMEP");
+                  P_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][0]->SetMinimum(0.);
+                  P_acc[c][i][0]->SetMaximum(1.2);
+                  P_acc[c][i][1]->Draw("SAMEP");
+                  P_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][1]->SetMinimum(0.);
+                  P_acc[c][i][1]->SetMaximum(1.2);
+                  P_acc[c][i][2]->Draw("SAMEP");
+                  P_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][2]->SetMinimum(0.);
+                  P_acc[c][i][2]->SetMaximum(1.2);
+                  c6.Range(0.,0.,1.,1.2);
+                }
+                else
+                {
+                  P_acc[c][i][j]->Draw("SAMEP");
+                  P_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_acc[c][i][j]->SetMinimum(0.);
+                  P_acc[c][i][j]->SetMaximum(1.2);
+                }
+              }
+              c6.Update();
+            }
+
+            if(!k_a_empty)
+            {
+              c7.cd(i+1);
+              if(K_acc[c][i][j])
+              {
+                if(!c && j==3)
+                {
+                  K_acc[c][i][j]->Draw("SAMEPA");
+                  K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][j]->SetMinimum(0.);
+                  K_acc[c][i][j]->SetMaximum(1.2);
+                  K_acc[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+                  K_acc[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+                  K_acc[c][i][j]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                  if(i==8)
+                  {
+                    K_acc[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    K_acc[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                    K_acc[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  K_acc[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  K_acc[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==0)
+                  {
+                    K_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
+                    K_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  K_acc[c][i][0]->Draw("SAMEP");
+                  K_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][0]->SetMinimum(0.);
+                  K_acc[c][i][0]->SetMaximum(1.2);
+                  K_acc[c][i][1]->Draw("SAMEP");
+                  K_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][1]->SetMinimum(0.);
+                  K_acc[c][i][1]->SetMaximum(1.2);
+                  K_acc[c][i][2]->Draw("SAMEP");
+                  K_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][2]->SetMinimum(0.);
+                  K_acc[c][i][2]->SetMaximum(1.2);
+                  c7.Range(0.,0.,1.,1.2);
+                }
+                else
+                {
+                  K_acc[c][i][j]->Draw("SAMEP");
+                  K_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_acc[c][i][j]->SetMinimum(0.);
+                  K_acc[c][i][j]->SetMaximum(1.2);
+                }
+              }
+              c7.Update();
+            }
           }
 
         }
@@ -1275,171 +1484,178 @@ int main(int argc, char **argv)
 
     TLatex fTitle;
 
-    c5.cd(1);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+    if(SPREAD)
+    {
 
-    c5.cd(2);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+    }
+    else
+    {
+      c5.cd(1);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-    c5.cd(3);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+      c5.cd(2);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-    c5.cd(4);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+      c5.cd(3);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-    c5.cd(5);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+      c5.cd(4);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-    c5.cd(6);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+      c5.cd(5);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-    c5.cd(7);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+      c5.cd(6);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-    c5.cd(8);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+      c5.cd(7);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-    c5.cd(9);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+      c5.cd(8);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-    c5.cd(10);
-    fTitle.SetTextSize(0.095);
-    fTitle.SetTextAlign(11);
-    fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90}");
-    fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70}");
-    fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50}");
-    fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30}");
-    fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20}");
-    fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15}");
+      c5.cd(9);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+      c5.cd(10);
+      fTitle.SetTextSize(0.095);
+      fTitle.SetTextAlign(11);
+      fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90}");
+      fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70}");
+      fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50}");
+      fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30}");
+      fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20}");
+      fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15}");
 
 
-    c6.cd(1);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+      c6.cd(1);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-    c6.cd(2);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+      c6.cd(2);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-    c6.cd(3);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+      c6.cd(3);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-    c6.cd(4);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+      c6.cd(4);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-    c6.cd(5);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+      c6.cd(5);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-    c6.cd(6);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+      c6.cd(6);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-    c6.cd(7);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+      c6.cd(7);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-    c6.cd(8);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+      c6.cd(8);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-    c6.cd(9);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+      c6.cd(9);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
-    c6.cd(10);
-    fTitle.SetTextSize(0.095);
-    fTitle.SetTextAlign(11);
-    fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90}");
-    fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70}");
-    fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50}");
-    fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30}");
-    fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20}");
-    fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15}");
+      c6.cd(10);
+      fTitle.SetTextSize(0.095);
+      fTitle.SetTextAlign(11);
+      fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90}");
+      fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70}");
+      fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50}");
+      fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30}");
+      fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20}");
+      fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15}");
 
-    c7.cd(1);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+      c7.cd(1);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-    c7.cd(2);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+      c7.cd(2);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-    c7.cd(3);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+      c7.cd(3);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-    c7.cd(4);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+      c7.cd(4);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-    c7.cd(5);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+      c7.cd(5);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-    c7.cd(6);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+      c7.cd(6);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-    c7.cd(7);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+      c7.cd(7);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-    c7.cd(8);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+      c7.cd(8);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-    c7.cd(9);
-    fTitle.SetTextSize(0.078);
-    fTitle.SetTextAlign(21);
-    fTitle.DrawLatex(0.5, 1.0,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+      c7.cd(9);
+      fTitle.SetTextSize(0.078);
+      fTitle.SetTextAlign(21);
+      fTitle.DrawLatex(0.5, 1.0,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
-    c7.cd(10);
-    fTitle.SetTextSize(0.095);
-    fTitle.SetTextAlign(11);
-    fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90}");
-    fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70}");
-    fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50}");
-    fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30}");
-    fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20}");
-    fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15}");
+      c7.cd(10);
+      fTitle.SetTextSize(0.095);
+      fTitle.SetTextAlign(11);
+      fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90}");
+      fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70}");
+      fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50}");
+      fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30}");
+      fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20}");
+      fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15}");
+    }
 
     for(int i=0; i<12; i++)
     {
