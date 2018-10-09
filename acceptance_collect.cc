@@ -405,9 +405,6 @@ int main(int argc, char **argv)
     c9.SetFillColor(0);
     c10.SetFillColor(0);
     c11.SetFillColor(0);
-    c12.SetFillColor(0);
-    c13.SetFillColor(0);
-    c14.SetFillColor(0);
 
     if(SPREAD)
     {
@@ -619,7 +616,7 @@ int main(int argc, char **argv)
             || (i==6 && j==3 && k==10)
             || (i==7 && j==3 && k>7)
             || (i==8 && j==3 && k>6)
-            || (i>5 && j==5 && k==2))
+            || (i>5 && j==5 && k==2)
             || (j==1 && k<4))
             {
                fAcceptance[i][j][k].tab[c][0][0] = 0;
