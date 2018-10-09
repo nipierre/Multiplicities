@@ -11,6 +11,8 @@
 #include <TBranch.h>
 #include <TLeaf.h>
 #include <TGraphErrors.h>
+#include <TGraphAsymmErrors.h>
+#include <TLine.h>
 #include <TGaxis.h>
 
 #include "analySIDIS_collect.h"
