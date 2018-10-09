@@ -951,10 +951,6 @@ int main(int argc, char **argv)
         P_mult[c][i][j]->GetYaxis()->SetTitle("");
         K_mult[c][i][j]->GetYaxis()->SetTitle("");
 
-        H_mult[c][i][j]->GetXaxis()->SetTitle("z");
-        P_mult[c][i][j]->GetXaxis()->SetTitle("z");
-        K_mult[c][i][j]->GetXaxis()->SetTitle("z");
-
         H_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
         P_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
         K_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
@@ -1240,10 +1236,6 @@ int main(int argc, char **argv)
       H_y[c][i]->GetYaxis()->SetTitle("");
       P_y[c][i]->GetYaxis()->SetTitle("");
       K_y[c][i]->GetYaxis()->SetTitle("");
-
-      H_y[c][i]->GetXaxis()->SetTitle("z");
-      P_y[c][i]->GetXaxis()->SetTitle("z");
-      K_y[c][i]->GetXaxis()->SetTitle("z");
 
       if(!h_y_empty)
       {
