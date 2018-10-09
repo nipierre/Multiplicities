@@ -918,9 +918,9 @@ int main(int argc, char **argv)
         H_mult[c][i][j] = new TGraphErrors(Int_t(h_m[c][i][j].size()),&(z_range_h[c][i][j][0]),&(h_m[c][i][j][0]),0,&(h_err[c][i][j][0]));
         P_mult[c][i][j] = new TGraphErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p_m[c][i][j][0]),0,&(p_err[c][i][j][0]));
         K_mult[c][i][j] = new TGraphErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k_m[c][i][j][0]),0,&(k_err[c][i][j][0]));
-        H_sys[c][i][j] = new TGraphAsymmErrors(Int_t(h_m[c][i][j].size()),&(z_range_h[c][i][j][0]), &errorx[0], &errorx[0], &h_yoffset[0],0,&(h_sys[c][i][j][0]));
-        P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &errorx[0], &errorx[0], &p_yoffset[0],0,&(p_sys[c][i][j][0]));
-        K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &errorx[0], &errorx[0], &k_yoffset[0],0,&(k_sys[c][i][j][0]));
+        H_sys[c][i][j] = new TGraphAsymmErrors(Int_t(h_m[c][i][j].size()),&(z_range_h[c][i][j][0]), &h_yoffset[0], &errorx[0], &errorx[0], 0, &(h_sys[c][i][j][0]));
+        P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_sys[c][i][j][0]));
+        K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_sys[c][i][j][0]));
 
         H_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
         P_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
