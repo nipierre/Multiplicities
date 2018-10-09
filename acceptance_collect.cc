@@ -900,18 +900,10 @@ int main(int argc, char **argv)
                     H_acc[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
                     H_acc[c][i][j]->GetYaxis()->SetTitleSize(0.08);
                   }
-                  H_acc[c][i][0]->Draw("SAMEP");
-                  H_acc[c][i][0]->GetXaxis()->SetLimits(0.1,0.9);
-                  H_acc[c][i][0]->SetMinimum(0.);
-                  H_acc[c][i][0]->SetMaximum(1.2);
-                  H_acc[c][i][1]->Draw("SAMEP");
-                  H_acc[c][i][1]->GetXaxis()->SetLimits(0.1,0.9);
-                  H_acc[c][i][1]->SetMinimum(0.);
-                  H_acc[c][i][1]->SetMaximum(1.2);
-                  H_acc[c][i][2]->Draw("SAMEP");
-                  H_acc[c][i][2]->GetXaxis()->SetLimits(0.1,0.9);
-                  H_acc[c][i][2]->SetMinimum(0.);
-                  H_acc[c][i][2]->SetMaximum(1.2);
+                  H_acc[c][i][j]->Draw("SAMEP");
+                  H_acc[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_acc[c][i][j]->SetMinimum(0.);
+                  H_acc[c][i][j]->SetMaximum(1.2);
                   c5.Range(0.1,0.,0.9,1.2);
                 }
                 else
