@@ -1345,7 +1345,7 @@ int main(int argc, char **argv)
           {
             K_y[c][i]->Draw("SAMEPA");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            K_y[c][i]->SetMinimum(-0.09);
+            K_y[c][i]->SetMinimum(-0.1);
             K_y[c][i]->SetMaximum(0.8);
             K_y[c][i]->GetXaxis()->SetLabelSize(0.06);
             K_y[c][i]->GetYaxis()->SetLabelSize(0.06);
@@ -1369,16 +1369,16 @@ int main(int argc, char **argv)
             K_y[c][i]->Draw("SAMEP");
             K_ysys[c][i]->Draw("SAME3");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            K_y[c][i]->SetMinimum(-0.09);
+            K_y[c][i]->SetMinimum(-0.1);
             K_y[c][i]->SetMaximum(0.8);
-            c10->Range(0.1,-0.09,0.9,0.8);
+            c10->Range(0.1,-0.1,0.9,0.8);
           }
           else
           {
             K_y[c][i]->Draw("SAMEP");
             K_ysys[c][i]->Draw("SAME3");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            K_y[c][i]->SetMinimum(-0.09);
+            K_y[c][i]->SetMinimum(-0.1);
             K_y[c][i]->SetMaximum(0.8);
           }
         }
