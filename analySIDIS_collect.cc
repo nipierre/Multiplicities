@@ -959,6 +959,7 @@ int main(int argc, char **argv)
                 else H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{-}}}+ #font[ 12]{#delta}");
                 H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
+              lsys.Draw();
               if(!c) axisflagh1=1;
               else axisflagh2=1;
               if(c) c51->Range(0.1,-0.3,0.9,4.5);
@@ -1007,6 +1008,7 @@ int main(int argc, char **argv)
                 else P_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{-}}}+ #font[ 12]{#delta}");
                 P_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
+              lsys.Draw();
               if(!c) axisflagp1=1;
               else axisflagp2=1;
               if(c) c61->Range(0.1,-0.3,0.9,4.);
@@ -1034,7 +1036,7 @@ int main(int argc, char **argv)
             {
               K_mult[c][i][j]->Draw("SAMEPA");
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              K_mult[c][i][j]->SetMinimum(-0.3);
+              K_mult[c][i][j]->SetMinimum(-0.04);
               K_mult[c][i][j]->SetMaximum(0.8);
               K_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               K_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
@@ -1058,14 +1060,14 @@ int main(int argc, char **argv)
               lsys.Draw();
               if(!c) axisflagk1=1;
               else axisflagk2=1;
-              if(c) c71->Range(0.1,-0.3,0.9,0.8);
-              else c72->Range(0.1,-0.3,0.9,0.8);
+              if(c) c71->Range(0.1,-0.04,0.9,0.8);
+              else c72->Range(0.1,-0.04,0.9,0.8);
             }
             else
             {
               K_mult[c][i][j]->Draw("SAMEP");
               K_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              K_mult[c][i][j]->SetMinimum(-0.3);
+              K_mult[c][i][j]->SetMinimum(-0.04);
               K_mult[c][i][j]->SetMaximum(0.8);
             }
           }
