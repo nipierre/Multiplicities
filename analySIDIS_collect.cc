@@ -1211,18 +1211,18 @@ int main(int argc, char **argv)
         H_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         P_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         K_y[c][i]->SetMarkerColor(fMarkerColor[4]);
-        H_ysys[c][i]->SetLineColor(fMarkerColor[4]);
-        P_ysys[c][i]->SetLineColor(fMarkerColor[4]);
-        K_ysys[c][i]->SetLineColor(fMarkerColor[4]);
+        H_ysys[c][i]->SetFillColor(fMarkerColor[4]);
+        P_ysys[c][i]->SetFillColor(fMarkerColor[4]);
+        K_ysys[c][i]->SetFillColor(fMarkerColor[4]);
       }
       else
       {
         H_y[c][i]->SetMarkerColor(fMarkerColor[0]);
         P_y[c][i]->SetMarkerColor(fMarkerColor[0]);
         K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
-        H_ysys[c][i]->SetLineColor(fMarkerColor[4]);
-        P_ysys[c][i]->SetLineColor(fMarkerColor[4]);
-        K_ysys[c][i]->SetLineColor(fMarkerColor[4]);
+        H_ysys[c][i]->SetFillColor(fMarkerColor[4]);
+        P_ysys[c][i]->SetFillColor(fMarkerColor[4]);
+        K_ysys[c][i]->SetFillColor(fMarkerColor[4]);
       }
 
       H_y[c][i]->SetMarkerSize(2);
