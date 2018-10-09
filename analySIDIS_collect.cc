@@ -1345,7 +1345,7 @@ int main(int argc, char **argv)
           {
             K_y[c][i]->Draw("SAMEPA");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            K_y[c][i]->SetMinimum(-0.08);
+            K_y[c][i]->SetMinimum(-0.09);
             K_y[c][i]->SetMaximum(0.8);
             K_y[c][i]->GetXaxis()->SetLabelSize(0.06);
             K_y[c][i]->GetYaxis()->SetLabelSize(0.06);
@@ -1355,7 +1355,7 @@ int main(int argc, char **argv)
             if(i==8)
             {
               K_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
-              K_y[c][i]->GetXaxis()->SetTitleSize(0.09);
+              K_y[c][i]->GetXaxis()->SetTitleSize(0.08);
               K_y[c][i]->GetXaxis()->SetTitleOffset(.8);
             }
             K_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
