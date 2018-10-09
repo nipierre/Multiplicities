@@ -946,8 +946,8 @@ int main(int argc, char **argv)
         P_mult[c][i][j]->GetXaxis()->SetTitle("z");
         K_mult[c][i][j]->GetXaxis()->SetTitle("z");
 
-        H_sys[c][i][j]->SetFillColor(fMarkerColor[j])
-        P_sys[c][i][j]->SetFillColor(fMarkerColor[j])
+        H_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
+        P_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
         K_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
 
         if(!h_m_empty)
