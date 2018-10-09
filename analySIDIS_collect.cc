@@ -1277,7 +1277,7 @@ int main(int argc, char **argv)
             }
             lsys.Draw();
             H_y[c][i]->Draw("SAMEP");
-            H_ysys[c][i]->Draw("SAMEP");
+            H_ysys[c][i]->Draw("SAME3");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(-0.5);
             H_y[c][i]->SetMaximum(4.);
@@ -1286,7 +1286,7 @@ int main(int argc, char **argv)
           else
           {
             H_y[c][i]->Draw("SAMEP");
-            H_ysys[c][i]->Draw("SAMEP");
+            H_ysys[c][i]->Draw("SAME3");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(-0.5);
             H_y[c][i]->SetMaximum(4.);
@@ -1326,7 +1326,7 @@ int main(int argc, char **argv)
             }
             lsys.Draw();
             P_y[c][i]->Draw("SAMEP");
-            P_ysys[c][i]->Draw("SAMEP");
+            P_ysys[c][i]->Draw("SAME3");
             P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             P_y[c][i]->SetMinimum(-0.5);
             P_y[c][i]->SetMaximum(3.5);
@@ -1335,7 +1335,7 @@ int main(int argc, char **argv)
           else
           {
             P_y[c][i]->Draw("SAMEP");
-            P_ysys[c][i]->Draw("SAMEP");
+            P_ysys[c][i]->Draw("SAME3");
             P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             P_y[c][i]->SetMinimum(-0.5);
             P_y[c][i]->SetMaximum(3.5);
@@ -1375,7 +1375,7 @@ int main(int argc, char **argv)
             }
             lsys.Draw();
             K_y[c][i]->Draw("SAMEP");
-            K_ysys[c][i]->Draw("SAMEP");
+            K_ysys[c][i]->Draw("SAME3");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             K_y[c][i]->SetMinimum(-0.5);
             K_y[c][i]->SetMaximum(0.8);
@@ -1384,7 +1384,7 @@ int main(int argc, char **argv)
           else
           {
             K_y[c][i]->Draw("SAMEP");
-            K_ysys[c][i]->Draw("SAMEP");
+            K_ysys[c][i]->Draw("SAME3");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             K_y[c][i]->SetMinimum(-0.5);
             K_y[c][i]->SetMaximum(0.8);
