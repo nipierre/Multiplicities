@@ -733,6 +733,9 @@ int main(int argc, char **argv)
   Double_t h_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
   Double_t p_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
   Double_t k_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
+  Double_t h_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
+  Double_t p_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
+  Double_t k_yoffset2[12] = {-0.05,-0.05,-0.05,-0.05,-0.05,-0.05,-0.05,-0.05,-0.05,-0.05,-0.05,-0.05};
 
   ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), std::ofstream::out | std::ofstream::trunc);
@@ -1190,9 +1193,18 @@ int main(int argc, char **argv)
       H_y[c][i] = new TGraphErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&(h_y[c][i][0]),0,&(h_y_err[c][i][0]));
       P_y[c][i] = new TGraphErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&(p_y[c][i][0]),0,&(p_y_err[c][i][0]));
       K_y[c][i] = new TGraphErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&(k_y[c][i][0]),0,&(k_y_err[c][i][0]));
-      H_ysys[c][i] = new TGraphErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&h_yoffset[0], &errorx[0], &errorx[0], 0, &(h_y_sys[c][i][j][0]));
-      P_ysys[c][i] = new TGraphErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_y_sys[c][i][j][0]));
-      K_ysys[c][i] = new TGraphErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_y_sys[c][i][j][0]));
+      if(!c)
+      {
+        H_ysys[c][i] = new TGraphErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&h_yoffset[0], &errorx[0], &errorx[0], 0, &(h_y_sys[c][i][j][0]));
+        P_ysys[c][i] = new TGraphErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_y_sys[c][i][j][0]));
+        K_ysys[c][i] = new TGraphErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_y_sys[c][i][j][0]));
+      }
+      else
+      {
+        H_ysys[c][i] = new TGraphErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&h_yoffset2[0], &errorx[0], &errorx[0], 0, &(h_y_sys[c][i][j][0]));
+        P_ysys[c][i] = new TGraphErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&p_yoffset2[0], &errorx[0], &errorx[0], 0, &(p_y_sys[c][i][j][0]));
+        K_ysys[c][i] = new TGraphErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&k_yoffset2[0], &errorx[0], &errorx[0], 0, &(k_y_sys[c][i][j][0]));
+      }
 
       if(!c)
       {
