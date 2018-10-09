@@ -763,6 +763,9 @@ int main(int argc, char **argv)
   std::vector<Double_t> rx_range_k_y;
   std::vector<Double_t> rx_range_h_y;
 
+  TLine lsys(0.1,0,0.9,0);
+  lsys.SetLineStyle(2);
+
   for(int i=0; i<9; i++)
   {
     int axisflagh1 = 0;
@@ -1052,6 +1055,7 @@ int main(int argc, char **argv)
                 else K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{-}}}+ #font[ 12]{#delta}");
                 K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
+              lsys.Draw();
               if(!c) axisflagk1=1;
               else axisflagk2=1;
               if(c) c71->Range(0.1,-0.3,0.9,0.8);
