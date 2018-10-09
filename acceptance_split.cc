@@ -11,7 +11,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define MOMENTUM 3
+#define MOMENTUM 12
 //#define SIZESPLIT 1
 //#define OFFSET 0
 

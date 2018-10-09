@@ -851,7 +851,7 @@ int main(int argc, char **argv)
 
           if(!c) ofs_h << endl;
 
-          // cout << c << " " << i << " " << j << " " << k << " " << fMultiplicities[i][j][k].tab[c][0][3] << endl;
+          if(c==1) cout << i << " " << j << " " << k << " " << fMultiplicities[i][j][k].tab[c][0][3] << " " << fMultiplicities[i][j][k].tab[c][1][3] << " " << sqrt(fMultiplicities[i][j][k].tab[c][1][3]) << endl;
 
           p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]>0 ? fMultiplicities[i][j][k].tab[c][0][0]+j*0.25 : 0);
           k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]>0 ? fMultiplicities[i][j][k].tab[c][0][1]+j*0.05 : 0);
