@@ -613,14 +613,14 @@ void create_kin_plots()
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
   fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 2, 100, -2, 2);
-  fInTarget[0] = new TH2F("Target XZ", "Target XZ", 1000, -350, -50, 1000, -3, 3);
-  fInTarget[1] = new TH2F("Target YZ", "Target YZ", 1000, -350, -50, 1000, -3, 3);
-  fAllTarget[0] = new TH2F("Target XZ2", "Target XZ2", 1000, -350, -50, 1000, -3, 3);
-  fAllTarget[1] = new TH2F("Target YZ2", "Target YZ2", 1000, -350, -50, 1000, -3, 3);
+  fInTarget[0] = new TH2F("Target XZ", "Target XZ", 500, -350, -50, 500, -3, 3);
+  fInTarget[1] = new TH2F("Target YZ", "Target YZ", 500, -350, -50, 500, -3, 3);
+  fAllTarget[0] = new TH2F("Target XZ2", "Target XZ2", 500, -350, -50, 500, -3, 3);
+  fAllTarget[1] = new TH2F("Target YZ2", "Target YZ2", 500, -350, -50, 500, -3, 3);
   for(int i=0; i<10; i++)
   {
-    fInTarget[i+2] = new TH2F(Form("Target XY z%d",i), Form("Target YZ z%d",i), 1000, -3, 3, 1000, -3, 3);
-    fAllTarget[i+2] = new TH2F(Form("Target XY2 z%d",i), Form("Target XZ2 z%d",i), 1000, -3, 3, 1000, -3, 3);
+    fInTarget[i+2] = new TH2F(Form("Target XY z%d",i), Form("Target YZ z%d",i), 500, -3, 3, 500, -3, 3);
+    fAllTarget[i+2] = new TH2F(Form("Target XY2 z%d",i), Form("Target XZ2 z%d",i), 500, -3, 3, 500, -3, 3);
   }
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
