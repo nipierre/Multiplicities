@@ -226,6 +226,11 @@ TH2F* fTarget2D;
 TH2F* fRICHLH;
 TH2F* fAllTarget[12];
 TH2F* fInTarget[12];
+TH1F* fZvtx[2];
+TH1F* fQ2k[2];
+TH1F* fYk[2];
+TH1F* fThRich[2];
+TH1F* fZk[2];
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
 TCanvas c3("Kin_y","Kin_y",3200,1600);
@@ -240,6 +245,7 @@ TCanvas c11("HO04","HO04",3200,1600);
 TCanvas c12("RICH_spec","RICH_spec",3200,1600);
 TCanvas c13("Target_cut","Target_cut",3200,1600);
 TCanvas c14("Target_cut2","Target_cut2",3200,1600);
+TCanvas c15("Cuts","Cuts",3200,1600)
 
 //Graphic Style
 

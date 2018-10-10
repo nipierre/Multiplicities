@@ -620,11 +620,23 @@ void create_kin_plots()
   for(int i=0; i<10; i++)
   {
     fInTarget[i+2] = new TH2F(Form("Target XY z%d",i), Form("Target YZ z%d",i), 500, -3, 3, 500, -3, 3);
-    fAllTarget[i+2] = new TH2F(Form("Target XY2 z%d",i), Form("Target XZ2 z%d",i), 500, -3, 3, 500, -3, 3);
+    fAllTarget[i+2] = new TH2F(Form("Target XY2 z%d",i), Form("Target XZ2 z%d",i), 200, -3, 3, 200, -3, 3);
   }
+  fZvtx[0] = new TH1F("Zvtx1","Zvtx1", 500, -500, 500);
+  fZvtx[1] = new TH1F("Zvtx2","Zvtx2", 500, -500, 500);
+  fQ2k[0] = new TH1F("Q^{2}1","Q^{2}1", 500, 0, 2);
+  fQ2k[1] = new TH1F("Q^{2}2","Q^{2}2", 500, 0, 2);
+  fYk[0] = new TH1F("y1","y1", 500, 0, 1);
+  fYk[1] = new TH1F("y2","y2", 500, 0, 1);
+  fThRich[0] = new TH1F("#theta_{RICH}1","#theta_{RICH}1", 500, 0, 0.8);
+  fThRich[1] = new TH1F("#theta_{RICH}2","#theta_{RICH}2", 500, 0, 0.8);
+  fZk[0] = new TH1F("z1","z1", 500, 0, 1);
+  fZk[1] = new TH1F("z2","z2", 500, 0, 1);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
+  BinLogX(fQ2k[0]);
+  BinLogX(fQ2k[1]);
 }
 
 void save_kin_plots()
@@ -643,6 +655,7 @@ void save_kin_plots()
   c12.Divide(1,1);
   c13.Divide(1,2);
   c14.Divide(5,2);
+  c15.Divide(3,2);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -708,6 +721,41 @@ void save_kin_plots()
     fInTarget[i+2]->Draw("SAME");
     c14.Update();
   }
+  c15.cd(1);
+  fZvtx[0]->SetStats(0);
+  fZvtx[1]->SetStats(0);
+  fZvtx[1]->SetFillColor(kYellow);
+  fZvtx[0]->Draw();
+  fZvtx[1]->Draw("SAME");
+  c15.Update();
+  c15.cd(2);
+  fQ2k[0]->SetStats(0);
+  fQ2k[1]->SetStats(0);
+  fQ2k[1]->SetFillColor(kYellow);
+  fQ2k[0]->Draw();
+  fQ2k[1]->Draw("SAME");
+  c15.Update();
+  c15.cd(3);
+  fYk[0]->SetStats(0);
+  fYk[1]->SetStats(0);
+  fYk[1]->SetFillColor(kYellow);
+  fYk[0]->Draw();
+  fYk[1]->Draw("SAME");
+  c15.Update();
+  c15.cd(4);
+  fThRich[0]->SetStats(0);
+  fThRich[1]->SetStats(0);
+  fThRich[1]->SetFillColor(kYellow);
+  fThRich[0]->Draw();
+  fThRich[1]->Draw("SAME");
+  c15.Update();
+  c15.cd(5);
+  fZk[0]->SetStats(0);
+  fZk[1]->SetStats(0);
+  fZk[1]->SetFillColor(kYellow);
+  fZk[0]->Draw();
+  fZk[1]->Draw("SAME");
+  c15.Update();
 
   c1.Print("kinSIDIS.pdf(","pdf");
   c2.Print("kinSIDIS.pdf","pdf");
@@ -722,7 +770,8 @@ void save_kin_plots()
   c11.Print("kinSIDIS.pdf","pdf");
   c12.Print("kinSIDIS.pdf","pdf");
   c13.Print("kinSIDIS.pdf","pdf");
-  c14.Print("kinSIDIS.pdf)","pdf");
+  c14.Print("kinSIDIS.pdf","pdf");
+  c15.Print("kinSIDIS.pdf)","pdf");
 }
 
 void resetValues()
@@ -1109,6 +1158,18 @@ int main(int argc, char **argv)
         Double_t r = sqrt( (x->GetLeaf("x")->GetValue()-xC)*(x->GetLeaf("x")->GetValue()-xC)
                       + (y->GetLeaf("y")->GetValue()-yC)*(y->GetLeaf("y")->GetValue()-yC) );
 
+        // -------------------------------------------------------------------------
+        // --------- DIS Selection -------------------------------------------------
+        // -------------------------------------------------------------------------
+
+        // if(!(Charge->GetLeaf("Charge")->GetValue()==-1)) continue;
+
+        // Best Primary Vertex
+        fBP++;
+
+        // IsMuPrim
+        if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
+        fRmu++;
 
         if(kin_flag)
         {
@@ -1123,33 +1184,11 @@ int main(int argc, char **argv)
           else if(-147.2<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-121.8) bin=7;
           else if(-121.8<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-96.4) bin=8;
           else if(-96.4<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71) bin=9;
-          if((InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
-              && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
-          {
-            fInTarget[0]->Fill(z->GetLeaf("z")->GetValue(),x->GetLeaf("x")->GetValue());
-            fInTarget[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
-            fInTarget[bin+2]->Fill(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue());
-          }
-          else
-          {
-            fAllTarget[0]->Fill(z->GetLeaf("z")->GetValue(),x->GetLeaf("x")->GetValue());
-            fAllTarget[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
-            if(bin!=-1) fAllTarget[bin+2]->Fill(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue());
-          }
+          fAllTarget[0]->Fill(z->GetLeaf("z")->GetValue(),x->GetLeaf("x")->GetValue());
+          fAllTarget[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+          if(bin!=-1) fAllTarget[bin+2]->Fill(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue());
+          fZvtx[0]->Fill(z->GetLeaf("z")->GetValue());
         }
-
-        // -------------------------------------------------------------------------
-        // --------- DIS Selection -------------------------------------------------
-        // -------------------------------------------------------------------------
-
-        // if(!(Charge->GetLeaf("Charge")->GetValue()==-1)) continue;
-
-        // Best Primary Vertex
-        fBP++;
-
-        // IsMuPrim
-        if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
-        fRmu++;
 
         //2006 ---
         if(Y2006)
@@ -1180,6 +1219,25 @@ int main(int argc, char **argv)
         }
         //2016 ---
         fTarg++;
+
+        if(kin_flag)
+        {
+          int bin=-1;
+          if(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-299.6) bin=0;
+          else if(-299.6<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-274.2) bin=1;
+          else if(-274.2<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-248.8) bin=2;
+          else if(-248.8<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-223.4) bin=3;
+          else if(-223.4<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) bin=4;
+          else if(-198<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-172.6) bin=5;
+          else if(-172.6<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-147.2) bin=6;
+          else if(-147.2<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-121.8) bin=7;
+          else if(-121.8<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-96.4) bin=8;
+          else if(-96.4<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71) bin=9;
+          fInTarget[0]->Fill(z->GetLeaf("z")->GetValue(),x->GetLeaf("x")->GetValue());
+          fInTarget[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+          fInTarget[bin+2]->Fill(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue());
+          fZvtx[1]->Fill(z->GetLeaf("z")->GetValue());
+        }
 
         // Energy of the muon beam
         if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
@@ -1224,14 +1282,24 @@ int main(int argc, char **argv)
         //2016 ---
         fTrig++;
 
+        if(kin_flag) fQ2k[0]->Fill(Q2);
+
         // Q2 cut
         if(!(Q2>1)) continue;
         // if(!(Q2>0.85)) continue;
         fQ2test++;
 
+        if(kin_flag)
+        {
+          fQ2k[1]->Fill(Q2);
+          fYk[0]->Fill(yBj);
+        }
+
         // y cut
         if(!(YMIN<yBj && yBj<YMAX)) continue;
         fYBjtest++;
+
+        if(kin_flag) fYk[0]->Fill(yBj);
 
         // W cut
         if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
@@ -1741,19 +1809,29 @@ int main(int argc, char **argv)
           if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
           fHZlast++;
 
+          if(kin_flag) fThRich[0]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
+
           // Theta cut
           if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
           fTRICH++;
+
+          if(kin_flag) fThRich[1]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
 
           // RICH position cut
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
           fPosRICH++;
 
-          if(kin_flag) fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
+          if(kin_flag)
+          {
+            fKinematicsRICH->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
+            fPk[0]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          }
 
           // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
           if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
           fMom++;
+
+          if(kin_flag) fPk[1]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
 
           // Non null charge
           if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
@@ -1794,11 +1872,17 @@ int main(int argc, char **argv)
             else mom_bin = 9;
           }
 
+          if(kin_flag) fZk[0]->Fill(zBj);
+
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
           fZtest++;
 
-          if(kin_flag) fKinematics[3]->Fill(zBj);
+          if(kin_flag)
+          {
+            fKinematics[3]->Fill(zBj);
+            fZk[1]->Fill(zBj);
+          }
 
           if(0.2<zBj && zBj<0.25) zbin = 0;
           else if(0.25<zBj && zBj<0.30) zbin = 1;
