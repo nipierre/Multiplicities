@@ -613,6 +613,15 @@ void create_kin_plots()
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
   fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 2, 100, -2, 2);
+  fInTarget[0] = new TH2F("Target XZ", "Target XZ", 1000, -350, -3, 1000, -50, 3);
+  fInTarget[1] = new TH2F("Target YZ", "Target YZ", 1000, -350, -3, 1000, -50, 3);
+  fAllTarget[0] = new TH2F("Target XZ2", "Target XZ2", 1000, -350, -3, 1000, -50, 3);
+  fAllTarget[1] = new TH2F("Target YZ2", "Target YZ2", 1000, -350, -3, 1000, -50, 3);
+  for(int i=0; i<10; i++)
+  {
+    fInTarget[i+2] = new TH2F(Form("Target XY z%d",i), Form("Target YZ z%d",i), 1000, -3, -3, 1000, 3, 3);
+    fAllTarget[i+2] = new TH2F(Form("Target XY2 z%d",i), Form("Target XZ2 z%d",i), 1000, -3, -3, 1000, 3, 3);
+  }
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -632,6 +641,8 @@ void save_kin_plots()
   c10.Divide(1,1);
   c11.Divide(1,1);
   c12.Divide(1,1);
+  c13.Divide(1,2);
+  c14.Divide(5,2);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -673,6 +684,30 @@ void save_kin_plots()
   fKinematicsRICH->Draw("COLZ");
   gPad->SetLogz();
   c12.Update();
+  c13.cd(1);
+  fAllTarget[0]->SetStats(0);
+  fInTarget[0]->SetStats(0);
+  fInTarget[0]->SetMarkerColor(kRed);
+  fAllTarget[0]->Draw("PAXISG");
+  fInTarget[0]->Draw("PAXISGSAME");
+  c13.Update();
+  c13.cd(2);
+  fAllTarget[1]->SetStats(0);
+  fInTarget[1]->SetStats(0);
+  fInTarget[1]->SetMarkerColor(kRed);
+  fAllTarget[1]->Draw("PAXISG");
+  fInTarget[1]->Draw("PAXISGSAME");
+  c13.Update();
+  for(int i=0; i<10; i++)
+  {
+    c14.cd(i+1);
+    fAllTarget[i+2]->SetStats(0);
+    fInTarget[i+2]->SetStats(0);
+    fInTarget[i+2]->SetMarkerColor(kRed);
+    fAllTarget[i+2]->Draw("PAXISG");
+    fInTarget[i+2]->Draw("PAXISGSAME");
+    c14.Update();
+  }
 
   c1.Print("kinSIDIS.pdf(","pdf");
   c2.Print("kinSIDIS.pdf","pdf");
@@ -685,7 +720,9 @@ void save_kin_plots()
   c9.Print("kinSIDIS.pdf","pdf");
   c10.Print("kinSIDIS.pdf","pdf");
   c11.Print("kinSIDIS.pdf","pdf");
-  c12.Print("kinSIDIS.pdf)","pdf");
+  c12.Print("kinSIDIS.pdf","pdf");
+  c13.Print("kinSIDIS.pdf","pdf");
+  c14.Print("kinSIDIS.pdf)","pdf");
 }
 
 void resetValues()
@@ -1072,8 +1109,34 @@ int main(int argc, char **argv)
         Double_t r = sqrt( (x->GetLeaf("x")->GetValue()-xC)*(x->GetLeaf("x")->GetValue()-xC)
                       + (y->GetLeaf("y")->GetValue()-yC)*(y->GetLeaf("y")->GetValue()-yC) );
 
-        //2006 ---
 
+        if(kin_flag)
+        {
+          int bin=-1;
+          if(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-299.6) bin=0;
+          else if(-299.6<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-274.2) bin=1;
+          else if(-274.2<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-248.8) bin=2;
+          else if(-248.8<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-223.4) bin=3;
+          else if(-223.4<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) bin=4;
+          else if(-198<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-172.6) bin=5;
+          else if(-172.6<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-147.2) bin=6;
+          else if(-147.2<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-121.8) bin=7;
+          else if(-121.8<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-96.4) bin=8;
+          else if(-96.4<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71) bin=9;
+          if((InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
+              && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+          {
+            fInTarget[0]->Fill(z->GetLeaf("z")->GetValue(),x->GetLeaf("x")->GetValue());
+            fInTarget[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+            fInTarget[bin+2]->Fill(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue());
+          }
+          else
+          {
+            fAllTarget[0]->Fill(z->GetLeaf("z")->GetValue(),x->GetLeaf("x")->GetValue());
+            fAllTarget[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+            if(bin!=-1) fAllTarget[bin+2]->Fill(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue());
+          }
+        }
 
         // -------------------------------------------------------------------------
         // --------- DIS Selection -------------------------------------------------
