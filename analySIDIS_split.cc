@@ -688,15 +688,15 @@ void save_kin_plots()
   fAllTarget[0]->SetStats(0);
   fInTarget[0]->SetStats(0);
   fInTarget[0]->SetMarkerColor(kRed);
-  fAllTarget[0]->Draw("PAXISG");
-  fInTarget[0]->Draw("PAXISGSAME");
+  fAllTarget[0]->Draw("");
+  fInTarget[0]->Draw("SAME");
   c13.Update();
   c13.cd(2);
   fAllTarget[1]->SetStats(0);
   fInTarget[1]->SetStats(0);
   fInTarget[1]->SetMarkerColor(kRed);
-  fAllTarget[1]->Draw("PAXISG");
-  fInTarget[1]->Draw("PAXISGSAME");
+  fAllTarget[1]->Draw("");
+  fInTarget[1]->Draw("SAME");
   c13.Update();
   for(int i=0; i<10; i++)
   {
@@ -704,8 +704,8 @@ void save_kin_plots()
     fAllTarget[i+2]->SetStats(0);
     fInTarget[i+2]->SetStats(0);
     fInTarget[i+2]->SetMarkerColor(kRed);
-    fAllTarget[i+2]->Draw("PAXISG");
-    fInTarget[i+2]->Draw("PAXISGSAME");
+    fAllTarget[i+2]->Draw("");
+    fInTarget[i+2]->Draw("SAME");
     c14.Update();
   }
 
