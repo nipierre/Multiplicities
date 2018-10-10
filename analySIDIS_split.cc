@@ -699,30 +699,30 @@ void save_kin_plots()
   fKinematicsRICH->Draw("COLZ");
   gPad->SetLogz();
   c12.Update();
-  c13.cd(1);
-  fAllTarget[0]->SetStats(0);
-  fInTarget[0]->SetStats(0);
-  fInTarget[0]->SetMarkerColor(kRed);
-  fAllTarget[0]->Draw("");
-  fInTarget[0]->Draw("SAME");
-  c13.Update();
-  c13.cd(2);
-  fAllTarget[1]->SetStats(0);
-  fInTarget[1]->SetStats(0);
-  fInTarget[1]->SetMarkerColor(kRed);
-  fAllTarget[1]->Draw("");
-  fInTarget[1]->Draw("SAME");
-  c13.Update();
-  for(int i=0; i<10; i++)
-  {
-    c14.cd(i+1);
-    fAllTarget[i+2]->SetStats(0);
-    fInTarget[i+2]->SetStats(0);
-    fInTarget[i+2]->SetMarkerColor(kRed);
-    fAllTarget[i+2]->Draw("");
-    fInTarget[i+2]->Draw("SAME");
-    c14.Update();
-  }
+  // c13.cd(1);
+  // fAllTarget[0]->SetStats(0);
+  // fInTarget[0]->SetStats(0);
+  // fInTarget[0]->SetMarkerColor(kRed);
+  // fAllTarget[0]->Draw("");
+  // fInTarget[0]->Draw("SAME");
+  // c13.Update();
+  // c13.cd(2);
+  // fAllTarget[1]->SetStats(0);
+  // fInTarget[1]->SetStats(0);
+  // fInTarget[1]->SetMarkerColor(kRed);
+  // fAllTarget[1]->Draw("");
+  // fInTarget[1]->Draw("SAME");
+  // c13.Update();
+  // for(int i=0; i<10; i++)
+  // {
+  //   c14.cd(i+1);
+  //   fAllTarget[i+2]->SetStats(0);
+  //   fInTarget[i+2]->SetStats(0);
+  //   fInTarget[i+2]->SetMarkerColor(kRed);
+  //   fAllTarget[i+2]->Draw("");
+  //   fInTarget[i+2]->Draw("SAME");
+  //   c14.Update();
+  // }
   c15.cd(1);
   fZvtx[0]->SetStats(0);
   fZvtx[1]->SetStats(0);
