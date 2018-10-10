@@ -613,27 +613,27 @@ void create_kin_plots()
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
   fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 2, 100, -2, 2);
-  fInTarget[0] = new TH2F("Target XZ", "Target XZ", 500, -350, -50, 500, -3, 3);
-  fInTarget[1] = new TH2F("Target YZ", "Target YZ", 500, -350, -50, 500, -3, 3);
-  fAllTarget[0] = new TH2F("Target XZ2", "Target XZ2", 500, -350, -50, 500, -3, 3);
-  fAllTarget[1] = new TH2F("Target YZ2", "Target YZ2", 500, -350, -50, 500, -3, 3);
+  fInTarget[0] = new TH2F("Target XZ", "Target XZ", 100, -350, -50, 100, -3, 3);
+  fInTarget[1] = new TH2F("Target YZ", "Target YZ", 100, -350, -50, 100, -3, 3);
+  fAllTarget[0] = new TH2F("Target XZ2", "Target XZ2", 100, -350, -50, 100, -3, 3);
+  fAllTarget[1] = new TH2F("Target YZ2", "Target YZ2", 100, -350, -50, 100, -3, 3);
   for(int i=0; i<10; i++)
   {
     fInTarget[i+2] = new TH2F(Form("Target XY z%d",i), Form("Target YZ z%d",i), 500, -3, 3, 500, -3, 3);
     fAllTarget[i+2] = new TH2F(Form("Target XY2 z%d",i), Form("Target XZ2 z%d",i), 200, -3, 3, 200, -3, 3);
   }
-  fZvtx[0] = new TH1F("Zvtx1","Zvtx1", 500, -500, 500);
-  fZvtx[1] = new TH1F("Zvtx2","Zvtx2", 500, -500, 500);
-  fQ2k[0] = new TH1F("Q^{2}1","Q^{2}1", 500, 0, 2);
-  fQ2k[1] = new TH1F("Q^{2}2","Q^{2}2", 500, 0, 2);
-  fYk[0] = new TH1F("y1","y1", 500, 0, 1);
-  fYk[1] = new TH1F("y2","y2", 500, 0, 1);
-  fThRich[0] = new TH1F("#theta_{RICH}1","#theta_{RICH}1", 500, 0, 0.8);
-  fThRich[1] = new TH1F("#theta_{RICH}2","#theta_{RICH}2", 500, 0, 0.8);
-  fZk[0] = new TH1F("z1","z1", 500, 0, 1);
-  fZk[1] = new TH1F("z2","z2", 500, 0, 1);
-  fPk[0] = new TH1F("p_{h}1","p_{h}1", 500, 0, 80);
-  fPk[1] = new TH1F("p_{h}2","p_{h}2", 500, 0, 80);
+  fZvtx[0] = new TH1F("Zvtx1","Zvtx1", 200, -500, 500);
+  fZvtx[1] = new TH1F("Zvtx2","Zvtx2", 200, -500, 500);
+  fQ2k[0] = new TH1F("Q^{2}1","Q^{2}1", 200, 0, 2);
+  fQ2k[1] = new TH1F("Q^{2}2","Q^{2}2", 200, 0, 2);
+  fYk[0] = new TH1F("y1","y1", 200, 0, 1);
+  fYk[1] = new TH1F("y2","y2", 200, 0, 1);
+  fThRich[0] = new TH1F("#theta_{RICH}1","#theta_{RICH}1", 200, 0, 0.8);
+  fThRich[1] = new TH1F("#theta_{RICH}2","#theta_{RICH}2", 200, 0, 0.8);
+  fZk[0] = new TH1F("z1","z1", 200, 0, 1);
+  fZk[1] = new TH1F("z2","z2", 200, 0, 1);
+  fPk[0] = new TH1F("p_{h}1","p_{h}1", 200, 0, 80);
+  fPk[1] = new TH1F("p_{h}2","p_{h}2", 200, 0, 80);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
