@@ -736,6 +736,7 @@ void save_kin_plots()
   fQ2k[1]->SetFillColor(kYellow);
   fQ2k[0]->Draw();
   fQ2k[1]->Draw("SAME");
+  gPad->SetLogx();
   c15.Update();
   c15.cd(3);
   fYk[0]->SetStats(0);
@@ -1197,6 +1198,7 @@ int main(int argc, char **argv)
           fAllTarget[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
           if(bin!=-1) fAllTarget[bin+2]->Fill(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue());
           fZvtx[0]->Fill(z->GetLeaf("z")->GetValue());
+          if(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71) fZvtx[1]->Fill(z->GetLeaf("z")->GetValue());
         }
 
         //2006 ---
@@ -1308,7 +1310,7 @@ int main(int argc, char **argv)
         if(!(YMIN<yBj && yBj<YMAX)) continue;
         fYBjtest++;
 
-        if(kin_flag) fYk[0]->Fill(yBj);
+        if(kin_flag) fYk[1]->Fill(yBj);
 
         // W cut
         if(!(5<sqrt(wBj) && sqrt(wBj)<17)) continue;
