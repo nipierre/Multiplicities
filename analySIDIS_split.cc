@@ -632,6 +632,8 @@ void create_kin_plots()
   fThRich[1] = new TH1F("#theta_{RICH}2","#theta_{RICH}2", 500, 0, 0.8);
   fZk[0] = new TH1F("z1","z1", 500, 0, 1);
   fZk[1] = new TH1F("z2","z2", 500, 0, 1);
+  fPk[0] = new TH1F("p_{h}1","p_{h}1", 500, 0, 80);
+  fPk[1] = new TH1F("p_{h}2","p_{h}2", 500, 0, 80);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -750,6 +752,13 @@ void save_kin_plots()
   fThRich[1]->Draw("SAME");
   c15.Update();
   c15.cd(5);
+  fPk[0]->SetStats(0);
+  fPk[1]->SetStats(0);
+  fPk[1]->SetFillColor(kYellow);
+  fPk[0]->Draw();
+  fPk[1]->Draw("SAME");
+  c15.Update();
+  c15.cd(6);
   fZk[0]->SetStats(0);
   fZk[1]->SetStats(0);
   fZk[1]->SetFillColor(kYellow);
