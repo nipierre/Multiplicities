@@ -329,12 +329,13 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
-    // c1.cd(i+1);
+    c1.cd(i+1);
     // plotting_device(i,0,0);
     // gPad->SetLogx();
     // fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
     // fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
-    // c1.Update();
+    fKinematicsRD[i][0]->Draw();
+    c1.Update();
     //
     // c2.cd(i+1);
     // plotting_device(i,1,0);
