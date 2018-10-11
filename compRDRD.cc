@@ -347,9 +347,9 @@ void save_kin_plots()
     plotting_device(i,8,0);
     c16.Update();
 
-    c17.cd(i+1);
-    plotting_device(i,9,0);
-    c17.Update();
+    // c17.cd(i+1);
+    // plotting_device(i,9,0);
+    // c17.Update();
 
     c18.cd(i+1);
     plotting_device(i,10,0);
