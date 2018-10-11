@@ -1,4 +1,4 @@
-RD2#include "compRDRD.h"
+#include "compRDRD.h"
 
 //Inputs
 #define target_file_2012 "data/target-107924-109081.dat"
