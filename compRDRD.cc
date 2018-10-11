@@ -1320,7 +1320,7 @@ void RD2extraction(string pFilelist)
   }
   for(int i=0; i<int(fMuRD2[4].size()); i++)
   {
-    fKinematicsRD2[4][6]->Fill(fMu[RD24][i]);
+    fKinematicsRD2[4][6]->Fill(fMuRD2[4][i]);
   }
   for(int i=0; i<int(fThetaRD2Mu[0].size()); i++)
   {
