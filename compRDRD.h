@@ -61,29 +61,29 @@ vector<Double_t> fTheta[5];
 vector<Double_t> fPhi[5];
 vector<Double_t> fVertex[5];
 
-vector<Double_t> fQ2_MC;
-vector<Double_t> fQ2kinMC[5];
-vector<Double_t> fXBj_MC;
-vector<Double_t> fXBjkinMC[5];
-vector<Double_t> fYBj_MC;
-vector<Double_t> fYBjkinMC[5];
-vector<Double_t> fWBj_MC;
-vector<Double_t> fWBjkinMC[5];
-vector<Double_t> fNu_MC;
-vector<Double_t> fNukinMC[5];
-vector<Double_t> fMuMC[5];
-vector<Double_t> fMupMC[5];
-vector<Double_t> fThetaMCMu[3];
-vector<Double_t> fThetaMC[5];
-vector<Double_t> fPhiMC[5];
-vector<Double_t> fVertexMC[5];
+vector<Double_t> fQ2RD2;
+vector<Double_t> fQ2kinRD2[5];
+vector<Double_t> fXBjRD2;
+vector<Double_t> fXBjkinRD2[5];
+vector<Double_t> fYBjRD2;
+vector<Double_t> fYBjkinRD2[5];
+vector<Double_t> fWBjRD2;
+vector<Double_t> fWBjkinRD2[5];
+vector<Double_t> fNuRD2;
+vector<Double_t> fNukinRD2[5];
+vector<Double_t> fMuRD2[5];
+vector<Double_t> fMupRD2[5];
+vector<Double_t> fThetaRD2Mu[3];
+vector<Double_t> fThetaRD2[5];
+vector<Double_t> fPhiRD2[5];
+vector<Double_t> fVertexRD2[5];
 
 vector<Double_t> fX;
 vector<Double_t> fY;
 vector<Double_t> fZ;
-vector<Double_t> fXMC;
-vector<Double_t> fYMC;
-vector<Double_t> fZMC;
+vector<Double_t> fXRD2;
+vector<Double_t> fYRD2;
+vector<Double_t> fZRD2;
 
 //Misc
 
@@ -101,10 +101,10 @@ vector<Double_t> fZv;
 vector<Double_t> fRv;
 
 bool fAllDISflag;
-bool fAllDISflag_MC;
+bool fAllDISflag_RD2;
 
 
-int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
+int xbin, ybin, zbin;
 
 // Cuts
 
@@ -122,8 +122,8 @@ Double_t fPmax;
 
 TH1F* fKinematicsRD[5][17];
 TH2F* fThetaRDp[3];
-TH1F* fKinematicsMC[5][17];
-TH2F* fThetaMCp[3];
+TH1F* fKinematicsRD2[5][17];
+TH2F* fThetaRD2p[3];
 TH1F* fKinematicsRatio[5][17];
 TCanvas* c1;
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
@@ -162,7 +162,7 @@ TCanvas c34("Thetay_mu","Thetay_mu",3200,1600);
 TCanvas c35("Thetax_mu","Thetay_mu",3200,1600);
 TCanvas c36("Thetaxy_mu","Thetay_mu",3200,1600);
 
-vector<double> fError, fErrorRD, fErrorMC;
+vector<double> fError, fErrorRD, fErrorRD2;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
 
 TLine* l1[17][7];
