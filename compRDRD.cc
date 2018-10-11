@@ -2012,7 +2012,8 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  InitTargetFile();
+  if(Y2012) InitTargetFile(target_file_2012);
+  else if(Y2016) InitTargetFile(target_file_2016);
   create_kin_plots();
   readKinCuts(argv[3]);
   cout << "... Real Data 1 treatment ..." << endl;
