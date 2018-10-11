@@ -871,11 +871,11 @@ void RD2extraction(string pFilelist)
       if(!(Q2>1)) continue;
       fMuRD2[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
 
-      fThetaMuRD2[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+      fThetaRD2Mu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
                                 +pow(p0y->GetLeaf("p0y")->GetValue(),2)
                                 +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-      fThetaMuRD2[1].push_back(thetax_b);
-      fThetaMuRD2[0].push_back(thetay_b);
+      fThetaRD2Mu[1].push_back(thetax_b);
+      fThetaRD2Mu[0].push_back(thetay_b);
 
       // y cut
       if(!(fYmin<yBj && yBj<fYmax)) continue;
@@ -1322,11 +1322,11 @@ void RD2extraction(string pFilelist)
   {
     fKinematicsRD2[4][6]->Fill(fMu[RD24][i]);
   }
-  for(int i=0; i<int(fThetaMuRD2[0].size()); i++)
+  for(int i=0; i<int(fThetaRD2Mu[0].size()); i++)
   {
-    fThetaRD2p[0]->Fill(fThetaMuRD2[0][i],fThetaMuRD2[2][i]);
-    fThetaRD2p[1]->Fill(fThetaMuRD2[1][i],fThetaMuRD2[2][i]);
-    fThetaRD2p[2]->Fill(fThetaMuRD2[0][i],fThetaMu[RD21][i]);
+    fThetaRD2p[0]->Fill(fThetaRD2Mu[0][i],fThetaRD2Mu[2][i]);
+    fThetaRD2p[1]->Fill(fThetaRD2Mu[1][i],fThetaRD2Mu[2][i]);
+    fThetaRD2p[2]->Fill(fThetaRD2Mu[0][i],fThetaRD2Mu[1][i]);
   }
 }
 
