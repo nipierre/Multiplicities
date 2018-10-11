@@ -44,7 +44,7 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
   }
   mult1.close();
 
-  ifstream mult2(pfile1);
+  ifstream mult2(pfile2);
 
   for(int i=0; i<9; i++)
   {
