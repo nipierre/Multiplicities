@@ -121,8 +121,8 @@ int main(int argc, char **argv)
 
   TCanvas c1("Mult_comparison","Mult_comparison",3200,1600);
   TCanvas c2("Mult_comparison_yavg","Mult_comparison_yavg",3200,1600);
-  Tline l1(0.1,0.9,0.9,0.9);
-  Tline l2(0.1,1.1,0.9,1.1);
+  TLine l1(0.1,0.9,0.9,0.9);
+  TLine l2(0.1,1.1,0.9,1.1);
   c1.SetFillColor(0);
   c2.SetFillColor(0);
   c1.Divide(9,5,0,0);
