@@ -2112,19 +2112,27 @@ int main(int argc, char **argv)
 
   cout << "\n ==> Real Data 1 <==" << endl;
 
-  cout <<  '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
-  cout <<  '|' << setw(15) << fCountingRD[4][0] << '|' << setw(15) << float(fCountingRD[0][0])/float(fCountingRD[4][0])*100
+  cout << '|' << setw(15) << "Type" << '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
+  cout << '|' << setw(15) << "DIS" << '|' << setw(15) << fCountingRD[4][0] << '|' << setw(15) << float(fCountingRD[0][0])/float(fCountingRD[4][0])*100
                                                                     << '|' << setw(15) << float(fCountingRD[1][0])/float(fCountingRD[4][0])*100
                                                                     << '|' << setw(15) << float(fCountingRD[2][0])/float(fCountingRD[4][0])*100
                                                                     << '|' << setw(15) << float(fCountingRD[3][0])/float(fCountingRD[4][0])*100 << '|' << endl;
+  cout << '|' << setw(15) << "Hadron" << '|' << setw(15) << fCountingRD[4][3] << '|' << setw(15) << float(fCountingRD[0][3])/float(fCountingRD[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[1][3])/float(fCountingRD[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[2][3])/float(fCountingRD[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[3][3])/float(fCountingRD[4][3])*100 << '|' << endl;
 
   cout << "\n ==> Real Data 2 <==" << endl;
 
-  cout <<  '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
-  cout <<  '|' << setw(15) << fCountingRD2[4][i] << '|' << setw(15) << float(fCountingRD2[0][0])/float(fCountingRD2[4][0])*100
+  cout << '|' << setw(15) << "Type" << '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
+  cout << '|' << setw(15) << "DIS" << '|' << setw(15) << fCountingRD2[4][0] << '|' << setw(15) << float(fCountingRD2[0][0])/float(fCountingRD2[4][0])*100
                                                                     << '|' << setw(15) << float(fCountingRD2[1][0])/float(fCountingRD2[4][0])*100
                                                                     << '|' << setw(15) << float(fCountingRD2[2][0])/float(fCountingRD2[4][0])*100
                                                                     << '|' << setw(15) << float(fCountingRD2[3][0])/float(fCountingRD2[4][0])*100 << '|' << endl;
+  cout << '|' << setw(15) << "Hadron" << '|' << setw(15) << fCountingRD2[4][3] << '|' << setw(15) << float(fCountingRD2[0][3])/float(fCountingRD2[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD2[1][3])/float(fCountingRD2[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD2[2][3])/float(fCountingRD2[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD2[3][3])/float(fCountingRD2[4][3])*100 << '|' << endl;
 
 
   return 0;
