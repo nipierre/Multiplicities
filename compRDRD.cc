@@ -247,7 +247,7 @@ void plotting_ratio(int i, int j)
   fKinematicsRD[i][j]->Sumw2();
   fKinematicsRD2[i][j]->Sumw2();
   fCountingRD2[i][j] = fKinematicsRD2[i][j]->GetEntries();
-  fCountingRD1[i][j] = fKinematicsRD1[i][j]->GetEntries();
+  fCountingRD[i][j] = fKinematicsRD1[i][j]->GetEntries();
   fKinematicsRD2[i][j]->Scale(1/fKinematicsRD2[i][j]->GetEntries());
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
   fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
@@ -2115,10 +2115,10 @@ int main(int argc, char **argv)
   cout <<  '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
   for(int i=0; i<13; i++)
   {
-    cout <<  '|' << setw(15) << fCountingRD1[4][0] << '|' << setw(15) << float(fCountingRD1[0][0])/float(fCountingRD1[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD1[1][0])/float(fCountingRD1[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD1[2][0])/float(fCountingRD1[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD1[3][0])/float(fCountingRD1[4][0])*100 << '|' << endl;
+    cout <<  '|' << setw(15) << fCountingRD[4][0] << '|' << setw(15) << float(fCountingRD[0][0])/float(fCountingRD[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD[1][0])/float(fCountingRD[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD[2][0])/float(fCountingRD[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD[3][0])/float(fCountingRD[4][0])*100 << '|' << endl;
   }
 
   cout << "\n ==> Real Data 2 <==" << endl;
