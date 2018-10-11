@@ -269,7 +269,7 @@ void plotting_device(int i, int j, int norm)
   // }
   // fKinematicsRD[i][j]->Draw("E2");
   fKinematicsRD[i][j]->SetMarkerStyle(22);
-  fKinematicsRD[i][j]->Draw("A");
+  fKinematicsRD[i][j]->Draw("AP");
   fKinematicsRD[i][j]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
   // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
@@ -278,7 +278,7 @@ void plotting_device(int i, int j, int norm)
   // }
   // fErrorRD.clear(); fErrorRD2.clear();
   // fKinematicsRD2[i][j]->Draw("E2SAME");
-  fKinematicsRD2[i][j]->Draw("SAME");
+  fKinematicsRD2[i][j]->Draw("PSAME");
 }
 
 void save_kin_plots()
@@ -308,33 +308,7 @@ void save_kin_plots()
   for(int i=0; i<4; i++)
   {
     c1.cd(i+1);
-    // plotting_device(i,0,0);
-    Double_t scaleRD = 1/fKinematicsRD[0][0]->GetEntries();
-    Double_t scaleRD2 = 1/fKinematicsRD2[0][0]->GetEntries();
-    fKinematicsRD[i][0]->Scale(1/fKinematicsRD[0][0]->GetEntries());
-    fKinematicsRD2[i][0]->Scale(1/fKinematicsRD2[0][0]->GetEntries());
-    fKinematicsRD[i][0]->SetLineColor(kRed);
-    fKinematicsRD2[i][0]->SetLineColor(kBlue);
-    fKinematicsRD2[i][0]->SetFillColor(kBlue);
-    fKinematicsRD[i][0]->SetMinimum(0.);
-    fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsRD2[i][0]->GetMaximum()*1.2));
-    fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
-    // for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
-    // {
-    //   fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
-    // }
-    // fKinematicsRD[i][j]->Draw("E2");
-    fKinematicsRD[i][0]->SetMarkerStyle(22);
-    fKinematicsRD[i][0]->Draw("A");
-    fKinematicsRD[i][0]->GetXaxis()->SetLabelSize(0.03);
-    fKinematicsRD[i][0]->GetYaxis()->SetLabelSize(0.03);
-    // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
-    // {
-    //   fKinematicsRD2[i][j]->SetBinError(tt,scaleRD2*fErrorRD2[tt]);
-    // }
-    // fErrorRD.clear(); fErrorRD2.clear();
-    // fKinematicsRD2[i][j]->Draw("E2SAME");
-    fKinematicsRD2[i][0]->Draw("SAME");
+    plotting_device(i,0,0);
     gPad->SetLogx();
     c1.Update();
 
