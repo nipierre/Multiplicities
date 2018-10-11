@@ -200,8 +200,8 @@ int main(int argc, char **argv)
             {
               R[c][i][j]->Draw("SAMEPA");
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              R[c][i][j]->SetMinimum(0.);
-              R[c][i][j]->SetMaximum(2.0);
+              R[c][i][j]->SetMinimum(0.9);
+              R[c][i][j]->SetMaximum(1.1);
               R[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               R[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               R[c][i][j]->SetTitle("");
@@ -222,16 +222,16 @@ int main(int argc, char **argv)
               }
               R[c][i][j]->Draw("SAMEP");
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              R[c][i][j]->SetMinimum(0.);
-              R[c][i][j]->SetMaximum(2.0);
-              c1.Range(0.1,0.,0.9,2.0);
+              R[c][i][j]->SetMinimum(0.9);
+              R[c][i][j]->SetMaximum(1.1);
+              c1.Range(0.1,1.1,0.9,0.9);
             }
             else
             {
               R[c][i][j]->Draw("SAMEP");
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              R[c][i][j]->SetMinimum(0.);
-              R[c][i][j]->SetMaximum(2.0);
+              R[c][i][j]->SetMinimum(0.9);
+              R[c][i][j]->SetMaximum(1.1);
             }
           }
           c1.Update();
@@ -285,8 +285,8 @@ int main(int argc, char **argv)
           {
             R_y[c][i]->Draw("SAMEPA");
             R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            R_y[c][i]->SetMinimum(0.);
-            R_y[c][i]->SetMaximum(2.0);
+            R_y[c][i]->SetMinimum(0.9);
+            R_y[c][i]->SetMaximum(1.1);
             R_y[c][i]->GetXaxis()->SetLabelSize(0.06);
             R_y[c][i]->GetYaxis()->SetLabelSize(0.06);
             R_y[c][i]->SetTitle("");
@@ -307,16 +307,16 @@ int main(int argc, char **argv)
             }
             R_y[c][i]->Draw("SAMEP");
             R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            R_y[c][i]->SetMinimum(0.);
-            R_y[c][i]->SetMaximum(2.0);
-            c2.Range(0.1,0.,0.9,2.0);
+            R_y[c][i]->SetMinimum(1.1);
+            R_y[c][i]->SetMaximum(0.9);
+            c2.Range(0.1,0.9,0.9,1.1);
           }
           else
           {
             R_y[c][i]->Draw("SAMEP");
             R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            R_y[c][i]->SetMinimum(0.);
-            R_y[c][i]->SetMaximum(2.0);
+            R_y[c][i]->SetMinimum(0.9);
+            R_y[c][i]->SetMaximum(1.1);
           }
         }
         c2.Update();
