@@ -182,48 +182,48 @@ void readKinCuts(string pFile)
 
 void create_kin_plots()
 {
-  c1 = new TCanvas("Kin_Q2 Trigger","Kin_Q2} Trigger",3200,1600);
+  c1 = new TCanvas("Kin_Q2 Trigger","Kin_Q2 Trigger",3200,1600);
   for(int i=0; i<5; i++)
   {
     fKinematicsRD[i][0] = new TH1F(Form("Q2 %s",trigname[i].c_str()), Form("Q2 %s",trigname[i].c_str()), 50, -1, 2);
-    fKinematicsRD[i][1] = new TH1F(Form("x_{Bj} %s",trigname[i].c_str()), Form("x_{Bj} %s",trigname[i].c_str()), 50, -3, 0);
+    fKinematicsRD[i][1] = new TH1F(Form("xBj %s",trigname[i].c_str()), Form("xBj %s",trigname[i].c_str()), 50, -3, 0);
     fKinematicsRD[i][2] = new TH1F(Form("y %s",trigname[i].c_str()), Form("y %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsRD[i][3] = new TH1F(Form("z %s",trigname[i].c_str()), Form("z %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsRD[i][4] = new TH1F(Form("W %s",trigname[i].c_str()), Form("W %s",trigname[i].c_str()), 50, 2, 18);
     fKinematicsRD[i][5] = new TH1F(Form("nu %s",trigname[i].c_str()), Form("nu %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD[i][6] = new TH1F(Form("E_{mu} %s",trigname[i].c_str()), Form("E_{mu} %s",trigname[i].c_str()), 50, 140, 180);
-    fKinematicsRD[i][7] = new TH1F(Form("E_{mu'} %s",trigname[i].c_str()), Form("E_{mu'} %s",trigname[i].c_str()), 50, 0, 160);
+    fKinematicsRD[i][6] = new TH1F(Form("Emu %s",trigname[i].c_str()), Form("Emu %s",trigname[i].c_str()), 50, 140, 180);
+    fKinematicsRD[i][7] = new TH1F(Form("Emu' %s",trigname[i].c_str()), Form("Emu' %s",trigname[i].c_str()), 50, 0, 160);
     fKinematicsRD[i][8] = new TH1F(Form("theta %s",trigname[i].c_str()), Form("theta %s",trigname[i].c_str()), 50, 0, 0.05);
     fKinematicsRD[i][9] = new TH1F(Form("phi %s",trigname[i].c_str()), Form("phi %s",trigname[i].c_str()), 50, -1.7, 1.7);
     fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 50, -320, -70);
-    fKinematicsRD[i][12] = new TH1F(Form("p_{hadron+e} %s",trigname[i].c_str()), Form("p_{hadron+e} %s",trigname[i].c_str()), 50, 0, 40);
-    fKinematicsRD[i][13] = new TH1F(Form("theta_{hadron+e} %s",trigname[i].c_str()), Form("theta_{hadron+e} %s",trigname[i].c_str()), 50, 0, 0.25);
-    fKinematicsRD[i][14] = new TH1F(Form("phi_{hadron+e,lab} %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} %s",trigname[i].c_str()), 50, -3.5, 3.5);
-    fKinematicsRD[i][15] = new TH1F(Form("phi_{hadron+e,prod.pl} %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} %s",trigname[i].c_str()), 50, 0, 3.5);
-    fKinematicsRD[i][16] = new TH1F(Form("p_{T} %s",trigname[i].c_str()), Form("p_{T} %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsRD[i][12] = new TH1F(Form("phadron+e %s",trigname[i].c_str()), Form("phadron+e %s",trigname[i].c_str()), 50, 0, 40);
+    fKinematicsRD[i][13] = new TH1F(Form("thetahadron+e %s",trigname[i].c_str()), Form("thetahadron+e %s",trigname[i].c_str()), 50, 0, 0.25);
+    fKinematicsRD[i][14] = new TH1F(Form("phihadron+e,lab %s",trigname[i].c_str()), Form("phihadron+e,lab %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsRD[i][15] = new TH1F(Form("phihadron+e,prod.pl %s",trigname[i].c_str()), Form("phihadron+e,prod.pl %s",trigname[i].c_str()), 50, 0, 3.5);
+    fKinematicsRD[i][16] = new TH1F(Form("pT %s",trigname[i].c_str()), Form("pT %s",trigname[i].c_str()), 50, 0, 3);
     fKinematicsRD2[i][0] = new TH1F(Form("Q2 Ratio %s",trigname[i].c_str()), Form("Q2 Ratio %s",trigname[i].c_str()), 50, -1, 2);
-    fKinematicsRD2[i][1] = new TH1F(Form("x_{Bj} Ratio %s",trigname[i].c_str()), Form("x_{Bj} Ratio %s",trigname[i].c_str()), 50, -3, 0);
+    fKinematicsRD2[i][1] = new TH1F(Form("xBj Ratio %s",trigname[i].c_str()), Form("xBj Ratio %s",trigname[i].c_str()), 50, -3, 0);
     fKinematicsRD2[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsRD2[i][3] = new TH1F(Form("z Ratio %s",trigname[i].c_str()), Form("z Ratio %s",trigname[i].c_str()), 50, 0, 1);
     fKinematicsRD2[i][4] = new TH1F(Form("W Ratio %s",trigname[i].c_str()), Form("W Ratio %s",trigname[i].c_str()), 50, 2, 18);
     fKinematicsRD2[i][5] = new TH1F(Form("nu Ratio %s",trigname[i].c_str()), Form("nu Ratio %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD2[i][6] = new TH1F(Form("E_{mu} Ratio %s",trigname[i].c_str()), Form("E_{mu} Ratio %s",trigname[i].c_str()), 50, 140, 180);
-    fKinematicsRD2[i][7] = new TH1F(Form("E_{mu'} Ratio %s",trigname[i].c_str()), Form("E_{mu'} Ratio %s",trigname[i].c_str()), 50, 0, 160);
+    fKinematicsRD2[i][6] = new TH1F(Form("Emu Ratio %s",trigname[i].c_str()), Form("Emu Ratio %s",trigname[i].c_str()), 50, 140, 180);
+    fKinematicsRD2[i][7] = new TH1F(Form("Emu' Ratio %s",trigname[i].c_str()), Form("Emu' Ratio %s",trigname[i].c_str()), 50, 0, 160);
     fKinematicsRD2[i][8] = new TH1F(Form("theta Ratio %s",trigname[i].c_str()), Form("theta Ratio %s",trigname[i].c_str()), 50, 0, 0.05);
     fKinematicsRD2[i][9] = new TH1F(Form("phi Ratio %s",trigname[i].c_str()), Form("phi Ratio %s",trigname[i].c_str()), 50, -1.7, 1.7);
     fKinematicsRD2[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -320, -70);
-    fKinematicsRD2[i][12] = new TH1F(Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 40);
-    fKinematicsRD2[i][13] = new TH1F(Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 0.25);
-    fKinematicsRD2[i][14] = new TH1F(Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
-    fKinematicsRD2[i][15] = new TH1F(Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
-    fKinematicsRD2[i][16] = new TH1F(Form("p_{T} Ratio %s",trigname[i].c_str()), Form("p_{T} Ratio %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsRD2[i][12] = new TH1F(Form("phadron+e Ratio %s",trigname[i].c_str()), Form("phadron+e Ratio %s",trigname[i].c_str()), 50, 0, 40);
+    fKinematicsRD2[i][13] = new TH1F(Form("thetahadron+e Ratio %s",trigname[i].c_str()), Form("thetahadron+e Ratio %s",trigname[i].c_str()), 50, 0, 0.25);
+    fKinematicsRD2[i][14] = new TH1F(Form("phihadron+e,lab Ratio %s",trigname[i].c_str()), Form("phihadron+e,lab Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
+    fKinematicsRD2[i][15] = new TH1F(Form("phihadron+e,prod.pl Ratio %s",trigname[i].c_str()), Form("phihadron+e,prod.pl Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
+    fKinematicsRD2[i][16] = new TH1F(Form("pT Ratio %s",trigname[i].c_str()), Form("pT Ratio %s",trigname[i].c_str()), 50, 0, 3);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsRD2[i][0]);
     BinLogX(fKinematicsRD[i][1]);
     BinLogX(fKinematicsRD2[i][1]);
   }
-  fKinematicsRD[0][11] = new TH1F("phi_{e,prod.pl}","phi_{e,prod.pl}", 50, 0, 3.5);
-  fKinematicsRD2[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
+  fKinematicsRD[0][11] = new TH1F("phi_e,prod.pl","phi_e,prod.pl", 50, 0, 3.5);
+  fKinematicsRD2[0][11] = new TH1F("phi_e,prod.pl Ratio","phi_e,prod.pl Ratio", 50, 0, 3.5);
   fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
