@@ -1499,6 +1499,8 @@ void RDextraction(string pFilelist)
       // IsMuPrim
       if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
 
+      cout << "pouet" << endl;
+
       //2006 ---
       if(Y2006)
       {
