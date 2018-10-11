@@ -123,6 +123,9 @@ int main(int argc, char **argv)
   TCanvas c2("Mult_comparison_yavg","Mult_comparison_yavg",3200,1600);
   TLine l1(0.1,0.9,0.9,0.9);
   TLine l2(0.1,1.1,0.9,1.1);
+  TLine l3(0.1,0.95,0.9,0.95);
+  TLine l4(0.1,1.05,0.9,1.05);
+  l3.SetLineStyle(2); l4.SetLineStyle(2);
   c1.SetFillColor(0);
   c2.SetFillColor(0);
   c1.Divide(9,5,0,0);
@@ -183,7 +186,7 @@ int main(int argc, char **argv)
           R[c][i][j]->SetMarkerColor(fMarkerColor[0]);
         }
 
-        R[c][i][j]->SetMarkerSize(3);
+        R[c][i][j]->SetMarkerSize(1);
 
         R[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
         R[c][i][j]->GetYaxis()->SetTitle("");
