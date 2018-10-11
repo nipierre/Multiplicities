@@ -230,7 +230,7 @@ void create_kin_plots()
     l1[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
     l1[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l1[11][i] = new TLine(0,0.4+i*0.2,3,0.4+i*0.2);
-    for(int j=0; j<17; j++)
+    for(int j=0; j<12; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
       l1[j][i]->SetLineWidth(1);
