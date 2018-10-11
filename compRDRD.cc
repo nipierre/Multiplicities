@@ -329,17 +329,16 @@ void save_kin_plots()
   for(int i=0; i<4; i++)
   {
     c1.cd(i+1);
-    // plotting_device(i,0,0);
-    // gPad->SetLogx();
-    // fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
-    // fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
-    fKinematicsRD[i][0]->Draw();
+    plotting_device(i,0,0);
+    gPad->SetLogx();
+    fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
+    fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
     c1.Update();
-    //
-    // c2.cd(i+1);
-    // plotting_device(i,1,0);
-    // gPad->SetLogx();
-    // c2.Update();
+
+    c2.cd(i+1);
+    plotting_device(i,1,0);
+    gPad->SetLogx();
+    c2.Update();
 
     c3.cd(i+1);
     plotting_device(i,2,0);
@@ -369,13 +368,13 @@ void save_kin_plots()
     plotting_device(i,8,0);
     c16.Update();
 
-    // c17.cd(i+1);
-    // plotting_device(i,9,0);
-    // c17.Update();
+    c17.cd(i+1);
+    plotting_device(i,9,0);
+    c17.Update();
 
-    // c18.cd(i+1);
-    // plotting_device(i,10,0);
-    // c18.Update();
+    c18.cd(i+1);
+    plotting_device(i,10,0);
+    c18.Update();
 
     c19.cd(i+1);
     plotting_device(i,11,0);
@@ -386,15 +385,15 @@ void save_kin_plots()
     c21.Update();
   }
 
-  // c8.cd(1);
-  // plotting_device(4,0,4);
-  // gPad->SetLogx();
-  // c8.Update();
+  c8.cd(1);
+  plotting_device(4,0,4);
+  gPad->SetLogx();
+  c8.Update();
 
-  // c9.cd(1);
-  // plotting_device(4,1,4);
-  // gPad->SetLogx();
-  // c9.Update();
+  c9.cd(1);
+  plotting_device(4,1,4);
+  gPad->SetLogx();
+  c9.Update();
 
   c10.cd(1);
   plotting_device(4,2,4);
