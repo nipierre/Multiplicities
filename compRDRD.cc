@@ -8,7 +8,6 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define RCUTSTUDY_ON 0
 
 using namespace std;
 
@@ -253,8 +252,8 @@ void plotting_device(int i, int j, int norm)
   // {
   //   fErrorRD2.push_back(fKinematicsRD2[i][j]->GetBinError(tt));
   // }
-  Double_t scaleRD = 1/fKinematicsRD[norm][j]->GetEntries();
-  Double_t scaleRD2 = 1/fKinematicsRD2[norm][j]->GetEntries();
+  // Double_t scaleRD = 1/fKinematicsRD[norm][j]->GetEntries();
+  // Double_t scaleRD2 = 1/fKinematicsRD2[norm][j]->GetEntries();
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[norm][j]->GetEntries());
   fKinematicsRD2[i][j]->Scale(1/fKinematicsRD2[norm][j]->GetEntries());
   fKinematicsRD[i][j]->SetLineColor(kRed);
@@ -1577,6 +1576,8 @@ void RDextraction(string pFilelist)
 
       // x cut
       if(!(fXmin<xBj && xBj<fXmax)) continue;
+
+      cout << "pouet" << endl;
 
       // MT
       if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
