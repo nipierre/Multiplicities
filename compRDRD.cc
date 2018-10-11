@@ -1528,6 +1528,8 @@ void RDextraction(string pFilelist)
       }
       //2016 ---
 
+      cout << "pouet" << endl;
+
       // Energy of the muon beam
       if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
 
