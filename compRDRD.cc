@@ -268,16 +268,16 @@ void plotting_device(int i, int j, int norm)
   // }
   // fKinematicsRD[i][j]->Draw("E2");
   fKinematicsRD[i][j]->SetMarkerStyle(22);
-  fKinematicsRD[i][j]->Draw("");
-  fKinematicsRD[i][j]->GetXaxis()->SetLabelSize(0.03);
-  fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
   // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
   // {
   //   fKinematicsRD2[i][j]->SetBinError(tt,scaleRD2*fErrorRD2[tt]);
   // }
   // fErrorRD.clear(); fErrorRD2.clear();
   // fKinematicsRD2[i][j]->Draw("E2SAME");
-  fKinematicsRD2[i][j]->Draw("SAME");
+  fKinematicsRD2[i][j]->Draw("");
+  fKinematicsRD[i][j]->Draw("SAME");
+  fKinematicsRD2[i][j]->GetXaxis()->SetLabelSize(0.03);
+  fKinematicsRD2[i][j]->GetYaxis()->SetLabelSize(0.03);
 }
 
 void save_kin_plots()
@@ -1101,6 +1101,10 @@ void RD2extraction(string pFilelist)
 
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
         if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
+
+        // z cut
+        if(!(0.2<zBj && zBj<0.85)) continue;
+        fZtest++;
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
