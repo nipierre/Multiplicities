@@ -2113,24 +2113,18 @@ int main(int argc, char **argv)
   cout << "\n ==> Real Data 1 <==" << endl;
 
   cout <<  '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
-  for(int i=0; i<13; i++)
-  {
-    cout <<  '|' << setw(15) << fCountingRD[4][0] << '|' << setw(15) << float(fCountingRD[0][0])/float(fCountingRD[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD[1][0])/float(fCountingRD[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD[2][0])/float(fCountingRD[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD[3][0])/float(fCountingRD[4][0])*100 << '|' << endl;
-  }
+  cout <<  '|' << setw(15) << fCountingRD[4][0] << '|' << setw(15) << float(fCountingRD[0][0])/float(fCountingRD[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[1][0])/float(fCountingRD[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[2][0])/float(fCountingRD[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[3][0])/float(fCountingRD[4][0])*100 << '|' << endl;
 
   cout << "\n ==> Real Data 2 <==" << endl;
 
   cout <<  '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
-  for(int i=0; i<13; i++)
-  {
-    cout <<  '|' << setw(15) << fCountingRD2[4][i] << '|' << setw(15) << float(fCountingRD2[0][0])/float(fCountingRD2[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD2[1][0])/float(fCountingRD2[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD2[2][0])/float(fCountingRD2[4][0])*100
-                                                                      << '|' << setw(15) << float(fCountingRD2[3][0])/float(fCountingRD2[4][0])*100 << '|' << endl;
-  }
+  cout <<  '|' << setw(15) << fCountingRD2[4][i] << '|' << setw(15) << float(fCountingRD2[0][0])/float(fCountingRD2[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD2[1][0])/float(fCountingRD2[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD2[2][0])/float(fCountingRD2[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD2[3][0])/float(fCountingRD2[4][0])*100 << '|' << endl;
 
 
   return 0;
