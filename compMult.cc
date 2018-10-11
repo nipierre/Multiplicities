@@ -1,3 +1,20 @@
+#include <iostream>
+#include <fstream>
+#include <TFile.h>
+#include <TF1.h>
+#include <TH1F.h>
+#include <TH2F.h>
+#include <TCanvas.h>
+#include <TMatrixD.h>
+#include <TMatrixTUtils.h>
+#include <TTree.h>
+#include <TBranch.h>
+#include <TLeaf.h>
+#include <TGraphErrors.h>
+#include <TGraphAsymmErrors.h>
+#include <TLine.h>
+#include <TGaxis.h>
+
 #include "compMult.h"
 
 using namespace std;
@@ -124,7 +141,7 @@ int main(int argc, char **argv)
     vector<double> r_y;
     vector<double> r_y_err;
     vector<double> z_range_r_y;
-    
+
     for(int l=0; l<12; l++)
     {
       z_range_r_y.push_back(z_range[l]);
