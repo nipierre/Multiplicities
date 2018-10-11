@@ -397,27 +397,27 @@ void save_kin_plots()
   c22.Update();
 
 
-  c1.Print("kinRDRD.pdf(","pdf");
-  c2.Print("kinRDRD.pdf","pdf");
-  c3.Print("kinRDRD.pdf","pdf");
-  c4.Print("kinRDRD.pdf","pdf");
-  c5.Print("kinRDRD.pdf","pdf");
-  c6.Print("kinRDRD.pdf","pdf");
-  c8.Print("kinRDRD.pdf","pdf");
-  c9.Print("kinRDRD.pdf","pdf");
-  c10.Print("kinRDRD.pdf","pdf");
-  c11.Print("kinRDRD.pdf","pdf");
-  c12.Print("kinRDRD.pdf","pdf");
-  c13.Print("kinRDRD.pdf","pdf");
-  c14.Print("kinRDRD.pdf","pdf");
-  c15.Print("kinRDRD.pdf","pdf");
-  c16.Print("kinRDRD.pdf","pdf");
-  c17.Print("kinRDRD.pdf","pdf");
-  c18.Print("kinRDRD.pdf","pdf");
-  c19.Print("kinRDRD.pdf","pdf");
-  c20.Print("kinRDRD.pdf","pdf");
-  c21.Print("kinRDRD.pdf","pdf");
-  c22.Print("kinRDRD.pdf)","pdf");
+  c1.SaveAs("kinRDRD.pdf(","pdf");
+  c2.SaveAs("kinRDRD.pdf","pdf");
+  c3.SaveAs("kinRDRD.pdf","pdf");
+  c4.SaveAs("kinRDRD.pdf","pdf");
+  c5.SaveAs("kinRDRD.pdf","pdf");
+  c6.SaveAs("kinRDRD.pdf","pdf");
+  c8.SaveAs("kinRDRD.pdf","pdf");
+  c9.SaveAs("kinRDRD.pdf","pdf");
+  c10.SaveAs("kinRDRD.pdf","pdf");
+  c11.SaveAs("kinRDRD.pdf","pdf");
+  c12.SaveAs("kinRDRD.pdf","pdf");
+  c13.SaveAs("kinRDRD.pdf","pdf");
+  c14.SaveAs("kinRDRD.pdf","pdf");
+  c15.SaveAs("kinRDRD.pdf","pdf");
+  c16.SaveAs("kinRDRD.pdf","pdf");
+  c17.SaveAs("kinRDRD.pdf","pdf");
+  c18.SaveAs("kinRDRD.pdf","pdf");
+  c19.SaveAs("kinRDRD.pdf","pdf");
+  c20.SaveAs("kinRDRD.pdf","pdf");
+  c21.SaveAs("kinRDRD.pdf","pdf");
+  c22.SaveAs("kinRDRD.pdf)","pdf");
 
 
 }
