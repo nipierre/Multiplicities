@@ -230,7 +230,7 @@ void create_kin_plots()
     l1[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
     l1[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l1[11][i] = new TLine(0,0.4+i*0.2,3,0.4+i*0.2);
-    for(int j=0; j<12; j++)
+    for(int j=0; j<13; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
       l1[j][i]->SetLineWidth(1);
@@ -246,6 +246,8 @@ void plotting_ratio(int i, int j)
   // }
   fKinematicsRD[i][j]->Sumw2();
   fKinematicsRD2[i][j]->Sumw2();
+  fCountingRD2[i][j] = fKinematicsRD2[i][j]->GetEntries();
+  fCountingRD1[i][j] = fKinematicsRD1[i][j]->GetEntries();
   fKinematicsRD2[i][j]->Scale(1/fKinematicsRD2[i][j]->GetEntries());
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
   fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
@@ -2103,6 +2105,33 @@ int main(int argc, char **argv)
   RD2extraction(argv[2]);
   cout << "... Saving plots ..." << endl;
   save_kin_plots();
+
+  cout << "\n\n";
+  cout << "             ********* Event distribution within MT/LT/OT/LAST in percentage of total ********* " << endl;
+  cout << "             ---------------------------------------------------------------------------------- " << endl;
+
+  cout << "\n ==> Real Data 1 <==" << endl;
+
+  cout <<  '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
+  for(int i=0; i<13; i++)
+  {
+    cout <<  '|' << setw(15) << fCountingRD1[4][0] << '|' << setw(15) << float(fCountingRD1[0][0])/float(fCountingRD1[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD1[1][0])/float(fCountingRD1[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD1[2][0])/float(fCountingRD1[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD1[3][0])/float(fCountingRD1[4][0])*100 << '|' << endl;
+  }
+
+  cout << "\n ==> Real Data 2 <==" << endl;
+
+  cout <<  '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
+  for(int i=0; i<13; i++)
+  {
+    cout <<  '|' << setw(15) << fCountingRD2[4][i] << '|' << setw(15) << float(fCountingRD2[0][0])/float(fCountingRD2[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD2[1][0])/float(fCountingRD2[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD2[2][0])/float(fCountingRD2[4][0])*100
+                                                                      << '|' << setw(15) << float(fCountingRD2[3][0])/float(fCountingRD2[4][0])*100 << '|' << endl;
+  }
+
 
   return 0;
 }

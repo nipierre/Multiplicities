@@ -124,6 +124,8 @@ Double_t fPmax;
 TH1F* fKinematicsRD[5][13];
 TH1F* fKinematicsRD2[5][13];
 TH1F* fKinematicsRatio[5][13];
+Int_t fCountingRD[5][13];
+Int_t fCountingRD2[5][13];
 
 vector<double> fError, fErrorRD, fErrorRD2;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
