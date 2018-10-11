@@ -1499,8 +1499,6 @@ void RDextraction(string pFilelist)
       // IsMuPrim
       if(!(0<isMuPrim->GetLeaf("isMuPrim")->GetValue())) continue;
 
-      cout << "pouet" << endl;
-
       //2006 ---
       if(Y2006)
       {
@@ -1529,8 +1527,6 @@ void RDextraction(string pFilelist)
         if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
-
-      cout << "pouet" << endl;
 
       // Energy of the muon beam
       if(!(140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180)) continue;
@@ -1580,8 +1576,6 @@ void RDextraction(string pFilelist)
 
       // x cut
       if(!(fXmin<xBj && xBj<fXmax)) continue;
-
-      cout << "pouet" << endl;
 
       // MT
       if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2018,6 +2012,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
+  InitTargetFile();
   create_kin_plots();
   readKinCuts(argv[3]);
   cout << "... Real Data 1 treatment ..." << endl;
