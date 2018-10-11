@@ -16,6 +16,7 @@
 #include <TLeaf.h>
 #include <TLine.h>
 #include <TGaxis.h>
+#include <TLatex.h>
 
 // COLORS
 
@@ -125,27 +126,27 @@ TH2F* fThetaRDp[3];
 TH1F* fKinematicsRD2[5][13];
 TH2F* fThetaRD2p[3];
 TH1F* fKinematicsRatio[5][13];
-TCanvas c1("Kin_Q2 Trigger","",3200,1600);
-TCanvas c2("Kin_xBj Trigger","",3200,1600);
-TCanvas c3("Kin_y Trigger","",3200,1600);
-TCanvas c4("Kin_z Trigger","",3200,1600);
-TCanvas c5("Kin_w Trigger","",3200,1600);
-TCanvas c6("Kin_nu Trigger","",3200,1600);
-TCanvas c8("Kin_Q2","",1600,1600);
-TCanvas c9("Kin_xBj","",1600,1600);
-TCanvas c10("Kin_y","",1600,1600);
-TCanvas c11("Kin_z","",1600,1600);
-TCanvas c12("Kin_w","",1600,1600);
-TCanvas c13("Kin_nu","",1600,1600);
-TCanvas c14("Kin_mu","",3200,1600);
-TCanvas c15("Kin_mup","",3200,1600);
-TCanvas c16("Kin_theta","",3200,1600);
-TCanvas c17("Kin_phi","",3200,1600);
-TCanvas c18("Kin_vertex","",3200,1600);
-TCanvas c19("Kin_hadron_p Trigger","",3200,1600);
-TCanvas c20("Kin_hadron_p","",1600,1600);
-TCanvas c21("Kin_p_T Trigger","",3200,1600);
-TCanvas c22("Kin_p_T","",1600,1600);
+TCanvas c1("c1","",3200,1600);
+TCanvas c2("c2","",3200,1600);
+TCanvas c3("c3","",3200,1600);
+TCanvas c4("c4","",3200,1600);
+TCanvas c5("c5","",3200,1600);
+TCanvas c6("c6","",3200,1600);
+TCanvas c8("c8","",1600,1600);
+TCanvas c9("c9","",1600,1600);
+TCanvas c10("c10","",1600,1600);
+TCanvas c11("c11","",1600,1600);
+TCanvas c12("c12","",1600,1600);
+TCanvas c13("c13","",1600,1600);
+TCanvas c14("c14","",3200,1600);
+TCanvas c15("c15","",3200,1600);
+TCanvas c16("c16","",3200,1600);
+TCanvas c17("c17","",3200,1600);
+TCanvas c18("c18","",3200,1600);
+TCanvas c19("c19","",3200,1600);
+TCanvas c20("c20","",1600,1600);
+TCanvas c21("c21","",3200,1600);
+TCanvas c22("c22","",1600,1600);
 
 vector<double> fError, fErrorRD, fErrorRD2;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
