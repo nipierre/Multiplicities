@@ -266,7 +266,7 @@ void plotting_ratio(int i, int j)
   fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
   for(int tt=0; tt<7; tt++)
   {
-    l1[0][tt]->Draw();
+    l1[j][tt]->Draw();
   }
 }
 
