@@ -259,39 +259,40 @@ void create_kin_plots()
 
 void plotting_device(int i, int j, int norm)
 {
-  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
-  {
-    fErrorRD.push_back(fKinematicsRD[i][j]->GetBinError(tt));
-  }
-  for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
-  {
-    fErrorRD2.push_back(fKinematicsRD2[i][j]->GetBinError(tt));
-  }
+  // for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fErrorRD.push_back(fKinematicsRD[i][j]->GetBinError(tt));
+  // }
+  // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fErrorRD2.push_back(fKinematicsRD2[i][j]->GetBinError(tt));
+  // }
   Double_t scaleRD = 1/fKinematicsRD[norm][j]->GetEntries();
   Double_t scaleRD2 = 1/fKinematicsRD2[norm][j]->GetEntries();
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[norm][j]->GetEntries());
   fKinematicsRD2[i][j]->Scale(1/fKinematicsRD2[norm][j]->GetEntries());
   fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsRD2[i][j]->SetLineColor(kBlue);
+  fKinematicsRD2[i][j]->SetFillColor(kBlue);
   fKinematicsRD[i][j]->SetMinimum(0.);
   fKinematicsRD[i][j]->SetMaximum(max(fKinematicsRD[i][j]->GetMaximum()*1.2,fKinematicsRD2[i][j]->GetMaximum()*1.2));
   fKinematicsRD[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
-  {
-    fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
-  }
-  fKinematicsRD[i][j]->Draw("E2");
+  // for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
+  // }
+  // fKinematicsRD[i][j]->Draw("E2");
   fKinematicsRD[i][j]->SetMarkerStyle(22);
-  fKinematicsRD[i][j]->Draw("PSAME");
+  fKinematicsRD[i][j]->Draw();
   fKinematicsRD[i][j]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
-  for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
-  {
-    fKinematicsRD2[i][j]->SetBinError(tt,scaleRD2*fErrorRD2[tt]);
-  }
-  fErrorRD.clear(); fErrorRD2.clear();
-  fKinematicsRD2[i][j]->Draw("E2SAME");
-  fKinematicsRD2[i][j]->Draw("PSAME");
+  // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fKinematicsRD2[i][j]->SetBinError(tt,scaleRD2*fErrorRD2[tt]);
+  // }
+  // fErrorRD.clear(); fErrorRD2.clear();
+  // fKinematicsRD2[i][j]->Draw("E2SAME");
+  fKinematicsRD2[i][j]->Draw("SAME");
 }
 
 void save_kin_plots()
@@ -2149,9 +2150,9 @@ int main(int argc, char **argv)
 
   create_kin_plots();
   readKinCuts(argv[3]);
-  cout << "... Real Data treatment ..." << endl;
+  cout << "... Real Data 1 treatment ..." << endl;
   RDextraction(argv[1]);
-  cout << "... Monte-Carlo treatment ..." << endl;
+  cout << "... Real Data 2 treatment ..." << endl;
   RD2extraction(argv[2]);
   cout << "... Saving plots ..." << endl;
   save_kin_plots();

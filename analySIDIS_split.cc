@@ -624,8 +624,8 @@ void create_kin_plots()
   }
   fZvtx[0] = new TH1F("Zvtx1","Zvtx1", 200, -500, 500);
   fZvtx[1] = new TH1F("Zvtx2","Zvtx2", 200, -500, 500);
-  fQ2k[0] = new TH1F("Q^{2}1","Q^{2}1", 200, -2, 2);
-  fQ2k[1] = new TH1F("Q^{2}2","Q^{2}2", 200, -2, 2);
+  fQ2k[0] = new TH1F("Q^{2}1","Q^{2}1", 200, -1*log10(8), 2);
+  fQ2k[1] = new TH1F("Q^{2}2","Q^{2}2", 200, -1*log10(8), 2);
   fYk[0] = new TH1F("y1","y1", 200, 0, 1);
   fYk[1] = new TH1F("y2","y2", 200, 0, 1);
   fThRich[0] = new TH1F("#theta_{RICH}1","#theta_{RICH}1", 200, 0, 0.8);
