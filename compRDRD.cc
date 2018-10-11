@@ -269,7 +269,7 @@ void plotting_device(int i, int j, int norm)
   // }
   // fKinematicsRD[i][j]->Draw("E2");
   fKinematicsRD[i][j]->SetMarkerStyle(22);
-  fKinematicsRD[i][j]->Draw("P");
+  fKinematicsRD[i][j]->Draw("");
   fKinematicsRD[i][j]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
   // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
@@ -278,7 +278,7 @@ void plotting_device(int i, int j, int norm)
   // }
   // fErrorRD.clear(); fErrorRD2.clear();
   // fKinematicsRD2[i][j]->Draw("E2SAME");
-  fKinematicsRD2[i][j]->Draw("PSAME");
+  fKinematicsRD2[i][j]->Draw("SAME");
 }
 
 void save_kin_plots()
@@ -307,17 +307,17 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
-    c1.cd(i+1);
-    plotting_device(i,0,0);
-    gPad->SetLogx();
-    fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
-    fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
-    c1.Update();
-
-    c2.cd(i+1);
-    plotting_device(i,1,0);
-    gPad->SetLogx();
-    c2.Update();
+    // c1.cd(i+1);
+    // plotting_device(i,0,0);
+    // gPad->SetLogx();
+    // fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
+    // fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
+    // c1.Update();
+    //
+    // c2.cd(i+1);
+    // plotting_device(i,1,0);
+    // gPad->SetLogx();
+    // c2.Update();
 
     c3.cd(i+1);
     plotting_device(i,2,0);
@@ -397,7 +397,6 @@ void save_kin_plots()
   c22.cd(1);
   plotting_device(4,12,4);
   c22.Update();
-
 
   c1.SaveAs("kinRDRD.pdf(","pdf");
   c2.SaveAs("kinRDRD.pdf","pdf");
