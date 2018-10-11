@@ -52,13 +52,13 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
     {
       for(int k=0; k<12; k++)
       {
-          mult >> x >> y >> z;
+          mult2 >> x >> y >> z;
           cout << x << "\t" << y << "\t" << z << "\t" << endl;
-          for(int l=0; l<4; l++) mult >> sdum;
-          mult >> fMultiplicities2[i][j][k].tab[1][0][0] >> fMultiplicities2[i][j][k].tab[1][1][0] >> fMultiplicities2[i][j][k].tab[1][2][0];
-          for(int l=0; l<5; l++) mult >> sdum;
-          mult >> fMultiplicities2[i][j][k].tab[0][0][0] >> fMultiplicities2[i][j][k].tab[0][1][0] >> fMultiplicities2[i][j][k].tab[0][2][0];
-          mult >> sdum;
+          for(int l=0; l<4; l++) mult2 >> sdum;
+          mult2 >> fMultiplicities2[i][j][k].tab[1][0][0] >> fMultiplicities2[i][j][k].tab[1][1][0] >> fMultiplicities2[i][j][k].tab[1][2][0];
+          for(int l=0; l<5; l++) mult2 >> sdum;
+          mult2 >> fMultiplicities2[i][j][k].tab[0][0][0] >> fMultiplicities2[i][j][k].tab[0][1][0] >> fMultiplicities2[i][j][k].tab[0][2][0];
+          mult2 >> sdum;
       }
     }
   }
@@ -88,17 +88,17 @@ void yweightedavg()
             fMultiplicities2_yavg[x][z].tab[c][2][0]+=1/fMultiplicities2[x][i][z].tab[c][2][0];
           }
         }
-        if(fMultiplicities1_yavg[x][z].tab[c][0][l])
+        if(fMultiplicities1_yavg[x][z].tab[c][0][0])
         {
-          fMultiplicities1_yavg[x][z].tab[c][1][l]=1/fMultiplicities1_yavg[x][z].tab[c][1][l];
-          fMultiplicities1_yavg[x][z].tab[c][2][l]=1/fMultiplicities1_yavg[x][z].tab[c][2][l];
-          fMultiplicities1_yavg[x][z].tab[c][0][l]*=fMultiplicities1_yavg[x][z].tab[c][1][l];
+          fMultiplicities1_yavg[x][z].tab[c][1][0]=1/fMultiplicities1_yavg[x][z].tab[c][1][0];
+          fMultiplicities1_yavg[x][z].tab[c][2][0]=1/fMultiplicities1_yavg[x][z].tab[c][2][0];
+          fMultiplicities1_yavg[x][z].tab[c][0][0]*=fMultiplicities1_yavg[x][z].tab[c][1][0];
         }
-        if(fMultiplicities2_yavg[x][z].tab[c][0][l])
+        if(fMultiplicities2_yavg[x][z].tab[c][0][0])
         {
-          fMultiplicities2_yavg[x][z].tab[c][1][l]=1/fMultiplicities2_yavg[x][z].tab[c][1][l];
-          fMultiplicities2_yavg[x][z].tab[c][2][l]=1/fMultiplicities2_yavg[x][z].tab[c][2][l];
-          fMultiplicities2_yavg[x][z].tab[c][0][l]*=fMultiplicities2_yavg[x][z].tab[c][1][l];
+          fMultiplicities2_yavg[x][z].tab[c][1][0]=1/fMultiplicities2_yavg[x][z].tab[c][1][0];
+          fMultiplicities2_yavg[x][z].tab[c][2][0]=1/fMultiplicities2_yavg[x][z].tab[c][2][0];
+          fMultiplicities2_yavg[x][z].tab[c][0][0]*=fMultiplicities2_yavg[x][z].tab[c][1][0];
         }
       }
     }
@@ -129,207 +129,198 @@ int main(int argc, char **argv)
   TGraphErrors* R[2][9][6];
   TGraphErrors* R_y[2][9];
 
-  for(int i=0; i<9; i++)
+  for(int c=0; c<2; c++)
   {
-    int axisflagh1 = 0;
-    int axisflagh2 = 0;
-    int axisflagp1 = 0;
-    int axisflagp2 = 0;
-    int axisflagk1 = 0;
-    int axisflagk2 = 0;
-
-    vector<double> r_y;
-    vector<double> r_y_err;
-    vector<double> z_range_r_y;
-
-    for(int l=0; l<12; l++)
+    for(int i=0; i<9; i++)
     {
-      z_range_r_y.push_back(z_range[l]);
-    }
 
-    for(int j=0; j<6; j++)
-    {
-      std::vector<double> r;
-      std::vector<double> r_err;
-      std::vector<double> z_range_r;
+      vector<double> r_y;
+      vector<double> r_y_err;
+      vector<double> z_range_r_y;
 
       for(int l=0; l<12; l++)
       {
-        z_range_r.push_back(z_range[l]);
+        z_range_r_y.push_back(z_range[l]);
       }
 
-      for(int k=0; k<12; k++)
+      for(int j=0; j<6; j++)
       {
-        for(int c=1; c>=0; c--)
+        std::vector<double> r;
+        std::vector<double> r_err;
+        std::vector<double> z_range_r;
+
+        for(int l=0; l<12; l++)
+        {
+          z_range_r.push_back(z_range[l]);
+        }
+
+        for(int k=0; k<12; k++)
         {
           r.push_back(fMultiplicities2[i][j][k].tab[c][0][0] ? fMultiplicities1[i][j][k].tab[c][0][0]/fMultiplicities2[i][j][k].tab[c][0][0] : 0);
           r_err.push_back(sqrt((fMultiplicities1[i][j][k].tab[c][1][0]+pow(fMultiplicities2[i][j][k].tab[c][1][0],2)*fMultiplicities1[i][j][k].tab[c][0][0]
                                   /pow(fMultiplicities2[i][j][k].tab[c][0][0],2))/pow(fMultiplicities2[i][j][k].tab[c][0][0],2)));
         }
-      }
 
-      for(int k=12; k>0; k--)
-      {
-        if(!r[k-1]) {r.erase(r.begin()+k-1); r_err.erase(r_err.begin()+k-1); z_range_r.erase(z_range_r.begin()+k-1);}
-      }
-
-      bool r_empty = 0;
-
-      if(!(int(r.size()))) r_empty = 1;
-
-      R[c][i][j] = new TGraphErrors(int(r.size()),&(z_range_r[0]),&(r[0]),0,&(r_err[0]));
-
-      if(!c)
-      {
-        R[c][i][j]->SetMarkerColor(fMarkerColor[4]);
-      }
-      else
-      {
-        R[c][i][j]->SetMarkerColor(fMarkerColor[0]);
-      }
-
-      R[c][i][j]->SetMarkerSize(3);
-
-      R[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
-      R[c][i][j]->GetYaxis()->SetTitle("");
-
-      R[c][i][j]->GetXaxis()->SetTitle("");
-
-      R[c][i][j]->SetTitle("");
-
-      if(!r_empty)
-      {
-        c1.cd(i+1+9*j);
-        gPad->SetFillStyle(4000);
-        if(R[c][i][j])
+        for(int k=12; k>0; k--)
         {
-          if(!c)
-          {
-            R[c][i][j]->Draw("SAMEPA");
-            R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-            R[c][i][j]->SetMinimum(0.);
-            R[c][i][j]->SetMaximum(2.0);
-            R[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-            R[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-            R[c][i][j]->SetTitle("");
-            if(j==5) gPad->SetBottomMargin(.15);
-            if(i==0) gPad->SetLeftMargin(.22);
-            if(i==8 && j==5)
-            {
-              R[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-              R[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-              R[c][i][j]->GetXaxis()->SetTitleOffset(.8);
-            }
-            R[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-            R[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-            if(i==1 && j==0)
-            {
-              R[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
-              R[c][i][j]->GetYaxis()->SetTitleSize(0.08);
-            }
-            R[c][i][j]->Draw("SAMEP");
-            R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-            R[c][i][j]->SetMinimum(0.);
-            R[c][i][j]->SetMaximum(2.0);
-            c1.Range(0.1,0.,0.9,2.0);
-          }
-          else
-          {
-            R[c][i][j]->Draw("SAMEP");
-            R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-            R[c][i][j]->SetMinimum(0.);
-            R[c][i][j]->SetMaximum(2.0);
-          }
+          if(!r[k-1]) {r.erase(r.begin()+k-1); r_err.erase(r_err.begin()+k-1); z_range_r.erase(z_range_r.begin()+k-1);}
         }
-        c1.Update();
+
+        bool r_empty = 0;
+
+        if(!(int(r.size()))) r_empty = 1;
+
+        R[c][i][j] = new TGraphErrors(int(r.size()),&(z_range_r[0]),&(r[0]),0,&(r_err[0]));
+
+        if(!c)
+        {
+          R[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+        }
+        else
+        {
+          R[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+        }
+
+        R[c][i][j]->SetMarkerSize(3);
+
+        R[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        R[c][i][j]->GetYaxis()->SetTitle("");
+
+        R[c][i][j]->GetXaxis()->SetTitle("");
+
+        R[c][i][j]->SetTitle("");
+
+        if(!r_empty)
+        {
+          c1.cd(i+1+9*j);
+          gPad->SetFillStyle(4000);
+          if(R[c][i][j])
+          {
+            if(!c)
+            {
+              R[c][i][j]->Draw("SAMEPA");
+              R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              R[c][i][j]->SetMinimum(0.);
+              R[c][i][j]->SetMaximum(2.0);
+              R[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              R[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              R[c][i][j]->SetTitle("");
+              if(j==5) gPad->SetBottomMargin(.15);
+              if(i==0) gPad->SetLeftMargin(.22);
+              if(i==8 && j==5)
+              {
+                R[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                R[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                R[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              R[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              R[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==1 && j==0)
+              {
+                R[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                R[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              R[c][i][j]->Draw("SAMEP");
+              R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              R[c][i][j]->SetMinimum(0.);
+              R[c][i][j]->SetMaximum(2.0);
+              c1.Range(0.1,0.,0.9,2.0);
+            }
+            else
+            {
+              R[c][i][j]->Draw("SAMEP");
+              R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              R[c][i][j]->SetMinimum(0.);
+              R[c][i][j]->SetMaximum(2.0);
+            }
+          }
+          c1.Update();
+        }
       }
-    }
 
-    yweightedavg();
+      yweightedavg();
 
-    for(int k=0; k<12; k++)
-    {
-      for(int c=1; c>=0; c--)
+      for(int k=0; k<12; k++)
       {
         r_y[c][i].push_back(fMultiplicities2_yavg[i][k].tab[c][0][0] ? fMultiplicities1_yavg[i][k].tab[c][0][0]/fMultiplicities2_yavg[i][k].tab[c][0][0] : 0);
         r_y_err[c][i].push_back(sqrt((fMultiplicities1_yavg[i][k].tab[c][1][0]+pow(fMultiplicities2_yavg[i][k].tab[c][1][0],2)*fMultiplicities1_yavg[i][k].tab[c][0][0]
                                 /pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2))/pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2)));
       }
-    }
-    for(int k=12; k>0; k--)
-    {
-      if(!r_y[k-1]) {r_y.erase(r_y.begin()+k-1); r_y_err.erase(r_y_err.begin()+k-1); z_range_r_y.erase(z_range_r_y.begin()+k-1);}
-    }
-
-    bool r_y_empty = 0;
-
-    if(!(int(r_y.size()))) r_y_empty = 1;
-
-    R_y[c][i] = new TGraphErrors(int(r_y.size()),&(z_range_r_y[0]),&(r_y[0]),0,&(r_y_err[0]));
-
-    if(!c)
-    {
-      R_y[c][i][j]->SetMarkerColor(fMarkerColor[4]);
-    }
-    else
-    {
-      R_y[c][i][j]->SetMarkerColor(fMarkerColor[0]);
-    }
-
-    R_y[c][i][j]->SetMarkerSize(3);
-
-    R_y[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
-    R_y[c][i][j]->GetYaxis()->SetTitle("");
-
-    R_y[c][i][j]->GetXaxis()->SetTitle("");
-
-    R_y[c][i][j]->SetTitle("");
-
-    if(!r_y_empty)
-    {
-      c2.cd(i+1);
-      gPad->SetFillStyle(4000);
-      if(R_y[c][i][j])
+      for(int k=12; k>0; k--)
       {
-        if(!c)
-        {
-          R_y[c][i][j]->Draw("SAMEPA");
-          R_y[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-          R_y[c][i][j]->SetMinimum(0.);
-          R_y[c][i][j]->SetMaximum(2.0);
-          R_y[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-          R_y[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-          R_y[c][i][j]->SetTitle("");
-          if(i>4) gPad->SetBottomMargin(.15);
-          if(i==0 && i==5) gPad->SetLeftMargin(.22);
-          if(i==8)
-          {
-            R_y[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-            R_y[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-            R_y[c][i][j]->GetXaxis()->SetTitleOffset(.8);
-          }
-          R_y[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-          R_y[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-          if(i==0)
-          {
-            R_y[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
-            R_y[c][i][j]->GetYaxis()->SetTitleSize(0.08);
-          }
-          R_y[c][i][j]->Draw("SAMEP");
-          R_y[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-          R_y[c][i][j]->SetMinimum(0.);
-          R_y[c][i][j]->SetMaximum(2.0);
-          c2.Range(0.1,0.,0.9,2.0);
-        }
-        else
-        {
-          R_y[c][i][j]->Draw("SAMEP");
-          R_y[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-          R_y[c][i][j]->SetMinimum(0.);
-          R_y[c][i][j]->SetMaximum(2.0);
-        }
+        if(!r_y[k-1]) {r_y.erase(r_y.begin()+k-1); r_y_err.erase(r_y_err.begin()+k-1); z_range_r_y.erase(z_range_r_y.begin()+k-1);}
       }
-      c2.Update();
+
+      bool r_y_empty = 0;
+
+      if(!(int(r_y.size()))) r_y_empty = 1;
+
+      R_y[c][i] = new TGraphErrors(int(r_y.size()),&(z_range_r_y[0]),&(r_y[0]),0,&(r_y_err[0]));
+
+      if(!c)
+      {
+        R_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+      }
+      else
+      {
+        R_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+      }
+
+      R_y[c][i]->SetMarkerSize(3);
+
+      R_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
+      R_y[c][i]->GetYaxis()->SetTitle("");
+
+      R_y[c][i]->GetXaxis()->SetTitle("");
+
+      R_y[c][i]->SetTitle("");
+
+      if(!r_y_empty)
+      {
+        c2.cd(i+1);
+        gPad->SetFillStyle(4000);
+        if(R_y[c][i])
+        {
+          if(!c)
+          {
+            R_y[c][i]->Draw("SAMEPA");
+            R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            R_y[c][i]->SetMinimum(0.);
+            R_y[c][i]->SetMaximum(2.0);
+            R_y[c][i]->GetXaxis()->SetLabelSize(0.06);
+            R_y[c][i]->GetYaxis()->SetLabelSize(0.06);
+            R_y[c][i]->SetTitle("");
+            if(i>4) gPad->SetBottomMargin(.15);
+            if(i==0 && i==5) gPad->SetLeftMargin(.22);
+            if(i==8)
+            {
+              R_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              R_y[c][i]->GetXaxis()->SetTitleSize(0.08);
+              R_y[c][i]->GetXaxis()->SetTitleOffset(.8);
+            }
+            R_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            R_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            if(i==0)
+            {
+              R_y[c][i]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+              R_y[c][i]->GetYaxis()->SetTitleSize(0.08);
+            }
+            R_y[c][i]->Draw("SAMEP");
+            R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            R_y[c][i]->SetMinimum(0.);
+            R_y[c][i]->SetMaximum(2.0);
+            c2.Range(0.1,0.,0.9,2.0);
+          }
+          else
+          {
+            R_y[c][i]->Draw("SAMEP");
+            R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            R_y[c][i]->SetMinimum(0.);
+            R_y[c][i]->SetMaximum(2.0);
+          }
+        }
+        c2.Update();
+      }
     }
   }
 
