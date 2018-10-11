@@ -244,14 +244,14 @@ void create_kin_plots()
 
 void plotting_device(int i, int j, int norm)
 {
-  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
-  {
-    fErrorRD.push_back(fKinematicsRD[i][j]->GetBinError(tt));
-  }
-  for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
-  {
-    fErrorRD2.push_back(fKinematicsRD2[i][j]->GetBinError(tt));
-  }
+  // for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fErrorRD.push_back(fKinematicsRD[i][j]->GetBinError(tt));
+  // }
+  // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fErrorRD2.push_back(fKinematicsRD2[i][j]->GetBinError(tt));
+  // }
   Double_t scaleRD = 1/fKinematicsRD[norm][j]->GetEntries();
   Double_t scaleRD2 = 1/fKinematicsRD2[norm][j]->GetEntries();
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[norm][j]->GetEntries());
@@ -262,16 +262,16 @@ void plotting_device(int i, int j, int norm)
   fKinematicsRD[i][j]->SetMinimum(0.);
   fKinematicsRD[i][j]->SetMaximum(max(fKinematicsRD[i][j]->GetMaximum()*1.2,fKinematicsRD2[i][j]->GetMaximum()*1.2));
   fKinematicsRD[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
-  {
-    fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
-  }
-  // fKinematicsRD[i][j]->Draw("E2");
-  fKinematicsRD[i][j]->SetMarkerStyle(22);
-  for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
-  {
-    fKinematicsRD2[i][j]->SetBinError(tt,scaleRD2*fErrorRD2[tt]);
-  }
+  // for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
+  // }
+  // // fKinematicsRD[i][j]->Draw("E2");
+  // fKinematicsRD[i][j]->SetMarkerStyle(22);
+  // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
+  // {
+  //   fKinematicsRD2[i][j]->SetBinError(tt,scaleRD2*fErrorRD2[tt]);
+  // }
   fErrorRD.clear(); fErrorRD2.clear();
   // fKinematicsRD2[i][j]->Draw("E2SAME");
   fKinematicsRD2[i][j]->SetStats(0);
@@ -347,11 +347,40 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
+    // c1.cd(i+1);
+    // plotting_device(i,0,0);
+    // gPad->SetLogx();
+    // fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
+    // fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
+    // c1.Update();
+    fKinematicsRD[i][0]->Sumw2();
+    fKinematicsRD2[i][0]->Sumw2();
+    fKinematicsRD[i][0]->Scale(1/fKinematicsRD[i][0]->GetEntries());
+    fKinematicsRD2[i][0]->Scale(1/fKinematicsRD2[i][0]->GetEntries());
+    fKinematicsRD[i][0]->SetLineColor(kRed);
+    fKinematicsRD2[i][0]->SetLineColor(kBlue);
+    fKinematicsRD2[i][0]->SetFillColor(kBlue);
+    fKinematicsRD[i][0]->SetMinimum(0.);
+    fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][j]->GetMaximum()*1.2,fKinematicsRD2[i][0]->GetMaximum()*1.2));
+    fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
+    TPad *pad1 = new TPad("pad1","pad1",0,0.3,1,1);
+    pad1->SetBottomMargin(0);
+    pad1->Draw();
+    pad1->cd();
+    fKinematicsRatio[i][0] = fKinematicsRD[i][0]->DrawCopy();
+    fKinematicsRatio[i][0]->SetMinimum(-100);
+    fKinematicsRD2[i][0]->Draw("same");
     c1.cd(i+1);
-    plotting_device(i,0,0);
-    gPad->SetLogx();
-    fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
-    fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
+    TPad *pad2 = new TPad("pad2","pad2",0,0,1,0.3);
+    pad2->SetTopMargin(0);
+    pad2->Draw();
+    pad2->cd();
+    fKinematicsRD[i][0]->SetStats(0);
+    fKinematicsRD[i][0]->Divide(fKinematicsRD2[i][0]);
+    fKinematicsRD[i][0]->SetMarkerStyle(21);
+    fKinematicsRD[i][0]->SetFillColor(kYellow-7);
+    fKinematicsRD[i][0]->Draw("ep");
+    c1->cd(i+1);
     c1.Update();
 
     c2.cd(i+1);
