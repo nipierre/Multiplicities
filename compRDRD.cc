@@ -373,7 +373,7 @@ void save_kin_plots()
     c1.cd(i+1);
     TPad *pad2 = new TPad("pad2","pad2",0,0,1,0.3);
     pad2->SetTopMargin(0);
-    pad2->Draw();
+    pad2->Draw("same");
     pad2->cd();
     fKinematicsRD[i][0]->SetStats(0);
     fKinematicsRD[i][0]->Divide(fKinematicsRD2[i][0]);
