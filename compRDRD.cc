@@ -343,9 +343,9 @@ void save_kin_plots()
     plotting_device(i,7,0);
     c15.Update();
 
-    // c16.cd(i+1);
-    // plotting_device(i,8,0);
-    // c16.Update();
+    c16.cd(i+1);
+    plotting_device(i,8,0);
+    c16.Update();
 
     c17.cd(i+1);
     plotting_device(i,9,0);
@@ -364,15 +364,15 @@ void save_kin_plots()
     c21.Update();
   }
 
-  c8.cd(1);
-  plotting_device(4,0,4);
-  gPad->SetLogx();
-  c8.Update();
+  // c8.cd(1);
+  // plotting_device(4,0,4);
+  // gPad->SetLogx();
+  // c8.Update();
 
-  c9.cd(1);
-  plotting_device(4,1,4);
-  gPad->SetLogx();
-  c9.Update();
+  // c9.cd(1);
+  // plotting_device(4,1,4);
+  // gPad->SetLogx();
+  // c9.Update();
 
   c10.cd(1);
   plotting_device(4,2,4);
