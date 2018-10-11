@@ -1104,7 +1104,6 @@ void RD2extraction(string pFilelist)
 
         // z cut
         if(!(0.2<zBj && zBj<0.85)) continue;
-        fZtest++;
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
