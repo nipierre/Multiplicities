@@ -278,7 +278,7 @@ void plotting_device(int i, int j, int norm)
   // }
   // fErrorRD.clear(); fErrorRD2.clear();
   // fKinematicsRD2[i][j]->Draw("E2SAME");
-  fKinematicsRD2[i][j]->Draw("SAME");
+  // fKinematicsRD2[i][j]->Draw("SAME");
 }
 
 void save_kin_plots()
@@ -307,10 +307,10 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
-    // c1.cd(i+1);
-    // plotting_device(i,0,0);
-    // gPad->SetLogx();
-    // c1.Update();
+    c1.cd(i+1);
+    plotting_device(i,0,0);
+    gPad->SetLogx();
+    c1.Update();
 
     c2.cd(i+1);
     plotting_device(i,1,0);
