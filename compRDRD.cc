@@ -380,7 +380,7 @@ void save_kin_plots()
     fKinematicsRD[i][0]->SetMarkerStyle(21);
     fKinematicsRD[i][0]->SetFillColor(kYellow-7);
     fKinematicsRD[i][0]->Draw("ep");
-    c1->cd(i+1);
+    c1.cd(i+1);
     c1.Update();
 
     c2.cd(i+1);
