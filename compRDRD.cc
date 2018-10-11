@@ -247,7 +247,7 @@ void plotting_ratio(int i, int j)
   fKinematicsRD[i][j]->Sumw2();
   fKinematicsRD2[i][j]->Sumw2();
   fCountingRD2[i][j] = fKinematicsRD2[i][j]->GetEntries();
-  fCountingRD[i][j] = fKinematicsRD1[i][j]->GetEntries();
+  fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
   fKinematicsRD2[i][j]->Scale(1/fKinematicsRD2[i][j]->GetEntries());
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
   fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
