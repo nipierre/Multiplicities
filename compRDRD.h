@@ -125,7 +125,7 @@ TH2F* fThetaRDp[3];
 TH1F* fKinematicsRD2[5][17];
 TH2F* fThetaRD2p[3];
 TH1F* fKinematicsRatio[5][17];
-TCanvas* c1;
+TCanvas c1("Kin_Q2 Trigger","Kin_Q2 Trigger",3200,1600);
 TCanvas c2("Kin_xBj Trigger","Kin_xBj Trigger",3200,1600);
 TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
 TCanvas c4("Kin_z Trigger","Kin_z Trigger",3200,1600);

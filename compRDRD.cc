@@ -182,7 +182,6 @@ void readKinCuts(string pFile)
 
 void create_kin_plots()
 {
-  c1 = new TCanvas("Kin_Q2 Trigger","Kin_Q2 Trigger",3200,1600);
   for(int i=0; i<5; i++)
   {
     fKinematicsRD[i][0] = new TH1F(Form("Q2 %s",trigname[i].c_str()), Form("Q2 %s",trigname[i].c_str()), 50, -1, 2);
@@ -297,7 +296,7 @@ void plotting_device(int i, int j, int norm)
 
 void save_kin_plots()
 {
-  c1->Divide(2,2);
+  c1.Divide(2,2);
   c2.Divide(2,2);
   c3.Divide(2,2);
   c4.Divide(2,2);
@@ -336,10 +335,10 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
-    c1->cd(i+1);
+    c1.cd(i+1);
     plotting_device(i,0,0);
     gPad->SetLogx();
-    c1->Update();
+    c1.Update();
 
     c2.cd(i+1);
     plotting_device(i,1,0);
