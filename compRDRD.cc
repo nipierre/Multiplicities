@@ -242,61 +242,50 @@ void create_kin_plots()
   }
 }
 
-void plotting_device(int i, int j, int norm)
+void plotting_ratio(int i, int j)
 {
-  // for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  // for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
   // {
-  //   fErrorRD.push_back(fKinematicsRD[i][j]->GetBinError(tt));
+  //   fError.push_back((fKinematicsRD[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][0]->GetBinError(tt),2)):0));
   // }
-  // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
+  fKinematicsRD[i][j]->Sumw2();
+  fKinematicsRD2[i][j]->Sumw2();
+  fKinematicsRD2[i][j]->Scale(1/fKinematicsRD2[i][j]->GetEntries());
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
+  fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
+  fKinematicsRatio[i][j]->SetStats(0);
+  fKinematicsRatio[i][j]->Divide(fKinematicsRD2[i][j]);
+  // for(int tt=0; tt<fKinematicsRatio[idx][0]->GetNbinsX(); tt++)
   // {
-  //   fErrorRD2.push_back(fKinematicsRD2[i][j]->GetBinError(tt));
+  //   fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
   // }
-  Double_t scaleRD = 1/fKinematicsRD[norm][j]->GetEntries();
-  Double_t scaleRD2 = 1/fKinematicsRD2[norm][j]->GetEntries();
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[norm][j]->GetEntries());
-  fKinematicsRD2[i][j]->Scale(1/fKinematicsRD2[norm][j]->GetEntries());
-  fKinematicsRD[i][j]->SetLineColor(kRed);
+  // fError.clear();
+  fKinematicsRatio[i][j]->SetMarkerStyle(21);
+  fKinematicsRatio[i][j]->SetFillColor(kYellow-7);
+  fKinematicsRatio[i][j]->SetMaximum(2.);
+  fKinematicsRatio[i][j]->SetMinimum(0.);
+  fKinematicsRatio[i][j]->Draw("PE2");
+  fKinematicsRatio[i][j]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[i][j]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
+  for(int tt=0; tt<7; tt++)
+  {
+    l2[0][tt]->Draw();
+  }
+}
+
+void plotting_device(int i, int j)
+{
   fKinematicsRD2[i][j]->SetLineColor(kBlue);
   fKinematicsRD2[i][j]->SetFillColor(kBlue);
-  fKinematicsRD[i][j]->SetMinimum(0.);
-  fKinematicsRD[i][j]->SetMaximum(max(fKinematicsRD[i][j]->GetMaximum()*1.2,fKinematicsRD2[i][j]->GetMaximum()*1.2));
-  fKinematicsRD[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-  // for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
-  // }
-  // // fKinematicsRD[i][j]->Draw("E2");
-  // fKinematicsRD[i][j]->SetMarkerStyle(22);
-  // for(int tt=0; tt<fKinematicsRD2[i][j]->GetNbinsX(); tt++)
-  // {
-  //   fKinematicsRD2[i][j]->SetBinError(tt,scaleRD2*fErrorRD2[tt]);
-  // }
-  fErrorRD.clear(); fErrorRD2.clear();
-  // fKinematicsRD2[i][j]->Draw("E2SAME");
   fKinematicsRD2[i][j]->SetStats(0);
-  fKinematicsRD2[i][j]->Draw("");
-  fKinematicsRD[i][j]->Draw("SAME");
-  fKinematicsRD2[i][j]->GetXaxis()->SetLabelSize(0.03);
-  fKinematicsRD2[i][j]->GetYaxis()->SetLabelSize(0.03);
-  // fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD2[i][j]->Clone();
-  // fKinematicsRatio[i][j]->SetStats(0);
-  // fKinematicsRatio[i][j]->Divide(fKinematicsRD[i][j]);
-  // fKinematicsRatio[i][j]->SetMarkerStyle(21);
-  // fKinematicsRatio[i][j]->SetFillColor(kYellow-7);
-  // fKinematicsRatio[i][j]->SetMaximum(2.);
-  // fKinematicsRatio[i][j]->SetMinimum(0.);
-  // Double_t rightmax = 1.1*fKinematicsRatio[i][j]->GetMaximum();
-  // Double_t scale = gPad->GetUymax()/rightmax;
-  // fKinematicsRatio[i][j]->Scale(scale);
-  // fKinematicsRatio[i][j]->Draw("PE2SAME");
-  // fKinematicsRatio[i][j]->GetYaxis()->SetLabelSize(0.03);
-  // fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
-  // TGaxis *axis = new TGaxis(gPad->GetUxmax(),gPad->GetUymin(),
-  // gPad->GetUxmax(), gPad->GetUymax(),0,rightmax,510,"+L");
-  // axis->SetLineColor(kYellow-7);
-  // axis->SetTextColor(kYellow-7);
-  // axis->Draw();
+  fKinematicsRD2[i][j]->SetMinimum(0.);
+  fKinematicsRD2[i][j]->Draw();
+  fKinematicsRD2[i][j]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRD2[i][j]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsRD2[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+  fKinematicsRD1[i][j]->SetLineColor(kRed);
+  fKinematicsRD1[i][j]->Draw("SAME");
 }
 
 void save_kin_plots()
@@ -323,148 +312,191 @@ void save_kin_plots()
   TCanvas c21("c21","",3200,1600);
   TCanvas c22("c22","",1600,1600);
 
-  c1.Divide(2,2);
-  c2.Divide(2,2);
-  c3.Divide(2,2);
-  c4.Divide(2,2);
-  c5.Divide(2,2);
-  c6.Divide(2,2);
-  c8.Divide(1,1);
-  c9.Divide(1,1);
-  c10.Divide(1,1);
-  c11.Divide(1,1);
-  c12.Divide(1,1);
-  c13.Divide(1,1);
-  c14.Divide(2,2);
-  c15.Divide(2,2);
-  c16.Divide(2,2);
-  c17.Divide(2,2);
-  c18.Divide(2,2);
-  c19.Divide(2,2);
-  c20.Divide(1,1);
-  c21.Divide(2,2);
-  c22.Divide(1,1);
+  c1.Divide(2,4);
+  c2.Divide(2,4);
+  c3.Divide(2,4);
+  c4.Divide(2,4);
+  c5.Divide(2,4);
+  c6.Divide(2,4);
+  c8.Divide(1,2);
+  c9.Divide(1,2);
+  c10.Divide(1,2);
+  c11.Divide(1,2);
+  c12.Divide(1,2);
+  c13.Divide(1,2);
+  c14.Divide(2,4);
+  c15.Divide(2,4);
+  c16.Divide(2,4);
+  c17.Divide(2,4);
+  c18.Divide(2,4);
+  c19.Divide(2,4);
+  c20.Divide(1,2);
+  c21.Divide(2,4);
+  c22.Divide(1,2);
+
+  int offset=0
 
   for(int i=0; i<4; i++)
   {
-    // c1.cd(i+1);
-    // plotting_device(i,0,0);
-    // gPad->SetLogx();
-    // fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
-    // fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
-    // c1.Update();
-    fKinematicsRD[i][0]->Sumw2();
-    fKinematicsRD2[i][0]->Sumw2();
-    fKinematicsRD[i][0]->Scale(1/fKinematicsRD[i][0]->GetEntries());
-    fKinematicsRD2[i][0]->Scale(1/fKinematicsRD2[i][0]->GetEntries());
-    fKinematicsRD[i][0]->SetLineColor(kRed);
-    fKinematicsRD2[i][0]->SetLineColor(kBlue);
-    fKinematicsRD2[i][0]->SetFillColor(kBlue);
-    fKinematicsRD[i][0]->SetMinimum(0.);
-    fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsRD2[i][0]->GetMaximum()*1.2));
-    fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
-    TPad *pad1 = new TPad("pad1","pad1",0,0.3,1,1);
-    pad1->SetBottomMargin(0);
-    pad1->Draw();
-    pad1->cd();
-    fKinematicsRatio[i][0] = (TH1F*)fKinematicsRD[i][0]->DrawCopy();
-    fKinematicsRatio[i][0]->SetMinimum(-100);
-    fKinematicsRD2[i][0]->Draw("same");
-    c1.cd(i+1);
-    TPad *pad2 = new TPad("pad2","pad2",0,0,1,0.3);
-    pad2->SetTopMargin(0);
-    pad2->Draw("same");
-    pad2->cd();
-    fKinematicsRD[i][0]->SetStats(0);
-    fKinematicsRD[i][0]->Divide(fKinematicsRD2[i][0]);
-    fKinematicsRD[i][0]->SetMarkerStyle(21);
-    fKinematicsRD[i][0]->SetFillColor(kYellow-7);
-    fKinematicsRD[i][0]->Draw("ep");
-    c1.cd(i+1);
+    if(i<2) offset=0;
+    else offset=2;
+
+    c1.cd(i+offset+1+2);
+    plotting_ratio(i,0);
+    gPad->SetLogx();
+    c1.Update();
+    c1.cd(i+offset+1);
+    plotting_device(i,0);
+    gPad->SetLogx();
+    fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
+    fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
     c1.Update();
 
-    c2.cd(i+1);
-    plotting_device(i,1,0);
+    c2.cd(i+offset+1+2);
+    plotting_ratio(i,1);
+    gPad->SetLogx();
+    c2.Update();
+    c2.cd(i+offset+1);
+    plotting_device(i,1);
     gPad->SetLogx();
     c2.Update();
 
-    c3.cd(i+1);
-    plotting_device(i,2,0);
+    c3.cd(i+offset+1+2);
+    plotting_ratio(i,2);
+    c3.Update();
+    c3.cd(i+offset+1);
+    plotting_device(i,2);
     c3.Update();
 
-    c4.cd(i+1);
-    plotting_device(i,3,0);
+    c4.cd(i+offset+1+2);
+    plotting_ratio(i,3);
+    c4.Update();
+    c4.cd(i+offset+1);
+    plotting_device(i,3);
     c4.Update();
 
-    c5.cd(i+1);
-    plotting_device(i,4,0);
+    c5.cd(i+offset+1+2);
+    plotting_ratio(i,4);
+    c5.Update();
+    c5.cd(i+offset+1);
+    plotting_device(i,4);
     c5.Update();
 
-    c6.cd(i+1);
-    plotting_device(i,5,0);
+    c6.cd(i+offset+1+2);
+    plotting_ratio(i,5);
+    c6.Update();
+    c6.cd(i+offset+1);
+    plotting_device(i,5);
     c6.Update();
 
-    c14.cd(i+1);
-    plotting_device(i,6,0);
+    c14.cd(i+offset+1+2);
+    plotting_ratio(i,6);
+    c14.Update();
+    c14.cd(i+offset+1);
+    plotting_device(i,6);
     c14.Update();
 
-    c15.cd(i+1);
-    plotting_device(i,7,0);
+    c15.cd(i+offset+1+2);
+    plotting_ratio(i,7);
+    c15.Update();
+    c15.cd(i+offset+1);
+    plotting_device(i,7);
     c15.Update();
 
-    c16.cd(i+1);
-    plotting_device(i,8,0);
+    c16.cd(i+offset+1+2);
+    plotting_ratio(i,8);
+    c16.Update();
+    c16.cd(i+offset+1);
+    plotting_device(i,8);
     c16.Update();
 
-    c17.cd(i+1);
-    plotting_device(i,9,0);
+    c17.cd(i+offset+1+2);
+    plotting_ratio(i,9);
+    c17.Update();
+    c17.cd(i+offset+1);
+    plotting_device(i,9);
     c17.Update();
 
-    c18.cd(i+1);
-    plotting_device(i,10,0);
+    c18.cd(i+offset+1+2);
+    plotting_ratio(i,10);
+    c18.Update();
+    c18.cd(i+offset+1);
+    plotting_device(i,10);
     c18.Update();
 
-    c19.cd(i+1);
-    plotting_device(i,11,0);
+    c19.cd(i+offset+1+2);
+    plotting_ratio(i,11);
+    c19.Update();
+    c19.cd(i+offset+1);
+    plotting_device(i,11);
     c19.Update();
 
-    c21.cd(i+1);
-    plotting_device(i,12,0);
+    c21.cd(i+offset+1+2);
+    plotting_ratio(i,12);
+    c21.Update();
+    c21.cd(i+offset+1);
+    plotting_device(i,12);
     c21.Update();
   }
 
+  c8.cd(2);
+  plotting_ratio(4,0);
+  gPad->SetLogx();
+  c8.Update();
   c8.cd(1);
-  plotting_device(4,0,4);
+  plotting_device(4,0);
   gPad->SetLogx();
   c8.Update();
 
+  c9.cd(2);
+  plotting_ratio(4,1);
+  gPad->SetLogx();
+  c9.Update();
   c9.cd(1);
-  plotting_device(4,1,4);
+  plotting_device(4,1);
   gPad->SetLogx();
   c9.Update();
 
+  c10.cd(2);
+  plotting_ratio(4,2);
+  c10.Update();
   c10.cd(1);
-  plotting_device(4,2,4);
+  plotting_device(4,2);
   c10.Update();
 
+  c11.cd(2);
+  plotting_ratio(4,3);
+  c11.Update();
   c11.cd(1);
-  plotting_device(4,3,4);
+  plotting_device(4,3);
   c11.Update();
 
+  c12.cd(2);
+  plotting_ratio(4,4);
+  c12.Update();
   c12.cd(1);
-  plotting_device(4,4,4);
+  plotting_device(4,4);
   c12.Update();
 
+  c13.cd(2);
+  plotting_ratio(4,5);
+  c13.Update();
   c13.cd(1);
-  plotting_device(4,5,4);
+  plotting_device(4,5);
   c13.Update();
 
+  c20.cd(2);
+  plotting_ratio(4,11);
+  c20.Update();
   c20.cd(1);
-  plotting_device(4,11,4);
+  plotting_device(4,11);
   c20.Update();
 
+  c22.cd(2);
+  plotting_ratio(4,12);
+  c22.Update();
   c22.cd(1);
-  plotting_device(4,12,4);
+  plotting_device(4,12);
   c22.Update();
 
   c1.SaveAs("kinRDRD.pdf(","pdf");
