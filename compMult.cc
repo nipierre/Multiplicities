@@ -231,6 +231,8 @@ int main(int argc, char **argv)
               R[c][i][j]->SetMaximum(2.);
               l1.Draw("SAME");
               l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
               c1.Range(0.1,0.,0.9,2.);
             }
             else
@@ -239,8 +241,6 @@ int main(int argc, char **argv)
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               R[c][i][j]->SetMinimum(0.);
               R[c][i][j]->SetMaximum(2.);
-              l1.Draw("SAME");
-              l2.Draw("SAME");
             }
           }
           c1.Update();
@@ -320,6 +320,8 @@ int main(int argc, char **argv)
             R_y[c][i]->SetMaximum(2.);
             l1.Draw("SAME");
             l2.Draw("SAME");
+            l3.Draw("SAME");
+            l4.Draw("SAME");
             c2.Range(0.1,0.,0.9,2.);
           }
           else
@@ -328,8 +330,6 @@ int main(int argc, char **argv)
             R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             R_y[c][i]->SetMinimum(0.);
             R_y[c][i]->SetMaximum(2.0);
-            l1.Draw("SAME");
-            l2.Draw("SAME");
           }
         }
         c2.Update();
