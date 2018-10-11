@@ -279,24 +279,24 @@ void plotting_device(int i, int j, int norm)
   fKinematicsRD[i][j]->Draw("SAME");
   fKinematicsRD2[i][j]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD2[i][j]->GetYaxis()->SetLabelSize(0.03);
-  fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD2[i][j]->Clone();
-  fKinematicsRatio[i][j]->SetStats(0);
-  fKinematicsRatio[i][j]->Divide(fKinematicsRD[i][j]);
-  fKinematicsRatio[i][j]->SetMarkerStyle(21);
-  fKinematicsRatio[i][j]->SetFillColor(kYellow-7);
-  fKinematicsRatio[i][j]->SetMaximum(2.);
-  fKinematicsRatio[i][j]->SetMinimum(0.);
-  Double_t rightmax = 1.1*fKinematicsRatio[i][j]->GetMaximum();
-  Double_t scale = gPad->GetUymax()/rightmax;
-  fKinematicsRatio[i][j]->Scale(scale);
-  fKinematicsRatio[i][j]->Draw("PE2SAME");
-  fKinematicsRatio[i][j]->GetYaxis()->SetLabelSize(0.03);
-  fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
-  TGaxis *axis = new TGaxis(gPad->GetUxmax(),gPad->GetUymin(),
-  gPad->GetUxmax(), gPad->GetUymax(),0,rightmax,510,"+L");
-  axis->SetLineColor(kYellow-7);
-  axis->SetTextColor(kYellow-7);
-  axis->Draw();
+  // fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD2[i][j]->Clone();
+  // fKinematicsRatio[i][j]->SetStats(0);
+  // fKinematicsRatio[i][j]->Divide(fKinematicsRD[i][j]);
+  // fKinematicsRatio[i][j]->SetMarkerStyle(21);
+  // fKinematicsRatio[i][j]->SetFillColor(kYellow-7);
+  // fKinematicsRatio[i][j]->SetMaximum(2.);
+  // fKinematicsRatio[i][j]->SetMinimum(0.);
+  // Double_t rightmax = 1.1*fKinematicsRatio[i][j]->GetMaximum();
+  // Double_t scale = gPad->GetUymax()/rightmax;
+  // fKinematicsRatio[i][j]->Scale(scale);
+  // fKinematicsRatio[i][j]->Draw("PE2SAME");
+  // fKinematicsRatio[i][j]->GetYaxis()->SetLabelSize(0.03);
+  // fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
+  // TGaxis *axis = new TGaxis(gPad->GetUxmax(),gPad->GetUymin(),
+  // gPad->GetUxmax(), gPad->GetUymax(),0,rightmax,510,"+L");
+  // axis->SetLineColor(kYellow-7);
+  // axis->SetTextColor(kYellow-7);
+  // axis->Draw();
 }
 
 void save_kin_plots()
