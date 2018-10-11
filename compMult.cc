@@ -33,7 +33,7 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
       for(int k=0; k<12; k++)
       {
           mult1 >> x >> y >> z;
-          cout << x << "\t" << y << "\t" << z << "\t" << endl;
+          // cout << x << "\t" << y << "\t" << z << "\t" << endl;
           for(int l=0; l<4; l++) mult1 >> sdum;
           mult1 >> fMultiplicities1[i][j][k].tab[1][0][0] >> fMultiplicities1[i][j][k].tab[1][1][0] >> fMultiplicities1[i][j][k].tab[1][2][0];
           for(int l=0; l<5; l++) mult1 >> sdum;
@@ -224,7 +224,7 @@ int main(int argc, char **argv)
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               R[c][i][j]->SetMinimum(0.9);
               R[c][i][j]->SetMaximum(1.1);
-              c1.Range(0.1,1.1,0.9,0.9);
+              c1.Range(0.1,0.9,0.9,1.1);
             }
             else
             {
