@@ -300,7 +300,7 @@ int main(int argc, char **argv)
             R_y[c][i]->GetYaxis()->SetLabelSize(0.06);
             R_y[c][i]->SetTitle("");
             if(i>4) gPad->SetBottomMargin(.15);
-            if(i==0 && i==5) gPad->SetLeftMargin(.22);
+            if(i==0 || i==5) gPad->SetLeftMargin(.22);
             if(i==8)
             {
               R_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
@@ -311,7 +311,7 @@ int main(int argc, char **argv)
             R_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              R_y[c][i]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+              R_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
               R_y[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
             R_y[c][i]->Draw("SAMEP");
