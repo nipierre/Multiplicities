@@ -280,8 +280,8 @@ void plotting_device(int i, int j)
   fKinematicsRD2[i][j]->GetXaxis()->SetLabelSize(0.08);
   fKinematicsRD2[i][j]->GetYaxis()->SetLabelSize(0.08);
   fKinematicsRD2[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-  fKinematicsRD1[i][j]->SetLineColor(kRed);
-  fKinematicsRD1[i][j]->Draw("SAME");
+  fKinematicsRD[i][j]->SetLineColor(kRed);
+  fKinematicsRD[i][j]->Draw("SAME");
 }
 
 void save_kin_plots()
