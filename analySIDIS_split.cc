@@ -624,8 +624,8 @@ void create_kin_plots()
   }
   fZvtx[0] = new TH1F("Zvtx1","Zvtx1", 200, -500, 500);
   fZvtx[1] = new TH1F("Zvtx2","Zvtx2", 200, -500, 500);
-  fQ2k[0] = new TH1F("Q^{2}1","Q^{2}1", 200, 0, 2);
-  fQ2k[1] = new TH1F("Q^{2}2","Q^{2}2", 200, 0, 2);
+  fQ2k[0] = new TH1F("Q^{2}1","Q^{2}1", 200, -2, 2);
+  fQ2k[1] = new TH1F("Q^{2}2","Q^{2}2", 200, -2, 2);
   fYk[0] = new TH1F("y1","y1", 200, 0, 1);
   fYk[1] = new TH1F("y2","y2", 200, 0, 1);
   fThRich[0] = new TH1F("#theta_{RICH}1","#theta_{RICH}1", 200, 0, 0.8);
@@ -725,6 +725,9 @@ void save_kin_plots()
   // }
   c15.cd(1);
   fZvtx[0]->SetStats(0);
+  fZvtx[0]->SetTitle("z_{vtx}");
+  fZvtx[0]->GetXaxis()->SetTitle("z_{vtx}");
+  fZvtx[0]->GetYaxis()->SetTitle("Entries");
   fZvtx[1]->SetStats(0);
   fZvtx[1]->SetFillColor(kYellow);
   fZvtx[0]->Draw();
@@ -732,6 +735,9 @@ void save_kin_plots()
   c15.Update();
   c15.cd(2);
   fQ2k[0]->SetStats(0);
+  fQ2k[0]->SetTitle("Q^{2}");
+  fQ2k[0]->GetXaxis()->SetTitle("Q^{2}");
+  fQ2k[0]->GetYaxis()->SetTitle("Entries");
   fQ2k[1]->SetStats(0);
   fQ2k[1]->SetFillColor(kYellow);
   fQ2k[0]->Draw();
@@ -740,6 +746,9 @@ void save_kin_plots()
   c15.Update();
   c15.cd(3);
   fYk[0]->SetStats(0);
+  fYk[0]->SetTitle("y");
+  fYk[0]->GetXaxis()->SetTitle("y");
+  fYk[0]->GetYaxis()->SetTitle("Entries");
   fYk[1]->SetStats(0);
   fYk[1]->SetFillColor(kYellow);
   fYk[0]->Draw();
@@ -747,6 +756,9 @@ void save_kin_plots()
   c15.Update();
   c15.cd(4);
   fThRich[0]->SetStats(0);
+  fThRich[0]->SetTitle("#theta_{RICH}");
+  fThRich[0]->GetXaxis()->SetTitle("#theta_{RICH}");
+  fThRich[0]->GetYaxis()->SetTitle("Entries");
   fThRich[1]->SetStats(0);
   fThRich[1]->SetFillColor(kYellow);
   fThRich[0]->Draw();
@@ -754,6 +766,9 @@ void save_kin_plots()
   c15.Update();
   c15.cd(5);
   fPk[0]->SetStats(0);
+  fPk[0]->SetTitle("p_{h}");
+  fPk[0]->GetXaxis()->SetTitle("p_{h}");
+  fPk[0]->GetYaxis()->SetTitle("Entries");
   fPk[1]->SetStats(0);
   fPk[1]->SetFillColor(kYellow);
   fPk[0]->Draw();
@@ -761,6 +776,9 @@ void save_kin_plots()
   c15.Update();
   c15.cd(6);
   fZk[0]->SetStats(0);
+  fZk[0]->SetTitle("z");
+  fZk[0]->GetXaxis()->SetTitle("z");
+  fZk[0]->GetYaxis()->SetTitle("Entries");
   fZk[1]->SetStats(0);
   fZk[1]->SetFillColor(kYellow);
   fZk[0]->Draw();
