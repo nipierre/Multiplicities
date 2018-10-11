@@ -361,13 +361,13 @@ void save_kin_plots()
     fKinematicsRD2[i][0]->SetLineColor(kBlue);
     fKinematicsRD2[i][0]->SetFillColor(kBlue);
     fKinematicsRD[i][0]->SetMinimum(0.);
-    fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][j]->GetMaximum()*1.2,fKinematicsRD2[i][0]->GetMaximum()*1.2));
+    fKinematicsRD[i][0]->SetMaximum(max(fKinematicsRD[i][0]->GetMaximum()*1.2,fKinematicsRD2[i][0]->GetMaximum()*1.2));
     fKinematicsRD[i][0]->GetYaxis()->SetNdivisions(304,kTRUE);
     TPad *pad1 = new TPad("pad1","pad1",0,0.3,1,1);
     pad1->SetBottomMargin(0);
     pad1->Draw();
     pad1->cd();
-    fKinematicsRatio[i][0] = fKinematicsRD[i][0]->DrawCopy();
+    fKinematicsRatio[i][0] = (TH1F*)fKinematicsRD[i][0]->DrawCopy();
     fKinematicsRatio[i][0]->SetMinimum(-100);
     fKinematicsRD2[i][0]->Draw("same");
     c1.cd(i+1);
