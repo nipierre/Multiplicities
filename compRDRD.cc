@@ -310,6 +310,8 @@ void save_kin_plots()
     c1.cd(i+1);
     plotting_device(i,0,0);
     gPad->SetLogx();
+    fKinematicsRD[i][j]->GetXaxis()->SetTitle("Q^{2}");
+    fKinematicsRD[i][j]->GetYaxis()->SetTitle("Entries");
     c1.Update();
 
     c2.cd(i+1);

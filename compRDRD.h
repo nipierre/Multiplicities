@@ -122,9 +122,7 @@ Double_t fPmax;
 //Draw
 
 TH1F* fKinematicsRD[5][13];
-TH2F* fThetaRDp[3];
 TH1F* fKinematicsRD2[5][13];
-TH2F* fThetaRD2p[3];
 TH1F* fKinematicsRatio[5][13];
 TCanvas c1("c1","",3200,1600);
 TCanvas c2("c2","",3200,1600);
