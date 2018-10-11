@@ -307,10 +307,10 @@ void save_kin_plots()
 
   for(int i=0; i<4; i++)
   {
-    c1.cd(i+1);
-    plotting_device(i,0,0);
-    gPad->SetLogx();
-    c1.Update();
+    // c1.cd(i+1);
+    // plotting_device(i,0,0);
+    // gPad->SetLogx();
+    // c1.Update();
 
     c2.cd(i+1);
     plotting_device(i,1,0);
