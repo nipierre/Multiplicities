@@ -289,7 +289,7 @@ void plotting_device(int i, int j, int norm)
   Double_t rightmax = 1.1*fKinematicsRatio[i][j]->GetMaximum();
   Double_t scale = gPad->GetUymax()/rightmax;
   fKinematicsRatio[i][j]->Scale(scale);
-  fKinematicsRatio[i][j]->Draw("PE2");
+  fKinematicsRatio[i][j]->Draw("PE2SAME");
   fKinematicsRatio[i][j]->GetYaxis()->SetLabelSize(0.03);
   fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
   TGaxis *axis = new TGaxis(gPad->GetUxmax(),gPad->GetUymin(),
