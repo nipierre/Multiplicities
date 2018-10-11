@@ -184,32 +184,32 @@ void create_kin_plots()
 {
   for(int i=0; i<5; i++)
   {
-    fKinematicsRD[i][0] = new TH1F(Form("Q2 %s",trigname[i].c_str()), Form("Q2 %s",trigname[i].c_str()), 50, -1, 2);
-    fKinematicsRD[i][1] = new TH1F(Form("xBj %s",trigname[i].c_str()), Form("xBj %s",trigname[i].c_str()), 50, -3, 0);
-    fKinematicsRD[i][2] = new TH1F(Form("y %s",trigname[i].c_str()), Form("y %s",trigname[i].c_str()), 50, 0, 1);
-    fKinematicsRD[i][3] = new TH1F(Form("z %s",trigname[i].c_str()), Form("z %s",trigname[i].c_str()), 50, 0, 1);
-    fKinematicsRD[i][4] = new TH1F(Form("W %s",trigname[i].c_str()), Form("W %s",trigname[i].c_str()), 50, 2, 18);
-    fKinematicsRD[i][5] = new TH1F(Form("nu %s",trigname[i].c_str()), Form("nu %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD[i][6] = new TH1F(Form("Emu %s",trigname[i].c_str()), Form("Emu %s",trigname[i].c_str()), 50, 140, 180);
-    fKinematicsRD[i][7] = new TH1F(Form("Emu' %s",trigname[i].c_str()), Form("Emu' %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD[i][8] = new TH1F(Form("theta %s",trigname[i].c_str()), Form("theta %s",trigname[i].c_str()), 50, 0, 0.05);
-    fKinematicsRD[i][9] = new TH1F(Form("phi %s",trigname[i].c_str()), Form("phi %s",trigname[i].c_str()), 50, -1.7, 1.7);
-    fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 50, -320, -70);
-    fKinematicsRD[i][11] = new TH1F(Form("pT %s",trigname[i].c_str()), Form("pT %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsRD[i][12] = new TH1F(Form("phadron+e %s",trigname[i].c_str()), Form("phadron+e %s",trigname[i].c_str()), 50, 0, 40);
-    fKinematicsRD2[i][0] = new TH1F(Form("Q2 Ratio %s",trigname[i].c_str()), Form("Q2 Ratio %s",trigname[i].c_str()), 50, -1, 2);
-    fKinematicsRD2[i][1] = new TH1F(Form("xBj Ratio %s",trigname[i].c_str()), Form("xBj Ratio %s",trigname[i].c_str()), 50, -3, 0);
-    fKinematicsRD2[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), Form("y Ratio %s",trigname[i].c_str()), 50, 0, 1);
-    fKinematicsRD2[i][3] = new TH1F(Form("z Ratio %s",trigname[i].c_str()), Form("z Ratio %s",trigname[i].c_str()), 50, 0, 1);
-    fKinematicsRD2[i][4] = new TH1F(Form("W Ratio %s",trigname[i].c_str()), Form("W Ratio %s",trigname[i].c_str()), 50, 2, 18);
-    fKinematicsRD2[i][5] = new TH1F(Form("nu Ratio %s",trigname[i].c_str()), Form("nu Ratio %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD2[i][6] = new TH1F(Form("Emu Ratio %s",trigname[i].c_str()), Form("Emu Ratio %s",trigname[i].c_str()), 50, 140, 180);
-    fKinematicsRD2[i][7] = new TH1F(Form("Emu' Ratio %s",trigname[i].c_str()), Form("Emu' Ratio %s",trigname[i].c_str()), 50, 0, 160);
-    fKinematicsRD2[i][8] = new TH1F(Form("theta Ratio %s",trigname[i].c_str()), Form("theta Ratio %s",trigname[i].c_str()), 50, 0, 0.05);
-    fKinematicsRD2[i][9] = new TH1F(Form("phi Ratio %s",trigname[i].c_str()), Form("phi Ratio %s",trigname[i].c_str()), 50, -1.7, 1.7);
-    fKinematicsRD2[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -320, -70);
-    fKinematicsRD2[i][11] = new TH1F(Form("pT Ratio %s",trigname[i].c_str()), Form("pT Ratio %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsRD2[i][12] = new TH1F(Form("phadron+e Ratio %s",trigname[i].c_str()), Form("phadron+e Ratio %s",trigname[i].c_str()), 50, 0, 40);
+    fKinematicsRD[i][0] = new TH1F(Form("Q2 %s",trigname[i].c_str()), "", 50, -1, 2);
+    fKinematicsRD[i][1] = new TH1F(Form("xBj %s",trigname[i].c_str()), "", 50, -3, 0);
+    fKinematicsRD[i][2] = new TH1F(Form("y %s",trigname[i].c_str()), "", 50, 0, 1);
+    fKinematicsRD[i][3] = new TH1F(Form("z %s",trigname[i].c_str()), "", 50, 0, 1);
+    fKinematicsRD[i][4] = new TH1F(Form("W %s",trigname[i].c_str()), "", 50, 2, 18);
+    fKinematicsRD[i][5] = new TH1F(Form("nu %s",trigname[i].c_str()), "", 50, 0, 160);
+    fKinematicsRD[i][6] = new TH1F(Form("Emu %s",trigname[i].c_str()), "", 50, 140, 180);
+    fKinematicsRD[i][7] = new TH1F(Form("Emu' %s",trigname[i].c_str()), "", 50, 0, 160);
+    fKinematicsRD[i][8] = new TH1F(Form("theta %s",trigname[i].c_str()), "", 50, 0, 0.05);
+    fKinematicsRD[i][9] = new TH1F(Form("phi %s",trigname[i].c_str()), "", 50, -1.7, 1.7);
+    fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), "", 50, -320, -70);
+    fKinematicsRD[i][11] = new TH1F(Form("pT %s",trigname[i].c_str()), "", 50, 0, 3);
+    fKinematicsRD[i][12] = new TH1F(Form("phadron+e %s",trigname[i].c_str()), "", 50, 0, 40);
+    fKinematicsRD2[i][0] = new TH1F(Form("Q2 Ratio %s",trigname[i].c_str()), "", 50, -1, 2);
+    fKinematicsRD2[i][1] = new TH1F(Form("xBj Ratio %s",trigname[i].c_str()), "", 50, -3, 0);
+    fKinematicsRD2[i][2] = new TH1F(Form("y Ratio %s",trigname[i].c_str()), "", 50, 0, 1);
+    fKinematicsRD2[i][3] = new TH1F(Form("z Ratio %s",trigname[i].c_str()), "", 50, 0, 1);
+    fKinematicsRD2[i][4] = new TH1F(Form("W Ratio %s",trigname[i].c_str()), "", 50, 2, 18);
+    fKinematicsRD2[i][5] = new TH1F(Form("nu Ratio %s",trigname[i].c_str()), "", 50, 0, 160);
+    fKinematicsRD2[i][6] = new TH1F(Form("Emu Ratio %s",trigname[i].c_str()), "", 50, 140, 180);
+    fKinematicsRD2[i][7] = new TH1F(Form("Emu' Ratio %s",trigname[i].c_str()), "", 50, 0, 160);
+    fKinematicsRD2[i][8] = new TH1F(Form("theta Ratio %s",trigname[i].c_str()), "", 50, 0, 0.05);
+    fKinematicsRD2[i][9] = new TH1F(Form("phi Ratio %s",trigname[i].c_str()), "", 50, -1.7, 1.7);
+    fKinematicsRD2[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), "", 50, -320, -70);
+    fKinematicsRD2[i][11] = new TH1F(Form("pT Ratio %s",trigname[i].c_str()), "", 50, 0, 3);
+    fKinematicsRD2[i][12] = new TH1F(Form("phadron+e Ratio %s",trigname[i].c_str()), "", 50, 0, 40);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsRD2[i][0]);
     BinLogX(fKinematicsRD[i][1]);
@@ -278,7 +278,7 @@ void plotting_device(int i, int j, int norm)
   // }
   // fErrorRD.clear(); fErrorRD2.clear();
   // fKinematicsRD2[i][j]->Draw("E2SAME");
-  // fKinematicsRD2[i][j]->Draw("SAME");
+  fKinematicsRD2[i][j]->Draw("SAME");
 }
 
 void save_kin_plots()
