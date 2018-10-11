@@ -282,7 +282,7 @@ void plotting_device(int i, int j, int norm)
   }
   fKinematicsRD[i][j]->Draw("E2");
   fKinematicsRD[i][j]->SetMarkerStyle(22);
-  fKinematicsRD[i][j]->Draw("PSAME");
+  fKinematicsRD[i][j]->Draw("APSAME");
   fKinematicsRD[i][j]->GetXaxis()->SetLabelSize(0.03);
   fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
   for(int tt=0; tt<fKinematicsMC[i][j]->GetNbinsX(); tt++)
