@@ -330,7 +330,7 @@ void save_kin_plots()
   c21.Divide(2,4);
   c22.Divide(1,2);
 
-  int offset=0
+  int offset=0;
 
   for(int i=0; i<4; i++)
   {
