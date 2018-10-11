@@ -17,7 +17,7 @@ endif
 all : analySIDIS acceptance comparison extractor plotter
 analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit accfuse acccollect
-comparison : compMCRD compMCMC
+comparison : compRDRD compMCRD compMCMC
 extractor : FFExtractor
 plotter : FFPlotter
 
@@ -44,8 +44,11 @@ acccollect: acceptance_collect.cc acceptance_collect.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 	@echo 'Acceptance package built !'
 
+compRDRD: compRDRD.cc compRDRD.h
+	@echo 'Building RD/RD.RD/MC.MC/MC package..'
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
+
 compMCRD: compMCRD.cc compMCRD.h
-	@echo 'Building RD/MC.MC/MC package..'
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 
 compMCMC: compMCMC.cc compMCMC.h
