@@ -53,7 +53,7 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
       for(int k=0; k<12; k++)
       {
           mult2 >> x >> y >> z;
-          cout << x << "\t" << y << "\t" << z << "\t" << endl;
+          // cout << x << "\t" << y << "\t" << z << "\t" << endl;
           for(int l=0; l<4; l++) mult2 >> sdum;
           mult2 >> fMultiplicities2[i][j][k].tab[1][0][0] >> fMultiplicities2[i][j][k].tab[1][1][0] >> fMultiplicities2[i][j][k].tab[1][2][0];
           for(int l=0; l<5; l++) mult2 >> sdum;
@@ -200,8 +200,8 @@ int main(int argc, char **argv)
             {
               R[c][i][j]->Draw("SAMEPA");
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              R[c][i][j]->SetMinimum(0.9);
-              R[c][i][j]->SetMaximum(1.1);
+              R[c][i][j]->SetMinimum(0.95);
+              R[c][i][j]->SetMaximum(1.05);
               R[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               R[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               R[c][i][j]->SetTitle("");
@@ -222,16 +222,16 @@ int main(int argc, char **argv)
               }
               R[c][i][j]->Draw("SAMEP");
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              R[c][i][j]->SetMinimum(0.9);
-              R[c][i][j]->SetMaximum(1.1);
-              c1.Range(0.1,0.9,0.9,1.1);
+              R[c][i][j]->SetMinimum(0.95);
+              R[c][i][j]->SetMaximum(1.05);
+              c1.Range(0.1,0.95,0.9,1.05);
             }
             else
             {
               R[c][i][j]->Draw("SAMEP");
               R[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              R[c][i][j]->SetMinimum(0.9);
-              R[c][i][j]->SetMaximum(1.1);
+              R[c][i][j]->SetMinimum(0.95);
+              R[c][i][j]->SetMaximum(1.05);
             }
           }
           c1.Update();
@@ -285,8 +285,8 @@ int main(int argc, char **argv)
           {
             R_y[c][i]->Draw("SAMEPA");
             R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            R_y[c][i]->SetMinimum(0.9);
-            R_y[c][i]->SetMaximum(1.1);
+            R_y[c][i]->SetMinimum(0.95);
+            R_y[c][i]->SetMaximum(1.05);
             R_y[c][i]->GetXaxis()->SetLabelSize(0.06);
             R_y[c][i]->GetYaxis()->SetLabelSize(0.06);
             R_y[c][i]->SetTitle("");
@@ -307,16 +307,16 @@ int main(int argc, char **argv)
             }
             R_y[c][i]->Draw("SAMEP");
             R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            R_y[c][i]->SetMinimum(1.1);
-            R_y[c][i]->SetMaximum(0.9);
-            c2.Range(0.1,0.9,0.9,1.1);
+            R_y[c][i]->SetMinimum(0.95);
+            R_y[c][i]->SetMaximum(1.05);
+            c2.Range(0.1,0.95,0.9,1.05);
           }
           else
           {
             R_y[c][i]->Draw("SAMEP");
             R_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            R_y[c][i]->SetMinimum(0.9);
-            R_y[c][i]->SetMaximum(1.1);
+            R_y[c][i]->SetMinimum(0.95);
+            R_y[c][i]->SetMaximum(1.05);
           }
         }
         c2.Update();
