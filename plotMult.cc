@@ -19,7 +19,7 @@
 
 using namespace std;
 
-void Binning(int x, int y, int z)
+void Binning(double x, double y, double z)
 {
   if(0.004<=x && x<0.01) fi = 0;
   else if(0.01<=x && x<0.02) fi = 1;
