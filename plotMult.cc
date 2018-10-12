@@ -19,50 +19,70 @@
 
 using namespace std;
 
+void Binning(int x, int y, int z, int i, int j, int k)
+{
+  if(0.004<=x && x<0.01) i = 0;
+  else if(0.01<=x && x<0.02) i = 1;
+  else if(0.02<=x && x<0.03) i = 2;
+  else if(0.03<=x && x<0.04) i = 3;
+  else if(0.04<=x && x<0.06) i = 4;
+  else if(0.06<=x && x<0.1) i = 5;
+  else if(0.1<=x && x<0.14) i = 6;
+  else if(0.14<=x && x<0.18) i = 7;
+  else i = 8;
+
+  if(0.1<y && y<0.15) j = 0;
+  else if(0.15<y && y<0.2) j = 1;
+  else if(0.2<y && y<0.3) j = 2;
+  else if(0.3<y && y<0.5) j = 3;
+  else if(0.5<y && y<0.7) j = 4;
+  else j = 5;
+
+  if(0.2<z && z<0.25) k = 0;
+  else if(0.25<z && z<0.30) k = 1;
+  else if(0.30<z && z<0.35) k = 2;
+  else if(0.35<z && z<0.40) k = 3;
+  else if(0.40<z && z<0.45) k = 4;
+  else if(0.45<z && z<0.50) k = 5;
+  else if(0.50<z && z<0.55) k = 6;
+  else if(0.55<z && z<0.60) k = 7;
+  else if(0.60<z && z<0.65) k = 8;
+  else if(0.65<z && z<0.70) k = 9;
+  else if(0.70<z && z<0.75) k = 10;
+  else k = 11;
+}
+
 void LoadMultiplicityFiles(string pfile1, string pfile2)
 {
   string sdum;
   Double_t x,y,z;
+  Int_t i,j,k;
 
   ifstream mult1(pfile1);
-
-  for(int i=0; i<9; i++)
+  while(mult1 >> x;)
   {
-    for(int j=0; j<6; j++)
-    {
-      for(int k=0; k<12; k++)
-      {
-          mult1 >> x;
-          for(int l=0; l<2; l++) mult1 >> sdum;
-          mult1 >> y;
-          for(int l=0; l<3; l++) mult1 >> sdum;
-          mult1 >> z;
-          // cout << x << "\t" << y << "\t" << z << "\t" << endl;
-          for(int l=0; l<2; l++) mult1 >> sdum;
-          mult1 >> fMultiplicities[i][j][k].tab[1][0][0] >> fMultiplicities[i][j][k].tab[1][1][0] >> sdum >> fMultiplicities[i][j][k].tab[1][2][0] >> sdum;
-      }
-    }
+    for(int l=0; l<2; l++) mult1 >> sdum;
+    mult1 >> y;
+    for(int l=0; l<3; l++) mult1 >> sdum;
+    mult1 >> z;
+    cout << x << "\t" << y << "\t" << z << "\t" << endl;
+    for(int l=0; l<2; l++) mult1 >> sdum;
+    Binning(x,y,z,i,j,k);
+    mult1 >> fMultiplicities[i][j][k].tab[1][0][0] >> fMultiplicities[i][j][k].tab[1][1][0] >> sdum >> fMultiplicities[i][j][k].tab[1][2][0] >> sdum;
   }
   mult1.close();
 
   ifstream mult2(pfile2);
-
-  for(int i=0; i<9; i++)
+  while(mult2 >> x;)
   {
-    for(int j=0; j<6; j++)
-    {
-      for(int k=0; k<12; k++)
-      {
-        mult2 >> x;
-        for(int l=0; l<2; l++) mult2 >> sdum;
-        mult2 >> y;
-        for(int l=0; l<3; l++) mult2 >> sdum;
-        mult2 >> z;
-        // cout << x << "\t" << y << "\t" << z << "\t" << endl;
-        for(int l=0; l<2; l++) mult2 >> sdum;
-        mult2 >> fMultiplicities[i][j][k].tab[0][0][0] >> fMultiplicities[i][j][k].tab[0][1][0] >> sdum >> fMultiplicities[i][j][k].tab[0][2][0] >> sdum;
-      }
-    }
+    for(int l=0; l<2; l++) mult2 >> sdum;
+    mult2 >> y;
+    for(int l=0; l<3; l++) mult2 >> sdum;
+    mult2 >> z;
+    cout << x << "\t" << y << "\t" << z << "\t" << endl;
+    for(int l=0; l<2; l++) mult2 >> sdum;
+    Binning(x,y,z,i,j,k);
+    mult2 >> fMultiplicities[i][j][k].tab[0][0][0] >> fMultiplicities[i][j][k].tab[0][1][0] >> sdum >> fMultiplicities[i][j][k].tab[0][2][0] >> sdum;
   }
   mult2.close();
 }
