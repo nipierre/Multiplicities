@@ -19,45 +19,44 @@
 
 using namespace std;
 
-void Binning(int x, int y, int z, int i, int j, int k)
+void Binning(int x, int y, int z)
 {
-  i = j = k =-1;
-  if(0.004<=x && x<0.01) i = 0;
-  else if(0.01<=x && x<0.02) i = 1;
-  else if(0.02<=x && x<0.03) i = 2;
-  else if(0.03<=x && x<0.04) i = 3;
-  else if(0.04<=x && x<0.06) i = 4;
-  else if(0.06<=x && x<0.1) i = 5;
-  else if(0.1<=x && x<0.14) i = 6;
-  else if(0.14<=x && x<0.18) i = 7;
-  else i = 8;
+  if(0.004<=x && x<0.01) fi = 0;
+  else if(0.01<=x && x<0.02) fi = 1;
+  else if(0.02<=x && x<0.03) fi = 2;
+  else if(0.03<=x && x<0.04) fi = 3;
+  else if(0.04<=x && x<0.06) fi = 4;
+  else if(0.06<=x && x<0.1) fi = 5;
+  else if(0.1<=x && x<0.14) fi = 6;
+  else if(0.14<=x && x<0.18) fi = 7;
+  else fi = 8;
 
-  if(0.1<y && y<0.15) j = 0;
-  else if(0.15<y && y<0.2) j = 1;
-  else if(0.2<y && y<0.3) j = 2;
-  else if(0.3<y && y<0.5) j = 3;
-  else if(0.5<y && y<0.7) j = 4;
-  else j = 5;
+  if(0.1<y && y<0.15) fj = 0;
+  else if(0.15<y && y<0.2) fj = 1;
+  else if(0.2<y && y<0.3) fj = 2;
+  else if(0.3<y && y<0.5) fj = 3;
+  else if(0.5<y && y<0.7) fj = 4;
+  else fj = 5;
 
-  if(0.2<z && z<0.25) k = 0;
-  else if(0.25<z && z<0.30) k = 1;
-  else if(0.30<z && z<0.35) k = 2;
-  else if(0.35<z && z<0.40) k = 3;
-  else if(0.40<z && z<0.45) k = 4;
-  else if(0.45<z && z<0.50) k = 5;
-  else if(0.50<z && z<0.55) k = 6;
-  else if(0.55<z && z<0.60) k = 7;
-  else if(0.60<z && z<0.65) k = 8;
-  else if(0.65<z && z<0.70) k = 9;
-  else if(0.70<z && z<0.75) k = 10;
-  else k = 11;
+  if(0.2<z && z<0.25) fk = 0;
+  else if(0.25<z && z<0.30) fk = 1;
+  else if(0.30<z && z<0.35) fk = 2;
+  else if(0.35<z && z<0.40) fk = 3;
+  else if(0.40<z && z<0.45) fk = 4;
+  else if(0.45<z && z<0.50) fk = 5;
+  else if(0.50<z && z<0.55) fk = 6;
+  else if(0.55<z && z<0.60) fk = 7;
+  else if(0.60<z && z<0.65) fk = 8;
+  else if(0.65<z && z<0.70) fk = 9;
+  else if(0.70<z && z<0.75) fk = 10;
+  else fk = 11;
 }
 
 void LoadMultiplicityFiles(string pfile1, string pfile2)
 {
   string sdum;
   Double_t x,y,z;
-  Int_t i,j,k;
+  fi=fj=fk=-1;
 
   ifstream mult1(pfile1);
   while(mult1 >> x)
