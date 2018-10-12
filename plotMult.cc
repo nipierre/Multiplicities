@@ -174,7 +174,7 @@ int main(int argc, char **argv)
         if(!(int(r.size()))) r_empty = 1;
 
         mult[c][i][j] = new TGraphErrors(int(r.size()),&(z_range_r[0]),&(r[0]),0,&(r_err[0]));
-        sys[c][i][j] = new TGraphAsymmErrors(Int_t(r.size()),&(z_range_r[0]), &h_yoffset[0], &errorx[0], &errorx[0], 0, &(r_sys[c][i][j][0]));
+        sys[c][i][j] = new TGraphAsymmErrors(Int_t(r.size()),&(z_range_r[0]), &h_yoffset[0], &errorx[0], &errorx[0], 0, &(r_sys[0]));
 
         if(!c)
         {
