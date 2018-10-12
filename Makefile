@@ -18,8 +18,8 @@ all : analySIDIS acceptance comparison extractor plotter
 analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit accfuse acccollect
 comparison : compRDRD compMCRD compMCMC compMult
-extractor : FFExtractor
-plotter : FFPlotter
+extractor : FFExtractor FFPlotter
+plotter : plotMult
 
 
 %.o: %.cc %.h
@@ -66,5 +66,10 @@ FFPlotter: FFPlotter.cc FFPlotter.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
 	@echo 'FF extraction package built !'
 
+plotMult: plotMult.cc plotMult.h
+	@echo 'Building plotting device package..'
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
+	@echo 'Plotting device package built !'
+
 clean :
-	@rm -rf *.o accsplit acccollect analySIDIS_split analySIDIS_collect compMCRD compMCMC FFExtractor FFPlotter
+	@rm -rf *.o accsplit accfuse acccollect analySIDIS_split analySIDIS_collect compRDRD compMCRD compMCMC compMult FFExtractor FFPlotter plotMult
