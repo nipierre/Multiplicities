@@ -213,7 +213,7 @@ int main(int argc, char **argv)
 
         mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
 
-        H_mult[c][i][j]->SetTitle("");
+        mult[c][i][j]->SetTitle("");
 
         mult[c][i][j]->GetYaxis()->SetTitle("");
 
