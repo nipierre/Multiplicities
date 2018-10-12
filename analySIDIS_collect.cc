@@ -742,6 +742,7 @@ int main(int argc, char **argv)
   ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), std::ofstream::out | std::ofstream::trunc);
 
   std::vector<Double_t> p_m[2][9][6];
   std::vector<Double_t> k_m[2][9][6];
@@ -878,7 +879,16 @@ int main(int argc, char **argv)
 
           if(!c) ofs_h << endl;
 
-          if(c==1) cout << i << " " << j << " " << k << " " << fMultiplicities[i][j][k].tab[c][0][3] << " " << fMultiplicities[i][j][k].tab[c][1][3] << " " << sqrt(fMultiplicities[i][j][k].tab[c][1][3]) << endl;
+          if(c) ofs_m << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+          ofs_m <<
+          fBinning[i][j][k].tab[c][0][3] << " " << fNDIS_evt[0][i][j][k] << " " <<
+          fAcceptance_weighted[i][j][k].tab[c][0][3] << " " << GetSemiInclusiveRadiativeCorrection(i,j,k+1) << " " <<
+          fDiffVectorMeson[c][i][j][k][3] << " ";
+
+          if(!c) ofs_m << endl;
+
+          // if(c==1) cout << i << " " << j << " " << k << " " << fMultiplicities[i][j][k].tab[c][0][3] << " " << fMultiplicities[i][j][k].tab[c][1][3] << " " << sqrt(fMultiplicities[i][j][k].tab[c][1][3]) << endl;
 
           if(STAGGERED)
           {
@@ -2045,6 +2055,7 @@ int main(int argc, char **argv)
   ofs_p.close();
   ofs_k.close();
   ofs_h.close();
+  ofs_m.close();
 
   return 0;
 }
