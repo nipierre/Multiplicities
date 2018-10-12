@@ -743,6 +743,8 @@ int main(int argc, char **argv)
   ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_mp(Form("%s/multiplicities_h+.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_mm(Form("%s/multiplicities_h-.txt",data_path), std::ofstream::out | std::ofstream::trunc);
 
   std::vector<Double_t> p_m[2][9][6];
   std::vector<Double_t> k_m[2][9][6];
@@ -887,6 +889,22 @@ int main(int argc, char **argv)
           fDiffVectorMeson[c][i][j][k][3] << " ";
 
           if(!c) ofs_m << endl;
+
+          if(c)
+          {
+            ofs_mp << fXrange[i] << " 0 0 " << fYrange[j] << " 0 0 0 " << fZrange[k] << " 0 0 " <<
+            fMultiplicities[i][j][k].tab[c][0][3] << " " <<
+            fMultiplicities[i][j][k].tab[c][1][3] << " " << fMultiplicities[i][j][k].tab[c][1][3] << " " <<
+            fMultiplicities[i][j][k].tab[c][2][3] << " " << fMultiplicities[i][j][k].tab[c][2][3] << endl;
+          }
+
+          if(!c)
+          {
+            ofs_mm << fXrange[i] << " 0 0 " << fYrange[j] << " 0 0 0 " << fZrange[k] << " 0 0 " <<
+            fMultiplicities[i][j][k].tab[c][0][3] << " " <<
+            fMultiplicities[i][j][k].tab[c][1][3] << " " << fMultiplicities[i][j][k].tab[c][1][3] << " " <<
+            fMultiplicities[i][j][k].tab[c][2][3] << " " << fMultiplicities[i][j][k].tab[c][2][3] << endl;
+          }
 
           // if(c==1) cout << i << " " << j << " " << k << " " << fMultiplicities[i][j][k].tab[c][0][3] << " " << fMultiplicities[i][j][k].tab[c][1][3] << " " << sqrt(fMultiplicities[i][j][k].tab[c][1][3]) << endl;
 
@@ -2056,6 +2074,8 @@ int main(int argc, char **argv)
   ofs_k.close();
   ofs_h.close();
   ofs_m.close();
+  ofs_mp.close();
+  ofs_mm.close();
 
   return 0;
 }
