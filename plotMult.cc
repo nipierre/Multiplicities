@@ -130,10 +130,6 @@ int main(int argc, char **argv)
   {
     int axisflagh1 = 0;
     int axisflagh2 = 0;
-    int axisflagp1 = 0;
-    int axisflagp2 = 0;
-    int axisflagk1 = 0;
-    int axisflagk2 = 0;
 
     vector<double> r_y;
     vector<double> r_y_err;
@@ -148,6 +144,7 @@ int main(int argc, char **argv)
     {
       std::vector<double> r;
       std::vector<double> r_err;
+      std::vector<double> r_sys;
       std::vector<double> z_range_r;
 
       for(int c=1; c>=0; c--)
@@ -198,8 +195,8 @@ int main(int argc, char **argv)
 
         if(!r_empty)
         {
-          if(c) c1->cd(i+1);
-          else c2->cd(i+1);
+          if(c) c1.cd(i+1);
+          else c2.cd(i+1);
           if(mult[c][i][j])
           {
             if((!c && !axisflagh1) || (c && !axisflagh2))
@@ -231,8 +228,8 @@ int main(int argc, char **argv)
               if(j==3) sys[c][i][j]->Draw("SAME3");
               if(!c) axisflagh1=1;
               else axisflagh2=1;
-              if(c) c1->Range(0.1,-0.4,0.9,5.);
-              else c2->Range(0.1,-0.4,0.9,5.);
+              if(c) c1.Range(0.1,-0.4,0.9,5.);
+              else c2.Range(0.1,-0.4,0.9,5.);
             }
             else
             {
@@ -243,8 +240,8 @@ int main(int argc, char **argv)
               mult[c][i][j]->SetMaximum(5.);
             }
           }
-          if(c) c1->Update();
-          else c2->Update();
+          if(c) c1.Update();
+          else c2.Update();
         }
       }
     }
