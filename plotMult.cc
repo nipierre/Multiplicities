@@ -126,6 +126,9 @@ int main(int argc, char **argv)
   TGraphErrors* sys[2][9][6];
   TGraphErrors* mult_y[2][9];
 
+  TLine lsys(0.1,0,0.9,0);
+  lsys.SetLineStyle(2);
+
   for(int i=0; i<9; i++)
   {
     int axisflagh1 = 0;
@@ -171,7 +174,7 @@ int main(int argc, char **argv)
         if(!(int(r.size()))) r_empty = 1;
 
         mult[c][i][j] = new TGraphErrors(int(r.size()),&(z_range_r[0]),&(r[0]),0,&(r_err[0]));
-        sys[c][i][j] = new TGraphAsymmErrors(Int_t(r.size()),&(z_range_r[0]), &h_yoffset[0], &errorx[0], &errorx[0], 0, &(h_sys[c][i][j][0]));
+        sys[c][i][j] = new TGraphAsymmErrors(Int_t(r.size()),&(z_range_r[0]), &h_yoffset[0], &errorx[0], &errorx[0], 0, &(r_sys[c][i][j][0]));
 
         if(!c)
         {
