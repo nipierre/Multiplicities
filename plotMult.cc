@@ -31,24 +31,24 @@ void Binning(double x, double y, double z)
   else if(0.14<=x && x<0.18) fi = 7;
   else fi = 8;
 
-  if(0.1<y && y<0.15) fj = 0;
-  else if(0.15<y && y<0.2) fj = 1;
-  else if(0.2<y && y<0.3) fj = 2;
-  else if(0.3<y && y<0.5) fj = 3;
-  else if(0.5<y && y<0.7) fj = 4;
+  if(0.1<=y && y<0.15) fj = 0;
+  else if(0.15<=y && y<0.2) fj = 1;
+  else if(0.2<=y && y<0.3) fj = 2;
+  else if(0.3<=y && y<0.5) fj = 3;
+  else if(0.5<=y && y<0.7) fj = 4;
   else fj = 5;
 
-  if(0.2<z && z<0.25) fk = 0;
-  else if(0.25<z && z<0.30) fk = 1;
-  else if(0.30<z && z<0.35) fk = 2;
-  else if(0.35<z && z<0.40) fk = 3;
-  else if(0.40<z && z<0.45) fk = 4;
-  else if(0.45<z && z<0.50) fk = 5;
-  else if(0.50<z && z<0.55) fk = 6;
-  else if(0.55<z && z<0.60) fk = 7;
-  else if(0.60<z && z<0.65) fk = 8;
-  else if(0.65<z && z<0.70) fk = 9;
-  else if(0.70<z && z<0.75) fk = 10;
+  if(0.2<=z && z<0.25) fk = 0;
+  else if(0.25<=z && z<0.30) fk = 1;
+  else if(0.30<=z && z<0.35) fk = 2;
+  else if(0.35<=z && z<0.40) fk = 3;
+  else if(0.40<=z && z<0.45) fk = 4;
+  else if(0.45<=z && z<0.50) fk = 5;
+  else if(0.50<=z && z<0.55) fk = 6;
+  else if(0.55<=z && z<0.60) fk = 7;
+  else if(0.60<=z && z<0.65) fk = 8;
+  else if(0.65<=z && z<0.70) fk = 9;
+  else if(0.70<=z && z<0.75) fk = 10;
   else fk = 11;
 }
 
@@ -173,7 +173,7 @@ int main(int argc, char **argv)
         std::vector<double> r_err;
         std::vector<double> r_sys;
         std::vector<double> z_range_r;
-        
+
         for(int l=0; l<12; l++)
         {
           z_range_r.push_back(z_range[l]);
