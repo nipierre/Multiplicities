@@ -123,7 +123,7 @@ int main(int argc, char **argv)
   Double_t h_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
 
   TGraphErrors* mult[2][9][6];
-  TGraphErrors* sys[2][9][6];
+  TGraphAsymmErrors* sys[2][9][6];
   TGraphErrors* mult_y[2][9];
 
   TLine lsys(0.1,0,0.9,0);
