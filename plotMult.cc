@@ -59,7 +59,7 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
   Int_t i,j,k;
 
   ifstream mult1(pfile1);
-  while(mult1 >> x;)
+  while(mult1 >> x)
   {
     for(int l=0; l<2; l++) mult1 >> sdum;
     mult1 >> y;
@@ -73,7 +73,7 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
   mult1.close();
 
   ifstream mult2(pfile2);
-  while(mult2 >> x;)
+  while(mult2 >> x)
   {
     for(int l=0; l<2; l++) mult2 >> sdum;
     mult2 >> y;
