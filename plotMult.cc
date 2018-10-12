@@ -250,8 +250,8 @@ int main(int argc, char **argv)
     }
   }
 
-  c1.Print("mult_ratio.pdf(","pdf");
-  c2.Print("mult_ratio.pdf)","pdf");
+  c1.Print("mult_plot.pdf(","pdf");
+  c2.Print("mult_plot.pdf)","pdf");
 
   return 0;
 }
