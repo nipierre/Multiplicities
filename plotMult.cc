@@ -207,14 +207,15 @@ int main(int argc, char **argv)
           mult[c][i][j]->SetMarkerColor(fMarkerColor[0]);
         }
 
-        mult[c][i][j]->SetMarkerSize(1);
+        mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+
+        mult[c][i][j]->SetMarkerSize(2);
 
         mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+
+        H_mult[c][i][j]->SetTitle("");
+
         mult[c][i][j]->GetYaxis()->SetTitle("");
-
-        mult[c][i][j]->GetXaxis()->SetTitle("");
-
-        mult[c][i][j]->SetTitle("");
 
         sys[c][i][j]->SetFillColor(fMarkerColor[j]);
 
