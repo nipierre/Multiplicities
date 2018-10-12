@@ -67,7 +67,7 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
     mult1 >> z;
     cout << x << "\t" << y << "\t" << z << "\t" << endl;
     for(int l=0; l<2; l++) mult1 >> sdum;
-    Binning(x,y,z,i,j,k);
+    Binning(x,y,z);
     mult1 >> fMultiplicities[i][j][k].tab[1][0][0] >> fMultiplicities[i][j][k].tab[1][1][0] >> sdum >> fMultiplicities[i][j][k].tab[1][2][0] >> sdum;
   }
   mult1.close();
@@ -81,7 +81,7 @@ void LoadMultiplicityFiles(string pfile1, string pfile2)
     mult2 >> z;
     cout << x << "\t" << y << "\t" << z << "\t" << endl;
     for(int l=0; l<2; l++) mult2 >> sdum;
-    Binning(x,y,z,i,j,k);
+    Binning(x,y,z);
     mult2 >> fMultiplicities[i][j][k].tab[0][0][0] >> fMultiplicities[i][j][k].tab[0][1][0] >> sdum >> fMultiplicities[i][j][k].tab[0][2][0] >> sdum;
   }
   mult2.close();
