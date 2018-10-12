@@ -288,7 +288,7 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
   }
   else if(Y2012 || Y2016)
   {
-    return fInclusiveRCproton[xb][yb];
+    return 1;
   }
   else
   {
@@ -339,7 +339,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   }
   else if(Y2012 || Y2016)
   {
-    return fSemiInclusiveRCproton[xb][yb][zb];
+    return 1;
   }
   else
   {
@@ -1947,7 +1947,10 @@ int main(int argc, char **argv)
               res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_p[theta_bin][mom_bin][rce];
               hadron_nb = 1;
-
+              fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
+              fPiplus_err += pow(res_vect_err[0],2);
+              fKplus_err += pow(res_vect_err[1],2);
+              fPplus_err += pow(res_vect_err[2],2);
               res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
@@ -1955,10 +1958,6 @@ int main(int argc, char **argv)
               res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
-              fPiplus_err += pow(res_vect_err[0],2);
-              fKplus_err += pow(res_vect_err[1],2);
-              fPplus_err += pow(res_vect_err[2],2);
 
               pzcontainer.vec[1][0].push_back(zBj);
               pzcontainer.vec[1][1].push_back(res_vect[0][0]);
@@ -1987,6 +1986,10 @@ int main(int argc, char **argv)
               res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_m[theta_bin][mom_bin][rce];
               hadron_nb = 1;
+              fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
+              fPiminus_err += pow(res_vect_err[0],2);
+              fKminus_err += pow(res_vect_err[1],2);
+              fPminus_err += pow(res_vect_err[2],2);
               res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
@@ -1994,10 +1997,6 @@ int main(int argc, char **argv)
               res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
-              fPiminus_err += pow(res_vect_err[0],2);
-              fKminus_err += pow(res_vect_err[1],2);
-              fPminus_err += pow(res_vect_err[2],2);
 
               pzcontainer.vec[0][0].push_back(zBj);
               pzcontainer.vec[0][1].push_back(res_vect[0][0]);
@@ -2034,6 +2033,10 @@ int main(int argc, char **argv)
               res_vect = inv_rich_p[theta_bin][mom_bin]*k_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_p[theta_bin][mom_bin][rce];
               hadron_nb = 1;
+              fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
+              fPiplus_err += pow(res_vect_err[0],2);
+              fKplus_err += pow(res_vect_err[1],2);
+              fPplus_err += pow(res_vect_err[2],2);
               res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
@@ -2041,10 +2044,6 @@ int main(int argc, char **argv)
               res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
-              fPiplus_err += pow(res_vect_err[0],2);
-              fKplus_err += pow(res_vect_err[1],2);
-              fPplus_err += pow(res_vect_err[2],2);
 
               pzcontainer.vec[1][0].push_back(zBj);
               pzcontainer.vec[1][1].push_back(res_vect[0][0]);
@@ -2083,6 +2082,10 @@ int main(int argc, char **argv)
               res_vect = inv_rich_m[theta_bin][mom_bin]*k_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_m[theta_bin][mom_bin][rce];
               hadron_nb = 1;
+              fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
+              fPiminus_err += pow(res_vect_err[0],2);
+              fKminus_err += pow(res_vect_err[1],2);
+              fPminus_err += pow(res_vect_err[2],2);
               res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
@@ -2090,10 +2093,6 @@ int main(int argc, char **argv)
               res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
-              fPiminus_err += pow(res_vect_err[0],2);
-              fKminus_err += pow(res_vect_err[1],2);
-              fPminus_err += pow(res_vect_err[2],2);
 
               pzcontainer.vec[0][0].push_back(zBj);
               pzcontainer.vec[0][1].push_back(res_vect[0][0]);
@@ -2132,6 +2131,10 @@ int main(int argc, char **argv)
               res_vect = inv_rich_p[theta_bin][mom_bin]*p_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_p[theta_bin][mom_bin][rce];
               hadron_nb = 1;
+              fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
+              fPiplus_err += pow(res_vect_err[0],2);
+              fKplus_err += pow(res_vect_err[1],2);
+              fPplus_err += pow(res_vect_err[2],2);
               res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
@@ -2139,10 +2142,6 @@ int main(int argc, char **argv)
               res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
-              fPiplus_err += pow(res_vect_err[0],2);
-              fKplus_err += pow(res_vect_err[1],2);
-              fPplus_err += pow(res_vect_err[2],2);
 
               pzcontainer.vec[1][0].push_back(zBj);
               pzcontainer.vec[1][1].push_back(res_vect[0][0]);
@@ -2181,6 +2180,10 @@ int main(int argc, char **argv)
               res_vect = inv_rich_m[theta_bin][mom_bin]*p_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_m[theta_bin][mom_bin][rce];
               hadron_nb = 1;
+              fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
+              fPiminus_err += pow(res_vect_err[0],2);
+              fKminus_err += pow(res_vect_err[1],2);
+              fPminus_err += pow(res_vect_err[2],2);
               res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
@@ -2188,10 +2191,6 @@ int main(int argc, char **argv)
               res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
               hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
-              fPiminus_err += pow(res_vect_err[0],2);
-              fKminus_err += pow(res_vect_err[1],2);
-              fPminus_err += pow(res_vect_err[2],2);
 
               pzcontainer.vec[0][0].push_back(zBj);
               pzcontainer.vec[0][1].push_back(res_vect[0][0]);
