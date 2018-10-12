@@ -167,13 +167,13 @@ int main(int argc, char **argv)
 
     for(int j=0; j<6; j++)
     {
-      std::vector<double> r;
-      std::vector<double> r_err;
-      std::vector<double> r_sys;
-      std::vector<double> z_range_r;
-
       for(int c=1; c>=0; c--)
       {
+        std::vector<double> r;
+        std::vector<double> r_err;
+        std::vector<double> r_sys;
+        std::vector<double> z_range_r;
+        
         for(int l=0; l<12; l++)
         {
           z_range_r.push_back(z_range[l]);
