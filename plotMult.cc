@@ -21,6 +21,7 @@ using namespace std;
 
 void Binning(int x, int y, int z, int i, int j, int k)
 {
+  i = j = k =-1;
   if(0.004<=x && x<0.01) i = 0;
   else if(0.01<=x && x<0.02) i = 1;
   else if(0.02<=x && x<0.03) i = 2;
