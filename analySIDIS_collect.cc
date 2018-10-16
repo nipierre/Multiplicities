@@ -1403,6 +1403,7 @@ int main(int argc, char **argv)
               {
                 cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->Draw("SAMEP");
+                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
                 H_zvtx[c][i][j][zv]->SetMaximum(4.0);
