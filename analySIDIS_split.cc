@@ -2725,7 +2725,7 @@ int main(int argc, char **argv)
         else ybin = 5;
 
         if(-325<=Zvtxlocal[i] && Zvtxlocal[i]<-261.5) zlabbin = 0;
-        else if(--261.5<=Zvtxlocal[i] && Zvtxlocal[i]<-198) zlabbin = 1;
+        else if(-261.5<=Zvtxlocal[i] && Zvtxlocal[i]<-198) zlabbin = 1;
         else if(-198<=Zvtxlocal[i] && Zvtxlocal[i]<-134.5) zlabbin = 2;
         else if(-134.5<=Zvtxlocal[i] && Zvtxlocal[i]<=-71) zlabbin = 3;
 
