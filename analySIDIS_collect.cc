@@ -450,12 +450,13 @@ void weight_acceptance()
           {
               for(int j=0; j<6; j++)
               {
-                fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l];
-                fAcceptance_weighted[i][j][k].tab[c][1][l] += pow(fBinning_period[period][i][j][k].tab[c][0][l],2)*fAcceptance[period][i][j][k].tab[c][1][l]/pow(fBinning[i][j][k].tab[c][0][l],2);
+                fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning[i][j][k].tab[c][0][l] ? fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l] : 0;
+                fAcceptance_weighted[i][j][k].tab[c][1][l] += fBinning[i][j][k].tab[c][0][l] ? pow(fBinning_period[period][i][j][k].tab[c][0][l],2)*fAcceptance[period][i][j][k].tab[c][1][l]/pow(fBinning[i][j][k].tab[c][0][l],2) : 0;
                 for(int zv=0; zv<4; zv++)
                 {
-                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] += fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l]/fBinning_zvtx[i][j][k][zv].tab[c][0][l];
-                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][1][l] += pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l],2)*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][l]/pow(fBinning_zvtx[i][j][k][zv].tab[c][0][l],2);
+                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] += fBinning_zvtx[i][j][k][zv].tab[c][0][l] ? fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l]/fBinning_zvtx[i][j][k][zv].tab[c][0][l] : 0;
+                  cout << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << " " << fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << endl;
+                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][1][l] += fBinning_zvtx[i][j][k][zv].tab[c][0][l] ? pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l],2)*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][l]/pow(fBinning_zvtx[i][j][k][zv].tab[c][0][l],2) : 0;
                 }
               }
               fAcceptance_yavg_weighted[i][k].tab[c][0][l] += fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][0][l]/fBinning_yavg[i][k].tab[c][0][l];
