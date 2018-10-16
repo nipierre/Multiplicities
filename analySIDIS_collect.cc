@@ -1305,6 +1305,10 @@ int main(int argc, char **argv)
 
         cout << "pouet" << endl;
 
+      }
+
+      for(int c=1; c>=0; c--)
+      {
         for(int zv=0; zv<4; zv++)
         {
           for(int l=0; l<12; l++)
