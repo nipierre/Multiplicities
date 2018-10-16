@@ -1320,9 +1320,9 @@ int main(int argc, char **argv)
 
           for(int k=12; k>0; k--)
           {
-            if(!p_z[c][i][j][zv][k-1]) {p_z[c][i][j][zv].erase(p_z[c][i][j].begin()+k-1); p_z_err[c][i][j][zv].erase(p_z_err[c][i][j][zv].begin()+k-1); z_range_p_z[c][i][j][zv].erase(z_range_p_z[c][i][j][zv].begin()+k-1);}
-            if(!k_z[c][i][j][zv][k-1]) {k_z[c][i][j][zv].erase(k_z[c][i][j].begin()+k-1); k_z_err[c][i][j][zv].erase(k_z_err[c][i][j][zv].begin()+k-1); z_range_k_z[c][i][j][zv].erase(z_range_k_z[c][i][j][zv].begin()+k-1);}
-            if(!h_z[c][i][j][zv][k-1]) {h_z[c][i][j][zv].erase(h_z[c][i][j].begin()+k-1); h_z_err[c][i][j][zv].erase(h_z_err[c][i][j][zv].begin()+k-1); z_range_h_z[c][i][j][zv].erase(z_range_h_z[c][i][j][zv].begin()+k-1);}
+            if(!p_z[c][i][j][zv][k-1]) {p_z[c][i][j][zv].erase(p_z[c][i][j][zv].begin()+k-1); p_z_err[c][i][j][zv].erase(p_z_err[c][i][j][zv].begin()+k-1); z_range_p_z[c][i][j][zv].erase(z_range_p_z[c][i][j][zv].begin()+k-1);}
+            if(!k_z[c][i][j][zv][k-1]) {k_z[c][i][j][zv].erase(k_z[c][i][j][zv].begin()+k-1); k_z_err[c][i][j][zv].erase(k_z_err[c][i][j][zv].begin()+k-1); z_range_k_z[c][i][j][zv].erase(z_range_k_z[c][i][j][zv].begin()+k-1);}
+            if(!h_z[c][i][j][zv][k-1]) {h_z[c][i][j][zv].erase(h_z[c][i][j][zv].begin()+k-1); h_z_err[c][i][j][zv].erase(h_z_err[c][i][j][zv].begin()+k-1); z_range_h_z[c][i][j][zv].erase(z_range_h_z[c][i][j][zv].begin()+k-1);}
           }
 
           bool p_z_empty = 0;
