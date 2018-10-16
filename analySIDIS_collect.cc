@@ -1337,7 +1337,7 @@ int main(int argc, char **argv)
 
           if(!h_z_empty)
           {
-            c5.cd(i+1+9*j);
+            c5->cd(i+1+9*j);
             gPad->SetFillStyle(4000);
             if(H_zvtx[c][i][j[zv]])
             {
@@ -1369,7 +1369,7 @@ int main(int argc, char **argv)
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
                 H_zvtx[c][i][j][zv]->SetMaximum(4.0);
-                c5.Range(0.1,0.,0.9,4.0);
+                c5->Range(0.1,0.,0.9,4.0);
               }
               else
               {
@@ -1379,12 +1379,12 @@ int main(int argc, char **argv)
                 H_zvtx[c][i][j][zv]->SetMaximum(4.0);
               }
             }
-            c5.Update();
+            c5->Update();
           }
 
           if(!p_z_empty)
           {
-            c6.cd(i+1+9*j);
+            c6->cd(i+1+9*j);
             gPad->SetFillStyle(4000);
             if(P_zvtx[c][i][j][zv])
             {
@@ -1416,7 +1416,7 @@ int main(int argc, char **argv)
                 P_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 P_zvtx[c][i][j][zv]->SetMinimum(0.);
                 P_zvtx[c][i][j][zv]->SetMaximum(3.5);
-                c6.Range(0.1,0.,0.9,3.5);
+                c6->Range(0.1,0.,0.9,3.5);
               }
               else
               {
@@ -1426,12 +1426,12 @@ int main(int argc, char **argv)
                 P_zvtx[c][i][j][zv]->SetMaximum(3.5);
               }
             }
-            c6.Update();
+            c6->Update();
           }
 
           if(!k_z_empty)
           {
-            c7.cd(i+1+9*j);
+            c7->cd(i+1+9*j);
             gPad->SetFillStyle(4000);
             if(P_zvtx[c][i][j][zv])
             {
@@ -1463,7 +1463,7 @@ int main(int argc, char **argv)
                 K_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 K_zvtx[c][i][j][zv]->SetMinimum(0.);
                 K_zvtx[c][i][j][zv]->SetMaximum(0.8);
-                c7.Range(0.1,0.,0.9,0.8);
+                c7->Range(0.1,0.,0.9,0.8);
               }
               else
               {
@@ -1473,7 +1473,7 @@ int main(int argc, char **argv)
                 K_zvtx[c][i][j][zv]->SetMaximum(0.8);
               }
             }
-            c7.Update();
+            c7->Update();
           }
           z_range_p_z[c][i][j][zv].clear();
           z_range_k_z[c][i][j][zv].clear();
