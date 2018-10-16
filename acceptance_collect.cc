@@ -444,7 +444,8 @@ int main(int argc, char **argv)
 
     ofstream ofs(Form("%s/%d/acceptance_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_yavg(Form("%s/%d/acceptance_yavg_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_vtx(Form("%s/%d/reldiff_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_zvtx(Form("%s/%d/acceptance_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_reld(Form("%s/%d/reldiff_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream lepto(Form("%s/%d/lepto_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
     for(int c=0; c<2; c++)
@@ -661,6 +662,8 @@ int main(int argc, char **argv)
             k_err.push_back(fAcceptance[i][j][k].tab[c][1][1]);
             h_err.push_back(fAcceptance[i][j][k].tab[c][1][3]);
 
+            ofs_zvtx << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k];
+
             for(int l=0; l<4; l++)
             {
               fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = ((fNDIS_evt_zvtx[0][i][j][k][l] && fNDIS_evt_MC_zvtx[0][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][0]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][0]/fNDIS_evt_zvtx[0][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][0]/fNDIS_evt_MC_zvtx[0][i][j][k][l])) : 0);
@@ -677,6 +680,15 @@ int main(int argc, char **argv)
               fAcceptance_zvtx[i][j][k][l].tab[c][1][1] = fAcceptance[i][j][k].tab[c][1][1];
               fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = fAcceptance[i][j][k].tab[c][1][2];
               fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = fAcceptance[i][j][k].tab[c][1][3];
+
+              ofs_zvtx << " " << fAcceptance_zvtx[i][j][k][l].tab[c][0][0] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][0] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][0][1] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][1] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][0][2] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][2] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][0][3] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][1][3];
 
               // if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
               // {
@@ -699,7 +711,9 @@ int main(int argc, char **argv)
               h_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][1][3]));
             }
 
-            ofs_vtx << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
+            ofs_zvtx << endl;
+
+            ofs_reld << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
             RelDiff(c,i,j,k,0) << " " << RelDiff(c,i,j,k,1) << " " << RelDiff(c,i,j,k,2) << " " << RelDiff(c,i,j,k,3) <<   endl;
 
             for(int l=4; l>0; l--)
@@ -1847,7 +1861,7 @@ int main(int argc, char **argv)
 
     ofs.close();
     ofs_yavg.close();
-    ofs_vtx.close();
+    ofs_reld.close();
 
     for(int i=0; i<12; i++)
     {

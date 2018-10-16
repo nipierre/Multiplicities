@@ -146,7 +146,9 @@ Double_t fPminus_err = 0;
 
 //Binning
 Wrapper fBinning[9][6][12];
+Wrapper fBinning_zvtx[9][6][12][4];
 Wrapper fBinning_period[11][9][6][12];
+Wrapper fBinning_period_zvtx[11][9][6][12][4];
 Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Wrapper fBinning_yavg[9][12];
@@ -154,11 +156,14 @@ Wrapper fBinning_zavg[9];
 Wrapper fBinning_yavg_period[11][9][12];
 Wrapper fBinning_zavg_period[11][9];
 Multiplicities fMultiplicities[9][6][12];
+Multiplicities fMultiplicities_zvtx[9][6][12][4];
 Multiplicities fMultiplicities_yavg[9][12];
 Multiplicities fMultiplicities_zavg[9];
 Wrapper fDiffractiveVectorMeson[9][6][12];
 Wrapper fAcceptance[11][9][6][12];
+Wrapper fAcceptance_zvtx[9][6][12][4];
 Wrapper fAcceptance_weighted[9][6][12];
+Wrapper fAcceptance_weighted_zvtx[9][6][12][4];
 Wrapper fAcceptance_yavg[11][9][12];
 Wrapper fAcceptance_yavg_weighted[9][12];
 Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
@@ -171,9 +176,11 @@ Recovery_tank fMeanvalues_data[9][6][12];
 Recovery_tank fMeanvalues_data_periods[11][9][6][12];
 Recovery_tank fMeanvalues_temp[9][6][12];
 Double_t fNDIS_evt[3][9][6][12];
+Double_t fNDIS_evt_zvtx[3][9][6][12][4];
 Double_t fNDIS_evt_yavg[3][9][12];
 Double_t fNDIS_evt_zavg[3][9];
 Double_t fNDIS_evt_err[3][9][6][12];
+Double_t fNDIS_evt_err_zvtx[3][9][6][12][4];
 Double_t fNDIS_evt_err_yavg[3][9][12];
 Int_t xbin, ybin, zbin;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
@@ -189,6 +196,7 @@ studyxy fR_xy[24];
 //Graphic Style
 
 int fMarkerColor[6] = {2,95,209,226,4,221};
+int fMarkerColorZvtx[4][2] = {{kBlue,kRed},{kBlue-2,kRed-2},{kBlue-4,kRed-4},{kBlue-6,kRed-6}};
 int fMarkerStyle[6][2] = {{24,20},{26,22},{25,21},{27,33},{28,34},{30,29}};
 
 //Constants

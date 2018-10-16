@@ -2812,7 +2812,9 @@ int main(int argc, char **argv)
     }
 
     ofstream ofs_h(Form("rawmult/%d/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_hzvtx(Form("rawmult/%d/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_d(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_dzvtx(Form("rawmult/%d/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream xc(Form("rawmult/%d/xcheck_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
     for(int c=0; c<2; c++)
@@ -2826,6 +2828,8 @@ int main(int argc, char **argv)
             if(!c)
             {
               ofs_d << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt_err[0][i][j][k];
+              for(int zv=0; zv<4; zv++)
+                ofs_dzvtx << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][i][j][k][zv] << " ";
             }
 
             for(int ll=0; ll<4; ll++)
@@ -2836,11 +2840,19 @@ int main(int argc, char **argv)
                               fMeanvalues_data[i][j][k].tab[c][ll][3] << " " << fMeanvalues_size[i][j][k].tab[c][ll][0];
             }
             ofs_d << endl;
+            ofs_dzvtx << endl;
 
             ofs_h << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " << fBinning_loose[i][j][k].tab[c][0][0] << " " << fBinning_severe[i][j][k].tab[c][0][0] << " " <<
                      fBinning[i][j][k].tab[c][0][1] << " " << fBinning[i][j][k].tab[c][1][1] << " " << fBinning_loose[i][j][k].tab[c][0][1] << " " << fBinning_severe[i][j][k].tab[c][0][1] << " " <<
                      fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " << fBinning_loose[i][j][k].tab[c][0][2] << " " << fBinning_severe[i][j][k].tab[c][0][2] << " " <<
                      fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << " " << fBinning_loose[i][j][k].tab[c][0][3] << " " << fBinning_severe[i][j][k].tab[c][0][3] << " " << endl;
+            for(int zv=0; zv<4; zv++)
+            {
+              ofs_hzvtx << fBinning_zvtx[i][j][k][zv].tab[c][0][0] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][0] << " " <<
+                       fBinning_zvtx[i][j][k][zv].tab[c][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1] << " " <<
+                       fBinning_zvtx[i][j][k][zv].tab[c][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][2] << " " <<
+                       fBinning_zvtx[i][j][k][zv].tab[c][0][3] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][3] << " " << endl;
+            }
 
   	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
   		fNDIS_evt[0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][0][1] << " " <<
@@ -2853,6 +2865,8 @@ int main(int argc, char **argv)
 
     ofs_h.close();
     ofs_d.close();
+    ofs_hzvtx.close();
+    ofs_dzvtx.close();
     xc.close();
 
     resetValues();
@@ -2971,46 +2985,6 @@ int main(int argc, char **argv)
        << '|' << setw(15) << fPiplus_true << '|' << setw(15) << fPiminus_true
        << '|' << setw(15) << fKplus_true << '|' << setw(15) << fKminus_true
        << '|' << setw(15) << fPplus_true << '|' << setw(15) << fPminus_true << endl;
-
-  ofstream shout(Form("rawmult/%d/shout.txt",year), std::ofstream::out | std::ofstream::trunc);
-
-  shout <<
-  fBP << " Best Primary (entries in disevent.root) (" << float(fBP)/float(fBP)*100 << "%)\n\n" <<
-  fRmu << " Reconstr. Mu (E_Beam>0) (" << float(fRmu)/float(fBP)*100 << "%)\n\n" <<
-  fTarg << " Event in Data Target (" << float(fTarg)/float(fBP)*100 << "%)\n\n" <<
-  fBEC << " Beam Energy Cuts (" << float(fBEC)/float(fBP)*100 << "%)\n\n" <<
-  fBMS << " BMS (" << float(fBMS)/float(fBP)*100 << "%)\n\n" <<
-  fMuchi2 << " Mu chi2/ndf < 10 (" << float(fMuchi2)/float(fBP)*100 << "%)\n\n" <<
-  fCell << " X Cells (" << float(fCell)/float(fBP)*100 << "%)\n\n" <<
-  fMupchi2 << " Mu' chi2/ndf < 10 (" << float(fMupchi2)/float(fBP)*100 << "%)\n\n" <<
-  fMZfirst << " Mu' Zfirst < 350 (" << float(fMZfirst)/float(fBP)*100 << "%)\n\n" <<
-  fTrig << " Triggers (" << float(fTrig)/float(fBP)*100 << "%)\n\n" <<
-  fQ2test << " Q2>1 (" << float(fQ2test)/float(fBP)*100 << "%)\n\n" <<
-  fYBjtest << " " << YMIN <<"<y<" << YMAX <<"(" << float(fYBjtest)/float(fBP)*100 << "%)\n\n" <<
-  fWBjtest << " 5<W<17 (" << float(fWBjtest)/float(fBP)*100 << "%)\n\n" <<
-  fXBjtest << " " << XMIN <<"<x<" << XMAX <<"(" << float(fXBjtest)/float(fBP)*100 << "%)\n\n" <<
-  fHadrons << " Hadrons (" << float(fHadrons)/float(fHadrons)*100 << "%)\n\n" <<
-  fXX0test << " XX0 (" << float(fXX0test)/float(fHadrons)*100 << "%)\n\n" <<
-  fChi2Hadron << " Chi2/ndf>10 (" << float(fChi2Hadron)/float(fHadrons)*100 << "%)\n\n" <<
-  fHZfirst << " Zfirst<350 (" << float(fHZfirst)/float(fHadrons)*100 << "%)\n\n" <<
-  fHZlast << " Zlast>350 (" << float(fHZlast)/float(fHadrons)*100 << "%)\n\n" <<
-  fMom << " Momentum (" << float(fMom)/float(fHadrons)*100 << "%)\n\n" <<
-  fTRICH << " Theta RICH (" << float(fTRICH)/float(fHadrons)*100 << "%)\n\n" <<
-  fPosRICH << " Position RICH (" << float(fPosRICH)/float(fHadrons)*100 << "%)\n\n" <<
-  fZtest << " 0.2<z<0.85 (" << float(fZtest)/float(fHadrons)*100 << "%)\n\n" <<
-  fHplus << " h+\n\n" <<
-  fHminus << " h-\n\n" <<
-  fPiplus << " pi+\n\n" <<
-  fPiminus << " pi-\n\n" <<
-  fKplus << " K+\n\n" <<
-  fKminus << " K-\n\n" <<
-  fPplus << " p+\n\n" <<
-  fPminus << " p-\n\n" <<
-  "true pions : + " << fPiplus_true << " - " << fPiminus_true << "\n\n" <<
-  "true kaons : + " << fKplus_true << " - " << fKminus_true << "\n\n" <<
-  "true protons : + " << fPplus_true << " - " << fPminus_true << "\n\n";
-
-  shout.close();
 
   return 0;
 }

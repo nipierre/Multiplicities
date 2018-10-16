@@ -77,6 +77,53 @@ void fetch_acceptance(string pname, int np)
 
 }
 
+void fetch_zvtx_acceptance(string pname, int np)
+{
+  ifstream acc_file(pname);
+  double dummy;
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int l=0; l<4; l++)
+          {
+            acc_file >> dummy;
+          }
+          for(int zv=0; zv<4; zv++)
+          {
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0];
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0];
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1];
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1];
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][2];
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][2];
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][3];
+            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][3];
+#ifdef DEBUG
+            cout << fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0] << " " <<
+            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0] << " " <<
+            fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1] << " " <<
+            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1] << " " <<
+            fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][2] << " " <<
+            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][2] << " " <<
+            fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][3] << " " <<
+            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][3] << endl;
+#endif
+          }
+        }
+      }
+    }
+  }
+
+  acc_file.close();
+
+}
+
 void fetch_yavg_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
@@ -394,6 +441,11 @@ void weight_acceptance()
               {
                 fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l];
                 fAcceptance_weighted[i][j][k].tab[c][1][l] += pow(fBinning_period[period][i][j][k].tab[c][0][l],2)*fAcceptance[period][i][j][k].tab[c][1][l]/pow(fBinning[i][j][k].tab[c][0][l],2);
+                for(int zv=0; zv<4; zv++)
+                {
+                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] += fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l]/fBinning_zvtx[i][j][k][zv].tab[c][0][l];
+                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][1][l] += pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l],2)*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][l]/pow(fBinning_zvtx[i][j][k][zv].tab[c][0][l],2);
+                }
               }
               fAcceptance_yavg_weighted[i][k].tab[c][0][l] += fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][0][l]/fBinning_yavg[i][k].tab[c][0][l];
               fAcceptance_yavg_weighted[i][k].tab[c][1][l] += fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][1][l]/fBinning_yavg[i][k].tab[c][0][l];
@@ -531,6 +583,8 @@ int main(int argc, char **argv)
 
     ifstream dis_file(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()));
     ifstream had_file(Form("rawmult/%d/hadron_%s.txt",year,periodName.c_str()));
+    ifstream dis_zvtx_file(Form("rawmult/%d/DIS_zvtx_%s.txt",year,periodName.c_str()));
+    ifstream had_zvtx_file(Form("rawmult/%d/hadron_zvtx_%s.txt",year,periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
@@ -546,6 +600,13 @@ int main(int argc, char **argv)
               fNDIS_evt[0][i][j][k] += dummy;
               dis_file >> dummy;
               fNDIS_evt_err[0][i][j][k] += dummy;
+              for(int zv=0; zv<4; zv++)
+              {
+                dis_zvtx_file >> dummy;
+                fNDIS_evt_zvtx[0][i][j][k][zv] += dummy;
+                dis_zvtx_file >> dummy;
+                fNDIS_evt_err_zvtx[0][i][j][k][zv] += dummy;
+              }
             }
 
             for(int ll=0; ll<4; ll++)
@@ -594,6 +655,25 @@ int main(int argc, char **argv)
             fBinning_loose[i][j][k].tab[c][0][3] += dummy;
             had_file >> dummy;
             fBinning_severe[i][j][k].tab[c][0][3] += dummy;
+            for(int zv=0; zv<4; zv++)
+            {
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][0][0] += dummy;
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][1][0] += dummy;
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][0][1] += dummy;
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][1][1] += dummy;
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][0][2] += dummy;
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][1][2] += dummy;
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][0][3] += dummy;
+              had_zvtx_file >> dummy;
+              fBinning_period_zvtx[i][j][k][zv].tab[c][1][3] += dummy;
+            }
           }
         }
       }
@@ -611,6 +691,8 @@ int main(int argc, char **argv)
             for(int ll=0; ll<4; ll++)
             {
               fBinning[i][j][k].tab[c][0][ll] += fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][ll];
+              for(int zv=0; zv<4; zv++)
+                fBinning_zvtx[i][j][k][zv].tab[c][0][ll] += fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][ll];
               if(int(fMeanvalues_size[i][j][k].tab[c][ll][0]))
               {
                 fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0] = fMeanvalues_temp[i][j][k].tab[c][ll][0]/int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
@@ -649,6 +731,15 @@ int main(int argc, char **argv)
   TCanvas* c72;
   c72 = new TCanvas("Kaon_Multiplicities_minus","Kaon_Multiplicities_minus",3200,1600);
 
+  TCanvas* c5;
+  c5 = new TCanvas("Hadron_Multiplicities_zvtx","Hadron_Multiplicities_zvtx",3200,1600);
+
+  TCanvas* c6;
+  c6 = new TCanvas("Pion_Multiplicities_zvtx","Pion_Multiplicities_zvtx",3200,1600);
+
+  TCanvas* c7;
+  c7 = new TCanvas("Kaon_Multiplicities_zvtx","Kaon_Multiplicities_zvtx",3200,1600);
+
   TCanvas* c8;
   c8 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
 
@@ -682,6 +773,9 @@ int main(int argc, char **argv)
   c62->SetFillColor(0);
   c71->SetFillColor(0);
   c72->SetFillColor(0);
+  c5->SetFillColor(0);
+  c6->SetFillColor(0);
+  c7->SetFillColor(0);
   c8->SetFillColor(0);
   c9->SetFillColor(0);
   c10->SetFillColor(0);
@@ -698,6 +792,9 @@ int main(int argc, char **argv)
   c62->Divide(5,2,0,0);
   c71->Divide(5,2,0,0);
   c72->Divide(5,2,0,0);
+  c5->Divide(9,5,0,0);
+  c6->Divide(9,5,0,0);
+  c7->Divide(9,5,0,0);
   c8->Divide(5,2,0,0);
   c9->Divide(5,2,0,0);
   c10->Divide(5,2,0,0);
@@ -711,6 +808,9 @@ int main(int argc, char **argv)
   TGraphErrors* H_mult[2][9][6];
   TGraphErrors* P_mult[2][9][6];
   TGraphErrors* K_mult[2][9][6];
+  TGraphErrors* H_zvtx[2][9][6][4];
+  TGraphErrors* P_zvtx[2][9][6][4];
+  TGraphErrors* K_zvtx[2][9][6][4];
   TGraphErrors* H_y[2][9];
   TGraphErrors* P_y[2][9];
   TGraphErrors* K_y[2][9];
@@ -758,6 +858,18 @@ int main(int argc, char **argv)
   std::vector<Double_t> z_range_p[2][9][6];
   std::vector<Double_t> z_range_k[2][9][6];
   std::vector<Double_t> z_range_h[2][9][6];
+  std::vector<Double_t> p_z[2][9][6][4];
+  std::vector<Double_t> k_z[2][9][6][4];
+  std::vector<Double_t> h_z[2][9][6][4];
+  std::vector<Double_t> p_z_err[2][9][6][4];
+  std::vector<Double_t> k_z_err[2][9][6][4];
+  std::vector<Double_t> h_z_err[2][9][6][4];
+  std::vector<Double_t> p_z_sys[2][9][6][4];
+  std::vector<Double_t> k_z_sys[2][9][6][4];
+  std::vector<Double_t> h_z_sys[2][9][6][4];
+  std::vector<Double_t> z_range_p_z[2][9][6][4];
+  std::vector<Double_t> z_range_k_z[2][9][6][4];
+  std::vector<Double_t> z_range_h_z[2][9][6][4];
   std::vector<Double_t> p_y[2][9];
   std::vector<Double_t> k_y[2][9];
   std::vector<Double_t> h_y[2][9];
@@ -817,10 +929,10 @@ int main(int argc, char **argv)
                                                     fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l]),2))
                                                     + fAcceptance_weighted[i][j][k].tab[c][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2))
                                                     : 0);
-                                                    if(l==3 && c==1) cout << i << " "  << j << " " << k << " " << ((fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
-                                                    fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l]),2)) << " "
-                                                    << fAcceptance_weighted[i][j][k].tab[c][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2)
-                                                    << " " << pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2) << " " << fAcceptance_weighted[i][j][k].tab[c][1][l] << endl;
+                                                    // if(l==3 && c==1) cout << i << " "  << j << " " << k << " " << ((fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
+                                                    // fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l]),2)) << " "
+                                                    // << fAcceptance_weighted[i][j][k].tab[c][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2)
+                                                    // << " " << pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2) << " " << fAcceptance_weighted[i][j][k].tab[c][1][l] << endl;
             fMultiplicities[i][j][k].tab[c][2][l] = (fNDIS_evt[0][i][j][k] ?
                                                     Double_t(sqrt(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l],2)+
                                                     pow(0.05*sqrt(fAcceptance_weighted[i][j][k].tab[c][1][l])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
@@ -832,6 +944,32 @@ int main(int argc, char **argv)
               fMultiplicities[i][j][k].tab[c][0][l] = 0 ;
               fMultiplicities[i][j][k].tab[c][1][l] = 0 ;
               fMultiplicities[i][j][k].tab[c][2][l] = 0 ;
+            }
+
+            for(int zv=0; zv<4; zv++)
+            {
+              fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] = (fBinning_zvtx[i][j][k][zv].tab[c][0][l] && fNDIS_evt_zvtx[0][i][j][k][zv] && fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] ?
+                                                      Double_t(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_zvtx[i][j][k][zv].tab[c][0][l]/(fNDIS_evt_zvtx[0][i][j][k][zv]*fZ_bin_width[k]*fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l]))
+                                                      : 0);
+              fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l] = (fNDIS_evt_zvtx[0][i][j][k][zv] && fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] ?
+                                                      Double_t(((fBinning_zvtx[i][j][k][zv].tab[c][1][l]/pow(fNDIS_evt_zvtx[0][i][j][k][zv],2)-pow(fBinning_zvtx[i][j][k][zv].tab[c][0][l],2)*
+                                                      fNDIS_evt_err_zvtx[0][i][j][k][zv]/pow(fNDIS_evt_zvtx[0][i][j][k][zv],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l]),2))
+                                                      + fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_zvtx[i][j][k][zv].tab[c][0][l]/(fNDIS_evt_zvtx[0][i][j][k][zv]*fZ_bin_width[k]*pow(fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l],2)),2))
+                                                      : 0);
+
+              if(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l]<=0 || fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l]*0.9<fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l])
+              {
+                fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] = 0 ;
+                fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l] = 0 ;
+                fMultiplicities_zvtx[i][j][k][zv].tab[c][2][l] = 0 ;
+              }
+
+              p_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0] : 0);
+              k_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1] : 0);
+              h_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3] : 0);
+              p_err_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0]) : 0);
+              k_err_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
+              h_err_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
             }
           }
 
@@ -1148,6 +1286,199 @@ int main(int argc, char **argv)
         z_range_p[c][i][j].clear();
         z_range_k[c][i][j].clear();
         z_range_h[c][i][j].clear();
+
+        for(int zv=0; zv<4; zv++)
+        {
+          for(int l=0; l<12; l++)
+          {
+            z_range_p_z[c][i][j][zv].push_back(z_range[l]);
+            z_range_k_z[c][i][j][zv].push_back(z_range[l]);
+            z_range_h_z[c][i][j][zv].push_back(z_range[l]);
+          }
+
+          for(int k=12; k>0; k--)
+          {
+            if(!p_z[c][i][j][zv][k-1]) {p_z[c][i][j][zv].erase(p_m[c][i][j].begin()+k-1); p_err_z[c][i][j][zv].erase(p_err_z[c][i][j][zv].begin()+k-1); z_range_p_z[c][i][j][zv].erase(z_range_p_z[c][i][j][zv].begin()+k-1);}
+            if(!k_z[c][i][j][zv][k-1]) {k_z[c][i][j][zv].erase(k_m[c][i][j].begin()+k-1); k_err_z[c][i][j][zv].erase(k_err_z[c][i][j][zv].begin()+k-1); z_range_k_z[c][i][j][zv].erase(z_range_k_z[c][i][j][zv].begin()+k-1);}
+            if(!h_z[c][i][j][zv][k-1]) {h_z[c][i][j][zv].erase(h_m[c][i][j].begin()+k-1); h_err_z[c][i][j][zv].erase(h_err_z[c][i][j][zv].begin()+k-1); z_range_h_z[c][i][j][zv].erase(z_range_h_z[c][i][j][zv].begin()+k-1);}
+          }
+
+          bool p_z_empty = 0;
+          bool k_z_empty = 0;
+          bool h_z_empty = 0;
+
+          if(!(Int_t(p_z[c][i][j][zv].size()))) p_z_empty = 1;
+          if(!(Int_t(k_z[c][i][j][zv].size()))) k_z_empty = 1;
+          if(!(Int_t(h_z[c][i][j][zv].size()))) h_z_empty = 1;
+
+          H_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(h_z[c][i][j][zv].size()),&(z_range_h_z[c][i][j][zv][0]),&(h_z[c][i][j][zv][0]),0,&(h_err_z[c][i][j][zv][0]));
+          P_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(p_z[c][i][j][zv].size()),&(z_range_p_z[c][i][j][zv][0]),&(p_z[c][i][j][zv][0]),0,&(p_err_z[c][i][j][zv][0]));
+          K_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(k_z[c][i][j][zv].size()),&(z_range_k_z[c][i][j][zv][0]),&(k_z[c][i][j][zv][0]),0,&(k_err_z[c][i][j][zv][0]));
+
+          H_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv]);
+          P_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv]);
+          K_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv]);
+
+          H_zvtx[c][i][j][zv]->SetMarkerSize(2);
+          P_zvtx[c][i][j][zv]->SetMarkerSize(2);
+          K_zvtx[c][i][j][zv]->SetMarkerSize(2);
+
+          H_zvtx[c][i][j][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
+          P_zvtx[c][i][j][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
+          K_zvtx[c][i][j][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
+
+          H_zvtx[c][i][j][zv]->SetTitle("");
+          P_zvtx[c][i][j][zv]->SetTitle("");
+          K_zvtx[c][i][j][zv]->SetTitle("");
+
+          H_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
+          P_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
+          K_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
+
+          if(!h_z_empty)
+          {
+            c5.cd(i+1+9*j);
+            gPad->SetFillStyle(4000);
+            if(H_zvtx[c][i][j[zv]])
+            {
+              if(!c && !zv)
+              {
+                H_zvtx[c][i][j][zv]->Draw("SAMEPA");
+                H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                H_zvtx[c][i][j][zv]->SetMinimum(0.);
+                H_zvtx[c][i][j][zv]->SetMaximum(4.0);
+                H_zvtx[c][i][j][zv]->GetXaxis()->SetLabelSize(0.06);
+                H_zvtx[c][i][j][zv]->GetYaxis()->SetLabelSize(0.06);
+                H_zvtx[c][i][j][zv]->SetTitle("");
+                if(j==5) gPad->SetBottomMargin(.15);
+                if(i==0) gPad->SetLeftMargin(.22);
+                if(i==8 && j==5)
+                {
+                  H_zvtx[c][i][j][zv]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  H_zvtx[c][i][j][zv]->GetXaxis()->SetTitleSize(0.08);
+                  H_zvtx[c][i][j][zv]->GetXaxis()->SetTitleOffset(.8);
+                }
+                H_zvtx[c][i][j][zv]->GetXaxis()->SetNdivisions(304,kTRUE);
+                H_zvtx[c][i][j][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
+                if(i==1 && j==0)
+                {
+                  H_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                  H_zvtx[c][i][j][zv]->GetYaxis()->SetTitleSize(0.08);
+                }
+                H_zvtx[c][i][j][zv]->Draw("SAMEP");
+                H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                H_zvtx[c][i][j][zv]->SetMinimum(0.);
+                H_zvtx[c][i][j][zv]->SetMaximum(4.0);
+                c5.Range(0.1,0.,0.9,4.0);
+              }
+              else
+              {
+                H_zvtx[c][i][j][zv]->Draw("SAMEP");
+                H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                H_zvtx[c][i][j][zv]->SetMinimum(0.);
+                H_zvtx[c][i][j][zv]->SetMaximum(4.0);
+              }
+            }
+            c5.Update();
+          }
+
+          if(!p_z_empty)
+          {
+            c6.cd(i+1+9*j);
+            gPad->SetFillStyle(4000);
+            if(P_zvtx[c][i][j][zv])
+            {
+              if(!c && !zv)
+              {
+                P_zvtx[c][i][j][zv]->Draw("SAMEPA");
+                P_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                P_zvtx[c][i][j][zv]->SetMinimum(0.);
+                P_zvtx[c][i][j][zv]->SetMaximum(3.5);
+                P_zvtx[c][i][j][zv]->GetXaxis()->SetLabelSize(0.06);
+                P_zvtx[c][i][j][zv]->GetYaxis()->SetLabelSize(0.06);
+                P_zvtx[c][i][j][zv]->SetTitle("");
+                if(j==5) gPad->SetBottomMargin(.15);
+                if(i==0) gPad->SetLeftMargin(.22);
+                if(i==8 && j==5)
+                {
+                  P_zvtx[c][i][j][zv]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  P_zvtx[c][i][j][zv]->GetXaxis()->SetTitleSize(0.08);
+                  P_zvtx[c][i][j][zv]->GetXaxis()->SetTitleOffset(.8);
+                }
+                P_zvtx[c][i][j][zv]->GetXaxis()->SetNdivisions(304,kTRUE);
+                P_zvtx[c][i][j][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
+                if(i==1 && j==0)
+                {
+                  P_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                  P_zvtx[c][i][j][zv]->GetYaxis()->SetTitleSize(0.08);
+                }
+                P_zvtx[c][i][j][zv]->Draw("SAMEP");
+                P_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                P_zvtx[c][i][j][zv]->SetMinimum(0.);
+                P_zvtx[c][i][j][zv]->SetMaximum(3.5);
+                c6.Range(0.1,0.,0.9,3.5);
+              }
+              else
+              {
+                P_zvtx[c][i][j][zv]->Draw("SAMEP");
+                P_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                P_zvtx[c][i][j][zv]->SetMinimum(0.);
+                P_zvtx[c][i][j][zv]->SetMaximum(3.5);
+              }
+            }
+            c6.Update();
+          }
+
+          if(!k_z_empty)
+          {
+            c7.cd(i+1+9*j);
+            gPad->SetFillStyle(4000);
+            if(P_zvtx[c][i][j][zv])
+            {
+              if(!c && !zv)
+              {
+                K_zvtx[c][i][j][zv]->Draw("SAMEPA");
+                K_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                K_zvtx[c][i][j][zv]->SetMinimum(0.);
+                K_zvtx[c][i][j][zv]->SetMaximum(0.8);
+                K_zvtx[c][i][j][zv]->GetXaxis()->SetLabelSize(0.06);
+                K_zvtx[c][i][j][zv]->GetYaxis()->SetLabelSize(0.06);
+                K_zvtx[c][i][j][zv]->SetTitle("");
+                if(j==5) gPad->SetBottomMargin(.15);
+                if(i==0) gPad->SetLeftMargin(.22);
+                if(i==8 && j==5)
+                {
+                  K_zvtx[c][i][j][zv]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  K_zvtx[c][i][j][zv]->GetXaxis()->SetTitleSize(0.08);
+                  K_zvtx[c][i][j][zv]->GetXaxis()->SetTitleOffset(.8);
+                }
+                K_zvtx[c][i][j][zv]->GetXaxis()->SetNdivisions(304,kTRUE);
+                K_zvtx[c][i][j][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
+                if(i==1 && j==0)
+                {
+                  K_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                  K_zvtx[c][i][j][zv]->GetYaxis()->SetTitleSize(0.08);
+                }
+                K_zvtx[c][i][j][zv]->Draw("SAMEP");
+                K_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                K_zvtx[c][i][j][zv]->SetMinimum(0.);
+                K_zvtx[c][i][j][zv]->SetMaximum(0.8);
+                c7.Range(0.1,0.,0.9,0.8);
+              }
+              else
+              {
+                K_zvtx[c][i][j][zv]->Draw("SAMEP");
+                K_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                K_zvtx[c][i][j][zv]->SetMinimum(0.);
+                K_zvtx[c][i][j][zv]->SetMaximum(0.8);
+              }
+            }
+            c7.Update();
+          }
+          z_range_p_z[c][i][j][zv].clear();
+          z_range_k_z[c][i][j][zv].clear();
+          z_range_h_z[c][i][j][zv].clear();
+        }
       }
     }
 
