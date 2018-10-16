@@ -978,6 +978,8 @@ int main(int argc, char **argv)
                 fMultiplicities_zvtx[i][j][k][zv].tab[c][2][l] = 0 ;
               }
 
+              cout << c << " " << i << " " << j << " " << k << " " << l << " " << fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] << endl;
+
               p_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0] : 0);
               k_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1] : 0);
               h_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3] : 0);
