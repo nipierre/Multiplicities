@@ -1353,6 +1353,8 @@ int main(int argc, char **argv)
           P_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
           K_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
 
+          cout << "pouet1" << endl;
+
           if(!h_z_empty)
           {
             c5->cd(i+1+9*j);
@@ -1400,6 +1402,8 @@ int main(int argc, char **argv)
             c5->Update();
           }
 
+          cout << "pouet2" << endl;
+
           if(!p_z_empty)
           {
             c6->cd(i+1+9*j);
@@ -1446,6 +1450,8 @@ int main(int argc, char **argv)
             }
             c6->Update();
           }
+
+          cout << "pouet3" << endl;
 
           if(!k_z_empty)
           {
