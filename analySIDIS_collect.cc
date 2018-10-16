@@ -1498,6 +1498,8 @@ int main(int argc, char **argv)
       }
     }
 
+    cout << "pouet" << endl;
+
     Double_t MultiplicitiesSum[2][2][4];
     MultiplicitiesSum[0][0][0] = 0;
     MultiplicitiesSum[0][1][0] = 0;
