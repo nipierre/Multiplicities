@@ -586,7 +586,7 @@ int main(int argc, char **argv)
     {
       fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
       fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
-      fetch_zvtx_acceptance(Form("acceptance/%d/acceptance_zvtx_%s.txt",year,periodName.c_str()),fNumberPeriod-1)
+      fetch_zvtx_acceptance(Form("acceptance/%d/acceptance_zvtx_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
     }
     else
     {
