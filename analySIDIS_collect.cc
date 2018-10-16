@@ -2416,6 +2416,9 @@ int main(int argc, char **argv)
   c62->Update();
   c71->Update();
   c72->Update();
+  c5->Update();
+  c6->Update();
+  c7->Update();
   c8->Update();
   c9->Update();
   c10->Update();
@@ -2432,6 +2435,9 @@ int main(int argc, char **argv)
   c62->Print(Form("%s/pion_multiplicity_file.pdf)",data_path),"pdf");
   c71->Print(Form("%s/kaon_multiplicity_file.pdf(",data_path),"pdf");
   c72->Print(Form("%s/kaon_multiplicity_file.pdf)",data_path),"pdf");
+  c5->Print(Form("%s/hadron_multiplicity_zvtx_file.pdf",data_path),"pdf");
+  c6->Print(Form("%s/pion_multiplicity_zvtx_file.pdf",data_path),"pdf");
+  c7->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
   c8->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",data_path));
   c9->Print(Form("%s/pion_multiplicity_yavg_file.pdf",data_path));
   c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
