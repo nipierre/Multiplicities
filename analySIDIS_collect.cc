@@ -1305,10 +1305,6 @@ int main(int argc, char **argv)
 
         cout << "pouet" << endl;
 
-      }
-
-      for(int c=1; c>=0; c--)
-      {
         for(int zv=0; zv<4; zv++)
         {
           for(int l=0; l<12; l++)
@@ -1367,6 +1363,7 @@ int main(int argc, char **argv)
             {
               if(!c && !zv)
               {
+                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->Draw("SAMEPA");
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
@@ -1397,6 +1394,7 @@ int main(int argc, char **argv)
               }
               else
               {
+                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->Draw("SAMEP");
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
