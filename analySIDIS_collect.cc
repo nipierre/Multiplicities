@@ -967,9 +967,9 @@ int main(int argc, char **argv)
               p_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0] : 0);
               k_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1] : 0);
               h_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3] : 0);
-              p_err_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0]) : 0);
-              k_err_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
-              h_err_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
+              p_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0]) : 0);
+              k_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
+              h_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
             }
           }
 
@@ -1298,9 +1298,9 @@ int main(int argc, char **argv)
 
           for(int k=12; k>0; k--)
           {
-            if(!p_z[c][i][j][zv][k-1]) {p_z[c][i][j][zv].erase(p_m[c][i][j].begin()+k-1); p_err_z[c][i][j][zv].erase(p_err_z[c][i][j][zv].begin()+k-1); z_range_p_z[c][i][j][zv].erase(z_range_p_z[c][i][j][zv].begin()+k-1);}
-            if(!k_z[c][i][j][zv][k-1]) {k_z[c][i][j][zv].erase(k_m[c][i][j].begin()+k-1); k_err_z[c][i][j][zv].erase(k_err_z[c][i][j][zv].begin()+k-1); z_range_k_z[c][i][j][zv].erase(z_range_k_z[c][i][j][zv].begin()+k-1);}
-            if(!h_z[c][i][j][zv][k-1]) {h_z[c][i][j][zv].erase(h_m[c][i][j].begin()+k-1); h_err_z[c][i][j][zv].erase(h_err_z[c][i][j][zv].begin()+k-1); z_range_h_z[c][i][j][zv].erase(z_range_h_z[c][i][j][zv].begin()+k-1);}
+            if(!p_z[c][i][j][zv][k-1]) {p_z[c][i][j][zv].erase(p_m[c][i][j].begin()+k-1); p_z_err[c][i][j][zv].erase(p_z_err[c][i][j][zv].begin()+k-1); z_range_p_z[c][i][j][zv].erase(z_range_p_z[c][i][j][zv].begin()+k-1);}
+            if(!k_z[c][i][j][zv][k-1]) {k_z[c][i][j][zv].erase(k_m[c][i][j].begin()+k-1); k_z_err[c][i][j][zv].erase(k_z_err[c][i][j][zv].begin()+k-1); z_range_k_z[c][i][j][zv].erase(z_range_k_z[c][i][j][zv].begin()+k-1);}
+            if(!h_z[c][i][j][zv][k-1]) {h_z[c][i][j][zv].erase(h_m[c][i][j].begin()+k-1); h_z_err[c][i][j][zv].erase(h_z_err[c][i][j][zv].begin()+k-1); z_range_h_z[c][i][j][zv].erase(z_range_h_z[c][i][j][zv].begin()+k-1);}
           }
 
           bool p_z_empty = 0;
@@ -1311,13 +1311,13 @@ int main(int argc, char **argv)
           if(!(Int_t(k_z[c][i][j][zv].size()))) k_z_empty = 1;
           if(!(Int_t(h_z[c][i][j][zv].size()))) h_z_empty = 1;
 
-          H_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(h_z[c][i][j][zv].size()),&(z_range_h_z[c][i][j][zv][0]),&(h_z[c][i][j][zv][0]),0,&(h_err_z[c][i][j][zv][0]));
-          P_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(p_z[c][i][j][zv].size()),&(z_range_p_z[c][i][j][zv][0]),&(p_z[c][i][j][zv][0]),0,&(p_err_z[c][i][j][zv][0]));
-          K_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(k_z[c][i][j][zv].size()),&(z_range_k_z[c][i][j][zv][0]),&(k_z[c][i][j][zv][0]),0,&(k_err_z[c][i][j][zv][0]));
+          H_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(h_z[c][i][j][zv].size()),&(z_range_h_z[c][i][j][zv][0]),&(h_z[c][i][j][zv][0]),0,&(h_z_err[c][i][j][zv][0]));
+          P_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(p_z[c][i][j][zv].size()),&(z_range_p_z[c][i][j][zv][0]),&(p_z[c][i][j][zv][0]),0,&(p_z_err[c][i][j][zv][0]));
+          K_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(k_z[c][i][j][zv].size()),&(z_range_k_z[c][i][j][zv][0]),&(k_z[c][i][j][zv][0]),0,&(k_z_err[c][i][j][zv][0]));
 
-          H_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv]);
-          P_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv]);
-          K_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv]);
+          H_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
+          P_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
+          K_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
 
           H_zvtx[c][i][j][zv]->SetMarkerSize(2);
           P_zvtx[c][i][j][zv]->SetMarkerSize(2);
