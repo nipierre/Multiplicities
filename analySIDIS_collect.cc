@@ -723,6 +723,8 @@ int main(int argc, char **argv)
     resetValues();
   }
 
+  cout << "pouet" << endl;
+
   if(YMULT == 3) yintegrated();
   weight_acceptance();
   weight_meanvalues();
@@ -1078,6 +1080,8 @@ int main(int argc, char **argv)
           h_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][3] ? sqrt(fMultiplicities[i][j][k].tab[c][2][3]) : 0);
         }
       }
+
+      cout << "pouet" << endl;
 
       for(int c=0; c<2; c++)
       {
