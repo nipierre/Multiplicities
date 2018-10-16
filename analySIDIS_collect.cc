@@ -723,8 +723,6 @@ int main(int argc, char **argv)
     resetValues();
   }
 
-  cout << "pouet" << endl;
-
   if(YMULT == 3) yintegrated();
   weight_acceptance();
   weight_meanvalues();
@@ -1085,8 +1083,6 @@ int main(int argc, char **argv)
         }
       }
 
-      cout << "pouet" << endl;
-
       for(int c=0; c<2; c++)
       {
         for(int l=0; l<12; l++)
@@ -1307,8 +1303,6 @@ int main(int argc, char **argv)
         z_range_k[c][i][j].clear();
         z_range_h[c][i][j].clear();
 
-        cout << "pouet" << endl;
-
         for(int zv=0; zv<4; zv++)
         {
           for(int l=0; l<12; l++)
@@ -1357,8 +1351,6 @@ int main(int argc, char **argv)
           P_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
           K_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
 
-          cout << "pouet1" << endl;
-
           if(!h_z_empty)
           {
             c5->cd(i+1+9*j);
@@ -1367,57 +1359,45 @@ int main(int argc, char **argv)
             {
               if(!c && !zv)
               {
-                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->Draw("SAMEPA");
-                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
                 H_zvtx[c][i][j][zv]->SetMaximum(4.0);
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLabelSize(0.06);
                 H_zvtx[c][i][j][zv]->GetYaxis()->SetLabelSize(0.06);
                 H_zvtx[c][i][j][zv]->SetTitle("");
-                cout << "pouet11" << endl;
                 if(j==5) gPad->SetBottomMargin(.15);
                 if(i==0) gPad->SetLeftMargin(.22);
-                cout << "pouet11" << endl;
                 if(i==8 && j==5)
                 {
                   H_zvtx[c][i][j][zv]->GetXaxis()->SetTitle("#font[ 12]{z}");
                   H_zvtx[c][i][j][zv]->GetXaxis()->SetTitleSize(0.08);
                   H_zvtx[c][i][j][zv]->GetXaxis()->SetTitleOffset(.8);
                 }
-                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetNdivisions(304,kTRUE);
                 H_zvtx[c][i][j][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
-                cout << "pouet11" << endl;
                 if(i==2 && j==0)
                 {
                   H_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
                   H_zvtx[c][i][j][zv]->GetYaxis()->SetTitleSize(0.08);
                 }
-                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->Draw("SAMEP");
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
                 H_zvtx[c][i][j][zv]->SetMaximum(4.0);
                 c5->Range(0.1,0.,0.9,4.0);
-                cout << "pouet11" << endl;
               }
               else
               {
-                cout << "pouet12" << endl;
                 H_zvtx[c][i][j][zv]->Draw("SAMEP");
-                cout << "pouet12" << endl;
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
                 H_zvtx[c][i][j][zv]->SetMaximum(4.0);
               }
             }
             c5->Update();
-            cout << "pouet111" << endl;
           }
 
-          cout << "pouet2" << endl;
 
           if(!p_z_empty)
           {
@@ -1520,8 +1500,6 @@ int main(int argc, char **argv)
         }
       }
     }
-
-    cout << "pouet" << endl;
 
     Double_t MultiplicitiesSum[2][2][4];
     MultiplicitiesSum[0][0][0] = 0;
