@@ -1021,6 +1021,7 @@ int main(int argc, char **argv)
       vector<Double_t> XBjlocal;
       vector<Double_t> YBjlocal;
       vector<Double_t> Q2local;
+      vector<Double_t> Zvtxlocal;
       vector<Double_t> XBjloose;
       vector<Double_t> YBjloose;
       vector<Double_t> Q2loose;
@@ -1096,6 +1097,23 @@ int main(int argc, char **argv)
         chi2_hadron->GetEntry(ip);
         HZfirst->GetEntry(ip);
         HZlast->GetEntry(ip);
+
+        //--------------------------------------------------------------------------
+        //--------- Vertex Study ---------------------------------------------------
+        //--------------------------------------------------------------------------
+
+        Double_t zlab = z->GetLeaf("z")->GetValue();
+        zlabbin=-1;
+
+        if(Y2016)
+        {
+          if(!(-325<zlab && zlab<-71)) continue;
+
+          if(-325<=zlab && zlab<-261.5) zlabbin = 0;
+          else if(--261.5<=zlab && zlab<-198) zlabbin = 1;
+          else if(-198<=zlab && zlab<-134.5) zlabbin = 2;
+          else if(-134.5<=zlab && zlab<=-71) zlabbin = 3;
+        }
 
         //--------------------------------------------------------------------------
         //--------- Kinematics -----------------------------------------------------
@@ -1386,10 +1404,16 @@ int main(int argc, char **argv)
           fNDIS_evt[0][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
           fNDIS_evt[1][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
           fNDIS_evt[2][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt_zvtx[0][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt_zvtx[1][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt_zvtx[2][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
 
           fNDIS_evt_err[0][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           fNDIS_evt_err[1][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           fNDIS_evt_err[2][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err_zvtx[0][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err_zvtx[1][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err_zvtx[2][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
 
           fFlag[0][xbin][ybin][i]=0;
           fFlag[1][xbin][ybin][i]=0;
@@ -1413,9 +1437,15 @@ int main(int argc, char **argv)
             fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[0][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[1][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[2][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
             fNDIS_evt_err[1][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
             fNDIS_evt_err[2][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[0][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[1][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[2][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           }
         }
 
@@ -2566,6 +2596,7 @@ int main(int argc, char **argv)
         Pvsz_errlocal.push_back(pzcontainer_err);
         XBjlocal.push_back(xBj);
         YBjlocal.push_back(yBj);
+        Zvtxlocal.push_back(zlab);
 
         Q2loose.push_back(Q2);
         Pvszloose.push_back(pzcontainer_loose);
@@ -2693,6 +2724,11 @@ int main(int argc, char **argv)
         else if(0.5<YBjlocal[i] && YBjlocal[i]<0.7) ybin = 4;
         else ybin = 5;
 
+        if(-325<=Zvtxlocal[i] && Zvtxlocal[i]<-261.5) zlabbin = 0;
+        else if(--261.5<=Zvtxlocal[i] && Zvtxlocal[i]<-198) zlabbin = 1;
+        else if(-198<=Zvtxlocal[i] && Zvtxlocal[i]<-134.5) zlabbin = 2;
+        else if(-134.5<=Zvtxlocal[i] && Zvtxlocal[i]<=-71) zlabbin = 3;
+
         for(int j=0; j<2; j++)
         {
           for(int l=0; l<int(Pvszlocal[i].vec[j][0].size()); l++)
@@ -2713,7 +2749,9 @@ int main(int argc, char **argv)
             for(int ll=0; ll<4; ll++)
             {
               fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
+              fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
               fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
+              fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
@@ -2728,6 +2766,7 @@ int main(int argc, char **argv)
       XBjlocal.clear();
       YBjlocal.clear();
       Q2local.clear();
+      Zvtxlocal.clear();
       Pvszloose.clear();
       XBjloose.clear();
       YBjloose.clear();
