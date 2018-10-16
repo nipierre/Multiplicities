@@ -185,6 +185,17 @@ void dummy_acceptance()
             fAcceptance[np][i][j][k].tab[c][1][2]=0;
             fAcceptance[np][i][j][k].tab[c][0][3]=1;
             fAcceptance[np][i][j][k].tab[c][1][3]=0;
+            for(int zv=0; zv<4; zv++)
+            {
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0]=1;
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0]=0;
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1]=1;
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1]=0;
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][2]=1;
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][2]=0;
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][3]=1;
+              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][3]=0;
+            }
           }
         }
       }
@@ -575,6 +586,7 @@ int main(int argc, char **argv)
     {
       fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
       fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
+      fetch_zvtx_acceptance(Form("acceptance/%d/acceptance_zvtx_%s.txt",year,periodName.c_str()),fNumberPeriod-1)
     }
     else
     {
