@@ -1110,7 +1110,7 @@ int main(int argc, char **argv)
           if(!(-325<zlab && zlab<-71)) continue;
 
           if(-325<=zlab && zlab<-261.5) zlabbin = 0;
-          else if(--261.5<=zlab && zlab<-198) zlabbin = 1;
+          else if(-261.5<=zlab && zlab<-198) zlabbin = 1;
           else if(-198<=zlab && zlab<-134.5) zlabbin = 2;
           else if(-134.5<=zlab && zlab<=-71) zlabbin = 3;
         }
