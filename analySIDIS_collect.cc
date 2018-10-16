@@ -1371,21 +1371,26 @@ int main(int argc, char **argv)
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLabelSize(0.06);
                 H_zvtx[c][i][j][zv]->GetYaxis()->SetLabelSize(0.06);
                 H_zvtx[c][i][j][zv]->SetTitle("");
+                cout << "pouet11" << endl;
                 if(j==5) gPad->SetBottomMargin(.15);
                 if(i==0) gPad->SetLeftMargin(.22);
+                cout << "pouet11" << endl;
                 if(i==8 && j==5)
                 {
                   H_zvtx[c][i][j][zv]->GetXaxis()->SetTitle("#font[ 12]{z}");
                   H_zvtx[c][i][j][zv]->GetXaxis()->SetTitleSize(0.08);
                   H_zvtx[c][i][j][zv]->GetXaxis()->SetTitleOffset(.8);
                 }
+                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetNdivisions(304,kTRUE);
                 H_zvtx[c][i][j][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==1 && j==0)
+                cout << "pouet11" << endl;
+                if(i==2 && j==0)
                 {
                   H_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
                   H_zvtx[c][i][j][zv]->GetYaxis()->SetTitleSize(0.08);
                 }
+                cout << "pouet11" << endl;
                 H_zvtx[c][i][j][zv]->Draw("SAMEP");
                 H_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
