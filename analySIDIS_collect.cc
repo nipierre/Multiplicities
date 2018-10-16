@@ -1303,6 +1303,8 @@ int main(int argc, char **argv)
         z_range_k[c][i][j].clear();
         z_range_h[c][i][j].clear();
 
+        cout << "pouet" << endl;
+
         for(int zv=0; zv<4; zv++)
         {
           for(int l=0; l<12; l++)
