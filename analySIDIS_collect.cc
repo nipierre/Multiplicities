@@ -1339,7 +1339,7 @@ int main(int argc, char **argv)
           {
             c5->cd(i+1+9*j);
             gPad->SetFillStyle(4000);
-            if(H_zvtx[c][i][j[zv])
+            if(H_zvtx[c][i][j][zv])
             {
               if(!c && !zv)
               {
