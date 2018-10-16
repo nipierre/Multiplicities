@@ -229,7 +229,8 @@ void LoadSemiInclusiveRadiativeCorrection()
 
 Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
 {
-  int xb, yb;
+  int xb=-1
+  int yb=-1;
 
   if(0.0<x && x<0.00006) xb = 0;
   else if(0.00006<=x && x<0.00085) xb = 1;
@@ -299,7 +300,9 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
 
 Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
 {
-  int xb, yb, zb;
+  int xb=-1;
+  int yb=-1;
+  int zb=-1;
 
   if(0.004<x && x<0.01) xb = 0;
   else if(0.01<=x && x<0.02) xb = 1;
