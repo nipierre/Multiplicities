@@ -1391,6 +1391,7 @@ int main(int argc, char **argv)
                 H_zvtx[c][i][j][zv]->SetMinimum(0.);
                 H_zvtx[c][i][j][zv]->SetMaximum(4.0);
                 c5->Range(0.1,0.,0.9,4.0);
+                cout << "pouet11" << endl;
               }
               else
               {
@@ -1402,6 +1403,7 @@ int main(int argc, char **argv)
               }
             }
             c5->Update();
+            cout << "pouet111" << endl;
           }
 
           cout << "pouet2" << endl;
