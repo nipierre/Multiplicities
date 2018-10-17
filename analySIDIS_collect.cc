@@ -938,6 +938,9 @@ int main(int argc, char **argv)
   std::vector<Double_t> p_reldiff_err[2][9][6];
   std::vector<Double_t> k_reldiff_err[2][9][6];
   std::vector<Double_t> h_reldiff_err[2][9][6];
+  std::vector<Double_t> z_range_p_reldiff[2][9][6][4];
+  std::vector<Double_t> z_range_k_reldiff[2][9][6][4];
+  std::vector<Double_t> z_range_h_reldiff[2][9][6][4];
   std::vector<Double_t> p_y[2][9];
   std::vector<Double_t> k_y[2][9];
   std::vector<Double_t> h_y[2][9];
@@ -968,6 +971,12 @@ int main(int argc, char **argv)
   std::vector<Double_t> rx_range_p_y;
   std::vector<Double_t> rx_range_k_y;
   std::vector<Double_t> rx_range_h_y;
+
+  TLine l1(0.1,0.9,0.9,0.9);
+  TLine l2(0.1,1.1,0.9,1.1);
+  TLine l3(0.1,0.95,0.9,0.95);
+  TLine l4(0.1,1.05,0.9,1.05);
+  l3.SetLineStyle(2); l4.SetLineStyle(2);
 
   TLine lsys(0.1,0,0.9,0);
   lsys.SetLineStyle(2);
@@ -1046,12 +1055,12 @@ int main(int argc, char **argv)
             h_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
           }
 
-          p_reldiff[c][i][j].push_back(RelDiff(x,y,z,0));
-          k_reldiff[c][i][j].push_back(RelDiff(x,y,z,1));
-          h_reldiff[c][i][j].push_back(RelDiff(x,y,z,3));
-          p_reldiff_err[c][i][j].push_back(RelDiff_Err(x,y,z,0));
-          k_reldiff_err[c][i][j].push_back(RelDiff_Err(x,y,z,1));
-          h_reldiff_err[c][i][j].push_back(RelDiff_Err(x,y,z,3));
+          p_reldiff[c][i][j].push_back(RelDiff(i,j,k,0));
+          k_reldiff[c][i][j].push_back(RelDiff(i,j,k,1));
+          h_reldiff[c][i][j].push_back(RelDiff(i,j,k,3));
+          p_reldiff_err[c][i][j].push_back(RelDiff_Err(i,j,k,0));
+          k_reldiff_err[c][i][j].push_back(RelDiff_Err(i,j,k,1));
+          h_reldiff_err[c][i][j].push_back(RelDiff_Err(i,j,k,3));
 
           if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
@@ -1573,13 +1582,13 @@ int main(int argc, char **argv)
         bool k_reldiff_empty = 0;
         bool h_reldiff_empty = 0;
 
-        if(!(int(p_reldiff.size()))) p_reldiff_empty = 1;
-        if(!(int(k_reldiff.size()))) k_reldiff_empty = 1;
-        if(!(int(h_reldiff.size()))) h_reldiff_empty = 1;
+        if(!(int(p_reldiff[c][i][j].size()))) p_reldiff_empty = 1;
+        if(!(int(k_reldiff[c][i][j].size()))) k_reldiff_empty = 1;
+        if(!(int(h_reldiff[c][i][j].size()))) h_reldiff_empty = 1;
 
-        P_reldiff[c][i][j] = new TGraphErrors(int(p_reldiff.size()),&(z_range_p_reldiff[0]),&(p_reldiff[0]),0,&(p_reldiff_err[0]));
-        K_reldiff[c][i][j] = new TGraphErrors(int(k_reldiff.size()),&(z_range_k_reldiff[0]),&(k_reldiff[0]),0,&(k_reldiff_err[0]));
-        H_reldiff[c][i][j] = new TGraphErrors(int(h_reldiff.size()),&(z_range_h_reldiff[0]),&(h_reldiff[0]),0,&(h_reldiff_err[0]));
+        P_reldiff[c][i][j] = new TGraphErrors(int(p_reldiff[c][i][j].size()),&(z_range_p_reldiff[c][i][j][0]),&(p_reldiff[c][i][j][0]),0,&(p_reldiff_err[c][i][j][0]));
+        K_reldiff[c][i][j] = new TGraphErrors(int(k_reldiff[c][i][j].size()),&(z_range_k_reldiff[c][i][j][0]),&(k_reldiff[c][i][j][0]),0,&(k_reldiff_err[c][i][j][0]));
+        H_reldiff[c][i][j] = new TGraphErrors(int(h_reldiff[c][i][j].size()),&(z_range_h_reldiff[c][i][j][0]),&(h_reldiff[c][i][j][0]),0,&(h_reldiff_err[c][i][j][0]));
 
         if(!c)
         {
@@ -1616,7 +1625,7 @@ int main(int argc, char **argv)
 
         if(!h_reldiff_empty)
         {
-          c53.cd(i+1+9*j);
+          c53->cd(i+1+9*j);
           gPad->SetFillStyle(4000);
           if(H_reldiff[c][i][j])
           {
@@ -1652,7 +1661,7 @@ int main(int argc, char **argv)
               l2.Draw("SAME");
               l3.Draw("SAME");
               l4.Draw("SAME");
-              c53.Range(0.1,0.,0.9,2.);
+              c53->Range(0.1,0.,0.9,2.);
             }
             else
             {
@@ -1662,11 +1671,11 @@ int main(int argc, char **argv)
               H_reldiff[c][i][j]->SetMaximum(2.0);
             }
           }
-          c53.Update();
+          c53->Update();
         }
         if(!p_reldiff_empty)
         {
-          c63.cd(i+1+9*j);
+          c63->cd(i+1+9*j);
           gPad->SetFillStyle(4000);
           if(P_reldiff[c][i][j])
           {
@@ -1702,7 +1711,7 @@ int main(int argc, char **argv)
               l2.Draw("SAME");
               l3.Draw("SAME");
               l4.Draw("SAME");
-              c63.Range(0.1,0.,0.9,2.);
+              c63->Range(0.1,0.,0.9,2.);
             }
             else
             {
@@ -1712,11 +1721,11 @@ int main(int argc, char **argv)
               P_reldiff[c][i][j]->SetMaximum(2.0);
             }
           }
-          c63.Update();
+          c63->Update();
         }
         if(!k_reldiff_empty)
         {
-          c73.cd(i+1+9*j);
+          c73->cd(i+1+9*j);
           gPad->SetFillStyle(4000);
           if(K_reldiff[c][i][j])
           {
@@ -1752,7 +1761,7 @@ int main(int argc, char **argv)
               l2.Draw("SAME");
               l3.Draw("SAME");
               l4.Draw("SAME");
-              c73.Range(0.1,0.,0.9,2.);
+              c73->Range(0.1,0.,0.9,2.);
             }
             else
             {
@@ -1762,7 +1771,7 @@ int main(int argc, char **argv)
               K_reldiff[c][i][j]->SetMaximum(2.0);
             }
           }
-          c73.Update();
+          c73->Update();
         }
       }
     }
