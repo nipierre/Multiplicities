@@ -1041,7 +1041,7 @@ int main(int argc, char **argv)
                 fMultiplicities_zvtx[i][j][k][zv].tab[c][2][l] = 0 ;
               }
 
-              cout << c << " " << i << " " << j << " " << k << " " << l << " " << zv << " " << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << " " << fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] << " " <<  fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] << endl;
+              // cout << c << " " << i << " " << j << " " << k << " " << l << " " << zv << " " << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << " " << fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] << " " <<  fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] << endl;
             }
           }
 
