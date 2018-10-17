@@ -455,7 +455,7 @@ void weight_acceptance()
                 for(int zv=0; zv<4; zv++)
                 {
                   fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] += fBinning_zvtx[i][j][k][zv].tab[c][0][l] ? fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l]/fBinning_zvtx[i][j][k][zv].tab[c][0][l] : 0;
-                  cout << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << " " << fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << endl;
+                  // cout << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << " " << fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << endl;
                   fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][1][l] += fBinning_zvtx[i][j][k][zv].tab[c][0][l] ? pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l],2)*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][l]/pow(fBinning_zvtx[i][j][k][zv].tab[c][0][l],2) : 0;
                 }
               }
@@ -1518,8 +1518,6 @@ int main(int argc, char **argv)
             c6->Update();
           }
 
-          cout << "pouet3" << endl;
-
           if(!k_z_empty)
           {
             c7->cd(i+1+9*j);
@@ -1630,8 +1628,6 @@ int main(int argc, char **argv)
         K_reldiff[c][i][j]->SetTitle("");
         H_reldiff[c][i][j]->SetTitle("");
 
-        cout << "pouet4" << endl;
-
         if(!h_reldiff_empty)
         {
           c53->cd(i+1+9*j);
@@ -1647,9 +1643,9 @@ int main(int argc, char **argv)
               H_reldiff[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               H_reldiff[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               H_reldiff[c][i][j]->SetTitle("");
-              if(i>4) gPad->SetBottomMargin(.15);
-              if(i==0 || i==5) gPad->SetLeftMargin(.22);
-              if(i==8)
+              if(j==5) gPad->SetBottomMargin(.15);
+              if(i==0) gPad->SetLeftMargin(.22);
+              if(i==8 && j==5)
               {
                 H_reldiff[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
                 H_reldiff[c][i][j]->GetXaxis()->SetTitleSize(0.08);
@@ -1657,7 +1653,7 @@ int main(int argc, char **argv)
               }
               H_reldiff[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
               H_reldiff[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-              if(i==0)
+              if(i==1 && j==0)
               {
                 H_reldiff[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
                 H_reldiff[c][i][j]->GetYaxis()->SetTitleSize(0.08);
@@ -1697,9 +1693,9 @@ int main(int argc, char **argv)
               P_reldiff[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               P_reldiff[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               P_reldiff[c][i][j]->SetTitle("");
-              if(i>4) gPad->SetBottomMargin(.15);
-              if(i==0 || i==5) gPad->SetLeftMargin(.22);
-              if(i==8)
+              if(j==5) gPad->SetBottomMargin(.15);
+              if(i==0) gPad->SetLeftMargin(.22);
+              if(i==8 && j==5)
               {
                 P_reldiff[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
                 P_reldiff[c][i][j]->GetXaxis()->SetTitleSize(0.08);
@@ -1707,7 +1703,7 @@ int main(int argc, char **argv)
               }
               P_reldiff[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
               P_reldiff[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-              if(i==0)
+              if(i==1 && j==0)
               {
                 P_reldiff[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
                 P_reldiff[c][i][j]->GetYaxis()->SetTitleSize(0.08);
@@ -1747,9 +1743,9 @@ int main(int argc, char **argv)
               K_reldiff[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               K_reldiff[c][i][j]->GetYaxis()->SetLabelSize(0.06);
               K_reldiff[c][i][j]->SetTitle("");
-              if(i>4) gPad->SetBottomMargin(.15);
-              if(i==0 || i==5) gPad->SetLeftMargin(.22);
-              if(i==8)
+              if(j==5) gPad->SetBottomMargin(.15);
+              if(i==0) gPad->SetLeftMargin(.22);
+              if(i==8 && j==5)
               {
                 K_reldiff[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
                 K_reldiff[c][i][j]->GetXaxis()->SetTitleSize(0.08);
@@ -1757,7 +1753,7 @@ int main(int argc, char **argv)
               }
               K_reldiff[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
               K_reldiff[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-              if(i==0)
+              if(i==1 && j==0)
               {
                 K_reldiff[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
                 K_reldiff[c][i][j]->GetYaxis()->SetTitleSize(0.08);
