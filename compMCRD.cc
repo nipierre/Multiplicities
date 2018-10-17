@@ -2328,6 +2328,9 @@ void RDextraction(string pFilelist)
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
         if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
 
+        // z cut
+        if(!(0.2<zBj && zBj<0.85)) continue;
+
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
 
