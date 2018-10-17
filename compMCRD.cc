@@ -669,11 +669,12 @@ void MCextraction(string pFilelist)
     // ---------------------------------------------------------------------------
 
     //DISEvt
+    //DISEvt
     TBranch *runNo = (TBranch*) tree->FindBranch("runNo");
     TBranch *spillNo = (TBranch*) tree->FindBranch("spillNo");
     TBranch *evtInSpill = (TBranch*) tree->FindBranch("evtInSpill");
     TBranch *trigMask = (TBranch*) tree->FindBranch("trigMask");
-    //TBranch *evNo = (TBranch*) tree->FindBranch("evNo");
+    TBranch *evNo = (TBranch*) tree->FindBranch("evNo");
     TBranch *x = (TBranch*) tree->FindBranch("x");
     TBranch *y = (TBranch*) tree->FindBranch("y");
     TBranch *z = (TBranch*) tree->FindBranch("z");
@@ -685,25 +686,39 @@ void MCextraction(string pFilelist)
     TBranch *p1z = (TBranch*) tree->FindBranch("p1z");
     TBranch *E_beam = (TBranch*) tree->FindBranch("E_beam");
     TBranch *E_mu_prim = (TBranch*) tree->FindBranch("E_mu_prim");
+    TBranch *Charge = (TBranch*) tree->FindBranch("Charge");
     TBranch *XX0 = (TBranch*) tree->FindBranch("XX0");
     TBranch *HM04x = (TBranch*) tree->FindBranch("HM04x");
     TBranch *HM04y = (TBranch*) tree->FindBranch("HM04y");
     TBranch *HM05x = (TBranch*) tree->FindBranch("HM05x");
     TBranch *HM05y = (TBranch*) tree->FindBranch("HM05y");
-    //TBranch *HO03x = (TBranch*) tree->FindBranch("HO03x");
-    //TBranch *HO03y = (TBranch*) tree->FindBranch("HO03y");
-    //TBranch *HO04x = (TBranch*) tree->FindBranch("HO04x");
-    //TBranch *HO04y = (TBranch*) tree->FindBranch("HO04y");
-    //TBranch *saved = (TBranch*) tree->FindBranch("saved");
+    TBranch *HL04x = (TBranch*) tree->FindBranch("HL04x");
+    TBranch *HL04y = (TBranch*) tree->FindBranch("HL04y");
+    TBranch *HL05x = (TBranch*) tree->FindBranch("HL05x");
+    TBranch *HL05y = (TBranch*) tree->FindBranch("HL05y");
+    TBranch *HO03x = (TBranch*) tree->FindBranch("HO03x");
+    TBranch *HO03y = (TBranch*) tree->FindBranch("HO03y");
+    TBranch *HO04x = (TBranch*) tree->FindBranch("HO04x");
+    TBranch *HO04y = (TBranch*) tree->FindBranch("HO04y");
+    TBranch *HG01x = (TBranch*) tree->FindBranch("HG01x");
+    TBranch *HG01y = (TBranch*) tree->FindBranch("HG01y");
+    TBranch *HG021x = (TBranch*) tree->FindBranch("HG021x");
+    TBranch *HG021y = (TBranch*) tree->FindBranch("HG021y");
+    TBranch *HG022x = (TBranch*) tree->FindBranch("HG022x");
+    TBranch *HG022y = (TBranch*) tree->FindBranch("HG022y");
+    TBranch *saved = (TBranch*) tree->FindBranch("saved");
+    TBranch *BPV = (TBranch*) tree->FindBranch("BPV");
+    TBranch *isMuPrim = (TBranch*) tree->FindBranch("isMuPrim");
+    TBranch *MZfirst = (TBranch*) tree->FindBranch("MZfirst");
+    TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
+    TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
-    TBranch *backPropFlag = (TBranch*) tree->FindBranch("backPropFlag");
+    TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
     //Hadrons
     TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
-    TBranch *pt = (TBranch*) tree->FindBranch("Hadrons.pt");
     TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
     TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
-    TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
     TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -723,6 +738,9 @@ void MCextraction(string pFilelist)
     //TBranch *Z2By = (TBranch*) tree->FindBranch("Hadrons.Z2By");
     TBranch *RICHx = (TBranch*) tree->FindBranch("Hadrons.RICHx");
     TBranch *RICHy = (TBranch*) tree->FindBranch("Hadrons.RICHy");
+    TBranch *chi2_hadron = (TBranch*) tree->FindBranch("Hadrons.chi2_hadron");
+    TBranch *HZfirst = (TBranch*) tree->FindBranch("Hadrons.HZfirst");
+    TBranch *HZlast = (TBranch*) tree->FindBranch("Hadrons.HZlast");
 
     //DISMCEvt
     TBranch *MC_vx = (TBranch*) tree->FindBranch("MC_vx");
@@ -738,9 +756,29 @@ void MCextraction(string pFilelist)
     TBranch *MC_nuTr = (TBranch*) tree->FindBranch("MC_nuTr");
     TBranch *MC_Q2Tr = (TBranch*) tree->FindBranch("MC_Q2Tr");
     TBranch *MC_w = (TBranch*) tree->FindBranch("MC_w");
+    TBranch *MC_HM04x = (TBranch*) tree->FindBranch("MC_HM04x");
+    TBranch *MC_HM04y = (TBranch*) tree->FindBranch("MC_HM04y");
+    TBranch *MC_HM05x = (TBranch*) tree->FindBranch("MC_HM05x");
+    TBranch *MC_HM05y = (TBranch*) tree->FindBranch("MC_HM05y");
+    TBranch *MC_HL04x = (TBranch*) tree->FindBranch("MC_HL04x");
+    TBranch *MC_HL04y = (TBranch*) tree->FindBranch("MC_HL04y");
+    TBranch *MC_HL05x = (TBranch*) tree->FindBranch("MC_HL05x");
+    TBranch *MC_HL05y = (TBranch*) tree->FindBranch("MC_HL05y");
+    TBranch *MC_HO03x = (TBranch*) tree->FindBranch("MC_HO03x");
+    TBranch *MC_HO03y = (TBranch*) tree->FindBranch("MC_HO03y");
+    TBranch *MC_HO04x = (TBranch*) tree->FindBranch("MC_HO04x");
+    TBranch *MC_HO04y = (TBranch*) tree->FindBranch("MC_HO04y");
+    TBranch *MC_HG01x = (TBranch*) tree->FindBranch("MC_HG01x");
+    TBranch *MC_HG01y = (TBranch*) tree->FindBranch("MC_HG01y");
+    TBranch *MC_HG021x = (TBranch*) tree->FindBranch("MC_HG021x");
+    TBranch *MC_HG021y = (TBranch*) tree->FindBranch("MC_HG021y");
+    TBranch *MC_HG022x = (TBranch*) tree->FindBranch("MC_HG022x");
+    TBranch *MC_HG022y = (TBranch*) tree->FindBranch("MC_HG022y");
     TBranch *recons = (TBranch*) tree->FindBranch("recons");
     TBranch *MC_yTr = (TBranch*) tree->FindBranch("MC_yTr");
     TBranch *MC_xTr = (TBranch*) tree->FindBranch("MC_xTr");
+    TBranch *MC_TCx = (TBranch*) tree->FindBranch("MC_TCx");
+    TBranch *MC_TCy = (TBranch*) tree->FindBranch("MC_TCy");
 
     //MCHadrons
     TBranch *MC_p = (TBranch*) tree->FindBranch("MCHadrons.P");
@@ -770,7 +808,7 @@ void MCextraction(string pFilelist)
       spillNo->GetEntry(ip);
       evtInSpill->GetEntry(ip);
       trigMask->GetEntry(ip);
-      //evNo->GetEntry(ip);
+      evNo->GetEntry(ip);
       x->GetEntry(ip);
       y->GetEntry(ip);
       z->GetEntry(ip);
@@ -782,25 +820,39 @@ void MCextraction(string pFilelist)
       p1z->GetEntry(ip);
       E_beam->GetEntry(ip);
       E_mu_prim->GetEntry(ip);
+      Charge->GetEntry(ip);
       XX0->GetEntry(ip);
       HM04x->GetEntry(ip);
       HM04y->GetEntry(ip);
       HM05x->GetEntry(ip);
       HM05y->GetEntry(ip);
-      //HO03x->GetEntry(ip);
-      //HO03y->GetEntry(ip);
-      //HO04x->GetEntry(ip);
-      //HO04y->GetEntry(ip);
-      //saved->GetEntry(ip);
+      HL04x->GetEntry(ip);
+      HL04y->GetEntry(ip);
+      HL05x->GetEntry(ip);
+      HL05y->GetEntry(ip);
+      HO03x->GetEntry(ip);
+      HO03y->GetEntry(ip);
+      HO04x->GetEntry(ip);
+      HO04y->GetEntry(ip);
+      HG01x->GetEntry(ip);
+      HG01y->GetEntry(ip);
+      HG021x->GetEntry(ip);
+      HG021y->GetEntry(ip);
+      HG022x->GetEntry(ip);
+      HG022y->GetEntry(ip);
+      saved->GetEntry(ip);
+      BPV->GetEntry(ip);
+      isMuPrim->GetEntry(ip);
+      MZfirst->GetEntry(ip);
+      beam_chi2->GetEntry(ip);
+      mu_prim_chi2->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
-      backPropFlag->GetEntry(ip);
+      BMS->GetEntry(ip);
 
       //Hadrons
       p->GetEntry(ip);
-      pt->GetEntry(ip);
       th->GetEntry(ip);
       ph->GetEntry(ip);
-      ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       HCAL->GetEntry(ip);
@@ -820,6 +872,9 @@ void MCextraction(string pFilelist)
       //Z2By->GetEntry(ip);
       RICHx->GetEntry(ip);
       RICHy->GetEntry(ip);
+      chi2_hadron->GetEntry(ip);
+      HZfirst->GetEntry(ip);
+      HZlast->GetEntry(ip);
 
       //DISMCEvt
       MC_vx->GetEntry(ip);
@@ -836,8 +891,28 @@ void MCextraction(string pFilelist)
       MC_Q2Tr->GetEntry(ip);
       MC_w->GetEntry(ip);
       recons->GetEntry(ip);
+      MC_HM04x->GetEntry(ip);
+      MC_HM04y->GetEntry(ip);
+      MC_HM05x->GetEntry(ip);
+      MC_HM05y->GetEntry(ip);
+      MC_HL04x->GetEntry(ip);
+      MC_HL04y->GetEntry(ip);
+      MC_HL05x->GetEntry(ip);
+      MC_HL05y->GetEntry(ip);
+      MC_HO03x->GetEntry(ip);
+      MC_HO03y->GetEntry(ip);
+      MC_HO04x->GetEntry(ip);
+      MC_HO04y->GetEntry(ip);
+      MC_HG01x->GetEntry(ip);
+      MC_HG01y->GetEntry(ip);
+      MC_HG021x->GetEntry(ip);
+      MC_HG021y->GetEntry(ip);
+      MC_HG022x->GetEntry(ip);
+      MC_HG022y->GetEntry(ip);
       MC_yTr->GetEntry(ip);
       MC_xTr->GetEntry(ip);
+      MC_TCx->GetEntry(ip);
+      MC_TCy->GetEntry(ip);
 
       //MCHadrons
       MC_p->GetEntry(ip);
@@ -1060,6 +1135,56 @@ void MCextraction(string pFilelist)
             //2016 ---
             else if(Y2016)
             {
+              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())
+                  && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+              {
+
+                if((beam_chi2->GetLeaf("beam_chi2")->GetValue()<10))
+                {
+
+                  // Cells crossing
+                  if((cellsCrossed->GetLeaf("cellsCrossed")->GetValue()))
+                  {
+
+                    if((mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10))
+                    {
+
+                      if((MZfirst->GetLeaf("MZfirst")->GetValue()<350))
+                      {
+
+                        if((trig&2 || trig&4 || trig&8 || trig&512))
+                        {
+
+                          // Q2 cut
+                          if((Q2>1))
+                          {
+                            fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
+                            fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
+                                                        +pow(p0y->GetLeaf("p0y")->GetValue(),2)
+                                                        +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
+                            fThetaMCMu[1].push_back(thetax_b);
+                            fThetaMCMu[0].push_back(thetay_b);
+
+                            // y cut
+                            if((fYmin<yBj && yBj<fYmax))
+                            {
+
+                              // W cut
+                              if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
+                              {
+                                if((fXmin<xBj && xBj<fXmax))
+                                {
+                                  fAllDISflag = 1;
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
               if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
               {
 
@@ -1294,14 +1419,26 @@ void MCextraction(string pFilelist)
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
 
+          // Chi2/ndf
+          if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
+
+          // Zfirst
+          if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
+
+          // Zlast
+          if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+
+          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
+          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+
           // Theta cut
           if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
 
           // RICH position cut
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
 
-          // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
+          // z cut
+          if(!(0.2<zBj && zBj<0.85)) continue;
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
