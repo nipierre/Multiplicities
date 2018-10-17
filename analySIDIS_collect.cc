@@ -1623,6 +1623,8 @@ int main(int argc, char **argv)
         K_reldiff[c][i][j]->SetTitle("");
         H_reldiff[c][i][j]->SetTitle("");
 
+        cout << "pouet4" << endl;
+
         if(!h_reldiff_empty)
         {
           c53->cd(i+1+9*j);
