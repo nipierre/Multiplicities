@@ -938,9 +938,9 @@ int main(int argc, char **argv)
   std::vector<Double_t> p_reldiff_err[2][9][6];
   std::vector<Double_t> k_reldiff_err[2][9][6];
   std::vector<Double_t> h_reldiff_err[2][9][6];
-  std::vector<Double_t> z_range_p_reldiff[2][9][6][4];
-  std::vector<Double_t> z_range_k_reldiff[2][9][6][4];
-  std::vector<Double_t> z_range_h_reldiff[2][9][6][4];
+  std::vector<Double_t> z_range_p_reldiff[2][9][6];
+  std::vector<Double_t> z_range_k_reldiff[2][9][6];
+  std::vector<Double_t> z_range_h_reldiff[2][9][6];
   std::vector<Double_t> p_y[2][9];
   std::vector<Double_t> k_y[2][9];
   std::vector<Double_t> h_y[2][9];
@@ -1055,12 +1055,12 @@ int main(int argc, char **argv)
             h_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
           }
 
-          p_reldiff[c][i][j].push_back(RelDiff(i,j,k,0));
-          k_reldiff[c][i][j].push_back(RelDiff(i,j,k,1));
-          h_reldiff[c][i][j].push_back(RelDiff(i,j,k,3));
-          p_reldiff_err[c][i][j].push_back(RelDiff_Err(i,j,k,0));
-          k_reldiff_err[c][i][j].push_back(RelDiff_Err(i,j,k,1));
-          h_reldiff_err[c][i][j].push_back(RelDiff_Err(i,j,k,3));
+          p_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,0));
+          k_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,1));
+          h_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,3));
+          p_reldiff_err[c][i][j].push_back(RelDiff_Err(c,i,j,k,0));
+          k_reldiff_err[c][i][j].push_back(RelDiff_Err(c,i,j,k,1));
+          h_reldiff_err[c][i][j].push_back(RelDiff_Err(c,i,j,k,3));
 
           if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
