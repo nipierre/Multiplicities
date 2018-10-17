@@ -217,8 +217,8 @@ void create_kin_plots()
     fKinematicsMC[i][15] = new TH1F(Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
     fKinematicsMC[i][16] = new TH1F(Form("p_{T} Ratio %s",trigname[i].c_str()), Form("p_{T} Ratio %s",trigname[i].c_str()), 50, 0, 3);
     fKinematicsRD[i][17] = new TH1F(Form("Vertex (Hadron+e) %s",trigname[i].c_str()), Form("Vertex (Hadron+e) %s",trigname[i].c_str()), 50, -325, -71);
-    fKinematicsRD[i][18] = new TH1F(Form("Vertex (e) %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
-    fKinematicsRD[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsRD[i][18] = new TH1F(Form("Vertex (e) %s",trigname[i].c_str()), Form("Vertex (e) %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsRD[i][19] = new TH1F(Form("Vertex (Hadron) %s",trigname[i].c_str()), Form("Vertex (Hadron) %s",trigname[i].c_str()), 50, -325, -71);
     fKinematicsMC[i][17] = new TH1F(Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
     fKinematicsMC[i][18] = new TH1F(Form("Vertex (e) Ratio %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
     fKinematicsMC[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, -325, -71);
