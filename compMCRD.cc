@@ -598,7 +598,7 @@ void save_kin_plots()
   fThetaMCp[2]->GetYaxis()->SetTitle("theta_x");
   c36.Update();
 
-  c1->Print("kinMCRD.pdf(","pdf");
+  c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
   c4.Print("kinMCRD.pdf","pdf");
