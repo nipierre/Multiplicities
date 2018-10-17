@@ -1773,6 +1773,9 @@ int main(int argc, char **argv)
           }
           c73->Update();
         }
+        z_range_p_reldiff[c][i][j].clear();
+        z_range_k_reldiff[c][i][j].clear();
+        z_range_h_reldiff[c][i][j].clear();
       }
     }
 
