@@ -216,6 +216,12 @@ void create_kin_plots()
     fKinematicsMC[i][14] = new TH1F(Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
     fKinematicsMC[i][15] = new TH1F(Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
     fKinematicsMC[i][16] = new TH1F(Form("p_{T} Ratio %s",trigname[i].c_str()), Form("p_{T} Ratio %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsRD[i][17] = new TH1F(Form("Vertex (Hadron+e) %s",trigname[i].c_str()), Form("Vertex (Hadron+e) %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsRD[i][18] = new TH1F(Form("Vertex (e) %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsRD[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsMC[i][17] = new TH1F(Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsMC[i][18] = new TH1F(Form("Vertex (e) Ratio %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsMC[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, 0, 3);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
@@ -342,6 +348,12 @@ void save_kin_plots()
   c34.Divide(2,1);
   c35.Divide(2,1);
   c36.Divide(2,1);
+  c37.Divide(2,4);
+  c38.Divide(1,2);
+  c39.Divide(2,4);
+  c40.Divide(1,2);
+  c41.Divide(2,4);
+  c42.Divide(1,2);
 
   int offset=0;
 
@@ -467,6 +479,27 @@ void save_kin_plots()
     c27.cd(i+offset+1);
     plotting_device(i,16);
     c27.Update();
+
+    c37.cd(i+offset+1+2);
+    plotting_ratio(i,17);
+    c37.Update();
+    c37.cd(i+offset+1);
+    plotting_device(i,17);
+    c37.Update();
+
+    c39.cd(i+offset+1+2);
+    plotting_ratio(i,18);
+    c39.Update();
+    c39.cd(i+offset+1);
+    plotting_device(i,18);
+    c39.Update();
+
+    c41.cd(i+offset+1+2);
+    plotting_ratio(i,19);
+    c41.Update();
+    c41.cd(i+offset+1);
+    plotting_device(i,19);
+    c41.Update();
   }
 
   c7.cd(2);
@@ -562,6 +595,27 @@ void save_kin_plots()
   plotting_device(4,16);
   c28.Update();
 
+  c38.cd(2);
+  plotting_ratio(4,17);
+  c38.Update();
+  c38.cd(1);
+  plotting_device(4,17);
+  c38.Update();
+
+  c40.cd(2);
+  plotting_ratio(4,18);
+  c40.Update();
+  c40.cd(1);
+  plotting_device(4,18);
+  c40.Update();
+
+  c41.cd(2);
+  plotting_ratio(4,19);
+  c41.Update();
+  c41.cd(1);
+  plotting_device(4,19);
+  c41.Update();
+
   c34.cd(1);
   fThetaRDp[0]->Draw("COLZ");
   fThetaRDp[0]->GetXaxis()->SetTitle("theta_y");
@@ -629,7 +683,13 @@ void save_kin_plots()
   c15.Print("kinMCRD.pdf","pdf");
   c16.Print("kinMCRD.pdf","pdf");
   c17.Print("kinMCRD.pdf","pdf");
-  c18.Print("kinMCRD.pdf)","pdf");
+  c18.Print("kinMCRD.pdf","pdf");
+  c37.Print("kinMCRD.pdf","pdf");
+  c38.Print("kinMCRD.pdf","pdf");
+  c39.Print("kinMCRD.pdf","pdf");
+  c40.Print("kinMCRD.pdf","pdf");
+  c41.Print("kinMCRD.pdf","pdf");
+  c42.Print("kinMCRD.pdf)","pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -1453,6 +1513,9 @@ void MCextraction(string pFilelist)
             fKinematicsMC[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
             fKinematicsMC[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+            fKinematicsMC[0][0]->Fill(z->GetLeaf("z")->GetValue());
+            if(fId == 8 || fId == 9) fKinematicsMC[0][1]->Fill(z->GetLeaf("z")->GetValue());
+            else fKinematicsMC[0][2]->Fill(z->GetLeaf("z")->GetValue());
           }
           // LT
           if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
@@ -1463,6 +1526,9 @@ void MCextraction(string pFilelist)
             fKinematicsMC[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
             fKinematicsMC[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+            fKinematicsMC[1][0]->Fill(z->GetLeaf("z")->GetValue());
+            if(fId == 8 || fId == 9) fKinematicsMC[1][1]->Fill(z->GetLeaf("z")->GetValue());
+            else fKinematicsMC[1][2]->Fill(z->GetLeaf("z")->GetValue());
           }
           // OT
           if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
@@ -1473,6 +1539,9 @@ void MCextraction(string pFilelist)
             fKinematicsMC[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
             fKinematicsMC[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+            fKinematicsMC[2][0]->Fill(z->GetLeaf("z")->GetValue());;
+            if(fId == 8 || fId == 9) fKinematicsMC[2][1]->Fill(z->GetLeaf("z")->GetValue());;
+            else fKinematicsMC[2][2]->Fill(z->GetLeaf("z")->GetValue());;
           }
           // LAST
           if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
@@ -1483,6 +1552,9 @@ void MCextraction(string pFilelist)
             fKinematicsMC[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
             fKinematicsMC[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+            fKinematicsMC[3][0]->Fill(z->GetLeaf("z")->GetValue())
+            if(fId == 8 || fId == 9) fKinematicsMC[3][1]->Fill(z->GetLeaf("z")->GetValue())
+            else fKinematicsMC[3][2]->Fill(z->GetLeaf("z")->GetValue())
           }
 
           // ALL TRIGGERS
@@ -1494,6 +1566,9 @@ void MCextraction(string pFilelist)
             fKinematicsMC[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
             fKinematicsMC[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+            fKinematicsMC[4][0]->Fill(z->GetLeaf("z")->GetValue());
+            if(fId == 8 || fId == 9) fKinematicsMC[4][1]->Fill(z->GetLeaf("z")->GetValue());
+            else fKinematicsMC[4][2]->Fill(z->GetLeaf("z")->GetValue());
           }
         }
       }
@@ -2261,6 +2336,10 @@ void RDextraction(string pFilelist)
           fKinematicsRD[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           fKinematicsRD[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[0][0]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[0][1]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[0][2]->Fill(z->GetLeaf("z")->GetValue());
+
         }
         if(int(trig&4) && !int(trig&2) && !int(trig&8)&& !int(trig&512))
         {
@@ -2270,6 +2349,9 @@ void RDextraction(string pFilelist)
           fKinematicsRD[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           fKinematicsRD[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[1][0]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[1][1]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[1][2]->Fill(z->GetLeaf("z")->GetValue());
         }
         if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
         {
@@ -2279,6 +2361,9 @@ void RDextraction(string pFilelist)
           fKinematicsRD[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           fKinematicsRD[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[2][0]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[2][1]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[2][2]->Fill(z->GetLeaf("z")->GetValue());
         }
         if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
         {
@@ -2288,6 +2373,9 @@ void RDextraction(string pFilelist)
           fKinematicsRD[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           fKinematicsRD[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[3][0]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[3][1]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[3][2]->Fill(z->GetLeaf("z")->GetValue());
         }
 
         // if(trig&2 || trig&4 || trig&8)
@@ -2299,6 +2387,9 @@ void RDextraction(string pFilelist)
           fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           fKinematicsRD[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[4][0]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[4][1]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[4][2]->Fill(z->GetLeaf("z")->GetValue());
         }
       }
 

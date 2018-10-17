@@ -120,11 +120,11 @@ Double_t fPmax;
 
 //Draw
 
-TH1F* fKinematicsRD[5][17];
+TH1F* fKinematicsRD[5][20];
 TH2F* fThetaRDp[3];
-TH1F* fKinematicsMC[5][17];
+TH1F* fKinematicsMC[5][20];
 TH2F* fThetaMCp[3];
-TH1F* fKinematicsRatio[5][17];
+TH1F* fKinematicsRatio[5][20];
 Int_t fCountingRD[5][17];
 Int_t fCountingMC[5][17];
 TCanvas c1("Kin_{Q2} Trigger","Kin_{Q2} Trigger",3200,1600);
@@ -161,8 +161,14 @@ TCanvas c31("nu","nu",2000,2000);
 TCanvas c32("z","z",2000,2000);
 TCanvas c33("E_mu","E_mu",3200,1600);
 TCanvas c34("Thetay_mu","Thetay_mu",3200,1600);
-TCanvas c35("Thetax_mu","Thetay_mu",3200,1600);
-TCanvas c36("Thetaxy_mu","Thetay_mu",3200,1600);
+TCanvas c35("Thetax_mu","Thetax_mu",3200,1600);
+TCanvas c36("Thetaxy_mu","Thetaxy_mu",3200,1600);
+TCanvas c37("Vertex (Hadron+e) Trig","Vertex (Hadron+e) Trig",3200,1600);
+TCanvas c38("Vertex (Hadron+e)","Vertex (Hadron+e)",3200,1600);
+TCanvas c39("Vertex (e) Trig","Vertex (e) Trig",3200,1600);
+TCanvas c40("Vertex (e)","Vertex (e)",3200,1600);
+TCanvas c41("Vertex (Hadron) Trig","Vertex (Hadron) Trig",3200,1600);
+TCanvas c42("Vertex (Hadron)","Vertex (Hadron)",3200,1600);
 
 vector<double> fError, fErrorRD, fErrorMC;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
