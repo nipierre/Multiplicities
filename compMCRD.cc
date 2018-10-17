@@ -210,18 +210,18 @@ void create_kin_plots()
     fKinematicsMC[i][7] = new TH1F(Form("E_{mu'} Ratio %s",trigname[i].c_str()), Form("E_{mu'} Ratio %s",trigname[i].c_str()), 50, 0, 160);
     fKinematicsMC[i][8] = new TH1F(Form("theta Ratio %s",trigname[i].c_str()), Form("theta Ratio %s",trigname[i].c_str()), 50, 0, 0.05);
     fKinematicsMC[i][9] = new TH1F(Form("phi Ratio %s",trigname[i].c_str()), Form("phi Ratio %s",trigname[i].c_str()), 50, -1.7, 1.7);
-    fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -320, -70);
+    fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -325, -71);
     fKinematicsMC[i][12] = new TH1F(Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 40);
     fKinematicsMC[i][13] = new TH1F(Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 0.25);
     fKinematicsMC[i][14] = new TH1F(Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
     fKinematicsMC[i][15] = new TH1F(Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
     fKinematicsMC[i][16] = new TH1F(Form("p_{T} Ratio %s",trigname[i].c_str()), Form("p_{T} Ratio %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsRD[i][17] = new TH1F(Form("Vertex (Hadron+e) %s",trigname[i].c_str()), Form("Vertex (Hadron+e) %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsRD[i][18] = new TH1F(Form("Vertex (e) %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsRD[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsMC[i][17] = new TH1F(Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsMC[i][18] = new TH1F(Form("Vertex (e) Ratio %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsMC[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, 0, 3);
+    fKinematicsRD[i][17] = new TH1F(Form("Vertex (Hadron+e) %s",trigname[i].c_str()), Form("Vertex (Hadron+e) %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsRD[i][18] = new TH1F(Form("Vertex (e) %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsRD[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsMC[i][17] = new TH1F(Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsMC[i][18] = new TH1F(Form("Vertex (e) Ratio %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsMC[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, -325, -71);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
@@ -247,13 +247,16 @@ void create_kin_plots()
     l1[7][i] = new TLine(0,0.4+i*0.2,160,0.4+i*0.2);
     l1[8][i] = new TLine(0,0.4+i*0.2,0.05,0.4+i*0.2);
     l1[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
-    l1[10][i] = new TLine(-320,0.4+i*0.2,-70,0.4+i*0.2);
+    l1[10][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
     l1[11][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l1[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
     l1[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[15][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[16][i] = new TLine(0,0.4+i*0.2,3,0.4+i*0.2);
+    l1[17][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
+    l1[18][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
+    l1[19][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
     for(int j=0; j<17; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
@@ -2501,6 +2504,34 @@ int main(int argc, char **argv)
   MCextraction(argv[2]);
   cout << "... Saving plots ..." << endl;
   save_kin_plots();
+
+  cout << "\n\n";
+  cout << "             ********* Event distribution within MT/LT/OT/LAST in percentage of total ********* " << endl;
+  cout << "             ---------------------------------------------------------------------------------- " << endl;
+
+  cout << "\n ==> Real Data <==" << endl;
+
+  cout << '|' << setw(15) << "Type" << '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
+  cout << '|' << setw(15) << "DIS" << '|' << setw(15) << fCountingRD[4][0] << '|' << setw(15) << float(fCountingRD[0][0])/float(fCountingRD[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[1][0])/float(fCountingRD[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[2][0])/float(fCountingRD[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[3][0])/float(fCountingRD[4][0])*100 << '|' << endl;
+  cout << '|' << setw(15) << "Hadron" << '|' << setw(15) << fCountingRD[4][3] << '|' << setw(15) << float(fCountingRD[0][3])/float(fCountingRD[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[1][3])/float(fCountingRD[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[2][3])/float(fCountingRD[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingRD[3][3])/float(fCountingRD[4][3])*100 << '|' << endl;
+
+  cout << "\n ==> Monte Carlo <==" << endl;
+
+  cout << '|' << setw(15) << "Type" << '|' << setw(15) << "All" << '|' << setw(15) << "MT" << '|' << setw(15) << "LT" << '|' << setw(15) << "OT" << '|' << setw(15) << "LAST" << '|' << endl;
+  cout << '|' << setw(15) << "DIS" << '|' << setw(15) << fCountingMC[4][0] << '|' << setw(15) << float(fCountingMC[0][0])/float(fCountingMC[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingMC[1][0])/float(fCountingMC[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingMC[2][0])/float(fCountingMC[4][0])*100
+                                                                    << '|' << setw(15) << float(fCountingMC[3][0])/float(fCountingMC[4][0])*100 << '|' << endl;
+  cout << '|' << setw(15) << "Hadron" << '|' << setw(15) << fCountingMC[4][3] << '|' << setw(15) << float(fCountingMC[0][3])/float(fCountingMC[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingMC[1][3])/float(fCountingMC[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingMC[2][3])/float(fCountingMC[4][3])*100
+                                                                    << '|' << setw(15) << float(fCountingMC[3][3])/float(fCountingMC[4][3])*100 << '|' << endl;
 
   return 0;
 }
