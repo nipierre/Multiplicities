@@ -522,6 +522,40 @@ void resetValues()
   }
 }
 
+Double_t RelDiff(int c, int x, int y, int z, int had)
+{
+  Double_t min=fMultiplicities_zvtx[x][y][z][0].tab[c][0][had];
+  Double_t max=fMultiplicities_zvtx[x][y][z][0].tab[c][0][had];
+
+  for(int i=1; i<4; i++)
+  {
+    if(fMultiplicities_zvtx[x][y][z][i].tab[c][0][had]>max)
+      max=fMultiplicities_zvtx[x][y][z][i].tab[c][0][had];
+    if(fMultiplicities_zvtx[x][y][z][i].tab[c][0][had]<max)
+      min=fMultiplicities_zvtx[x][y][z][i].tab[c][0][had];
+  }
+
+  return (min ? Double_t((max-min)/min) : 0);
+
+}
+
+Double_t RelDiff_Err(int c, int x, int y, int z, int had)
+{
+  Double_t min=fMultiplicities_zvtx[x][y][z][0].tab[c][1][had];
+  Double_t max=fMultiplicities_zvtx[x][y][z][0].tab[c][1][had];
+
+  for(int i=1; i<4; i++)
+  {
+    if(fMultiplicities_zvtx[x][y][z][i].tab[c][1][had]>max)
+      max=fMultiplicities_zvtx[x][y][z][i].tab[c][1][had];
+    if(fMultiplicities_zvtx[x][y][z][i].tab[c][1][had]<max)
+      min=fMultiplicities_zvtx[x][y][z][i].tab[c][1][had];
+  }
+
+  return (min ? Double_t((max-min)/min) : 0);
+
+}
+
 int main(int argc, char **argv)
 {
 
@@ -746,12 +780,18 @@ int main(int argc, char **argv)
 
   TCanvas* c5;
   c5 = new TCanvas("Hadron_Multiplicities_zvtx","Hadron_Multiplicities_zvtx",3200,1600);
+  TCanvas* c53;
+  c53 = new TCanvas("Hadron_Multiplicities_reldiff","Hadron_Multiplicities_reldiff",3200,1600);
 
   TCanvas* c6;
   c6 = new TCanvas("Pion_Multiplicities_zvtx","Pion_Multiplicities_zvtx",3200,1600);
+  TCanvas* c63;
+  c63 = new TCanvas("Pion_Multiplicities_reldiff","Pion_Multiplicities_reldiff",3200,1600);
 
   TCanvas* c7;
   c7 = new TCanvas("Kaon_Multiplicities_zvtx","Kaon_Multiplicities_zvtx",3200,1600);
+  TCanvas* c73;
+  c73 = new TCanvas("Kaon_Multiplicities_reldiff","Kaon_Multiplicities_reldiff",3200,1600);
 
   TCanvas* c8;
   c8 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
@@ -787,8 +827,11 @@ int main(int argc, char **argv)
   c71->SetFillColor(0);
   c72->SetFillColor(0);
   c5->SetFillColor(0);
+  c53->SetFillColor(0);
   c6->SetFillColor(0);
+  c63->SetFillColor(0);
   c7->SetFillColor(0);
+  c73->SetFillColor(0);
   c8->SetFillColor(0);
   c9->SetFillColor(0);
   c10->SetFillColor(0);
@@ -806,8 +849,11 @@ int main(int argc, char **argv)
   c71->Divide(5,2,0,0);
   c72->Divide(5,2,0,0);
   c5->Divide(9,5,0,0);
+  c53->Divide(9,5,0,0);
   c6->Divide(9,5,0,0);
+  c63->Divide(9,5,0,0);
   c7->Divide(9,5,0,0);
+  c73->Divide(9,5,0,0);
   c8->Divide(5,2,0,0);
   c9->Divide(5,2,0,0);
   c10->Divide(5,2,0,0);
@@ -824,6 +870,9 @@ int main(int argc, char **argv)
   TGraphErrors* H_zvtx[2][9][6][4];
   TGraphErrors* P_zvtx[2][9][6][4];
   TGraphErrors* K_zvtx[2][9][6][4];
+  TGraphErrors* H_reldiff[2][9][6];
+  TGraphErrors* P_reldiff[2][9][6];
+  TGraphErrors* K_reldiff[2][9][6];
   TGraphErrors* H_y[2][9];
   TGraphErrors* P_y[2][9];
   TGraphErrors* K_y[2][9];
@@ -883,6 +932,12 @@ int main(int argc, char **argv)
   std::vector<Double_t> z_range_p_z[2][9][6][4];
   std::vector<Double_t> z_range_k_z[2][9][6][4];
   std::vector<Double_t> z_range_h_z[2][9][6][4];
+  std::vector<Double_t> p_reldiff[2][9][6];
+  std::vector<Double_t> k_reldiff[2][9][6];
+  std::vector<Double_t> h_reldiff[2][9][6];
+  std::vector<Double_t> p_reldiff_err[2][9][6];
+  std::vector<Double_t> k_reldiff_err[2][9][6];
+  std::vector<Double_t> h_reldiff_err[2][9][6];
   std::vector<Double_t> p_y[2][9];
   std::vector<Double_t> k_y[2][9];
   std::vector<Double_t> h_y[2][9];
@@ -990,6 +1045,13 @@ int main(int argc, char **argv)
             k_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
             h_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
           }
+
+          p_reldiff[c][i][j].push_back(RelDiff(x,y,z,0));
+          k_reldiff[c][i][j].push_back(RelDiff(x,y,z,1));
+          h_reldiff[c][i][j].push_back(RelDiff(x,y,z,3));
+          p_reldiff_err[c][i][j].push_back(RelDiff_Err(x,y,z,0));
+          k_reldiff_err[c][i][j].push_back(RelDiff_Err(x,y,z,1));
+          h_reldiff_err[c][i][j].push_back(RelDiff_Err(x,y,z,3));
 
           if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
@@ -1498,6 +1560,209 @@ int main(int argc, char **argv)
           z_range_p_z[c][i][j][zv].clear();
           z_range_k_z[c][i][j][zv].clear();
           z_range_h_z[c][i][j][zv].clear();
+        }
+
+        for(int k=12; k>0; k--)
+        {
+          if(!p_reldiff[c][i][j][k-1]) {p_reldiff[c][i][j].erase(p_reldiff[c][i][j].begin()+k-1); p_reldiff_err[c][i][j].erase(p_reldiff_err[c][i][j].begin()+k-1); z_range_p_reldiff[c][i][j].erase(z_range_p_reldiff[c][i][j].begin()+k-1);}
+          if(!k_reldiff[c][i][j][k-1]) {k_reldiff[c][i][j].erase(k_reldiff[c][i][j].begin()+k-1); k_reldiff_err[c][i][j].erase(k_reldiff_err[c][i][j].begin()+k-1); z_range_k_reldiff[c][i][j].erase(z_range_k_reldiff[c][i][j].begin()+k-1);}
+          if(!h_reldiff[c][i][j][k-1]) {h_reldiff[c][i][j].erase(h_reldiff[c][i][j].begin()+k-1); h_reldiff_err[c][i][j].erase(h_reldiff_err[c][i][j].begin()+k-1); z_range_h_reldiff[c][i][j].erase(z_range_h_reldiff[c][i][j].begin()+k-1);}
+        }
+
+        bool p_reldiff_empty = 0;
+        bool k_reldiff_empty = 0;
+        bool h_reldiff_empty = 0;
+
+        if(!(int(p_reldiff.size()))) p_reldiff_empty = 1;
+        if(!(int(k_reldiff.size()))) k_reldiff_empty = 1;
+        if(!(int(h_reldiff.size()))) h_reldiff_empty = 1;
+
+        P_reldiff[c][i][j] = new TGraphErrors(int(p_reldiff.size()),&(z_range_p_reldiff[0]),&(p_reldiff[0]),0,&(p_reldiff_err[0]));
+        K_reldiff[c][i][j] = new TGraphErrors(int(k_reldiff.size()),&(z_range_k_reldiff[0]),&(k_reldiff[0]),0,&(k_reldiff_err[0]));
+        H_reldiff[c][i][j] = new TGraphErrors(int(h_reldiff.size()),&(z_range_h_reldiff[0]),&(h_reldiff[0]),0,&(h_reldiff_err[0]));
+
+        if(!c)
+        {
+          P_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+          K_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+          H_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+        }
+        else
+        {
+          P_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+          K_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+          H_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+        }
+
+        P_reldiff[c][i][j]->SetMarkerSize(2);
+        K_reldiff[c][i][j]->SetMarkerSize(2);
+        H_reldiff[c][i][j]->SetMarkerSize(2);
+
+        P_reldiff[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        K_reldiff[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        H_reldiff[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+
+        P_reldiff[c][i][j]->GetYaxis()->SetTitle("");
+        K_reldiff[c][i][j]->GetYaxis()->SetTitle("");
+        H_reldiff[c][i][j]->GetYaxis()->SetTitle("");
+
+        P_reldiff[c][i][j]->GetXaxis()->SetTitle("");
+        K_reldiff[c][i][j]->GetXaxis()->SetTitle("");
+        H_reldiff[c][i][j]->GetXaxis()->SetTitle("");
+
+        P_reldiff[c][i][j]->SetTitle("");
+        K_reldiff[c][i][j]->SetTitle("");
+        H_reldiff[c][i][j]->SetTitle("");
+
+        if(!h_reldiff_empty)
+        {
+          c53.cd(i+1+9*j);
+          gPad->SetFillStyle(4000);
+          if(H_reldiff[c][i][j])
+          {
+            if(!c)
+            {
+              H_reldiff[c][i][j]->Draw("SAMEPA");
+              H_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              H_reldiff[c][i][j]->SetMinimum(0.);
+              H_reldiff[c][i][j]->SetMaximum(2.);
+              H_reldiff[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              H_reldiff[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              H_reldiff[c][i][j]->SetTitle("");
+              if(i>4) gPad->SetBottomMargin(.15);
+              if(i==0 || i==5) gPad->SetLeftMargin(.22);
+              if(i==8)
+              {
+                H_reldiff[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                H_reldiff[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                H_reldiff[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              H_reldiff[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              H_reldiff[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==0)
+              {
+                H_reldiff[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
+                H_reldiff[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              H_reldiff[c][i][j]->Draw("SAMEP");
+              H_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              H_reldiff[c][i][j]->SetMinimum(0.);
+              H_reldiff[c][i][j]->SetMaximum(2.);
+              l1.Draw("SAME");
+              l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
+              c53.Range(0.1,0.,0.9,2.);
+            }
+            else
+            {
+              H_reldiff[c][i][j]->Draw("SAMEP");
+              H_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              H_reldiff[c][i][j]->SetMinimum(0.);
+              H_reldiff[c][i][j]->SetMaximum(2.0);
+            }
+          }
+          c53.Update();
+        }
+        if(!p_reldiff_empty)
+        {
+          c63.cd(i+1+9*j);
+          gPad->SetFillStyle(4000);
+          if(P_reldiff[c][i][j])
+          {
+            if(!c)
+            {
+              P_reldiff[c][i][j]->Draw("SAMEPA");
+              P_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P_reldiff[c][i][j]->SetMinimum(0.);
+              P_reldiff[c][i][j]->SetMaximum(2.);
+              P_reldiff[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              P_reldiff[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              P_reldiff[c][i][j]->SetTitle("");
+              if(i>4) gPad->SetBottomMargin(.15);
+              if(i==0 || i==5) gPad->SetLeftMargin(.22);
+              if(i==8)
+              {
+                P_reldiff[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                P_reldiff[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                P_reldiff[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              P_reldiff[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              P_reldiff[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==0)
+              {
+                P_reldiff[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
+                P_reldiff[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              P_reldiff[c][i][j]->Draw("SAMEP");
+              P_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P_reldiff[c][i][j]->SetMinimum(0.);
+              P_reldiff[c][i][j]->SetMaximum(2.);
+              l1.Draw("SAME");
+              l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
+              c63.Range(0.1,0.,0.9,2.);
+            }
+            else
+            {
+              P_reldiff[c][i][j]->Draw("SAMEP");
+              P_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P_reldiff[c][i][j]->SetMinimum(0.);
+              P_reldiff[c][i][j]->SetMaximum(2.0);
+            }
+          }
+          c63.Update();
+        }
+        if(!k_reldiff_empty)
+        {
+          c73.cd(i+1+9*j);
+          gPad->SetFillStyle(4000);
+          if(K_reldiff[c][i][j])
+          {
+            if(!c)
+            {
+              K_reldiff[c][i][j]->Draw("SAMEPA");
+              K_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K_reldiff[c][i][j]->SetMinimum(0.);
+              K_reldiff[c][i][j]->SetMaximum(2.);
+              K_reldiff[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              K_reldiff[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              K_reldiff[c][i][j]->SetTitle("");
+              if(i>4) gPad->SetBottomMargin(.15);
+              if(i==0 || i==5) gPad->SetLeftMargin(.22);
+              if(i==8)
+              {
+                K_reldiff[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                K_reldiff[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                K_reldiff[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              K_reldiff[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              K_reldiff[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==0)
+              {
+                K_reldiff[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
+                K_reldiff[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              K_reldiff[c][i][j]->Draw("SAMEP");
+              K_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K_reldiff[c][i][j]->SetMinimum(0.);
+              K_reldiff[c][i][j]->SetMaximum(2.);
+              l1.Draw("SAME");
+              l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
+              c73.Range(0.1,0.,0.9,2.);
+            }
+            else
+            {
+              K_reldiff[c][i][j]->Draw("SAMEP");
+              K_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K_reldiff[c][i][j]->SetMinimum(0.);
+              K_reldiff[c][i][j]->SetMaximum(2.0);
+            }
+          }
+          c73.Update();
         }
       }
     }
@@ -2396,8 +2661,11 @@ int main(int argc, char **argv)
   c71->Update();
   c72->Update();
   c5->Update();
+  c53->Update();
   c6->Update();
+  c63->Update();
   c7->Update();
+  c73->Update();
   c8->Update();
   c9->Update();
   c10->Update();
@@ -2414,9 +2682,12 @@ int main(int argc, char **argv)
   c62->Print(Form("%s/pion_multiplicity_file.pdf)",data_path),"pdf");
   c71->Print(Form("%s/kaon_multiplicity_file.pdf(",data_path),"pdf");
   c72->Print(Form("%s/kaon_multiplicity_file.pdf)",data_path),"pdf");
-  c5->Print(Form("%s/hadron_multiplicity_zvtx_file.pdf",data_path),"pdf");
-  c6->Print(Form("%s/pion_multiplicity_zvtx_file.pdf",data_path),"pdf");
-  c7->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
+  c5->Print(Form("%s/hadron_multiplicity_zvtx_file.pdf(",data_path),"pdf");
+  c53->Print(Form("%s/hadron_multiplicity_zvtx_file.pdf)",data_path),"pdf");
+  c6->Print(Form("%s/pion_multiplicity_zvtx_file.pdf(",data_path),"pdf");
+  c63->Print(Form("%s/pion_multiplicity_zvtx_file.pdf)",data_path),"pdf");
+  c7->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf(",data_path),"pdf");
+  c73->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf)",data_path),"pdf");
   c8->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",data_path));
   c9->Print(Form("%s/pion_multiplicity_yavg_file.pdf",data_path));
   c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
