@@ -330,7 +330,7 @@ void save_kin_plots()
   c22.Divide(1,2);
   c23.Divide(1,2);
   c24.Divide(1,2);
-  c25.Divide(2,2);
+  c25.Divide(2,4);
   c26.Divide(1,2);
   c27.Divide(2,4);
   c28.Divide(1,2);
@@ -476,12 +476,12 @@ void save_kin_plots()
   plotting_device(0,11);
   c7.Update();
 
-  c3.cd(2);
+  c8.cd(2);
   plotting_ratio(4,0);
-  c3.Update();
-  c3.cd(1);
+  c8.Update();
+  c8.cd(1);
   plotting_device(4,0);
-  c3.Update();
+  c8.Update();
 
   c9.cd(2);
   plotting_ratio(4,1);
