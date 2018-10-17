@@ -612,12 +612,12 @@ void save_kin_plots()
   plotting_device(4,18);
   c40.Update();
 
-  c41.cd(2);
+  c42.cd(2);
   plotting_ratio(4,19);
-  c41.Update();
-  c41.cd(1);
+  c42.Update();
+  c42.cd(1);
   plotting_device(4,19);
-  c41.Update();
+  c42.Update();
 
   c34.cd(1);
   fThetaRDp[0]->Draw("COLZ");
