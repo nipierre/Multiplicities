@@ -257,203 +257,308 @@ void create_kin_plots()
   }
 }
 
-void plotting_device(int i, int j, int norm)
+void plotting_ratio(int i, int j)
 {
-  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
+  // for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
+  // {
+  //   fError.push_back((fKinematicsRD[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][0]->GetBinError(tt),2)):0));
+  // }
+  fKinematicsRD[i][j]->Sumw2();
+  fKinematicsMC[i][j]->Sumw2();
+  fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
+  fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
+  fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
+  fKinematicsRatio[i][j]->SetStats(0);
+  fKinematicsRatio[i][j]->Divide(fKinematicsMC[i][j]);
+  // for(int tt=0; tt<fKinematicsRatio[idx][0]->GetNbinsX(); tt++)
+  // {
+  //   fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
+  // }
+  // fError.clear();
+  fKinematicsRatio[i][j]->SetMarkerStyle(21);
+  fKinematicsRatio[i][j]->SetFillColor(kYellow-7);
+  fKinematicsRatio[i][j]->SetMaximum(2.);
+  fKinematicsRatio[i][j]->SetMinimum(0.);
+  fKinematicsRatio[i][j]->Draw("PE2");
+  fKinematicsRatio[i][j]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[i][j]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
+  for(int tt=0; tt<7; tt++)
   {
-    fErrorRD.push_back(fKinematicsRD[i][j]->GetBinError(tt));
+    l1[j][tt]->Draw();
   }
-  for(int tt=0; tt<fKinematicsMC[i][j]->GetNbinsX(); tt++)
-  {
-    fErrorMC.push_back(fKinematicsMC[i][j]->GetBinError(tt));
-  }
-  Double_t scaleRD = 1/fKinematicsRD[norm][j]->GetEntries();
-  Double_t scaleMC = 1/fKinematicsMC[norm][j]->GetEntries();
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[norm][j]->GetEntries());
-  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[norm][j]->GetEntries());
-  fKinematicsRD[i][j]->SetLineColor(kRed);
+}
+
+void plotting_device(int i, int j)
+{
   fKinematicsMC[i][j]->SetLineColor(kBlue);
-  fKinematicsRD[i][j]->SetMinimum(0.);
-  fKinematicsRD[i][j]->SetMaximum(max(fKinematicsRD[i][j]->GetMaximum()*1.2,fKinematicsMC[i][j]->GetMaximum()*1.2));
-  fKinematicsRD[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
-  for(int tt=0; tt<fKinematicsRD[i][j]->GetNbinsX(); tt++)
-  {
-    fKinematicsRD[i][j]->SetBinError(tt,scaleRD*fErrorRD[tt]);
-  }
-  fKinematicsRD[i][j]->Draw("E2");
-  fKinematicsRD[i][j]->SetMarkerStyle(22);
-  fKinematicsRD[i][j]->Draw("APSAME");
-  fKinematicsRD[i][j]->GetXaxis()->SetLabelSize(0.03);
-  fKinematicsRD[i][j]->GetYaxis()->SetLabelSize(0.03);
-  for(int tt=0; tt<fKinematicsMC[i][j]->GetNbinsX(); tt++)
-  {
-    fKinematicsMC[i][j]->SetBinError(tt,scaleMC*fErrorMC[tt]);
-  }
-  fErrorRD.clear(); fErrorMC.clear();
-  fKinematicsMC[i][j]->Draw("E2SAME");
-  fKinematicsMC[i][j]->Draw("PSAME");
+  fKinematicsMC[i][j]->SetFillColor(kBlue);
+  fKinematicsMC[i][j]->SetStats(0);
+  fKinematicsMC[i][j]->SetMinimum(0.);
+  fKinematicsMC[i][j]->Draw();
+  fKinematicsMC[i][j]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsMC[i][j]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsMC[i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+  fKinematicsRD[i][j]->SetLineColor(kRed);
+  fKinematicsRD[i][j]->Draw("SAME");
 }
 
 void save_kin_plots()
 {
-  c1->Divide(2,2);
-  c2.Divide(2,2);
-  c3.Divide(2,2);
-  c4.Divide(2,2);
-  c5.Divide(2,2);
-  c6.Divide(2,2);
-  c7.Divide(1,1);
-  c8.Divide(1,1);
-  c9.Divide(1,1);
-  c10.Divide(1,1);
-  c11.Divide(1,1);
-  c12.Divide(1,1);
-  c13.Divide(1,1);
-  c14.Divide(2,2);
-  c15.Divide(2,2);
-  c16.Divide(2,2);
-  c17.Divide(2,2);
-  c18.Divide(2,2);
-  c19.Divide(2,2);
-  c20.Divide(2,2);
-  c21.Divide(2,2);
-  c22.Divide(1,1);
-  c23.Divide(1,1);
-  c24.Divide(1,1);
+  c1->Divide(2,4);
+  c2.Divide(2,4);
+  c3.Divide(2,4);
+  c4.Divide(2,4);
+  c5.Divide(2,4);
+  c6.Divide(2,4);
+  c7.Divide(1,2);
+  c8.Divide(1,2);
+  c9.Divide(1,2);
+  c10.Divide(1,2);
+  c11.Divide(1,2);
+  c12.Divide(1,2);
+  c13.Divide(1,2);
+  c14.Divide(2,4);
+  c15.Divide(2,4);
+  c16.Divide(2,4);
+  c17.Divide(2,4);
+  c18.Divide(2,4);
+  c19.Divide(2,4);
+  c20.Divide(2,4);
+  c21.Divide(2,4);
+  c22.Divide(1,2);
+  c23.Divide(1,2);
+  c24.Divide(1,2);
   c25.Divide(2,2);
-  c26.Divide(1,1);
-  c27.Divide(2,2);
-  c28.Divide(1,1);
-  c29.Divide(1,1);
-  c30.Divide(1,1);
-  c31.Divide(1,1);
-  c32.Divide(1,1);
-  c33.Divide(1,1);
+  c26.Divide(1,2);
+  c27.Divide(2,4);
+  c28.Divide(1,2);
+  c29.Divide(1,2);
+  c30.Divide(1,2);
+  c31.Divide(1,2);
+  c32.Divide(1,2);
+  c33.Divide(1,2);
   c34.Divide(2,1);
   c35.Divide(2,1);
   c36.Divide(2,1);
 
   for(int i=0; i<4; i++)
   {
-    c1->cd(i+1);
-    plotting_device(i,0,0);
-    gPad->SetLogx();
-    c1->Update();
+    if(i<2) offset=0;
+    else offset=2;
 
-    c2.cd(i+1);
-    plotting_device(i,1,0);
+    c1.cd(i+offset+1+2);
+    plotting_ratio(i,0);
+    gPad->SetLogx();
+    c1.Update();
+    c1.cd(i+offset+1);
+    plotting_device(i,0);
+    gPad->SetLogx();
+    fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
+    fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
+    c1.Update();
+
+    c2.cd(i+offset+1+2);
+    plotting_ratio(i,1);
+    gPad->SetLogx();
+    c2.Update();
+    c2.cd(i+offset+1);
+    plotting_device(i,1);
     gPad->SetLogx();
     c2.Update();
 
-    c3.cd(i+1);
-    plotting_device(i,2,0);
+    c3.cd(i+offset+1+2);
+    plotting_ratio(i,2);
+    c3.Update();
+    c3.cd(i+offset+1);
+    plotting_device(i,2);
     c3.Update();
 
-    c4.cd(i+1);
-    plotting_device(i,3,0);
+    c4.cd(i+offset+1+2);
+    plotting_ratio(i,3);
+    c4.Update();
+    c4.cd(i+offset+1);
+    plotting_device(i,3);
     c4.Update();
 
-    c5.cd(i+1);
-    plotting_device(i,4,0);
+    c5.cd(i+offset+1+2);
+    plotting_ratio(i,4);
+    c5.Update();
+    c5.cd(i+offset+1);
+    plotting_device(i,4);
     c5.Update();
 
-    c6.cd(i+1);
-    plotting_device(i,5,0);
+    c6.cd(i+offset+1+2);
+    plotting_ratio(i,5);
+    c6.Update();
+    c6.cd(i+offset+1);
+    plotting_device(i,5);
     c6.Update();
 
-    c14.cd(i+1);
-    plotting_device(i,6,0);
+    c14.cd(i+offset+1+2);
+    plotting_ratio(i,6);
+    c14.Update();
+    c14.cd(i+offset+1);
+    plotting_device(i,6);
     c14.Update();
 
-    c15.cd(i+1);
-    plotting_device(i,7,0);
+    c15.cd(i+offset+1+2);
+    plotting_ratio(i,7);
+    c15.Update();
+    c15.cd(i+offset+1);
+    plotting_device(i,7);
     c15.Update();
 
-    c16.cd(i+1);
-    plotting_device(i,8,0);
+    c16.cd(i+offset+1+2);
+    plotting_ratio(i,8);
+    c16.Update();
+    c16.cd(i+offset+1);
+    plotting_device(i,8);
     c16.Update();
 
-    c17.cd(i+1);
-    plotting_device(i,9,0);
+    c17.cd(i+offset+1+2);
+    plotting_ratio(i,9);
+    c17.Update();
+    c17.cd(i+offset+1);
+    plotting_device(i,9);
     c17.Update();
 
-    c18.cd(i+1);
-    plotting_device(i,10,0);
+    c18.cd(i+offset+1+2);
+    plotting_ratio(i,10);
+    c18.Update();
+    c18.cd(i+offset+1);
+    plotting_device(i,10);
     c18.Update();
 
-    c19.cd(i+1);
-    plotting_device(i,12,0);
+    c19.cd(i+offset+1+2);
+    plotting_ratio(i,12);
+    c19.Update();
+    c19.cd(i+offset+1);
+    plotting_device(i,12);
     c19.Update();
 
-    c20.cd(i+1);
-    plotting_device(i,13,0);
+    c20.cd(i+offset+1+2);
+    plotting_ratio(i,13);
+    c20.Update();
+    c20.cd(i+offset+1);
+    plotting_device(i,13);
     c20.Update();
 
-    c21.cd(i+1);
-    plotting_device(i,14,0);
+    c21.cd(i+offset+1+2);
+    plotting_ratio(i,14);
+    c21.Update();
+    c21.cd(i+offset+1);
+    plotting_device(i,14);
     c21.Update();
 
-    c25.cd(i+1);
-    plotting_device(i,15,0);
+    c25.cd(i+offset+1+2);
+    plotting_ratio(i,15);
+    c25.Update();
+    c25.cd(i+offset+1);
+    plotting_device(i,15);
     c25.Update();
 
-    c27.cd(i+1);
-    plotting_device(i,16,0);
+    c27.cd(i+offset+1+2);
+    plotting_ratio(i,16);
+    c27.Update();
+    c27.cd(i+offset+1);
+    plotting_device(i,16);
     c27.Update();
   }
 
+  c7.cd(2);
+  plotting_ratio(0,11);
+  c7.Update();
   c7.cd(1);
-  plotting_device(0,11,0);
+  plotting_device(0,11);
   c7.Update();
 
-  c8.cd(1);
-  plotting_device(4,0,4);
-  gPad->SetLogx();
-  c8.Update();
+  c3.cd(2);
+  plotting_ratio(4,0);
+  c3.Update();
+  c3.cd(1);
+  plotting_device(4,0);
+  c3.Update();
 
+  c9.cd(2);
+  plotting_ratio(4,1);
+  gPad->SetLogx();
+  c9.Update();
   c9.cd(1);
-  plotting_device(4,1,4);
+  plotting_device(4,1);
   gPad->SetLogx();
   c9.Update();
 
+  c10.cd(2);
+  plotting_ratio(4,2);
+  c10.Update();
   c10.cd(1);
-  plotting_device(4,2,4);
+  plotting_device(4,2);
   c10.Update();
 
+  c11.cd(2);
+  plotting_ratio(4,3);
+  c11.Update();
   c11.cd(1);
-  plotting_device(4,3,4);
+  plotting_device(4,3);
   c11.Update();
 
+  c12.cd(2);
+  plotting_ratio(4,4);
+  c12.Update();
   c12.cd(1);
-  plotting_device(4,4,4);
+  plotting_device(4,4);
   c12.Update();
 
+  c13.cd(2);
+  plotting_ratio(4,5);
+  c13.Update();
   c13.cd(1);
-  plotting_device(4,5,4);
+  plotting_device(4,5);
   c13.Update();
 
+  c33.cd(2);
+  plotting_ratio(4,6);
+  c33.Update();
   c33.cd(1);
-  plotting_device(4,6,4);
+  plotting_device(4,6);
   c33.Update();
 
+  c22.cd(2);
+  plotting_ratio(4,12);
+  c22.Update();
   c22.cd(1);
-  plotting_device(4,12,4);
+  plotting_device(4,12);
   c22.Update();
 
+  c23.cd(2);
+  plotting_ratio(4,13);
+  c23.Update();
   c23.cd(1);
-  plotting_device(4,13,4);
+  plotting_device(4,13);
   c23.Update();
 
+  c24.cd(2);
+  plotting_ratio(4,14);
+  c24.Update();
   c24.cd(1);
-  plotting_device(4,14,4);
+  plotting_device(4,14);
   c24.Update();
 
+  c26.cd(2);
+  plotting_ratio(4,15);
+  c26.Update();
   c26.cd(1);
-  plotting_device(4,15,4);
+  plotting_device(4,15);
   c26.Update();
 
+  c28.cd(2);
+  plotting_ratio(4,16);
+  c28.Update();
   c28.cd(1);
-  plotting_device(4,16,4);
+  plotting_device(4,16);
   c28.Update();
 
   c34.cd(1);
