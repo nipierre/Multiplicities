@@ -1571,6 +1571,13 @@ int main(int argc, char **argv)
           z_range_h_z[c][i][j][zv].clear();
         }
 
+        for(int l=0; l<12; l++)
+        {
+          z_range_p_reldiff[c][i][j].push_back(z_range[l]);
+          z_range_k_reldiff[c][i][j].push_back(z_range[l]);
+          z_range_h_reldiff[c][i][j].push_back(z_range[l]);
+        }
+
         for(int k=12; k>0; k--)
         {
           if(!p_reldiff[c][i][j][k-1]) {p_reldiff[c][i][j].erase(p_reldiff[c][i][j].begin()+k-1); p_reldiff_err[c][i][j].erase(p_reldiff_err[c][i][j].begin()+k-1); z_range_p_reldiff[c][i][j].erase(z_range_p_reldiff[c][i][j].begin()+k-1);}
