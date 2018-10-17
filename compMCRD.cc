@@ -1592,6 +1592,10 @@ void RDextraction(string pFilelist)
   Double_t wBj = 0;
   Double_t nu = 0;
 
+  // Target cells
+  if(Y2012) InitTargetFile(target_file_2012);
+  else if(Y2016) InitTargetFile(target_file_2016);
+
   // List of files
 
   ifstream list(pFilelist);
