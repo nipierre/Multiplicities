@@ -1555,9 +1555,9 @@ void MCextraction(string pFilelist)
             fKinematicsMC[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
             fKinematicsMC[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
             fKinematicsMC[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
-            fKinematicsMC[3][0]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fKinematicsMC[3][1]->Fill(z->GetLeaf("z")->GetValue());
-            else fKinematicsMC[3][2]->Fill(z->GetLeaf("z")->GetValue());
+            fKinematicsMC[3][17]->Fill(z->GetLeaf("z")->GetValue());
+            if(fId == 8 || fId == 9) fKinematicsMC[3][18]->Fill(z->GetLeaf("z")->GetValue());
+            else fKinematicsMC[3][19]->Fill(z->GetLeaf("z")->GetValue());
           }
 
           // ALL TRIGGERS
