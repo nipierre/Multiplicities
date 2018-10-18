@@ -1925,7 +1925,7 @@ int main(int argc, char **argv)
 
             if(kin_flag)
             {
-              int mypid;
+              int mypid = 0;
               if(MC_p->GetLeaf("MCHadrons.pid")->GetValue(i) == 3)//e-
               {
                 mypid = 8;
