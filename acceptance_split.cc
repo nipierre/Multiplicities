@@ -588,8 +588,8 @@ void save_kin_plots()
   fVertexHadron[0]->Scale(1/fXBjtest);
   fVertexHadronMC[0]->SetLineColor(kBlue);
   fVertexHadron[0]->SetLineColor(kRed);
-  // fVertexHadron[0]->Draw();
-  fVertexHadronMC[0]->Draw("SAME");
+  fVertexHadronMC[0]->Draw();
+  fVertexHadron[0]->Draw("SAME");
   c42.Update();
 
   c43.cd(1);
@@ -597,8 +597,8 @@ void save_kin_plots()
   fVertexHadron[1]->Scale(1/fXBjtest);
   fVertexHadronMC[1]->SetLineColor(kBlue);
   fVertexHadron[1]->SetLineColor(kRed);
-  // fVertexHadron[1]->Draw();
-  fVertexHadronMC[1]->Draw("SAME");
+  fVertexHadronMC[1]->Draw();
+  fVertexHadron[1]->Draw("SAME");
   c43.Update();
 
   c44.cd(1);
@@ -606,8 +606,8 @@ void save_kin_plots()
   fVertexHadron[2]->Scale(1/fXBjtest);
   fVertexHadronMC[2]->SetLineColor(kBlue);
   fVertexHadron[2]->SetLineColor(kRed);
-  // fVertexHadron[2]->Draw();
-  fVertexHadronMC[2]->Draw("SAME");
+  fVertexHadronMC[2]->Draw();
+  fVertexHadron[2]->Draw("SAME");
   c44.Update();
 
   c1.Print("kinMC.pdf(","pdf");
