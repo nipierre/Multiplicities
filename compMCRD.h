@@ -85,6 +85,8 @@ vector<Double_t> fXMC;
 vector<Double_t> fYMC;
 vector<Double_t> fZMC;
 
+Int_t fNEventsRD, fNEventsMC;
+
 //Misc
 
 set<Double_t> fLHsec_set;

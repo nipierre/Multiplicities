@@ -313,6 +313,40 @@ void plotting_device(int i, int j)
   fKinematicsRD[i][j]->Draw("SAME");
 }
 
+void plotting_ratio_vertex(int i, int j)
+{
+  // for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
+  // {
+  //   fError.push_back((fKinematicsRD[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][0]->GetBinError(tt),2)):0));
+  // }
+  fKinematicsRD[i][j]->Sumw2();
+  fKinematicsMC[i][j]->Sumw2();
+  fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
+  fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
+  fKinematicsMC[i][j]->Scale(1/fNEventsMC);
+  fKinematicsRD[i][j]->Scale(1/fNEventsRD);
+  fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
+  fKinematicsRatio[i][j]->SetStats(0);
+  fKinematicsRatio[i][j]->Divide(fKinematicsMC[i][j]);
+  // for(int tt=0; tt<fKinematicsRatio[idx][0]->GetNbinsX(); tt++)
+  // {
+  //   fKinematicsRatio[idx][0]->SetBinError(tt,fError[tt]);
+  // }
+  // fError.clear();
+  fKinematicsRatio[i][j]->SetMarkerStyle(21);
+  fKinematicsRatio[i][j]->SetFillColor(kYellow-7);
+  fKinematicsRatio[i][j]->SetMaximum(2.);
+  fKinematicsRatio[i][j]->SetMinimum(0.);
+  fKinematicsRatio[i][j]->Draw("PE2");
+  fKinematicsRatio[i][j]->GetXaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[i][j]->GetYaxis()->SetLabelSize(0.08);
+  fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
+  for(int tt=0; tt<7; tt++)
+  {
+    l1[j][tt]->Draw();
+  }
+}
+
 void save_kin_plots()
 {
   c1.Divide(2,4);
@@ -484,21 +518,21 @@ void save_kin_plots()
     c27.Update();
 
     c37.cd(i+offset+1+2);
-    plotting_ratio(i,17);
+    plotting_ratio_vertex(i,17);
     c37.Update();
     c37.cd(i+offset+1);
     plotting_device(i,17);
     c37.Update();
 
     c39.cd(i+offset+1+2);
-    plotting_ratio(i,18);
+    plotting_ratio_vertex(i,18);
     c39.Update();
     c39.cd(i+offset+1);
     plotting_device(i,18);
     c39.Update();
 
     c41.cd(i+offset+1+2);
-    plotting_ratio(i,19);
+    plotting_ratio_vertex(i,19);
     c41.Update();
     c41.cd(i+offset+1);
     plotting_device(i,19);
@@ -599,21 +633,21 @@ void save_kin_plots()
   c28.Update();
 
   c38.cd(2);
-  plotting_ratio(4,17);
+  plotting_ratio_vertex(4,17);
   c38.Update();
   c38.cd(1);
   plotting_device(4,17);
   c38.Update();
 
   c40.cd(2);
-  plotting_ratio(4,18);
+  plotting_ratio_vertex(4,18);
   c40.Update();
   c40.cd(1);
   plotting_device(4,18);
   c40.Update();
 
   c42.cd(2);
-  plotting_ratio(4,19);
+  plotting_ratio_vertex(4,19);
   c42.Update();
   c42.cd(1);
   plotting_device(4,19);
@@ -1298,6 +1332,7 @@ void MCextraction(string pFilelist)
       // If all DIS tests are good, then event is saved
       if(fAllDISflag)
       {
+        fNEventsMC++;
         // MT
         if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
         {
@@ -2024,6 +2059,7 @@ void RDextraction(string pFilelist)
       // x cut
       if(!(fXmin<xBj && xBj<fXmax)) continue;
 
+      fNEventsRD++;
       // MT
       if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
       {
