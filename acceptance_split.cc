@@ -1926,11 +1926,11 @@ int main(int argc, char **argv)
             if(kin_flag)
             {
               int mypid = 0;
-              if(MC_p->GetLeaf("MCHadrons.pid")->GetValue(i) == 3)//e-
+              if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 3)//e-
               {
                 mypid = 8;
               }
-              else if(MC_p->GetLeaf("MCHadrons.pid")->GetValue(i) == 2)//e+
+              else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 2)//e+
               {
                 mypid = 9;
               }
