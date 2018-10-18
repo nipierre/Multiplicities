@@ -85,7 +85,8 @@ vector<Double_t> fXMC;
 vector<Double_t> fYMC;
 vector<Double_t> fZMC;
 
-Int_t fNEventsRD, fNEventsMC;
+Double_t fNEventsRD = 0;
+Double_t fNEventsMC = 0;
 
 //Misc
 

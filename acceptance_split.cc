@@ -192,6 +192,9 @@ void create_kin_plots()
   fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -20, 250, 100, -230, 230);
   fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -250, 20, 100, -230, 230);
   fTrigCov = new TH2F("Trigger_Coverage", "Trigger_Coverage", 100, -227, 258, 100, -112, 112);
+  fVertexHadron[0] = = new TH1F("Vertex Hadron+e", "Vertex Hadron+e", 50, -325, -71);
+  fVertexHadron[1] = = new TH1F("Vertex e", "Vertex e", 50, -325, -71);
+  fVertexHadron[2] = = new TH1F("Vertex Hadron", "Vertex Hadron", 50, -325, -71);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
@@ -204,6 +207,9 @@ void create_kin_plots()
   fKinematicsMC[6] = new TH1F("E_{#mu,MC}", "E_{#mu,MC}", 100, 140, 180);
   fKinematics2DMC = new TH2F("DIS kin space MC", "DIS kin space MC", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2DMC = new TH2F("Target xy MC", "Target xy MC", 100, -3, 3, 100, -3, 3);
+  fVertexHadronMC[0] = = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
+  fVertexHadronMC[1] = = new TH1F("Vertex e MC", "Vertex e MC", 50, -325, -71);
+  fVertexHadronMC[2] = = new TH1F("Vertex Hadron MC", "Vertex Hadron MC", 50, -325, -71);
   BinLogX(fKinematicsMC[0]);
   BinLogX(fKinematicsMC[1]);
   BinLogX(fKinematics2DMC);
@@ -244,6 +250,9 @@ void save_kin_plots()
   c39.Divide(1,1);
   c40.Divide(1,1);
   c41.Divide(1,1);
+  c42.Divide(1,1);
+  c43.Divide(1,1);
+  c44.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -574,6 +583,33 @@ void save_kin_plots()
 
   c41.Update();
 
+  c42.cd(1);
+  fVertexHadronMC[0]->Scale(1/fMCDIS);
+  fVertexHadron[0]->Scale(1/fXBjkin);
+  fVertexHadronMC[0]->SetLineColor(kBlue);
+  fVertexHadron[0]->SetLineColor(kRed);
+  fVertexHadron[0]->Draw();
+  fVertexHadronMC[0]->Draw("SAME");
+  c42.Update();
+
+  c43.cd(1);
+  fVertexHadronMC[1]->Scale(1/fMCDIS);
+  fVertexHadron[1]->Scale(1/fXBjkin);
+  fVertexHadronMC[1]->SetLineColor(kBlue);
+  fVertexHadron[1]->SetLineColor(kRed);
+  fVertexHadron[1]->Draw();
+  fVertexHadronMC[1]->Draw("SAME");
+  c43.Update();
+
+  c44.cd(1);
+  fVertexHadronMC[2]->Scale(1/fMCDIS);
+  fVertexHadron[2]->Scale(1/fXBjkin);
+  fVertexHadronMC[2]->SetLineColor(kBlue);
+  fVertexHadron[2]->SetLineColor(kRed);
+  fVertexHadron[2]->Draw();
+  fVertexHadronMC[2]->Draw("SAME");
+  c44.Update();
+
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
   c3.Print("kinMC.pdf","pdf");
@@ -650,7 +686,10 @@ void save_kin_plots()
   c22.Print("kinMC.pdf","pdf");
   c23.Print("kinMC.pdf","pdf");
   c24.Print("kinMC.pdf","pdf");
-  c25.Print("kinMC.pdf)","pdf");
+  c25.Print("kinMC.pdf","pdf");
+  c42.Print("kinMC.pdf","pdf");
+  c43.Print("kinMC.pdf","pdf");
+  c44.Print("kinMC.pdf)","pdf");
   c41.Print("Trigger_Coverage.pdf");
 }
 
@@ -1439,6 +1478,7 @@ int main(int argc, char **argv)
                         // x cut
                         if((0.004<xBj_MC && xBj_MC<0.4))
                         {
+                          fMCDIS++;
                           fAllDISflag_MC = 1;
                         }
                       }
@@ -2174,6 +2214,10 @@ int main(int argc, char **argv)
 
             if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
 
+            fVertexHadronMC[0]->Fill(z->GetLeaf("z")->GetValue());
+            if(fId == 8 || fId == 9) fVertexHadronMC[1]->Fill(z->GetLeaf("z")->GetValue());
+            else fVertexHadronMC[2]->Fill(z->GetLeaf("z")->GetValue());
+
             if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
             else if(0.25<=zBj_MC && zBj_MC<0.30) zbin = 1;
             else if(0.30<=zBj_MC && zBj_MC<0.35) zbin = 2;
@@ -2444,6 +2488,10 @@ int main(int argc, char **argv)
             // z cut
             if(!(0.2<zBj && zBj<0.85)) continue;
             fZtest++;
+
+            fVertexHadron[0]->Fill(z->GetLeaf("z")->GetValue());
+            if(fId == 8 || fId == 9) fVertexHadron[1]->Fill(z->GetLeaf("z")->GetValue());
+            else fVertexHadron[2]->Fill(z->GetLeaf("z")->GetValue());
 
             if(0.2<zBj && zBj<0.25) zbin = 0;
             else if(0.25<=zBj && zBj<0.30) zbin = 1;
