@@ -252,7 +252,6 @@ void save_kin_plots()
   c41.Divide(1,1);
   c42.Divide(1,1);
   c43.Divide(1,1);
-  c44.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -1923,8 +1922,6 @@ int main(int argc, char **argv)
                 mypid = 9;
               }
               fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
-              if(mypid == 8 || mypid == 9)
-              else fVertexHadronMC[2]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
             }
 
             if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
