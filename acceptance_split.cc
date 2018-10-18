@@ -584,8 +584,8 @@ void save_kin_plots()
   c41.Update();
 
   c42.cd(1);
-  // fVertexHadronMC[0]->Scale(1/fMCDIS);
-  // fVertexHadron[0]->Scale(1/fXBjtest);
+  fVertexHadronMC[0]->Scale(1/fMCDIS);
+  fVertexHadron[0]->Scale(1/fXBjtest);
   fVertexHadronMC[0]->SetLineColor(kBlue);
   fVertexHadron[0]->SetLineColor(kRed);
   fVertexHadron[0]->Draw();
@@ -593,8 +593,8 @@ void save_kin_plots()
   c42.Update();
 
   c43.cd(1);
-  // fVertexHadronMC[1]->Scale(1/fMCDIS);
-  // fVertexHadron[1]->Scale(1/fXBjtest);
+  fVertexHadronMC[1]->Scale(1/fMCDIS);
+  fVertexHadron[1]->Scale(1/fXBjtest);
   fVertexHadronMC[1]->SetLineColor(kBlue);
   fVertexHadron[1]->SetLineColor(kRed);
   fVertexHadron[1]->Draw();
@@ -602,8 +602,8 @@ void save_kin_plots()
   c43.Update();
 
   c44.cd(1);
-  // fVertexHadronMC[2]->Scale(1/fMCDIS);
-  // fVertexHadron[2]->Scale(1/fXBjtest);
+  fVertexHadronMC[2]->Scale(1/fMCDIS);
+  fVertexHadron[2]->Scale(1/fXBjtest);
   fVertexHadronMC[2]->SetLineColor(kBlue);
   fVertexHadron[2]->SetLineColor(kRed);
   fVertexHadron[2]->Draw();
@@ -1478,7 +1478,6 @@ int main(int argc, char **argv)
                         // x cut
                         if((0.004<xBj_MC && xBj_MC<0.4))
                         {
-                          fMCDIS++;
                           fAllDISflag_MC = 1;
                         }
                       }
@@ -1533,6 +1532,7 @@ int main(int argc, char **argv)
                       // x cut
                       if((0.004<xBj_MC && xBj_MC<0.4))
                       {
+                        fMCDIS++;
                         fAllDISflag_MC = 1;
                       }
                     }
@@ -1923,9 +1923,21 @@ int main(int argc, char **argv)
 
             if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
 
-            fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
-            if(fId == 8 || fId == 9) fVertexHadronMC[1]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
-            else fVertexHadronMC[2]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+            if(kin_flag)
+            {
+              int mypid;
+              if(MC_p->GetLeaf("MCHadrons.pid")->GetValue(i) == 3)//e-
+              {
+                mypid = 8;
+              }
+              else if(MC_p->GetLeaf("MCHadrons.pid")->GetValue(i) == 2)//e+
+              {
+                mypid = 9;
+              }
+              fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+              if(mypid == 8 || mypid == 9) fVertexHadronMC[1]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+              else fVertexHadronMC[2]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+            }
 
             if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
             else if(0.25<zBj_MC && zBj_MC<0.30) zbin = 1;
@@ -2489,9 +2501,12 @@ int main(int argc, char **argv)
             if(!(0.2<zBj && zBj<0.85)) continue;
             fZtest++;
 
-            fVertexHadron[0]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fVertexHadron[1]->Fill(z->GetLeaf("z")->GetValue());
-            else fVertexHadron[2]->Fill(z->GetLeaf("z")->GetValue());
+            if(kin_flag)
+            {
+              fVertexHadron[0]->Fill(z->GetLeaf("z")->GetValue());
+              if(fId == 8 || fId == 9) fVertexHadron[1]->Fill(z->GetLeaf("z")->GetValue());
+              else fVertexHadron[2]->Fill(z->GetLeaf("z")->GetValue());
+            }
 
             if(0.2<zBj && zBj<0.25) zbin = 0;
             else if(0.25<=zBj && zBj<0.30) zbin = 1;
