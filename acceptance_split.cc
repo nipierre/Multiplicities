@@ -192,9 +192,9 @@ void create_kin_plots()
   fHG021MC = new TH2F("HG02MCY1", "HG02MCY1", 100, -20, 250, 100, -230, 230);
   fHG022MC = new TH2F("HG02MCY2", "HG02MCY2", 100, -250, 20, 100, -230, 230);
   fTrigCov = new TH2F("Trigger_Coverage", "Trigger_Coverage", 100, -227, 258, 100, -112, 112);
-  fVertexHadron[0] = = new TH1F("Vertex Hadron+e", "Vertex Hadron+e", 50, -325, -71);
-  fVertexHadron[1] = = new TH1F("Vertex e", "Vertex e", 50, -325, -71);
-  fVertexHadron[2] = = new TH1F("Vertex Hadron", "Vertex Hadron", 50, -325, -71);
+  fVertexHadron[0] = new TH1F("Vertex Hadron+e", "Vertex Hadron+e", 50, -325, -71);
+  fVertexHadron[1] = new TH1F("Vertex e", "Vertex e", 50, -325, -71);
+  fVertexHadron[2] = new TH1F("Vertex Hadron", "Vertex Hadron", 50, -325, -71);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
   BinLogX(fKinematics2D);
