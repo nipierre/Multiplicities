@@ -207,9 +207,9 @@ void create_kin_plots()
   fKinematicsMC[6] = new TH1F("E_{#mu,MC}", "E_{#mu,MC}", 100, 140, 180);
   fKinematics2DMC = new TH2F("DIS kin space MC", "DIS kin space MC", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2DMC = new TH2F("Target xy MC", "Target xy MC", 100, -3, 3, 100, -3, 3);
-  fVertexHadronMC[0] = = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
-  fVertexHadronMC[1] = = new TH1F("Vertex e MC", "Vertex e MC", 50, -325, -71);
-  fVertexHadronMC[2] = = new TH1F("Vertex Hadron MC", "Vertex Hadron MC", 50, -325, -71);
+  fVertexHadronMC[0] = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
+  fVertexHadronMC[1] = new TH1F("Vertex e MC", "Vertex e MC", 50, -325, -71);
+  fVertexHadronMC[2] = new TH1F("Vertex Hadron MC", "Vertex Hadron MC", 50, -325, -71);
   BinLogX(fKinematicsMC[0]);
   BinLogX(fKinematicsMC[1]);
   BinLogX(fKinematics2DMC);
