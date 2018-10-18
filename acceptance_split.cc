@@ -1923,6 +1923,10 @@ int main(int argc, char **argv)
 
             if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
 
+            fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+            if(fId == 8 || fId == 9) fVertexHadronMC[1]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+            else fVertexHadronMC[2]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+
             if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
             else if(0.25<zBj_MC && zBj_MC<0.30) zbin = 1;
             else if(0.30<zBj_MC && zBj_MC<0.35) zbin = 2;
@@ -2213,10 +2217,6 @@ int main(int argc, char **argv)
             }
 
             if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
-
-            fVertexHadronMC[0]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fVertexHadronMC[1]->Fill(z->GetLeaf("z")->GetValue());
-            else fVertexHadronMC[2]->Fill(z->GetLeaf("z")->GetValue());
 
             if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
             else if(0.25<=zBj_MC && zBj_MC<0.30) zbin = 1;
