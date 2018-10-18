@@ -593,22 +593,8 @@ void save_kin_plots()
   c42.Update();
 
   c43.cd(1);
-  fVertexHadronMC[1]->Scale(1/fMCDIS);
-  fVertexHadron[1]->Scale(1/fXBjtest);
-  fVertexHadronMC[1]->SetLineColor(kBlue);
-  fVertexHadron[1]->SetLineColor(kRed);
   fVertexHadronMC[1]->Draw();
-  fVertexHadron[1]->Draw("SAME");
   c43.Update();
-
-  c44.cd(1);
-  fVertexHadronMC[2]->Scale(1/fMCDIS);
-  fVertexHadron[2]->Scale(1/fXBjtest);
-  fVertexHadronMC[2]->SetLineColor(kBlue);
-  fVertexHadron[2]->SetLineColor(kRed);
-  fVertexHadronMC[2]->Draw();
-  fVertexHadron[2]->Draw("SAME");
-  c44.Update();
 
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
@@ -688,8 +674,7 @@ void save_kin_plots()
   c24.Print("kinMC.pdf","pdf");
   c25.Print("kinMC.pdf","pdf");
   c42.Print("kinMC.pdf","pdf");
-  c43.Print("kinMC.pdf","pdf");
-  c44.Print("kinMC.pdf)","pdf");
+  c43.Print("kinMC.pdf)","pdf");
   c41.Print("Trigger_Coverage.pdf");
 }
 
@@ -913,6 +898,7 @@ int main(int argc, char **argv)
       TBranch *MC_ph = (TBranch*) tree->FindBranch("MCHadrons.ph");
       TBranch *MC_charge = (TBranch*) tree->FindBranch("MCHadrons.charge");
       TBranch *MC_pid = (TBranch*) tree->FindBranch("MCHadrons.pid");
+      TBranch *MC_lvtx = (TBranch*) tree->FindBranch("MCHadrons.lastVtxPos");
       TBranch *MC_recons = (TBranch*) tree->FindBranch("MCHadrons.recons");
       TBranch *MC_recHadIdx = (TBranch*) tree->FindBranch("MCHadrons.recHadIdx");
 
@@ -1047,6 +1033,7 @@ int main(int argc, char **argv)
         MC_ph->GetEntry(ip);
         MC_charge->GetEntry(ip);
         MC_pid->GetEntry(ip);
+        MC_lvtx->GetEntry(ip);
         MC_recons->GetEntry(ip);
         MC_recHadIdx->GetEntry(ip);
 
@@ -1925,6 +1912,7 @@ int main(int argc, char **argv)
 
             if(kin_flag)
             {
+              fVertexHadronMC[1]->Fill(MC_lvtx->GetLeaf("MCHadrons.lastVtxPos")->GetValue());
               int mypid = 0;
               if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 3)//e-
               {
@@ -1935,7 +1923,7 @@ int main(int argc, char **argv)
                 mypid = 9;
               }
               fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
-              if(mypid == 8 || mypid == 9) fVertexHadronMC[1]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+              if(mypid == 8 || mypid == 9)
               else fVertexHadronMC[2]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
             }
 
