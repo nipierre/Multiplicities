@@ -290,6 +290,8 @@ TCanvas c43("Vertex MC","Vertex MC",3200,1600);
 TH1F* fKinematicsMC[7];
 TH2F* fKinematics2DMC;
 TH2F* fTarget2DMC;
+TH1F* fVertexStudyMC[4];
+TH2F* fVertexStudyMC2D[3];
 TCanvas c18("KinMC_Q^{2}","KinMC_Q^{2}",3200,1600);
 TCanvas c19("KinMC_x^{Bj}","KinMC_x^{Bj}",3200,1600);
 TCanvas c20("KinMC_y","KinMC_y",3200,1600);

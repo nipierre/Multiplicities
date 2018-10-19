@@ -210,6 +210,13 @@ void create_kin_plots()
   fVertexHadronMC[0] = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
   fVertexHadronMC[1] = new TH1F("Vertex e MC", "Vertex e MC", 50, -325, -71);
   fVertexHadronMC[2] = new TH1F("Vertex Hadron MC", "Vertex Hadron MC", 50, -325, -71);
+  fVertexStudyMC[0] = new TH1F("Vertex Hadron MC 1", "Vertex Hadron MC 1", 50, -325, -71);
+  fVertexStudyMC[1] = new TH1F("Vertex Hadron MC 2", "Vertex Hadron MC 2", 50, -325, -71);
+  fVertexStudyMC[2] = new TH1F("Vertex Hadron MC 3", "Vertex Hadron MC 3", 50, -325, -71);
+  fVertexStudyMC[3] = new TH1F("Vertex Hadron MC 4", "Vertex Hadron MC 4", 50, -325, -71);
+  fVertexStudyMC2D[0] = new TH2F("Vertex Hadron MC R", "Vertex Hadron MC R", 50, -325, -71);
+  fVertexStudyMC2D[1] = new TH2F("Vertex Hadron MC x", "Vertex Hadron MC x", 50, -325, -71);
+  fVertexStudyMC2D[2] = new TH2F("Vertex Hadron MC y", "Vertex Hadron MC y", 50, -325, -71);
   BinLogX(fKinematicsMC[0]);
   BinLogX(fKinematicsMC[1]);
   BinLogX(fKinematics2DMC);
@@ -251,7 +258,7 @@ void save_kin_plots()
   c40.Divide(1,1);
   c41.Divide(1,1);
   c42.Divide(1,1);
-  c43.Divide(1,1);
+  c43.Divide(2,2);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -592,7 +599,26 @@ void save_kin_plots()
   c42.Update();
 
   c43.cd(1);
-  fVertexHadronMC[1]->Draw();
+  fVertexStudyMC[0]->SetLineColor(kMagenta);
+  fVertexStudyMC[0]->Draw();
+  fVertexStudyMC[1]->SetLineColor(kBlue);
+  fVertexStudyMC[1]->Draw("SAME");
+  fVertexStudyMC[2]->SetLineColor(kCyan);
+  fVertexStudyMC[2]->Draw("SAME");
+  fVertexStudyMC[3]->SetLineColor(kGreen);
+  fVertexStudyMC[3]->Draw("SAME");
+  c43.Update();
+
+  c43.cd(2);
+  fVertexStudyMC2D[0]->Draw("COLZ");
+  c43.Update();
+
+  c43.cd(3);
+  fVertexStudyMC2D[1]->Draw("COLZ");
+  c43.Update();
+
+  c43.cd(4);
+  fVertexStudyMC2D[2]->Draw("COLZ");
   c43.Update();
 
   c1.Print("kinMC.pdf(","pdf");
@@ -1911,16 +1937,13 @@ int main(int argc, char **argv)
 
             if(kin_flag)
             {
-              fVertexHadronMC[1]->Fill(MC_lvtx->GetLeaf("MCHadrons.lastVtxPos")->GetValue());
-              int mypid = 0;
-              if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 3)//e-
-              {
-                mypid = 8;
-              }
-              else if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 2)//e+
-              {
-                mypid = 9;
-              }
+              if(-325<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-261.5) fVertexStudyMC[0]->Fill(MC_lvtx->GetLeaf("MCHadrons.lastVtxPos")->GetValue());
+              else if(-261.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-198) fVertexStudyMC[1]->Fill(MC_lvtx->GetLeaf("MCHadrons.lastVtxPos")->GetValue());
+              else if(-198<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-134.5) fVertexStudyMC[2]->Fill(MC_lvtx->GetLeaf("MCHadrons.lastVtxPos")->GetValue());
+              else if(-134.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<=-71) fVertexStudyMC[3]->Fill(MC_lvtx->GetLeaf("MCHadrons.lastVtxPos")->GetValue());
+              fVertexStudyMC2D[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue(),sqrt(pow(MC_vx->GetLeaf("MC_vx")->GetValue(),2)+pow(MC_vy->GetLeaf("MC_vy")->GetValue(),2)));
+              fVertexStudyMC2D[1]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue(),MC_vx->GetLeaf("MC_vx")->GetValue());
+              fVertexStudyMC2D[2]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue());
               fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
             }
 
