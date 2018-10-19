@@ -210,10 +210,10 @@ void create_kin_plots()
   fVertexHadronMC[0] = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
   fVertexHadronMC[1] = new TH1F("Vertex e MC", "Vertex e MC", 50, -325, -71);
   fVertexHadronMC[2] = new TH1F("Vertex Hadron MC", "Vertex Hadron MC", 50, -325, -71);
-  fVertexStudyMC[0] = new TH1F("Vertex Hadron MC 1", "Vertex Hadron MC 1", 100, -1000, 3000);
-  fVertexStudyMC[1] = new TH1F("Vertex Hadron MC 2", "Vertex Hadron MC 2", 100, -1000, 3000);
-  fVertexStudyMC[2] = new TH1F("Vertex Hadron MC 3", "Vertex Hadron MC 3", 100, -1000, 3000);
-  fVertexStudyMC[3] = new TH1F("Vertex Hadron MC 4", "Vertex Hadron MC 4", 100, -1000, 3000);
+  fVertexStudyMC[0] = new TH1F("Vertex Hadron MC 1", "Vertex Hadron MC 1", 1000, -1000, 3000);
+  fVertexStudyMC[1] = new TH1F("Vertex Hadron MC 2", "Vertex Hadron MC 2", 1000, -1000, 3000);
+  fVertexStudyMC[2] = new TH1F("Vertex Hadron MC 3", "Vertex Hadron MC 3", 1000, -1000, 3000);
+  fVertexStudyMC[3] = new TH1F("Vertex Hadron MC 4", "Vertex Hadron MC 4", 1000, -1000, 3000);
   fVertexStudyMC2D[0] = new TH2F("Vertex Hadron MC R", "Vertex Hadron MC R", 100, -325, -71, 100, -3, 3);
   fVertexStudyMC2D[1] = new TH2F("Vertex Hadron MC x", "Vertex Hadron MC x", 100, -325, -71, 100, -3, 3);
   fVertexStudyMC2D[2] = new TH2F("Vertex Hadron MC y", "Vertex Hadron MC y", 100, -325, -71, 100, -3, 3);
@@ -701,7 +701,7 @@ void save_kin_plots()
   c42.Print("kinMC.pdf","pdf");
   c43.Print("kinMC.pdf)","pdf");
   c41.Print("Trigger_Coverage.pdf");
-  TFile *f = new TFile("vertexstudy.root","UPDATE");
+  TFile *f = new TFile("vertexstudy.root");
   c43.Write();
   f->Close();
 
