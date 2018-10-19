@@ -599,14 +599,14 @@ void save_kin_plots()
   c42.Update();
 
   c43.cd(1);
+  fVertexStudyMC[3]->SetLineColor(kGreen);
+  fVertexStudyMC[3]->Draw("SAME");
   fVertexStudyMC[0]->SetLineColor(kMagenta);
-  fVertexStudyMC[0]->Draw();
+  fVertexStudyMC[0]->Draw("SAME");
   fVertexStudyMC[1]->SetLineColor(kBlue);
   fVertexStudyMC[1]->Draw("SAME");
   fVertexStudyMC[2]->SetLineColor(kCyan);
   fVertexStudyMC[2]->Draw("SAME");
-  fVertexStudyMC[3]->SetLineColor(kGreen);
-  fVertexStudyMC[3]->Draw("SAME");
   c43.Update();
 
   c43.cd(2);
