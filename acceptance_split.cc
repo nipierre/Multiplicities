@@ -214,9 +214,9 @@ void create_kin_plots()
   fVertexStudyMC[1] = new TH1F("Vertex Hadron MC 2", "Vertex Hadron MC 2", 50, -325, -71);
   fVertexStudyMC[2] = new TH1F("Vertex Hadron MC 3", "Vertex Hadron MC 3", 50, -325, -71);
   fVertexStudyMC[3] = new TH1F("Vertex Hadron MC 4", "Vertex Hadron MC 4", 50, -325, -71);
-  fVertexStudyMC2D[0] = new TH2F("Vertex Hadron MC R", "Vertex Hadron MC R", 50, -325, -71);
-  fVertexStudyMC2D[1] = new TH2F("Vertex Hadron MC x", "Vertex Hadron MC x", 50, -325, -71);
-  fVertexStudyMC2D[2] = new TH2F("Vertex Hadron MC y", "Vertex Hadron MC y", 50, -325, -71);
+  fVertexStudyMC2D[0] = new TH2F("Vertex Hadron MC R", "Vertex Hadron MC R", 100, -325, -71, 100, -3, 3);
+  fVertexStudyMC2D[1] = new TH2F("Vertex Hadron MC x", "Vertex Hadron MC x", 100, -325, -71, 100, -3, 3);
+  fVertexStudyMC2D[2] = new TH2F("Vertex Hadron MC y", "Vertex Hadron MC y", 100, -325, -71, 100, -3, 3);
   BinLogX(fKinematicsMC[0]);
   BinLogX(fKinematicsMC[1]);
   BinLogX(fKinematics2DMC);
