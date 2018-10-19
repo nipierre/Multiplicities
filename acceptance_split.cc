@@ -701,7 +701,7 @@ void save_kin_plots()
   c42.Print("kinMC.pdf","pdf");
   c43.Print("kinMC.pdf)","pdf");
   c41.Print("Trigger_Coverage.pdf");
-  TFile *f = new TFile("vertexstudy.root");
+  TFile *f = new TFile("vertexstudy.root","NEW");
   c43.Write();
   f->Close();
 
