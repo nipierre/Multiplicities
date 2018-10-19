@@ -210,13 +210,13 @@ void create_kin_plots()
   fVertexHadronMC[0] = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
   fVertexHadronMC[1] = new TH1F("Vertex e MC", "Vertex e MC", 50, -325, -71);
   fVertexHadronMC[2] = new TH1F("Vertex Hadron MC", "Vertex Hadron MC", 50, -325, -71);
-  fVertexStudyMC[0] = new TH1F("Vertex Hadron MC 1", "Vertex Hadron MC 1", 100, -1000, 3000);
-  fVertexStudyMC[1] = new TH1F("Vertex Hadron MC 2", "Vertex Hadron MC 2", 100, -1000, 3000);
-  fVertexStudyMC[2] = new TH1F("Vertex Hadron MC 3", "Vertex Hadron MC 3", 100, -1000, 3000);
-  fVertexStudyMC[3] = new TH1F("Vertex Hadron MC 4", "Vertex Hadron MC 4", 100, -1000, 3000);
-  fVertexStudyMC2D[0] = new TH2F("Vertex Hadron MC R", "Vertex Hadron MC R", 100, -325, -71, 100, -3, 3);
-  fVertexStudyMC2D[1] = new TH2F("Vertex Hadron MC x", "Vertex Hadron MC x", 100, -325, -71, 100, -3, 3);
-  fVertexStudyMC2D[2] = new TH2F("Vertex Hadron MC y", "Vertex Hadron MC y", 100, -325, -71, 100, -3, 3);
+  fVertexStudyMC[0] = new TH1F("Vertex Hadron MC 1", "Vertex Hadron MC 1", 100, -325, -71);
+  fVertexStudyMC[1] = new TH1F("Vertex Hadron MC 2", "Vertex Hadron MC 2", 100, -325, -71);
+  fVertexStudyMC[2] = new TH1F("Vertex Hadron MC 3", "Vertex Hadron MC 3", 100, -325, -71);
+  fVertexStudyMC[3] = new TH1F("Vertex Hadron MC 4", "Vertex Hadron MC 4", 100, -325, -71);
+  fVertexStudyMC2D[0] = new TH2F("Vertex Hadron MC R", "Vertex Hadron MC R", 100, -325, -71, 100, -100, 100);
+  fVertexStudyMC2D[1] = new TH2F("Vertex Hadron MC x", "Vertex Hadron MC x", 100, -325, -71, 100, -100, 100);
+  fVertexStudyMC2D[2] = new TH2F("Vertex Hadron MC y", "Vertex Hadron MC y", 100, -325, -71, 100, -100, 100);
   BinLogX(fKinematicsMC[0]);
   BinLogX(fKinematicsMC[1]);
   BinLogX(fKinematics2DMC);
@@ -1945,13 +1945,16 @@ int main(int argc, char **argv)
 
             if(kin_flag)
             {
-              if(-325<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-261.5) fVertexStudyMC[0]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
-              else if(-261.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-198) fVertexStudyMC[1]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
-              else if(-198<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-134.5) fVertexStudyMC[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
-              else if(-134.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<=-71) fVertexStudyMC[3]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
-              fVertexStudyMC2D[0]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),sqrt(pow(MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosX")->GetValue(),2)+pow(MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosY")->GetValue(),2)));
-              fVertexStudyMC2D[1]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosX")->GetValue());
-              fVertexStudyMC2D[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosY")->GetValue());
+              if(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue()!=-3000)
+              {
+                if(-325<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-261.5) fVertexStudyMC[0]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
+                else if(-261.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-198) fVertexStudyMC[1]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
+                else if(-198<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-134.5) fVertexStudyMC[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
+                else if(-134.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<=-71) fVertexStudyMC[3]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
+                fVertexStudyMC2D[0]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),sqrt(pow(MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosX")->GetValue(),2)+pow(MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosY")->GetValue(),2)));
+                fVertexStudyMC2D[1]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosX")->GetValue());
+                fVertexStudyMC2D[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosY")->GetValue());
+              }
               fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
             }
 
