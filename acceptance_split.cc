@@ -1949,9 +1949,9 @@ int main(int argc, char **argv)
               else if(-261.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-198) fVertexStudyMC[1]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
               else if(-198<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-134.5) fVertexStudyMC[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
               else if(-134.5<=MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<=-71) fVertexStudyMC[3]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue());
-              fVertexStudyMC2D[0]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),sqrt(pow(MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosx")->GetValue(),2)+pow(MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosy")->GetValue(),2)));
-              fVertexStudyMC2D[1]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosx")->GetValue());
-              fVertexStudyMC2D[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosy")->GetValue());
+              fVertexStudyMC2D[0]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),sqrt(pow(MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosX")->GetValue(),2)+pow(MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosY")->GetValue(),2)));
+              fVertexStudyMC2D[1]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxx->GetLeaf("MCHadrons.lastVtxPosX")->GetValue());
+              fVertexStudyMC2D[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosY")->GetValue());
               fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
             }
 
