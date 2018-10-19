@@ -285,7 +285,7 @@ TCanvas c39("HL05MCY1x","HL05MCY1x",3200,1600);
 TCanvas c40("E_{#mu}","E_{#mu}",3200,1600);
 TCanvas c41("Trigger_Coverage","Trigger_Coverage",3200,1600);
 TCanvas c42("Vertex Hadron+e","Vertex Hadron+e",3200,1600);
-TCanvas c43("Vertex MC","Vertex MC",3200,1600);
+TCanvas c43("Vertex MC","Vertex MC",1200,1200);
 
 TH1F* fKinematicsMC[7];
 TH2F* fKinematics2DMC;
