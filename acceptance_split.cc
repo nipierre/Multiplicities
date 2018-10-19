@@ -600,13 +600,13 @@ void save_kin_plots()
 
   c43.cd(1);
   fVertexStudyMC[3]->SetLineColor(kGreen);
-  fVertexStudyMC[3]->Draw("SAMES");
+  fVertexStudyMC[3]->Draw("");
   fVertexStudyMC[0]->SetLineColor(kMagenta);
-  fVertexStudyMC[0]->Draw("SAMES");
+  fVertexStudyMC[0]->Draw("SAME");
   fVertexStudyMC[1]->SetLineColor(kBlue);
-  fVertexStudyMC[1]->Draw("SAMES");
+  fVertexStudyMC[1]->Draw("SAME");
   fVertexStudyMC[2]->SetLineColor(kCyan);
-  fVertexStudyMC[2]->Draw("SAMES");
+  fVertexStudyMC[2]->Draw("SAME");
   c43.Update();
 
   c43.cd(2);
@@ -701,6 +701,10 @@ void save_kin_plots()
   c42.Print("kinMC.pdf","pdf");
   c43.Print("kinMC.pdf)","pdf");
   c41.Print("Trigger_Coverage.pdf");
+  TFile *f = new TFile("vertexstudy.root","UPDATE");
+  c43.Write();
+  f->Close();
+
 }
 
 int main(int argc, char **argv)
