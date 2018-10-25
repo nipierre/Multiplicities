@@ -226,7 +226,7 @@ void plotting_ratio(int i, int j)
   fKinematicsRatio[i][j]->GetYaxis()->SetNdivisions(2,kTRUE);
   for(int tt=0; tt<7; tt++)
   {
-    l1[j][tt]->Draw();
+    l2[j][tt]->Draw();
   }
 }
 
@@ -275,6 +275,8 @@ void save_kin_plots()
   c29.Divide(1,2);
   c30.Divide(1,2);
 
+  int offset=0;
+
   for(int i=0; i<8; i++)
   {
     if(i<2) offset=0;
@@ -287,8 +289,6 @@ void save_kin_plots()
     c1.cd(i+offset+1);
     plotting_device(i,0);
     gPad->SetLogx();
-    fKinematicsRD[i][0]->GetXaxis()->SetTitle("Q^{2}");
-    fKinematicsRD[i][0]->GetYaxis()->SetTitle("Entries");
     c1.Update();
 
     c2.cd(i+offset+1+2);
@@ -446,7 +446,7 @@ void save_kin_plots()
   plotting_device(4,12);
   c25.Update();
 
-  c126cd(2);
+  c26.cd(2);
   plotting_ratio(4,13);
   c26.Update();
   c26.cd(1);
