@@ -277,7 +277,7 @@ void save_kin_plots()
 
   int offset=0;
 
-  for(int i=0; i<8; i++)
+  for(int i=0; i<4; i++)
   {
     if(i<2) offset=0;
     else offset=2;
