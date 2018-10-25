@@ -206,8 +206,8 @@ void plotting_ratio(int i, int j)
   // }
   fKinematicsMC1[i][j]->Sumw2();
   fKinematicsMC2[i][j]->Sumw2();
-  fKinematicsMC2[i][j]->Scale(1/fKinematicsMC2[2][j]->GetEntries());
-  fKinematicsMC1[i][j]->Scale(1/fKinematicsMC1[2][j]->GetEntries());
+  fKinematicsMC2[i][j]->Scale(1/fKinematicsMC2[i][j]->GetEntries());
+  fKinematicsMC1[i][j]->Scale(1/fKinematicsMC1[i][j]->GetEntries());
   fKinematicsRatio[i][j] = (TH1F*)fKinematicsMC1[i][j]->Clone();
   fKinematicsRatio[i][j]->SetStats(0);
   fKinematicsRatio[i][j]->Divide(fKinematicsMC2[i][j]);
