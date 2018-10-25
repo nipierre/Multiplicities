@@ -275,8 +275,8 @@ void plotting_ratio(int i, int j)
   fKinematicsMC[i][j]->Sumw2();
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
   fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
-  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[2][j]->GetEntries());
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[2][j]->GetEntries());
   fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
   fKinematicsRatio[i][j]->SetStats(0);
   fKinematicsRatio[i][j]->Divide(fKinematicsMC[i][j]);
@@ -323,8 +323,8 @@ void plotting_ratio_vertex(int i, int j)
   fKinematicsMC[i][j]->Sumw2();
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
   fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
-  fKinematicsMC[i][j]->Scale(1/fNEventsMC);
-  fKinematicsRD[i][j]->Scale(1/fNEventsRD);
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[2][j]->GetEntries());
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[2][j]->GetEntries());
   fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
   fKinematicsRatio[i][j]->SetStats(0);
   fKinematicsRatio[i][j]->Divide(fKinematicsMC[i][j]);
@@ -548,9 +548,11 @@ void save_kin_plots()
 
   c8.cd(2);
   plotting_ratio(4,0);
+  gPad->SetLogx();
   c8.Update();
   c8.cd(1);
   plotting_device(4,0);
+  gPad->SetLogx();
   c8.Update();
 
   c9.cd(2);
@@ -765,7 +767,6 @@ void MCextraction(string pFilelist)
     // --------- Reading of the TTree --------------------------------------------
     // ---------------------------------------------------------------------------
 
-    //DISEvt
     //DISEvt
     TBranch *runNo = (TBranch*) tree->FindBranch("runNo");
     TBranch *spillNo = (TBranch*) tree->FindBranch("spillNo");
@@ -1279,43 +1280,6 @@ void MCextraction(string pFilelist)
                                 }
                               }
                             }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue()))
-              {
-
-                // Cells crossing
-                if(true)
-                {
-
-                  if((int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512)))
-                  {
-
-                    // Q2 cut
-                    if((Q2>1))
-                    {
-                      fMuMC[4].push_back(E_beam->GetLeaf("E_beam")->GetValue());
-                      fThetaMCMu[2].push_back(sqrt(pow(p0x->GetLeaf("p0x")->GetValue(),2)
-                                                  +pow(p0y->GetLeaf("p0y")->GetValue(),2)
-                                                  +pow(p0z->GetLeaf("p0z")->GetValue(),2)));
-                      fThetaMCMu[1].push_back(thetax_b);
-                      fThetaMCMu[0].push_back(thetay_b);
-
-                      // y cut
-                      if((fYmin<yBj && yBj<fYmax))
-                      {
-
-                        // W cut
-                        if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
-                        {
-                          if((fXmin<xBj && xBj<fXmax))
-                          {
-                            fAllDISflag = 1;
                           }
                         }
                       }
