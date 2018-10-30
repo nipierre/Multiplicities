@@ -323,8 +323,8 @@ void plotting_ratio_vertex(int i, int j)
   fKinematicsMC[i][j]->Sumw2();
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
   fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
-  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[2][j]->GetEntries());
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[2][j]->GetEntries());
+  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
+  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
   fKinematicsRatio[i][j] = (TH1F*)fKinematicsRD[i][j]->Clone();
   fKinematicsRatio[i][j]->SetStats(0);
   fKinematicsRatio[i][j]->Divide(fKinematicsMC[i][j]);
