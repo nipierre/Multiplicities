@@ -359,7 +359,7 @@ void yweightedavg()
             }
             for(int ll=0; ll<4; ll++)
             {
-              if(fMultiplicities_vtx[x][i][z][ll].tab[c][0][l])
+              if(fMultiplicities_zvtx[x][i][z][ll].tab[c][0][l])
               {
                 fMultiplicities_zvtx_yavg[x][z][ll].tab[c][0][l]+=fMultiplicities_zvtx[x][i][z][ll].tab[c][0][l]/fMultiplicities_zvtx[x][i][z][ll].tab[c][1][l];
                 fMultiplicities_zvtx_yavg[x][z][ll].tab[c][1][l]+=1/fMultiplicities_zvtx[x][i][z][ll].tab[c][1][l];
@@ -1889,25 +1889,22 @@ int main(int argc, char **argv)
         MultiplicitiesSum[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
 
-        for()
+        for(int zv=0; zv<4; zv++)
         {
-          for(int zv=0; zv<4; zv++)
-          {
-            p_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0] : 0);
-            k_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1] : 0);
-            h_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3] : 0);
-            p_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0]) : 0);
-            k_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1]) : 0);
-            h_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3]) : 0);
-          }
-
-          p_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,0));
-          k_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,1));
-          h_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,3));
-          p_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,0));
-          k_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,1));
-          h_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,3));
+          p_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0] : 0);
+          k_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1] : 0);
+          h_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3] : 0);
+          p_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0]) : 0);
+          k_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1]) : 0);
+          h_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3]) : 0);
         }
+
+        p_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,0));
+        k_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,1));
+        h_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,3));
+        p_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,0));
+        k_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,1));
+        h_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,3));
       }
 
       for(int l=0; l<12; l++)
