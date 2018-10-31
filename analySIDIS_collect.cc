@@ -361,9 +361,9 @@ void yweightedavg()
             {
               if(fMultiplicities_vtx[x][i][z][ll].tab[c][0][l])
               {
-                fMultiplicities_vtx_yavg[x][z][ll].tab[c][0][l]+=fMultiplicities_zvtx[x][i][z][ll].tab[c][0][l]/fMultiplicities_zvtx[x][i][z][ll].tab[c][1][l];
-                fMultiplicities_vtx_yavg[x][z][ll].tab[c][1][l]+=1/fMultiplicities_zvtx[x][i][z][ll].tab[c][1][l];
-                fMultiplicities_vtx_yavg[x][z][ll].tab[c][2][l]+=1/fMultiplicities_zvtx[x][i][z][ll].tab[c][2][l];
+                fMultiplicities_zvtx_yavg[x][z][ll].tab[c][0][l]+=fMultiplicities_zvtx[x][i][z][ll].tab[c][0][l]/fMultiplicities_zvtx[x][i][z][ll].tab[c][1][l];
+                fMultiplicities_zvtx_yavg[x][z][ll].tab[c][1][l]+=1/fMultiplicities_zvtx[x][i][z][ll].tab[c][1][l];
+                fMultiplicities_zvtx_yavg[x][z][ll].tab[c][2][l]+=1/fMultiplicities_zvtx[x][i][z][ll].tab[c][2][l];
               }
             }
           }
@@ -375,11 +375,11 @@ void yweightedavg()
           }
           for(int ll=0; ll<4; ll++)
           {
-            if(fMultiplicities_yavg[x][z][ll].tab[c][0][l])
+            if(fMultiplicities_zvtx_yavg[x][z][ll].tab[c][0][l])
             {
-              fMultiplicities_yavg[x][z][ll].tab[c][1][l]=1/fMultiplicities_yavg[x][z][ll].tab[c][1][l];
-              fMultiplicities_yavg[x][z][ll].tab[c][2][l]=1/fMultiplicities_yavg[x][z][ll].tab[c][2][l];
-              fMultiplicities_yavg[x][z][ll].tab[c][0][l]*=fMultiplicities_yavg[x][z][ll].tab[c][1][l];
+              fMultiplicities_zvtx_yavg[x][z][ll].tab[c][1][l]=1/fMultiplicities_zvtx_yavg[x][z][ll].tab[c][1][l];
+              fMultiplicities_zvtx_yavg[x][z][ll].tab[c][2][l]=1/fMultiplicities_zvtx_yavg[x][z][ll].tab[c][2][l];
+              fMultiplicities_zvtx_yavg[x][z][ll].tab[c][0][l]*=fMultiplicities_zvtx_yavg[x][z][ll].tab[c][1][l];
             }
           }
         }
