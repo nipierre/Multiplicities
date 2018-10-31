@@ -1039,10 +1039,10 @@ int main(int argc, char **argv)
   std::vector<Double_t> rx_range_k_y;
   std::vector<Double_t> rx_range_h_y;
 
-  TLine l1(0.1,0.9,0.9,0.9);
-  TLine l2(0.1,1.1,0.9,1.1);
-  TLine l3(0.1,0.95,0.9,0.95);
-  TLine l4(0.1,1.05,0.9,1.05);
+  TLine l1(0.1,0.1,0.9,0.1);
+  TLine l2(0.1,-0.1,0.9,-0.1);
+  TLine l3(0.1,0.05,0.9,0.05);
+  TLine l4(0.1,-0.05,0.9,-0.05);
   l3.SetLineStyle(2); l4.SetLineStyle(2);
 
   TLine lsys(0.1,0,0.9,0);
@@ -1729,10 +1729,10 @@ int main(int argc, char **argv)
               H_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               H_reldiff[c][i][j]->SetMinimum(-1);
               H_reldiff[c][i][j]->SetMaximum(1);
-              // l1.Draw("SAME");
-              // l2.Draw("SAME");
-              // l3.Draw("SAME");
-              // l4.Draw("SAME");
+              l1.Draw("SAME");
+              l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
               c53->Range(0.1,-1,0.9,1);
             }
             else
@@ -1779,10 +1779,10 @@ int main(int argc, char **argv)
               P_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               P_reldiff[c][i][j]->SetMinimum(-1);
               P_reldiff[c][i][j]->SetMaximum(1);
-              // l1.Draw("SAME");
-              // l2.Draw("SAME");
-              // l3.Draw("SAME");
-              // l4.Draw("SAME");
+              l1.Draw("SAME");
+              l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
               c63->Range(0.1,-1,0.9,1);
             }
             else
@@ -1829,10 +1829,10 @@ int main(int argc, char **argv)
               K_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               K_reldiff[c][i][j]->SetMinimum(-1);
               K_reldiff[c][i][j]->SetMaximum(1);
-              // l1.Draw("SAME");
-              // l2.Draw("SAME");
-              // l3.Draw("SAME");
-              // l4.Draw("SAME");
+              l1.Draw("SAME");
+              l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
               c73->Range(0.1,-1,0.9,1);
             }
             else
@@ -2430,10 +2430,10 @@ int main(int argc, char **argv)
             H_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y_reldiff[c][i]->SetMinimum(-1);
             H_y_reldiff[c][i]->SetMaximum(1);
-            // l1.Draw("SAME");
-            // l2.Draw("SAME");
-            // l3.Draw("SAME");
-            // l4.Draw("SAME");
+            l1.Draw("SAME");
+            l2.Draw("SAME");
+            l3.Draw("SAME");
+            l4.Draw("SAME");
             c531->Range(0.1,-1,0.9,1);
           }
           else
@@ -2480,10 +2480,10 @@ int main(int argc, char **argv)
             P_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             P_y_reldiff[c][i]->SetMinimum(-1);
             P_y_reldiff[c][i]->SetMaximum(1);
-            // l1.Draw("SAME");
-            // l2.Draw("SAME");
-            // l3.Draw("SAME");
-            // l4.Draw("SAME");
+            l1.Draw("SAME");
+            l2.Draw("SAME");
+            l3.Draw("SAME");
+            l4.Draw("SAME");
             c631->Range(0.1,-1,0.9,1);
           }
           else
@@ -2530,10 +2530,10 @@ int main(int argc, char **argv)
             K_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             K_y_reldiff[c][i]->SetMinimum(-1);
             K_y_reldiff[c][i]->SetMaximum(1);
-            // l1.Draw("SAME");
-            // l2.Draw("SAME");
-            // l3.Draw("SAME");
-            // l4.Draw("SAME");
+            l1.Draw("SAME");
+            l2.Draw("SAME");
+            l3.Draw("SAME");
+            l4.Draw("SAME");
             c731->Range(0.1,-1,0.9,1);
           }
           else
