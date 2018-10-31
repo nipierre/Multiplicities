@@ -849,17 +849,23 @@ int main(int argc, char **argv)
   c16 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
 
   c51->SetFillColor(0);
+  c511->SetFillColor(0);
   c52->SetFillColor(0);
   c61->SetFillColor(0);
+  c611->SetFillColor(0);
   c62->SetFillColor(0);
   c71->SetFillColor(0);
+  c711->SetFillColor(0);
   c72->SetFillColor(0);
   c5->SetFillColor(0);
   c53->SetFillColor(0);
+  c531->SetFillColor(0);
   c6->SetFillColor(0);
   c63->SetFillColor(0);
+  c631->SetFillColor(0);
   c7->SetFillColor(0);
   c73->SetFillColor(0);
+  c731->SetFillColor(0);
   c8->SetFillColor(0);
   c9->SetFillColor(0);
   c10->SetFillColor(0);
@@ -871,17 +877,23 @@ int main(int argc, char **argv)
   c16->SetFillColor(0);
 
   c51->Divide(5,2,0,0);
+  c511->Divide(5,2,0,0);
   c52->Divide(5,2,0,0);
   c61->Divide(5,2,0,0);
+  c611->Divide(5,2,0,0);
   c62->Divide(5,2,0,0);
   c71->Divide(5,2,0,0);
+  c711->Divide(5,2,0,0);
   c72->Divide(5,2,0,0);
   c5->Divide(9,5,0,0);
   c53->Divide(9,5,0,0);
+  c531->Divide(9,5,0,0);
   c6->Divide(9,5,0,0);
   c63->Divide(9,5,0,0);
+  c631->Divide(9,5,0,0);
   c7->Divide(9,5,0,0);
   c73->Divide(9,5,0,0);
+  c731->Divide(9,5,0,0);
   c8->Divide(5,2,0,0);
   c9->Divide(5,2,0,0);
   c10->Divide(5,2,0,0);
