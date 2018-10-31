@@ -798,16 +798,28 @@ int main(int argc, char **argv)
   c5 = new TCanvas("Hadron_Multiplicities_zvtx","Hadron_Multiplicities_zvtx",3200,1600);
   TCanvas* c53;
   c53 = new TCanvas("Hadron_Multiplicities_reldiff","Hadron_Multiplicities_reldiff",3200,1600);
+  TCanvas* c511;
+  c511 = new TCanvas("Hadron_Multiplicities_y_zvtx","Hadron_Multiplicities_y_zvtx",3200,1600);
+  TCanvas* c531;
+  c531 = new TCanvas("Hadron_Multiplicities_y_reldiff","Hadron_Multiplicities_y_reldiff",3200,1600);
 
   TCanvas* c6;
   c6 = new TCanvas("Pion_Multiplicities_zvtx","Pion_Multiplicities_zvtx",3200,1600);
   TCanvas* c63;
   c63 = new TCanvas("Pion_Multiplicities_reldiff","Pion_Multiplicities_reldiff",3200,1600);
+  TCanvas* c611;
+  c611 = new TCanvas("Pion_Multiplicities_y_zvtx","Pion_Multiplicities_y_zvtx",3200,1600);
+  TCanvas* c631;
+  c631 = new TCanvas("Pion_Multiplicities_y_reldiff","Pion_Multiplicities_y_reldiff",3200,1600);
 
   TCanvas* c7;
   c7 = new TCanvas("Kaon_Multiplicities_zvtx","Kaon_Multiplicities_zvtx",3200,1600);
   TCanvas* c73;
   c73 = new TCanvas("Kaon_Multiplicities_reldiff","Kaon_Multiplicities_reldiff",3200,1600);
+  TCanvas* c711;
+  c711 = new TCanvas("Kaon_Multiplicities_y_zvtx","Kaon_Multiplicities_y_zvtx",3200,1600);
+  TCanvas* c731;
+  c731 = new TCanvas("Kaon_Multiplicities_y_reldiff","Kaon_Multiplicities_y_reldiff",3200,1600);
 
   TCanvas* c8;
   c8 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
