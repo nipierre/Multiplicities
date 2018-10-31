@@ -2272,7 +2272,7 @@ int main(int argc, char **argv)
               fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
               if(Charge->GetLeaf("Charge")->GetValue()==1)
               {
-                fMuMix[1][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][0][2] += res_vect[2][0];
+                fMuMix[xbin][ybin][zbin].tab[1][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][0][2] += res_vect[2][0];
               }
               else
               {
