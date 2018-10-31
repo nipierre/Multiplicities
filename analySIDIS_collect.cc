@@ -2409,7 +2409,7 @@ int main(int argc, char **argv)
             }
             H_y_reldiff[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
             H_y_reldiff[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
-            if(i==1 && j==0)
+            if(i==0)
             {
               H_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
               H_y_reldiff[c][i]->GetYaxis()->SetTitleSize(0.08);
