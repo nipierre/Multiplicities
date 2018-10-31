@@ -558,18 +558,22 @@ Double_t RelDiff_yavg(int c, int x,int z, int had)
 
 Double_t RelDiff_Err(int c, int x, int y, int z, int had)
 {
-  Double_t ups=fMultiplicities_zvtx[x][y][z][0].tab[c][1][had];
-  Double_t dns=fMultiplicities_zvtx[x][y][z][3].tab[c][1][had];
+  Double_t ups=fMultiplicities_zvtx[x][y][z][0].tab[c][0][had];
+  Double_t dns=fMultiplicities_zvtx[x][y][z][3].tab[c][0][had];
+  Double_t upse=fMultiplicities_zvtx[x][y][z][0].tab[c][1][had];
+  Double_t dnse=fMultiplicities_zvtx[x][y][z][3].tab[c][1][had];
 
-  return (ups ? Double_t((dns-ups)/ups) : 0);
+  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2) : 0);
 }
 
 Double_t RelDiff_Err_yavg(int c, int x, int z, int had)
 {
-  Double_t ups=fMultiplicities_zvtx_yavg[x][z][0].tab[c][1][had];
-  Double_t dns=fMultiplicities_zvtx_yavg[x][z][3].tab[c][1][had];
+  Double_t ups=fMultiplicities_zvtx_yavg[x][z][0].tab[c][0][had];
+  Double_t dns=fMultiplicities_zvtx_yavg[x][z][3].tab[c][0][had];
+  Double_t upse=fMultiplicities_zvtx_yavg[x][z][0].tab[c][1][had];
+  Double_t dnse=fMultiplicities_zvtx_yavg[x][z][3].tab[c][1][had];
 
-  return (ups ? Double_t((dns-ups)/ups) : 0);
+  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2) : 0);
 }
 
 int main(int argc, char **argv)
@@ -1125,9 +1129,9 @@ int main(int argc, char **argv)
           p_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,0));
           k_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,1));
           h_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,3));
-          p_reldiff_err[c][i][j].push_back(RelDiff_Err(c,i,j,k,0));
-          k_reldiff_err[c][i][j].push_back(RelDiff_Err(c,i,j,k,1));
-          h_reldiff_err[c][i][j].push_back(RelDiff_Err(c,i,j,k,3));
+          p_reldiff_err[c][i][j].push_back(sqrt(RelDiff_Err(c,i,j,k,0)));
+          k_reldiff_err[c][i][j].push_back(sqrt(RelDiff_Err(c,i,j,k,1)));
+          h_reldiff_err[c][i][j].push_back(sqrt(RelDiff_Err(c,i,j,k,3)));
 
           if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
@@ -1914,9 +1918,9 @@ int main(int argc, char **argv)
         p_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,0));
         k_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,1));
         h_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,3));
-        p_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,0));
-        k_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,1));
-        h_y_reldiff_err[c][i].push_back(RelDiff_Err_yavg(c,i,k,3));
+        p_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,0)));
+        k_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,1)));
+        h_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,3)));
       }
 
       for(int l=0; l<12; l++)
