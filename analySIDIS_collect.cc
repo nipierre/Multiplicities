@@ -887,13 +887,13 @@ int main(int argc, char **argv)
   c72->Divide(5,2,0,0);
   c5->Divide(9,5,0,0);
   c53->Divide(9,5,0,0);
-  c531->Divide(9,5,0,0);
+  c531->Divide(5,2,0,0);
   c6->Divide(9,5,0,0);
   c63->Divide(9,5,0,0);
-  c631->Divide(9,5,0,0);
+  c631->Divide(5,2,0,0);
   c7->Divide(9,5,0,0);
   c73->Divide(9,5,0,0);
-  c731->Divide(9,5,0,0);
+  c731->Divide(5,2,0,0);
   c8->Divide(5,2,0,0);
   c9->Divide(5,2,0,0);
   c10->Divide(5,2,0,0);
