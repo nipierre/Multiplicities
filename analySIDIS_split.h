@@ -208,6 +208,7 @@ Double_t fNDIS_evt[3][9][6][12];
 Double_t fNDIS_evt_err[3][9][6][12];
 Double_t fNDIS_evt_zvtx[3][9][6][12][4];
 Double_t fNDIS_evt_err_zvtx[3][9][6][12][4];
+Wrapper fMuMix[9][6][12];
 Int_t xbin, ybin, zbin, zlabbin;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};

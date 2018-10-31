@@ -23,6 +23,8 @@ using namespace std;
 #define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
+#define MUCHARGE_SEPARATION 1
+#define MUCHARGE 1
 
 #define IRC 0
 #define SIRC 0
@@ -1211,7 +1213,10 @@ int main(int argc, char **argv)
         // --------- DIS Selection -------------------------------------------------
         // -------------------------------------------------------------------------
 
-        // if(!(Charge->GetLeaf("Charge")->GetValue()==-1)) continue;
+        if(MUCHARGE_SEPARATION)
+        {
+          if(!(Charge->GetLeaf("Charge")->GetValue()==MUCHARGE)) continue;
+        }
 
         // Best Primary Vertex
         fBP++;
@@ -1977,10 +1982,20 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHplus++; fPiplus++;
+              if(Charge->GetLeaf("Charge")->GetValue()==1) fMuMix[xbin][ybin][zbin].tab[1][1][3]++;
+              else fMuMix[xbin][ybin][zbin].tab[0][1][3]++;
               res_vect = inv_rich_p[theta_bin][mom_bin]*pi_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_p[theta_bin][mom_bin][rce];
               hadron_nb = 1;
               fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
+              if(Charge->GetLeaf("Charge")->GetValue()==1)
+              {
+                fMuMix[xbin][ybin][zbin].tab[1][1][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][1][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][1][2] += res_vect[2][0];
+              }
+              else
+              {
+                fMuMix[xbin][ybin][zbin].tab[0][1][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[0][1][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[0][1][2] += res_vect[2][0];
+              }
               fPiplus_err += pow(res_vect_err[0],2);
               fKplus_err += pow(res_vect_err[1],2);
               fPplus_err += pow(res_vect_err[2],2);
@@ -2016,10 +2031,20 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHminus++; fPiminus++;
+              if(Charge->GetLeaf("Charge")->GetValue()==1) fMuMix[xbin][ybin][zbin].tab[1][0][3]++;
+              else fMuMix[xbin][ybin][zbin].tab[0][0][3]++;
               res_vect = inv_rich_m[theta_bin][mom_bin]*pi_vect;
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = pi_unfolding_err_m[theta_bin][mom_bin][rce];
               hadron_nb = 1;
               fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
+              if(Charge->GetLeaf("Charge")->GetValue()==1)
+              {
+                fMuMix[xbin][ybin][zbin].tab[1][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][0][2] += res_vect[2][0];
+              }
+              else
+              {
+                fMuMix[xbin][ybin][zbin].tab[0][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[0][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[0][0][2] += res_vect[2][0];
+              }
               fPiminus_err += pow(res_vect_err[0],2);
               fKminus_err += pow(res_vect_err[1],2);
               fPminus_err += pow(res_vect_err[2],2);
@@ -2055,7 +2080,8 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHplus++;
-
+              if(Charge->GetLeaf("Charge")->GetValue()==1) fMuMix[xbin][ybin][zbin].tab[1][1][3]++;
+              else fMuMix[xbin][ybin][zbin].tab[0][1][3]++;
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
@@ -2067,6 +2093,14 @@ int main(int argc, char **argv)
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_p[theta_bin][mom_bin][rce];
               hadron_nb = 1;
               fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
+              if(Charge->GetLeaf("Charge")->GetValue()==1)
+              {
+                fMuMix[xbin][ybin][zbin].tab[1][1][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][1][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][1][2] += res_vect[2][0];
+              }
+              else
+              {
+                fMuMix[xbin][ybin][zbin].tab[0][1][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[0][1][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[0][1][2] += res_vect[2][0];
+              }
               fPiplus_err += pow(res_vect_err[0],2);
               fKplus_err += pow(res_vect_err[1],2);
               fPplus_err += pow(res_vect_err[2],2);
@@ -2105,6 +2139,8 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHminus++;
+              if(Charge->GetLeaf("Charge")->GetValue()==1) fMuMix[xbin][ybin][zbin].tab[1][0][3]++;
+              else fMuMix[xbin][ybin][zbin].tab[0][0][3]++;
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
@@ -2116,6 +2152,14 @@ int main(int argc, char **argv)
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = k_unfolding_err_m[theta_bin][mom_bin][rce];
               hadron_nb = 1;
               fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
+              if(Charge->GetLeaf("Charge")->GetValue()==1)
+              {
+                fMuMix[xbin][ybin][zbin].tab[1][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][0][2] += res_vect[2][0];
+              }
+              else
+              {
+                fMuMix[xbin][ybin][zbin].tab[0][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[0][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[0][0][2] += res_vect[2][0];
+              }
               fPiminus_err += pow(res_vect_err[0],2);
               fKminus_err += pow(res_vect_err[1],2);
               fPminus_err += pow(res_vect_err[2],2);
@@ -2154,6 +2198,8 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHplus++;
+              if(Charge->GetLeaf("Charge")->GetValue()==1) fMuMix[xbin][ybin][zbin].tab[1][1][3]++;
+              else fMuMix[xbin][ybin][zbin].tab[0][1][3]++;
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
@@ -2165,6 +2211,14 @@ int main(int argc, char **argv)
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_p[theta_bin][mom_bin][rce];
               hadron_nb = 1;
               fPiplus_true += res_vect[0][0]; fKplus_true += res_vect[1][0]; fPplus_true += res_vect[2][0];
+              if(Charge->GetLeaf("Charge")->GetValue()==1)
+              {
+                fMuMix[xbin][ybin][zbin].tab[1][1][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][1][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][1][2] += res_vect[2][0];
+              }
+              else
+              {
+                fMuMix[xbin][ybin][zbin].tab[0][1][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[0][1][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[0][1][2] += res_vect[2][0];
+              }
               fPiplus_err += pow(res_vect_err[0],2);
               fKplus_err += pow(res_vect_err[1],2);
               fPplus_err += pow(res_vect_err[2],2);
@@ -2203,6 +2257,8 @@ int main(int argc, char **argv)
             if(!fFlag[0][xbin][ybin][zbin])
             {
               fHminus++;
+              if(Charge->GetLeaf("Charge")->GetValue()==1) fMuMix[xbin][ybin][zbin].tab[1][0][3]++;
+              else fMuMix[xbin][ybin][zbin].tab[0][0][3]++;
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               hadron_flag = 1;
@@ -2214,6 +2270,14 @@ int main(int argc, char **argv)
               for(int rce=0; rce<3; rce++) res_vect_err[rce] = p_unfolding_err_m[theta_bin][mom_bin][rce];
               hadron_nb = 1;
               fPiminus_true += res_vect[0][0]; fKminus_true += res_vect[1][0]; fPminus_true += res_vect[2][0];
+              if(Charge->GetLeaf("Charge")->GetValue()==1)
+              {
+                fMuMix[1][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[1][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[1][0][2] += res_vect[2][0];
+              }
+              else
+              {
+                fMuMix[xbin][ybin][zbin].tab[0][0][0] += res_vect[0][0]; fMuMix[xbin][ybin][zbin].tab[0][0][1] += res_vect[1][0]; fMuMix[xbin][ybin][zbin].tab[0][0][2] += res_vect[2][0];
+              }
               fPiminus_err += pow(res_vect_err[0],2);
               fKminus_err += pow(res_vect_err[1],2);
               fPminus_err += pow(res_vect_err[2],2);
@@ -2816,6 +2880,7 @@ int main(int argc, char **argv)
     ofstream ofs_d(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_dzvtx(Form("rawmult/%d/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream xc(Form("rawmult/%d/xcheck_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream mumix(Form("rawmult/%d/mumix_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
     for(int c=0; c<2; c++)
     {
@@ -2854,9 +2919,12 @@ int main(int argc, char **argv)
                        fBinning_zvtx[i][j][k][zv].tab[c][0][3] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][3] << " " << endl;
             }
 
-  	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-  		fNDIS_evt[0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][0][1] << " " <<
-  		fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][0][3] << endl;
+        	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
+        		fNDIS_evt[0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][0][1] << " " <<
+        		fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][0][3] << endl;
+
+            mumix << fMuMix[i][j][k].tab[0][c][0] << " " << fMuMix[i][j][k].tab[1][c][0] << " " << fMuMix[i][j][k].tab[0][c][1] << " " << fMuMix[i][j][k].tab[1][c][1] << " "
+                  << fMuMix[i][j][k].tab[0][c][2] << " " << fMuMix[i][j][k].tab[1][c][2] << " " << fMuMix[i][j][k].tab[0][c][3] << " " << fMuMix[i][j][k].tab[1][c][3] << endl;
 
   	      }
         }
@@ -2868,6 +2936,7 @@ int main(int argc, char **argv)
     ofs_hzvtx.close();
     ofs_dzvtx.close();
     xc.close();
+    mumix.close();
 
     resetValues();
   }
