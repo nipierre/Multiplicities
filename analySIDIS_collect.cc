@@ -1891,12 +1891,12 @@ int main(int argc, char **argv)
 
         for(int zv=0; zv<4; zv++)
         {
-          p_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0] : 0);
-          k_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1] : 0);
-          h_z_y[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3] : 0);
-          p_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0]) : 0);
-          k_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1]) : 0);
-          h_z_y_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3]) : 0);
+          p_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0] : 0);
+          k_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1] : 0);
+          h_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3] : 0);
+          p_y_z_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0]) : 0);
+          k_y_z_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1]) : 0);
+          h_y_z_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3]) : 0);
         }
 
         p_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,0));
@@ -2142,9 +2142,9 @@ int main(int argc, char **argv)
 
         for(int k=12; k>0; k--)
         {
-          if(!p_z[c][i][zv][k-1]) {p_y_z[c][i][zv].erase(p_y_z[c][i][zv].begin()+k-1); p_y_z_err[c][i][zv].erase(p_y_z_err[c][i][zv].begin()+k-1); z_range_p_y_z[c][i][zv].erase(z_range_p_y_z[c][i][zv].begin()+k-1);}
-          if(!k_z[c][i][zv][k-1]) {k_y_z[c][i][zv].erase(k_y_z[c][i][zv].begin()+k-1); k_y_z_err[c][i][zv].erase(k_y_z_err[c][i][zv].begin()+k-1); z_range_k_y_z[c][i][zv].erase(z_range_k_y_z[c][i][zv].begin()+k-1);}
-          if(!h_z[c][i][zv][k-1]) {h_y_z[c][i][zv].erase(h_y_z[c][i][zv].begin()+k-1); h_y_z_err[c][i][zv].erase(h_y_z_err[c][i][zv].begin()+k-1); z_range_h_y_z[c][i][zv].erase(z_range_h_y_z[c][i][zv].begin()+k-1);}
+          if(!p_y_z[c][i][zv][k-1]) {p_y_z[c][i][zv].erase(p_y_z[c][i][zv].begin()+k-1); p_y_z_err[c][i][zv].erase(p_y_z_err[c][i][zv].begin()+k-1); z_range_p_y_z[c][i][zv].erase(z_range_p_y_z[c][i][zv].begin()+k-1);}
+          if(!k_y_z[c][i][zv][k-1]) {k_y_z[c][i][zv].erase(k_y_z[c][i][zv].begin()+k-1); k_y_z_err[c][i][zv].erase(k_y_z_err[c][i][zv].begin()+k-1); z_range_k_y_z[c][i][zv].erase(z_range_k_y_z[c][i][zv].begin()+k-1);}
+          if(!h_y_z[c][i][zv][k-1]) {h_y_z[c][i][zv].erase(h_y_z[c][i][zv].begin()+k-1); h_y_z_err[c][i][zv].erase(h_y_z_err[c][i][zv].begin()+k-1); z_range_h_y_z[c][i][zv].erase(z_range_h_y_z[c][i][zv].begin()+k-1);}
         }
 
         bool p_y_z_empty = 0;
@@ -2320,9 +2320,9 @@ int main(int argc, char **argv)
           }
           c711->Update();
         }
-        z_range_y_z[c][i][zv].clear();
-        z_range_y_z[c][i][zv].clear();
-        z_range_y_z[c][i][zv].clear();
+        z_range_p_y_z[c][i][zv].clear();
+        z_range_k_y_z[c][i][zv].clear();
+        z_range_h_y_z[c][i][zv].clear();
       }
 
       for(int l=0; l<12; l++)
@@ -2386,7 +2386,7 @@ int main(int argc, char **argv)
 
       if(!h_y_reldiff_empty)
       {
-        c531->cd(i+1+9*j);
+        c531->cd(i+1);
         gPad->SetFillStyle(4000);
         if(H_y_reldiff[c][i])
         {
@@ -2453,16 +2453,16 @@ int main(int argc, char **argv)
             if(i==0 || i==5) gPad->SetLeftMargin(.22);
             if(i==8)
             {
-              P_reldiff[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
-              P_reldiff[c][i]->GetXaxis()->SetTitleSize(0.08);
-              P_reldiff[c][i]->GetXaxis()->SetTitleOffset(.8);
+              P_y_reldiff[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              P_y_reldiff[c][i]->GetXaxis()->SetTitleSize(0.08);
+              P_y_reldiff[c][i]->GetXaxis()->SetTitleOffset(.8);
             }
             P_y_reldiff[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
             P_y_reldiff[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              P_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
-              P_reldiff[c][i]->GetYaxis()->SetTitleSize(0.08);
+              P_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
+              P_y_reldiff[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
             P_y_reldiff[c][i]->Draw("SAMEP");
             P_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -2534,9 +2534,9 @@ int main(int argc, char **argv)
         }
         c731->Update();
       }
-      z_range_p_y_reldiff[c][i][j].clear();
-      z_range_k_y_reldiff[c][i][j].clear();
-      z_range_h_y_reldiff[c][i][j].clear();
+      z_range_p_y_reldiff[c][i].clear();
+      z_range_k_y_reldiff[c][i].clear();
+      z_range_h_y_reldiff[c][i].clear();
     }
     sp_y.push_back(MultiplicitiesSum[0][0][0]+MultiplicitiesSum[0][1][0]);
     sk_y.push_back(MultiplicitiesSum[0][0][1]+MultiplicitiesSum[0][1][1]);
