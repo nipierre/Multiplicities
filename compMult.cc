@@ -131,7 +131,7 @@ int main(int argc, char **argv)
   c1.Divide(9,5,0,0);
   c2.Divide(5,2,0,0);
 
-  ofstream ofs_ra("reldiff.txt", std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_ra("ratiodiff.txt", std::ofstream::out | std::ofstream::trunc);
 
   TGraphErrors* R[2][9][6];
   TGraphErrors* R_y[2][9];
