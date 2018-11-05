@@ -131,6 +131,8 @@ int main(int argc, char **argv)
   c1.Divide(9,5,0,0);
   c2.Divide(5,2,0,0);
 
+  ofstream ofs_ra(Form("%s/reldiff.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+
   TGraphErrors* R[2][9][6];
   TGraphErrors* R_y[2][9];
 
@@ -354,6 +356,8 @@ int main(int argc, char **argv)
 
   c1.Print("mult_ratio.pdf");
   c2.Print("mult_ratio_yavg.pdf");
+
+  ofs_ra.close();
 
   return 0;
 }

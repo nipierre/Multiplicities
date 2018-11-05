@@ -3241,6 +3241,7 @@ int main(int argc, char **argv)
   ofs_m.close();
   ofs_mp.close();
   ofs_mm.close();
+  ofs_rd.close();
 
   return 0;
 }
