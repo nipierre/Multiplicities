@@ -563,7 +563,7 @@ Double_t RelDiff_Err(int c, int x, int y, int z, int had)
   Double_t upse=fMultiplicities_zvtx[x][y][z][0].tab[c][1][had];
   Double_t dnse=fMultiplicities_zvtx[x][y][z][3].tab[c][1][had];
 
-  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2) : 0);
+  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
 }
 
 Double_t RelDiff_Err_yavg(int c, int x, int z, int had)
@@ -573,7 +573,7 @@ Double_t RelDiff_Err_yavg(int c, int x, int z, int had)
   Double_t upse=fMultiplicities_zvtx_yavg[x][z][0].tab[c][1][had];
   Double_t dnse=fMultiplicities_zvtx_yavg[x][z][3].tab[c][1][had];
 
-  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2) : 0);
+  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
 }
 
 int main(int argc, char **argv)
