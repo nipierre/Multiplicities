@@ -251,9 +251,24 @@ int main(int argc, char **argv)
 
       for(int k=0; k<12; k++)
       {
-        r_y.push_back(fMultiplicities2_yavg[i][k].tab[c][0][0] ? fMultiplicities1_yavg[i][k].tab[c][0][0]/fMultiplicities2_yavg[i][k].tab[c][0][0] : 0);
-        r_y_err.push_back(sqrt((fMultiplicities1_yavg[i][k].tab[c][1][0]+pow(fMultiplicities2_yavg[i][k].tab[c][1][0],2)*fMultiplicities1_yavg[i][k].tab[c][0][0]
-                                /pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2))/pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2)));
+        double multy, multye;
+        multy = fMultiplicities2_yavg[i][k].tab[c][0][0] ? fMultiplicities1_yavg[i][k].tab[c][0][0]/fMultiplicities2_yavg[i][k].tab[c][0][0] : 0;
+        multye = fMultiplicities2_yavg[i][k].tab[c][0][0] ? sqrt((fMultiplicities1_yavg[i][k].tab[c][1][0]+pow(fMultiplicities2_yavg[i][k].tab[c][1][0],2)*fMultiplicities1_yavg[i][k].tab[c][0][0]
+                                /pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2))/pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2)) : 0;
+        r_y.push_back(multy);
+        r_y_err.push_back(multye);
+        int ratFlag;
+        if(multy>=1)
+        {
+          if(multy+multye<=1) ratFlag = 1;
+          else ratFlag = 0;
+        }
+        else
+        {
+          if(multy+multye>=1) ratFlag = 1;
+          else ratFlag = 0;
+        }
+        ofs_ra << c << " " << i << " " << k << " " << multy << " " << multye << " " << ratFlag << endl;
       }
       for(int k=12; k>0; k--)
       {

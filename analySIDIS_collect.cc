@@ -957,6 +957,7 @@ int main(int argc, char **argv)
   ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_mp(Form("%s/multiplicities_h+.txt",data_path), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_mm(Form("%s/multiplicities_h-.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_rd(Form("%s/reldiff.txt",data_path), std::ofstream::out | std::ofstream::trunc);
 
   std::vector<Double_t> p_m[2][9][6];
   std::vector<Double_t> k_m[2][9][6];
@@ -1921,6 +1922,18 @@ int main(int argc, char **argv)
         p_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,0)));
         k_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,1)));
         h_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,3)));
+        int relFlag;
+        if(RelDiff_yavg(c,i,k,3)>=0)
+        {
+          if(RelDiff_yavg(c,i,k,3)+sqrt(RelDiff_Err_yavg(c,i,k,3))<=0) relFlag = 1;
+          else relFlag = 0;
+        }
+        else
+        {
+          if(RelDiff_yavg(c,i,k,3)+sqrt(RelDiff_Err_yavg(c,i,k,3))>=0) relFlag = 1;
+          else relFlag = 0;
+        }
+        ofs_rd << c << " " << i << " " << k << " " << RelDiff_yavg(c,i,k,3) << " " << sqrt(RelDiff_Err_yavg(c,i,k,3)) << " " << relFlag << endl;
       }
 
       for(int l=0; l<12; l++)
