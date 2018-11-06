@@ -247,7 +247,7 @@ void create_kin_plots()
     l1[7][i] = new TLine(0,0.4+i*0.2,160,0.4+i*0.2);
     l1[8][i] = new TLine(0,0.4+i*0.2,0.05,0.4+i*0.2);
     l1[9][i] = new TLine(-1.7,0.4+i*0.2,1.7,0.4+i*0.2);
-    l1[10][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
+    l1[10][i] = new TLine(-340,0.4+i*0.2,-60,0.4+i*0.2);
     l1[11][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[12][i] = new TLine(0,0.4+i*0.2,40,0.4+i*0.2);
     l1[13][i] = new TLine(0,0.4+i*0.2,0.25,0.4+i*0.2);
@@ -1142,7 +1142,7 @@ void MCextraction(string pFilelist)
         {
 
           // Energy of the muon beam
-          if((140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180))
+          if((140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180 && !(E_beam->GetLeaf("E_beam")->GetValue()==160)))
           {
 
             //2006 ---
