@@ -194,7 +194,7 @@ void create_kin_plots()
     fKinematicsRD[i][7] = new TH1F(Form("E_{mu'} %s",trigname[i].c_str()), Form("E_{mu'} %s",trigname[i].c_str()), 50, 0, 160);
     fKinematicsRD[i][8] = new TH1F(Form("theta %s",trigname[i].c_str()), Form("theta %s",trigname[i].c_str()), 50, 0, 0.05);
     fKinematicsRD[i][9] = new TH1F(Form("phi %s",trigname[i].c_str()), Form("phi %s",trigname[i].c_str()), 50, -1.7, 1.7);
-    fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 50, -320, -70);
+    fKinematicsRD[i][10] = new TH1F(Form("Vertex %s",trigname[i].c_str()), Form("Vertex %s",trigname[i].c_str()), 50, -340, -60);
     fKinematicsRD[i][12] = new TH1F(Form("p_{hadron+e} %s",trigname[i].c_str()), Form("p_{hadron+e} %s",trigname[i].c_str()), 50, 0, 40);
     fKinematicsRD[i][13] = new TH1F(Form("theta_{hadron+e} %s",trigname[i].c_str()), Form("theta_{hadron+e} %s",trigname[i].c_str()), 50, 0, 0.25);
     fKinematicsRD[i][14] = new TH1F(Form("phi_{hadron+e,lab} %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} %s",trigname[i].c_str()), 50, -3.5, 3.5);
@@ -210,7 +210,7 @@ void create_kin_plots()
     fKinematicsMC[i][7] = new TH1F(Form("E_{mu'} Ratio %s",trigname[i].c_str()), Form("E_{mu'} Ratio %s",trigname[i].c_str()), 50, 0, 160);
     fKinematicsMC[i][8] = new TH1F(Form("theta Ratio %s",trigname[i].c_str()), Form("theta Ratio %s",trigname[i].c_str()), 50, 0, 0.05);
     fKinematicsMC[i][9] = new TH1F(Form("phi Ratio %s",trigname[i].c_str()), Form("phi Ratio %s",trigname[i].c_str()), 50, -1.7, 1.7);
-    fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsMC[i][10] = new TH1F(Form("Vertex Ratio %s",trigname[i].c_str()), Form("Vertex Ratio %s",trigname[i].c_str()), 50, -340, -60);
     fKinematicsMC[i][12] = new TH1F(Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), Form("p_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 40);
     fKinematicsMC[i][13] = new TH1F(Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), Form("theta_{hadron+e} Ratio %s",trigname[i].c_str()), 50, 0, 0.25);
     fKinematicsMC[i][14] = new TH1F(Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
