@@ -262,20 +262,20 @@ Int_t fMarkerStyle[2] = {24,20};
 //--------- RICH unfolding ---------------------------------------------------
 //----------------------------------------------------------------------------
 
-TMatrixD rich_mat_p[2][10];
-TMatrixD rich_mat_m[2][10];
-TMatrixD inv_rich_p[2][10];
-TMatrixD inv_rich_m[2][10];
+TMatrixD rich_mat_p[2][14];
+TMatrixD rich_mat_m[2][14];
+TMatrixD inv_rich_p[2][14];
+TMatrixD inv_rich_m[2][14];
 TMatrixD err_rich_p[3][3];
 TMatrixD err_rich_m[3][3];
-Double_t pi_unfolding_err_p[2][10][3];
-Double_t pi_unfolding_err_m[2][10][3];
-Double_t k_unfolding_err_p[2][10][3];
-Double_t k_unfolding_err_m[2][10][3];
-Double_t p_unfolding_err_p[2][10][3];
-Double_t p_unfolding_err_m[2][10][3];
-Int_t mat_bin[2][10];
-Int_t err_bin[2][10];
+Double_t pi_unfolding_err_p[2][14][3];
+Double_t pi_unfolding_err_m[2][14][3];
+Double_t k_unfolding_err_p[2][14][3];
+Double_t k_unfolding_err_m[2][14][3];
+Double_t p_unfolding_err_p[2][14][3];
+Double_t p_unfolding_err_m[2][14][3];
+Int_t mat_bin[2][14];
+Int_t err_bin[2][14];
 Double_t cov1_pi[2][3];
 Double_t cov1_k[2][3];
 Double_t cov1_p[2][3];
