@@ -303,7 +303,10 @@ void LoadQelCorr()
         fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j]+cnoqel[i][j+1]+cnoqel[i-1][j+1])/(cqel[i][j]+cqel[i-1][j]+cqel[i][j+1]+cqel[i-1][j+1]);
       else if(i==8 && j>1)
         fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j])/(cqel[i][j]+cqel[i-1][j]);
+
+      cout << fQelCorr[i][j] << " ";
     }
+    cout << endl;
   }
 }
 
