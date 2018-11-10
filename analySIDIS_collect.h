@@ -102,6 +102,7 @@ vector<int> fPeriods;
 
 Double_t fSemiInclusiveRCproton[9][6][14];
 Double_t fDiffVectorMeson[2][9][6][12][4];
+Double_t fQelCorr[9][6];
 
 //Counting
 

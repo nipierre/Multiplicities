@@ -19,6 +19,8 @@
 
 #define data_path "/sps/compass/npierre/Multiplicities"
 #define proton_sirc "data/proton_semi_inclusive_RC.txt"
+#define irc_qel "data/sigtot_RC_wqel.dat"
+#define irc_noqel "data/sigtot_RC_woqel.dat"
 #define DVM_2006 "data/DVM_2006.dat"
 
 // Flags
@@ -257,6 +259,54 @@ void LoadSemiInclusiveRadiativeCorrection()
   proton.close();
 }
 
+void LoadQelCorr()
+{
+  string sdum;
+  double cqel[9][7];
+  double cnoqel[9][7];
+
+  ifstream qel(irc_qel);
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<7; j++)
+    {
+      qel >> cqel[i][j] >> sdum;
+    }
+  }
+  qel.close();
+
+  ifstream noqel(irc_noqel);
+  for(int i=0; i<16; i++)
+  {
+    for(int j=0; j<17; j++)
+    {
+      noqel >> cnoqel[i][j] >> sdum;
+    }
+  }
+  noqel.close();
+
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      if(i<7 && (j==0 || j==1))
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i+1][j]+cnoqel[i][j+1]+cnoqel[i+1][j+1])/(qel[i][j]+qel[i+1][j]+qel[i][j+1]+qel[i+1][j+1]);
+      else if(i<7 && j>1)
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i+1][j])/(qel[i][j]+qel[i+1][j]);
+
+      if(i==7 && (j==0 || j==1))
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i][j+1])/(qel[i][j]+qel[i][j+1]);
+      else if(i==7 && j>1)
+        fQelCorr[i][j] = cnoqel[i][j]/qel[i][j];
+
+      if(i==8 && (j==0 || j==1))
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j]+cnoqel[i][j+1]+cnoqel[i-1][j+1])/(qel[i][j]+qel[i-1][j]+qel[i][j+1]+qel[i-1][j+1]);
+      else if(i==8 && j>1)
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j])/(qel[i][j]+qel[i-1][j]);
+    }
+  }
+}
+
 Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
 {
   if(Y2006 || !SIRC)
@@ -265,7 +315,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
   }
   else if(Y2012 || Y2016)
   {
-    return fSemiInclusiveRCproton[xb][yb][zb];
+    return fSemiInclusiveRCproton[xb][yb][zb]*fQelCorr[xb][yb];
   }
   else
   {
@@ -624,6 +674,7 @@ int main(int argc, char **argv)
 
   LoadSemiInclusiveRadiativeCorrection();
   LoadDiffVectorMesonCorrection();
+  LoadQelCorr();
 
   ifstream periods(argv[1]);
   string filelist, periodName;
