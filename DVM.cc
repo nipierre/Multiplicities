@@ -991,8 +991,8 @@ void DVMCalc()
       fDVM_DIS_pi[i][j] = fNDIS_evt_rho[i][j]/fNDIS_evt_SIDIS[i][j];
       fDVM_DIS_K[i][j] = fNDIS_evt_phi[i][j]/fNDIS_evt_SIDIS[i][j];
       fNDIS_SIDIS_tot += fNDIS_evt_SIDIS[i][j];
-      fNDIS_RHO_tot += fNDIS_evt_rho[i][j];
-      fNDIS_PHI_tot += fNDIS_evt_phi[i][j];
+      fNDIS_rho_tot += fNDIS_evt_rho[i][j];
+      fNDIS_phi_tot += fNDIS_evt_phi[i][j];
       for(int k=0; k<12; k++)
       {
         fSIDIS[i][j][k].tab[1][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
