@@ -499,7 +499,7 @@ void Extraction(string pFilelist, int pType)
       if(pType==0)
       {
         SIDIS_EVENTS++;
-        SIDIS_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        SIDIS_WEIGHT++;
       }
       else if(pType==1)
       {
