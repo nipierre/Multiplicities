@@ -385,16 +385,24 @@ void load_rich_mat(string prich, string prich_err)
 
   ifstream matRICH(prich);
 
-  for(int i=0; i<28; i++)
+  for(int i=0; i<24; i++)
   {
-    matRICH >> mat_bin[0][i] >> mat_bin[1][i];
-    for(int j=0; j<9; j++)
+    if(i < 4)
     {
-      matRICH >> rich_mat_p[i%2][(i)/2][(int)j/3][j%3];
+      for(int j=0; j<20; j++)
+        matRICH >> dummy;
     }
-    for(int j=0; j<9; j++)
+    else
     {
-      matRICH >> rich_mat_m[i%2][(i)/2][(int)j/3][j%3];
+      matRICH >> mat_bin[0][i] >> mat_bin[1][i];
+      for(int j=0; j<9; j++)
+      {
+        matRICH >> rich_mat_p[i%2][(i-4)/2][(int)j/3][j%3];
+      }
+      for(int j=0; j<9; j++)
+      {
+        matRICH >> rich_mat_m[i%2][(i-4)/2][(int)j/3][j%3];
+      }
     }
   }
 
@@ -413,158 +421,166 @@ void load_rich_mat(string prich, string prich_err)
   ifstream errRICH(prich_err);
 
 
-  for(int loop=0; loop<28; loop++)
+  for(int loop=0; loop<24; loop++)
   {
-    errRICH >> err_bin[0][loop] >> err_bin[1][loop];
+    if(loop < 4)
+    {
+      for(int j=0; j<38; j++)
+        errRICH >> dummy;
+    }
+    else
+    {
+      errRICH >> err_bin[0][loop-4] >> err_bin[1][loop-4];
 
-    errRICH >> err_rich_p[0][0][0][0];
-    errRICH >> err_rich_p[0][1][0][1];
-    errRICH >> err_rich_p[0][2][0][2];//3
-    errRICH >> err_rich_p[0][0][1][0];
-    errRICH >> err_rich_p[0][0][2][0];
-    errRICH >> err_rich_p[1][0][2][0];//6
-    errRICH >> err_rich_p[1][0][1][0];
-    errRICH >> err_rich_p[1][1][1][1];
-    errRICH >> err_rich_p[1][2][1][2];//9
-    errRICH >> err_rich_p[0][1][1][1];
-    errRICH >> err_rich_p[0][1][2][1];
-    errRICH >> err_rich_p[1][1][2][1];//12
-    errRICH >> err_rich_p[2][0][2][0];
-    errRICH >> err_rich_p[2][1][2][1];
-    errRICH >> err_rich_p[2][2][2][2];//15
-    errRICH >> err_rich_p[0][2][1][2];
-    errRICH >> err_rich_p[0][2][2][2];
-    errRICH >> err_rich_p[1][2][2][2];//18
+      errRICH >> err_rich_p[0][0][0][0];
+      errRICH >> err_rich_p[0][1][0][1];
+      errRICH >> err_rich_p[0][2][0][2];//3
+      errRICH >> err_rich_p[0][0][1][0];
+      errRICH >> err_rich_p[0][0][2][0];
+      errRICH >> err_rich_p[1][0][2][0];//6
+      errRICH >> err_rich_p[1][0][1][0];
+      errRICH >> err_rich_p[1][1][1][1];
+      errRICH >> err_rich_p[1][2][1][2];//9
+      errRICH >> err_rich_p[0][1][1][1];
+      errRICH >> err_rich_p[0][1][2][1];
+      errRICH >> err_rich_p[1][1][2][1];//12
+      errRICH >> err_rich_p[2][0][2][0];
+      errRICH >> err_rich_p[2][1][2][1];
+      errRICH >> err_rich_p[2][2][2][2];//15
+      errRICH >> err_rich_p[0][2][1][2];
+      errRICH >> err_rich_p[0][2][2][2];
+      errRICH >> err_rich_p[1][2][2][2];//18
 
-    err_rich_p[0][0][0][0] = pow(err_rich_p[0][0][0][0],2);
-    err_rich_p[0][1][0][1] = pow(err_rich_p[0][1][0][1],2);
-    err_rich_p[0][2][0][2] = pow(err_rich_p[0][2][0][2],2);
-    err_rich_p[1][0][1][0] = pow(err_rich_p[1][0][1][0],2);
-    err_rich_p[1][1][1][1] = pow(err_rich_p[1][1][1][1],2);
-    err_rich_p[1][2][1][2] = pow(err_rich_p[1][2][1][2],2);
-    err_rich_p[2][0][2][0] = pow(err_rich_p[2][0][2][0],2);
-    err_rich_p[2][1][2][1] = pow(err_rich_p[2][1][2][1],2);
-    err_rich_p[2][2][2][2] = pow(err_rich_p[2][2][2][2],2);
+      err_rich_p[0][0][0][0] = pow(err_rich_p[0][0][0][0],2);
+      err_rich_p[0][1][0][1] = pow(err_rich_p[0][1][0][1],2);
+      err_rich_p[0][2][0][2] = pow(err_rich_p[0][2][0][2],2);
+      err_rich_p[1][0][1][0] = pow(err_rich_p[1][0][1][0],2);
+      err_rich_p[1][1][1][1] = pow(err_rich_p[1][1][1][1],2);
+      err_rich_p[1][2][1][2] = pow(err_rich_p[1][2][1][2],2);
+      err_rich_p[2][0][2][0] = pow(err_rich_p[2][0][2][0],2);
+      err_rich_p[2][1][2][1] = pow(err_rich_p[2][1][2][1],2);
+      err_rich_p[2][2][2][2] = pow(err_rich_p[2][2][2][2],2);
 
-    err_rich_p[0][0][1][0] = err_rich_p[1][0][0][0];
-    err_rich_p[0][0][2][0] = err_rich_p[2][0][0][0];
-    err_rich_p[1][0][2][0] = err_rich_p[2][0][1][0];
+      err_rich_p[0][0][1][0] = err_rich_p[1][0][0][0];
+      err_rich_p[0][0][2][0] = err_rich_p[2][0][0][0];
+      err_rich_p[1][0][2][0] = err_rich_p[2][0][1][0];
 
-    err_rich_p[0][1][1][1] = err_rich_p[1][1][0][1];
-    err_rich_p[0][1][2][1] = err_rich_p[2][1][0][1];
-    err_rich_p[1][1][2][1] = err_rich_p[2][1][1][1];
+      err_rich_p[0][1][1][1] = err_rich_p[1][1][0][1];
+      err_rich_p[0][1][2][1] = err_rich_p[2][1][0][1];
+      err_rich_p[1][1][2][1] = err_rich_p[2][1][1][1];
 
-    err_rich_p[0][2][1][2] = err_rich_p[1][2][0][2];
-    err_rich_p[0][2][2][2] = err_rich_p[2][2][0][2];
-    err_rich_p[1][2][2][2] = err_rich_p[2][2][1][2];
+      err_rich_p[0][2][1][2] = err_rich_p[1][2][0][2];
+      err_rich_p[0][2][2][2] = err_rich_p[2][2][0][2];
+      err_rich_p[1][2][2][2] = err_rich_p[2][2][1][2];
 
-    errRICH >> err_rich_m[0][0][0][0];
-    errRICH >> err_rich_m[0][1][0][1];
-    errRICH >> err_rich_m[0][2][0][2];//3
-    errRICH >> err_rich_m[0][0][1][0];
-    errRICH >> err_rich_m[0][0][2][0];
-    errRICH >> err_rich_m[1][0][2][0];//6
-    errRICH >> err_rich_m[1][0][1][0];
-    errRICH >> err_rich_m[1][1][1][1];
-    errRICH >> err_rich_m[1][2][1][2];//9
-    errRICH >> err_rich_m[0][1][1][1];
-    errRICH >> err_rich_m[0][1][2][1];
-    errRICH >> err_rich_m[1][1][2][1];//12
-    errRICH >> err_rich_m[2][0][2][0];
-    errRICH >> err_rich_m[2][1][2][1];
-    errRICH >> err_rich_m[2][2][2][2];//15
-    errRICH >> err_rich_m[0][2][1][2];
-    errRICH >> err_rich_m[0][2][2][2];
-    errRICH >> err_rich_m[1][2][2][2];//18
+      errRICH >> err_rich_m[0][0][0][0];
+      errRICH >> err_rich_m[0][1][0][1];
+      errRICH >> err_rich_m[0][2][0][2];//3
+      errRICH >> err_rich_m[0][0][1][0];
+      errRICH >> err_rich_m[0][0][2][0];
+      errRICH >> err_rich_m[1][0][2][0];//6
+      errRICH >> err_rich_m[1][0][1][0];
+      errRICH >> err_rich_m[1][1][1][1];
+      errRICH >> err_rich_m[1][2][1][2];//9
+      errRICH >> err_rich_m[0][1][1][1];
+      errRICH >> err_rich_m[0][1][2][1];
+      errRICH >> err_rich_m[1][1][2][1];//12
+      errRICH >> err_rich_m[2][0][2][0];
+      errRICH >> err_rich_m[2][1][2][1];
+      errRICH >> err_rich_m[2][2][2][2];//15
+      errRICH >> err_rich_m[0][2][1][2];
+      errRICH >> err_rich_m[0][2][2][2];
+      errRICH >> err_rich_m[1][2][2][2];//18
 
-    err_rich_m[0][0][0][0] = pow(err_rich_m[0][0][0][0],2);
-    err_rich_m[0][1][0][1] = pow(err_rich_m[0][1][0][1],2);
-    err_rich_m[0][2][0][2] = pow(err_rich_m[0][2][0][2],2);
-    err_rich_m[1][0][1][0] = pow(err_rich_m[1][0][1][0],2);
-    err_rich_m[1][1][1][1] = pow(err_rich_m[1][1][1][1],2);
-    err_rich_m[1][2][1][2] = pow(err_rich_m[1][2][1][2],2);
-    err_rich_m[2][0][2][0] = pow(err_rich_m[2][0][2][0],2);
-    err_rich_m[2][1][2][1] = pow(err_rich_m[2][1][2][1],2);
-    err_rich_m[2][2][2][2] = pow(err_rich_m[2][2][2][2],2);
+      err_rich_m[0][0][0][0] = pow(err_rich_m[0][0][0][0],2);
+      err_rich_m[0][1][0][1] = pow(err_rich_m[0][1][0][1],2);
+      err_rich_m[0][2][0][2] = pow(err_rich_m[0][2][0][2],2);
+      err_rich_m[1][0][1][0] = pow(err_rich_m[1][0][1][0],2);
+      err_rich_m[1][1][1][1] = pow(err_rich_m[1][1][1][1],2);
+      err_rich_m[1][2][1][2] = pow(err_rich_m[1][2][1][2],2);
+      err_rich_m[2][0][2][0] = pow(err_rich_m[2][0][2][0],2);
+      err_rich_m[2][1][2][1] = pow(err_rich_m[2][1][2][1],2);
+      err_rich_m[2][2][2][2] = pow(err_rich_m[2][2][2][2],2);
 
-    err_rich_m[0][0][1][0] = err_rich_m[1][0][0][0];
-    err_rich_m[0][0][2][0] = err_rich_m[2][0][0][0];
-    err_rich_m[1][0][2][0] = err_rich_m[2][0][1][0];
+      err_rich_m[0][0][1][0] = err_rich_m[1][0][0][0];
+      err_rich_m[0][0][2][0] = err_rich_m[2][0][0][0];
+      err_rich_m[1][0][2][0] = err_rich_m[2][0][1][0];
 
-    err_rich_m[0][1][1][1] = err_rich_m[1][1][0][1];
-    err_rich_m[0][1][2][1] = err_rich_m[2][1][0][1];
-    err_rich_m[1][1][2][1] = err_rich_m[2][1][1][1];
+      err_rich_m[0][1][1][1] = err_rich_m[1][1][0][1];
+      err_rich_m[0][1][2][1] = err_rich_m[2][1][0][1];
+      err_rich_m[1][1][2][1] = err_rich_m[2][1][1][1];
 
-    err_rich_m[0][2][1][2] = err_rich_m[1][2][0][2];
-    err_rich_m[0][2][2][2] = err_rich_m[2][2][0][2];
-    err_rich_m[1][2][2][2] = err_rich_m[2][2][1][2];
+      err_rich_m[0][2][1][2] = err_rich_m[1][2][0][2];
+      err_rich_m[0][2][2][2] = err_rich_m[2][2][0][2];
+      err_rich_m[1][2][2][2] = err_rich_m[2][2][1][2];
 
 #ifdef DEBUG
-    for(int i=0; i<9; i++)
-    {
-      for(int j=0; j<9; j++)
+      for(int i=0; i<9; i++)
       {
-        cout << err_rich_p[i][j] << " ";
-      }
-      cout << endl;
-    }
-#endif
-
-    cout << "\n" << endl;
-
-    for(int i=0; i<3; i++)
-    {
-      cov1_pi[0][i] = 0;
-      cov1_pi[1][i] = 0;
-      cov1_k[0][i] = 0;
-      cov1_k[1][i] = 0;
-      cov1_p[0][i] = 0;
-      cov1_p[1][i] = 0;
-      cov2[0][i] = 0;
-      cov2[1][i] = 0;
-    }
-
-    for(int i=0; i<3; i++)
-    {
-      for(int j=0; j<3; j++)
-      {
-        cov1_pi[0][i] += pow(inv_rich_p[loop%2][(loop)/2][i][j]*pi_sigma_uni[j][j],2);
-        cov1_pi[1][i] += pow(inv_rich_m[loop%2][(loop)/2][i][j]*pi_sigma_uni[j][j],2);
-        cov1_k[0][i] += pow(inv_rich_p[loop%2][(loop)/2][i][j]*k_sigma_uni[j][j],2);
-        cov1_k[1][i] += pow(inv_rich_m[loop%2][(loop)/2][i][j]*k_sigma_uni[j][j],2);
-        cov1_p[0][i] += pow(inv_rich_p[loop%2][(loop)/2][i][j]*p_sigma_uni[j][j],2);
-        cov1_p[1][i] += pow(inv_rich_m[loop%2][(loop)/2][i][j]*p_sigma_uni[j][j],2);
-
-        for(int k=0; k<3; k++)
+        for(int j=0; j<9; j++)
         {
-          for(int l=0; l<3; l++)
-          {
-            for(int m=0; m<3; m++)
-            {
-                  cov2[0][i] += inv_rich_p[loop%2][(loop)/2][i][j]
-                                 *inv_rich_p[loop%2][(loop)/2][i][l]
-                                 *inv_rich_p[loop%2][(loop)/2][k][i]
-                                 *inv_rich_p[loop%2][(loop)/2][m][i]
-                                 *err_rich_p[j][k][l][m];
-#ifdef DEBUG
-                                cout << err_rich_p[j*3+k][l*3+m] << endl;
-                                cout << j*3+k << " " << l*3+m << endl;
+          cout << err_rich_p[i][j] << " ";
+        }
+        cout << endl;
+      }
 #endif
-                  cov2[1][i] += inv_rich_m[loop%2][(loop)/2][i][j]
-                                 *inv_rich_m[loop%2][(loop)/2][i][l]
-                                 *inv_rich_m[loop%2][(loop)/2][k][i]
-                                 *inv_rich_m[loop%2][(loop)/2][m][i]
-                                 *err_rich_m[j][k][l][m];
+
+      cout << "\n" << endl;
+
+      for(int i=0; i<3; i++)
+      {
+        cov1_pi[0][i] = 0;
+        cov1_pi[1][i] = 0;
+        cov1_k[0][i] = 0;
+        cov1_k[1][i] = 0;
+        cov1_p[0][i] = 0;
+        cov1_p[1][i] = 0;
+        cov2[0][i] = 0;
+        cov2[1][i] = 0;
+      }
+
+      for(int i=0; i<3; i++)
+      {
+        for(int j=0; j<3; j++)
+        {
+          cov1_pi[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*pi_sigma_uni[j][j],2);
+          cov1_pi[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*pi_sigma_uni[j][j],2);
+          cov1_k[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*k_sigma_uni[j][j],2);
+          cov1_k[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*k_sigma_uni[j][j],2);
+          cov1_p[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*p_sigma_uni[j][j],2);
+          cov1_p[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*p_sigma_uni[j][j],2);
+
+          for(int k=0; k<3; k++)
+          {
+            for(int l=0; l<3; l++)
+            {
+              for(int m=0; m<3; m++)
+              {
+                    cov2[0][i] += inv_rich_p[loop%2][(loop-4)/2][i][j]
+                                   *inv_rich_p[loop%2][(loop-4)/2][i][l]
+                                   *inv_rich_p[loop%2][(loop-4)/2][k][i]
+                                   *inv_rich_p[loop%2][(loop-4)/2][m][i]
+                                   *err_rich_p[j][k][l][m];
+#ifdef DEBUG
+                                  cout << err_rich_p[j*3+k][l*3+m] << endl;
+                                  cout << j*3+k << " " << l*3+m << endl;
+#endif
+                    cov2[1][i] += inv_rich_m[loop%2][(loop-4)/2][i][j]
+                                   *inv_rich_m[loop%2][(loop-4)/2][i][l]
+                                   *inv_rich_m[loop%2][(loop-4)/2][k][i]
+                                   *inv_rich_m[loop%2][(loop-4)/2][m][i]
+                                   *err_rich_m[j][k][l][m];
+              }
             }
           }
         }
+        pi_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_pi[0][i] + cov2[0][i];
+        pi_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_pi[1][i] + cov2[1][i];
+        k_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_k[0][i] + cov2[0][i];
+        k_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_k[1][i] + cov2[1][i];
+        p_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_p[0][i] + cov2[0][i];
+        p_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_p[1][i] + cov2[1][i];
       }
-      pi_unfolding_err_p[loop%2][(loop)/2][i] = cov1_pi[0][i] + cov2[0][i];
-      pi_unfolding_err_m[loop%2][(loop)/2][i] = cov1_pi[1][i] + cov2[1][i];
-      k_unfolding_err_p[loop%2][(loop)/2][i] = cov1_k[0][i] + cov2[0][i];
-      k_unfolding_err_m[loop%2][(loop)/2][i] = cov1_k[1][i] + cov2[1][i];
-      p_unfolding_err_p[loop%2][(loop)/2][i] = cov1_p[0][i] + cov2[0][i];
-      p_unfolding_err_m[loop%2][(loop)/2][i] = cov1_p[1][i] + cov2[1][i];
     }
   }
 
@@ -1894,23 +1910,34 @@ int main(int argc, char **argv)
 
           // Theta and momentum binning
 
-          if(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.04) theta_bin = 0;
-          else theta_bin = 1;
-
-          if(3<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<5) mom_bin = 0;
-          else if(5<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<7) mom_bin = 1;
-          else if(7<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<10) mom_bin = 2;
-          else if(7<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<10) mom_bin = 3;
-          else if(10<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 4;
-          else if(13<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<15) mom_bin = 5;
-          else if(15<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17) mom_bin = 6;
-          else if(17<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<19) mom_bin = 7;
-          else if(19<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<22) mom_bin = 8;
-          else if(22<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<25) mom_bin = 9;
-          else if(25<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<27) mom_bin = 10;
-          else if(27<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<30) mom_bin = 11;
-          else if(30<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<35) mom_bin = 12;
-          else mom_bin = 13;
+          if(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.04)
+          {
+            theta_bin = 0;
+            if(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
+            else if(13<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<15) mom_bin = 1;
+            else if(15<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17) mom_bin = 2;
+            else if(17<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<19) mom_bin = 3;
+            else if(19<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<22) mom_bin = 4;
+            else if(22<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<25) mom_bin = 5;
+            else if(25<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<27) mom_bin = 6;
+            else if(27<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<30) mom_bin = 7;
+            else if(30<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<35) mom_bin = 8;
+            else mom_bin = 9;
+          }
+          else
+          {
+            theta_bin = 1;
+            if(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
+            else if(13<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<15) mom_bin = 1;
+            else if(15<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17) mom_bin = 2;
+            else if(17<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<19) mom_bin = 3;
+            else if(19<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<22) mom_bin = 4;
+            else if(22<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<25) mom_bin = 5;
+            else if(25<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<27) mom_bin = 6;
+            else if(27<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<30) mom_bin = 7;
+            else if(30<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<35) mom_bin = 8;
+            else mom_bin = 9;
+          }
 
           if(kin_flag) fZk[0]->Fill(zBj);
 
