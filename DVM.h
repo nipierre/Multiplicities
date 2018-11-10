@@ -59,6 +59,10 @@ struct Recovery_tank { Double_t tab[2][4][4]; };
 int fId;
 Double_t fNu_max[3][12];
 Double_t fNu_min[3][12];
+vector<Double_t> fXv;
+vector<Double_t> fYv;
+vector<Double_t> fZv;
+vector<Double_t> fRv;
 
 bool fAllDISflag;
 bool fAllDISflag_MC;
@@ -73,19 +77,20 @@ Double_t PHI_EVENTS;
 
 
 //Binning
-Wrapper fSIDIS[9][5][12];
+Wrapper fSIDIS[9][6][12];
 Double_t fSIDIS_tot[2][4];
-Wrapper fRho[9][5][12];
+Wrapper fRho[9][6][12];
 Double_t fRho_tot[2][4];
-Wrapper fPhi[9][5][12];
+Wrapper fPhi[9][6][12];
 Double_t fPhi_tot[2][4];
-Wrapper fDVM_h[9][5][12];
-Double_t fNDIS_evt_SIDIS[9][5];
+Wrapper fDVM_h[9][6][12];
+Double_t fNDIS_evt_SIDIS[9][6];
 Double_t fNDIS_SIDIS_tot;
-Double_t fNDIS_evt_rho[9][5];
+Double_t fNDIS_evt_rho[9][6];
 Double_t fNDIS_rho_tot;
-Double_t fNDIS_evt_phi[9][5];
+Double_t fNDIS_evt_phi[9][6];
 Double_t fNDIS_phi_tot;
+Double_t fDVM_DIS_pi[9][6];
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
@@ -124,3 +129,5 @@ static const Double_t fM_K = 493.677/(1e3);
 static const Double_t fM_pi = 139.57018/(1e3);
 
 string trigname[5] = {"MT","LT","OT","LAST","All Trig"};
+
+#endif

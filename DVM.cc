@@ -553,37 +553,30 @@ void Extraction(string pFilelist, int pType)
                           ||(z->GetLeaf("z")->GetValue() > (-30+2+8) && z->GetLeaf("z")->GetValue() < (30+2-1))
                           ||(z->GetLeaf("z")->GetValue() > (35+2+6) && z->GetLeaf("z")->GetValue() < (65+2-1)))))
                 {
-                  fTarg++;
 
                   // Cells crossing
                   if(true)
                   {
-                    fCell++;
 
                     // IM/O triggers
                     if((trig&8 || trig&256))
                     {
-                      fTrig++;
 
                       // Q2 cut
                       if((Q2>1))
                       {
-                        fQ2test++;
 
                         // y cut
                         if((fYmin<yBj && yBj<fYmax))
                         {
-                          fYBjtest++;
 
                           // W cut
                           if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                           {
-                            fWBjtest++;
 
                             // x cut
                             if((fXmin<xBj && xBj<fXmax))
                             {
-                              fXBjtest++;
                               fAllDISflag = 1;
                             }
                           }
@@ -702,7 +695,8 @@ void Extraction(string pFilelist, int pType)
       else if(0.15<=yBj && yBj<0.2) ybin = 1;
       else if(0.2<=yBj && yBj<0.3) ybin = 2;
       else if(0.3<=yBj && yBj<0.5) ybin = 3;
-      else ybin = 4;
+      else if(0.5<=yBj && yBj<0.7) ybin = 4;
+      else ybin = 5;
 
       // -----------------------------------------------------------------------
       // -----------------------------------------------------------------------
@@ -992,13 +986,13 @@ void DVMCalc()
     for(int j=0; j<6; j++)
     {
       fNDIS_evt_SIDIS[i][j] /= SIDIS_WEIGHT/SIDIS_XS;
-      fNDIS_evt_RHO[i][j] /= RHO_WEIGHT/RHO_XS;
-      fNDIS_evt_PHI[i][j] /= PHI_WEIGHT/PHI_XS;
-      fDVM_DIS_pi[i][j] = fNDIS_evt_RHO[i][j]/fNDIS_evt_SIDIS[i][j];
-      fDVM_DIS_K[i][j] = fNDIS_evt_PHI[i][j]/fNDIS_evt_SIDIS[i][j];
+      fNDIS_evt_rho[i][j] /= RHO_WEIGHT/RHO_XS;
+      fNDIS_evt_phi[i][j] /= PHI_WEIGHT/PHI_XS;
+      fDVM_DIS_pi[i][j] = fNDIS_evt_rho[i][j]/fNDIS_evt_SIDIS[i][j];
+      fDVM_DIS_K[i][j] = fNDIS_evt_phi[i][j]/fNDIS_evt_SIDIS[i][j];
       fNDIS_SIDIS_tot += fNDIS_evt_SIDIS[i][j];
-      fNDIS_RHO_tot += fNDIS_evt_RHO[i][j];
-      fNDIS_PHI_tot += fNDIS_evt_PHI[i][j];
+      fNDIS_RHO_tot += fNDIS_evt_rho[i][j];
+      fNDIS_PHI_tot += fNDIS_evt_phi[i][j];
       for(int k=0; k<12; k++)
       {
         fSIDIS[i][j][k].tab[1][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
@@ -1029,10 +1023,10 @@ void DVMCalc()
         fPhi_tot[0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot[1][3] += fPhi[i][j][k].tab[1][0][3];
         fPhi_tot[0][3] += fPhi[i][j][k].tab[0][0][3];
-        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+SIDIS[i][j][k].tab[1][0][0]);
-        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+SIDIS[i][j][k].tab[0][0][0]);
-        fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+SIDIS[i][j][k].tab[1][0][1]);
-        fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+SIDIS[i][j][k].tab[0][0][1]);
+        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0]);
+        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0]);
+        fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]);
+        fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]);
 
       }
     }
