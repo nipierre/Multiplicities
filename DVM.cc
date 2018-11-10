@@ -499,7 +499,7 @@ void Extraction(string pFilelist, int pType)
       if(pType==0)
       {
         SIDIS_EVENTS++;
-        SIDIS_WEIGHT++;
+        SIDIS_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
       }
       else if(pType==1)
       {
@@ -1088,7 +1088,7 @@ int main(int argc, char **argv)
   cout << '|' << setw(30) << "Weighted Gen. Events" << '|' << setw(15) << SIDIS_WEIGHT << '|' << setw(15) << RHO_WEIGHT << '|' << setw(15) << PHI_WEIGHT << '|' << endl;
   cout << '|' << setw(30) << "Integrated XS [pb]" << '|' << setw(15) << SIDIS_XS << '|' << setw(15) << RHO_XS << '|' << setw(15) << PHI_XS << '|' << endl;
   cout << '|' << setw(30) << "MC Luminosity [pb-1]" << '|' << setw(15) << SIDIS_WEIGHT/SIDIS_XS << '|' << setw(15) << RHO_WEIGHT/RHO_XS << '|' << setw(15) << PHI_WEIGHT/PHI_XS << '|' << endl;
-  cout << "             ------------------------------------------------------------------------------------------------------------------------------ " << endl;
+  cout << "             ---------------------------------------------------------------------- " << endl;
   cout << '|' << setw(30) << "DIS Events [pb]" << '|' << setw(15) << fNDIS_SIDIS_tot << '|' << setw(15) << fNDIS_rho_tot << '|' << setw(15) << fNDIS_phi_tot << '|' << endl;
   cout << '|' << setw(30) << "h+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][3] << '|' << setw(15) << fRho_tot[1][3] << '|' << setw(15) << fPhi_tot[1][3] << '|' << endl;
   cout << '|' << setw(30) << "h- [pb]" << '|' << setw(15) << fSIDIS_tot[0][3] << '|' << setw(15) << fRho_tot[0][3] << '|' << setw(15) << fPhi_tot[0][3] << '|' << endl;
