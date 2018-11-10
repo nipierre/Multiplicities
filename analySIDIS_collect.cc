@@ -276,9 +276,9 @@ void LoadQelCorr()
   qel.close();
 
   ifstream noqel(irc_noqel);
-  for(int i=0; i<16; i++)
+  for(int i=0; i<9; i++)
   {
-    for(int j=0; j<17; j++)
+    for(int j=0; j<7; j++)
     {
       noqel >> cnoqel[i][j] >> sdum;
     }
