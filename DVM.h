@@ -91,6 +91,7 @@ Double_t fNDIS_rho_tot;
 Double_t fNDIS_evt_phi[9][6];
 Double_t fNDIS_phi_tot;
 Double_t fDVM_DIS_pi[9][6];
+Double_t fDVM_DIS_K[9][6];
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
