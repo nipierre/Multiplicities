@@ -988,8 +988,8 @@ void DVMCalc()
       fNDIS_evt_SIDIS[i][j] /= SIDIS_WEIGHT/SIDIS_XS;
       fNDIS_evt_rho[i][j] /= RHO_WEIGHT/RHO_XS;
       fNDIS_evt_phi[i][j] /= PHI_WEIGHT/PHI_XS;
-      fDVM_DIS_pi[i][j] = fNDIS_evt_rho[i][j]/fNDIS_evt_SIDIS[i][j];
-      fDVM_DIS_K[i][j] = fNDIS_evt_phi[i][j]/fNDIS_evt_SIDIS[i][j];
+      fDVM_DIS_pi[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_rho[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
+      fDVM_DIS_K[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_phi[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
       fNDIS_SIDIS_tot += fNDIS_evt_SIDIS[i][j];
       fNDIS_rho_tot += fNDIS_evt_rho[i][j];
       fNDIS_phi_tot += fNDIS_evt_phi[i][j];
@@ -1023,10 +1023,10 @@ void DVMCalc()
         fPhi_tot[0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot[1][3] += fPhi[i][j][k].tab[1][0][3];
         fPhi_tot[0][3] += fPhi[i][j][k].tab[0][0][3];
-        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0]);
-        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0]);
-        fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]);
-        fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]);
+        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0] ? fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0]) : 0;
+        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0] ? fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0]) : 0;
+        fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
+        fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1] ? fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]) : 0;
 
       }
     }
@@ -1043,9 +1043,9 @@ void DVMSaver()
       for(int k=0; k<12; k++)
       {
         ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
-                << fDVM_h[i][j][k].tab[1][0][0] << " " << fDVM_DIS_pi[i][j]
-                << fDVM_h[i][j][k].tab[0][0][0] << " " << fDVM_DIS_pi[i][j]
-                << fDVM_h[i][j][k].tab[1][0][1] << " " << fDVM_DIS_K[i][j]
+                << fDVM_h[i][j][k].tab[1][0][0] << " " << fDVM_DIS_pi[i][j] << " "
+                << fDVM_h[i][j][k].tab[0][0][0] << " " << fDVM_DIS_pi[i][j] << " "
+                << fDVM_h[i][j][k].tab[1][0][1] << " " << fDVM_DIS_K[i][j] << " "
                 << fDVM_h[i][j][k].tab[0][0][1] << " " << fDVM_DIS_K[i][j] << endl;
       }
     }
