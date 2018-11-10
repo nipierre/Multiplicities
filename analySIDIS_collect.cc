@@ -290,19 +290,19 @@ void LoadQelCorr()
     for(int j=0; j<6; j++)
     {
       if(i<7 && (j==0 || j==1))
-        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i+1][j]+cnoqel[i][j+1]+cnoqel[i+1][j+1])/(qel[i][j]+qel[i+1][j]+qel[i][j+1]+qel[i+1][j+1]);
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i+1][j]+cnoqel[i][j+1]+cnoqel[i+1][j+1])/(cqel[i][j]+cqel[i+1][j]+cqel[i][j+1]+cqel[i+1][j+1]);
       else if(i<7 && j>1)
-        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i+1][j])/(qel[i][j]+qel[i+1][j]);
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i+1][j])/(cqel[i][j]+cqel[i+1][j]);
 
       if(i==7 && (j==0 || j==1))
-        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i][j+1])/(qel[i][j]+qel[i][j+1]);
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i][j+1])/(cqel[i][j]+cqel[i][j+1]);
       else if(i==7 && j>1)
-        fQelCorr[i][j] = cnoqel[i][j]/qel[i][j];
+        fQelCorr[i][j] = cnoqel[i][j]/cqel[i][j];
 
       if(i==8 && (j==0 || j==1))
-        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j]+cnoqel[i][j+1]+cnoqel[i-1][j+1])/(qel[i][j]+qel[i-1][j]+qel[i][j+1]+qel[i-1][j+1]);
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j]+cnoqel[i][j+1]+cnoqel[i-1][j+1])/(cqel[i][j]+cqel[i-1][j]+cqel[i][j+1]+cqel[i-1][j+1]);
       else if(i==8 && j>1)
-        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j])/(qel[i][j]+qel[i-1][j]);
+        fQelCorr[i][j] = (cnoqel[i][j]+cnoqel[i-1][j])/(cqel[i][j]+cqel[i-1][j]);
     }
   }
 }
