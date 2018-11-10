@@ -504,12 +504,12 @@ void Extraction(string pFilelist, int pType)
       else if(pType==1)
       {
         RHO_EVENTS++;
-        RHO_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        RHO_WEIGHT += 1/mcWeight->GetLeaf("mcWeight")->GetValue();
       }
       else if(pType==2)
       {
         PHI_EVENTS++;
-        PHI_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        PHI_WEIGHT += 1/mcWeight->GetLeaf("mcWeight")->GetValue();
       }
 
 
