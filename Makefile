@@ -14,12 +14,13 @@ ifeq ($(DEBUG),1)
 CCFLAGS += -DDEBUG
 endif
 
-all : analySIDIS acceptance comparison extractor plotter
+all : analySIDIS acceptance comparison extractor plotter dvm
 analySIDIS : analySIDIS_split analySIDIS_collect
 acceptance : accsplit accfuse acccollect
 comparison : compRDRD compMCRD compMCMC compMult
 extractor : FFExtractor FFPlotter
 plotter : plotMult
+dvm : DVM
 
 
 %.o: %.cc %.h
@@ -71,5 +72,10 @@ plotMult: plotMult.cc plotMult.h
 	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
 	@echo 'Plotting device package built !'
 
+DVM: DVM.cc DVM.h
+	@echo 'Building DVM package..'
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $< $(LHAPDF_LIBS) $(LHAPDF_INCL)
+	@echo 'DVM package built !'
+
 clean :
-	@rm -rf *.o accsplit accfuse acccollect analySIDIS_split analySIDIS_collect compRDRD compMCRD compMCMC compMult FFExtractor FFPlotter plotMult
+	@rm -rf *.o accsplit accfuse acccollect analySIDIS_split analySIDIS_collect compRDRD compMCRD compMCMC compMult FFExtractor FFPlotter plotMult DVM

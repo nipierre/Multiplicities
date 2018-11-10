@@ -63,14 +63,29 @@ Double_t fNu_min[3][12];
 bool fAllDISflag;
 bool fAllDISflag_MC;
 
+//Weighted events
+Double_t SIDIS_WEIGHT;
+Double_t SIDIS_EVENTS;
+Double_t RHO_WEIGHT;
+Double_t RHO_EVENTS;
+Double_t PHI_WEIGHT;
+Double_t PHI_EVENTS;
+
 
 //Binning
 Wrapper fSIDIS[9][5][12];
+Double_t fSIDIS_tot[2][4];
 Wrapper fRho[9][5][12];
+Double_t fRho_tot[2][4];
 Wrapper fPhi[9][5][12];
+Double_t fPhi_tot[2][4];
+Wrapper fDVM_h[9][5][12];
 Double_t fNDIS_evt_SIDIS[9][5];
+Double_t fNDIS_SIDIS_tot;
 Double_t fNDIS_evt_rho[9][5];
+Double_t fNDIS_rho_tot;
 Double_t fNDIS_evt_phi[9][5];
+Double_t fNDIS_phi_tot;
 int xbin, ybin, zbin, xbin_MC, ybin_MC, zbin_u;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};

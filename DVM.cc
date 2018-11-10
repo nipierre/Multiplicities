@@ -8,7 +8,9 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define RCUTSTUDY_ON 0
+#define SIDIS_XS 227010
+#define RHO_XS 25592.8
+#define PHI_XS 5995.35
 
 using namespace std;
 
@@ -232,6 +234,7 @@ void Extraction(string pFilelist, int pType)
     TBranch *MC_p1y = (TBranch*) tree->FindBranch("MC_p1y");
     TBranch *MC_p1z = (TBranch*) tree->FindBranch("MC_p1z");
     TBranch *irad = (TBranch*) tree->FindBranch("irad");
+    TBranch *mcWeight = (TBranch*) tree->FindBranch("mcWeight");
     TBranch *MC_nuTr = (TBranch*) tree->FindBranch("MC_nuTr");
     TBranch *MC_Q2Tr = (TBranch*) tree->FindBranch("MC_Q2Tr");
     TBranch *MC_w = (TBranch*) tree->FindBranch("MC_w");
@@ -368,6 +371,7 @@ void Extraction(string pFilelist, int pType)
       MC_p1y->GetEntry(ip);
       MC_p1z->GetEntry(ip);
       irad->GetEntry(ip);
+      mcWeight->GetEntry(ip);
       MC_nuTr->GetEntry(ip);
       MC_Q2Tr->GetEntry(ip);
       MC_w->GetEntry(ip);
@@ -491,6 +495,22 @@ void Extraction(string pFilelist, int pType)
                     + (y->GetLeaf("y")->GetValue()-yC)*(y->GetLeaf("y")->GetValue()-yC) );
 
       //2006 ---
+
+      if(pType==0)
+      {
+        SIDIS_EVENTS++;
+        SIDIS_WEIGHT++;
+      }
+      else if(pType==1)
+      {
+        RHO_EVENTS++;
+        RHO_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+      }
+      else if(pType==2)
+      {
+        PHI_EVENTS++;
+        PHI_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+      }
 
 
       // -----------------------------------------------------------------------
@@ -949,6 +969,7 @@ void Extraction(string pFilelist, int pType)
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[0][0][3] += 1;
+            }
           }
           else
           {
@@ -975,21 +996,67 @@ void DVMCalc()
       fNDIS_evt_PHI[i][j] /= PHI_WEIGHT/PHI_XS;
       fDVM_DIS_pi[i][j] = fNDIS_evt_RHO[i][j]/fNDIS_evt_SIDIS[i][j];
       fDVM_DIS_K[i][j] = fNDIS_evt_PHI[i][j]/fNDIS_evt_SIDIS[i][j];
+      fNDIS_SIDIS_tot += fNDIS_evt_SIDIS[i][j];
+      fNDIS_RHO_tot += fNDIS_evt_RHO[i][j];
+      fNDIS_PHI_tot += fNDIS_evt_PHI[i][j];
       for(int k=0; k<12; k++)
       {
         fSIDIS[i][j][k].tab[1][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
         fSIDIS[i][j][k].tab[0][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
         fSIDIS[i][j][k].tab[1][0][1] /= SIDIS_WEIGHT/SIDIS_XS;
         fSIDIS[i][j][k].tab[0][0][1] /= SIDIS_WEIGHT/SIDIS_XS;
+        fSIDIS[i][j][k].tab[1][0][3] /= SIDIS_WEIGHT/SIDIS_XS;
+        fSIDIS[i][j][k].tab[0][0][3] /= SIDIS_WEIGHT/SIDIS_XS;
+        fSIDIS_tot[1][0] += fSIDIS[i][j][k].tab[1][0][0];
+        fSIDIS_tot[0][0] += fSIDIS[i][j][k].tab[0][0][0];
+        fSIDIS_tot[1][1] += fSIDIS[i][j][k].tab[1][0][1];
+        fSIDIS_tot[0][1] += fSIDIS[i][j][k].tab[0][0][1];
+        fSIDIS_tot[1][3] += fSIDIS[i][j][k].tab[1][0][3];
+        fSIDIS_tot[0][3] += fSIDIS[i][j][k].tab[0][0][3];
         fRho[i][j][k].tab[1][0][0] /= RHO_WEIGHT/RHO_XS;
         fRho[i][j][k].tab[0][0][0] /= RHO_WEIGHT/RHO_XS;
+        fRho[i][j][k].tab[1][0][3] /= RHO_WEIGHT/RHO_XS;
+        fRho[i][j][k].tab[0][0][3] /= RHO_WEIGHT/RHO_XS;
+        fRho_tot[1][0] += fRho[i][j][k].tab[1][0][0];
+        fRho_tot[0][0] += fRho[i][j][k].tab[0][0][0];
+        fRho_tot[1][3] += fRho[i][j][k].tab[1][0][3];
+        fRho_tot[0][3] += fRho[i][j][k].tab[0][0][3];
         fPhi[i][j][k].tab[1][0][1] /= PHI_WEIGHT/PHI_XS;
         fPhi[i][j][k].tab[0][0][1] /= PHI_WEIGHT/PHI_XS;
-        fDVM_h[i][j][k].tab[1][0][0] =
-        fDVM_h[i][j][k].tab[0][0][0] =
+        fPhi[i][j][k].tab[1][0][3] /= PHI_WEIGHT/PHI_XS;
+        fPhi[i][j][k].tab[0][0][3] /= PHI_WEIGHT/PHI_XS;
+        fPhi_tot[1][1] += fPhi[i][j][k].tab[1][0][1];
+        fPhi_tot[0][1] += fPhi[i][j][k].tab[0][0][1];
+        fPhi_tot[1][3] += fPhi[i][j][k].tab[1][0][3];
+        fPhi_tot[0][3] += fPhi[i][j][k].tab[0][0][3];
+        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+SIDIS[i][j][k].tab[1][0][0]);
+        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+SIDIS[i][j][k].tab[0][0][0]);
+        fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+SIDIS[i][j][k].tab[1][0][1]);
+        fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+SIDIS[i][j][k].tab[0][0][1]);
+
       }
     }
   }
+}
+
+void DVMSaver()
+{
+  ofstream ofs_dvm("DVM.dat", std::ofstream::out | std::ofstream::trunc);
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      for(int k=0; k<12; k++)
+      {
+        ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
+                << fDVM_h[i][j][k].tab[1][0][0] << " " << fDVM_DIS_pi[i][j]
+                << fDVM_h[i][j][k].tab[0][0][0] << " " << fDVM_DIS_pi[i][j]
+                << fDVM_h[i][j][k].tab[1][0][1] << " " << fDVM_DIS_K[i][j]
+                << fDVM_h[i][j][k].tab[0][0][1] << " " << fDVM_DIS_K[i][j] << endl;
+      }
+    }
+  }
+  ofs_dvm.close();
 }
 
 int main(int argc, char **argv)
@@ -1004,13 +1071,37 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  create_kin_plots();
+  SIDIS_WEIGHT = 0;
+  SIDIS_EVENTS = 0;
+  RHO_WEIGHT = 0;
+  RHO_EVENTS = 0;
+  PHI_WEIGHT = 0;
+  PHI_EVENTS = 0;
+
   readKinCuts(argv[4]);
   Extraction(argv[1],0);
   Extraction(argv[2],1);
   Extraction(argv[3],2);
   DVMCalc();
   DVMSaver();
+
+  cout << "\n\n";
+  cout << "             ********* Luminosity, number of events and number of hadrons ********* " << endl;
+  cout << "             ---------------------------------------------------------------------- " << endl;
+
+  cout << '|' << setw(30) << "" << '|' << setw(15) << "DJANGOH" << '|' << setw(15) << "Rho^0" << '|' << setw(15) << "Phi" << '|' << endl;
+  cout << '|' << setw(30) << "Generated Events" << '|' << setw(15) << SIDIS_EVENTS << '|' << setw(15) << RHO_EVENTS << '|' << setw(15) << PHI_EVENTS << '|' << endl;
+  cout << '|' << setw(30) << "Weighted Gen. Events" << '|' << setw(15) << SIDIS_WEIGHT << '|' << setw(15) << RHO_WEIGHT << '|' << setw(15) << PHI_WEIGHT << '|' << endl;
+  cout << '|' << setw(30) << "Integrated XS [pb]" << '|' << setw(15) << SIDIS_XS << '|' << setw(15) << RHO_XS << '|' << setw(15) << PHI_XS << '|' << endl;
+  cout << '|' << setw(30) << "MC Luminosity [pb-1]" << '|' << setw(15) << SIDIS_WEIGHT/SIDIS_XS << '|' << setw(15) << RHO_WEIGHT/RHO_XS << '|' << setw(15) << PHI_WEIGHT/PHI_XS << '|' << endl;
+  cout << "             ------------------------------------------------------------------------------------------------------------------------------ " << endl;
+  cout << '|' << setw(30) << "DIS Events [pb]" << '|' << setw(15) << fNDIS_SIDIS_tot << '|' << setw(15) << fNDIS_rho_tot << '|' << setw(15) << fNDIS_phi_tot << '|' << endl;
+  cout << '|' << setw(30) << "h+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][3] << '|' << setw(15) << fRho_tot[1][3] << '|' << setw(15) << fPhi_tot[1][3] << '|' << endl;
+  cout << '|' << setw(30) << "h- [pb]" << '|' << setw(15) << fSIDIS_tot[0][3] << '|' << setw(15) << fRho_tot[0][3] << '|' << setw(15) << fPhi_tot[0][3] << '|' << endl;
+  cout << '|' << setw(30) << "pi+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][0] << '|' << setw(15) << fRho_tot[1][0] << '|' << setw(15) << "-" << '|' << endl;
+  cout << '|' << setw(30) << "pi- [pb]" << '|' << setw(15) << fSIDIS_tot[0][0] << '|' << setw(15) << fRho_tot[0][0] << '|' << setw(15) << "-" << '|' << endl;
+  cout << '|' << setw(30) << "K+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][1] << '|' << setw(15) << "-" << '|' << setw(15) << fPhi_tot[1][1] << '|' << endl;
+  cout << '|' << setw(30) << "K- [pb]" << '|' << setw(15) << fSIDIS_tot[0][1] << '|' << setw(15) << "-" << '|' << setw(15) << fPhi_tot[0][1] << '|' << endl;
 
   return 0;
 }
