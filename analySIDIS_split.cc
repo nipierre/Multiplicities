@@ -2842,7 +2842,7 @@ int main(int argc, char **argv)
       XBjsevere.clear();
       YBjsevere.clear();
       Q2severe.clear();
-      f.Close();
+      f->Close();
     }
 
     for(int i=0; i<9; i++)
