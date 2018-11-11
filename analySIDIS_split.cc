@@ -3,7 +3,7 @@
 using namespace std;
 
 //Inputs
-#define mat_RICH_name "data/rich_mat.txt"
+#define mat_RICH_name "data/rich_mat_2006.txt"
 #define err_RICH_name "data/rich_mat_error.txt"
 #define target_file_2012 "data/target-107924-109081.dat"
 #define target_file_2016 "data/target-274508-274901.dat"
