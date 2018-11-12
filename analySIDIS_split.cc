@@ -1132,8 +1132,8 @@ int main(int argc, char **argv)
 
   if(kin_flag) create_kin_plots();
 
-  if(Y2006 || Y2012) load_rich_mat(mat_RICH_2006_name, err_RICH_name);
-  if(Y2016) load_rich_mat(mat_RICH_2016_name, err_RICH_name)
+  if(Y2006 || Y2012) load_rich_mat_2006(mat_RICH_2006_name, err_RICH_name);
+  if(Y2016) load_rich_mat_2016(mat_RICH_2016_name, err_RICH_name)
 
   //cout << pi_sigma_uni[0][0] << " " << pi_sigma_uni[1][1] << " " << pi_sigma_uni[2][2] << endl;
 
