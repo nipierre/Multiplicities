@@ -634,11 +634,11 @@ void load_rich_mat_2016(string prich, string prich_err)
       {
         for(int j=0; j<3; j++)
         {
-          matRICH >> rich_mat_m[i%2][(i-8)/2][k][j%3];
+          matRICH >> rich_mat_m[i%2][(i-8)/2][j%3][k];
         }
         for(int j=0; j<3; j++)
         {
-          matRICH >> rich_mat_p[i%2][(i-8)/2][k][j%3];
+          matRICH >> rich_mat_p[i%2][(i-8)/2][j%3][k];
         }
       }
     }
