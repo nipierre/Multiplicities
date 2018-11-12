@@ -3,7 +3,8 @@
 using namespace std;
 
 //Inputs
-#define mat_RICH_name "data/rich_mat_2006.txt"
+#define mat_RICH_2006_name "data/rich_mat_2006.txt"
+#define mat_RICH_2016_name "data/rich_mat_2016.txt"
 #define err_RICH_name "data/rich_mat_error.txt"
 #define target_file_2012 "data/target-107924-109081.dat"
 #define target_file_2016 "data/target-274508-274901.dat"
@@ -23,7 +24,7 @@ using namespace std;
 #define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
-#define MUCHARGE_SEPARATION 1
+#define MUCHARGE_SEPARATION 0
 #define MUCHARGE 1
 
 #define IRC 0
@@ -353,7 +354,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
   }
 }
 
-void load_rich_mat(string prich, string prich_err)
+void load_rich_mat_2006(string prich, string prich_err)
 {
 
   pi_sigma_uni[0][0] = 1;
@@ -402,6 +403,243 @@ void load_rich_mat(string prich, string prich_err)
       for(int j=0; j<9; j++)
       {
         matRICH >> rich_mat_m[i%2][(i-4)/2][(int)j/3][j%3];
+      }
+    }
+  }
+
+  matRICH.close();
+
+  for(int i=0; i<10; i++)
+  {
+    inv_rich_p[0][i] = rich_mat_p[0][i].InvertFast();
+    inv_rich_p[1][i] = rich_mat_p[1][i].InvertFast();
+    inv_rich_m[0][i] = rich_mat_m[0][i].InvertFast();
+    inv_rich_m[1][i] = rich_mat_m[1][i].InvertFast();
+  }
+
+  // Errors YODO
+
+  ifstream errRICH(prich_err);
+
+
+  for(int loop=0; loop<24; loop++)
+  {
+    if(loop < 4)
+    {
+      for(int j=0; j<38; j++)
+        errRICH >> dummy;
+    }
+    else
+    {
+      errRICH >> err_bin[0][loop-4] >> err_bin[1][loop-4];
+
+      errRICH >> err_rich_p[0][0][0][0];
+      errRICH >> err_rich_p[0][1][0][1];
+      errRICH >> err_rich_p[0][2][0][2];//3
+      errRICH >> err_rich_p[0][0][1][0];
+      errRICH >> err_rich_p[0][0][2][0];
+      errRICH >> err_rich_p[1][0][2][0];//6
+      errRICH >> err_rich_p[1][0][1][0];
+      errRICH >> err_rich_p[1][1][1][1];
+      errRICH >> err_rich_p[1][2][1][2];//9
+      errRICH >> err_rich_p[0][1][1][1];
+      errRICH >> err_rich_p[0][1][2][1];
+      errRICH >> err_rich_p[1][1][2][1];//12
+      errRICH >> err_rich_p[2][0][2][0];
+      errRICH >> err_rich_p[2][1][2][1];
+      errRICH >> err_rich_p[2][2][2][2];//15
+      errRICH >> err_rich_p[0][2][1][2];
+      errRICH >> err_rich_p[0][2][2][2];
+      errRICH >> err_rich_p[1][2][2][2];//18
+
+      err_rich_p[0][0][0][0] = pow(err_rich_p[0][0][0][0],2);
+      err_rich_p[0][1][0][1] = pow(err_rich_p[0][1][0][1],2);
+      err_rich_p[0][2][0][2] = pow(err_rich_p[0][2][0][2],2);
+      err_rich_p[1][0][1][0] = pow(err_rich_p[1][0][1][0],2);
+      err_rich_p[1][1][1][1] = pow(err_rich_p[1][1][1][1],2);
+      err_rich_p[1][2][1][2] = pow(err_rich_p[1][2][1][2],2);
+      err_rich_p[2][0][2][0] = pow(err_rich_p[2][0][2][0],2);
+      err_rich_p[2][1][2][1] = pow(err_rich_p[2][1][2][1],2);
+      err_rich_p[2][2][2][2] = pow(err_rich_p[2][2][2][2],2);
+
+      err_rich_p[0][0][1][0] = err_rich_p[1][0][0][0];
+      err_rich_p[0][0][2][0] = err_rich_p[2][0][0][0];
+      err_rich_p[1][0][2][0] = err_rich_p[2][0][1][0];
+
+      err_rich_p[0][1][1][1] = err_rich_p[1][1][0][1];
+      err_rich_p[0][1][2][1] = err_rich_p[2][1][0][1];
+      err_rich_p[1][1][2][1] = err_rich_p[2][1][1][1];
+
+      err_rich_p[0][2][1][2] = err_rich_p[1][2][0][2];
+      err_rich_p[0][2][2][2] = err_rich_p[2][2][0][2];
+      err_rich_p[1][2][2][2] = err_rich_p[2][2][1][2];
+
+      errRICH >> err_rich_m[0][0][0][0];
+      errRICH >> err_rich_m[0][1][0][1];
+      errRICH >> err_rich_m[0][2][0][2];//3
+      errRICH >> err_rich_m[0][0][1][0];
+      errRICH >> err_rich_m[0][0][2][0];
+      errRICH >> err_rich_m[1][0][2][0];//6
+      errRICH >> err_rich_m[1][0][1][0];
+      errRICH >> err_rich_m[1][1][1][1];
+      errRICH >> err_rich_m[1][2][1][2];//9
+      errRICH >> err_rich_m[0][1][1][1];
+      errRICH >> err_rich_m[0][1][2][1];
+      errRICH >> err_rich_m[1][1][2][1];//12
+      errRICH >> err_rich_m[2][0][2][0];
+      errRICH >> err_rich_m[2][1][2][1];
+      errRICH >> err_rich_m[2][2][2][2];//15
+      errRICH >> err_rich_m[0][2][1][2];
+      errRICH >> err_rich_m[0][2][2][2];
+      errRICH >> err_rich_m[1][2][2][2];//18
+
+      err_rich_m[0][0][0][0] = pow(err_rich_m[0][0][0][0],2);
+      err_rich_m[0][1][0][1] = pow(err_rich_m[0][1][0][1],2);
+      err_rich_m[0][2][0][2] = pow(err_rich_m[0][2][0][2],2);
+      err_rich_m[1][0][1][0] = pow(err_rich_m[1][0][1][0],2);
+      err_rich_m[1][1][1][1] = pow(err_rich_m[1][1][1][1],2);
+      err_rich_m[1][2][1][2] = pow(err_rich_m[1][2][1][2],2);
+      err_rich_m[2][0][2][0] = pow(err_rich_m[2][0][2][0],2);
+      err_rich_m[2][1][2][1] = pow(err_rich_m[2][1][2][1],2);
+      err_rich_m[2][2][2][2] = pow(err_rich_m[2][2][2][2],2);
+
+      err_rich_m[0][0][1][0] = err_rich_m[1][0][0][0];
+      err_rich_m[0][0][2][0] = err_rich_m[2][0][0][0];
+      err_rich_m[1][0][2][0] = err_rich_m[2][0][1][0];
+
+      err_rich_m[0][1][1][1] = err_rich_m[1][1][0][1];
+      err_rich_m[0][1][2][1] = err_rich_m[2][1][0][1];
+      err_rich_m[1][1][2][1] = err_rich_m[2][1][1][1];
+
+      err_rich_m[0][2][1][2] = err_rich_m[1][2][0][2];
+      err_rich_m[0][2][2][2] = err_rich_m[2][2][0][2];
+      err_rich_m[1][2][2][2] = err_rich_m[2][2][1][2];
+
+#ifdef DEBUG
+      for(int i=0; i<9; i++)
+      {
+        for(int j=0; j<9; j++)
+        {
+          cout << err_rich_p[i][j] << " ";
+        }
+        cout << endl;
+      }
+#endif
+
+      cout << "\n" << endl;
+
+      for(int i=0; i<3; i++)
+      {
+        cov1_pi[0][i] = 0;
+        cov1_pi[1][i] = 0;
+        cov1_k[0][i] = 0;
+        cov1_k[1][i] = 0;
+        cov1_p[0][i] = 0;
+        cov1_p[1][i] = 0;
+        cov2[0][i] = 0;
+        cov2[1][i] = 0;
+      }
+
+      for(int i=0; i<3; i++)
+      {
+        for(int j=0; j<3; j++)
+        {
+          cov1_pi[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*pi_sigma_uni[j][j],2);
+          cov1_pi[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*pi_sigma_uni[j][j],2);
+          cov1_k[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*k_sigma_uni[j][j],2);
+          cov1_k[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*k_sigma_uni[j][j],2);
+          cov1_p[0][i] += pow(inv_rich_p[loop%2][(loop-4)/2][i][j]*p_sigma_uni[j][j],2);
+          cov1_p[1][i] += pow(inv_rich_m[loop%2][(loop-4)/2][i][j]*p_sigma_uni[j][j],2);
+
+          for(int k=0; k<3; k++)
+          {
+            for(int l=0; l<3; l++)
+            {
+              for(int m=0; m<3; m++)
+              {
+                    cov2[0][i] += inv_rich_p[loop%2][(loop-4)/2][i][j]
+                                   *inv_rich_p[loop%2][(loop-4)/2][i][l]
+                                   *inv_rich_p[loop%2][(loop-4)/2][k][i]
+                                   *inv_rich_p[loop%2][(loop-4)/2][m][i]
+                                   *err_rich_p[j][k][l][m];
+#ifdef DEBUG
+                                  cout << err_rich_p[j*3+k][l*3+m] << endl;
+                                  cout << j*3+k << " " << l*3+m << endl;
+#endif
+                    cov2[1][i] += inv_rich_m[loop%2][(loop-4)/2][i][j]
+                                   *inv_rich_m[loop%2][(loop-4)/2][i][l]
+                                   *inv_rich_m[loop%2][(loop-4)/2][k][i]
+                                   *inv_rich_m[loop%2][(loop-4)/2][m][i]
+                                   *err_rich_m[j][k][l][m];
+              }
+            }
+          }
+        }
+        pi_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_pi[0][i] + cov2[0][i];
+        pi_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_pi[1][i] + cov2[1][i];
+        k_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_k[0][i] + cov2[0][i];
+        k_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_k[1][i] + cov2[1][i];
+        p_unfolding_err_p[loop%2][(loop-4)/2][i] = cov1_p[0][i] + cov2[0][i];
+        p_unfolding_err_m[loop%2][(loop-4)/2][i] = cov1_p[1][i] + cov2[1][i];
+      }
+    }
+  }
+
+  errRICH.close();
+}
+
+void load_rich_mat_2016(string prich, string prich_err)
+{
+
+  pi_sigma_uni[0][0] = 1;
+  k_sigma_uni[1][1] = 1;
+  p_sigma_uni[2][2] = 1;
+  pi_vect[0][0] = 1;
+  k_vect[1][0] = 1;
+  p_vect[2][0] = 1;
+
+  for(int i=0; i<2; i++)
+  {
+    for(int j=0; j<10; j++)
+    {
+      rich_mat_p[i][j].ResizeTo(3,3);
+      rich_mat_m[i][j].ResizeTo(3,3);
+      inv_rich_p[i][j].ResizeTo(3,3);
+      inv_rich_m[i][j].ResizeTo(3,3);
+    }
+  }
+
+  for(int i=0; i<3; i++)
+  {
+    for(int j=0; j<3; j++)
+    {
+      err_rich_p[i][j].ResizeTo(3,3);
+      err_rich_m[i][j].ResizeTo(3,3);
+    }
+  }
+
+  ifstream matRICH(prich);
+
+  for(int i=0; i<28; i++)
+  {
+    if(i < 8)
+    {
+      for(int j=0; j<20; j++)
+        matRICH >> dummy;
+    }
+    else
+    {
+      matRICH >> mat_bin[0][i] >> mat_bin[1][i];
+      for(int k=0; k<3; k++)
+      {
+        for(int j=0; j<3; j++)
+        {
+          matRICH >> rich_mat_m[i%2][(i-8)/2][k][j%3];
+        }
+        for(int j=0; j<3; j++)
+        {
+          matRICH >> rich_mat_p[i%2][(i-8)/2][k][j%3];
+        }
       }
     }
   }
@@ -894,7 +1132,8 @@ int main(int argc, char **argv)
 
   if(kin_flag) create_kin_plots();
 
-  load_rich_mat(mat_RICH_name, err_RICH_name);
+  if(Y2006 || Y2012) load_rich_mat(mat_RICH_2006_name, err_RICH_name);
+  if(Y2016) load_rich_mat(mat_RICH_2016_name, err_RICH_name)
 
   //cout << pi_sigma_uni[0][0] << " " << pi_sigma_uni[1][1] << " " << pi_sigma_uni[2][2] << endl;
 
