@@ -255,7 +255,7 @@ int main(int argc, char **argv)
       {
         double multy, multye;
         multy = fMultiplicities2_yavg[i][k].tab[c][0][0] ? fMultiplicities1_yavg[i][k].tab[c][0][0]/fMultiplicities2_yavg[i][k].tab[c][0][0] : 0;
-        multye = fMultiplicities2_yavg[i][k].tab[c][0][0] ? sqrt((fMultiplicities1_yavg[i][k].tab[c][1][0]+pow(fMultiplicities2_yavg[i][k].tab[c][1][0],2)*fMultiplicities1_yavg[i][k].tab[c][0][0]
+        multye = fMultiplicities2_yavg[i][k].tab[c][0][0] ? sqrt((fMultiplicities1_yavg[i][k].tab[c][1][0]+fMultiplicities2_yavg[i][k].tab[c][1][0]*pow(fMultiplicities1_yavg[i][k].tab[c][0][0],2)
                                 /pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2))/pow(fMultiplicities2_yavg[i][k].tab[c][0][0],2)) : 0;
         r_y.push_back(multy);
         r_y_err.push_back(multye);

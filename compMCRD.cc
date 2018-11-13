@@ -216,12 +216,12 @@ void create_kin_plots()
     fKinematicsMC[i][14] = new TH1F(Form("#Phi_{hadron+e,lab} %s",trigname[i].c_str()), Form("phi_{hadron+e,lab} Ratio %s",trigname[i].c_str()), 50, -3.5, 3.5);
     fKinematicsMC[i][15] = new TH1F(Form("#Phi_{hadron+e,prod.pl} %s",trigname[i].c_str()), Form("phi_{hadron+e,prod.pl} Ratio %s",trigname[i].c_str()), 50, 0, 3.5);
     fKinematicsMC[i][16] = new TH1F(Form("p_{T} %s",trigname[i].c_str()), Form("p_{T} Ratio %s",trigname[i].c_str()), 50, 0, 3);
-    fKinematicsRD[i][17] = new TH1F(Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron+e) %s",trigname[i].c_str()), 50, -325, -71);
-    fKinematicsRD[i][18] = new TH1F(Form("Vertex (e) Ratio %s",trigname[i].c_str()), Form("Vertex (e) %s",trigname[i].c_str()), 50, -325, -71);
-    fKinematicsRD[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) %s",trigname[i].c_str()), 50, -325, -71);
-    fKinematicsMC[i][17] = new TH1F(Form("Vertex (Hadron+e) %s",trigname[i].c_str()), Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
-    fKinematicsMC[i][18] = new TH1F(Form("Vertex (e) %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, -325, -71);
-    fKinematicsMC[i][19] = new TH1F(Form("Vertex (Hadron) %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, -325, -71);
+    fKinematicsRD[i][17] = new TH1F(Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron+e) %s",trigname[i].c_str()), 50, -340, -60);
+    fKinematicsRD[i][18] = new TH1F(Form("Vertex (e) Ratio %s",trigname[i].c_str()), Form("Vertex (e) %s",trigname[i].c_str()), 50, -340, -60);
+    fKinematicsRD[i][19] = new TH1F(Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), Form("Vertex (Hadron) %s",trigname[i].c_str()), 50, -340, -60);
+    fKinematicsMC[i][17] = new TH1F(Form("Vertex (Hadron+e) %s",trigname[i].c_str()), Form("Vertex (Hadron+e) Ratio %s",trigname[i].c_str()), 50, -340, -60);
+    fKinematicsMC[i][18] = new TH1F(Form("Vertex (e) %s",trigname[i].c_str()), Form("Vertex (e) Ratio %s",trigname[i].c_str()), 50, -340, -60);
+    fKinematicsMC[i][19] = new TH1F(Form("Vertex (Hadron) %s",trigname[i].c_str()), Form("Vertex (Hadron) Ratio %s",trigname[i].c_str()), 50, -340, -60);
     BinLogX(fKinematicsRD[i][0]);
     BinLogX(fKinematicsMC[i][0]);
     BinLogX(fKinematicsRD[i][1]);
@@ -254,9 +254,9 @@ void create_kin_plots()
     l1[14][i] = new TLine(-3.5,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[15][i] = new TLine(0,0.4+i*0.2,3.5,0.4+i*0.2);
     l1[16][i] = new TLine(0,0.4+i*0.2,3,0.4+i*0.2);
-    l1[17][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
-    l1[18][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
-    l1[19][i] = new TLine(-325,0.4+i*0.2,-71,0.4+i*0.2);
+    l1[17][i] = new TLine(-340,0.4+i*0.2,-60,0.4+i*0.2);
+    l1[18][i] = new TLine(-340,0.4+i*0.2,-60,0.4+i*0.2);
+    l1[19][i] = new TLine(-340,0.4+i*0.2,-60,0.4+i*0.2);
     for(int j=0; j<20; j++)
     {
       l1[j][i]->SetLineStyle(fLineStyle[i]);
