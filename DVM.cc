@@ -711,8 +711,8 @@ void Extraction(string pFilelist, int pType)
       if(fAllDISflag)
       {
         if(pType==0) fNDIS_evt_SIDIS[xbin][ybin]++;
-        else if(pType==1) fNDIS_evt_rho[xbin][ybin]++;
-        else if(pType==2) fNDIS_evt_phi[xbin][ybin]++;
+        else if(pType==1) fNDIS_evt_rho[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+        else if(pType==2) fNDIS_evt_phi[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
 
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
         {
@@ -836,13 +836,13 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[1][0][0] += 1;
-              fRho[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[1][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[1][0][0] += 1;
-              fPhi[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[1][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else if(fId==1)
@@ -854,13 +854,13 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[0][0][0] += 1;
-              fRho[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[0][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[0][0][0] += 1;
-              fPhi[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[0][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else if(fId==2)
@@ -872,13 +872,13 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[1][0][1] += 1;
-              fRho[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[1][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[1][0][1] += 1;
-              fPhi[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[1][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else if(fId==3)
@@ -890,13 +890,13 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[0][0][1] += 1;
-              fRho[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[0][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[0][0][1] += 1;
-              fPhi[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[0][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else if(fId==4)
@@ -908,13 +908,13 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[1][0][2] += 1;
-              fRho[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[1][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[1][0][2] += 1;
-              fPhi[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[1][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else if(fId==5)
@@ -926,13 +926,13 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[0][0][2] += 1;
-              fRho[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[0][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[0][0][2] += 1;
-              fPhi[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[0][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else if(fId==6)
@@ -943,11 +943,11 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else if(fId==7)
@@ -958,11 +958,11 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==1)
             {
-              fRho[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
             }
           }
           else
@@ -985,9 +985,9 @@ void DVMCalc()
   {
     for(int j=0; j<6; j++)
     {
-      fNDIS_evt_SIDIS[i][j] /= SIDIS_WEIGHT/SIDIS_XS;
-      fNDIS_evt_rho[i][j] /= RHO_WEIGHT/RHO_XS;
-      fNDIS_evt_phi[i][j] /= PHI_WEIGHT/PHI_XS;
+      // fNDIS_evt_SIDIS[i][j] /= SIDIS_WEIGHT/SIDIS_XS;
+      fNDIS_evt_rho[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+      fNDIS_evt_phi[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
       fDVM_DIS_pi[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_rho[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
       fDVM_DIS_K[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_phi[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
       fNDIS_SIDIS_tot += fNDIS_evt_SIDIS[i][j];
@@ -995,30 +995,30 @@ void DVMCalc()
       fNDIS_phi_tot += fNDIS_evt_phi[i][j];
       for(int k=0; k<12; k++)
       {
-        fSIDIS[i][j][k].tab[1][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
-        fSIDIS[i][j][k].tab[0][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
-        fSIDIS[i][j][k].tab[1][0][1] /= SIDIS_WEIGHT/SIDIS_XS;
-        fSIDIS[i][j][k].tab[0][0][1] /= SIDIS_WEIGHT/SIDIS_XS;
-        fSIDIS[i][j][k].tab[1][0][3] /= SIDIS_WEIGHT/SIDIS_XS;
-        fSIDIS[i][j][k].tab[0][0][3] /= SIDIS_WEIGHT/SIDIS_XS;
+        // fSIDIS[i][j][k].tab[1][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
+        // fSIDIS[i][j][k].tab[0][0][0] /= SIDIS_WEIGHT/SIDIS_XS;
+        // fSIDIS[i][j][k].tab[1][0][1] /= SIDIS_WEIGHT/SIDIS_XS;
+        // fSIDIS[i][j][k].tab[0][0][1] /= SIDIS_WEIGHT/SIDIS_XS;
+        // fSIDIS[i][j][k].tab[1][0][3] /= SIDIS_WEIGHT/SIDIS_XS;
+        // fSIDIS[i][j][k].tab[0][0][3] /= SIDIS_WEIGHT/SIDIS_XS;
         fSIDIS_tot[1][0] += fSIDIS[i][j][k].tab[1][0][0];
         fSIDIS_tot[0][0] += fSIDIS[i][j][k].tab[0][0][0];
         fSIDIS_tot[1][1] += fSIDIS[i][j][k].tab[1][0][1];
         fSIDIS_tot[0][1] += fSIDIS[i][j][k].tab[0][0][1];
         fSIDIS_tot[1][3] += fSIDIS[i][j][k].tab[1][0][3];
         fSIDIS_tot[0][3] += fSIDIS[i][j][k].tab[0][0][3];
-        fRho[i][j][k].tab[1][0][0] /= RHO_WEIGHT/RHO_XS;
-        fRho[i][j][k].tab[0][0][0] /= RHO_WEIGHT/RHO_XS;
-        fRho[i][j][k].tab[1][0][3] /= RHO_WEIGHT/RHO_XS;
-        fRho[i][j][k].tab[0][0][3] /= RHO_WEIGHT/RHO_XS;
+        fRho[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
         fRho_tot[1][0] += fRho[i][j][k].tab[1][0][0];
         fRho_tot[0][0] += fRho[i][j][k].tab[0][0][0];
         fRho_tot[1][3] += fRho[i][j][k].tab[1][0][3];
         fRho_tot[0][3] += fRho[i][j][k].tab[0][0][3];
-        fPhi[i][j][k].tab[1][0][1] /= PHI_WEIGHT/PHI_XS;
-        fPhi[i][j][k].tab[0][0][1] /= PHI_WEIGHT/PHI_XS;
-        fPhi[i][j][k].tab[1][0][3] /= PHI_WEIGHT/PHI_XS;
-        fPhi[i][j][k].tab[0][0][3] /= PHI_WEIGHT/PHI_XS;
+        fPhi[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
         fPhi_tot[1][1] += fPhi[i][j][k].tab[1][0][1];
         fPhi_tot[0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot[1][3] += fPhi[i][j][k].tab[1][0][3];
