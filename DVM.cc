@@ -1073,16 +1073,16 @@ void DVMSaver()
       {
         for(int k=0; k<12; k++)
         {
-          p_d[c][i][j].push_back(((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) && fDVM_DIS_pi[i][j]!=0 && fDVM_DIS_K[i][j]!=0) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
-          k_d[c][i][j].push_back(((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) && fDVM_DIS_pi[i][j]!=0 && fDVM_DIS_K[i][j]!=0) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+          p_d[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+          k_d[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
           // p_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
           // k_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
 
           z_range_p[c][i][j].push_back(z_range[k]);
           z_range_k[c][i][j].push_back(z_range[k]);
 
-          if(!p_d[c][i][j][k-1]) {p_d[c][i][j].erase(p_d[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
-          if(!k_d[c][i][j][k-1]) {k_d[c][i][j].erase(k_d[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
+          if(p_d[c][i][j][k-1]==1) {p_d[c][i][j].erase(p_d[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
+          if(k_d[c][i][j][k-1]==1) {k_d[c][i][j].erase(k_d[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
         }
 
         bool p_empty = 0;
