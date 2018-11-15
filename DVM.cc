@@ -1048,18 +1048,17 @@ void DVMSaver()
   TGraphErrors* P[2][9][6];
   TGraphErrors* K[2][9][6];
 
+  std::vector<double> p[2][9][6];
+  std::vector<double> k[2][9][6];
+  // std::vector<double> p_err[2][9][6];
+  // std::vector<double> k_err[2][9][6];
+  std::vector<double> z_range_p[2][9][6];
+  std::vector<double> z_range_k[2][9][6];
+
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
     {
-      std::vector<double> p;
-      std::vector<double> k;
-      // std::vector<double> p_err;
-      // std::vector<double> k_err;
-
-      std::vector<double> z_range_p;
-      std::vector<double> z_range_k;
-
       for(int k=0; k<12; k++)
       {
         ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
@@ -1107,14 +1106,14 @@ void DVMSaver()
         // P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_sys[c][i][j][0]));
         // K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_sys[c][i][j][0]));
 
-        P[c][i][j]->SetMarkerColor(fMarkerColor[j]);
-        K[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+        P[c][i][j]->SetMarkerColor(fMarkerColor[c]);
+        K[c][i][j]->SetMarkerColor(fMarkerColor[c]);
 
         P[c][i][j]->SetMarkerSize(2);
         K[c][i][j]->SetMarkerSize(2);
 
-        P[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
-        K[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        P[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
+        K[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
 
         P[c][i][j]->SetTitle("");
         K[c][i][j]->SetTitle("");
