@@ -1073,8 +1073,8 @@ void DVMSaver()
       {
         for(int k=0; k<12; k++)
         {
-          p_d[c][i][j].push_back(((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) && fDVM_DIS_pi[i][j]>0 && fDVM_DIS_K[i][j]>0) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
-          k_d[c][i][j].push_back(((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) && fDVM_DIS_pi[i][j]>0 && fDVM_DIS_K[i][j]>0) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+          p_d[c][i][j].push_back(((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) && fDVM_DIS_pi[i][j]!=0 && fDVM_DIS_K[i][j]!=0) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+          k_d[c][i][j].push_back(((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) && fDVM_DIS_pi[i][j]!=0 && fDVM_DIS_K[i][j]!=0) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
           // p_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
           // k_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
 
