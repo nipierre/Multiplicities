@@ -1069,28 +1069,16 @@ void DVMSaver()
       }
       for(int c=0; c<2; c++)
       {
-        p[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
-        k[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
-        // p_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
-        // k_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
-
-        for(int l=0; l<12; l++)
+        for(int k=0; k<12; k++)
         {
-          z_range_p[c][i][j].push_back(z_range[l]);
-          z_range_k[c][i][j].push_back(z_range[l]);
-        }
+          p[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+          k[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+          // p_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
+          // k_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
 
-        // cout << c << " " << i << " " << j << " ";
-        //
-        // for(int k=0; k<12; k++)
-        // {
-        //   cout << p_m[c][i][j][k] << " ";
-        // }
-        //
-        // cout << endl;
+          z_range_p[c][i][j].push_back(z_range[k]);
+          z_range_k[c][i][j].push_back(z_range[k]);
 
-        for(int k=12; k>0; k--)
-        {
           if(!p[c][i][j][k-1]) {p[c][i][j].erase(p[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
           if(!k[c][i][j][k-1]) {k[c][i][j].erase(k[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
         }
@@ -1098,8 +1086,8 @@ void DVMSaver()
         bool p_empty = 0;
         bool k_empty = 0;
 
-        if(!(Int_t(p_m[c][i][j].size()))) p_empty = 1;
-        if(!(Int_t(k_m[c][i][j].size()))) k_empty = 1;
+        if(!(Int_t(p[c][i][j].size()))) p_empty = 1;
+        if(!(Int_t(k[c][i][j].size()))) k_empty = 1;
 
         P[c][i][j] = new TGraphErrors(Int_t(p[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p[c][i][j][0]),0,0/*&(p_err[c][i][j][0])*/);
         K[c][i][j] = new TGraphErrors(Int_t(k[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k[c][i][j][0]),0,0/*&(k_err[c][i][j][0])*/);
