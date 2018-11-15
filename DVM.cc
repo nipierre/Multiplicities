@@ -1036,10 +1036,30 @@ void DVMCalc()
 void DVMSaver()
 {
   ofstream ofs_dvm("DVM.dat", std::ofstream::out | std::ofstream::trunc);
+  TCanvas c1("Pion_DVM","Pion_DVM",3200,1600);
+  TCanvas c2("Kaon_DVM","Kaon_DVM",3200,1600);
+
+  c1.SetFillColor(0);
+  c2.SetFillColor(0);
+
+  c1.Divide(9,5,0,0);
+  c2.Divide(9,5,0,0);
+
+  TGraphErrors* P[2][9][6];
+  TGraphErrors* K[2][9][6];
+
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
     {
+      std::vector<double> p;
+      std::vector<double> k;
+      // std::vector<double> p_err;
+      // std::vector<double> k_err;
+
+      std::vector<double> z_range_p;
+      std::vector<double> z_range_k;
+
       for(int k=0; k<12; k++)
       {
         ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
@@ -1048,9 +1068,161 @@ void DVMSaver()
                 << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-fDVM_DIS_K[i][j]+fDVM_DIS_K[i][j] << " "
                 << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-fDVM_DIS_K[i][j]+fDVM_DIS_K[i][j] << endl;
       }
+      for(int c=0; c<2; c++)
+      {
+        p[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+        k[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
+        // p_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
+        // k_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
+
+        for(int l=0; l<12; l++)
+        {
+          z_range_p[c][i][j].push_back(z_range[l]);
+          z_range_k[c][i][j].push_back(z_range[l]);
+        }
+
+        // cout << c << " " << i << " " << j << " ";
+        //
+        // for(int k=0; k<12; k++)
+        // {
+        //   cout << p_m[c][i][j][k] << " ";
+        // }
+        //
+        // cout << endl;
+
+        for(int k=12; k>0; k--)
+        {
+          if(!p[c][i][j][k-1]) {p[c][i][j].erase(p[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
+          if(!k[c][i][j][k-1]) {k[c][i][j].erase(k[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
+        }
+
+        bool p_empty = 0;
+        bool k_empty = 0;
+
+        if(!(Int_t(p_m[c][i][j].size()))) p_empty = 1;
+        if(!(Int_t(k_m[c][i][j].size()))) k_empty = 1;
+
+        P[c][i][j] = new TGraphErrors(Int_t(p[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p[c][i][j][0]),0,0/*&(p_err[c][i][j][0])*/);
+        K[c][i][j] = new TGraphErrors(Int_t(k[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k[c][i][j][0]),0,0/*&(k_err[c][i][j][0])*/);
+        // P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_sys[c][i][j][0]));
+        // K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_sys[c][i][j][0]));
+
+        P[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+        K[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+
+        P[c][i][j]->SetMarkerSize(2);
+        K[c][i][j]->SetMarkerSize(2);
+
+        P[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        K[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+
+        P[c][i][j]->SetTitle("");
+        K[c][i][j]->SetTitle("");
+
+        P[c][i][j]->GetYaxis()->SetTitle("");
+        K[c][i][j]->GetYaxis()->SetTitle("");
+
+        // P_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
+        // K_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
+
+        if(!p_empty)
+        {
+          c1.cd(i+1+9*j);
+          if(P[c][i][j])
+          {
+            if(!c)
+            {
+              P[c][i][j]->Draw("SAMEPA");
+              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P[c][i][j]->SetMinimum(0.);
+              P[c][i][j]->SetMaximum(1.2);
+              P[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              P[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              P[c][i][j]->SetTitle("");
+              if(j==5) gPad->SetBottomMargin(.15);
+              if(i==0) gPad->SetLeftMargin(.22);
+              if(i==8 && j==5)
+              {
+                P[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                P[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                P[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              P[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              P[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==2 && j==0)
+              {
+                P[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
+                P[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              P[c][i][j]->Draw("SAMEP");
+              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P[c][i][j]->SetMinimum(0.);
+              P[c][i][j]->SetMaximum(1.2);
+              c1.Range(0.,0.,1.,1.2);
+            }
+            else
+            {
+              P[c][i][j]->Draw("SAMEP");
+              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P[c][i][j]->SetMinimum(0.);
+              P[c][i][j]->SetMaximum(1.2);
+            }
+          }
+          c1.Update();
+        }
+
+        if(!k_empty)
+        {
+          c2.cd(i+1+9*j);
+          if(K[c][i][j])
+          {
+            if(!c)
+            {
+              K[c][i][j]->Draw("SAMEPA");
+              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K[c][i][j]->SetMinimum(0.);
+              K[c][i][j]->SetMaximum(1.2);
+              K[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              K[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              K[c][i][j]->SetTitle("");
+              if(j==5) gPad->SetBottomMargin(.15);
+              if(i==0) gPad->SetLeftMargin(.22);
+              if(i==8 && j==5)
+              {
+                K[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                K[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                K[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              K[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              K[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==2 && j==0)
+              {
+                K[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
+                K[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              K[c][i][j]->Draw("SAMEP");
+              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K[c][i][j]->SetMinimum(0.);
+              K[c][i][j]->SetMaximum(1.2);
+              c2.Range(0.,0.,1.,1.2);
+            }
+            else
+            {
+              K[c][i][j]->Draw("SAMEP");
+              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K[c][i][j]->SetMinimum(0.);
+              K[c][i][j]->SetMaximum(1.2);
+            }
+          }
+          c2.Update();
+        }
+      }
     }
   }
   ofs_dvm.close();
+  c1.Print("DVM_Pi.pdf");
+  c2.Print("DVM_K.pdf");
+
 }
 
 int main(int argc, char **argv)
