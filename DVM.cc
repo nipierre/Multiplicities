@@ -1047,8 +1047,8 @@ void DVMSaver()
   c1.Divide(9,5,0,0);
   c2.Divide(9,5,0,0);
 
-  TGraphErrors* P[2][9][6];
-  TGraphErrors* K[2][9][6];
+  TGraphErrors* P_d[2][9][6];
+  TGraphErrors* K_d[2][9][6];
 
   std::vector<double> p_d[2][9][6];
   std::vector<double> k_d[2][9][6];
@@ -1091,25 +1091,25 @@ void DVMSaver()
         if(!(Int_t(p_d[c][i][j].size()))) p_empty = 1;
         if(!(Int_t(k_d[c][i][j].size()))) k_empty = 1;
 
-        P[c][i][j] = new TGraphErrors(Int_t(p_d[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p_d[c][i][j][0]),0,0/*&(p_err[c][i][j][0])*/);
-        K[c][i][j] = new TGraphErrors(Int_t(k_d[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k_d[c][i][j][0]),0,0/*&(k_err[c][i][j][0])*/);
+        P_d[c][i][j] = new TGraphErrors(Int_t(p_d[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p_d[c][i][j][0]),0,0/*&(p_err[c][i][j][0])*/);
+        K_d[c][i][j] = new TGraphErrors(Int_t(k_d[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k_d[c][i][j][0]),0,0/*&(k_err[c][i][j][0])*/);
         // P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_sys[c][i][j][0]));
         // K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_sys[c][i][j][0]));
 
-        P[c][i][j]->SetMarkerColor(fMarkerColor[c]);
-        K[c][i][j]->SetMarkerColor(fMarkerColor[c]);
+        P_d[c][i][j]->SetMarkerColor(fMarkerColor[c]);
+        K_d[c][i][j]->SetMarkerColor(fMarkerColor[c]);
 
-        P[c][i][j]->SetMarkerSize(2);
-        K[c][i][j]->SetMarkerSize(2);
+        P_d[c][i][j]->SetMarkerSize(2);
+        K_d[c][i][j]->SetMarkerSize(2);
 
-        P[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
-        K[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
+        P_d[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
+        K_d[c][i][j]->SetMarkerStyle(fMarkerStyle[c]);
 
-        P[c][i][j]->SetTitle("");
-        K[c][i][j]->SetTitle("");
+        P_d[c][i][j]->SetTitle("");
+        K_d[c][i][j]->SetTitle("");
 
-        P[c][i][j]->GetYaxis()->SetTitle("");
-        K[c][i][j]->GetYaxis()->SetTitle("");
+        P_d[c][i][j]->GetYaxis()->SetTitle("");
+        K_d[c][i][j]->GetYaxis()->SetTitle("");
 
         // P_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
         // K_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
@@ -1117,44 +1117,44 @@ void DVMSaver()
         if(!p_empty)
         {
           c1.cd(i+1+9*j);
-          if(P[c][i][j])
+          if(P_d[c][i][j])
           {
             if(!c)
             {
-              P[c][i][j]->Draw("SAMEPA");
-              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P[c][i][j]->SetMinimum(0.);
-              P[c][i][j]->SetMaximum(1.2);
-              P[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-              P[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-              P[c][i][j]->SetTitle("");
+              P_d[c][i][j]->Draw("SAMEPA");
+              P_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P_d[c][i][j]->SetMinimum(0.);
+              P_d[c][i][j]->SetMaximum(1.2);
+              P_d[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              P_d[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              P_d[c][i][j]->SetTitle("");
               if(j==5) gPad->SetBottomMargin(.15);
               if(i==0) gPad->SetLeftMargin(.22);
               if(i==8 && j==5)
               {
-                P[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                P[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-                P[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                P_d[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                P_d[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                P_d[c][i][j]->GetXaxis()->SetTitleOffset(.8);
               }
-              P[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-              P[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              P_d[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              P_d[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==2 && j==0)
               {
-                P[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
-                P[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                P_d[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
+                P_d[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              P[c][i][j]->Draw("SAMEP");
-              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P[c][i][j]->SetMinimum(0.);
-              P[c][i][j]->SetMaximum(1.2);
+              P_dc][i][j]->Draw("SAMEP");
+              P_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P_d[c][i][j]->SetMinimum(0.);
+              P_d[c][i][j]->SetMaximum(1.2);
               c1.Range(0.,0.,1.,1.2);
             }
             else
             {
-              P[c][i][j]->Draw("SAMEP");
-              P[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P[c][i][j]->SetMinimum(0.);
-              P[c][i][j]->SetMaximum(1.2);
+              P_d[c][i][j]->Draw("SAMEP");
+              P_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              P_d[c][i][j]->SetMinimum(0.);
+              P_d[c][i][j]->SetMaximum(1.2);
             }
           }
           c1.Update();
@@ -1163,44 +1163,44 @@ void DVMSaver()
         if(!k_empty)
         {
           c2.cd(i+1+9*j);
-          if(K[c][i][j])
+          if(K_d[c][i][j])
           {
             if(!c)
             {
-              K[c][i][j]->Draw("SAMEPA");
-              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              K[c][i][j]->SetMinimum(0.);
-              K[c][i][j]->SetMaximum(1.2);
-              K[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-              K[c][i][j]->GetYaxis()->SetLabelSize(0.06);
-              K[c][i][j]->SetTitle("");
+              K_d[c][i][j]->Draw("SAMEPA");
+              K_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K_d[c][i][j]->SetMinimum(0.);
+              K_d[c][i][j]->SetMaximum(1.2);
+              K_d[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              K_d[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              K_d[c][i][j]->SetTitle("");
               if(j==5) gPad->SetBottomMargin(.15);
               if(i==0) gPad->SetLeftMargin(.22);
               if(i==8 && j==5)
               {
-                K[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                K[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-                K[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                K_d[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                K_d[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                K_d[c][i][j]->GetXaxis()->SetTitleOffset(.8);
               }
-              K[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
-              K[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              K_d[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              K_d[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==2 && j==0)
               {
-                K[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
-                K[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                K_d[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
+                K_d[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              K[c][i][j]->Draw("SAMEP");
-              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              K[c][i][j]->SetMinimum(0.);
-              K[c][i][j]->SetMaximum(1.2);
+              K_d[c][i][j]->Draw("SAMEP");
+              K_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K_d[c][i][j]->SetMinimum(0.);
+              K_d[c][i][j]->SetMaximum(1.2);
               c2.Range(0.,0.,1.,1.2);
             }
             else
             {
-              K[c][i][j]->Draw("SAMEP");
-              K[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              K[c][i][j]->SetMinimum(0.);
-              K[c][i][j]->SetMaximum(1.2);
+              K_d[c][i][j]->Draw("SAMEP");
+              K_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              K_d[c][i][j]->SetMinimum(0.);
+              K_d[c][i][j]->SetMaximum(1.2);
             }
           }
           c2.Update();
