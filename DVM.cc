@@ -1039,6 +1039,8 @@ void DVMSaver()
   TCanvas c1("Pion_DVM","Pion_DVM",3200,1600);
   TCanvas c2("Kaon_DVM","Kaon_DVM",3200,1600);
 
+  double z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
+
   c1.SetFillColor(0);
   c2.SetFillColor(0);
 
