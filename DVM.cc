@@ -1080,10 +1080,11 @@ void DVMSaver()
 
           z_range_p[c][i][j].push_back(z_range[k]);
           z_range_k[c][i][j].push_back(z_range[k]);
-          cout << c << " " << i << " "  << j << " " << "pouet1" << endl;
+        }
+        for(int k=12; k>0; k--)
+        {
           if(p_d[c][i][j][k-1]==1) {p_d[c][i][j].erase(p_d[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
           if(k_d[c][i][j][k-1]==1) {k_d[c][i][j].erase(k_d[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
-          cout << "pouet2" << endl;
         }
 
         bool p_empty = 0;
