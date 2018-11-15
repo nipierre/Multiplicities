@@ -1081,8 +1081,8 @@ void DVMSaver()
           z_range_p[c][i][j].push_back(z_range[k]);
           z_range_k[c][i][j].push_back(z_range[k]);
 
-          if(!p_d[c][i][j][k-1]) {p_d[c][i][j].erase(p[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
-          if(!k_d[c][i][j][k-1]) {k_d[c][i][j].erase(k[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
+          if(!p_d[c][i][j][k-1]) {p_d[c][i][j].erase(p_d[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
+          if(!k_d[c][i][j][k-1]) {k_d[c][i][j].erase(k_d[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
         }
 
         bool p_empty = 0;
@@ -1143,7 +1143,7 @@ void DVMSaver()
                 P_d[c][i][j]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
                 P_d[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
-              P_dc][i][j]->Draw("SAMEP");
+              P_d[c][i][j]->Draw("SAMEP");
               P_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               P_d[c][i][j]->SetMinimum(0.);
               P_d[c][i][j]->SetMaximum(1.2);
