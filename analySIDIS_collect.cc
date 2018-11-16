@@ -3955,6 +3955,8 @@ int main(int argc, char **argv)
   c62->Print(Form("%s/pion_multiplicity_file.pdf)",data_path),"pdf");
   c71->Print(Form("%s/kaon_multiplicity_file.pdf(",data_path),"pdf");
   c72->Print(Form("%s/kaon_multiplicity_file.pdf)",data_path),"pdf");
+  c81->Print(Form("%s/proton_multiplicity_file.pdf(",data_path),"pdf");
+  c82->Print(Form("%s/proton_multiplicity_file.pdf)",data_path),"pdf");
   c5->Print(Form("%s/hadron_multiplicity_zvtx_file.pdf(",data_path),"pdf");
   c53->Print(Form("%s/hadron_multiplicity_zvtx_file.pdf",data_path),"pdf");
   c511->Print(Form("%s/hadron_multiplicity_zvtx_file.pdf",data_path),"pdf");
@@ -3967,10 +3969,10 @@ int main(int argc, char **argv)
   c73->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
   c711->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
   c731->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf)",data_path),"pdf");
-  c8->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf(",data_path),"pdf");
-  c83->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
-  c811->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
-  c831->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf)",data_path),"pdf");
+  c8->Print(Form("%s/proton_multiplicity_zvtx_file.pdf(",data_path),"pdf");
+  c83->Print(Form("%s/proton_multiplicity_zvtx_file.pdf",data_path),"pdf");
+  c811->Print(Form("%s/proton_multiplicity_zvtx_file.pdf",data_path),"pdf");
+  c831->Print(Form("%s/proton_multiplicity_zvtx_file.pdf)",data_path),"pdf");
   c9->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",data_path));
   c10->Print(Form("%s/pion_multiplicity_yavg_file.pdf",data_path));
   c11->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
