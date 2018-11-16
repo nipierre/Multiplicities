@@ -2524,50 +2524,50 @@ int main(int argc, char **argv)
         c11->Update();
       }
 
-      if(!k_y_empty)
+      if(!pr_y_empty)
       {
         c12->cd(i+1);
-        if(K_y[c][i])
+        if(PR_y[c][i])
         {
           if(!c)
           {
-            K_y[c][i]->Draw("SAMEPA");
-            K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            K_y[c][i]->SetMinimum(-0.1);
-            K_y[c][i]->SetMaximum(0.8);
-            K_y[c][i]->GetXaxis()->SetLabelSize(0.06);
-            K_y[c][i]->GetYaxis()->SetLabelSize(0.06);
-            K_y[c][i]->SetTitle("");
+            PR_y[c][i]->Draw("SAMEPA");
+            PR_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            PR_y[c][i]->SetMinimum(-0.1);
+            PR_y[c][i]->SetMaximum(0.8);
+            PR_y[c][i]->GetXaxis()->SetLabelSize(0.06);
+            PR_y[c][i]->GetYaxis()->SetLabelSize(0.06);
+            PR_y[c][i]->SetTitle("");
             if(i>4) gPad->SetBottomMargin(.15);
             if(i==0 || i==5) gPad->SetLeftMargin(.22);
             if(i==8)
             {
-              K_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
-              K_y[c][i]->GetXaxis()->SetTitleSize(0.08);
-              K_y[c][i]->GetXaxis()->SetTitleOffset(.8);
+              PR_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              PR_y[c][i]->GetXaxis()->SetTitleSize(0.08);
+              PR_y[c][i]->GetXaxis()->SetTitleOffset(.8);
             }
-            K_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
-            K_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            PR_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            PR_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              K_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}");
-              K_y[c][i]->GetYaxis()->SetTitleSize(0.08);
+              PR_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}}");
+              PR_y[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
             lsys.Draw();
-            K_y[c][i]->Draw("SAMEP");
-            K_ysys[c][i]->Draw("SAME3");
-            K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            K_y[c][i]->SetMinimum(-0.1);
-            K_y[c][i]->SetMaximum(0.8);
+            PR_y[c][i]->Draw("SAMEP");
+            PR_ysys[c][i]->Draw("SAME3");
+            PR_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            PR_y[c][i]->SetMinimum(-0.1);
+            PR_y[c][i]->SetMaximum(0.8);
             c12->Range(0.1,-0.1,0.9,0.8);
           }
           else
           {
-            K_y[c][i]->Draw("SAMEP");
-            K_ysys[c][i]->Draw("SAME3");
-            K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
-            K_y[c][i]->SetMinimum(-0.1);
-            K_y[c][i]->SetMaximum(0.8);
+            PR_y[c][i]->Draw("SAMEP");
+            PR_ysys[c][i]->Draw("SAME3");
+            PR_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            PR_y[c][i]->SetMinimum(-0.1);
+            PR_y[c][i]->SetMaximum(0.8);
           }
         }
         c12->Update();
