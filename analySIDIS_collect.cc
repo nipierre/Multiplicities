@@ -853,6 +853,11 @@ int main(int argc, char **argv)
   TCanvas* c72;
   c72 = new TCanvas("Kaon_Multiplicities_minus","Kaon_Multiplicities_minus",3200,1600);
 
+  TCanvas* c81;
+  c81 = new TCanvas("Proton_Multiplicities_plus","Proton_Multiplicities_plus",3200,1600);
+  TCanvas* c82;
+  c82 = new TCanvas("Proton_Multiplicities_minus","Proton_Multiplicities_minus",3200,1600);
+
   TCanvas* c5;
   c5 = new TCanvas("Hadron_Multiplicities_zvtx","Hadron_Multiplicities_zvtx",3200,1600);
   TCanvas* c53;
@@ -881,31 +886,49 @@ int main(int argc, char **argv)
   c731 = new TCanvas("Kaon_Multiplicities_y_reldiff","Kaon_Multiplicities_y_reldiff",3200,1600);
 
   TCanvas* c8;
-  c8 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
+  c8 = new TCanvas("Proton_Multiplicities_zvtx","Proton_Multiplicities_zvtx",3200,1600);
+  TCanvas* c83;
+  c83 = new TCanvas("Proton_Multiplicities_reldiff","Proton_Multiplicities_reldiff",3200,1600);
+  TCanvas* c811;
+  c811 = new TCanvas("Proton_Multiplicities_y_zvtx","Proton_Multiplicities_y_zvtx",3200,1600);
+  TCanvas* c831;
+  c831 = new TCanvas("Proton_Multiplicities_y_reldiff","Proton_Multiplicities_y_reldiff",3200,1600);
 
   TCanvas* c9;
-  c9 = new TCanvas("Pion_Multiplicities_yavg","Pion_Multiplicities_yavg",3200,1600);
+  c9 = new TCanvas("Hadron_Multiplicities_yavg","Hadron_Multiplicities_yavg",3200,1600);
 
   TCanvas* c10;
-  c10 = new TCanvas("Kaon_Multiplicities_yavg","Kaon_Multiplicities_yavg",3200,1600);
+  c10 = new TCanvas("Pion_Multiplicities_yavg","Pion_Multiplicities_yavg",3200,1600);
 
   TCanvas* c11;
-  c11 = new TCanvas("Hadron_Multiplicities_sum","Hadron_Multiplicities_sum",3200,1600);
+  c11 = new TCanvas("Kaon_Multiplicities_yavg","Kaon_Multiplicities_yavg",3200,1600);
 
   TCanvas* c12;
-  c12 = new TCanvas("Pion_Multiplicities_sum","Pion_Multiplicities_sum",3200,1600);
+  c12 = new TCanvas("Proton_Multiplicities_yavg","Proton_Multiplicities_yavg",3200,1600);
 
   TCanvas* c13;
-  c13 = new TCanvas("Kaon_Multiplicities_sum","Kaon_Multiplicities_sum",3200,1600);
+  c13 = new TCanvas("Hadron_Multiplicities_sum","Hadron_Multiplicities_sum",3200,1600);
 
   TCanvas* c14;
-  c14 = new TCanvas("Hadron_Multiplicities_ratio","Hadron_Multiplicities_ratio",3200,1600);
+  c14 = new TCanvas("Pion_Multiplicities_sum","Pion_Multiplicities_sum",3200,1600);
 
   TCanvas* c15;
-  c15 = new TCanvas("Pion_Multiplicities_ratio","Pion_Multiplicities_ratio",3200,1600);
+  c15 = new TCanvas("Kaon_Multiplicities_sum","Kaon_Multiplicities_sum",3200,1600);
 
   TCanvas* c16;
-  c16 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
+  c16 = new TCanvas("Kaon_Multiplicities_sum","Kaon_Multiplicities_sum",3200,1600);
+
+  TCanvas* c17;
+  c17 = new TCanvas("Hadron_Multiplicities_ratio","Hadron_Multiplicities_ratio",3200,1600);
+
+  TCanvas* c18;
+  c18 = new TCanvas("Pion_Multiplicities_ratio","Pion_Multiplicities_ratio",3200,1600);
+
+  TCanvas* c19;
+  c19 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
+
+  TCanvas* c20;
+  c20 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
 
   c51->SetFillColor(0);
   c511->SetFillColor(0);
@@ -934,6 +957,10 @@ int main(int argc, char **argv)
   c14->SetFillColor(0);
   c15->SetFillColor(0);
   c16->SetFillColor(0);
+  c17->SetFillColor(0);
+  c18->SetFillColor(0);
+  c19->SetFillColor(0);
+  c20->SetFillColor(0);
 
   c51->Divide(5,2,0,0);
   c511->Divide(5,2,0,0);
@@ -944,6 +971,9 @@ int main(int argc, char **argv)
   c71->Divide(5,2,0,0);
   c711->Divide(5,2,0,0);
   c72->Divide(5,2,0,0);
+  c81->Divide(5,2,0,0);
+  c811->Divide(5,2,0,0);
+  c82->Divide(5,2,0,0);
   c5->Divide(9,5,0,0);
   c53->Divide(9,5,0,0);
   c531->Divide(5,2,0,0);
@@ -953,47 +983,63 @@ int main(int argc, char **argv)
   c7->Divide(9,5,0,0);
   c73->Divide(9,5,0,0);
   c731->Divide(5,2,0,0);
-  c8->Divide(5,2,0,0);
+  c8->Divide(9,5,0,0);
+  c83->Divide(9,5,0,0);
+  c831->Divide(5,2,0,0);
   c9->Divide(5,2,0,0);
   c10->Divide(5,2,0,0);
-  c11->Divide(1,1);
-  c12->Divide(1,1);
+  c11->Divide(5,2,0,0);
+  c12->Divide(5,2,0,0);
   c13->Divide(1,1);
   c14->Divide(1,1);
   c15->Divide(1,1);
   c16->Divide(1,1);
+  c17->Divide(1,1);
+  c18->Divide(1,1);
+  c19->Divide(1,1);
+  c20->Divide(1,1);
 
   TGraphErrors* H_mult[2][9][6];
   TGraphErrors* P_mult[2][9][6];
   TGraphErrors* K_mult[2][9][6];
+  TGraphErrors* PR_mult[2][9][6];
   TGraphErrors* H_zvtx[2][9][6][4];
   TGraphErrors* P_zvtx[2][9][6][4];
   TGraphErrors* K_zvtx[2][9][6][4];
+  TGraphErrors* PR_zvtx[2][9][6][4];
   TGraphErrors* H_reldiff[2][9][6];
   TGraphErrors* P_reldiff[2][9][6];
   TGraphErrors* K_reldiff[2][9][6];
+  TGraphErrors* PR_reldiff[2][9][6];
   TGraphErrors* H_y[2][9];
   TGraphErrors* P_y[2][9];
   TGraphErrors* K_y[2][9];
+  TGraphErrors* PR_y[2][9];
   TGraphErrors* H_y_zvtx[2][9][4];
   TGraphErrors* P_y_zvtx[2][9][4];
   TGraphErrors* K_y_zvtx[2][9][4];
+  TGraphErrors* PR_y_zvtx[2][9][4];
   TGraphErrors* H_y_reldiff[2][9];
   TGraphErrors* P_y_reldiff[2][9];
   TGraphErrors* K_y_reldiff[2][9];
+  TGraphErrors* PR_y_reldiff[2][9];
   TGraphErrors* sH_y;
   TGraphErrors* sP_y;
   TGraphErrors* sK_y;
+  TGraphErrors* sPR_y;
   TGraphErrors* rH_y;
   TGraphErrors* rP_y;
   TGraphErrors* rK_y;
+  TGraphErrors* rPR_y;
 
   TGraphAsymmErrors* H_sys[2][9][5];
   TGraphAsymmErrors* P_sys[2][9][5];
   TGraphAsymmErrors* K_sys[2][9][5];
+  TGraphAsymmErrors* PR_sys[2][9][5];
   TGraphAsymmErrors* H_ysys[2][9];
   TGraphAsymmErrors* P_ysys[2][9];
   TGraphAsymmErrors* K_ysys[2][9];
+  TGraphAsymmErrors* PR_ysys[2][9];
 
   Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
   Double_t x_range[9] = {.008,.015,.025,.035,.05,.08,.12,.16,.29};
@@ -1001,103 +1047,134 @@ int main(int argc, char **argv)
   Double_t h_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
   Double_t p_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
   Double_t k_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
+  Double_t pr_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
   Double_t h_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
   Double_t p_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
   Double_t k_yoffset2[12] = {-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065};
+  Double_t pr_yoffset2[12] = {-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065};
 
-  ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_mp(Form("%s/multiplicities_h+.txt",data_path), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_mm(Form("%s/multiplicities_h-.txt",data_path), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_rd(Form("%s/reldiff.txt",data_path), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_pr(Form("%s/multiplicities_proton.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_mp(Form("%s/multiplicities_h+.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_mm(Form("%s/multiplicities_h-.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_rd(Form("%s/reldiff.txt",data_path), ofstream::out | ofstream::trunc);
 
-  std::vector<Double_t> p_m[2][9][6];
-  std::vector<Double_t> k_m[2][9][6];
-  std::vector<Double_t> h_m[2][9][6];
-  std::vector<Double_t> p_err[2][9][6];
-  std::vector<Double_t> k_err[2][9][6];
-  std::vector<Double_t> h_err[2][9][6];
-  std::vector<Double_t> p_sys[2][9][6];
-  std::vector<Double_t> k_sys[2][9][6];
-  std::vector<Double_t> h_sys[2][9][6];
-  std::vector<Double_t> z_range_p[2][9][6];
-  std::vector<Double_t> z_range_k[2][9][6];
-  std::vector<Double_t> z_range_h[2][9][6];
-  std::vector<Double_t> p_z[2][9][6][4];
-  std::vector<Double_t> k_z[2][9][6][4];
-  std::vector<Double_t> h_z[2][9][6][4];
-  std::vector<Double_t> p_z_err[2][9][6][4];
-  std::vector<Double_t> k_z_err[2][9][6][4];
-  std::vector<Double_t> h_z_err[2][9][6][4];
-  std::vector<Double_t> p_z_sys[2][9][6][4];
-  std::vector<Double_t> k_z_sys[2][9][6][4];
-  std::vector<Double_t> h_z_sys[2][9][6][4];
-  std::vector<Double_t> z_range_p_z[2][9][6][4];
-  std::vector<Double_t> z_range_k_z[2][9][6][4];
-  std::vector<Double_t> z_range_h_z[2][9][6][4];
-  std::vector<Double_t> p_reldiff[2][9][6];
-  std::vector<Double_t> k_reldiff[2][9][6];
-  std::vector<Double_t> h_reldiff[2][9][6];
-  std::vector<Double_t> p_reldiff_err[2][9][6];
-  std::vector<Double_t> k_reldiff_err[2][9][6];
-  std::vector<Double_t> h_reldiff_err[2][9][6];
-  std::vector<Double_t> z_range_p_reldiff[2][9][6];
-  std::vector<Double_t> z_range_k_reldiff[2][9][6];
-  std::vector<Double_t> z_range_h_reldiff[2][9][6];
-  std::vector<Double_t> p_y[2][9];
-  std::vector<Double_t> k_y[2][9];
-  std::vector<Double_t> h_y[2][9];
-  std::vector<Double_t> p_y_err[2][9];
-  std::vector<Double_t> k_y_err[2][9];
-  std::vector<Double_t> h_y_err[2][9];
-  std::vector<Double_t> p_y_sys[2][9];
-  std::vector<Double_t> k_y_sys[2][9];
-  std::vector<Double_t> h_y_sys[2][9];
-  std::vector<Double_t> z_range_p_y[2][9];
-  std::vector<Double_t> z_range_k_y[2][9];
-  std::vector<Double_t> z_range_h_y[2][9];
-  std::vector<Double_t> p_y_z[2][9][4];
-  std::vector<Double_t> k_y_z[2][9][4];
-  std::vector<Double_t> h_y_z[2][9][4];
-  std::vector<Double_t> p_y_z_err[2][9][4];
-  std::vector<Double_t> k_y_z_err[2][9][4];
-  std::vector<Double_t> h_y_z_err[2][9][4];
-  std::vector<Double_t> p_y_z_sys[2][9][4];
-  std::vector<Double_t> k_y_z_sys[2][9][4];
-  std::vector<Double_t> h_y_z_sys[2][9][4];
-  std::vector<Double_t> z_range_p_y_z[2][9][4];
-  std::vector<Double_t> z_range_k_y_z[2][9][4];
-  std::vector<Double_t> z_range_h_y_z[2][9][4];
-  std::vector<Double_t> p_y_reldiff[2][9];
-  std::vector<Double_t> k_y_reldiff[2][9];
-  std::vector<Double_t> h_y_reldiff[2][9];
-  std::vector<Double_t> p_y_reldiff_err[2][9];
-  std::vector<Double_t> k_y_reldiff_err[2][9];
-  std::vector<Double_t> h_y_reldiff_err[2][9];
-  std::vector<Double_t> z_range_p_y_reldiff[2][9];
-  std::vector<Double_t> z_range_k_y_reldiff[2][9];
-  std::vector<Double_t> z_range_h_y_reldiff[2][9];
-  std::vector<Double_t> sp_y;
-  std::vector<Double_t> sk_y;
-  std::vector<Double_t> sh_y;
-  std::vector<Double_t> sp_y_err;
-  std::vector<Double_t> sk_y_err;
-  std::vector<Double_t> sh_y_err;
-  std::vector<Double_t> sx_range_p_y;
-  std::vector<Double_t> sx_range_k_y;
-  std::vector<Double_t> sx_range_h_y;
-  std::vector<Double_t> rp_y;
-  std::vector<Double_t> rk_y;
-  std::vector<Double_t> rh_y;
-  std::vector<Double_t> rp_y_err;
-  std::vector<Double_t> rk_y_err;
-  std::vector<Double_t> rh_y_err;
-  std::vector<Double_t> rx_range_p_y;
-  std::vector<Double_t> rx_range_k_y;
-  std::vector<Double_t> rx_range_h_y;
+  vector<Double_t> p_m[2][9][6];
+  vector<Double_t> k_m[2][9][6];
+  vector<Double_t> pr_m[2][9][6];
+  vector<Double_t> h_m[2][9][6];
+  vector<Double_t> p_err[2][9][6];
+  vector<Double_t> k_err[2][9][6];
+  vector<Double_t> pr_err[2][9][6];
+  vector<Double_t> h_err[2][9][6];
+  vector<Double_t> p_sys[2][9][6];
+  vector<Double_t> k_sys[2][9][6];
+  vector<Double_t> pr_sys[2][9][6];
+  vector<Double_t> h_sys[2][9][6];
+  vector<Double_t> z_range_p[2][9][6];
+  vector<Double_t> z_range_k[2][9][6];
+  vector<Double_t> z_range_pr[2][9][6];
+  vector<Double_t> z_range_h[2][9][6];
+  vector<Double_t> p_z[2][9][6][4];
+  vector<Double_t> k_z[2][9][6][4];
+  vector<Double_t> pr_z[2][9][6][4];
+  vector<Double_t> h_z[2][9][6][4];
+  vector<Double_t> p_z_err[2][9][6][4];
+  vector<Double_t> k_z_err[2][9][6][4];
+  vector<Double_t> pr_z_err[2][9][6][4];
+  vector<Double_t> h_z_err[2][9][6][4];
+  vector<Double_t> p_z_sys[2][9][6][4];
+  vector<Double_t> k_z_sys[2][9][6][4];
+  vector<Double_t> pr_z_sys[2][9][6][4];
+  vector<Double_t> h_z_sys[2][9][6][4];
+  vector<Double_t> z_range_p_z[2][9][6][4];
+  vector<Double_t> z_range_k_z[2][9][6][4];
+  vector<Double_t> z_range_pr_z[2][9][6][4];
+  vector<Double_t> z_range_h_z[2][9][6][4];
+  vector<Double_t> p_reldiff[2][9][6];
+  vector<Double_t> k_reldiff[2][9][6];
+  vector<Double_t> pr_reldiff[2][9][6];
+  vector<Double_t> h_reldiff[2][9][6];
+  vector<Double_t> p_reldiff_err[2][9][6];
+  vector<Double_t> k_reldiff_err[2][9][6];
+  vector<Double_t> pr_reldiff_err[2][9][6];
+  vector<Double_t> h_reldiff_err[2][9][6];
+  vector<Double_t> z_range_p_reldiff[2][9][6];
+  vector<Double_t> z_range_k_reldiff[2][9][6];
+  vector<Double_t> z_range_pr_reldiff[2][9][6];
+  vector<Double_t> z_range_h_reldiff[2][9][6];
+  vector<Double_t> p_y[2][9];
+  vector<Double_t> k_y[2][9];
+  vector<Double_t> pr_y[2][9];
+  vector<Double_t> h_y[2][9];
+  vector<Double_t> p_y_err[2][9];
+  vector<Double_t> k_y_err[2][9];
+  vector<Double_t> pr_y_err[2][9];
+  vector<Double_t> h_y_err[2][9];
+  vector<Double_t> p_y_sys[2][9];
+  vector<Double_t> k_y_sys[2][9];
+  vector<Double_t> pr_y_sys[2][9];
+  vector<Double_t> h_y_sys[2][9];
+  vector<Double_t> z_range_p_y[2][9];
+  vector<Double_t> z_range_k_y[2][9];
+  vector<Double_t> z_range_pr_y[2][9];
+  vector<Double_t> z_range_h_y[2][9];
+  vector<Double_t> p_y_z[2][9][4];
+  vector<Double_t> k_y_z[2][9][4];
+  vector<Double_t> pr_y_z[2][9][4];
+  vector<Double_t> h_y_z[2][9][4];
+  vector<Double_t> p_y_z_err[2][9][4];
+  vector<Double_t> k_y_z_err[2][9][4];
+  vector<Double_t> pr_y_z_err[2][9][4];
+  vector<Double_t> h_y_z_err[2][9][4];
+  vector<Double_t> p_y_z_sys[2][9][4];
+  vector<Double_t> k_y_z_sys[2][9][4];
+  vector<Double_t> pr_y_z_sys[2][9][4];
+  vector<Double_t> h_y_z_sys[2][9][4];
+  vector<Double_t> z_range_p_y_z[2][9][4];
+  vector<Double_t> z_range_k_y_z[2][9][4];
+  vector<Double_t> z_range_pr_y_z[2][9][4];
+  vector<Double_t> z_range_h_y_z[2][9][4];
+  vector<Double_t> p_y_reldiff[2][9];
+  vector<Double_t> k_y_reldiff[2][9];
+  vector<Double_t> pr_y_reldiff[2][9];
+  vector<Double_t> h_y_reldiff[2][9];
+  vector<Double_t> p_y_reldiff_err[2][9];
+  vector<Double_t> k_y_reldiff_err[2][9];
+  vector<Double_t> k_pr_reldiff_err[2][9];
+  vector<Double_t> h_y_reldiff_err[2][9];
+  vector<Double_t> z_range_p_y_reldiff[2][9];
+  vector<Double_t> z_range_k_y_reldiff[2][9];
+  vector<Double_t> z_range_k_pr_reldiff[2][9];
+  vector<Double_t> z_range_h_y_reldiff[2][9];
+  vector<Double_t> sp_y;
+  vector<Double_t> sk_y;
+  vector<Double_t> spr_y;
+  vector<Double_t> sh_y;
+  vector<Double_t> sp_y_err;
+  vector<Double_t> sk_y_err;
+  vector<Double_t> spr_y_err;
+  vector<Double_t> sh_y_err;
+  vector<Double_t> sx_range_p_y;
+  vector<Double_t> sx_range_k_y;
+  vector<Double_t> sx_range_pr_y;
+  vector<Double_t> sx_range_h_y;
+  vector<Double_t> rp_y;
+  vector<Double_t> rk_y;
+  vector<Double_t> rpr_y;
+  vector<Double_t> rh_y;
+  vector<Double_t> rp_y_err;
+  vector<Double_t> rk_y_err;
+  vector<Double_t> rpr_y_err;
+  vector<Double_t> rh_y_err;
+  vector<Double_t> rx_range_p_y;
+  vector<Double_t> rx_range_k_y;
+  vector<Double_t> rx_range_pr_y;
+  vector<Double_t> rx_range_h_y;
 
   TLine l1(0.1,0.1,0.9,0.1);
   TLine l2(0.1,-0.1,0.9,-0.1);
@@ -1116,6 +1193,8 @@ int main(int argc, char **argv)
     int axisflagp2 = 0;
     int axisflagk1 = 0;
     int axisflagk2 = 0;
+    int axisflagpr1 = 0;
+    int axisflagpr2 = 0;
 
     for(int j=0; j<6; j++)
     {
@@ -1176,17 +1255,21 @@ int main(int argc, char **argv)
           {
             p_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][0] : 0);
             k_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][1] : 0);
+            pr_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][2]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][2] : 0);
             h_z[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx[i][j][k][zv].tab[c][0][3] : 0);
             p_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][0]) : 0);
             k_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
+            pr_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][2] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][2]) : 0);
             h_z_err[c][i][j][zv].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
           }
 
           p_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,0));
           k_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,1));
+          pr_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,2));
           h_reldiff[c][i][j].push_back(RelDiff(c,i,j,k,3));
           p_reldiff_err[c][i][j].push_back(sqrt(RelDiff_Err(c,i,j,k,0)));
           k_reldiff_err[c][i][j].push_back(sqrt(RelDiff_Err(c,i,j,k,1)));
+          pr_reldiff_err[c][i][j].push_back(sqrt(RelDiff_Err(c,i,j,k,2)));
           h_reldiff_err[c][i][j].push_back(sqrt(RelDiff_Err(c,i,j,k,3)));
 
           if(c) ofs_p << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
@@ -1221,6 +1304,18 @@ int main(int argc, char **argv)
           (fMultiplicities[i][j][k].tab[c][0][1] ? 1 : 0) << " ";
 
           if(!c) ofs_k << endl;
+
+          if (c) ofs_pr << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+          ofs_pr <<
+          fMeanvalues_data[i][j][k].tab[0][1][0] << " " << fMeanvalues_data[i][j][k].tab[0][1][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][1][2] << " " << fMeanvalues_data[i][j][k].tab[0][1][3] << " " <<
+          fMultiplicities[i][j][k].tab[c][0][2] << " " <<
+          fMultiplicities[i][j][k].tab[c][1][2] << " " <<
+          fMultiplicities[i][j][k].tab[c][2][2] << " " <<
+          (fMultiplicities[i][j][k].tab[c][0][2] ? 1 : 0) << " ";
+
+          if(!c) ofs_pr << endl;
 
           if (c) ofs_h << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
@@ -1265,19 +1360,23 @@ int main(int argc, char **argv)
           {
             p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]>0 ? fMultiplicities[i][j][k].tab[c][0][0]+j*0.25 : 0);
             k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]>0 ? fMultiplicities[i][j][k].tab[c][0][1]+j*0.05 : 0);
+            pr_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][2]>0 ? fMultiplicities[i][j][k].tab[c][0][2]+j*0.05 : 0);
             h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]>0 ? fMultiplicities[i][j][k].tab[c][0][3]+j*0.25 : 0);
           }
           else
           {
             p_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][0]>0 ? fMultiplicities[i][j][k].tab[c][0][0] : 0);
             k_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][1]>0 ? fMultiplicities[i][j][k].tab[c][0][1] : 0);
+            pr_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][2]>0 ? fMultiplicities[i][j][k].tab[c][0][2] : 0);
             h_m[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][0][3]>0 ? fMultiplicities[i][j][k].tab[c][0][3] : 0);
           }
           p_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][0] ? sqrt(fMultiplicities[i][j][k].tab[c][1][0]) : 0);
           k_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][1] ? sqrt(fMultiplicities[i][j][k].tab[c][1][1]) : 0);
+          pr_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][2] ? sqrt(fMultiplicities[i][j][k].tab[c][1][2]) : 0);
           h_err[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][1][3] ? sqrt(fMultiplicities[i][j][k].tab[c][1][3]) : 0);
           p_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][0] ? sqrt(fMultiplicities[i][j][k].tab[c][2][0]) : 0);
           k_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][1] ? sqrt(fMultiplicities[i][j][k].tab[c][2][1]) : 0);
+          pr_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][2] ? sqrt(fMultiplicities[i][j][k].tab[c][2][2]) : 0);
           h_sys[c][i][j].push_back(fMultiplicities[i][j][k].tab[c][2][3] ? sqrt(fMultiplicities[i][j][k].tab[c][2][3]) : 0);
         }
       }
@@ -1288,6 +1387,7 @@ int main(int argc, char **argv)
         {
           z_range_p[c][i][j].push_back(z_range[l]);
           z_range_k[c][i][j].push_back(z_range[l]);
+          z_range_pr[c][i][j].push_back(z_range[l]);
           z_range_h[c][i][j].push_back(z_range[l]);
         }
 
@@ -1304,47 +1404,58 @@ int main(int argc, char **argv)
         {
           if(!p_m[c][i][j][k-1]) {p_m[c][i][j].erase(p_m[c][i][j].begin()+k-1); p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1); z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
           if(!k_m[c][i][j][k-1]) {k_m[c][i][j].erase(k_m[c][i][j].begin()+k-1); k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1); z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
+          if(!pr_m[c][i][j][k-1]) {pr_m[c][i][j].erase(pr_m[c][i][j].begin()+k-1); pr_err[c][i][j].erase(pr_err[c][i][j].begin()+k-1); pr_sys[c][i][j].erase(pr_sys[c][i][j].begin()+k-1); z_range_pr[c][i][j].erase(z_range_pr[c][i][j].begin()+k-1);}
           if(!h_m[c][i][j][k-1]) {h_m[c][i][j].erase(h_m[c][i][j].begin()+k-1); h_err[c][i][j].erase(h_err[c][i][j].begin()+k-1); h_sys[c][i][j].erase(h_sys[c][i][j].begin()+k-1); z_range_h[c][i][j].erase(z_range_h[c][i][j].begin()+k-1);}
         }
 
         bool p_m_empty = 0;
         bool k_m_empty = 0;
+        bool pr_m_empty = 0;
         bool h_m_empty = 0;
 
         if(!(Int_t(p_m[c][i][j].size()))) p_m_empty = 1;
         if(!(Int_t(k_m[c][i][j].size()))) k_m_empty = 1;
+        if(!(Int_t(pr_m[c][i][j].size()))) pr_m_empty = 1;
         if(!(Int_t(h_m[c][i][j].size()))) h_m_empty = 1;
 
         H_mult[c][i][j] = new TGraphErrors(Int_t(h_m[c][i][j].size()),&(z_range_h[c][i][j][0]),&(h_m[c][i][j][0]),0,&(h_err[c][i][j][0]));
         P_mult[c][i][j] = new TGraphErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p_m[c][i][j][0]),0,&(p_err[c][i][j][0]));
         K_mult[c][i][j] = new TGraphErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k_m[c][i][j][0]),0,&(k_err[c][i][j][0]));
+        PR_mult[c][i][j] = new TGraphErrors(Int_t(pr_m[c][i][j].size()),&(z_range_pr[c][i][j][0]),&(pr_m[c][i][j][0]),0,&(pr_err[c][i][j][0]));
         H_sys[c][i][j] = new TGraphAsymmErrors(Int_t(h_m[c][i][j].size()),&(z_range_h[c][i][j][0]), &h_yoffset[0], &errorx[0], &errorx[0], 0, &(h_sys[c][i][j][0]));
         P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_sys[c][i][j][0]));
         K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_sys[c][i][j][0]));
+        PR_sys[c][i][j] = new TGraphAsymmErrors(Int_t(pr_m[c][i][j].size()),&(z_range_pr[c][i][j][0]), &pr_yoffset[0], &errorx[0], &errorx[0], 0, &(pr_sys[c][i][j][0]));
 
         H_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
         P_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
         K_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
+        PR_mult[c][i][j]->SetMarkerColor(fMarkerColor[j]);
 
         H_mult[c][i][j]->SetMarkerSize(2);
         P_mult[c][i][j]->SetMarkerSize(2);
         K_mult[c][i][j]->SetMarkerSize(2);
+        PR_mult[c][i][j]->SetMarkerSize(2);
 
         H_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
         P_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
         K_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        PR_mult[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
 
         H_mult[c][i][j]->SetTitle("");
         P_mult[c][i][j]->SetTitle("");
         K_mult[c][i][j]->SetTitle("");
+        PR_mult[c][i][j]->SetTitle("");
 
         H_mult[c][i][j]->GetYaxis()->SetTitle("");
         P_mult[c][i][j]->GetYaxis()->SetTitle("");
         K_mult[c][i][j]->GetYaxis()->SetTitle("");
+        PR_mult[c][i][j]->GetYaxis()->SetTitle("");
 
         H_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
         P_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
         K_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
+        PR_sys[c][i][j]->SetFillColor(fMarkerColor[j]);
 
         if(!h_m_empty)
         {
@@ -1498,8 +1609,60 @@ int main(int argc, char **argv)
           if(c) c71->Update();
           else c72->Update();
         }
+
+        if(!pr_m_empty)
+        {
+          if(c) c81->cd(i+1);
+          else c82->cd(i+1);
+          if(PR_mult[c][i][j])
+          {
+            if((!c && !axisflagpr1) || (c && !axisflagpr2))
+            {
+              PR_mult[c][i][j]->Draw("SAMEPA");
+              PR_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_mult[c][i][j]->SetMinimum(-0.06);
+              PR_mult[c][i][j]->SetMaximum(0.8);
+              PR_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              PR_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              PR_mult[c][i][j]->SetTitle("");
+              if(i>4) gPad->SetBottomMargin(.15);
+              if(i==0 || i==5) gPad->SetLeftMargin(.22);
+              if(i==8)
+              {
+                PR_mult[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                PR_mult[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                PR_mult[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              PR_mult[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              PR_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==0)
+              {
+                if(c) PR_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}+ #font[ 12]{#delta}");
+                else PR_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#bar{p}}}+ #font[ 12]{#delta}");
+                PR_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              lsys.Draw();
+              if(j==3) PR_sys[c][i][j]->Draw("SAME3");
+              if(!c) axisflagpr1=1;
+              else axisflagpr2=1;
+              if(c) c81->Range(0.1,-0.06,0.9,0.8);
+              else c82->Range(0.1,-0.06,0.9,0.8);
+            }
+            else
+            {
+              PR_mult[c][i][j]->Draw("SAMEP");
+              if(j==3) PR_sys[c][i][j]->Draw("SAME3");
+              PR_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_mult[c][i][j]->SetMinimum(-0.06);
+              PR_mult[c][i][j]->SetMaximum(0.8);
+            }
+          }
+          if(c) c81->Update();
+          else c82->Update();
+        }
         z_range_p[c][i][j].clear();
         z_range_k[c][i][j].clear();
+        z_range_pr[c][i][j].clear();
         z_range_h[c][i][j].clear();
 
         for(int zv=0; zv<4; zv++)
@@ -1508,6 +1671,7 @@ int main(int argc, char **argv)
           {
             z_range_p_z[c][i][j][zv].push_back(z_range[l]);
             z_range_k_z[c][i][j][zv].push_back(z_range[l]);
+            z_range_pr_z[c][i][j][zv].push_back(z_range[l]);
             z_range_h_z[c][i][j][zv].push_back(z_range[l]);
           }
 
@@ -1515,40 +1679,49 @@ int main(int argc, char **argv)
           {
             if(!p_z[c][i][j][zv][k-1]) {p_z[c][i][j][zv].erase(p_z[c][i][j][zv].begin()+k-1); p_z_err[c][i][j][zv].erase(p_z_err[c][i][j][zv].begin()+k-1); z_range_p_z[c][i][j][zv].erase(z_range_p_z[c][i][j][zv].begin()+k-1);}
             if(!k_z[c][i][j][zv][k-1]) {k_z[c][i][j][zv].erase(k_z[c][i][j][zv].begin()+k-1); k_z_err[c][i][j][zv].erase(k_z_err[c][i][j][zv].begin()+k-1); z_range_k_z[c][i][j][zv].erase(z_range_k_z[c][i][j][zv].begin()+k-1);}
+            if(!pr_z[c][i][j][zv][k-1]) {pr_z[c][i][j][zv].erase(pr_z[c][i][j][zv].begin()+k-1); pr_z_err[c][i][j][zv].erase(pr_z_err[c][i][j][zv].begin()+k-1); z_range_pr_z[c][i][j][zv].erase(z_range_pr_z[c][i][j][zv].begin()+k-1);}
             if(!h_z[c][i][j][zv][k-1]) {h_z[c][i][j][zv].erase(h_z[c][i][j][zv].begin()+k-1); h_z_err[c][i][j][zv].erase(h_z_err[c][i][j][zv].begin()+k-1); z_range_h_z[c][i][j][zv].erase(z_range_h_z[c][i][j][zv].begin()+k-1);}
           }
 
           bool p_z_empty = 0;
           bool k_z_empty = 0;
+          bool pr_z_empty = 0;
           bool h_z_empty = 0;
 
           if(!(Int_t(p_z[c][i][j][zv].size()))) p_z_empty = 1;
           if(!(Int_t(k_z[c][i][j][zv].size()))) k_z_empty = 1;
+          if(!(Int_t(pr_z[c][i][j][zv].size()))) k_z_empty = 1;
           if(!(Int_t(h_z[c][i][j][zv].size()))) h_z_empty = 1;
 
           H_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(h_z[c][i][j][zv].size()),&(z_range_h_z[c][i][j][zv][0]),&(h_z[c][i][j][zv][0]),0,&(h_z_err[c][i][j][zv][0]));
           P_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(p_z[c][i][j][zv].size()),&(z_range_p_z[c][i][j][zv][0]),&(p_z[c][i][j][zv][0]),0,&(p_z_err[c][i][j][zv][0]));
           K_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(k_z[c][i][j][zv].size()),&(z_range_k_z[c][i][j][zv][0]),&(k_z[c][i][j][zv][0]),0,&(k_z_err[c][i][j][zv][0]));
+          PR_zvtx[c][i][j][zv] = new TGraphErrors(Int_t(pr_z[c][i][j][zv].size()),&(z_range_pr_z[c][i][j][zv][0]),&(pr_z[c][i][j][zv][0]),0,&(pr_z_err[c][i][j][zv][0]));
 
           H_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
           P_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
           K_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
+          PR_zvtx[c][i][j][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
 
           H_zvtx[c][i][j][zv]->SetMarkerSize(2);
           P_zvtx[c][i][j][zv]->SetMarkerSize(2);
           K_zvtx[c][i][j][zv]->SetMarkerSize(2);
+          PR_zvtx[c][i][j][zv]->SetMarkerSize(2);
 
           H_zvtx[c][i][j][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
           P_zvtx[c][i][j][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
           K_zvtx[c][i][j][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
+          PR_zvtx[c][i][j][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
 
           H_zvtx[c][i][j][zv]->SetTitle("");
           P_zvtx[c][i][j][zv]->SetTitle("");
           K_zvtx[c][i][j][zv]->SetTitle("");
+          PR_zvtx[c][i][j][zv]->SetTitle("");
 
           H_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
           P_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
           K_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
+          PR_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("");
 
           if(!h_z_empty)
           {
@@ -1649,7 +1822,7 @@ int main(int argc, char **argv)
           {
             c7->cd(i+1+9*j);
             gPad->SetFillStyle(4000);
-            if(P_zvtx[c][i][j][zv])
+            if(K_zvtx[c][i][j][zv])
             {
               if(!c && !zv)
               {
@@ -1691,8 +1864,56 @@ int main(int argc, char **argv)
             }
             c7->Update();
           }
+
+          if(!pr_z_empty)
+          {
+            c8->cd(i+1+9*j);
+            gPad->SetFillStyle(4000);
+            if(PR_zvtx[c][i][j][zv])
+            {
+              if(!c && !zv)
+              {
+                PR_zvtx[c][i][j][zv]->Draw("SAMEPA");
+                PR_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                PR_zvtx[c][i][j][zv]->SetMinimum(0.);
+                PR_zvtx[c][i][j][zv]->SetMaximum(0.8);
+                PR_zvtx[c][i][j][zv]->GetXaxis()->SetLabelSize(0.06);
+                PR_zvtx[c][i][j][zv]->GetYaxis()->SetLabelSize(0.06);
+                PR_zvtx[c][i][j][zv]->SetTitle("");
+                if(j==5) gPad->SetBottomMargin(.15);
+                if(i==0) gPad->SetLeftMargin(.22);
+                if(i==8 && j==5)
+                {
+                  PR_zvtx[c][i][j][zv]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                  PR_zvtx[c][i][j][zv]->GetXaxis()->SetTitleSize(0.08);
+                  PR_zvtx[c][i][j][zv]->GetXaxis()->SetTitleOffset(.8);
+                }
+                PR_zvtx[c][i][j][zv]->GetXaxis()->SetNdivisions(304,kTRUE);
+                PR_zvtx[c][i][j][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
+                if(i==1 && j==0)
+                {
+                  PR_zvtx[c][i][j][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{p}}");
+                  PR_zvtx[c][i][j][zv]->GetYaxis()->SetTitleSize(0.08);
+                }
+                PR_zvtx[c][i][j][zv]->Draw("SAMEP");
+                PR_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                PR_zvtx[c][i][j][zv]->SetMinimum(0.);
+                PR_zvtx[c][i][j][zv]->SetMaximum(0.8);
+                c8->Range(0.1,0.,0.9,0.8);
+              }
+              else
+              {
+                PR_zvtx[c][i][j][zv]->Draw("SAMEP");
+                PR_zvtx[c][i][j][zv]->GetXaxis()->SetLimits(0.1,0.9);
+                PR_zvtx[c][i][j][zv]->SetMinimum(0.);
+                PR_zvtx[c][i][j][zv]->SetMaximum(0.8);
+              }
+            }
+            c8->Update();
+          }
           z_range_p_z[c][i][j][zv].clear();
           z_range_k_z[c][i][j][zv].clear();
+          z_range_pr_z[c][i][j][zv].clear();
           z_range_h_z[c][i][j][zv].clear();
         }
 
@@ -1700,6 +1921,7 @@ int main(int argc, char **argv)
         {
           z_range_p_reldiff[c][i][j].push_back(z_range[l]);
           z_range_k_reldiff[c][i][j].push_back(z_range[l]);
+          z_range_pr_reldiff[c][i][j].push_back(z_range[l]);
           z_range_h_reldiff[c][i][j].push_back(z_range[l]);
         }
 
@@ -1707,52 +1929,63 @@ int main(int argc, char **argv)
         {
           if(!p_reldiff[c][i][j][k-1]) {p_reldiff[c][i][j].erase(p_reldiff[c][i][j].begin()+k-1); p_reldiff_err[c][i][j].erase(p_reldiff_err[c][i][j].begin()+k-1); z_range_p_reldiff[c][i][j].erase(z_range_p_reldiff[c][i][j].begin()+k-1);}
           if(!k_reldiff[c][i][j][k-1]) {k_reldiff[c][i][j].erase(k_reldiff[c][i][j].begin()+k-1); k_reldiff_err[c][i][j].erase(k_reldiff_err[c][i][j].begin()+k-1); z_range_k_reldiff[c][i][j].erase(z_range_k_reldiff[c][i][j].begin()+k-1);}
+          if(!pr_reldiff[c][i][j][k-1]) {pr_reldiff[c][i][j].erase(pr_reldiff[c][i][j].begin()+k-1); pr_reldiff_err[c][i][j].erase(pr_reldiff_err[c][i][j].begin()+k-1); z_range_pr_reldiff[c][i][j].erase(z_range_pr_reldiff[c][i][j].begin()+k-1);}
           if(!h_reldiff[c][i][j][k-1]) {h_reldiff[c][i][j].erase(h_reldiff[c][i][j].begin()+k-1); h_reldiff_err[c][i][j].erase(h_reldiff_err[c][i][j].begin()+k-1); z_range_h_reldiff[c][i][j].erase(z_range_h_reldiff[c][i][j].begin()+k-1);}
         }
 
         bool p_reldiff_empty = 0;
         bool k_reldiff_empty = 0;
+        bool pr_reldiff_empty = 0;
         bool h_reldiff_empty = 0;
 
         if(!(int(p_reldiff[c][i][j].size()))) p_reldiff_empty = 1;
         if(!(int(k_reldiff[c][i][j].size()))) k_reldiff_empty = 1;
+        if(!(int(pr_reldiff[c][i][j].size()))) pr_reldiff_empty = 1;
         if(!(int(h_reldiff[c][i][j].size()))) h_reldiff_empty = 1;
 
         P_reldiff[c][i][j] = new TGraphErrors(int(p_reldiff[c][i][j].size()),&(z_range_p_reldiff[c][i][j][0]),&(p_reldiff[c][i][j][0]),0,&(p_reldiff_err[c][i][j][0]));
         K_reldiff[c][i][j] = new TGraphErrors(int(k_reldiff[c][i][j].size()),&(z_range_k_reldiff[c][i][j][0]),&(k_reldiff[c][i][j][0]),0,&(k_reldiff_err[c][i][j][0]));
+        PR_reldiff[c][i][j] = new TGraphErrors(int(pr_reldiff[c][i][j].size()),&(z_range_pr_reldiff[c][i][j][0]),&(pr_reldiff[c][i][j][0]),0,&(pr_reldiff_err[c][i][j][0]));
         H_reldiff[c][i][j] = new TGraphErrors(int(h_reldiff[c][i][j].size()),&(z_range_h_reldiff[c][i][j][0]),&(h_reldiff[c][i][j][0]),0,&(h_reldiff_err[c][i][j][0]));
 
         if(!c)
         {
           P_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[4]);
           K_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[4]);
+          PR_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[4]);
           H_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[4]);
         }
         else
         {
           P_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[0]);
           K_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[0]);
+          PR_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[0]);
           H_reldiff[c][i][j]->SetMarkerColor(fMarkerColor[0]);
         }
 
         P_reldiff[c][i][j]->SetMarkerSize(2);
         K_reldiff[c][i][j]->SetMarkerSize(2);
+        PR_reldiff[c][i][j]->SetMarkerSize(2);
         H_reldiff[c][i][j]->SetMarkerSize(2);
 
         P_reldiff[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
         K_reldiff[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
+        PR_reldiff[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
         H_reldiff[c][i][j]->SetMarkerStyle(fMarkerStyle[0][c]);
 
         P_reldiff[c][i][j]->GetYaxis()->SetTitle("");
         K_reldiff[c][i][j]->GetYaxis()->SetTitle("");
+        PR_reldiff[c][i][j]->GetYaxis()->SetTitle("");
         H_reldiff[c][i][j]->GetYaxis()->SetTitle("");
 
         P_reldiff[c][i][j]->GetXaxis()->SetTitle("");
         K_reldiff[c][i][j]->GetXaxis()->SetTitle("");
+        PR_reldiff[c][i][j]->GetXaxis()->SetTitle("");
         H_reldiff[c][i][j]->GetXaxis()->SetTitle("");
 
         P_reldiff[c][i][j]->SetTitle("");
         K_reldiff[c][i][j]->SetTitle("");
+        PR_reldiff[c][i][j]->SetTitle("");
         H_reldiff[c][i][j]->SetTitle("");
 
         if(!h_reldiff_empty)
@@ -1905,8 +2138,59 @@ int main(int argc, char **argv)
           }
           c73->Update();
         }
+        if(!pr_reldiff_empty)
+        {
+          c83->cd(i+1+9*j);
+          gPad->SetFillStyle(4000);
+          if(PR_reldiff[c][i][j])
+          {
+            if(!c)
+            {
+              PR_reldiff[c][i][j]->Draw("SAMEPA");
+              PR_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_reldiff[c][i][j]->SetMinimum(-1);
+              PR_reldiff[c][i][j]->SetMaximum(1);
+              PR_reldiff[c][i][j]->GetXaxis()->SetLabelSize(0.06);
+              PR_reldiff[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              PR_reldiff[c][i][j]->SetTitle("");
+              if(j==5) gPad->SetBottomMargin(.15);
+              if(i==0) gPad->SetLeftMargin(.22);
+              if(i==8 && j==5)
+              {
+                PR_reldiff[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                PR_reldiff[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                PR_reldiff[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+              }
+              PR_reldiff[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
+              PR_reldiff[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==1 && j==0)
+              {
+                PR_reldiff[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}}_{#font[ 12]{ratio}}");
+                PR_reldiff[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+              }
+              PR_reldiff[c][i][j]->Draw("SAMEP");
+              PR_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_reldiff[c][i][j]->SetMinimum(-1);
+              PR_reldiff[c][i][j]->SetMaximum(1);
+              l1.Draw("SAME");
+              l2.Draw("SAME");
+              l3.Draw("SAME");
+              l4.Draw("SAME");
+              c83->Range(0.1,-1,0.9,1);
+            }
+            else
+            {
+              PR_reldiff[c][i][j]->Draw("SAMEP");
+              PR_reldiff[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_reldiff[c][i][j]->SetMinimum(-1);
+              PR_reldiff[c][i][j]->SetMaximum(1);
+            }
+          }
+          c83->Update();
+        }
         z_range_p_reldiff[c][i][j].clear();
         z_range_k_reldiff[c][i][j].clear();
+        z_range_pr_reldiff[c][i][j].clear();
         z_range_h_reldiff[c][i][j].clear();
       }
     }
@@ -1916,12 +2200,16 @@ int main(int argc, char **argv)
     MultiplicitiesSum[0][1][0] = 0;
     MultiplicitiesSum[0][0][1] = 0;
     MultiplicitiesSum[0][1][1] = 0;
+    MultiplicitiesSum[0][0][2] = 0;
+    MultiplicitiesSum[0][1][2] = 0;
     MultiplicitiesSum[0][0][3] = 0;
     MultiplicitiesSum[0][1][3] = 0;
     MultiplicitiesSum[1][0][0] = 0;
     MultiplicitiesSum[1][1][0] = 0;
     MultiplicitiesSum[1][0][1] = 0;
     MultiplicitiesSum[1][1][1] = 0;
+    MultiplicitiesSum[1][0][2] = 0;
+    MultiplicitiesSum[1][1][2] = 0;
     MultiplicitiesSum[1][0][3] = 0;
     MultiplicitiesSum[1][1][3] = 0;
 
@@ -1946,36 +2234,45 @@ int main(int argc, char **argv)
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
+        pr_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][2]);
         h_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][3]);
         p_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][0]));
         k_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][1]));
+        pr_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][2]));
         h_y_err[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][1][3]));
         p_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][0]));
         k_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][1]));
+        pr_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][2]));
         h_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][3]));
 
         MultiplicitiesSum[0][c][0] += fMultiplicities_yavg[i][k].tab[c][0][0]*fZ_bin_width[k];
         MultiplicitiesSum[0][c][1] += fMultiplicities_yavg[i][k].tab[c][0][1]*fZ_bin_width[k];
+        MultiplicitiesSum[0][c][2] += fMultiplicities_yavg[i][k].tab[c][0][2]*fZ_bin_width[k];
         MultiplicitiesSum[0][c][3] += fMultiplicities_yavg[i][k].tab[c][0][3]*fZ_bin_width[k];
         MultiplicitiesSum[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSum[1][c][2] += fMultiplicities_yavg[i][k].tab[c][1][2]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
 
         for(int zv=0; zv<4; zv++)
         {
           p_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0] : 0);
           k_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][1] : 0);
+          pr_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][2]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][2] : 0);
           h_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][3] : 0);
           p_y_z_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][0]) : 0);
           k_y_z_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][1]) : 0);
+          pr_y_z_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][2] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][2]) : 0);
           h_y_z_err[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][1][3]) : 0);
         }
 
         p_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,0));
         k_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,1));
+        pr_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,2));
         h_y_reldiff[c][i].push_back(RelDiff_yavg(c,i,k,3));
         p_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,0)));
         k_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,1)));
+        pr_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,2)));
         h_y_reldiff_err[c][i].push_back(sqrt(RelDiff_Err_yavg(c,i,k,3)));
         int relFlag;
         if(RelDiff_yavg(c,i,k,3)>=0)
@@ -1995,6 +2292,7 @@ int main(int argc, char **argv)
       {
         z_range_p_y[c][i].push_back(z_range[l]);
         z_range_k_y[c][i].push_back(z_range[l]);
+        z_range_pr_y[c][i].push_back(z_range[l]);
         z_range_h_y[c][i].push_back(z_range[l]);
       }
 
@@ -2002,31 +2300,37 @@ int main(int argc, char **argv)
       {
         if(!p_y[c][i][k-1]) {p_y[c][i].erase(p_y[c][i].begin()+k-1); p_y_err[c][i].erase(p_y_err[c][i].begin()+k-1); p_y_sys[c][i].erase(p_y_sys[c][i].begin()+k-1); z_range_p_y[c][i].erase(z_range_p_y[c][i].begin()+k-1);}
         if(!k_y[c][i][k-1]) {k_y[c][i].erase(k_y[c][i].begin()+k-1); k_y_err[c][i].erase(k_y_err[c][i].begin()+k-1); k_y_sys[c][i].erase(k_y_sys[c][i].begin()+k-1); z_range_k_y[c][i].erase(z_range_k_y[c][i].begin()+k-1);}
+        if(!pr_y[c][i][k-1]) {pr_y[c][i].erase(pr_y[c][i].begin()+k-1); pr_y_err[c][i].erase(pr_y_err[c][i].begin()+k-1); pr_y_sys[c][i].erase(pr_y_sys[c][i].begin()+k-1); z_range_pr_y[c][i].erase(z_range_pr_y[c][i].begin()+k-1);}
         if(!h_y[c][i][k-1]) {h_y[c][i].erase(h_y[c][i].begin()+k-1); h_y_err[c][i].erase(h_y_err[c][i].begin()+k-1); h_y_sys[c][i].erase(h_y_sys[c][i].begin()+k-1); z_range_h_y[c][i].erase(z_range_h_y[c][i].begin()+k-1);}
       }
 
       bool p_y_empty = 0;
       bool k_y_empty = 0;
+      bool pr_y_empty = 0;
       bool h_y_empty = 0;
 
       if(!(Int_t(p_y[c][i].size()))) p_y_empty = 1;
       if(!(Int_t(k_y[c][i].size()))) k_y_empty = 1;
+      if(!(Int_t(pr_y[c][i].size()))) pr_y_empty = 1;
       if(!(Int_t(h_y[c][i].size()))) h_y_empty = 1;
 
       H_y[c][i] = new TGraphErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&(h_y[c][i][0]),0,&(h_y_err[c][i][0]));
       P_y[c][i] = new TGraphErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&(p_y[c][i][0]),0,&(p_y_err[c][i][0]));
       K_y[c][i] = new TGraphErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&(k_y[c][i][0]),0,&(k_y_err[c][i][0]));
+      PR_y[c][i] = new TGraphErrors(Int_t(pr_y[c][i].size()),&(z_range_pr_y[c][i][0]),&(pr_y[c][i][0]),0,&(pr_y_err[c][i][0]));
       if(!c)
       {
         H_ysys[c][i] = new TGraphAsymmErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&h_yoffset2[0], &errorx[0], &errorx[0], 0, &(h_y_sys[c][i][0]));
         P_ysys[c][i] = new TGraphAsymmErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&p_yoffset2[0], &errorx[0], &errorx[0], 0, &(p_y_sys[c][i][0]));
         K_ysys[c][i] = new TGraphAsymmErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&k_yoffset2[0], &errorx[0], &errorx[0], 0, &(k_y_sys[c][i][0]));
+        PR_ysys[c][i] = new TGraphAsymmErrors(Int_t(pr_y[c][i].size()),&(z_range_pr_y[c][i][0]),&pr_yoffset2[0], &errorx[0], &errorx[0], 0, &(pr_y_sys[c][i][0]));
       }
       else
       {
         H_ysys[c][i] = new TGraphAsymmErrors(Int_t(h_y[c][i].size()),&(z_range_h_y[c][i][0]),&h_yoffset[0], &errorx[0], &errorx[0], 0, &(h_y_sys[c][i][0]));
         P_ysys[c][i] = new TGraphAsymmErrors(Int_t(p_y[c][i].size()),&(z_range_p_y[c][i][0]),&p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_y_sys[c][i][0]));
         K_ysys[c][i] = new TGraphAsymmErrors(Int_t(k_y[c][i].size()),&(z_range_k_y[c][i][0]),&k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_y_sys[c][i][0]));
+        PR_ysys[c][i] = new TGraphAsymmErrors(Int_t(pr_y[c][i].size()),&(z_range_pr_y[c][i][0]),&pr_yoffset[0], &errorx[0], &errorx[0], 0, &(pr_y_sys[c][i][0]));
       }
 
       if(!c)
@@ -2034,39 +2338,47 @@ int main(int argc, char **argv)
         H_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         P_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         K_y[c][i]->SetMarkerColor(fMarkerColor[4]);
+        PR_y[c][i]->SetMarkerColor(fMarkerColor[4]);
         H_ysys[c][i]->SetFillColor(fMarkerColor[4]);
         P_ysys[c][i]->SetFillColor(fMarkerColor[4]);
         K_ysys[c][i]->SetFillColor(fMarkerColor[4]);
+        PR_ysys[c][i]->SetFillColor(fMarkerColor[4]);
       }
       else
       {
         H_y[c][i]->SetMarkerColor(fMarkerColor[0]);
         P_y[c][i]->SetMarkerColor(fMarkerColor[0]);
         K_y[c][i]->SetMarkerColor(fMarkerColor[0]);
+        PR_y[c][i]->SetMarkerColor(fMarkerColor[0]);
         H_ysys[c][i]->SetFillColor(fMarkerColor[0]);
         P_ysys[c][i]->SetFillColor(fMarkerColor[0]);
         K_ysys[c][i]->SetFillColor(fMarkerColor[0]);
+        PR_ysys[c][i]->SetFillColor(fMarkerColor[0]);
       }
 
       H_y[c][i]->SetMarkerSize(2);
       P_y[c][i]->SetMarkerSize(2);
       K_y[c][i]->SetMarkerSize(2);
+      PR_y[c][i]->SetMarkerSize(2);
 
       H_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
       P_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
       K_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
+      PR_y[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
 
       H_y[c][i]->SetTitle("");
       P_y[c][i]->SetTitle("");
       K_y[c][i]->SetTitle("");
+      PR_y[c][i]->SetTitle("");
 
       H_y[c][i]->GetYaxis()->SetTitle("");
       P_y[c][i]->GetYaxis()->SetTitle("");
       K_y[c][i]->GetYaxis()->SetTitle("");
+      PR_y[c][i]->GetYaxis()->SetTitle("");
 
       if(!h_y_empty)
       {
-        c8->cd(i+1);
+        c9->cd(i+1);
         gPad->SetFillStyle(4000);
         if(H_y[c][i])
         {
@@ -2100,7 +2412,7 @@ int main(int argc, char **argv)
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             H_y[c][i]->SetMinimum(-0.5);
             H_y[c][i]->SetMaximum(4.);
-            c8->Range(0.1,-0.5,0.9,4.);
+            c9->Range(0.1,-0.5,0.9,4.);
           }
           else
           {
@@ -2111,12 +2423,12 @@ int main(int argc, char **argv)
             H_y[c][i]->SetMaximum(4.);
           }
         }
-        c8->Update();
+        c9->Update();
       }
 
       if(!p_y_empty)
       {
-        c9->cd(i+1);
+        c10->cd(i+1);
         if(P_y[c][i])
         {
           if(!c)
@@ -2149,7 +2461,7 @@ int main(int argc, char **argv)
             P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             P_y[c][i]->SetMinimum(-0.5);
             P_y[c][i]->SetMaximum(3.5);
-            c9->Range(0.1,-0.5,0.9,3.5);
+            c10->Range(0.1,-0.5,0.9,3.5);
           }
           else
           {
@@ -2160,12 +2472,12 @@ int main(int argc, char **argv)
             P_y[c][i]->SetMaximum(3.5);
           }
         }
-        c9->Update();
+        c10->Update();
       }
 
       if(!k_y_empty)
       {
-        c10->cd(i+1);
+        c11->cd(i+1);
         if(K_y[c][i])
         {
           if(!c)
@@ -2198,7 +2510,7 @@ int main(int argc, char **argv)
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
             K_y[c][i]->SetMinimum(-0.1);
             K_y[c][i]->SetMaximum(0.8);
-            c10->Range(0.1,-0.1,0.9,0.8);
+            c11->Range(0.1,-0.1,0.9,0.8);
           }
           else
           {
@@ -2209,10 +2521,60 @@ int main(int argc, char **argv)
             K_y[c][i]->SetMaximum(0.8);
           }
         }
-        c10->Update();
+        c11->Update();
+      }
+
+      if(!k_y_empty)
+      {
+        c12->cd(i+1);
+        if(K_y[c][i])
+        {
+          if(!c)
+          {
+            K_y[c][i]->Draw("SAMEPA");
+            K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            K_y[c][i]->SetMinimum(-0.1);
+            K_y[c][i]->SetMaximum(0.8);
+            K_y[c][i]->GetXaxis()->SetLabelSize(0.06);
+            K_y[c][i]->GetYaxis()->SetLabelSize(0.06);
+            K_y[c][i]->SetTitle("");
+            if(i>4) gPad->SetBottomMargin(.15);
+            if(i==0 || i==5) gPad->SetLeftMargin(.22);
+            if(i==8)
+            {
+              K_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              K_y[c][i]->GetXaxis()->SetTitleSize(0.08);
+              K_y[c][i]->GetXaxis()->SetTitleOffset(.8);
+            }
+            K_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            K_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            if(i==0)
+            {
+              K_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}");
+              K_y[c][i]->GetYaxis()->SetTitleSize(0.08);
+            }
+            lsys.Draw();
+            K_y[c][i]->Draw("SAMEP");
+            K_ysys[c][i]->Draw("SAME3");
+            K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            K_y[c][i]->SetMinimum(-0.1);
+            K_y[c][i]->SetMaximum(0.8);
+            c12->Range(0.1,-0.1,0.9,0.8);
+          }
+          else
+          {
+            K_y[c][i]->Draw("SAMEP");
+            K_ysys[c][i]->Draw("SAME3");
+            K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            K_y[c][i]->SetMinimum(-0.1);
+            K_y[c][i]->SetMaximum(0.8);
+          }
+        }
+        c12->Update();
       }
       z_range_p_y[c][i].clear();
       z_range_k_y[c][i].clear();
+      z_range_pr_y[c][i].clear();
       z_range_h_y[c][i].clear();
 
       for(int zv=0; zv<4; zv++)
@@ -2221,6 +2583,7 @@ int main(int argc, char **argv)
         {
           z_range_p_y_z[c][i][zv].push_back(z_range[l]);
           z_range_k_y_z[c][i][zv].push_back(z_range[l]);
+          z_range_pr_y_z[c][i][zv].push_back(z_range[l]);
           z_range_h_y_z[c][i][zv].push_back(z_range[l]);
         }
 
@@ -2228,40 +2591,49 @@ int main(int argc, char **argv)
         {
           if(!p_y_z[c][i][zv][k-1]) {p_y_z[c][i][zv].erase(p_y_z[c][i][zv].begin()+k-1); p_y_z_err[c][i][zv].erase(p_y_z_err[c][i][zv].begin()+k-1); z_range_p_y_z[c][i][zv].erase(z_range_p_y_z[c][i][zv].begin()+k-1);}
           if(!k_y_z[c][i][zv][k-1]) {k_y_z[c][i][zv].erase(k_y_z[c][i][zv].begin()+k-1); k_y_z_err[c][i][zv].erase(k_y_z_err[c][i][zv].begin()+k-1); z_range_k_y_z[c][i][zv].erase(z_range_k_y_z[c][i][zv].begin()+k-1);}
+          if(!pr_y_z[c][i][zv][k-1]) {pr_y_z[c][i][zv].erase(pr_y_z[c][i][zv].begin()+k-1); pr_y_z_err[c][i][zv].erase(pr_y_z_err[c][i][zv].begin()+k-1); z_range_pr_y_z[c][i][zv].erase(z_range_pr_y_z[c][i][zv].begin()+k-1);}
           if(!h_y_z[c][i][zv][k-1]) {h_y_z[c][i][zv].erase(h_y_z[c][i][zv].begin()+k-1); h_y_z_err[c][i][zv].erase(h_y_z_err[c][i][zv].begin()+k-1); z_range_h_y_z[c][i][zv].erase(z_range_h_y_z[c][i][zv].begin()+k-1);}
         }
 
         bool p_y_z_empty = 0;
         bool k_y_z_empty = 0;
+        bool pr_y_z_empty = 0;
         bool h_y_z_empty = 0;
 
         if(!(Int_t(p_y_z[c][i][zv].size()))) p_y_z_empty = 1;
         if(!(Int_t(k_y_z[c][i][zv].size()))) k_y_z_empty = 1;
+        if(!(Int_t(pr_y_z[c][i][zv].size()))) pr_y_z_empty = 1;
         if(!(Int_t(h_y_z[c][i][zv].size()))) h_y_z_empty = 1;
 
         H_y_zvtx[c][i][zv] = new TGraphErrors(Int_t(h_y_z[c][i][zv].size()),&(z_range_h_y_z[c][i][zv][0]),&(h_y_z[c][i][zv][0]),0,&(h_y_z_err[c][i][zv][0]));
         P_y_zvtx[c][i][zv] = new TGraphErrors(Int_t(p_y_z[c][i][zv].size()),&(z_range_p_y_z[c][i][zv][0]),&(p_y_z[c][i][zv][0]),0,&(p_y_z_err[c][i][zv][0]));
         K_y_zvtx[c][i][zv] = new TGraphErrors(Int_t(k_y_z[c][i][zv].size()),&(z_range_k_y_z[c][i][zv][0]),&(k_y_z[c][i][zv][0]),0,&(k_y_z_err[c][i][zv][0]));
+        PR_y_zvtx[c][i][zv] = new TGraphErrors(Int_t(pr_y_z[c][i][zv].size()),&(z_range_pr_y_z[c][i][zv][0]),&(pr_y_z[c][i][zv][0]),0,&(pr_y_z_err[c][i][zv][0]));
 
         H_y_zvtx[c][i][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
         P_y_zvtx[c][i][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
         K_y_zvtx[c][i][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
+        PR_y_zvtx[c][i][zv]->SetMarkerColor(fMarkerColorZvtx[zv][c]);
 
         H_y_zvtx[c][i][zv]->SetMarkerSize(2);
         P_y_zvtx[c][i][zv]->SetMarkerSize(2);
         K_y_zvtx[c][i][zv]->SetMarkerSize(2);
+        PR_y_zvtx[c][i][zv]->SetMarkerSize(2);
 
         H_y_zvtx[c][i][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
         P_y_zvtx[c][i][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
         K_y_zvtx[c][i][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
+        PR_y_zvtx[c][i][zv]->SetMarkerStyle(fMarkerStyle[0][c]);
 
         H_y_zvtx[c][i][zv]->SetTitle("");
         P_y_zvtx[c][i][zv]->SetTitle("");
         K_y_zvtx[c][i][zv]->SetTitle("");
+        PR_y_zvtx[c][i][zv]->SetTitle("");
 
         H_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("");
         P_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("");
         K_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("");
+        PR_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("");
 
         if(!h_y_z_empty)
         {
@@ -2338,7 +2710,7 @@ int main(int argc, char **argv)
               P_y_zvtx[c][i][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                P_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                P_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
                 P_y_zvtx[c][i][zv]->GetYaxis()->SetTitleSize(0.08);
               }
               P_y_zvtx[c][i][zv]->Draw("SAMEP");
@@ -2362,7 +2734,7 @@ int main(int argc, char **argv)
         {
           c711->cd(i+1);
           gPad->SetFillStyle(4000);
-          if(P_y_zvtx[c][i][zv])
+          if(K_y_zvtx[c][i][zv])
           {
             if(!c && !zv)
             {
@@ -2385,7 +2757,7 @@ int main(int argc, char **argv)
               K_y_zvtx[c][i][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                K_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                K_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
                 K_y_zvtx[c][i][zv]->GetYaxis()->SetTitleSize(0.08);
               }
               K_y_zvtx[c][i][zv]->Draw("SAMEP");
@@ -2404,8 +2776,56 @@ int main(int argc, char **argv)
           }
           c711->Update();
         }
+
+        if(!pr_y_z_empty)
+        {
+          c811->cd(i+1);
+          gPad->SetFillStyle(4000);
+          if(PR_y_zvtx[c][i][zv])
+          {
+            if(!c && !zv)
+            {
+              PR_y_zvtx[c][i][zv]->Draw("SAMEPA");
+              PR_y_zvtx[c][i][zv]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_y_zvtx[c][i][zv]->SetMinimum(0.);
+              PR_y_zvtx[c][i][zv]->SetMaximum(0.8);
+              PR_y_zvtx[c][i][zv]->GetXaxis()->SetLabelSize(0.06);
+              PR_y_zvtx[c][i][zv]->GetYaxis()->SetLabelSize(0.06);
+              PR_y_zvtx[c][i][zv]->SetTitle("");
+              if(i>4) gPad->SetBottomMargin(.15);
+              if(i==0 || i==5) gPad->SetLeftMargin(.22);
+              if(i==8)
+              {
+                PR_y_zvtx[c][i][zv]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                PR_y_zvtx[c][i][zv]->GetXaxis()->SetTitleSize(0.08);
+                PR_y_zvtx[c][i][zv]->GetXaxis()->SetTitleOffset(.8);
+              }
+              PR_y_zvtx[c][i][zv]->GetXaxis()->SetNdivisions(304,kTRUE);
+              PR_y_zvtx[c][i][zv]->GetYaxis()->SetNdivisions(304,kTRUE);
+              if(i==0)
+              {
+                PR_y_zvtx[c][i][zv]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{p}}");
+                PR_y_zvtx[c][i][zv]->GetYaxis()->SetTitleSize(0.08);
+              }
+              PR_y_zvtx[c][i][zv]->Draw("SAMEP");
+              PR_y_zvtx[c][i][zv]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_y_zvtx[c][i][zv]->SetMinimum(0.);
+              PR_y_zvtx[c][i][zv]->SetMaximum(0.8);
+              c811->Range(0.1,0.,0.9,0.8);
+            }
+            else
+            {
+              PR_y_zvtx[c][i][zv]->Draw("SAMEP");
+              PR_y_zvtx[c][i][zv]->GetXaxis()->SetLimits(0.1,0.9);
+              PR_y_zvtx[c][i][zv]->SetMinimum(0.);
+              PR_y_zvtx[c][i][zv]->SetMaximum(0.8);
+            }
+          }
+          c811->Update();
+        }
         z_range_p_y_z[c][i][zv].clear();
         z_range_k_y_z[c][i][zv].clear();
+        z_range_pr_y_z[c][i][zv].clear();
         z_range_h_y_z[c][i][zv].clear();
       }
 
@@ -2425,47 +2845,57 @@ int main(int argc, char **argv)
 
       bool p_y_reldiff_empty = 0;
       bool k_y_reldiff_empty = 0;
+      bool pr_y_reldiff_empty = 0;
       bool h_y_reldiff_empty = 0;
 
       if(!(int(p_y_reldiff[c][i].size()))) p_y_reldiff_empty = 1;
       if(!(int(k_y_reldiff[c][i].size()))) k_y_reldiff_empty = 1;
+      if(!(int(pr_y_reldiff[c][i].size()))) pr_y_reldiff_empty = 1;
       if(!(int(h_y_reldiff[c][i].size()))) h_y_reldiff_empty = 1;
 
       P_y_reldiff[c][i] = new TGraphErrors(int(p_y_reldiff[c][i].size()),&(z_range_p_y_reldiff[c][i][0]),&(p_y_reldiff[c][i][0]),0,&(p_y_reldiff_err[c][i][0]));
       K_y_reldiff[c][i] = new TGraphErrors(int(k_y_reldiff[c][i].size()),&(z_range_k_y_reldiff[c][i][0]),&(k_y_reldiff[c][i][0]),0,&(k_y_reldiff_err[c][i][0]));
+      PR_y_reldiff[c][i] = new TGraphErrors(int(pr_y_reldiff[c][i].size()),&(z_range_pr_y_reldiff[c][i][0]),&(pr_y_reldiff[c][i][0]),0,&(pr_y_reldiff_err[c][i][0]));
       H_y_reldiff[c][i] = new TGraphErrors(int(h_y_reldiff[c][i].size()),&(z_range_h_y_reldiff[c][i][0]),&(h_y_reldiff[c][i][0]),0,&(h_y_reldiff_err[c][i][0]));
 
       if(!c)
       {
         P_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[4]);
         K_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[4]);
+        PR_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[4]);
         H_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[4]);
       }
       else
       {
         P_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[0]);
         K_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[0]);
+        PR_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[0]);
         H_y_reldiff[c][i]->SetMarkerColor(fMarkerColor[0]);
       }
 
       P_y_reldiff[c][i]->SetMarkerSize(2);
       K_y_reldiff[c][i]->SetMarkerSize(2);
+      PR_y_reldiff[c][i]->SetMarkerSize(2);
       H_y_reldiff[c][i]->SetMarkerSize(2);
 
       P_y_reldiff[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
       K_y_reldiff[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
+      PR_y_reldiff[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
       H_y_reldiff[c][i]->SetMarkerStyle(fMarkerStyle[0][c]);
 
       P_y_reldiff[c][i]->GetYaxis()->SetTitle("");
       K_y_reldiff[c][i]->GetYaxis()->SetTitle("");
+      PR_y_reldiff[c][i]->GetYaxis()->SetTitle("");
       H_y_reldiff[c][i]->GetYaxis()->SetTitle("");
 
       P_y_reldiff[c][i]->GetXaxis()->SetTitle("");
       K_y_reldiff[c][i]->GetXaxis()->SetTitle("");
+      PR_y_reldiff[c][i]->GetXaxis()->SetTitle("");
       H_y_reldiff[c][i]->GetXaxis()->SetTitle("");
 
       P_y_reldiff[c][i]->SetTitle("");
       K_y_reldiff[c][i]->SetTitle("");
+      PR_y_reldiff[c][i]->SetTitle("");
       H_y_reldiff[c][i]->SetTitle("");
 
       if(!h_y_reldiff_empty)
@@ -2545,7 +2975,7 @@ int main(int argc, char **argv)
             P_y_reldiff[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              P_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
+              P_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi}}_{#font[ 12]{ratio}}");
               P_y_reldiff[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
             P_y_reldiff[c][i]->Draw("SAMEP");
@@ -2595,7 +3025,7 @@ int main(int argc, char **argv)
             K_y_reldiff[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              K_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h}}_{#font[ 12]{ratio}}");
+              K_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}_{#font[ 12]{ratio}}");
               K_y_reldiff[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
             K_y_reldiff[c][i]->Draw("SAMEP");
@@ -2618,21 +3048,76 @@ int main(int argc, char **argv)
         }
         c731->Update();
       }
+      if(!pr_y_reldiff_empty)
+      {
+        c831->cd(i+1);
+        gPad->SetFillStyle(4000);
+        if(PR_y_reldiff[c][i])
+        {
+          if(!c)
+          {
+            PR_y_reldiff[c][i]->Draw("SAMEPA");
+            PR_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            PR_y_reldiff[c][i]->SetMinimum(-1);
+            PR_y_reldiff[c][i]->SetMaximum(1);
+            PR_y_reldiff[c][i]->GetXaxis()->SetLabelSize(0.06);
+            PR_y_reldiff[c][i]->GetYaxis()->SetLabelSize(0.06);
+            PR_y_reldiff[c][i]->SetTitle("");
+            if(i>4) gPad->SetBottomMargin(.15);
+            if(i==0 || i==5) gPad->SetLeftMargin(.22);
+            if(i==8)
+            {
+              PR_y_reldiff[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
+              PR_y_reldiff[c][i]->GetXaxis()->SetTitleSize(0.08);
+              PR_y_reldiff[c][i]->GetXaxis()->SetTitleOffset(.8);
+            }
+            PR_y_reldiff[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
+            PR_y_reldiff[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
+            if(i==0)
+            {
+              PR_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}}_{#font[ 12]{ratio}}");
+              PR_y_reldiff[c][i]->GetYaxis()->SetTitleSize(0.08);
+            }
+            PR_y_reldiff[c][i]->Draw("SAMEP");
+            PR_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            PR_y_reldiff[c][i]->SetMinimum(-1);
+            PR_y_reldiff[c][i]->SetMaximum(1);
+            l1.Draw("SAME");
+            l2.Draw("SAME");
+            l3.Draw("SAME");
+            l4.Draw("SAME");
+            c831->Range(0.1,-1,0.9,1);
+          }
+          else
+          {
+            PR_y_reldiff[c][i]->Draw("SAMEP");
+            PR_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
+            PR_y_reldiff[c][i]->SetMinimum(-1);
+            PR_y_reldiff[c][i]->SetMaximum(1);
+          }
+        }
+        c831->Update();
+      }
       z_range_p_y_reldiff[c][i].clear();
       z_range_k_y_reldiff[c][i].clear();
+      z_range_pr_y_reldiff[c][i].clear();
       z_range_h_y_reldiff[c][i].clear();
     }
     sp_y.push_back(MultiplicitiesSum[0][0][0]+MultiplicitiesSum[0][1][0]);
     sk_y.push_back(MultiplicitiesSum[0][0][1]+MultiplicitiesSum[0][1][1]);
+    spr_y.push_back(MultiplicitiesSum[0][0][2]+MultiplicitiesSum[0][1][2]);
     sh_y.push_back(MultiplicitiesSum[0][0][3]+MultiplicitiesSum[0][1][3]);
     sp_y_err.push_back(sqrt(MultiplicitiesSum[1][0][0]+MultiplicitiesSum[1][1][0]));
     sk_y_err.push_back(sqrt(MultiplicitiesSum[1][0][1]+MultiplicitiesSum[1][1][1]));
+    spr_y_err.push_back(sqrt(MultiplicitiesSum[1][0][2]+MultiplicitiesSum[1][1][2]));
     sh_y_err.push_back(sqrt(MultiplicitiesSum[1][0][3]+MultiplicitiesSum[1][1][3]));
     rp_y.push_back(MultiplicitiesSum[0][0][0] ? MultiplicitiesSum[0][1][0]/MultiplicitiesSum[0][0][0] : 0);
     rk_y.push_back(MultiplicitiesSum[0][0][1] ? MultiplicitiesSum[0][1][1]/MultiplicitiesSum[0][0][1] : 0);
+    rpr_y.push_back(MultiplicitiesSum[0][0][2] ? MultiplicitiesSum[0][1][2]/MultiplicitiesSum[0][0][2] : 0);
     rh_y.push_back(MultiplicitiesSum[0][0][3] ? MultiplicitiesSum[0][1][3]/MultiplicitiesSum[0][0][3] : 0);
     rp_y_err.push_back(sqrt((MultiplicitiesSum[1][1][0]+pow(MultiplicitiesSum[0][1][0],2)*MultiplicitiesSum[1][0][0]/pow(MultiplicitiesSum[0][0][0],2))/pow(MultiplicitiesSum[0][0][0],2)));
     rk_y_err.push_back(sqrt((MultiplicitiesSum[1][1][1]+pow(MultiplicitiesSum[0][1][1],2)*MultiplicitiesSum[1][0][1]/pow(MultiplicitiesSum[0][0][1],2))/pow(MultiplicitiesSum[0][0][1],2)));
+    rpr_y_err.push_back(sqrt((MultiplicitiesSum[1][1][2]+pow(MultiplicitiesSum[0][1][2],2)*MultiplicitiesSum[1][0][2]/pow(MultiplicitiesSum[0][0][2],2))/pow(MultiplicitiesSum[0][0][2],2)));
     rh_y_err.push_back(sqrt((MultiplicitiesSum[1][1][3]+pow(MultiplicitiesSum[0][1][3],2)*MultiplicitiesSum[1][0][3]/pow(MultiplicitiesSum[0][0][3],2))/pow(MultiplicitiesSum[0][0][3],2)));
   }
 
@@ -2640,9 +3125,11 @@ int main(int argc, char **argv)
   {
     sx_range_p_y.push_back(x_range[l]);
     sx_range_k_y.push_back(x_range[l]);
+    sx_range_pr_y.push_back(x_range[l]);
     sx_range_h_y.push_back(x_range[l]);
     rx_range_p_y.push_back(x_range[l]);
     rx_range_k_y.push_back(x_range[l]);
+    rx_range_pr_y.push_back(x_range[l]);
     rx_range_h_y.push_back(x_range[l]);
   }
 
@@ -2650,62 +3137,78 @@ int main(int argc, char **argv)
   {
     if(!sp_y[k-1]) {sp_y.erase(sp_y.begin()+k-1); sp_y_err.erase(sp_y_err.begin()+k-1); sx_range_p_y.erase(sx_range_p_y.begin()+k-1);}
     if(!sk_y[k-1]) {sk_y.erase(sk_y.begin()+k-1); sk_y_err.erase(sk_y_err.begin()+k-1); sx_range_k_y.erase(sx_range_k_y.begin()+k-1);}
+    if(!spr_y[k-1]) {spr_y.erase(spr_y.begin()+k-1); spr_y_err.erase(spr_y_err.begin()+k-1); sx_range_pr_y.erase(sx_range_pr_y.begin()+k-1);}
     if(!sh_y[k-1]) {sh_y.erase(sh_y.begin()+k-1); sh_y_err.erase(sh_y_err.begin()+k-1); sx_range_h_y.erase(sx_range_h_y.begin()+k-1);}
     if(!rp_y[k-1]) {rp_y.erase(rp_y.begin()+k-1); rp_y_err.erase(rp_y_err.begin()+k-1); rx_range_p_y.erase(rx_range_p_y.begin()+k-1);}
     if(!rk_y[k-1]) {rk_y.erase(rk_y.begin()+k-1); rk_y_err.erase(rk_y_err.begin()+k-1); rx_range_k_y.erase(rx_range_k_y.begin()+k-1);}
+    if(!rpr_y[k-1]) {rpr_y.erase(rpr_y.begin()+k-1); rpr_y_err.erase(rpr_y_err.begin()+k-1); rx_range_pr_y.erase(rx_range_pr_y.begin()+k-1);}
     if(!rh_y[k-1]) {rh_y.erase(rh_y.begin()+k-1); rh_y_err.erase(rh_y_err.begin()+k-1); rx_range_h_y.erase(rx_range_h_y.begin()+k-1);}
   }
 
   sH_y = new TGraphErrors(Int_t(sh_y.size()),&(sx_range_h_y[0]),&(sh_y[0]),0,&(sh_y_err[0]));
   sP_y = new TGraphErrors(Int_t(sp_y.size()),&(sx_range_p_y[0]),&(sp_y[0]),0,&(sp_y_err[0]));
   sK_y = new TGraphErrors(Int_t(sk_y.size()),&(sx_range_k_y[0]),&(sk_y[0]),0,&(sk_y_err[0]));
+  sPR_y = new TGraphErrors(Int_t(spr_y.size()),&(sx_range_pr_y[0]),&(spr_y[0]),0,&(spr_y_err[0]));
   rH_y = new TGraphErrors(Int_t(rh_y.size()),&(rx_range_h_y[0]),&(rh_y[0]),0,&(rh_y_err[0]));
   rP_y = new TGraphErrors(Int_t(rp_y.size()),&(rx_range_p_y[0]),&(rp_y[0]),0,&(rp_y_err[0]));
   rK_y = new TGraphErrors(Int_t(rk_y.size()),&(rx_range_k_y[0]),&(rk_y[0]),0,&(rk_y_err[0]));
+  rPR_y = new TGraphErrors(Int_t(rpr_y.size()),&(rx_range_pr_y[0]),&(rpr_y[0]),0,&(rpr_y_err[0]));
 
   sH_y->SetMarkerColor(fMarkerColor[0]);
   sP_y->SetMarkerColor(fMarkerColor[0]);
   sK_y->SetMarkerColor(fMarkerColor[0]);
+  sPR_y->SetMarkerColor(fMarkerColor[0]);
   rH_y->SetMarkerColor(fMarkerColor[0]);
   rP_y->SetMarkerColor(fMarkerColor[0]);
   rK_y->SetMarkerColor(fMarkerColor[0]);
+  rPR_y->SetMarkerColor(fMarkerColor[0]);
 
   sH_y->SetMarkerSize(3);
   sP_y->SetMarkerSize(3);
   sK_y->SetMarkerSize(3);
+  sPR_y->SetMarkerSize(3);
   rH_y->SetMarkerSize(3);
   rP_y->SetMarkerSize(3);
   rK_y->SetMarkerSize(3);
+  rPR_y->SetMarkerSize(3);
 
   sH_y->SetMarkerStyle(fMarkerStyle[0][1]);
   sP_y->SetMarkerStyle(fMarkerStyle[0][1]);
   sK_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  sPR_y->SetMarkerStyle(fMarkerStyle[0][1]);
   rH_y->SetMarkerStyle(fMarkerStyle[0][1]);
   rP_y->SetMarkerStyle(fMarkerStyle[0][1]);
   rK_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  rPR_y->SetMarkerStyle(fMarkerStyle[0][1]);
 
   sH_y->SetTitle("");
   sP_y->SetTitle("");
   sK_y->SetTitle("");
+  sPR_y->SetTitle("");
   rH_y->SetTitle("");
   rP_y->SetTitle("");
   rK_y->SetTitle("");
+  rPR_y->SetTitle("");
 
   sH_y->GetYaxis()->SetTitle("");
   sP_y->GetYaxis()->SetTitle("");
   sK_y->GetYaxis()->SetTitle("");
+  sPR_y->GetYaxis()->SetTitle("");
   rH_y->GetYaxis()->SetTitle("");
   rP_y->GetYaxis()->SetTitle("");
   rK_y->GetYaxis()->SetTitle("");
+  rPR_y->GetYaxis()->SetTitle("");
 
   sH_y->GetXaxis()->SetTitle("z");
   sP_y->GetXaxis()->SetTitle("z");
   sK_y->GetXaxis()->SetTitle("z");
+  sPR_y->GetXaxis()->SetTitle("z");
   rH_y->GetXaxis()->SetTitle("z");
   rP_y->GetXaxis()->SetTitle("z");
   rK_y->GetXaxis()->SetTitle("z");
+  rPR_y->GetXaxis()->SetTitle("z");
 
-  c11->cd(1);
+  c13->cd(1);
   gPad->SetFillStyle(4000);
   sH_y->Draw("PA");
   sH_y->GetXaxis()->SetLimits(0.01,1.);
@@ -2716,11 +3219,11 @@ int main(int argc, char **argv)
   sH_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sH_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{+}}}+#font[12]{M}^{#font[ 12]{h^{-}}}");
-  c11->Range(0.1,0.6,0.9,1.2);
+  c13->Range(0.1,0.6,0.9,1.2);
   gPad->SetLogx();
-  c11->Update();
+  c13->Update();
 
-  c12->cd(1);
+  c14->cd(1);
   gPad->SetFillStyle(4000);
   sP_y->Draw("PA");
   sP_y->GetXaxis()->SetLimits(0.01,1.);
@@ -2731,11 +3234,11 @@ int main(int argc, char **argv)
   sP_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sP_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{+}}}+#font[12]{M}^{#font[ 12]{#pi^{-}}}");
-  c12->Range(0.1,0.5,0.9,0.95);
+  c14->Range(0.1,0.5,0.9,0.95);
   gPad->SetLogx();
-  c12->Update();
+  c14->Update();
 
-  c13->cd(1);
+  c15->cd(1);
   gPad->SetFillStyle(4000);
   sK_y->Draw("PA");
   sK_y->GetXaxis()->SetLimits(0.01,1.);
@@ -2746,11 +3249,26 @@ int main(int argc, char **argv)
   sK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}+#font[12]{M}^{#font[ 12]{K^{-}}}");
-  c13->Range(0.1,0.08,0.9,0.2);
+  c15->Range(0.1,0.08,0.9,0.2);
   gPad->SetLogx();
-  c13->Update();
+  c15->Update();
 
-  c14->cd(1);
+  c16->cd(1);
+  gPad->SetFillStyle(4000);
+  sPR_y->Draw("PA");
+  sPR_y->GetXaxis()->SetLimits(0.01,1.);
+  sPR_y->SetMinimum(0.08);
+  sPR_y->SetMaximum(0.2);
+  sPR_y->SetTitle("");
+  sPR_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  sPR_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  sPR_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  sPR_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}}+#font[12]{M}^{#font[ 12]{#bar{p}}}");
+  c16->Range(0.1,0.08,0.9,0.2);
+  gPad->SetLogx();
+  c16->Update();
+
+  c17->cd(1);
   gPad->SetFillStyle(4000);
   rH_y->Draw("PA");
   rH_y->GetXaxis()->SetLimits(0.01,1.);
@@ -2761,11 +3279,11 @@ int main(int argc, char **argv)
   rH_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rH_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rH_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{+}}}/#font[12]{M}^{#font[ 12]{h^{-}}}");
-  c14->Range(0.1,0.9,0.9,2.4);
+  c17->Range(0.1,0.9,0.9,2.4);
   gPad->SetLogx();
-  c14->Update();
+  c17->Update();
 
-  c15->cd(1);
+  c18->cd(1);
   gPad->SetFillStyle(4000);
   rP_y->Draw("PA");
   rP_y->GetXaxis()->SetLimits(0.01,1.);
@@ -2776,11 +3294,11 @@ int main(int argc, char **argv)
   rP_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rP_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#pi^{+}}}/#font[12]{M}^{#font[ 12]{#pi^{-}}}");
-  c15->Range(0.1,0.9,0.9,1.8);
+  c18->Range(0.1,0.9,0.9,1.8);
   gPad->SetLogx();
-  c15->Update();
+  c18->Update();
 
-  c16->cd(1);
+  c19->cd(1);
   gPad->SetFillStyle(4000);
   rK_y->Draw("PA");
   rK_y->GetXaxis()->SetLimits(0.01,1.);
@@ -2791,9 +3309,24 @@ int main(int argc, char **argv)
   rK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}/#font[12]{M}^{#font[ 12]{K^{-}}}");
-  c16->Range(0.1,0.9,0.9,3.5);
+  c19->Range(0.1,0.9,0.9,3.5);
   gPad->SetLogx();
-  c16->Update();
+  c19->Update();
+
+  c20->cd(1);
+  gPad->SetFillStyle(4000);
+  rPR_y->Draw("PA");
+  rPR_y->GetXaxis()->SetLimits(0.01,1.);
+  rPR_y->SetMinimum(0.9);
+  rPR_y->SetMaximum(3.5);
+  rPR_y->SetTitle("");
+  rPR_y->GetXaxis()->SetTitle("#font[ 12]{x}");
+  rPR_y->GetXaxis()->SetNdivisions(304,kTRUE);
+  rPR_y->GetYaxis()->SetNdivisions(304,kTRUE);
+  rPR_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}}/#font[12]{M}^{#font[ 12]{#bar{p}}}");
+  c20->Range(0.1,0.9,0.9,3.5);
+  gPad->SetLogx();
+  c20->Update();
 
   TLatex fTitle;
 
@@ -3098,137 +3631,282 @@ int main(int argc, char **argv)
   fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.05}");
   fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
 
-  c8->cd(1);
+  c81->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  fTitle.DrawLatex(0.5, 0.75,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  c82->cd(1);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
-  c8->cd(2);
+  c81->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  fTitle.DrawLatex(0.5, 0.75,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  c82->cd(2);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
-  c8->cd(3);
+  c81->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+  fTitle.DrawLatex(0.5, 0.75,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+  c82->cd(3);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
-  c8->cd(4);
+  c81->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+  fTitle.DrawLatex(0.5, 0.75,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+  c82->cd(4);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
-  c8->cd(5);
+  c81->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+  fTitle.DrawLatex(0.5, 0.75,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+  c82->cd(5);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
-  c8->cd(6);
+  c81->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+  fTitle.DrawLatex(0.5, 0.75,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+  c82->cd(6);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
-  c8->cd(7);
+  c81->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+  fTitle.DrawLatex(0.5, 0.75,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+  c82->cd(7);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
-  c8->cd(8);
+  c81->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+  fTitle.DrawLatex(0.5, 0.75,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+  c82->cd(8);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
-  c8->cd(9);
+  c81->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.7,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+  fTitle.DrawLatex(0.5, 0.75,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+  c82->cd(9);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.75,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+  c81->cd(10);
+  fTitle.SetTextSize(0.095);
+  fTitle.SetTextAlign(11);
+  fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90, #delta = 0.25}");
+  fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.2}");
+  fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50, #delta = 0.15}");
+  fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30, #delta = 0.1}");
+  fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.05}");
+  fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
+  c82->cd(10);
+  fTitle.SetTextSize(0.095);
+  fTitle.SetTextAlign(11);
+  fTitle.DrawLatex(0.05, 0.72,"#color[221]{0.70#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.90, #delta = 0.25}");
+  fTitle.DrawLatex(0.05, 0.64,"#color[4]{0.50#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.70, #delta = 0.2}");
+  fTitle.DrawLatex(0.05, 0.56,"#color[226]{0.30#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.50, #delta = 0.15}");
+  fTitle.DrawLatex(0.05, 0.48,"#color[209]{0.20#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.30, #delta = 0.1}");
+  fTitle.DrawLatex(0.05, 0.40,"#color[95]{0.15#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.20, #delta = 0.05}");
+  fTitle.DrawLatex(0.05, 0.32,"#color[2]{0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{y}#scale[0.5]{ }<#scale[0.5]{ }0.15, #delta = 0}");
 
   c9->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  fTitle.DrawLatex(0.5, 3.7,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
   c9->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  fTitle.DrawLatex(0.5, 3.7,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
   c9->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+  fTitle.DrawLatex(0.5, 3.7,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
   c9->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+  fTitle.DrawLatex(0.5, 3.7,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
   c9->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+  fTitle.DrawLatex(0.5, 3.7,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
   c9->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+  fTitle.DrawLatex(0.5, 3.7,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
   c9->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+  fTitle.DrawLatex(0.5, 3.7,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
   c9->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+  fTitle.DrawLatex(0.5, 3.7,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
   c9->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 3.2,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+  fTitle.DrawLatex(0.5, 3.7,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
   c10->cd(1);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+  fTitle.DrawLatex(0.5, 3.2,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
 
   c10->cd(2);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+  fTitle.DrawLatex(0.5, 3.2,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
 
   c10->cd(3);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+  fTitle.DrawLatex(0.5, 3.2,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
 
   c10->cd(4);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+  fTitle.DrawLatex(0.5, 3.2,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
 
   c10->cd(5);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+  fTitle.DrawLatex(0.5, 3.2,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
 
   c10->cd(6);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+  fTitle.DrawLatex(0.5, 3.2,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
 
   c10->cd(7);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+  fTitle.DrawLatex(0.5, 3.2,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
 
   c10->cd(8);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
-  fTitle.DrawLatex(0.5, 0.74,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+  fTitle.DrawLatex(0.5, 3.2,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
 
   c10->cd(9);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 3.2,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+  c11->cd(1);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+
+  c11->cd(2);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+
+  c11->cd(3);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+
+  c11->cd(4);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+
+  c11->cd(5);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+
+  c11->cd(6);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+
+  c11->cd(7);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+
+  c11->cd(8);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+
+  c11->cd(9);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+  c12->cd(1);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
+
+  c12->cd(2);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
+
+  c12->cd(3);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
+
+  c12->cd(4);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
+
+  c12->cd(5);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
+
+  c12->cd(6);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.1");
+
+  c12->cd(7);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.1#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
+
+  c12->cd(8);
+  fTitle.SetTextSize(0.078);
+  fTitle.SetTextAlign(21);
+  fTitle.DrawLatex(0.5, 0.74,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
+
+  c12->cd(9);
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 0.74,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
@@ -3243,6 +3921,9 @@ int main(int argc, char **argv)
   c71->Update();
   c711->Update();
   c72->Update();
+  c81->Update();
+  c811->Update();
+  c82->Update();
   c5->Update();
   c53->Update();
   c531->Update();
@@ -3253,6 +3934,8 @@ int main(int argc, char **argv)
   c73->Update();
   c731->Update();
   c8->Update();
+  c83->Update();
+  c831->Update();
   c9->Update();
   c10->Update();
   c11->Update();
@@ -3261,6 +3944,10 @@ int main(int argc, char **argv)
   c14->Update();
   c15->Update();
   c16->Update();
+  c17->Update();
+  c18->Update();
+  c19->Update();
+  c20->Update();
 
   c51->Print(Form("%s/hadron_multiplicity_file.pdf(",data_path),"pdf");
   c52->Print(Form("%s/hadron_multiplicity_file.pdf)",data_path),"pdf");
@@ -3280,18 +3967,26 @@ int main(int argc, char **argv)
   c73->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
   c711->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
   c731->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf)",data_path),"pdf");
-  c8->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",data_path));
-  c9->Print(Form("%s/pion_multiplicity_yavg_file.pdf",data_path));
-  c10->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
-  c11->Print(Form("%s/hadron_multiplicity_sum_file.pdf",data_path));
-  c12->Print(Form("%s/pion_multiplicity_sum_file.pdf",data_path));
-  c13->Print(Form("%s/kaon_multiplicity_sum_file.pdf",data_path));
-  c14->Print(Form("%s/hadron_multiplicity_ratio_file.pdf",data_path));
-  c15->Print(Form("%s/pion_multiplicity_ratio_file.pdf",data_path));
-  c16->Print(Form("%s/kaon_multiplicity_ratio_file.pdf",data_path));
+  c8->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf(",data_path),"pdf");
+  c83->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
+  c811->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf",data_path),"pdf");
+  c831->Print(Form("%s/kaon_multiplicity_zvtx_file.pdf)",data_path),"pdf");
+  c9->Print(Form("%s/hadron_multiplicity_yavg_file.pdf",data_path));
+  c10->Print(Form("%s/pion_multiplicity_yavg_file.pdf",data_path));
+  c11->Print(Form("%s/kaon_multiplicity_yavg_file.pdf",data_path));
+  c12->Print(Form("%s/proton_multiplicity_yavg_file.pdf",data_path));
+  c13->Print(Form("%s/hadron_multiplicity_sum_file.pdf",data_path));
+  c14->Print(Form("%s/pion_multiplicity_sum_file.pdf",data_path));
+  c15->Print(Form("%s/kaon_multiplicity_sum_file.pdf",data_path));
+  c16->Print(Form("%s/proton_multiplicity_sum_file.pdf",data_path));
+  c17->Print(Form("%s/hadron_multiplicity_ratio_file.pdf",data_path));
+  c18->Print(Form("%s/pion_multiplicity_ratio_file.pdf",data_path));
+  c19->Print(Form("%s/kaon_multiplicity_ratio_file.pdf",data_path));
+  c20->Print(Form("%s/proton_multiplicity_ratio_file.pdf",data_path));
 
   ofs_p.close();
   ofs_k.close();
+  ofs_pr.close();
   ofs_h.close();
   ofs_m.close();
   ofs_mp.close();
