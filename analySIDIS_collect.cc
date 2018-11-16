@@ -916,7 +916,7 @@ int main(int argc, char **argv)
   c15 = new TCanvas("Kaon_Multiplicities_sum","Kaon_Multiplicities_sum",3200,1600);
 
   TCanvas* c16;
-  c16 = new TCanvas("Kaon_Multiplicities_sum","Kaon_Multiplicities_sum",3200,1600);
+  c16 = new TCanvas("Proton_Multiplicities_sum","Proton_Multiplicities_sum",3200,1600);
 
   TCanvas* c17;
   c17 = new TCanvas("Hadron_Multiplicities_ratio","Hadron_Multiplicities_ratio",3200,1600);
@@ -928,7 +928,7 @@ int main(int argc, char **argv)
   c19 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
 
   TCanvas* c20;
-  c20 = new TCanvas("Kaon_Multiplicities_ratio","Kaon_Multiplicities_ratio",3200,1600);
+  c20 = new TCanvas("Proton_Multiplicities_ratio","Proton_Multiplicities_ratio",3200,1600);
 
   c51->SetFillColor(0);
   c511->SetFillColor(0);
