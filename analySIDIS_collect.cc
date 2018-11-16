@@ -1145,11 +1145,11 @@ int main(int argc, char **argv)
   vector<Double_t> h_y_reldiff[2][9];
   vector<Double_t> p_y_reldiff_err[2][9];
   vector<Double_t> k_y_reldiff_err[2][9];
-  vector<Double_t> k_pr_reldiff_err[2][9];
+  vector<Double_t> pr_y_reldiff_err[2][9];
   vector<Double_t> h_y_reldiff_err[2][9];
   vector<Double_t> z_range_p_y_reldiff[2][9];
   vector<Double_t> z_range_k_y_reldiff[2][9];
-  vector<Double_t> z_range_k_pr_reldiff[2][9];
+  vector<Double_t> z_range_pr_y_reldiff[2][9];
   vector<Double_t> z_range_h_y_reldiff[2][9];
   vector<Double_t> sp_y;
   vector<Double_t> sk_y;
