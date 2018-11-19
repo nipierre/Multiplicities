@@ -351,16 +351,9 @@ void LoadDiffVectorMesonCorrection()
     }
     DVM.close();
     for(int i=0; i<9;i++)
-    {
       for(int j=0; j<6;j++)
-      {
         for(int k=0; k<12;k++)
-        {
-          fDiffVectorMeson[1][x-1][y-1][z-1][2] = 1;
-          fDiffVectorMeson[0][x-1][y-1][z-1][2] = 1;
-        }
-      }
-    }
+          fDiffVectorMeson[1][i][j][k][2] = fDiffVectorMeson[0][i][j][k][2] = 1;
   }
   else
   {
