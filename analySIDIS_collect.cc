@@ -1233,6 +1233,8 @@ int main(int argc, char **argv)
                                                     *pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2)))
                                                     : 0);
 
+            if(l==2) cout << fDiffVectorMeson[c][i][j][k][l] << " " << fBinning[i][j][k].tab[c][0][l] << " " << fAcceptance_weighted[i][j][k].tab[c][0][l] << " " << fMultiplicities[i][j][k].tab[c][0][l] << endl;
+
             if(fMultiplicities[i][j][k].tab[c][0][l]<=0 || fMultiplicities[i][j][k].tab[c][0][l]*0.9<fMultiplicities[i][j][k].tab[c][1][l])
             {
               fMultiplicities[i][j][k].tab[c][0][l] = 0 ;
