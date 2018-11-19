@@ -3263,14 +3263,14 @@ int main(int argc, char **argv)
   gPad->SetFillStyle(4000);
   sPR_y->Draw("PA");
   sPR_y->GetXaxis()->SetLimits(0.01,1.);
-  sPR_y->SetMinimum(0.08);
-  sPR_y->SetMaximum(0.2);
+  sPR_y->SetMinimum(0.);
+  sPR_y->SetMaximum(0.1);
   sPR_y->SetTitle("");
   sPR_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   sPR_y->GetXaxis()->SetNdivisions(304,kTRUE);
   sPR_y->GetYaxis()->SetNdivisions(304,kTRUE);
   sPR_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}}+#font[12]{M}^{#font[ 12]{#bar{p}}}");
-  c16->Range(0.1,0.08,0.9,0.2);
+  c16->Range(0.1,0.,0.9,0.1);
   gPad->SetLogx();
   c16->Update();
 
