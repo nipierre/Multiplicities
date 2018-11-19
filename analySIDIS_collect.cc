@@ -1641,7 +1641,7 @@ int main(int argc, char **argv)
               PR_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                if(c) PR_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}+ #font[ 12]{#delta}");
+                if(c) PR_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{p}}+ #font[ 12]{#delta}");
                 else PR_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{#bar{p}}}+ #font[ 12]{#delta}");
                 PR_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
               }
