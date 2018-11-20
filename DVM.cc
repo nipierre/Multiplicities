@@ -981,6 +981,8 @@ void Extraction(string pFilelist, int pType)
 
 void DVMCalc()
 {
+  double sigpi1, sigpi2, sigK1, sigK2;
+
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
@@ -1028,6 +1030,23 @@ void DVMCalc()
         fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
         fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1] ? fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]) : 0;
 
+        for(int c=0; c<2; c++)
+        {
+          fDVM_pi[c][i][j][k] = (1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
+          fDVM_K[c][i][j][k] = (1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
+
+          sigpi1 = pow(fDVM_h[i][j][k].tab[c][0][0],2)*(1/fRho_tot[c][0]+1/(fRho_tot[c][0]+fSIDIS_tot[c][0]));
+          sigpi2 = pow(fDVM_DIS_pi[i][j],2)*(1/fNDIS_evt_rho[i][j]+1/(fNDIS_evt_rho[i][j]+fNDIS_evt_SIDIS[i][j]))+pow(fDVM_DIS_K[i][j],2)*(1/fNDIS_evt_phi[i][j]+1/(fNDIS_evt_phi[i][j]+fNDIS_evt_SIDIS[i][j]));
+          sigK1 = pow(fDVM_h[i][j][k].tab[c][0][1],2)*(1/fPhi_tot[c][1]+1/(fPhi_tot[c][1]+fSIDIS_tot[c][1]));;
+          sigK2 = pow(fDVM_DIS_pi[i][j],2)*(1/fNDIS_evt_rho[i][j]+1/(fNDIS_evt_rho[i][j]+fNDIS_evt_SIDIS[i][j]))+pow(fDVM_DIS_K[i][j],2)*(1/fNDIS_evt_phi[i][j]+1/(fNDIS_evt_phi[i][j]+fNDIS_evt_SIDIS[i][j]));
+
+          fDVM_pi_err[c][i][j][k] = fDVM_pi[c][i][j][k] ? pow(fDVM_pi[c][i][j][k],2)*(sigpi1/pow(1-fDVM_h[i][j][k].tab[c][0][0],2)
+                                                                              +sigpi2/pow(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]),2)) : 0;
+                                                                            //  - sqrt(sigpi1*sigpi2)(1-fDVM_h[i][j][k].tab[c][0][0])/pow(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j],3);
+          fDVM_K_err[c][i][j][k] = fDVM_K[c][i][j][k] ? pow(fDVM_K[c][i][j][k],2)*(sigK1/pow(1-fDVM_h[i][j][k].tab[c][0][1],2)
+                                                                              +sigK2/pow(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]),2)) : 0;
+                                                                            //  - sqrt(sigK1*sigK2)(1-fDVM_h[i][j][k].tab[c][0][1])/pow(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j],3);
+        }
       }
     }
   }
@@ -1052,8 +1071,8 @@ void DVMSaver()
 
   std::vector<double> p_d[2][9][6];
   std::vector<double> k_d[2][9][6];
-  // std::vector<double> p_err[2][9][6];
-  // std::vector<double> k_err[2][9][6];
+  std::vector<double> p_err[2][9][6];
+  std::vector<double> k_err[2][9][6];
   std::vector<double> z_range_p[2][9][6];
   std::vector<double> z_range_k[2][9][6];
 
@@ -1073,18 +1092,18 @@ void DVMSaver()
       {
         for(int k=0; k<12; k++)
         {
-          p_d[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
-          k_d[c][i][j].push_back((1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) : 0);
-          // p_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][1]) : 0);
-          // k_err[c][i][j].push_back(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3] ? sqrt(fMultiplicities_zvtx[i][j][k][zv].tab[c][1][3]) : 0);
+          p_d[c][i][j].push_back(fDVM_pi[c][i][j][k]);
+          k_d[c][i][j].push_back(fDVM_K[c][i][j][k]);
+          p_err[c][i][j].push_back(sqrt(fDVM_pi_err[c][i][j][k]));
+          k_err[c][i][j].push_back(sqrt(fDVM_K_err[c][i][j][k]));
 
           z_range_p[c][i][j].push_back(z_range[k]);
           z_range_k[c][i][j].push_back(z_range[k]);
         }
         for(int k=12; k>0; k--)
         {
-          if(p_d[c][i][j][k-1]==1) {p_d[c][i][j].erase(p_d[c][i][j].begin()+k-1); /*p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
-          if(k_d[c][i][j][k-1]==1) {k_d[c][i][j].erase(k_d[c][i][j].begin()+k-1); /*k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
+          if(p_d[c][i][j][k-1]==1) {p_d[c][i][j].erase(p_d[c][i][j].begin()+k-1); p_err[c][i][j].erase(p_err[c][i][j].begin()+k-1); /*p_sys[c][i][j].erase(p_sys[c][i][j].begin()+k-1);*/ z_range_p[c][i][j].erase(z_range_p[c][i][j].begin()+k-1);}
+          if(k_d[c][i][j][k-1]==1) {k_d[c][i][j].erase(k_d[c][i][j].begin()+k-1); k_err[c][i][j].erase(k_err[c][i][j].begin()+k-1); /*k_sys[c][i][j].erase(k_sys[c][i][j].begin()+k-1);*/ z_range_k[c][i][j].erase(z_range_k[c][i][j].begin()+k-1);}
         }
 
         bool p_empty = 0;
@@ -1093,8 +1112,8 @@ void DVMSaver()
         if(!(Int_t(p_d[c][i][j].size()))) p_empty = 1;
         if(!(Int_t(k_d[c][i][j].size()))) k_empty = 1;
 
-        P_d[c][i][j] = new TGraphErrors(Int_t(p_d[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p_d[c][i][j][0]),0,0/*&(p_err[c][i][j][0])*/);
-        K_d[c][i][j] = new TGraphErrors(Int_t(k_d[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k_d[c][i][j][0]),0,0/*&(k_err[c][i][j][0])*/);
+        P_d[c][i][j] = new TGraphErrors(Int_t(p_d[c][i][j].size()),&(z_range_p[c][i][j][0]),&(p_d[c][i][j][0]),0,&(p_err[c][i][j][0]));
+        K_d[c][i][j] = new TGraphErrors(Int_t(k_d[c][i][j].size()),&(z_range_k[c][i][j][0]),&(k_d[c][i][j][0]),0,&(k_err[c][i][j][0]));
         // P_sys[c][i][j] = new TGraphAsymmErrors(Int_t(p_m[c][i][j].size()),&(z_range_p[c][i][j][0]), &p_yoffset[0], &errorx[0], &errorx[0], 0, &(p_sys[c][i][j][0]));
         // K_sys[c][i][j] = new TGraphAsymmErrors(Int_t(k_m[c][i][j].size()),&(z_range_k[c][i][j][0]), &k_yoffset[0], &errorx[0], &errorx[0], 0, &(k_sys[c][i][j][0]));
 
