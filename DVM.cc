@@ -877,8 +877,8 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[1][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
-              fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[1][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
+              fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
             }
           }
           else if(fId==3)
@@ -895,8 +895,8 @@ void Extraction(string pFilelist, int pType)
             }
             else if(pType==2)
             {
-              fPhi[xbin][ybin][zbin].tab[0][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
-              fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi[xbin][ybin][zbin].tab[0][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
+              fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
             }
           }
           else if(fId==4)
