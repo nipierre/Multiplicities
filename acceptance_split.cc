@@ -204,7 +204,7 @@ void create_kin_plots()
   fKinematicsMC[3] = new TH1F("z MC", "z MC", 100, 0, 1);
   fKinematicsMC[4] = new TH1F("W MC", "W MC", 100, 2, 18);
   fKinematicsMC[5] = new TH1F("#nu MC", "#nu MC", 100, 0, 160);
-  fKinematicsMC[6] = new TH1F("E_{#mu,MC}", "E_{#mu,MC}", 100, 140, 180);
+  fKinematicsMC[6] = new TH1F("E_{#mu,MC}", "E_{#mu,MC}", 1000, 140, 180);
   fKinematics2DMC = new TH2F("DIS kin space MC", "DIS kin space MC", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2DMC = new TH2F("Target xy MC", "Target xy MC", 100, -3, 3, 100, -3, 3);
   fVertexHadronMC[0] = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
@@ -2148,7 +2148,7 @@ int main(int argc, char **argv)
               zMCrec[0][3].insert(pair<int,Double_t>(int(MC_recHadIdx->GetLeaf("MCHadrons.recHadIdx")->GetValue(i)),zBj_MC));
               fMCHminus++;
               fGnrt[xbin_MC][ybin_MC][zbin].tab[0][0][3] += 1;
-              fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][3] += 1; 
+              fGnrt_zvtx[xbin_MC][ybin_MC][zbin][zlabbin_MC].tab[0][0][3] += 1;
             }
             else
             {}
