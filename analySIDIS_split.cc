@@ -415,6 +415,30 @@ void load_rich_mat_2006(string prich, string prich_err)
     inv_rich_p[1][i] = rich_mat_p[1][i].InvertFast();
     inv_rich_m[0][i] = rich_mat_m[0][i].InvertFast();
     inv_rich_m[1][i] = rich_mat_m[1][i].InvertFast();
+
+    cout << inv_rich_p[0][i][0][0] << " " << inv_rich_p[0][i][0][1] << " " << inv_rich_p[0][i][0][2] << endl;
+    cout << inv_rich_p[0][i][1][0] << " " << inv_rich_p[0][i][1][1] << " " << inv_rich_p[0][i][1][2] << endl;
+    cout << inv_rich_p[0][i][2][0] << " " << inv_rich_p[0][i][2][1] << " " << inv_rich_p[0][i][2][2] << endl;
+
+    cout << endl;
+
+    cout << inv_rich_p[1][i][0][0] << " " << inv_rich_p[1][i][0][1] << " " << inv_rich_p[1][i][0][2] << endl;
+    cout << inv_rich_p[1][i][1][0] << " " << inv_rich_p[1][i][1][1] << " " << inv_rich_p[1][i][1][2] << endl;
+    cout << inv_rich_p[1][i][2][0] << " " << inv_rich_p[1][i][2][1] << " " << inv_rich_p[1][i][2][2] << endl;
+
+    cout << endl;
+
+    cout << inv_rich_m[0][i][0][0] << " " << inv_rich_m[0][i][0][1] << " " << inv_rich_m[0][i][0][2] << endl;
+    cout << inv_rich_m[0][i][1][0] << " " << inv_rich_m[0][i][1][1] << " " << inv_rich_m[0][i][1][2] << endl;
+    cout << inv_rich_m[0][i][2][0] << " " << inv_rich_m[0][i][2][1] << " " << inv_rich_m[0][i][2][2] << endl;
+
+    cout << endl;
+
+    cout << inv_rich_m[1][i][0][0] << " " << inv_rich_m[1][i][0][1] << " " << inv_rich_m[1][i][0][2] << endl;
+    cout << inv_rich_m[1][i][1][0] << " " << inv_rich_m[1][i][1][1] << " " << inv_rich_m[1][i][1][2] << endl;
+    cout << inv_rich_m[1][i][2][0] << " " << inv_rich_m[1][i][2][1] << " " << inv_rich_m[1][i][2][2] << endl;
+
+    cout << endl;
   }
 
   // Errors YODO
@@ -1156,8 +1180,8 @@ int main(int argc, char **argv)
 
   if(kin_flag) create_kin_plots();
 
-  if(Y2006 || Y2012) load_rich_mat_2006(mat_RICH_2006_name, err_RICH_name);
-  if(Y2016) load_rich_mat_2016(mat_RICH_2016_name, err_RICH_name);
+  /*if(Y2006 || Y2012)*/ load_rich_mat_2006(mat_RICH_2006_name, err_RICH_name);
+  // if(Y2016) load_rich_mat_2016(mat_RICH_2016_name, err_RICH_name);
 
   //cout << pi_sigma_uni[0][0] << " " << pi_sigma_uni[1][1] << " " << pi_sigma_uni[2][2] << endl;
 
