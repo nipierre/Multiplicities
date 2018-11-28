@@ -416,9 +416,21 @@ void load_rich_mat_2006(string prich, string prich_err)
     inv_rich_m[0][i] = rich_mat_m[0][i].InvertFast();
     inv_rich_m[1][i] = rich_mat_m[1][i].InvertFast();
 
+    cout << rich_mat_p[0][i][0][0] << " " << rich_mat_p[0][i][0][1] << " " << rich_mat_p[0][i][0][2] << endl;
+    cout << rich_mat_p[0][i][1][0] << " " << rich_mat_p[0][i][1][1] << " " << rich_mat_p[0][i][1][2] << endl;
+    cout << rich_mat_p[0][i][2][0] << " " << rich_mat_p[0][i][2][1] << " " << rich_mat_p[0][i][2][2] << endl;
+
+    cout << endl;
+
     cout << inv_rich_p[0][i][0][0] << " " << inv_rich_p[0][i][0][1] << " " << inv_rich_p[0][i][0][2] << endl;
     cout << inv_rich_p[0][i][1][0] << " " << inv_rich_p[0][i][1][1] << " " << inv_rich_p[0][i][1][2] << endl;
     cout << inv_rich_p[0][i][2][0] << " " << inv_rich_p[0][i][2][1] << " " << inv_rich_p[0][i][2][2] << endl;
+
+    cout << endl;
+
+    cout << rich_mat_p[1][i][0][0] << " " << rich_mat_p[1][i][0][1] << " " << rich_mat_p[1][i][0][2] << endl;
+    cout << rich_mat_p[1][i][1][0] << " " << rich_mat_p[1][i][1][1] << " " << rich_mat_p[1][i][1][2] << endl;
+    cout << rich_mat_p[1][i][2][0] << " " << rich_mat_p[1][i][2][1] << " " << rich_mat_p[1][i][2][2] << endl;
 
     cout << endl;
 
@@ -428,9 +440,21 @@ void load_rich_mat_2006(string prich, string prich_err)
 
     cout << endl;
 
+    cout << rich_mat_m[0][i][0][0] << " " << rich_mat_m[0][i][0][1] << " " << rich_mat_m[0][i][0][2] << endl;
+    cout << rich_mat_m[0][i][1][0] << " " << rich_mat_m[0][i][1][1] << " " << rich_mat_m[0][i][1][2] << endl;
+    cout << rich_mat_m[0][i][2][0] << " " << rich_mat_m[0][i][2][1] << " " << rich_mat_m[0][i][2][2] << endl;
+
+    cout << endl;
+
     cout << inv_rich_m[0][i][0][0] << " " << inv_rich_m[0][i][0][1] << " " << inv_rich_m[0][i][0][2] << endl;
     cout << inv_rich_m[0][i][1][0] << " " << inv_rich_m[0][i][1][1] << " " << inv_rich_m[0][i][1][2] << endl;
     cout << inv_rich_m[0][i][2][0] << " " << inv_rich_m[0][i][2][1] << " " << inv_rich_m[0][i][2][2] << endl;
+
+    cout << endl;
+
+    cout << rich_mat_m[1][i][0][0] << " " << rich_mat_m[1][i][0][1] << " " << rich_mat_m[1][i][0][2] << endl;
+    cout << rich_mat_m[1][i][1][0] << " " << rich_mat_m[1][i][1][1] << " " << rich_mat_m[1][i][1][2] << endl;
+    cout << rich_mat_m[1][i][2][0] << " " << rich_mat_m[1][i][2][1] << " " << rich_mat_m[1][i][2][2] << endl;
 
     cout << endl;
 
