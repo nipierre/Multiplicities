@@ -62,6 +62,7 @@ vector<Double_t> fWBj;
 vector<Double_t> fWBjkin;
 vector<Double_t> fNu;
 vector<Double_t> fMu;
+vector<Double_t> fMu0Cov;
 vector<Double_t> fNukin;
 
 vector<Double_t> fQ2_MC;
