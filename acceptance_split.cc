@@ -165,7 +165,7 @@ void create_kin_plots()
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics[6] = new TH1F("E_{#mu}", "E_{#mu}", 100, 159.5, 160.5);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
-  fBeamCovariance = new TH2F("Beam Covariance", "Beam Covariance", 100, 159.5, 160.5, 100, 0, 1*pow(10,-1));
+  fBeamCovariance = new TH2F("Beam Covariance", "Beam Covariance", 100, 159.5, 160.5, 100, 0, 1*pow(10,-9));
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHM04 = new TH2F("HM04Y1", "HM04Y1", 100, 0, 120, 100, -60, 60);
   fHM05 = new TH2F("HM05Y1", "HM05Y1", 100, 0, 120, 100, -60, 60);
