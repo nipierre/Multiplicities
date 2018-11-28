@@ -163,7 +163,7 @@ void create_kin_plots()
   fKinematics[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
-  fKinematics[6] = new TH1F("E_{#mu}", "E_{#mu}", 100, 155, 165);
+  fKinematics[6] = new TH1F("E_{#mu}", "E_{#mu}", 100, 159.5, 160.5);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHM04 = new TH2F("HM04Y1", "HM04Y1", 100, 0, 120, 100, -60, 60);
@@ -204,7 +204,7 @@ void create_kin_plots()
   fKinematicsMC[3] = new TH1F("z MC", "z MC", 100, 0, 1);
   fKinematicsMC[4] = new TH1F("W MC", "W MC", 100, 2, 18);
   fKinematicsMC[5] = new TH1F("#nu MC", "#nu MC", 100, 0, 160);
-  fKinematicsMC[6] = new TH1F("E_{#mu,MC}", "E_{#mu,MC}", 100, 155, 165);
+  fKinematicsMC[6] = new TH1F("E_{#mu,MC}", "E_{#mu,MC}", 100, 159.5, 160.5);
   fKinematics2DMC = new TH2F("DIS kin space MC", "DIS kin space MC", 100, -3, 0, 100, 0.1, 0.7);
   fTarget2DMC = new TH2F("Target xy MC", "Target xy MC", 100, -3, 3, 100, -3, 3);
   fVertexHadronMC[0] = new TH1F("Vertex Hadron+e MC", "Vertex Hadron+e MC", 50, -325, -71);
