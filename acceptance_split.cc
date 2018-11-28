@@ -165,6 +165,7 @@ void create_kin_plots()
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
   fKinematics[6] = new TH1F("E_{#mu}", "E_{#mu}", 100, 159.5, 160.5);
   fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0.1, 0.7);
+  fBeamCovariance = new TH2F("Beam Covariance", "Beam Covariance", 100, 159.5, 160.5, 100, -pow(10,-7), pow(10,-7));
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHM04 = new TH2F("HM04Y1", "HM04Y1", 100, 0, 120, 100, -60, 60);
   fHM05 = new TH2F("HM05Y1", "HM05Y1", 100, 0, 120, 100, -60, 60);
@@ -259,6 +260,7 @@ void save_kin_plots()
   c41.Divide(1,1);
   c42.Divide(1,1);
   c43.Divide(2,2);
+  c44.Divide(1,1);
   c1.cd(1);
   fKinematics[0]->Draw();
   gPad->SetLogx();
@@ -621,6 +623,10 @@ void save_kin_plots()
   fVertexStudyMC2D[2]->Draw("COLZ");
   c43.Update();
 
+  c44.cd(1);
+  fBeamCovariance->Draw("COLZ");
+  c44.Update();
+
   c1.Print("kinMC.pdf(","pdf");
   c2.Print("kinMC.pdf","pdf");
   c3.Print("kinMC.pdf","pdf");
@@ -653,6 +659,7 @@ void save_kin_plots()
   c38.Print("kinMC.pdf","pdf");
   c39.Print("kinMC.pdf","pdf");
   c40.Print("kinMC.pdf","pdf");
+  c44.Print("kinMC.pdf","pdf");
 
   c18.Divide(1,1);
   c19.Divide(1,1);
@@ -826,6 +833,7 @@ int main(int argc, char **argv)
       TBranch *p1y = (TBranch*) tree->FindBranch("p1y");
       TBranch *p1z = (TBranch*) tree->FindBranch("p1z");
       TBranch *E_beam = (TBranch*) tree->FindBranch("E_beam");
+      TBranch *Mu0Cov = (TBranch*) tree->FindBranch("Mu0Cov");
       TBranch *E_mu_prim = (TBranch*) tree->FindBranch("E_mu_prim");
       TBranch *Charge = (TBranch*) tree->FindBranch("Charge");
       TBranch *XX0 = (TBranch*) tree->FindBranch("XX0");
@@ -963,6 +971,7 @@ int main(int argc, char **argv)
         p1y->GetEntry(ip);
         p1z->GetEntry(ip);
         E_beam->GetEntry(ip);
+        Mu0Cov->GetEntry(ip);
         E_mu_prim->GetEntry(ip);
         Charge->GetEntry(ip);
         XX0->GetEntry(ip);
@@ -1576,6 +1585,7 @@ int main(int argc, char **argv)
             fWBjkin.push_back(sqrt(wBj));
             fNukin.push_back(nu);
             fMu.push_back(E_beam->GetLeaf("E_beam")->GetValue());
+            fMu0Cov.push_back(Mu0Cov->GetLeaf("Mu0Cov")->GetValue());
             fX.push_back(x->GetLeaf("x")->GetValue());
             fY.push_back(y->GetLeaf("y")->GetValue());
 
@@ -2906,6 +2916,7 @@ int main(int argc, char **argv)
       fKinematicsMC[4]->Fill(fWBjkinMC[i]);
       fKinematicsMC[5]->Fill(fNukinMC[i]);
       fKinematicsMC[6]->Fill(fMuMC[i]);
+      fBeamCovariance->Fill(fMuMC[i],fMu0Cov[i]);
       fKinematics2DMC->Fill(fXBjkinMC[i],fYBjkinMC[i]);
       fTarget2DMC->Fill(fXMC[i],fYMC[i]);
 

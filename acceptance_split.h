@@ -222,6 +222,7 @@ Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
 
 TH1F* fKinematics[7];
 TH2F* fKinematics2D;
+TH2F* fBeamCovariance;
 TH2F* fHM04;
 TH2F* fHM05;
 TH2F* fHL04;
@@ -286,6 +287,7 @@ TCanvas c40("E_{#mu}","E_{#mu}",3200,1600);
 TCanvas c41("Trigger_Coverage","Trigger_Coverage",3200,1600);
 TCanvas c42("Vertex Hadron+e","Vertex Hadron+e",3200,1600);
 TCanvas c43("Vertex MC","Vertex MC",1200,1200);
+TCanvas c44("Beam Covariance","Beam Covariance",1200,1200);
 
 TH1F* fKinematicsMC[7];
 TH2F* fKinematics2DMC;
