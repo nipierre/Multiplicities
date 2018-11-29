@@ -928,6 +928,8 @@ int main(int argc, char **argv)
       TBranch *MC_xTr = (TBranch*) tree->FindBranch("MC_xTr");
       TBranch *MC_TCx = (TBranch*) tree->FindBranch("MC_TCx");
       TBranch *MC_TCy = (TBranch*) tree->FindBranch("MC_TCy");
+      TBranch *inTargetMC = (TBranch*) tree->FindBranch("inTargetMC");
+      TBranch *cellsCrossedMC = (TBranch*) tree->FindBranch("cellsCrossedMC");
 
       //MCHadrons
       TBranch *MC_p = (TBranch*) tree->FindBranch("MCHadrons.P");
@@ -1066,6 +1068,8 @@ int main(int argc, char **argv)
         MC_xTr->GetEntry(ip);
         MC_TCx->GetEntry(ip);
         MC_TCy->GetEntry(ip);
+        inTargetMC->GetEntry(ip);
+        cellsCrossedMC->GetEntry(ip);
 
         //MCHadrons
         MC_p->GetEntry(ip);
@@ -1405,7 +1409,8 @@ int main(int argc, char **argv)
               else if(Y2016)
               {
                 if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())
-                    && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+                    && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)
+                    && inTargetMC->GetLeaf("inTargetMC")->GetValue())
                 {
                   fTarg++;
 
@@ -1414,7 +1419,7 @@ int main(int argc, char **argv)
                     fMuchi2++;
 
                     // Cells crossing
-                    if((cellsCrossed->GetLeaf("cellsCrossed")->GetValue()))
+                    if((cellsCrossed->GetLeaf("cellsCrossed")->GetValue()) && cellsCrossedMC->GetLeaf("cellsCrossedMC")->GetValue())
                     {
                       fCell++;
 
