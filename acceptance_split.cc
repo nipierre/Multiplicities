@@ -2871,6 +2871,7 @@ int main(int argc, char **argv)
       fKinematics[5]->Fill(fNukin[i]);
       fKinematics[6]->Fill(fMu[i]);
       fKinematics2D->Fill(fXBjkin[i],fYBjkin[i]);
+      fBeamCovariance->Fill(fMu[i],fMu0Cov[i]);
       fTarget2D->Fill(fX[i],fY[i]);
     }
     for(int i=0; i<int(fHM04x.size()); i++)
@@ -2921,7 +2922,6 @@ int main(int argc, char **argv)
       fKinematicsMC[4]->Fill(fWBjkinMC[i]);
       fKinematicsMC[5]->Fill(fNukinMC[i]);
       fKinematicsMC[6]->Fill(fMuMC[i]);
-      fBeamCovariance->Fill(fMuMC[i],fMu0Cov[i]);
       fKinematics2DMC->Fill(fXBjkinMC[i],fYBjkinMC[i]);
       fTarget2DMC->Fill(fXMC[i],fYMC[i]);
 
