@@ -943,6 +943,23 @@ void BinLogX(TH1*h)
    delete new_bins;
 }
 
+void BinLogY(TH1*h)
+{
+   TAxis *axis = h->GetYaxis();
+   int bins = axis->GetNbins();
+
+   Axis_t from = axis->GetXmin();
+   Axis_t to = axis->GetXmax();
+   Axis_t width = (to - from) / bins;
+   Axis_t *new_bins = new Axis_t[bins + 1];
+
+   for (int i = 0; i <= bins; i++) {
+     new_bins[i] = pow(10, from + i * width);
+   }
+   axis->Set(bins, new_bins);
+   delete new_bins;
+}
+
 void create_kin_plots()
 {
   fKinematics[0] = new TH1F("Q^{2}", "Q^{2}", 100, 0, 2);
@@ -951,7 +968,8 @@ void create_kin_plots()
   fKinematics[3] = new TH1F("z", "z", 100, 0, 1);
   fKinematics[4] = new TH1F("W", "W", 100, 2, 18);
   fKinematics[5] = new TH1F("#nu", "#nu", 100, 0, 160);
-  fKinematics2D = new TH2F("DIS kin space", "DIS kin space", 100, -3, 0, 100, 0, 0.9);
+  fKinematics2D[0] = new TH2F("DIS kin space (x,y)", "DIS kin space (x,y)", 300, -3, 0, 300, 0, 0.9);
+  fKinematics2D[1] = new TH2F("DIS kin space (x,Q2)", "DIS kin space (x,Q2)", 300, -3, 0, 300, -0.097, 2);
   fKinematicsRICH = new TH2F("RICH spectrum", "RICH spectrum", 500, 0, 60, 500, 20, 60);
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
@@ -980,7 +998,11 @@ void create_kin_plots()
   fPk[1] = new TH1F("p_{h}2","p_{h}2", 200, 0, 80);
   BinLogX(fKinematics[0]);
   BinLogX(fKinematics[1]);
-  BinLogX(fKinematics2D);
+  BinLogX(fKinematics2D[0]);
+  fKinematics2D[0]->SetStats(0);
+  BinLogX(fKinematics2D[1]);
+  BinLogY(fKinematics2D[1]);
+  fKinematics2D[1]->SetStats(0);
   BinLogX(fQ2k[0]);
   BinLogX(fQ2k[1]);
 }
@@ -994,6 +1016,7 @@ void save_kin_plots()
   c5.Divide(1,1);
   c6.Divide(1,1);
   c7.Divide(1,1);
+  c71.Divide(1,1);
   c8.Divide(1,1);
   c9.Divide(1,1);
   c10.Divide(1,1);
@@ -1023,9 +1046,15 @@ void save_kin_plots()
   fKinematics[5]->Draw();
   c6.Update();
   c7.cd(1);
-  fKinematics2D->Draw("COLZ");
+  fKinematics2D[0]->Draw("COLZ");
   gPad->SetLogx();
   c7.Update();
+  c71.cd(1);
+  fKinematics2D[1]->Draw("COLZ");
+  gPad->SetLogx();
+  gPad->SetLogy();
+  gPad->SetLogz();
+  c71.Update();
   c8.cd(1);
   fTarget2D->Draw("COLZ");
   c8.Update();
@@ -1136,6 +1165,7 @@ void save_kin_plots()
   c5.Print("kinSIDIS.pdf","pdf");
   c6.Print("kinSIDIS.pdf","pdf");
   c7.Print("kinSIDIS.pdf","pdf");
+  c71.Print("kinSIDIS.pdf","pdf");
   c8.Print("kinSIDIS.pdf","pdf");
   c9.Print("kinSIDIS.pdf","pdf");
   c10.Print("kinSIDIS.pdf","pdf");
@@ -3291,7 +3321,8 @@ int main(int argc, char **argv)
       fKinematics[2]->Fill(fYBjkin[i]);
       fKinematics[4]->Fill(fWBjkin[i]);
       fKinematics[5]->Fill(fNukin[i]);
-      fKinematics2D->Fill(fXBjkin[i],fYBjkin[i]);
+      fKinematics2D[0]->Fill(fXBjkin[i],fYBjkin[i]);
+      fKinematics2D[1]->Fill(fXBjkin[i],fQ2kin[i]);
       fTarget2D->Fill(fX[i],fY[i]);
       fHO03->Fill(fHO03x[i],fHO03y[i]);
       fHO04->Fill(fHO04x[i],fHO04y[i]);
