@@ -96,6 +96,7 @@ void PionExtractionDeut(string pf1, string pf2)
 
   for(int i=0; i<9 ; i++) //x
   {
+    int flag=0;
     for(int j=0; j<5 ; j++) //y
     {
       for(int k=0; k<12 ; k++) //z
@@ -129,7 +130,11 @@ void PionExtractionDeut(string pf1, string pf2)
 
         ofs_D << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
         << " " << fDunf[i][j][k] << endl;
-        if(j==0 && k==0) ofs_PDF << fX[i][j][k] << " " << fQ2[i][j][k] << " " << u << " " << ub << " " << d << " " << db << " " << s << " " << sb << endl;
+        if(!flag)
+        {
+          ofs_PDF << fX[i][j][k] << " " << fQ2[i][j][k] << " " << u << " " << ub << " " << d << " " << db << " " << s << " " << sb << endl;
+          flag=1;
+        }
       }
     }
   }
