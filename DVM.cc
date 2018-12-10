@@ -1085,8 +1085,8 @@ void DVMCalc()
           sigK = pow(fDVM_h[i][j][k].tab[c][0][1],2)*(1/fPhi_raw[i][j][k].tab[c][0][1]+1/(fPhi_raw[i][j][k].tab[c][0][1]+fSIDIS[i][j][k].tab[c][0][1]));
           sigDIS = pow(fDVM_DIS_pi[i][j],2)*(1/fNDIS_evt_rho_raw[i][j]+1/(fNDIS_evt_rho_raw[i][j]+fNDIS_evt_SIDIS[i][j]))+pow(fDVM_DIS_K[i][j],2)*(1/fNDIS_evt_phi_raw[i][j]+1/(fNDIS_evt_phi_raw[i][j]+fNDIS_evt_SIDIS[i][j]));
 
-          fDVM_pi_err[c][i][j][k] = fDVM_pi[c][i][j][k] ? pow(1/(1-fDVM_DIS_pi[i][j],2)*sigpi + pow(1-fDVM_h[i][j][k].tab[c][0][0])/pow(1-fDVM_DIS_pi[i][j],4)*sigDIS : 0;
-          fDVM_K_err[c][i][j][k] = fDVM_K[c][i][j][k] ?  pow(1/(1-fDVM_DIS_K[i][j],2)*sigpi + pow(1-fDVM_h[i][j][k].tab[c][0][1])/pow(1-fDVM_DIS_K[i][j],4)*sigDIS : 0;
+          fDVM_pi_err[c][i][j][k] = fDVM_pi[c][i][j][k] ? pow(1/(1-fDVM_DIS_pi[i][j]),2)*sigpi + pow(1-fDVM_h[i][j][k].tab[c][0][0],2)/pow(1-fDVM_DIS_pi[i][j],4)*sigDIS : 0;
+          fDVM_K_err[c][i][j][k] = fDVM_K[c][i][j][k] ?  pow(1/(1-fDVM_DIS_K[i][j]),2)*sigpi + pow(1-fDVM_h[i][j][k].tab[c][0][1],2)/pow(1-fDVM_DIS_K[i][j],4)*sigDIS : 0;
 
         }
       }
