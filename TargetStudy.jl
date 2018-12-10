@@ -11,7 +11,7 @@ x_mc = target_mc[:,8]
 y_mc = target_mc[:,9]
 z_mc = target_mc[:,1]
 
-Rd = 2
+Rd = 1.9
 Rmc = 2
 d = y_data - y_mc
 sizeData = size(y_data)
@@ -54,12 +54,12 @@ end
 # plot(p1,p2,lw=3,title="Lost volume in intersection (%)")
 plot(zred,slice_diff, lw=3,
                       xlabel = "z",
-                      ylabel = "%",
-                      label="Residual volume in intersection (%)")
+                      ylabel = "Residual Volume / Total Volume",
+                      label="Residual Volume / Total Volume in intersection")
 plot!(zred,slice_cum, lw=3,
                       xlabel = "z",
-                      ylabel = "%",
-                      label="Cumulated residual volume in intersection (%)")
+                      ylabel = "Residual Volume / Total Volume",
+                      label="Cumulated Residual Volume / Total Volume in intersection")
 savefig("myplot.png")
 plot(z_data,y_data, ribbon = (Rd,Rd),
                     fillalpha = 0.3,
