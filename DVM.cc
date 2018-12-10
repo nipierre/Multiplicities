@@ -1017,7 +1017,7 @@ void Extraction(string pFilelist, int pType)
 
 void DVMCalc()
 {
-  double sigpi1, sigpi2, sigK1, sigK2;
+  double sigpi, sigK, sigDIS;
 
   for(int i=0; i<9; i++)
   {
