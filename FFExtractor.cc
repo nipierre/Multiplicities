@@ -129,9 +129,9 @@ void PionExtractionDeut(string pf1, string pf2)
 
         ofs_D << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
         << " " << fDunf[i][j][k] << endl;
+        if(j==0 && k==0) ofs_PDF << fX[i][j][k] << " " << fQ2[i][j][k] << " " << u << " " << ub << " " << d << " " << db << " " << s << " " << sb << endl;
       }
     }
-    ofs_PDF << fX[i][j][k] << " " << fQ2[i][j][k] << " " << u << " " << ub << " " << d << " " << db << " " << s << " " << sb << endl;
   }
   ofs_D.close();
   ofs_PDF.close();
