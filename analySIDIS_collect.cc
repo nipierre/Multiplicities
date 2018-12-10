@@ -31,7 +31,7 @@
 #define SIRC 1
 #define NO_ACC 0
 #define YMULT 2 // 1: Mean, 2: Weighted Mean, 3: Integration (1 y-bin)
-#define STAGGERED 0
+#define STAGGERED 1
 
 using namespace std;
 

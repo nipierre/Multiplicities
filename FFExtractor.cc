@@ -89,6 +89,7 @@ void PionExtractionDeut(string pf1, string pf2)
   const LHAPDF::PDF* basepdf = LHAPDF::mkPDF(fLHGrid);
   const LHAPDF::GridPDF& pdf = * dynamic_cast<const LHAPDF::GridPDF*>(basepdf);
   ofstream ofs_D("Pi_FF_deut.txt", std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_PDF("MSTW2008lo68cl.txt", std::ofstream::out | std::ofstream::trunc);
 
   readDataFile(pf1,fPip_d,1);
   readDataFile(pf2,fPim_d);
@@ -128,10 +129,12 @@ void PionExtractionDeut(string pf1, string pf2)
 
         ofs_D << fX[i][j][k] << " " << fY[i][j][k] << " " << fQ2[i][j][k] << " " << fZ[i][j][k] << " " << fDfav[i][j][k]
         << " " << fDunf[i][j][k] << endl;
+        ofs_PDF << fX[i][j][k] << " " << fQ2[i][j][k] << " " << u << " " << ub << " " << d << " " << db << " " << s << " " << sb << endl;
       }
     }
   }
   ofs_D.close();
+  ofs_PDF.close();
 }
 
 void PionExtractionProt(string pf1, string pf2)
