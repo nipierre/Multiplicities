@@ -711,8 +711,16 @@ void Extraction(string pFilelist, int pType)
       if(fAllDISflag)
       {
         if(pType==0) fNDIS_evt_SIDIS[xbin][ybin]++;
-        else if(pType==1) fNDIS_evt_rho[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
-        else if(pType==2) fNDIS_evt_phi[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+        else if(pType==1)
+        {
+          fNDIS_evt_rho[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+          fNDIS_evt_rho_raw[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+        }
+        else if(pType==2)
+        {
+          fNDIS_evt_phi[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+          fNDIS_evt_phi_raw[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+        }
 
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
         {
@@ -838,11 +846,15 @@ void Extraction(string pFilelist, int pType)
             {
               fRho[xbin][ybin][zbin].tab[1][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[1][0][0] += 1;
+              fRho_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[1][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi_raw[xbin][ybin][zbin].tab[1][0][0] += 1;
+              fPhi_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
           }
           else if(fId==1)
@@ -856,11 +868,15 @@ void Extraction(string pFilelist, int pType)
             {
               fRho[xbin][ybin][zbin].tab[0][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[0][0][0] += 1;
+              fRho_raw[xbin][ybin][zbin].tab[0][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[0][0][0] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi_raw[xbin][ybin][zbin].tab[0][0][0] += 1;
+              fPhi_raw[xbin][ybin][zbin].tab[0][0][3] += 1;
             }
           }
           else if(fId==2)
@@ -874,11 +890,15 @@ void Extraction(string pFilelist, int pType)
             {
               fRho[xbin][ybin][zbin].tab[1][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[1][0][1] += 1;
+              fRho_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[1][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
               fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
+              fPhi_raw[xbin][ybin][zbin].tab[1][0][1] += 1;
+              fPhi_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
           }
           else if(fId==3)
@@ -892,11 +912,15 @@ void Extraction(string pFilelist, int pType)
             {
               fRho[xbin][ybin][zbin].tab[0][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[0][0][1] += 1;
+              fRho_raw[xbin][ybin][zbin].tab[0][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[0][0][1] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
               fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue()/2;
+              fPhi_raw[xbin][ybin][zbin].tab[0][0][1] += 1;
+              fPhi_raw[xbin][ybin][zbin].tab[0][0][3] += 1;
             }
           }
           else if(fId==4)
@@ -910,11 +934,15 @@ void Extraction(string pFilelist, int pType)
             {
               fRho[xbin][ybin][zbin].tab[1][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[1][0][2] += 1;
+              fRho_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[1][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi_raw[xbin][ybin][zbin].tab[1][0][2] += 1;
+              fPhi_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
           }
           else if(fId==5)
@@ -928,11 +956,15 @@ void Extraction(string pFilelist, int pType)
             {
               fRho[xbin][ybin][zbin].tab[0][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[0][0][2] += 1;
+              fRho_raw[xbin][ybin][zbin].tab[0][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[0][0][2] += mcWeight->GetLeaf("mcWeight")->GetValue();
               fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi_raw[xbin][ybin][zbin].tab[0][0][2] += 1;
+              fPhi_raw[xbin][ybin][zbin].tab[0][0][3] += 1;
             }
           }
           else if(fId==6)
@@ -944,10 +976,12 @@ void Extraction(string pFilelist, int pType)
             else if(pType==1)
             {
               fRho[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[1][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi_raw[xbin][ybin][zbin].tab[1][0][3] += 1;
             }
           }
           else if(fId==7)
@@ -959,10 +993,12 @@ void Extraction(string pFilelist, int pType)
             else if(pType==1)
             {
               fRho[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fRho_raw[xbin][ybin][zbin].tab[0][0][3] += 1;
             }
             else if(pType==2)
             {
               fPhi[xbin][ybin][zbin].tab[0][0][3] += mcWeight->GetLeaf("mcWeight")->GetValue();
+              fPhi_raw[xbin][ybin][zbin].tab[0][0][3] += 1 ;
             }
           }
           else
@@ -990,6 +1026,8 @@ void DVMCalc()
       // fNDIS_evt_SIDIS[i][j] /= SIDIS_WEIGHT/SIDIS_XS;
       fNDIS_evt_rho[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
       fNDIS_evt_phi[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+      fNDIS_evt_rho_raw[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+      fNDIS_evt_phi_raw[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
       fDVM_DIS_pi[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_rho[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
       fDVM_DIS_K[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_phi[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
       fNDIS_SIDIS_tot += fNDIS_evt_SIDIS[i][j];
@@ -1013,6 +1051,10 @@ void DVMCalc()
         fRho[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
         fRho[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
         fRho[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
         fRho_tot[1][0] += fRho[i][j][k].tab[1][0][0];
         fRho_tot[0][0] += fRho[i][j][k].tab[0][0][0];
         fRho_tot[1][3] += fRho[i][j][k].tab[1][0][3];
@@ -1021,6 +1063,10 @@ void DVMCalc()
         fPhi[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
         fPhi[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
         fPhi[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
         fPhi_tot[1][1] += fPhi[i][j][k].tab[1][0][1];
         fPhi_tot[0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot[1][3] += fPhi[i][j][k].tab[1][0][3];
@@ -1035,17 +1081,13 @@ void DVMCalc()
           fDVM_pi[c][i][j][k] = (1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
           fDVM_K[c][i][j][k] = (1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
 
-          sigpi1 = pow(fDVM_h[i][j][k].tab[c][0][0],2)*(1/fRho_tot[c][0]+1/(fRho_tot[c][0]+fSIDIS_tot[c][0]));
-          sigpi2 = pow(fDVM_DIS_pi[i][j],2)*(1/fNDIS_evt_rho[i][j]+1/(fNDIS_evt_rho[i][j]+fNDIS_evt_SIDIS[i][j]))+pow(fDVM_DIS_K[i][j],2)*(1/fNDIS_evt_phi[i][j]+1/(fNDIS_evt_phi[i][j]+fNDIS_evt_SIDIS[i][j]));
-          sigK1 = pow(fDVM_h[i][j][k].tab[c][0][1],2)*(1/fPhi_tot[c][1]+1/(fPhi_tot[c][1]+fSIDIS_tot[c][1]));;
-          sigK2 = pow(fDVM_DIS_pi[i][j],2)*(1/fNDIS_evt_rho[i][j]+1/(fNDIS_evt_rho[i][j]+fNDIS_evt_SIDIS[i][j]))+pow(fDVM_DIS_K[i][j],2)*(1/fNDIS_evt_phi[i][j]+1/(fNDIS_evt_phi[i][j]+fNDIS_evt_SIDIS[i][j]));
+          sigpi = pow(fDVM_h[i][j][k].tab[c][0][0],2)*(1/fRho_raw[i][j][k].tab[c][0][0]+1/(fRho_raw[i][j][k].tab[c][0][0]+fSIDIS_tot[i][j][k].tab[c][0][0]));
+          sigK = pow(fDVM_h[i][j][k].tab[c][0][1],2)*(1/fPhi_raw[i][j][k].tab[c][0][1]+1/(fPhi_raw[i][j][k].tab[c][0][1]+fSIDIS_tot[i][j][k].tab[c][0][1]));
+          sigDIS = pow(fDVM_DIS_pi[i][j],2)*(1/fNDIS_evt_rho_raw[i][j]+1/(fNDIS_evt_rho_raw[i][j]+fNDIS_evt_SIDIS[i][j]))+pow(fDVM_DIS_K[i][j],2)*(1/fNDIS_evt_phi_raw[i][j]+1/(fNDIS_evt_phi_raw[i][j]+fNDIS_evt_SIDIS[i][j]));
 
-          fDVM_pi_err[c][i][j][k] = fDVM_pi[c][i][j][k] ? pow(fDVM_pi[c][i][j][k],2)*(sigpi1/pow(1-fDVM_h[i][j][k].tab[c][0][0],2)
-                                                                              +sigpi2/pow(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]),2)) : 0;
-                                                                            //  - sqrt(sigpi1*sigpi2)(1-fDVM_h[i][j][k].tab[c][0][0])/pow(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j],3);
-          fDVM_K_err[c][i][j][k] = fDVM_K[c][i][j][k] ? pow(fDVM_K[c][i][j][k],2)*(sigK1/pow(1-fDVM_h[i][j][k].tab[c][0][1],2)
-                                                                              +sigK2/pow(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]),2)) : 0;
-                                                                            //  - sqrt(sigK1*sigK2)(1-fDVM_h[i][j][k].tab[c][0][1])/pow(1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j],3);
+          fDVM_pi_err[c][i][j][k] = fDVM_pi[c][i][j][k] ? pow(1/(1-fDVM_DIS_pi[i][j],2)*sigpi + pow(1-fDVM_h[i][j][k].tab[c][0][0])/pow(1-fDVM_DIS_pi[i][j],4)*sigDIS : 0;
+          fDVM_K_err[c][i][j][k] = fDVM_K[c][i][j][k] ?  pow(1/(1-fDVM_DIS_K[i][j],2)*sigpi + pow(1-fDVM_h[i][j][k].tab[c][0][1])/pow(1-fDVM_DIS_K[i][j],4)*sigDIS : 0;
+
         }
       }
     }
