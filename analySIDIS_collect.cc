@@ -2199,23 +2199,23 @@ int main(int argc, char **argv)
       }
     }
 
-    Double_t MultiplicitiesSum[2][2][4];
-    MultiplicitiesSum[0][0][0] = 0;
-    MultiplicitiesSum[0][1][0] = 0;
-    MultiplicitiesSum[0][0][1] = 0;
-    MultiplicitiesSum[0][1][1] = 0;
-    MultiplicitiesSum[0][0][2] = 0;
-    MultiplicitiesSum[0][1][2] = 0;
-    MultiplicitiesSum[0][0][3] = 0;
-    MultiplicitiesSum[0][1][3] = 0;
-    MultiplicitiesSum[1][0][0] = 0;
-    MultiplicitiesSum[1][1][0] = 0;
-    MultiplicitiesSum[1][0][1] = 0;
-    MultiplicitiesSum[1][1][1] = 0;
-    MultiplicitiesSum[1][0][2] = 0;
-    MultiplicitiesSum[1][1][2] = 0;
-    MultiplicitiesSum[1][0][3] = 0;
-    MultiplicitiesSum[1][1][3] = 0;
+    Double_t MultiplicitiesSumRatio[2][2][4];
+    MultiplicitiesSumRatio[0][0][0] = 0;
+    MultiplicitiesSumRatio[0][1][0] = 0;
+    MultiplicitiesSumRatio[0][0][1] = 0;
+    MultiplicitiesSumRatio[0][1][1] = 0;
+    MultiplicitiesSumRatio[0][0][2] = 0;
+    MultiplicitiesSumRatio[0][1][2] = 0;
+    MultiplicitiesSumRatio[0][0][3] = 0;
+    MultiplicitiesSumRatio[0][1][3] = 0;
+    MultiplicitiesSumRatio[1][0][0] = 0;
+    MultiplicitiesSumRatio[1][1][0] = 0;
+    MultiplicitiesSumRatio[1][0][1] = 0;
+    MultiplicitiesSumRatio[1][1][1] = 0;
+    MultiplicitiesSumRatio[1][0][2] = 0;
+    MultiplicitiesSumRatio[1][1][2] = 0;
+    MultiplicitiesSumRatio[1][0][3] = 0;
+    MultiplicitiesSumRatio[1][1][3] = 0;
 
     if(YMULT == 1) yavg();
     else if(YMULT == 2) yweightedavg();
@@ -2249,14 +2249,22 @@ int main(int argc, char **argv)
         pr_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][2]));
         h_y_sys[c][i].push_back(sqrt(fMultiplicities_yavg[i][k].tab[c][2][3]));
 
-        MultiplicitiesSum[0][c][0] += fMultiplicities_yavg[i][k].tab[c][0][0];
-        MultiplicitiesSum[0][c][1] += fMultiplicities_yavg[i][k].tab[c][0][1];
-        MultiplicitiesSum[0][c][2] += fMultiplicities_yavg[i][k].tab[c][0][2];
-        MultiplicitiesSum[0][c][3] += fMultiplicities_yavg[i][k].tab[c][0][3];
-        MultiplicitiesSum[1][c][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
-        MultiplicitiesSum[1][c][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
-        MultiplicitiesSum[1][c][2] += fMultiplicities_yavg[i][k].tab[c][1][2]*pow(fZ_bin_width[k],2);
-        MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
+        if(c)
+        {
+          MultiplicitiesSumRatio[0][0][0] += (fMultiplicities_yavg[i][k].tab[0][0][0]+fMultiplicities_yavg[i][k].tab[1][0][0])*fZ_bin_width[k];
+          MultiplicitiesSumRatio[0][0][1] += (fMultiplicities_yavg[i][k].tab[0][0][1]+fMultiplicities_yavg[i][k].tab[1][0][1])*fZ_bin_width[k];
+          MultiplicitiesSumRatio[0][0][2] += (fMultiplicities_yavg[i][k].tab[0][0][2]+fMultiplicities_yavg[i][k].tab[1][0][2])*fZ_bin_width[k];
+          MultiplicitiesSumRatio[0][0][3] += (fMultiplicities_yavg[i][k].tab[0][0][3]+fMultiplicities_yavg[i][k].tab[1][0][3])*fZ_bin_width[k];
+          MultiplicitiesSumRatio[0][0][0] += (fMultiplicities_yavg[i][k].tab[1][0][0]/fMultiplicities_yavg[i][k].tab[0][0][0])*fZ_bin_width[k];
+          MultiplicitiesSumRatio[0][0][1] += (fMultiplicities_yavg[i][k].tab[1][0][1]/fMultiplicities_yavg[i][k].tab[0][0][1])*fZ_bin_width[k];
+          MultiplicitiesSumRatio[0][0][2] += (fMultiplicities_yavg[i][k].tab[1][0][2]/fMultiplicities_yavg[i][k].tab[0][0][2])*fZ_bin_width[k];
+          MultiplicitiesSumRatio[0][0][3] += (fMultiplicities_yavg[i][k].tab[1][0][3]/fMultiplicities_yavg[i][k].tab[0][0][3])*fZ_bin_width[k];
+        }
+
+        MultiplicitiesSumRatio[1][1][0] += (fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSumRatio[1][1][1] += (fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSumRatio[1][1][2] += (fMultiplicities_yavg[i][k].tab[c][1][2]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSumRatio[1][1][3] += (fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
 
         for(int zv=0; zv<4; zv++)
         {
