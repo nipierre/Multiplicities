@@ -46,15 +46,25 @@ Mpisp = zeros(9)
 Mpisd = zeros(9)
 Mpirp = zeros(9)
 Mpird = zeros(9)
+Mpirpp = zeros(9)
+Mpirdp = zeros(9)
+Mpirpm = zeros(9)
+Mpirdm = zeros(9)
 MKsp = zeros(9)
 MKsd = zeros(9)
 MKrp = zeros(9)
 MKrd = zeros(9)
+MKrpp = zeros(9)
+MKrdp = zeros(9)
+MKrpm = zeros(9)
+MKrdm = zeros(9)
 
 for i in 1:9
+    global Mpirp, Mpird
+    global MKrp, MKrd
     for j in 1:12
-        global Mpisp, Mpisd, Mpirp, Mpird
-        global MKsp, MKsd, MKrp, MKrd
+        global Mpisp, Mpisd, Mpirpp, Mpirdp, Mpirpm, Mpirdm
+        global MKsp, MKsd, MKrpp, MKrdp, MKrpm, MKrdm
         local Mppiplus, Mppiminus, Mdpiplus, Mdpiminus
         local MpKplus, MpKminus, MdKplus, MdKminus
         Mppiplus = ((4*u[i]+db[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*ub[i]+d[i]+s[i]+sb[i])*Dunfpi[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
@@ -63,32 +73,38 @@ for i in 1:9
         Mdpiminus = ((4*(ub[i]+db[i])+(u[i]+d[i]))*Dfavpi[round(Int,Q2[i]),zFFred[j]]+((ub[i]+db[i])+4*(u[i]+d[i])+2*(s[i]+sb[i]))*Dunfpi[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
         Mpisp[i] += (Mppiplus+Mppiminus)*(z[j+1]-z[j])
         Mpisd[i] += (Mdpiplus+Mdpiminus)*(z[j+1]-z[j])
-        Mpirp[i] += (Mppiplus/Mppiminus)*(z[j+1]-z[j])
-        Mpird[i] += (Mdpiplus/Mdpiminus)*(z[j+1]-z[j])
+        Mpirpp[i] += Mppiplus*(z[j+1]-z[j])
+        Mpirdp[i] += Mdpiplus*(z[j+1]-z[j])
+        Mpirpm[i] += Mppiminus*(z[j+1]-z[j])
+        Mpirdm[i] += Mdpiminus*(z[j+1]-z[j])
         MpKplus = ((4*u[i])*DfavK[round(Int,Q2[i]),zFFred[j]]+(4*ub[i]+d[i]+s[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
         MpKminus = ((4*ub[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*u[i]+db[i]+sb[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+s[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
         MdKplus = ((4*(u[i]+d[i]))*DfavK[round(Int,Q2[i]),zFFred[j]]+((u[i]+d[i])+5*(ub[i]+db[i])+2*(s[i]))*DunfK[round(Int,Q2[i]),zFFred[j]]+2*sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
         MdKminus = ((4*(ub[i]+db[i]))*DfavK[round(Int,Q2[i]),zFFred[j]]+((ub[i]+db[i])+5*(u[i]+d[i])+2*(sb[i]))*DunfK[round(Int,Q2[i]),zFFred[j]]+2*s[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
         MKsp[i] += (MpKplus+MpKminus)*(z[j+1]-z[j])
         MKsd[i] += (MdKplus+MdKminus)*(z[j+1]-z[j])
-        MKrp[i] += (MpKplus/MpKminus)*(z[j+1]-z[j])
-        MKrd[i] += (MdKplus/MdKminus)*(z[j+1]-z[j])
-        println(((4*u[i]+db[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*ub[i]+d[i]+s[i]+sb[i])*Dunfpi[round(Int,Q2[i]),zFFred[j]]))
-        println(((4*ub[i]+d[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*u[i]+db[i]+s[i]+sb[i])*Dunfpi[round(Int,Q2[i]),zFFred[j]]))
+        MKrpp[i] += MpKplus*(z[j+1]-z[j])
+        MKrdp[i] += MdKplus*(z[j+1]-z[j])
+        MKrpm[i] += MpKminus*(z[j+1]-z[j])
+        MKrdm[i] += MdKminus*(z[j+1]-z[j])
     end
+    Mpirp[i] = (Mpirpp[i]/Mpirpm[i])
+    Mpird[i] = (Mpirdp[i]/Mpirdm[i])
+    MKrp[i] = (MKrpp[i]/MKrpm[i])
+    MKrd[i] = (MKrdp[i]/MKrdm[i])
 end
 
 plot(x,Mpisp, lw=3,
            xscale = :log10,
            xlims = (0.01,1),
-           ylims = (0.5,0.95),
+           ylims = (0.5,0.9),
            xlabel = "x",
            ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
            label = "Proton")
 plot!(x,Mpisd, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
-            ylims = (0.5,0.95),
+            ylims = (0.5,0.9),
             xlabel = "x",
             ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
             label = "Deuteron")
@@ -98,13 +114,13 @@ plot(x,Mpirp, lw=3,
            xscale = :log10,
            xlims = (0.01,1),
            xlabel = "x",
-           ylabel = L"\int M^{\pi^+}/M^{\pi^-} dz",
+           ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
            label = "Proton")
 plot!(x,Mpird, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             xlabel = "x",
-            ylabel = L"\int M^{\pi^+}/M^{\pi^-} dz",
+            ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
             label = "Deuteron")
 savefig("MultiplicitiesProtDeutRatioPi.png")
 
@@ -126,12 +142,12 @@ plot(x,MKrp, lw=3,
            xscale = :log10,
            xlims = (0.01,1),
            xlabel = "x",
-           ylabel = L"\int M^{K^+}/M^{K^-} dz",
+           ylabel = L"\frac{\int M^{K^+} dz}{\int M^{K^-} dz}",
            label = "Proton")
 plot!(x,MKrd, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             xlabel = "x",
-            ylabel = L"\int M^{K^+}/M^{K^-} dz",
+            ylabel = L"\frac{\int M^{K^+} dz}{\int M^{K^-} dz}",
             label = "Deuteron")
 savefig("MultiplicitiesProtDeutRatioK.png")
