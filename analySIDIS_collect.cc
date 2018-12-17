@@ -2261,10 +2261,10 @@ int main(int argc, char **argv)
           MultiplicitiesSumRatio[0][0][3] += (fMultiplicities_yavg[i][k].tab[1][0][3]/fMultiplicities_yavg[i][k].tab[0][0][3])*fZ_bin_width[k];
         }
 
-        MultiplicitiesSumRatio[1][1][0] += (fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
-        MultiplicitiesSumRatio[1][1][1] += (fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
-        MultiplicitiesSumRatio[1][1][2] += (fMultiplicities_yavg[i][k].tab[c][1][2]*pow(fZ_bin_width[k],2);
-        MultiplicitiesSumRatio[1][1][3] += (fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSumRatio[1][1][0] += fMultiplicities_yavg[i][k].tab[c][1][0]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSumRatio[1][1][1] += fMultiplicities_yavg[i][k].tab[c][1][1]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSumRatio[1][1][2] += fMultiplicities_yavg[i][k].tab[c][1][2]*pow(fZ_bin_width[k],2);
+        MultiplicitiesSumRatio[1][1][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
 
         for(int zv=0; zv<4; zv++)
         {
