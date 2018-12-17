@@ -73,6 +73,8 @@ for i in 1:9
         MKsd[i] += (MdKplus+MdKminus)*(z[j+1]-z[j])
         MKrp[i] += (MpKplus/MpKminus)*(z[j+1]-z[j])
         MKrd[i] += (MdKplus/MdKminus)*(z[j+1]-z[j])
+        println(((4*u[i]+db[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*ub[i]+d[i]+s[i]+sb[i])*Dunfpi[round(Int,Q2[i]),zFFred[j]]))
+        println(((4*ub[i]+d[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*u[i]+db[i]+s[i]+sb[i])*Dunfpi[round(Int,Q2[i]),zFFred[j]]))
     end
 end
 
