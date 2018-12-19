@@ -42,6 +42,11 @@ for i in 1:15
     end
 end
 
+zmid = zeros(12)
+for i in 1:12
+    zmid[i] = (z[i+1]+z[i])/2
+end
+
 Mpisp = zeros(9)
 Mpisd = zeros(9)
 Mpirp = zeros(9)
@@ -58,10 +63,13 @@ MKrpp = zeros(9)
 MKrdp = zeros(9)
 MKrpm = zeros(9)
 MKrdm = zeros(9)
+Mpip = zeros(12)
+Mpim = zeros(12)
 
 for i in 1:9
     global Mpirp, Mpird
     global MKrp, MKrd
+    global Mpip, Mpim
     for j in 1:12
         global Mpisp, Mpisd, Mpirpp, Mpirdp, Mpirpm, Mpirdm
         global MKsp, MKsd, MKrpp, MKrdp, MKrpm, MKrdm
@@ -77,6 +85,8 @@ for i in 1:9
         Mpirdp[i] += Mdpiplus*(z[j+1]-z[j])
         Mpirpm[i] += Mppiminus*(z[j+1]-z[j])
         Mpirdm[i] += Mdpiminus*(z[j+1]-z[j])
+        Mpip[j] = Mppiplus
+        Mpim[j] = Mppiminus
         MpKplus = ((4*u[i])*DfavK[round(Int,Q2[i]),zFFred[j]]+(4*ub[i]+d[i]+s[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
         MpKminus = ((4*ub[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*u[i]+db[i]+sb[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+s[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
         MdKplus = ((4*(u[i]+d[i]))*DfavK[round(Int,Q2[i]),zFFred[j]]+((u[i]+d[i])+5*(ub[i]+db[i])+2*(s[i]))*DunfK[round(Int,Q2[i]),zFFred[j]]+2*sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
@@ -88,6 +98,17 @@ for i in 1:9
         MKrpm[i] += MpKminus*(z[j+1]-z[j])
         MKrdm[i] += MdKminus*(z[j+1]-z[j])
     end
+    plot(zmid, Mpip, lw=3, xlims = (0.,1),
+                           ylims = (-0.1,3),
+                           xlabel = "z",
+                           ylabel = L"M^{\pi}",
+                           label = L"\pi^+")
+    plot!(zmid,Mpim, lw=3, xlims = (0.,1),
+                           ylims = (-0.1,3),
+                           xlabel = "z",
+                           ylabel = L"M^{\pi}",
+                           label = L"\pi^-")
+    savefig(string("plots/MultiplicitiesProtPi",i,".png"))
     Mpirp[i] = (Mpirpp[i]/Mpirpm[i])
     Mpird[i] = (Mpirdp[i]/Mpirdm[i])
     MKrp[i] = (MKrpp[i]/MKrpm[i])
@@ -108,7 +129,7 @@ plot!(x,Mpisd, lw=3,
             xlabel = "x",
             ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
             label = "Deuteron")
-savefig("MultiplicitiesProtDeutSumPi.png")
+savefig("plots/MultiplicitiesProtDeutSumPi.png")
 
 plot(x,Mpirp, lw=3,
            xscale = :log10,
@@ -122,7 +143,7 @@ plot!(x,Mpird, lw=3,
             xlabel = "x",
             ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
             label = "Deuteron")
-savefig("MultiplicitiesProtDeutRatioPi.png")
+savefig("plots/MultiplicitiesProtDeutRatioPi.png")
 
 plot(x,MKsp, lw=3,
            xscale = :log10,
@@ -136,7 +157,7 @@ plot!(x,MKsd, lw=3,
             xlabel = "x",
             ylabel = L"\int M^{K^+}+M^{K^-} dz",
             label = "Deuteron")
-savefig("MultiplicitiesProtDeutSumK.png")
+savefig("plots/MultiplicitiesProtDeutSumK.png")
 
 plot(x,MKrp, lw=3,
            xscale = :log10,
@@ -150,4 +171,4 @@ plot!(x,MKrd, lw=3,
             xlabel = "x",
             ylabel = L"\frac{\int M^{K^+} dz}{\int M^{K^-} dz}",
             label = "Deuteron")
-savefig("MultiplicitiesProtDeutRatioK.png")
+savefig("plots/MultiplicitiesProtDeutRatioK.png")
