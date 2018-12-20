@@ -1,6 +1,6 @@
 CC = gcc
 CXX = g++
-CCFLAGS = -g -O1 -W -Wall -Wno-unused-parameter -Wno-ignored-qualifiers #-pedantic -fPIC
+CCFLAGS = -std=c++11 -g -O1 -W -Wall -Wno-unused-parameter -Wno-ignored-qualifiers #-pedantic -fPIC
 ROOTFLAGS = `root-config --cflags --glibs`
 ROOTVERSION = -D ROOT5
 PHAST = /sps/compass/npierre/PHAST

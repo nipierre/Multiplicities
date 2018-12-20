@@ -2,6 +2,7 @@
 #define __DVM_H_INCLUDED__
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 #include <string>
