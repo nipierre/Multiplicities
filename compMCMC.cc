@@ -247,6 +247,8 @@ void plotting_device(int i, int j)
 
 void save_kin_plots()
 {
+  TFile *output = new TFile("kinMCMC.root","NEW");
+
   c1.Divide(2,4);
   c2.Divide(2,4);
   c3.Divide(2,4);
@@ -393,6 +395,8 @@ void save_kin_plots()
   plotting_device(0,11);
   c7.Update();
 
+  c7.Write();
+
   c8.cd(2);
   plotting_ratio(4,0);
   gPad->SetLogx();
@@ -401,6 +405,8 @@ void save_kin_plots()
   plotting_device(4,0);
   gPad->SetLogx();
   c8.Update();
+
+  c8.Write();
 
   c9.cd(2);
   plotting_ratio(4,1);
@@ -411,12 +417,16 @@ void save_kin_plots()
   gPad->SetLogx();
   c9.Update();
 
+  c9.Write();
+
   c10.cd(2);
   plotting_ratio(4,2);
   c10.Update();
   c10.cd(1);
   plotting_device(4,2);
   c10.Update();
+
+  c10.Write();
 
   c11.cd(2);
   plotting_ratio(4,3);
@@ -425,12 +435,16 @@ void save_kin_plots()
   plotting_device(4,3);
   c11.Update();
 
+  c11.Write();
+
   c12.cd(2);
   plotting_ratio(4,4);
   c12.Update();
   c12.cd(1);
   plotting_device(4,4);
   c12.Update();
+
+  c12.Write();
 
   c13.cd(2);
   plotting_ratio(4,5);
@@ -439,12 +453,16 @@ void save_kin_plots()
   plotting_device(4,5);
   c13.Update();
 
+  c13.Write();
+
   c25.cd(2);
   plotting_ratio(4,12);
   c25.Update();
   c25.cd(1);
   plotting_device(4,12);
   c25.Update();
+
+  c25.Write();
 
   c26.cd(2);
   plotting_ratio(4,13);
@@ -453,12 +471,16 @@ void save_kin_plots()
   plotting_device(4,13);
   c26.Update();
 
+  c26.Write();
+
   c27.cd(2);
   plotting_ratio(4,14);
   c27.Update();
   c27.cd(1);
   plotting_device(4,14);
   c27.Update();
+
+  c27.Write();
 
   c29.cd(2);
   plotting_ratio(4,15);
@@ -467,12 +489,16 @@ void save_kin_plots()
   plotting_device(4,15);
   c29.Update();
 
+  c29.Write();
+
   c30.cd(2);
   plotting_ratio(4,16);
   c30.Update();
   c30.cd(1);
   plotting_device(4,16);
   c30.Update();
+
+  c30.Write();
 
   c1.Print("kinMCMC.pdf(","pdf");
   c2.Print("kinMCMC.pdf","pdf");
@@ -501,6 +527,7 @@ void save_kin_plots()
   c16.Print("kinMCMC.pdf","pdf");
   c17.Print("kinMCMC.pdf","pdf");
   c18.Print("kinMCMC.pdf)","pdf");
+
 }
 
 void MC1extraction(string pFilelist)

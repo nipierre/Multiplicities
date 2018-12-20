@@ -349,6 +349,8 @@ void plotting_ratio_vertex(int i, int j)
 
 void save_kin_plots()
 {
+  TFile *output = new TFile("kinMCRD.root","NEW");
+
   c1.Divide(2,4);
   c2.Divide(2,4);
   c3.Divide(2,4);
@@ -546,6 +548,8 @@ void save_kin_plots()
   plotting_device(0,11);
   c7.Update();
 
+  c7.Write();
+
   c8.cd(2);
   plotting_ratio(4,0);
   gPad->SetLogx();
@@ -554,6 +558,8 @@ void save_kin_plots()
   plotting_device(4,0);
   gPad->SetLogx();
   c8.Update();
+
+  c8.Write();
 
   c9.cd(2);
   plotting_ratio(4,1);
@@ -564,12 +570,16 @@ void save_kin_plots()
   gPad->SetLogx();
   c9.Update();
 
+  c9.Write();
+
   c10.cd(2);
   plotting_ratio(4,2);
   c10.Update();
   c10.cd(1);
   plotting_device(4,2);
   c10.Update();
+
+  c10.Write();
 
   c11.cd(2);
   plotting_ratio(4,3);
@@ -578,12 +588,16 @@ void save_kin_plots()
   plotting_device(4,3);
   c11.Update();
 
+  c11.Write();
+
   c12.cd(2);
   plotting_ratio(4,4);
   c12.Update();
   c12.cd(1);
   plotting_device(4,4);
   c12.Update();
+
+  c12.Write();
 
   c13.cd(2);
   plotting_ratio(4,5);
@@ -592,12 +606,16 @@ void save_kin_plots()
   plotting_device(4,5);
   c13.Update();
 
+  c13.Write();
+
   c33.cd(2);
   plotting_ratio(4,6);
   c33.Update();
   c33.cd(1);
   plotting_device(4,6);
   c33.Update();
+
+  c33.Write();
 
   c22.cd(2);
   plotting_ratio(4,12);
@@ -606,12 +624,16 @@ void save_kin_plots()
   plotting_device(4,12);
   c22.Update();
 
+  c22.Write();
+
   c23.cd(2);
   plotting_ratio(4,13);
   c23.Update();
   c23.cd(1);
   plotting_device(4,13);
   c23.Update();
+
+  c23.Write();
 
   c24.cd(2);
   plotting_ratio(4,14);
@@ -620,6 +642,8 @@ void save_kin_plots()
   plotting_device(4,14);
   c24.Update();
 
+  c24.Write();
+
   c26.cd(2);
   plotting_ratio(4,15);
   c26.Update();
@@ -627,12 +651,16 @@ void save_kin_plots()
   plotting_device(4,15);
   c26.Update();
 
+  c26.Write();
+
   c28.cd(2);
   plotting_ratio(4,16);
   c28.Update();
   c28.cd(1);
   plotting_device(4,16);
   c28.Update();
+
+  c28.Write();
 
   c38.cd(2);
   plotting_ratio_vertex(4,17);
