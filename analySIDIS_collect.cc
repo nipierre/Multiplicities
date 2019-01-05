@@ -2235,7 +2235,7 @@ int main(int argc, char **argv)
           }
         }
 
-        // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0] << " " << fMultiplicities_yavg[i][k].tab[c][2][0] << endl;
+        cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][0] << " " << fMultiplicities_yavg[i][k].tab[c][1][0] << " " << fMultiplicities_yavg[i][k].tab[c][2][0] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);

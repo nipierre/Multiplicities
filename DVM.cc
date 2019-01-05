@@ -714,12 +714,12 @@ void Extraction(string pFilelist, int pType)
         else if(pType==1)
         {
           fNDIS_evt_rho[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
-          fNDIS_evt_rho_raw[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+          fNDIS_evt_rho_raw[xbin][ybin]+=1;
         }
         else if(pType==2)
         {
           fNDIS_evt_phi[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
-          fNDIS_evt_phi_raw[xbin][ybin]+=mcWeight->GetLeaf("mcWeight")->GetValue();
+          fNDIS_evt_phi_raw[xbin][ybin]+=1;
         }
 
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
@@ -1015,6 +1015,95 @@ void Extraction(string pFilelist, int pType)
   }
 }
 
+void DVMDump()
+{
+  ofstream ofs_dis("DVMDIS.dat", std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_hadron("DVMHadron.dat", std::ofstream::out | std::ofstream::trunc);
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      ofs_dis << fNDIS_evt_SIDIS[i][j] << " " << fNDIS_evt_rho[i][j]
+                                       << " " << fNDIS_evt_rho_raw[i][j]
+                                       << " " << fNDIS_evt_phi[i][j]
+                                       << " " << fNDIS_evt_phi_raw[i][j]
+                                       << endl;
+      for(int k=0; k<12; k++)
+      {
+        ofs_hadron << fSIDIS[i][j][k].tab[1][0][0] << " " << fSIDIS[i][j][k].tab[0][0][0]
+                   << " " << fSIDIS[i][j][k].tab[1][0][1] << " " << fSIDIS[i][j][k].tab[0][0][1]
+                   << " " << fSIDIS[i][j][k].tab[1][0][3] << " " << fSIDIS[i][j][k].tab[0][0][3]
+                   << " " << fRho[i][j][k].tab[1][0][0] << " " << fRho[i][j][k].tab[0][0][0]
+                   << " " << fRho[i][j][k].tab[1][0][3] << " " << fRho[i][j][k].tab[0][0][3]
+                   << " " << fRho_raw[i][j][k].tab[1][0][0] << " " << fRho_raw[i][j][k].tab[0][0][0]
+                   << " " << fRho_raw[i][j][k].tab[1][0][3] << " " << fRho_raw[i][j][k].tab[0][0][3]
+                   << " " << fPhi[i][j][k].tab[1][0][1] << " " << fPhi[i][j][k].tab[0][0][1]
+                   << " " << fPhi[i][j][k].tab[1][0][3] << " " << fPhi[i][j][k].tab[0][0][3]
+                   << " " << fPhi_raw[i][j][k].tab[1][0][1] << " " << fPhi_raw[i][j][k].tab[0][0][1]
+                   << " " << fPhi_raw[i][j][k].tab[1][0][3] << " " << fPhi_raw[i][j][k].tab[0][0][3]
+                   << " " << endl;
+      }
+    }
+  }
+  ofs_dis.close();
+  ofs_hadron.close();
+}
+
+void DVMReadDIS(string pname)
+{
+  double dummy;
+  ifstream DIS_file(pname);
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      DIS_file >> dummy; fNDIS_evt_SIDIS[i][j] += dummy;
+      DIS_file >> dummy; fNDIS_evt_rho_raw[i][j] += dummy;
+      DIS_file >> dummy; fNDIS_evt_phi[i][j] += dummy;
+      DIS_file >> dummy; fNDIS_evt_phi_raw[i][j] += dummy;
+    }
+  }
+  DIS_file.close();
+}
+
+void DVMReadHadron(string pname)
+{
+  double dummy;
+  ifstream Hadron_file(pname);
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<6; j++)
+    {
+      for(int k=0; k<12; k++)
+      {
+        Hadron_file >> dummy; fSIDIS[i][j][k].tab[1][0][0] += dummy;
+        Hadron_file >> dummy; fSIDIS[i][j][k].tab[0][0][0] += dummy;
+        Hadron_file >> dummy; fSIDIS[i][j][k].tab[1][0][1] += dummy;
+        Hadron_file >> dummy; fSIDIS[i][j][k].tab[0][0][1] += dummy;
+        Hadron_file >> dummy; fSIDIS[i][j][k].tab[1][0][3] += dummy;
+        Hadron_file >> dummy; fSIDIS[i][j][k].tab[0][0][3] += dummy;
+        Hadron_file >> dummy; fRho[i][j][k].tab[1][0][0] += dummy;
+        Hadron_file >> dummy; fRho[i][j][k].tab[0][0][0] += dummy;
+        Hadron_file >> dummy; fRho[i][j][k].tab[1][0][3] += dummy;
+        Hadron_file >> dummy; fRho[i][j][k].tab[0][0][3] += dummy;
+        Hadron_file >> dummy; fRho_raw[i][j][k].tab[1][0][0] += dummy;
+        Hadron_file >> dummy; fRho_raw[i][j][k].tab[0][0][0] += dummy;
+        Hadron_file >> dummy; fRho_raw[i][j][k].tab[1][0][3] += dummy;
+        Hadron_file >> dummy; fRho_raw[i][j][k].tab[0][0][3] += dummy;
+        Hadron_file >> dummy; fPhi[i][j][k].tab[1][0][1] += dummy;
+        Hadron_file >> dummy; fPhi[i][j][k].tab[0][0][1] += dummy;
+        Hadron_file >> dummy; fPhi[i][j][k].tab[1][0][3] += dummy;
+        Hadron_file >> dummy; fPhi[i][j][k].tab[0][0][3] += dummy;
+        Hadron_file >> dummy; fPhi_raw[i][j][k].tab[1][0][1] += dummy;
+        Hadron_file >> dummy; fPhi_raw[i][j][k].tab[0][0][1] += dummy;
+        Hadron_file >> dummy; fPhi_raw[i][j][k].tab[1][0][3] += dummy;
+        Hadron_file >> dummy; fPhi_raw[i][j][k].tab[0][0][3] += dummy;
+      }
+    }
+  }
+  Hadron_file.close();
+}
+
 void DVMCalc()
 {
   double sigpi, sigK, sigDIS;
@@ -1296,30 +1385,66 @@ int main(int argc, char **argv)
   PHI_WEIGHT = 0;
   PHI_EVENTS = 0;
 
-  readKinCuts(argv[4]);
-  Extraction(argv[1],0);
-  Extraction(argv[2],1);
-  Extraction(argv[3],2);
-  DVMCalc();
-  DVMSaver();
+  if(string(argv[1]) == "-dump")
+  {
+    readKinCuts(argv[4]);
+    Extraction(argv[3],argv[2]);
+    DVMDump();
+  }
+  else
+  {
+    if(string(argv[1]) == "-read")
+    {
+      ifstream listSIDIS(argv[2]);
+      ifstream listRho(argv[3]);
+      ifstream listPhi(argv[4]);
+      string filename;
 
-  cout << "\n\n";
-  cout << "             ********* Luminosity, number of events and number of hadrons ********* " << endl;
-  cout << "             ---------------------------------------------------------------------- " << endl;
+      while(listSIDIS >> filename)
+      {
+        DVMReadDIS(filename);
+        DVMReadHadron(filename);
+      }
+      while(listRho >> filename)
+      {
+        DVMReadDIS(filename);
+        DVMReadHadron(filename);
+      }
+      while(listPhi >> filename)
+      {
+        DVMReadDIS(filename);
+        DVMReadHadron(filename);
+      }
+    }
+    else
+    {
+      readKinCuts(argv[4]);
+      Extraction(argv[1],0);
+      Extraction(argv[2],1);
+      Extraction(argv[3],2);
+    }
 
-  cout << '|' << setw(30) << "" << '|' << setw(15) << "DJANGOH" << '|' << setw(15) << "Rho^0" << '|' << setw(15) << "Phi" << '|' << endl;
-  cout << '|' << setw(30) << "Generated Events" << '|' << setw(15) << SIDIS_EVENTS << '|' << setw(15) << RHO_EVENTS << '|' << setw(15) << PHI_EVENTS << '|' << endl;
-  cout << '|' << setw(30) << "Weighted Gen. Events" << '|' << setw(15) << SIDIS_WEIGHT << '|' << setw(15) << RHO_WEIGHT << '|' << setw(15) << PHI_WEIGHT << '|' << endl;
-  cout << '|' << setw(30) << "Integrated XS [pb]" << '|' << setw(15) << SIDIS_XS << '|' << setw(15) << RHO_XS << '|' << setw(15) << PHI_XS << '|' << endl;
-  cout << '|' << setw(30) << "MC Luminosity [pb-1]" << '|' << setw(15) << SIDIS_WEIGHT/SIDIS_XS << '|' << setw(15) << RHO_WEIGHT/RHO_XS << '|' << setw(15) << PHI_WEIGHT/PHI_XS << '|' << endl;
-  cout << "             ---------------------------------------------------------------------- " << endl;
-  cout << '|' << setw(30) << "DIS Events [pb]" << '|' << setw(15) << fNDIS_SIDIS_tot << '|' << setw(15) << fNDIS_rho_tot << '|' << setw(15) << fNDIS_phi_tot << '|' << endl;
-  cout << '|' << setw(30) << "h+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][3] << '|' << setw(15) << fRho_tot[1][3] << '|' << setw(15) << fPhi_tot[1][3] << '|' << endl;
-  cout << '|' << setw(30) << "h- [pb]" << '|' << setw(15) << fSIDIS_tot[0][3] << '|' << setw(15) << fRho_tot[0][3] << '|' << setw(15) << fPhi_tot[0][3] << '|' << endl;
-  cout << '|' << setw(30) << "pi+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][0] << '|' << setw(15) << fRho_tot[1][0] << '|' << setw(15) << "-" << '|' << endl;
-  cout << '|' << setw(30) << "pi- [pb]" << '|' << setw(15) << fSIDIS_tot[0][0] << '|' << setw(15) << fRho_tot[0][0] << '|' << setw(15) << "-" << '|' << endl;
-  cout << '|' << setw(30) << "K+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][1] << '|' << setw(15) << "-" << '|' << setw(15) << fPhi_tot[1][1] << '|' << endl;
-  cout << '|' << setw(30) << "K- [pb]" << '|' << setw(15) << fSIDIS_tot[0][1] << '|' << setw(15) << "-" << '|' << setw(15) << fPhi_tot[0][1] << '|' << endl;
+    DVMCalc();
+    DVMSaver();
+
+    cout << "\n\n";
+    cout << "             ********* Luminosity, number of events and number of hadrons ********* " << endl;
+    cout << "             ---------------------------------------------------------------------- " << endl;
+
+    cout << '|' << setw(30) << "" << '|' << setw(15) << "DJANGOH" << '|' << setw(15) << "Rho^0" << '|' << setw(15) << "Phi" << '|' << endl;
+    cout << '|' << setw(30) << "Generated Events" << '|' << setw(15) << SIDIS_EVENTS << '|' << setw(15) << RHO_EVENTS << '|' << setw(15) << PHI_EVENTS << '|' << endl;
+    cout << '|' << setw(30) << "Weighted Gen. Events" << '|' << setw(15) << SIDIS_WEIGHT << '|' << setw(15) << RHO_WEIGHT << '|' << setw(15) << PHI_WEIGHT << '|' << endl;
+    cout << '|' << setw(30) << "Integrated XS [pb]" << '|' << setw(15) << SIDIS_XS << '|' << setw(15) << RHO_XS << '|' << setw(15) << PHI_XS << '|' << endl;
+    cout << '|' << setw(30) << "MC Luminosity [pb-1]" << '|' << setw(15) << SIDIS_WEIGHT/SIDIS_XS << '|' << setw(15) << RHO_WEIGHT/RHO_XS << '|' << setw(15) << PHI_WEIGHT/PHI_XS << '|' << endl;
+    cout << "             ---------------------------------------------------------------------- " << endl;
+    cout << '|' << setw(30) << "DIS Events [pb]" << '|' << setw(15) << fNDIS_SIDIS_tot << '|' << setw(15) << fNDIS_rho_tot << '|' << setw(15) << fNDIS_phi_tot << '|' << endl;
+    cout << '|' << setw(30) << "h+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][3] << '|' << setw(15) << fRho_tot[1][3] << '|' << setw(15) << fPhi_tot[1][3] << '|' << endl;
+    cout << '|' << setw(30) << "h- [pb]" << '|' << setw(15) << fSIDIS_tot[0][3] << '|' << setw(15) << fRho_tot[0][3] << '|' << setw(15) << fPhi_tot[0][3] << '|' << endl;
+    cout << '|' << setw(30) << "pi+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][0] << '|' << setw(15) << fRho_tot[1][0] << '|' << setw(15) << "-" << '|' << endl;
+    cout << '|' << setw(30) << "pi- [pb]" << '|' << setw(15) << fSIDIS_tot[0][0] << '|' << setw(15) << fRho_tot[0][0] << '|' << setw(15) << "-" << '|' << endl;
+    cout << '|' << setw(30) << "K+ [pb]" << '|' << setw(15) << fSIDIS_tot[1][1] << '|' << setw(15) << "-" << '|' << setw(15) << fPhi_tot[1][1] << '|' << endl;
+    cout << '|' << setw(30) << "K- [pb]" << '|' << setw(15) << fSIDIS_tot[0][1] << '|' << setw(15) << "-" << '|' << setw(15) << fPhi_tot[0][1] << '|' << endl;
+  }
 
   return 0;
 }

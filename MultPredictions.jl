@@ -8,6 +8,7 @@ zFFred = [3,8,13,18,23,28,33,38,43,48,53,61]
 PDF = readdlm("data/MSTW2008lo68cl.txt")
 FFPion = readdlm("data/FFPiondata0.txt")
 FFKaon = readdlm("data/FFKaondata0.txt")
+ExpMultPion = readdlm("data/Mult2016Pion.txt")
 
 x = PDF[:,1]
 Q2 = PDF[:,2]
@@ -24,6 +25,8 @@ Dunfpi = zeros((15,66))
 DfavK = zeros((15,66))
 DunfK = zeros((15,66))
 DstrK = zeros((15,66))
+Multpip = zeros((9,12))
+Multpim = zeros((9,12))
 
 for i in 1:15
     for j in 1:66
@@ -39,6 +42,17 @@ for i in 1:15
         DfavK[i,j] = FFKaon[j+(i-1)*66,2]/zFF[i,j]
         DunfK[i,j] = FFKaon[j+(i-1)*66,4]/zFF[i,j]
         DstrK[i,j] = FFKaon[j+(i-1)*66,4]/zFF[i,j]
+    end
+end
+
+for i in 1:9
+    for j in 1:12
+        global Multpim
+        Multpim[i,j] = ExpMultPion[j+24*(i-1),4]
+    end
+    for j in 1:12
+        global Multpip
+        Multpip[i,j] = ExpMultPion[j+24*(i-1)+12,4]
     end
 end
 
@@ -65,11 +79,14 @@ MKrpm = zeros(9)
 MKrdm = zeros(9)
 Mpip = zeros(12)
 Mpim = zeros(12)
+Mpexp = zeros(12)
+Mmexp = zeros(12)
 
 for i in 1:9
     global Mpirp, Mpird
     global MKrp, MKrd
     global Mpip, Mpim
+    global Mpexp, Mmexp
     for j in 1:12
         global Mpisp, Mpisd, Mpirpp, Mpirdp, Mpirpm, Mpirdm
         global MKsp, MKsd, MKrpp, MKrdp, MKrpm, MKrdm
@@ -87,6 +104,8 @@ for i in 1:9
         Mpirdm[i] += Mdpiminus*(z[j+1]-z[j])
         Mpip[j] = Mppiplus
         Mpim[j] = Mppiminus
+        Mpexp[j] = Multpip[i,j]
+        Mmexp[j] = Multpim[i,j]
         MpKplus = ((4*u[i])*DfavK[round(Int,Q2[i]),zFFred[j]]+(4*ub[i]+d[i]+s[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
         MpKminus = ((4*ub[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*u[i]+db[i]+sb[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+s[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
         MdKplus = ((4*(u[i]+d[i]))*DfavK[round(Int,Q2[i]),zFFred[j]]+((u[i]+d[i])+5*(ub[i]+db[i])+2*(s[i]))*DunfK[round(Int,Q2[i]),zFFred[j]]+2*sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
@@ -100,14 +119,30 @@ for i in 1:9
     end
     plot(zmid, Mpip, lw=3, xlims = (0.,1),
                            ylims = (-0.1,3),
+                           linecolor = :red,
                            xlabel = "z",
                            ylabel = L"M^{\pi}",
                            label = L"\pi^+")
-    plot!(zmid,Mpim, lw=3, xlims = (0.,1),
-                           ylims = (-0.1,3),
-                           xlabel = "z",
-                           ylabel = L"M^{\pi}",
-                           label = L"\pi^-")
+    plot!(zmid, Mpim, lw=3, xlims = (0.,1),
+                            ylims = (-0.1,3),
+                            linecolor = :blue,
+                            xlabel = "z",
+                            ylabel = L"M^{\pi}",
+                            label = L"\pi^-")
+    plot!(zmid, Mpexp, lw=3, xlims = (0.,1),
+                             ylims = (-0.1,3),
+                             linecolor = :red,
+                             linestyle = :dash,
+                             xlabel = "z",
+                             ylabel = L"M^{\pi}",
+                             label = L"\pi^+_{Exp}")
+    plot!(zmid, Mmexp, lw=3, xlims = (0.,1),
+                             ylims = (-0.1,3),
+                             linecolor = :blue,
+                             linestyle = :dash,
+                             xlabel = "z",
+                             ylabel = L"M^{\pi}",
+                             label = L"\pi^-_{Exp}")
     savefig(string("plots/MultiplicitiesProtPi",i,".png"))
     Mpirp[i] = (Mpirpp[i]/Mpirpm[i])
     Mpird[i] = (Mpirdp[i]/Mpirdm[i])
