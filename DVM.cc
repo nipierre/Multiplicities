@@ -1388,7 +1388,7 @@ int main(int argc, char **argv)
   if(string(argv[1]) == "-dump")
   {
     readKinCuts(argv[4]);
-    Extraction(argv[3],argv[2]);
+    Extraction(argv[3],atoi(argv[2]));
     DVMDump();
   }
   else
