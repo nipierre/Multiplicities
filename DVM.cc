@@ -1019,6 +1019,7 @@ void DVMDump()
 {
   ofstream ofs_dis("DVMDIS.dat", std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_hadron("DVMHadron.dat", std::ofstream::out | std::ofstream::trunc);
+  ofs_hadron << SIDIS_EVENTS << " " << SIDIS_WEIGHT << " " << RHO_EVENTS << " " << RHO_WEIGHT << " " << PHI_EVENTS << " " << PHI_WEIGHT << endl;
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
@@ -1071,6 +1072,12 @@ void DVMReadHadron(char* pname)
 {
   double dummy;
   ifstream Hadron_file(pname);
+  Hadron_file >> dummy; SIDIS_EVENTS += dummy;
+  Hadron_file >> dummy; SIDIS_WEIGHT += dummy;
+  Hadron_file >> dummy; RHO_EVENTS += dummy;
+  Hadron_file >> dummy; RHO_WEIGHT += dummy;
+  Hadron_file >> dummy; PHI_EVENTS += dummy;
+  Hadron_file >> dummy; PHI_WEIGHT += dummy;
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
