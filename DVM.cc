@@ -1395,38 +1395,12 @@ int main(int argc, char **argv)
   {
     if(string(argv[1]) == "-read")
     {
-      ifstream listSIDISd(argv[2]);
-      ifstream listSIDISh(argv[3]);
-      ifstream listRhod(argv[4]);
-      ifstream listRhoh(argv[5]);
-      ifstream listPhid(argv[6]);
-      ifstream listPhih(argv[7]);
-      string filename;
-
-      while(listSIDISd >> filename)
-      {
-        DVMReadDIS(filename);
-      }
-      while(listSIDISh >> filename)
-      {
-        DVMReadHadron(filename);
-      }
-      while(listRhod >> filename)
-      {
-        DVMReadDIS(filename);
-      }
-      while(listRhoh >> filename)
-      {
-        DVMReadHadron(filename);
-      }
-      while(listPhid >> filename)
-      {
-        DVMReadDIS(filename);
-      }
-      while(listPhih >> filename)
-      {
-        DVMReadHadron(filename);
-      }
+      DVMReadDIS(argv[2]);
+      DVMReadHadron(argv[3]);
+      DVMReadDIS(argv[4]);
+      DVMReadHadron(argv[5]);
+      DVMReadDIS(argv[6]);
+      DVMReadHadron(argv[7]);
     }
     else
     {
