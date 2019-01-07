@@ -1058,6 +1058,7 @@ void DVMReadDIS(char* pname)
     for(int j=0; j<6; j++)
     {
       DIS_file >> dummy; fNDIS_evt_SIDIS[i][j] += dummy;
+      DIS_file >> dummy; fNDIS_evt_rho[i][j] += dummy;
       DIS_file >> dummy; fNDIS_evt_rho_raw[i][j] += dummy;
       DIS_file >> dummy; fNDIS_evt_phi[i][j] += dummy;
       DIS_file >> dummy; fNDIS_evt_phi_raw[i][j] += dummy;
