@@ -1385,7 +1385,7 @@ int main(int argc, char **argv)
   PHI_WEIGHT = 0;
   PHI_EVENTS = 0;
 
-  if(string(argv[1]) == "-dump")
+  if(string(argv[1]) == "-dump" && argc == 5)
   {
     readKinCuts(argv[4]);
     Extraction(argv[3],atoi(argv[2]));
@@ -1393,7 +1393,7 @@ int main(int argc, char **argv)
   }
   else
   {
-    if(string(argv[1]) == "-read")
+    if(string(argv[1]) == "-read" && argc == 8)
     {
       DVMReadDIS(argv[2]);
       DVMReadHadron(argv[3]);
