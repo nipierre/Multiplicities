@@ -1066,7 +1066,7 @@ void DVMReadDIS(char* pname)
   DIS_file.close();
 }
 
-void DVMReadHadron(string pname)
+void DVMReadHadron(char* pname)
 {
   double dummy;
   ifstream Hadron_file(pname);
