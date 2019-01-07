@@ -74,7 +74,7 @@ plotMult: plotMult.cc plotMult.h
 
 DVM: DVM.cc DVM.h
 	@echo 'Building DVM package..'
-	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@
+	@$(CXX) $(CCFLAGS) $(ROOTFLAGS) $(ROOTVERSION) -o $@ $<
 	@echo 'DVM package built !'
 
 clean :
