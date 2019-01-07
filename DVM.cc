@@ -1049,7 +1049,7 @@ void DVMDump()
   ofs_hadron.close();
 }
 
-void DVMReadDIS(string pname)
+void DVMReadDIS(char* pname)
 {
   double dummy;
   ifstream DIS_file(pname);
@@ -1395,12 +1395,12 @@ int main(int argc, char **argv)
   {
     if(string(argv[1]) == "-read")
     {
-      DVMReadDIS(string(argv[2]));
-      DVMReadHadron(string(argv[3]));
-      DVMReadDIS(string(argv[4]));
-      DVMReadHadron(string(argv[5]));
-      DVMReadDIS(string(argv[6]));
-      DVMReadHadron(string(argv[7]));
+      DVMReadDIS(argv[2]);
+      DVMReadHadron(argv[3]);
+      DVMReadDIS(argv[4]);
+      DVMReadHadron(argv[5]);
+      DVMReadDIS(argv[6]);
+      DVMReadHadron(argv[7]);
     }
     else
     {
