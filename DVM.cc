@@ -1175,8 +1175,8 @@ void DVMCalc()
 
         for(int c=0; c<2; c++)
         {
-          fDVM_pi[c][i][j][k] = ((1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) || !fDVM_h[i][j][k].tab[c][0][0]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
-          fDVM_K[c][i][j][k] = ((1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) || !fDVM_h[i][j][k].tab[c][0][1]) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
+          fDVM_pi[c][i][j][k] = ((1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) && fDVM_h[i][j][k].tab[c][0][0]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
+          fDVM_K[c][i][j][k] = ((1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) && fDVM_h[i][j][k].tab[c][0][1]) ? (1-fDVM_h[i][j][k].tab[c][0][1])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
 
           sigpi = pow(fDVM_h[i][j][k].tab[c][0][0],2)*(1/fRho_raw[i][j][k].tab[c][0][0]+1/(fRho_raw[i][j][k].tab[c][0][0]+fSIDIS[i][j][k].tab[c][0][0]));
           sigK = pow(fDVM_h[i][j][k].tab[c][0][1],2)*(1/fPhi_raw[i][j][k].tab[c][0][1]+1/(fPhi_raw[i][j][k].tab[c][0][1]+fSIDIS[i][j][k].tab[c][0][1]));
