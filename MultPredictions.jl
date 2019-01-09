@@ -9,6 +9,7 @@ PDF = readdlm("data/MSTW2008lo68cl.txt")
 FFPion = readdlm("data/FFPiondata0.txt")
 FFKaon = readdlm("data/FFKaondata0.txt")
 ExpMultPion = readdlm("data/Mult2016Pion.txt")
+ExpMultPionD = readdlm("data/Mult2006Pion.txt")
 
 x = PDF[:,1]
 Q2 = PDF[:,2]
@@ -27,6 +28,8 @@ DunfK = zeros((15,66))
 DstrK = zeros((15,66))
 Multpip = zeros((9,12))
 Multpim = zeros((9,12))
+MultpipD = zeros((9,12))
+MultpimD = zeros((9,12))
 
 for i in 1:15
     for j in 1:66
@@ -49,10 +52,12 @@ for i in 1:9
     for j in 1:12
         global Multpim
         Multpim[i,j] = ExpMultPion[j+24*(i-1),4]
+        MultpimD[i,j] = ExpMultPionD[j+24*(i-1),4]
     end
     for j in 1:12
         global Multpip
         Multpip[i,j] = ExpMultPion[j+24*(i-1)+12,4]
+        MultpipD[i,j] = ExpMultPionD[j+24*(i-1)+12,4]
     end
 end
 
@@ -63,12 +68,20 @@ end
 
 Mpisp = zeros(9)
 Mpisd = zeros(9)
+Mpispexp = zeros(9)
+Mpisdexp = zeros(9)
 Mpirp = zeros(9)
 Mpird = zeros(9)
+Mpirpexp = zeros(9)
+Mpirdexp = zeros(9)
 Mpirpp = zeros(9)
 Mpirdp = zeros(9)
+Mpirppexp = zeros(9)
+Mpirdpexp = zeros(9)
 Mpirpm = zeros(9)
 Mpirdm = zeros(9)
+Mpirpmexp = zeros(9)
+Mpirdmexp = zeros(9)
 MKsp = zeros(9)
 MKsd = zeros(9)
 MKrp = zeros(9)
@@ -83,12 +96,12 @@ Mpexp = zeros(12)
 Mmexp = zeros(12)
 
 for i in 1:9
-    global Mpirp, Mpird
+    global Mpirp, Mpird, Mpirpexp, Mpirdexp
     global MKrp, MKrd
     global Mpip, Mpim
     global Mpexp, Mmexp
     for j in 1:12
-        global Mpisp, Mpisd, Mpirpp, Mpirdp, Mpirpm, Mpirdm
+        global Mpisp, Mpisd, Mpispexp, Mpisdexp, Mpirpp, Mpirdp, Mpirppexp, Mpirdpexp, Mpirpm, Mpirdm, Mpirpmexp, Mpirdmexp
         global MKsp, MKsd, MKrpp, MKrdp, MKrpm, MKrdm
         local Mppiplus, Mppiminus, Mdpiplus, Mdpiminus
         local MpKplus, MpKminus, MdKplus, MdKminus
@@ -98,10 +111,16 @@ for i in 1:9
         Mdpiminus = ((4*(ub[i]+db[i])+(u[i]+d[i]))*Dfavpi[round(Int,Q2[i]),zFFred[j]]+((ub[i]+db[i])+4*(u[i]+d[i])+2*(s[i]+sb[i]))*Dunfpi[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
         Mpisp[i] += (Mppiplus+Mppiminus)*(z[j+1]-z[j])
         Mpisd[i] += (Mdpiplus+Mdpiminus)*(z[j+1]-z[j])
+        Mpispexp[i] += (Multpip[i,j]+Multpim[i,j])*(z[j+1]-z[j])
+        Mpisdexp[i] += (MultpipD[i,j]+MultpimD[i,j])*(z[j+1]-z[j])
         Mpirpp[i] += Mppiplus*(z[j+1]-z[j])
         Mpirdp[i] += Mdpiplus*(z[j+1]-z[j])
+        Mpirppexp[i] += Multpip[i,j]*(z[j+1]-z[j])
+        Mpirdpexp[i] += MultpipD[i,j]*(z[j+1]-z[j])
         Mpirpm[i] += Mppiminus*(z[j+1]-z[j])
         Mpirdm[i] += Mdpiminus*(z[j+1]-z[j])
+        Mpirpmexp[i] += Multpim[i,j]*(z[j+1]-z[j])
+        Mpirdmexp[i] += MultpimD[i,j]*(z[j+1]-z[j])
         Mpip[j] = Mppiplus
         Mpim[j] = Mppiminus
         Mpexp[j] = Multpip[i,j]
@@ -145,6 +164,8 @@ for i in 1:9
                              label = L"\pi^-_{Exp}")
     savefig(string("plots/MultiplicitiesProtPi",i,".png"))
     Mpirp[i] = (Mpirpp[i]/Mpirpm[i])
+    Mpirpexp[i] = (Mpirppexp[i]/Mpirpmexp[i])
+    Mpirdexp[i] = (Mpirdpexp[i]/Mpirdmexp[i])
     Mpird[i] = (Mpirdp[i]/Mpirdm[i])
     MKrp[i] = (MKrpp[i]/MKrpm[i])
     MKrd[i] = (MKrdp[i]/MKrdm[i])
@@ -153,17 +174,31 @@ end
 plot(x,Mpisp, lw=3,
            xscale = :log10,
            xlims = (0.01,1),
-           ylims = (0.5,0.9),
+           ylims = (0.4,0.9),
            xlabel = "x",
            ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
            label = "Proton")
 plot!(x,Mpisd, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
-            ylims = (0.5,0.9),
+            ylims = (0.4,0.9),
             xlabel = "x",
             ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
             label = "Deuteron")
+plot!(x,Mpispexp, lw=3,
+            xscale = :log10,
+            xlims = (0.01,1),
+            ylims = (0.4,0.9),
+            xlabel = "x",
+            ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
+            label = "Proton Exp.")
+plot!(x,Mpisdexp, lw=3,
+            xscale = :log10,
+            xlims = (0.01,1),
+            ylims = (0.4,0.9),
+            xlabel = "x",
+            ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
+            label = "Deuteron Exp.")
 savefig("plots/MultiplicitiesProtDeutSumPi.png")
 
 plot(x,Mpirp, lw=3,
@@ -178,6 +213,18 @@ plot!(x,Mpird, lw=3,
             xlabel = "x",
             ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
             label = "Deuteron")
+plot!(x,Mpirpexp, lw=3,
+            xscale = :log10,
+            xlims = (0.01,1),
+            xlabel = "x",
+            ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
+            label = "Proton Exp.")
+plot!(x,Mpirdexp, lw=3,
+            xscale = :log10,
+            xlims = (0.01,1),
+            xlabel = "x",
+            ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
+            label = "Deuteron Exp.")
 savefig("plots/MultiplicitiesProtDeutRatioPi.png")
 
 plot(x,MKsp, lw=3,
