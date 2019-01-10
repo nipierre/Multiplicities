@@ -214,6 +214,7 @@ void Extraction(string pFilelist, int pType)
     TBranch *MZfirst = (TBranch*) tree->FindBranch("MZfirst");
     TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
     TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
+    TBranch *inTarget = (TBranch*) tree->FindBranch("inTarget");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
     TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
@@ -353,6 +354,7 @@ void Extraction(string pFilelist, int pType)
       MZfirst->GetEntry(ip);
       beam_chi2->GetEntry(ip);
       mu_prim_chi2->GetEntry(ip);
+      inTarget->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
       BMS->GetEntry(ip);
 
@@ -652,7 +654,7 @@ void Extraction(string pFilelist, int pType)
             //2016 ---
             else if(Y2016)
             {
-              if(inTargetMC->GetLeaf("inTargetMC")->GetValue()
+              if(inTarget->GetLeaf("inTarget")->GetValue()
                   && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
               {
                 fTarget++;
@@ -660,7 +662,7 @@ void Extraction(string pFilelist, int pType)
                 {
                   fBeamChi2++;
                   // Cells crossing
-                  if((cellsCrossedMC->GetLeaf("cellsCrossedMC")->GetValue()))
+                  if((cellsCrossed->GetLeaf("cellsCrossed")->GetValue()))
                   {
                     fXCells++;
                     if((mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10))

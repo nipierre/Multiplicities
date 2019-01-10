@@ -3,6 +3,7 @@ using Plots
 using LaTeXStrings
 
 z = [.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85]
+xexp = [.007,.015,.025,.035,.05,.08,.12,.16,.29]
 zFFred = [3,8,13,18,23,28,33,38,43,48,53,61]
 
 PDF = readdlm("data/MSTW2008lo68cl.txt")
@@ -136,18 +137,19 @@ for i in 1:9
         MKrpm[i] += MpKminus*(z[j+1]-z[j])
         MKrdm[i] += MdKminus*(z[j+1]-z[j])
     end
+    t = string("Pion Multiplicities at x =", xexp[i])
     plot(zmid, Mpip, lw=3, xlims = (0.,1),
                            ylims = (-0.1,3),
                            linecolor = :red,
                            xlabel = "z",
                            ylabel = L"M^{\pi}",
-                           label = L"\pi^+")
+                           label = L"\pi^+_{Pred}")
     plot!(zmid, Mpim, lw=3, xlims = (0.,1),
                             ylims = (-0.1,3),
                             linecolor = :blue,
                             xlabel = "z",
                             ylabel = L"M^{\pi}",
-                            label = L"\pi^-")
+                            label = L"\pi^-_{Pred}")
     plot!(zmid, Mpexp, lw=3, xlims = (0.,1),
                              ylims = (-0.1,3),
                              linecolor = :red,
@@ -161,7 +163,8 @@ for i in 1:9
                              linestyle = :dash,
                              xlabel = "z",
                              ylabel = L"M^{\pi}",
-                             label = L"\pi^-_{Exp}")
+                             label = L"\pi^-_{Exp}",
+                             title=t)
     savefig(string("plots/MultiplicitiesProtPi",i,".png"))
     Mpirp[i] = (Mpirpp[i]/Mpirpm[i])
     Mpirpexp[i] = (Mpirppexp[i]/Mpirpmexp[i])
@@ -177,22 +180,22 @@ plot(x,Mpisp, lw=3,
            ylims = (0.4,0.9),
            xlabel = "x",
            ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
-           label = "Proton")
+           label = "Proton Pred.")
 plot!(x,Mpisd, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             ylims = (0.4,0.9),
             xlabel = "x",
             ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
-            label = "Deuteron")
-plot!(x,Mpispexp, lw=3,
+            label = "Deuteron Pred.")
+plot!(xexp,Mpispexp, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             ylims = (0.4,0.9),
             xlabel = "x",
             ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
             label = "Proton Exp.")
-plot!(x,Mpisdexp, lw=3,
+plot!(xexp,Mpisdexp, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             ylims = (0.4,0.9),
@@ -206,20 +209,20 @@ plot(x,Mpirp, lw=3,
            xlims = (0.01,1),
            xlabel = "x",
            ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
-           label = "Proton")
+           label = "Proton Pred.")
 plot!(x,Mpird, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             xlabel = "x",
             ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
-            label = "Deuteron")
-plot!(x,Mpirpexp, lw=3,
+            label = "Deuteron Pred.")
+plot!(xexp,Mpirpexp, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             xlabel = "x",
             ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
             label = "Proton Exp.")
-plot!(x,Mpirdexp, lw=3,
+plot!(xexp,Mpirdexp, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             xlabel = "x",
