@@ -123,6 +123,29 @@ void Extraction(string pFilelist, int pType)
   Double_t wBj = 0;
   Double_t nu = 0;
 
+  // Trackers
+  int fRec=0;
+  int fBeam=0;
+  int fTarget=0;
+  int fBeamChi2=0;
+  int fXCells=0;
+  int fMuPrChi2=0;
+  int fZfirst=0;
+  int fTrig=0;
+  int fQ2=0;
+  int fY=0;
+  int fW=0;
+  int fX=0;
+  int fHadrons=0;
+  int fXX0=0;
+  int fHadChi2=0;
+  int fHZfirst=0;
+  int fHZlast=0;
+  int fP=0;
+  int fTh=0;
+  int fRICH=0;
+  int fZ=0;
+
   // Target cells
   if(Y2012) InitTargetFile(target_file_2012);
   else if(Y2016) InitTargetFile(target_file_2016);
@@ -529,7 +552,7 @@ void Extraction(string pFilelist, int pType)
       // Reconstructed muon
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
-
+        fRec++;
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
         {
@@ -537,7 +560,7 @@ void Extraction(string pFilelist, int pType)
           // Energy of the muon beam
           if((140<E_beam->GetLeaf("E_beam")->GetValue() && E_beam->GetLeaf("E_beam")->GetValue()<180))
           {
-
+            fBeam++;
             //2006 ---
             if(Y2006)
             {
@@ -628,28 +651,38 @@ void Extraction(string pFilelist, int pType)
               if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())
                   && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
               {
+                fTarget++;
                 if((beam_chi2->GetLeaf("beam_chi2")->GetValue()<10))
                 {
+                  fBeamChi2++;
                   // Cells crossing
                   if((cellsCrossed->GetLeaf("cellsCrossed")->GetValue()))
                   {
+                    fXCells++;
                     if((mu_prim_chi2->GetLeaf("mu_prim_chi2")->GetValue()<10))
                     {
+                      fMuPrChi2++;
                       if((MZfirst->GetLeaf("MZfirst")->GetValue()<350))
                       {
+                        fZfirst++;
                         if((trig&2 || trig&4 || trig&8 || trig&512))
                         {
+                          fTrig++;
                           // Q2 cut
                           if((Q2>1))
                           {
+                            fQ2++;
                             // y cut
                             if((fYmin<yBj && yBj<fYmax))
                             {
+                              fY++;
                               // W cut
                               if((fWmin<sqrt(wBj) && sqrt(wBj)<fWmax))
                               {
+                                fW++;
                                 if((fXmin<xBj && xBj<fXmax))
                                 {
+                                  fX++;
                                   fAllDISflag = 1;
                                 }
                               }
@@ -728,6 +761,8 @@ void Extraction(string pFilelist, int pType)
 
           // Hadron identification cuts ------------------------------------------
 
+          fHadrons++;
+
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 8)//pi+
           {
             fId = 0;
@@ -795,28 +830,28 @@ void Extraction(string pFilelist, int pType)
 
           // Maximum radiation length cumulated
           if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
-
+          fXX0++;
           // Chi2/ndf
           if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
-
+          fHadChi2++;
           // Zfirst
           if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
-
+          fHZfirst++;
           // Zlast
           if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
-
+          fHZlast++;
           // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
           if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
-
+          fP++;
           // Theta cut
           if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
-
+          fTh++;
           // RICH position cut
           if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
-
+          fRICH++;
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
-
+          fZ++;
           if(0.2<zBj && zBj<0.25) zbin = 0;
           else if(0.25<=zBj && zBj<0.30) zbin = 1;
           else if(0.30<=zBj && zBj<0.35) zbin = 2;
@@ -1013,6 +1048,40 @@ void Extraction(string pFilelist, int pType)
 
     delete f;
   }
+  cout << "\n\n";
+  cout << "             ********* Cut flow for Reconstructed DIS events after cuts ********* " << endl;
+  cout << "             -------------------------------------------------------------------- " << endl;
+
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << '|' << endl;
+  cout << '|' << setw(30) << "Best Primary Vertex" << '|' << setw(15) << fRec << '|' << setw(15) << float(fRec)/float(fRec)*100 << '|' << setw(15) << float(fRec)/float(fRec)*100 << '|' << endl;
+  cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBEC << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarg << '|' << setw(15) << float(fTarget)/float(fRec)*100 << '|' << setw(15) << float(fTarget)/float(fBeam)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu chi2/ndf < 10" << '|' << setw(15) << fBeamChi2 << '|' << setw(15) << float(fBeamChi2)/float(fRec)*100 << '|' << setw(15) << float(fBeamChi2)/float(fTarget)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Beam tarck X Cell" << '|' << setw(15) << fXCells << '|' << setw(15) << float(fXCells)/float(fRec)*100 << '|' << setw(15) << float(fXCells)/float(fBeamChi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' chi2/ndf < 10" << '|' << setw(15) << fMuPrChi2 << '|' << setw(15) << float(fMuPrChi2)/float(fRec)*100 << '|' << setw(15) << float(fMuPrChi2)/float(fXCells)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Mu' Zfirst < 350" << '|' << setw(15) << fZfirst << '|' << setw(15) << float(fZfirst)/float(fRec)*100 << '|' << setw(15) << float(fZfirst)/float(fMuPrChi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Triggers MT/LT/OT/LAST" << '|' << setw(15) << fTrig << '|' << setw(15) << float(fTrig)/float(fRec)*100 << '|' << setw(15) << float(fTrig)/float(fZfirst)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Q2 > 1" << '|' << setw(15) << fQ2 << '|' << setw(15) << float(fQ2)/float(fRec)*100 << '|' << setw(15) << float(fQ2)/float(fTrig)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.1 < y < 0.7" << '|' << setw(15) << fY << '|' << setw(15) << float(fY)/float(fRec)*100 << '|' << setw(15) << float(fY)/float(fQ2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "5 < W < 17" << '|' << setw(15) << fW << '|' << setw(15) << float(fW)/float(fRec)*100 << '|' << setw(15) << float(fW)/float(fY)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.004 < x < 0.4" << '|' << setw(15) << fX << '|' << setw(15) << float(fX)/float(fRec)*100 << '|' << setw(15) << float(fX)/float(fW)*100 << '|' << endl;
+
+  cout << "\n\n";
+  cout << "             ********* Cut flow for Reconstructed hadrons after cuts ********* " << endl;
+  cout << "             ----------------------------------------------------------------- " << endl;
+
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << endl;
+  cout << '|' << setw(30) << "Hadrons" << '|' << setw(15) << fHadrons << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << endl;
+  cout << '|' << setw(30) << "XX0 < 15" << '|' << setw(15) << fXX0 << '|' << setw(15) << float(fXX0)/float(fHadrons)*100 << '|' << setw(15) << float(fXX0)/float(fHadrons)*100 << endl;
+  cout << '|' << setw(30) << "Chi2/ndf > 10" << '|' << setw(15) << fHadChi2 << '|' << setw(15) << float(fHadChi2)/float(fHadrons)*100 << '|' << setw(15) << float(fHadChi2)/float(fXX0)*100 << endl;
+  cout << '|' << setw(30) << "Zfirst < 350 cm" << '|' << setw(15) << fHZfirst << '|' << setw(15) << float(fHZfirst)/float(fHadrons)*100 << '|' << setw(15) << float(fHZfirst)/float(fHadChi2)*100 << endl;
+  cout << '|' << setw(30) << "Zlast > 350 cm" << '|' << setw(15) << fHZlast << '|' << setw(15) << float(fHZlast)/float(fHadrons)*100 << '|' << setw(15) << float(fHZlast)/float(fHZfirst)*100 << endl;
+  cout << '|' << setw(30) << "12 < p_h < 40" << '|' << setw(15) << fP << '|' << setw(15) << float(fP)/float(fHadrons)*100 << '|' << setw(15) << float(fP)/float(fHZlast)*100 << endl;
+  cout << '|' << setw(30) << "0.01 < theta_RICH < 0.12" << '|' << setw(15) << fTh << '|' << setw(15) << float(fTh)/float(fHadrons)*100 << '|' << setw(15) << float(fTh)/float(fP)*100 << endl;
+  cout << '|' << setw(30) << "Rich Pipe" << '|' << setw(15) << fRICH << '|' << setw(15) << float(fRICH)/float(fHadrons)*100 << '|' << setw(15) << float(fRICH)/float(fTh)*100 << endl;
+  cout << '|' << setw(30) << "0.2 < z < 0.85" << '|' << setw(15) << fZ << '|' << setw(15) << float(fZ)/float(fHadrons)*100 << '|' << setw(15) << float(fZ)/float(fRICH)*100 << endl;
+
+  cout << "\n\n";
 }
 
 void DVMDump()
