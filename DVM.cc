@@ -1054,8 +1054,8 @@ void Extraction(string pFilelist, int pType)
 
   cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << '|' << endl;
   cout << '|' << setw(30) << "Best Primary Vertex" << '|' << setw(15) << fRec << '|' << setw(15) << float(fRec)/float(fRec)*100 << '|' << setw(15) << float(fRec)/float(fRec)*100 << '|' << endl;
-  cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBEC << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << endl;
-  cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarg << '|' << setw(15) << float(fTarget)/float(fRec)*100 << '|' << setw(15) << float(fTarget)/float(fBeam)*100 << '|' << endl;
+  cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBeam << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarget << '|' << setw(15) << float(fTarget)/float(fRec)*100 << '|' << setw(15) << float(fTarget)/float(fBeam)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu chi2/ndf < 10" << '|' << setw(15) << fBeamChi2 << '|' << setw(15) << float(fBeamChi2)/float(fRec)*100 << '|' << setw(15) << float(fBeamChi2)/float(fTarget)*100 << '|' << endl;
   cout << '|' << setw(30) << "Beam tarck X Cell" << '|' << setw(15) << fXCells << '|' << setw(15) << float(fXCells)/float(fRec)*100 << '|' << setw(15) << float(fXCells)/float(fBeamChi2)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu' chi2/ndf < 10" << '|' << setw(15) << fMuPrChi2 << '|' << setw(15) << float(fMuPrChi2)/float(fRec)*100 << '|' << setw(15) << float(fMuPrChi2)/float(fXCells)*100 << '|' << endl;
