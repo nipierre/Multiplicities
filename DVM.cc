@@ -652,7 +652,7 @@ void Extraction(string pFilelist, int pType)
             //2016 ---
             else if(Y2016)
             {
-              if(InTargetMC->GetLeaf("InTargetMC")->GetValue()
+              if(inTargetMC->GetLeaf("inTargetMC")->GetValue()
                   && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
               {
                 fTarget++;
