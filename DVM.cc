@@ -1200,8 +1200,8 @@ void DVMCalc()
       fNDIS_evt_phi[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
       fNDIS_evt_rho_raw[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
       fNDIS_evt_phi_raw[i][j] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-      fDVM_DIS_pi[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_rho[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
-      fDVM_DIS_K[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_phi[i][j]/fNDIS_evt_SIDIS[i][j] : 0;
+      fDVM_DIS_pi[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_rho[i][j]/(fNDIS_evt_SIDIS[i][j]+fNDIS_evt_rho[i][j]+fNDIS_evt_phi[i][j]) : 0;
+      fDVM_DIS_K[i][j] = fNDIS_evt_SIDIS[i][j] ? fNDIS_evt_phi[i][j]/(fNDIS_evt_SIDIS[i][j]+fNDIS_evt_rho[i][j]+fNDIS_evt_phi[i][j]) : 0;
       fNDIS_SIDIS_tot += fNDIS_evt_SIDIS[i][j];
       fNDIS_rho_tot += fNDIS_evt_rho[i][j];
       fNDIS_phi_tot += fNDIS_evt_phi[i][j];
