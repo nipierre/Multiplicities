@@ -1299,8 +1299,8 @@ void DVMSaver()
         ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
                 << 1-fDVM_h[i][j][k].tab[1][0][0] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
                 << 1-fDVM_h[i][j][k].tab[0][0][0] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
-                << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-fDVM_DIS_K[i][j]+fDVM_DIS_K[i][j] << " "
-                << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-fDVM_DIS_K[i][j]+fDVM_DIS_K[i][j] << endl;
+                << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
+                << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << endl;
       }
       for(int c=0; c<2; c++)
       {
