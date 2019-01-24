@@ -1310,7 +1310,7 @@ void DVMSaver()
   {
     for(int j=0; j<6; j++)
     {
-      ofs_dfr << i+1 << " " << k+1 << " "
+      ofs_dfr << i+1 << " " << j+1 << " "
                      << fNDIS_evt_SIDIS[i][j]/fNDIS_SIDIS_tot << " "
                      << fNDIS_evt_rho[i][j]/fNDIS_rho_tot << " "
                      << fNDIS_evt_phi[i][j]/fNDIS_phi_tot << endl;

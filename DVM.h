@@ -80,12 +80,15 @@ Double_t PHI_EVENTS;
 //Binning
 Wrapper fSIDIS[9][6][12];
 Double_t fSIDIS_tot[2][4];
+Double_t fSIDIS_tot_xy[9][6][2][4];
 Wrapper fRho[9][6][12];
 Wrapper fRho_raw[9][6][12];
 Double_t fRho_tot[2][4];
+Double_t fRho_tot_xy[9][6][2][4];
 Wrapper fPhi[9][6][12];
 Wrapper fPhi_raw[9][6][12];
 Double_t fPhi_tot[2][4];
+Double_t fPhi_tot_xy[9][6][2][4];
 Wrapper fDVM_h[9][6][12];
 Double_t fNDIS_evt_SIDIS[9][6];
 Double_t fNDIS_SIDIS_tot;
