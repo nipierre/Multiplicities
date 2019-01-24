@@ -1219,30 +1219,44 @@ void DVMCalc()
         fSIDIS_tot[0][1] += fSIDIS[i][j][k].tab[0][0][1];
         fSIDIS_tot[1][3] += fSIDIS[i][j][k].tab[1][0][3];
         fSIDIS_tot[0][3] += fSIDIS[i][j][k].tab[0][0][3];
-        fRho[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        fRho[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        fRho[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        fRho[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        fRho_raw[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        fRho_raw[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        fRho_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        fRho_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fSIDIS_tot_xy[i][j][1][0] += fSIDIS[i][j][k].tab[1][0][0];
+        fSIDIS_tot_xy[i][j][0][0] += fSIDIS[i][j][k].tab[0][0][0];
+        fSIDIS_tot_xy[i][j][1][1] += fSIDIS[i][j][k].tab[1][0][1];
+        fSIDIS_tot_xy[i][j][0][1] += fSIDIS[i][j][k].tab[0][0][1];
+        fSIDIS_tot_xy[i][j][1][3] += fSIDIS[i][j][k].tab[1][0][3];
+        fSIDIS_tot_xy[i][j][0][3] += fSIDIS[i][j][k].tab[0][0][3];
+        // fRho[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        // fRho[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        // fRho[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        // fRho[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        // fRho_raw[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        // fRho_raw[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        // fRho_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        // fRho_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
         fRho_tot[1][0] += fRho[i][j][k].tab[1][0][0];
         fRho_tot[0][0] += fRho[i][j][k].tab[0][0][0];
         fRho_tot[1][3] += fRho[i][j][k].tab[1][0][3];
         fRho_tot[0][3] += fRho[i][j][k].tab[0][0][3];
-        fPhi[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        fPhi[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        fPhi[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        fPhi[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        fPhi_raw[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        fPhi_raw[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        fPhi_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        fPhi_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fRho_tot_xy[i][j][1][0] += fRho[i][j][k].tab[1][0][0];
+        fRho_tot_xy[i][j][0][0] += fRho[i][j][k].tab[0][0][0];
+        fRho_tot_xy[i][j][1][3] += fRho[i][j][k].tab[1][0][3];
+        fRho_tot_xy[i][j][0][3] += fRho[i][j][k].tab[0][0][3];
+        // fPhi[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        // fPhi[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        // fPhi[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        // fPhi[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        // fPhi_raw[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        // fPhi_raw[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        // fPhi_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        // fPhi_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
         fPhi_tot[1][1] += fPhi[i][j][k].tab[1][0][1];
         fPhi_tot[0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot[1][3] += fPhi[i][j][k].tab[1][0][3];
         fPhi_tot[0][3] += fPhi[i][j][k].tab[0][0][3];
+        fPhi_tot_xy[i][j][1][1] += fPhi[i][j][k].tab[1][0][1];
+        fPhi_tot_xy[i][j][0][1] += fPhi[i][j][k].tab[0][0][1];
+        fPhi_tot_xy[i][j][1][3] += fPhi[i][j][k].tab[1][0][3];
+        fPhi_tot_xy[i][j][0][3] += fPhi[i][j][k].tab[0][0][3];
         fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0] ? fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0]) : 0;
         fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0] ? fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0]) : 0;
         fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
@@ -1269,6 +1283,8 @@ void DVMCalc()
 void DVMSaver()
 {
   ofstream ofs_dvm("DVM.dat", std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_dfr("DISFrac.dat", std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_hfr("HadFrac.dat", std::ofstream::out | std::ofstream::trunc);
   TCanvas c1("Pion_DVM","Pion_DVM",3200,1600);
   TCanvas c2("Kaon_DVM","Kaon_DVM",3200,1600);
 
@@ -1294,6 +1310,10 @@ void DVMSaver()
   {
     for(int j=0; j<6; j++)
     {
+      ofs_dfr << i+1 << " " << k+1 << " "
+                     << fNDIS_evt_SIDIS[i][j]/fNDIS_SIDIS_tot << " "
+                     << fNDIS_evt_rho[i][j]/fNDIS_rho_tot << " "
+                     << fNDIS_evt_phi[i][j]/fNDIS_phi_tot << endl;
       for(int k=0; k<12; k++)
       {
         ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
@@ -1301,6 +1321,10 @@ void DVMSaver()
                 << 1-fDVM_h[i][j][k].tab[0][0][0] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
                 << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
                 << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << endl;
+        ofs_hfr << i+1 << " " << j+1 << " " << k+1 << " "
+                       << (fSIDIS[i][j][k].tab[1][0][3]+fSIDIS[i][j][k].tab[0][0][3])/(fSIDIS_tot_xy[i][j][1][3]+fSIDIS_tot_xy[i][j][0][3]) << " "
+                       << (fRho[i][j][k].tab[1][0][3]+fRho[i][j][k].tab[0][0][3])/(fRho_tot_xy[i][j][1][3]+fRho_tot_xy[i][j][0][3]) << " "
+                       << (fPhi[i][j][k].tab[1][0][3]+fPhi[i][j][k].tab[0][0][3])/(fPhi_tot_xy[i][j][1][3]+fPhi_tot_xy[i][j][0][3]) << endl;
       }
       for(int c=0; c<2; c++)
       {
@@ -1444,6 +1468,8 @@ void DVMSaver()
     }
   }
   ofs_dvm.close();
+  ofs_dfr.close();
+  ofs_hfr.close();
   c1.Print("DVM_Pi.pdf");
   c2.Print("DVM_K.pdf");
 
