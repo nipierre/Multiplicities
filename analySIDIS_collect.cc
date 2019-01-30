@@ -2259,7 +2259,7 @@ int main(int argc, char **argv)
         MultiplicitiesSum[1][c][2] += fMultiplicities_yavg[i][k].tab[c][1][2]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
 
-        cout << end;
+        cout << endl;
         cout << c << " " << i << " " << k << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][1][3]
                                                  << fMultiplicities_zvtx_yavg[i][k][1].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][1].tab[c][1][3]
                                                  << fMultiplicities_zvtx_yavg[i][k][2].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][2].tab[c][1][3]
