@@ -107,32 +107,32 @@ for i in 1:9
                            ylims = (-0.1,3),
                            linecolor = :red,
                            xlabel = "z",
-                           ylabel = L"M^{\pi}",
+                           ylabel = L"M^{h}",
                            ribbon = Sp1,
-                           label = L"\pi^+_{Reference}")
+                           label = L"h^+_{Reference}")
     plot!(zmid, Mm1, lw=3, xlims = (0.,1),
                             ylims = (-0.1,3),
                             linecolor = :blue,
                             xlabel = "z",
-                            ylabel = L"M^{\pi}",
+                            ylabel = L"M^{h}",
                             ribbon = Sm1,
-                            label = L"\pi^-_{Reference}")
+                            label = L"h^-_{Reference}")
     plot!(zmid, Mp2, lw=3, xlims = (0.,1),
                              ylims = (-0.1,3),
                              linecolor = :red,
                              linestyle = :dash,
                              xlabel = "z",
-                             ylabel = L"M^{\pi}",
+                             ylabel = L"M^{h}",
                              ribbon = Sp2,
-                             label = L"\pi^+_{Test}")
+                             label = L"h^+_{Test}")
     plot!(zmid, Mm2, lw=3, xlims = (0.,1),
                              ylims = (-0.1,3),
                              linecolor = :blue,
                              linestyle = :dash,
                              xlabel = "z",
-                             ylabel = L"M^{\pi}",
+                             ylabel = L"M^{h}",
                              ribbon = Sm2,
-                             label = L"\pi^-_{Test}",
+                             label = L"h^-_{Test}",
                              title=t)
     savefig(string("plots/MultiplicitiesTest",i,".png"))
     Mr1[i] = (Mrp1[i]/Mrm1[i])
@@ -158,17 +158,17 @@ scatter(xexp,Ms1, lw=3,
            xlims = (0.01,1),
            ylims = (0.6,1.2),
            xlabel = "x",
-           ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
+           ylabel = L"\int M^{h^+}+M^{h^-} dz",
            yerror = Ss1,
-           label = "Reference")
+           label = "Saclay")
 scatter!(xexp,Ms2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             ylims = (0.6,1.2),
             xlabel = "x",
-            ylabel = L"\int M^{\pi^+}+M^{\pi^-} dz",
+            ylabel = L"\int M^{h^+}+M^{h^-} dz",
             yerror = Ss2,
-            label = "Test")
+            label = "Trieste")
 savefig("plots/MultiplicitiesSumTest.png")
 
 scatter(xexp,Mr1, lw=3,
@@ -176,15 +176,15 @@ scatter(xexp,Mr1, lw=3,
            xlims = (0.01,1),
            ylims = (1.1,1.9),
            xlabel = "x",
-           ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
+           ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
            yerror = Sr1,
-           label = "Reference")
+           label = "Saclay")
 scatter!(xexp,Mr2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
             ylims = (1.1,1.9),
             xlabel = "x",
-            ylabel = L"\frac{\int M^{\pi^+} dz}{\int M^{\pi^-} dz}",
+            ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
             yerror = Sr2,
-            label = "Test")
+            label = "Trieste")
 savefig("plots/MultiplicitiesRatioTest.png")

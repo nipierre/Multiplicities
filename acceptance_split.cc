@@ -2472,6 +2472,12 @@ int main(int argc, char **argv)
               zBj_unid = 0;
             }
 
+            // ECAL0 cut
+            int dz = abs(z->GetLeaf("z")->GetValue()-77);
+            int xdy = y->GetLeaf("y")->GetValue()+tan(th->GetLeaf("Hadrons.th")->GetValue(i))*dz;
+            int xdx = x->GetLeaf("x")->GetValue()+tan(phi->GetLeaf("Hadrons.phi")->GetValue(i))*dz;
+            if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
+
             // Maximum radiation length cumulated
             if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
             fXX0test++;
