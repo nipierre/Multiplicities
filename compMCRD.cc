@@ -229,8 +229,8 @@ void create_kin_plots()
   }
   fKinematicsRD[0][11] = new TH1F("phi_{e,prod.pl}","phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
-  fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 100, -80, 80, 100, -80, 80);
-  fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 100, -80, 80, 100, -80, 80);
+  fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 1000, -80, 80, 1000, -80, 80);
+  fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 1000, -80, 80, 1000, -80, 80);
   fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
@@ -1524,6 +1524,7 @@ void MCextraction(string pFilelist)
           int dz = abs(z->GetLeaf("z")->GetValue()-77);
           int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
           fECAL0MC->Fill(xdx,ydy);
 
           // /phi_plane for electron (Radiative correction test for electro-production from real photons)
@@ -2354,6 +2355,7 @@ void RDextraction(string pFilelist)
         int dz = abs(z->GetLeaf("z")->GetValue()-77);
         int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
         int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
         fECAL0RD->Fill(xdx,ydy);
 
         // /phi_plane for electron (Radiative correction test for electro-production from real photons)
