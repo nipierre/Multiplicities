@@ -229,6 +229,8 @@ void create_kin_plots()
   }
   fKinematicsRD[0][11] = new TH1F("phi_{e,prod.pl}","phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
+  fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 50, 0, 3.5);
+  fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 50, 0, 3.5);
   fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
@@ -393,6 +395,7 @@ void save_kin_plots()
   c40.Divide(1,2);
   c41.Divide(2,4);
   c42.Divide(1,2);
+  c43.Divide(2,1);
 
   int offset=0;
 
@@ -719,6 +722,18 @@ void save_kin_plots()
   fThetaMCp[2]->GetYaxis()->SetTitle("theta_x");
   c36.Update();
 
+  c43.cd(1);
+  fThetaMCp[2]->Draw("COLZ");
+  fThetaMCp[2]->GetXaxis()->SetTitle("x");
+  fThetaMCp[2]->GetYaxis()->SetTitle("y");
+  c43.Update();
+
+  c43.cd(2);
+  fThetaMCp[2]->Draw("COLZ");
+  fThetaMCp[2]->GetXaxis()->SetTitle("x");
+  fThetaMCp[2]->GetYaxis()->SetTitle("y");
+  c43.Update();
+
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
@@ -756,7 +771,8 @@ void save_kin_plots()
   c39.Print("kinMCRD.pdf","pdf");
   c40.Print("kinMCRD.pdf","pdf");
   c41.Print("kinMCRD.pdf","pdf");
-  c42.Print("kinMCRD.pdf)","pdf");
+  c42.Print("kinMCRD.pdf","pdf");
+  c43.Print("kinMCRD.pdf)","pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -1504,6 +1520,11 @@ void MCextraction(string pFilelist)
           {
             zBj = 0;
           }
+
+          int dz = abs(z->GetLeaf("z")->GetValue()-77);
+          int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fECAL0MC->Fill(xdx,ydy);
 
           // /phi_plane for electron (Radiative correction test for electro-production from real photons)
           // Has to be done before Hadron cuts
@@ -2329,6 +2350,11 @@ void RDextraction(string pFilelist)
         {
           zBj = 0;
         }
+
+        int dz = abs(z->GetLeaf("z")->GetValue()-77);
+        int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        fECAL0RD->Fill(xdx,ydy);
 
         // /phi_plane for electron (Radiative correction test for electro-production from real photons)
         // Has to be done before Hadron cuts
