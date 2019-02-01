@@ -723,15 +723,15 @@ void save_kin_plots()
   c36.Update();
 
   c43.cd(1);
-  fThetaMCp[2]->Draw("COLZ");
-  fThetaMCp[2]->GetXaxis()->SetTitle("x");
-  fThetaMCp[2]->GetYaxis()->SetTitle("y");
+  fECAL0RD->Draw("COLZ");
+  fECAL0RD->GetXaxis()->SetTitle("x");
+  fECAL0RD->GetYaxis()->SetTitle("y");
   c43.Update();
 
   c43.cd(2);
-  fThetaMCp[2]->Draw("COLZ");
-  fThetaMCp[2]->GetXaxis()->SetTitle("x");
-  fThetaMCp[2]->GetYaxis()->SetTitle("y");
+  fECAL0MC->Draw("COLZ");
+  fECAL0MC->GetXaxis()->SetTitle("x");
+  fECAL0MC->GetYaxis()->SetTitle("y");
   c43.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
