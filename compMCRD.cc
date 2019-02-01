@@ -229,8 +229,8 @@ void create_kin_plots()
   }
   fKinematicsRD[0][11] = new TH1F("phi_{e,prod.pl}","phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
-  fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 50, 0, 3.5);
-  fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 50, 0, 3.5);
+  fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 100, 0, 80, 100, 0, 80);
+  fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 100, 0, 80, 100, 0, 80);
   fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
