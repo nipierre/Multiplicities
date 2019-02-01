@@ -1521,12 +1521,6 @@ void MCextraction(string pFilelist)
             zBj = 0;
           }
 
-          int dz = abs(z->GetLeaf("z")->GetValue()-77);
-          int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
-          fECAL0MC->Fill(xdx,ydy);
-
           // /phi_plane for electron (Radiative correction test for electro-production from real photons)
           // Has to be done before Hadron cuts
           if(0.1<zBj && (fId==8 || fId==9))
@@ -1555,6 +1549,12 @@ void MCextraction(string pFilelist)
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
+
+          int dz = abs(z->GetLeaf("z")->GetValue()-77);
+          int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          // if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
+          fECAL0MC->Fill(xdx,ydy);
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2352,12 +2352,6 @@ void RDextraction(string pFilelist)
           zBj = 0;
         }
 
-        int dz = abs(z->GetLeaf("z")->GetValue()-77);
-        int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
-        fECAL0RD->Fill(xdx,ydy);
-
         // /phi_plane for electron (Radiative correction test for electro-production from real photons)
         // Has to be done before Hadron cuts
         if(0.1<zBj && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i)) && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)>fLHsec_tab[3]))
@@ -2386,6 +2380,12 @@ void RDextraction(string pFilelist)
 
         // z cut
         if(!(0.2<zBj && zBj<0.85)) continue;
+
+        int dz = abs(z->GetLeaf("z")->GetValue()-77);
+        int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        // if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
+        fECAL0RD->Fill(xdx,ydy);
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
