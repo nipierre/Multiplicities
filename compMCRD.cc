@@ -743,6 +743,8 @@ void save_kin_plots()
   fECAL0MC->GetYaxis()->SetTitle("y");
   c43.Update();
 
+  c43.Write();
+
   c44.cd(1);
   fVertexRD[3]->SetLineColor(kGreen);
   fVertexRD[3]->Draw("");
@@ -764,6 +766,8 @@ void save_kin_plots()
   fVertexMCb[2]->SetLineColor(kCyan);
   fVertexMCb[2]->Draw("SAMES");
   c44.Update();
+
+  c44.Write();
 
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
