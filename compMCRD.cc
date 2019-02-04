@@ -231,14 +231,14 @@ void create_kin_plots()
   fKinematicsMC[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
   fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 1000, -80, 80, 1000, -80, 80);
   fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 1000, -80, 80, 1000, -80, 80);
-  fVertexRD[0] = new TH1F("Vertex Endpoint 0","Vertex Endpoint 0", 100, -1000, 2000);
-  fVertexMCb[0] = new TH1F("Vertex Endpoint 0 MC","EVertex Endpoint 0 MC", 100, -1000, 2000);
-  fVertexRD[1] = new TH1F("Vertex Endpoint 1","Vertex Endpoint 1", 100, -1000, 2000);
-  fVertexMCb[1] = new TH1F("Vertex Endpoint 1 MC","EVertex Endpoint 1 MC", 100, -1000, 2000);
-  fVertexRD[2] = new TH1F("Vertex Endpoint 2","Vertex Endpoint 2", 100, -1000, 2000);
-  fVertexMCb[2] = new TH1F("Vertex Endpoint 2 MC","EVertex Endpoint 2 MC", 100, -1000, 2000);
-  fVertexRD[3] = new TH1F("Vertex Endpoint 3","Vertex Endpoint 3", 100, -1000, 2000);
-  fVertexMCb[3] = new TH1F("Vertex Endpoint 3 MC","EVertex Endpoint 3 MC", 100, -1000, 2000);
+  fVertexRD[0] = new TH1F("Vertex Endpoint 0","Vertex Endpoint 0", 500, -1000, 2000);
+  fVertexMCb[0] = new TH1F("Vertex Endpoint 0 MC","EVertex Endpoint 0 MC", 500, -1000, 2000);
+  fVertexRD[1] = new TH1F("Vertex Endpoint 1","Vertex Endpoint 1", 500, -1000, 2000);
+  fVertexMCb[1] = new TH1F("Vertex Endpoint 1 MC","EVertex Endpoint 1 MC", 500, -1000, 2000);
+  fVertexRD[2] = new TH1F("Vertex Endpoint 2","Vertex Endpoint 2", 500, -1000, 2000);
+  fVertexMCb[2] = new TH1F("Vertex Endpoint 2 MC","EVertex Endpoint 2 MC", 500, -1000, 2000);
+  fVertexRD[3] = new TH1F("Vertex Endpoint 3","Vertex Endpoint 3", 500, -1000, 2000);
+  fVertexMCb[3] = new TH1F("Vertex Endpoint 3 MC","EVertex Endpoint 3 MC", 500, -1000, 2000);
   fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
@@ -747,23 +747,31 @@ void save_kin_plots()
 
   c44.cd(1);
   fVertexRD[3]->SetLineColor(kGreen);
+  fVertexRD[3]->Scale(1/fVertexRD[3]->GetEntries());
   fVertexRD[3]->Draw("");
   fVertexRD[0]->SetLineColor(kMagenta);
+  fVertexRD[0]->Scale(1/fVertexRD[0]->GetEntries());
   fVertexRD[0]->Draw("SAMES");
   fVertexRD[1]->SetLineColor(kBlue);
+  fVertexRD[1]->Scale(1/fVertexRD[1]->GetEntries());
   fVertexRD[1]->Draw("SAMES");
   fVertexRD[2]->SetLineColor(kCyan);
+  fVertexRD[2]->Scale(1/fVertexRD[2]->GetEntries());
   fVertexRD[2]->Draw("SAMES");
   c44.Update();
 
   c44.cd(2);
   fVertexMCb[3]->SetLineColor(kGreen);
+  fVertexMCb[3]->Scale(1/fVertexMCb[3]->GetEntries());
   fVertexMCb[3]->Draw("");
   fVertexMCb[0]->SetLineColor(kMagenta);
+  fVertexMCb[0]->Scale(1/fVertexMCb[0]->GetEntries());
   fVertexMCb[0]->Draw("SAMES");
   fVertexMCb[1]->SetLineColor(kBlue);
+  fVertexMCb[1]->Scale(1/fVertexMCb[1]->GetEntries());
   fVertexMCb[1]->Draw("SAMES");
   fVertexMCb[2]->SetLineColor(kCyan);
+  fVertexMCb[2]->Scale(1/fVertexMCb[2]->GetEntries());
   fVertexMCb[2]->Draw("SAMES");
   c44.Update();
 
