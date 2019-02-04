@@ -280,10 +280,10 @@ int main(int argc, char **argv)
                    fRcstr[i][j][k].tab[c][0][2] << " " << fRcstr_c[i][j][k].tab[c][0][2] << " " << fGnrt[i][j][k].tab[c][0][2] << " " <<
                    fRcstr[i][j][k].tab[c][0][3] << " " << fRcstr_c[i][j][k].tab[c][0][3] << " " << fGnrt[i][j][k].tab[c][0][3] << " " << endl;
 
-          ofs_hmult << fRcstr[i][j][k].tab[c][0][0] << " " << sqrt(fRcstr[i][j][k].tab[c][0][0]) << " " << 0 << " " << 0 << " " <<
-                    fRcstr[i][j][k].tab[c][0][1] << " " << sqrt(fRcstr[i][j][k].tab[c][0][1]) << " " << 0 << " " << 0 << " " <<
-                    fRcstr[i][j][k].tab[c][0][2] << " " << sqrt(fRcstr[i][j][k].tab[c][0][2]) << " " << 0 << " " << 0 << " " <<
-                    fRcstr[i][j][k].tab[c][0][3] << " " << sqrt(fRcstr[i][j][k].tab[c][0][3]) << " " << 0 << " " << 0 << " " <<
+          ofs_hmult << fRcstr[i][j][k].tab[c][0][0] << " " << fRcstr[i][j][k].tab[c][0][0] << " " << 0 << " " << 0 << " " <<
+                    fRcstr[i][j][k].tab[c][0][1] << " " << fRcstr[i][j][k].tab[c][0][1] << " " << 0 << " " << 0 << " " <<
+                    fRcstr[i][j][k].tab[c][0][2] << " " << fRcstr[i][j][k].tab[c][0][2] << " " << 0 << " " << 0 << " " <<
+                    fRcstr[i][j][k].tab[c][0][3] << " " << fRcstr[i][j][k].tab[c][0][3] << " " << 0 << " " << 0 << " " <<
           endl;
 
           ofs_hzvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][0] << " " <<
@@ -297,10 +297,10 @@ int main(int argc, char **argv)
 
          for(int zv=0; zv<4; zv++)
          {
-           ofs_hmult_zvtx << fRcstr_zvtx[i][j][k][zv].tab[c][0][0] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][0]) << " " <<
-                    fRcstr_zvtx[i][j][k][zv].tab[c][0][1] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][1]) << " " <<
-                    fRcstr_zvtx[i][j][k][zv].tab[c][0][2] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][2]) << " " <<
-                    fRcstr_zvtx[i][j][k][zv].tab[c][0][3] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][3]) << " " << endl;
+           ofs_hmult_zvtx << fRcstr_zvtx[i][j][k][zv].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][0]) << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][1] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][1]) << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][2] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][2]) << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][3]) << " " << endl;
          }
         }
       }
