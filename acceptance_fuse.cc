@@ -251,7 +251,7 @@ int main(int argc, char **argv)
                      fNDIS_evt[1][i][j][k] << " " << fNDIS_evt_c[1][i][j][k] << " " << fNDIS_evt_MC[1][i][j][k] << " " <<
                      fNDIS_evt[2][i][j][k] << " " << fNDIS_evt_c[2][i][j][k] << " " << fNDIS_evt_MC[2][i][j][k] << endl;
 
-            ofs_dmult << fNDIS_evt[0][i][j][k] << " " << sqrt(fNDIS_evt[0][i][j][k]);
+            ofs_dmult << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt[0][i][j][k];
 
             for(int ll=0; ll<4; ll++)
             {
@@ -270,7 +270,7 @@ int main(int argc, char **argv)
                          fNDIS_evt_MC_zvtx[2][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][3] << endl;
 
             for(int zv=0; zv<4; zv++)
-                ofs_dmult_zvtx << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << sqrt(fNDIS_evt_zvtx[0][i][j][k][zv]) << " ";
+                ofs_dmult_zvtx << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << fNDIS_evt_zvtx[0][i][j][k][zv] << " ";
 
             ofs_dmult_zvtx << endl;
           }
@@ -297,10 +297,10 @@ int main(int argc, char **argv)
 
          for(int zv=0; zv<4; zv++)
          {
-           ofs_hmult_zvtx << fRcstr_zvtx[i][j][k][zv].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][0]) << " " <<
-                    fRcstr_zvtx[i][j][k][zv].tab[c][0][1] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][1]) << " " <<
-                    fRcstr_zvtx[i][j][k][zv].tab[c][0][2] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][2]) << " " <<
-                    fRcstr_zvtx[i][j][k][zv].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][3]) << " " << endl;
+           ofs_hmult_zvtx << fRcstr_zvtx[i][j][k][zv].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][0] << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][1] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][1] << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][2] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][2] << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][0][3] << " " << endl;
          }
         }
       }
