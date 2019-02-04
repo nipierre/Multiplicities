@@ -1454,7 +1454,7 @@ void MCextraction(string pFilelist)
         if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
           fQ2kinMC[4].push_back(Q2);
-          fXBjkinMC[4].push_back(xBj);
+          // fXBjkinMC[4].push_back(xBj);
           fYBjkinMC[4].push_back(yBj);
           fWBjkinMC[4].push_back(sqrt(wBj));
           fNukinMC[4].push_back(nu);
@@ -1615,6 +1615,8 @@ void MCextraction(string pFilelist)
           fVertexMCb[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fHadronMC++;
 
+          fXBjkinMC[4].push_back(xBj);
+
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
           {
@@ -1745,7 +1747,7 @@ void MCextraction(string pFilelist)
   for(int i=0; i<int(fQ2kinMC[4].size()); i++)
   {
     fKinematicsMC[4][0]->Fill(fQ2kinMC[4][i]);
-    fKinematicsMC[4][1]->Fill(fXBjkinMC[4][i]);
+    // fKinematicsMC[4][1]->Fill(fXBjkinMC[4][i]);
     fKinematicsMC[4][2]->Fill(fYBjkinMC[4][i]);
     fKinematicsMC[4][4]->Fill(fWBjkinMC[4][i]);
     fKinematicsMC[4][5]->Fill(fNukinMC[4][i]);
@@ -1758,6 +1760,10 @@ void MCextraction(string pFilelist)
   for(int i=0; i<int(fMuMC[4].size()); i++)
   {
     fKinematicsMC[4][6]->Fill(fMuMC[4][i]);
+  }
+  for(int i=0; i<int(fXBjkinMC[4].size()); i++)
+  {
+    fKinematicsMC[4][1]->Fill(fXBjkinMC[4][i]);
   }
   for(int i=0; i<int(fThetaMCMu[0].size()); i++)
   {
@@ -2195,7 +2201,7 @@ void RDextraction(string pFilelist)
       if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
       {
         fQ2kin[4].push_back(Q2);
-        fXBjkin[4].push_back(xBj);
+        // fXBjkin[4].push_back(xBj);
         fYBjkin[4].push_back(yBj);
         fWBjkin[4].push_back(sqrt(wBj));
         fNukin[4].push_back(nu);
@@ -2453,6 +2459,8 @@ void RDextraction(string pFilelist)
         fVertexRD[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         fHadronRD++;
 
+        fXBjkin[4].push_back(xBj);
+
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
 
@@ -2587,7 +2595,7 @@ void RDextraction(string pFilelist)
   for(int i=0; i<int(fQ2kin[4].size()); i++)
   {
       fKinematicsRD[4][0]->Fill(fQ2kin[4][i]);
-      fKinematicsRD[4][1]->Fill(fXBjkin[4][i]);
+      // fKinematicsRD[4][1]->Fill(fXBjkin[4][i]);
       fKinematicsRD[4][2]->Fill(fYBjkin[4][i]);
       fKinematicsRD[4][4]->Fill(fWBjkin[4][i]);
       fKinematicsRD[4][5]->Fill(fNukin[4][i]);
@@ -2600,6 +2608,10 @@ void RDextraction(string pFilelist)
   for(int i=0; i<int(fMu[4].size()); i++)
   {
     fKinematicsRD[4][6]->Fill(fMu[4][i]);
+  }
+  for(int i=0; i<int(fMu[4].size()); i++)
+  {
+    fKinematicsRD[4][1]->Fill(fXBjkin[4][i]);
   }
   for(int i=0; i<int(fThetaMu[0].size()); i++)
   {
