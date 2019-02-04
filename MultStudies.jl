@@ -9,7 +9,7 @@ zFFred = [3,8,13,18,23,28,33,38,43,48,53,61]
 # Mult1 = readdlm("data/Mult2016Hadron.txt")
 # Mult2 = readdlm("data/Mult2016HadronNORICH.txt")
 Mult1 = readdlm("data/Mult2016Hadron.txt")
-Mult2 = readdlm("data/Mult2016HadronTrieste.txt")
+Mult2 = readdlm("data/Mult2016HadronMC.txt")
 
 Multp1 = zeros((9,12))
 Multm1 = zeros((9,12))
@@ -109,14 +109,14 @@ for i in 1:9
                            xlabel = "z",
                            ylabel = L"M^{h}",
                            ribbon = Sp1,
-                           label = L"h^+_{Reference}")
+                           label = L"h^+_{RD}")
     plot!(zmid, Mm1, lw=3, xlims = (0.,1),
                             ylims = (-0.1,3),
                             linecolor = :blue,
                             xlabel = "z",
                             ylabel = L"M^{h}",
                             ribbon = Sm1,
-                            label = L"h^-_{Reference}")
+                            label = L"h^-_{RD}")
     plot!(zmid, Mp2, lw=3, xlims = (0.,1),
                              ylims = (-0.1,3),
                              linecolor = :red,
@@ -124,7 +124,7 @@ for i in 1:9
                              xlabel = "z",
                              ylabel = L"M^{h}",
                              ribbon = Sp2,
-                             label = L"h^+_{Test}")
+                             label = L"h^+_{MC}")
     plot!(zmid, Mm2, lw=3, xlims = (0.,1),
                              ylims = (-0.1,3),
                              linecolor = :blue,
@@ -132,7 +132,7 @@ for i in 1:9
                              xlabel = "z",
                              ylabel = L"M^{h}",
                              ribbon = Sm2,
-                             label = L"h^-_{Test}",
+                             label = L"h^-_{MC}",
                              title=t)
     savefig(string("plots/MultiplicitiesTest",i,".png"))
     Mr1[i] = (Mrp1[i]/Mrm1[i])
@@ -156,19 +156,19 @@ end
 scatter(xexp,Ms1, lw=3,
            xscale = :log10,
            xlims = (0.01,1),
-           ylims = (0.6,1.2),
+           ylims = (0.3,0.9),
            xlabel = "x",
            ylabel = L"\int M^{h^+}+M^{h^-} dz",
            yerror = Ss1,
-           label = "Saclay")
+           label = "RD")
 scatter!(xexp,Ms2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
-            ylims = (0.6,1.2),
+            ylims = (0.3,0.9),
             xlabel = "x",
             ylabel = L"\int M^{h^+}+M^{h^-} dz",
             yerror = Ss2,
-            label = "Trieste")
+            label = "MC")
 savefig("plots/MultiplicitiesSumTest.png")
 
 scatter(xexp,Mr1, lw=3,
@@ -178,7 +178,7 @@ scatter(xexp,Mr1, lw=3,
            xlabel = "x",
            ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
            yerror = Sr1,
-           label = "Saclay")
+           label = "RD")
 scatter!(xexp,Mr2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
@@ -186,5 +186,5 @@ scatter!(xexp,Mr2, lw=3,
             xlabel = "x",
             ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
             yerror = Sr2,
-            label = "Trieste")
+            label = "MC")
 savefig("plots/MultiplicitiesRatioTest.png")

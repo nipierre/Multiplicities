@@ -231,6 +231,14 @@ void create_kin_plots()
   fKinematicsMC[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
   fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 1000, -80, 80, 1000, -80, 80);
   fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 1000, -80, 80, 1000, -80, 80);
+  fVertexRD[0] = new TH1F("Vertex Endpoint 0","Vertex Endpoint 0", 100, -1000, 2000);
+  fVertexMC[0] = new TH1F("Vertex Endpoint 0 MC","EVertex Endpoint 0 MC", 100, -1000, 2000);
+  fVertexRD[1] = new TH1F("Vertex Endpoint 1","Vertex Endpoint 1", 100, -1000, 2000);
+  fVertexMC[1] = new TH1F("Vertex Endpoint 1 MC","EVertex Endpoint 1 MC", 100, -1000, 2000);
+  fVertexRD[2] = new TH1F("Vertex Endpoint 2","Vertex Endpoint 2", 100, -1000, 2000);
+  fVertexMC[2] = new TH1F("Vertex Endpoint 2 MC","EVertex Endpoint 2 MC", 100, -1000, 2000);
+  fVertexRD[3] = new TH1F("Vertex Endpoint 3","Vertex Endpoint 3", 100, -1000, 2000);
+  fVertexMC[3] = new TH1F("Vertex Endpoint 3 MC","EVertex Endpoint 3 MC", 100, -1000, 2000);
   fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
@@ -396,6 +404,7 @@ void save_kin_plots()
   c41.Divide(2,4);
   c42.Divide(1,2);
   c43.Divide(2,1);
+  c44.Divide(2,1);
 
   int offset=0;
 
@@ -734,6 +743,28 @@ void save_kin_plots()
   fECAL0MC->GetYaxis()->SetTitle("y");
   c43.Update();
 
+  c44.cd(1);
+  fVertexRD[3]->SetLineColor(kGreen);
+  fVertexRD[3]->Draw("");
+  fVertexRD[0]->SetLineColor(kMagenta);
+  fVertexRD[0]->Draw("SAMES");
+  fVertexRD[1]->SetLineColor(kBlue);
+  fVertexRD[1]->Draw("SAMES");
+  fVertexRD[2]->SetLineColor(kCyan);
+  fVertexRD[2]->Draw("SAMES");
+  c44.Update();
+
+  c44.cd(2);
+  fVertexMC[3]->SetLineColor(kGreen);
+  fVertexMC[3]->Draw("");
+  fVertexMC[0]->SetLineColor(kMagenta);
+  fVertexMC[0]->Draw("SAMES");
+  fVertexMC[1]->SetLineColor(kBlue);
+  fVertexMC[1]->Draw("SAMES");
+  fVertexMC[2]->SetLineColor(kCyan);
+  fVertexMC[2]->Draw("SAMES");
+  c44.Update();
+
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
@@ -772,7 +803,8 @@ void save_kin_plots()
   c40.Print("kinMCRD.pdf","pdf");
   c41.Print("kinMCRD.pdf","pdf");
   c42.Print("kinMCRD.pdf","pdf");
-  c43.Print("kinMCRD.pdf)","pdf");
+  c43.Print("kinMCRD.pdf","pdf");
+  c44.Print("kinMCRD.pdf)","pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -1536,7 +1568,7 @@ void MCextraction(string pFilelist)
           if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
 
           // Zlast
-          if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+          //if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
 
           // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
           if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
@@ -1555,6 +1587,11 @@ void MCextraction(string pFilelist)
           int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           // if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
           fECAL0MC->Fill(xdx,ydy);
+
+          if(-325<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-261.5) fVertexMC[0]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          else if(-261.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) fVertexMC[1]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          else if(-198<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-134.5) fVertexMC[2]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexMC[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2367,7 +2404,7 @@ void RDextraction(string pFilelist)
         if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
 
         // Zlast
-        if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+        //if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
 
         // Theta cut
         if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
@@ -2386,6 +2423,11 @@ void RDextraction(string pFilelist)
         int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
         // if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
         fECAL0RD->Fill(xdx,ydy);
+
+        if(-325<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-261.5) fVertexRD[0]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+        else if(-261.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) fVertexRD[1]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+        else if(-198<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-134.5) fVertexRD[2]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+        else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexRD[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
