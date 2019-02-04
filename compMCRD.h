@@ -88,6 +88,8 @@ vector<Double_t> fZMC;
 
 Double_t fNEventsRD = 0;
 Double_t fNEventsMC = 0;
+Double_t fHadronRD = 0;
+Double_t fHadronMC = 0;
 
 //Misc
 
@@ -127,9 +129,11 @@ Double_t fPmax;
 TH1F* fKinematicsRD[5][20];
 TH2F* fThetaRDp[3];
 TH2F* fECAL0RD;
+TH1F* fVertexRD[5];
 TH1F* fKinematicsMC[5][20];
 TH2F* fThetaMCp[3];
 TH2F* fECAL0MC;
+TH1F* fVertexMCb[5];
 TH1F* fKinematicsRatio[5][20];
 Int_t fCountingRD[5][20];
 Int_t fCountingMC[5][20];
@@ -176,6 +180,7 @@ TCanvas c40("Vertex (e)","Vertex (e)",3200,1600);
 TCanvas c41("Vertex (Hadron) Trig","Vertex (Hadron) Trig",3200,1600);
 TCanvas c42("Vertex (Hadron)","Vertex (Hadron)",3200,1600);
 TCanvas c43("ECAL0","ECAL0",3200,1600);
+TCanvas c44("Vertex Endpoint","Vertex Endpoint",3200,1600);
 
 vector<double> fError, fErrorRD, fErrorMC;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};
