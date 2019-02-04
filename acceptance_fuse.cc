@@ -229,9 +229,13 @@ int main(int argc, char **argv)
   }
 
   ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_hmult(Form("acceptance/%d/hadron/hadron_mult_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_hmult_zvtx(Form("acceptance/%d/hadron/hadron_mult_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_dmult(Form("acceptance/%d/DIS/DIS_mult_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_dmult_zvtx(Form("acceptance/%d/DIS/DIS_mult_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
@@ -247,18 +251,40 @@ int main(int argc, char **argv)
                      fNDIS_evt[1][i][j][k] << " " << fNDIS_evt_c[1][i][j][k] << " " << fNDIS_evt_MC[1][i][j][k] << " " <<
                      fNDIS_evt[2][i][j][k] << " " << fNDIS_evt_c[2][i][j][k] << " " << fNDIS_evt_MC[2][i][j][k] << endl;
 
+            ofs_dmult << fNDIS_evt[0][i][j][k] << " " << sqrt(fNDIS_evt[0][i][j][k]);
+
+            for(int ll=0; ll<4; ll++)
+            {
+                ofs_dmult << " " << 0 << " " <<
+                                    0 << " " <<
+                                    0 << " " <<
+                                    0 << " " << 0;
+            }
+            ofs_dmult << endl;
+
             ofs_dzvtx << fNDIS_evt_zvtx[0][i][j][k][0] << " " << fNDIS_evt_zvtx[0][i][j][k][1] << " " << fNDIS_evt_zvtx[0][i][j][k][2] << " " << fNDIS_evt_zvtx[0][i][j][k][3] << " " <<
                          fNDIS_evt_MC_zvtx[0][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[0][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[0][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[0][i][j][k][3] << " " <<
                          fNDIS_evt_zvtx[1][i][j][k][0] << " " << fNDIS_evt_zvtx[1][i][j][k][1] << " " << fNDIS_evt_zvtx[1][i][j][k][2] << " " << fNDIS_evt_zvtx[1][i][j][k][3] << " " <<
                          fNDIS_evt_MC_zvtx[1][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[1][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[1][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[1][i][j][k][3] << " " <<
                          fNDIS_evt_zvtx[2][i][j][k][0] << " " << fNDIS_evt_zvtx[2][i][j][k][1] << " " << fNDIS_evt_zvtx[2][i][j][k][2] << " " << fNDIS_evt_zvtx[2][i][j][k][3] << " " <<
                          fNDIS_evt_MC_zvtx[2][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[2][i][j][k][3] << endl;
+
+            for(int zv=0; zv<4; zv++)
+                ofs_dmult_zvtx << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << sqrt(fNDIS_evt_zvtx[0][i][j][k][zv]) << " ";
+
+            ofs_dmult_zvtx << endl;
           }
 
           ofs_h << fRcstr[i][j][k].tab[c][0][0] << " " << fRcstr_c[i][j][k].tab[c][0][0] << " " << fGnrt[i][j][k].tab[c][0][0] << " " <<
                    fRcstr[i][j][k].tab[c][0][1] << " " << fRcstr_c[i][j][k].tab[c][0][1] << " " << fGnrt[i][j][k].tab[c][0][1] << " " <<
                    fRcstr[i][j][k].tab[c][0][2] << " " << fRcstr_c[i][j][k].tab[c][0][2] << " " << fGnrt[i][j][k].tab[c][0][2] << " " <<
                    fRcstr[i][j][k].tab[c][0][3] << " " << fRcstr_c[i][j][k].tab[c][0][3] << " " << fGnrt[i][j][k].tab[c][0][3] << " " << endl;
+
+          ofs_hmult << fRcstr[i][j][k].tab[c][0][0] << " " << sqrt(fRcstr[i][j][k].tab[c][0][0]) << " " << 0 << " " << 0 << " " <<
+                    fRcstr[i][j][k].tab[c][0][1] << " " << sqrt(fRcstr[i][j][k].tab[c][0][1]) << " " << 0 << " " << 0 << " " <<
+                    fRcstr[i][j][k].tab[c][0][2] << " " << sqrt(fRcstr[i][j][k].tab[c][0][2]) << " " << 0 << " " << 0 << " " <<
+                    fRcstr[i][j][k].tab[c][0][3] << " " << sqrt(fRcstr[i][j][k].tab[c][0][3]) << " " << 0 << " " << 0 << " " <<
+          endl;
 
           ofs_hzvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][0] << " " <<
                        fGnrt_zvtx[i][j][k][0].tab[c][0][0] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][0] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][0] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][0] << " " <<
@@ -268,15 +294,27 @@ int main(int argc, char **argv)
                        fGnrt_zvtx[i][j][k][0].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][2] << " " <<
                        fRcstr_zvtx[i][j][k][0].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][3] << " " <<
                        fGnrt_zvtx[i][j][k][0].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][3] << " " <<  endl;
+
+         for(int zv=0; zv<4; zv++)
+         {
+           ofs_hmult_zvtx << fRcstr_zvtx[i][j][k][zv].tab[c][0][0] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][0]) << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][1] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][1]) << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][2] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][2]) << " " <<
+                    fRcstr_zvtx[i][j][k][zv].tab[c][0][3] << " " << sqrt(fRcstr_zvtx[i][j][k][zv].tab[c][0][3]) << " " << endl;
+         }
         }
       }
     }
   }
 
   ofs_h.close();
+  ofs_hmult.close();
   ofs_d.close();
+  ofs_dmult.close();
   ofs_hzvtx.close();
+  ofs_hmult_zvtx.close();
   ofs_dzvtx.close();
+  ofs_dmult_zvtx.close();
 
   return 0;
 }
