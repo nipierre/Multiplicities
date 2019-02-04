@@ -131,7 +131,7 @@ TH1F* fVertexRD[4];
 TH1F* fKinematicsMC[5][20];
 TH2F* fThetaMCp[3];
 TH2F* fECAL0MC;
-TH1F* fVertexMC[4];
+TH1F* fVertexMCb[4];
 TH1F* fKinematicsRatio[5][20];
 Int_t fCountingRD[5][20];
 Int_t fCountingMC[5][20];

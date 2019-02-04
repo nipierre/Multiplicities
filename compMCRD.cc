@@ -232,13 +232,13 @@ void create_kin_plots()
   fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 1000, -80, 80, 1000, -80, 80);
   fECAL0MC = new TH2F("ECAL0 Map MC","ECAL0 Map MC", 1000, -80, 80, 1000, -80, 80);
   fVertexRD[0] = new TH1F("Vertex Endpoint 0","Vertex Endpoint 0", 100, -1000, 2000);
-  fVertexMC[0] = new TH1F("Vertex Endpoint 0 MC","EVertex Endpoint 0 MC", 100, -1000, 2000);
+  fVertexMCb[0] = new TH1F("Vertex Endpoint 0 MC","EVertex Endpoint 0 MC", 100, -1000, 2000);
   fVertexRD[1] = new TH1F("Vertex Endpoint 1","Vertex Endpoint 1", 100, -1000, 2000);
-  fVertexMC[1] = new TH1F("Vertex Endpoint 1 MC","EVertex Endpoint 1 MC", 100, -1000, 2000);
+  fVertexMCb[1] = new TH1F("Vertex Endpoint 1 MC","EVertex Endpoint 1 MC", 100, -1000, 2000);
   fVertexRD[2] = new TH1F("Vertex Endpoint 2","Vertex Endpoint 2", 100, -1000, 2000);
-  fVertexMC[2] = new TH1F("Vertex Endpoint 2 MC","EVertex Endpoint 2 MC", 100, -1000, 2000);
+  fVertexMCb[2] = new TH1F("Vertex Endpoint 2 MC","EVertex Endpoint 2 MC", 100, -1000, 2000);
   fVertexRD[3] = new TH1F("Vertex Endpoint 3","Vertex Endpoint 3", 100, -1000, 2000);
-  fVertexMC[3] = new TH1F("Vertex Endpoint 3 MC","EVertex Endpoint 3 MC", 100, -1000, 2000);
+  fVertexMCb[3] = new TH1F("Vertex Endpoint 3 MC","EVertex Endpoint 3 MC", 100, -1000, 2000);
   fThetaRDp[0] = new TH2F("theta_y RD", "theta_y RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[1] = new TH2F("theta_x RD", "theta_x RD", 100, -0.005, 0.005, 100, 140, 180);
   fThetaRDp[2] = new TH2F("theta_xy RD", "theta_xy RD", 100, -0.005, 0.005, 100, -0.005, 0.005);
@@ -755,14 +755,14 @@ void save_kin_plots()
   c44.Update();
 
   c44.cd(2);
-  fVertexMC[3]->SetLineColor(kGreen);
-  fVertexMC[3]->Draw("");
-  fVertexMC[0]->SetLineColor(kMagenta);
-  fVertexMC[0]->Draw("SAMES");
-  fVertexMC[1]->SetLineColor(kBlue);
-  fVertexMC[1]->Draw("SAMES");
-  fVertexMC[2]->SetLineColor(kCyan);
-  fVertexMC[2]->Draw("SAMES");
+  fVertexMCb[3]->SetLineColor(kGreen);
+  fVertexMCb[3]->Draw("");
+  fVertexMCb[0]->SetLineColor(kMagenta);
+  fVertexMCb[0]->Draw("SAMES");
+  fVertexMCb[1]->SetLineColor(kBlue);
+  fVertexMCb[1]->Draw("SAMES");
+  fVertexMCb[2]->SetLineColor(kCyan);
+  fVertexMCb[2]->Draw("SAMES");
   c44.Update();
 
   c1.Print("kinMCRD.pdf(","pdf");
@@ -1588,10 +1588,10 @@ void MCextraction(string pFilelist)
           // if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
           fECAL0MC->Fill(xdx,ydy);
 
-          if(-325<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-261.5) fVertexMC[0]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
-          else if(-261.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) fVertexMC[1]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
-          else if(-198<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-134.5) fVertexMC[2]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
-          else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexMC[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          if(-325<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-261.5) fVertexMCb[0]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          else if(-261.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) fVertexMCb[1]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          else if(-198<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-134.5) fVertexMCb[2]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexMCb[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
