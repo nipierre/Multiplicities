@@ -2609,7 +2609,7 @@ void RDextraction(string pFilelist)
   {
     fKinematicsRD[4][6]->Fill(fMu[4][i]);
   }
-  for(int i=0; i<int(fMu[4].size()); i++)
+  for(int i=0; i<int(fXBjkin[4].size()); i++)
   {
     fKinematicsRD[4][1]->Fill(fXBjkin[4][i]);
   }
