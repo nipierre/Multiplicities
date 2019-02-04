@@ -88,6 +88,8 @@ vector<Double_t> fZMC;
 
 Double_t fNEventsRD = 0;
 Double_t fNEventsMC = 0;
+Double_t fHadronRD = 0;
+Double_t fHadronMC = 0;
 
 //Misc
 

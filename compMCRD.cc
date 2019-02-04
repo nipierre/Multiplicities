@@ -747,31 +747,31 @@ void save_kin_plots()
 
   c44.cd(1);
   fVertexRD[3]->SetLineColor(kGreen);
-  fVertexRD[3]->Scale(1/fVertexRD[3]->GetEntries());
+  fVertexRD[3]->Scale(1/fHadronRD);
   fVertexRD[3]->Draw("");
   fVertexRD[0]->SetLineColor(kMagenta);
-  fVertexRD[0]->Scale(1/fVertexRD[0]->GetEntries());
+  fVertexRD[0]->Scale(1/fHadronRD);
   fVertexRD[0]->Draw("SAMES");
   fVertexRD[1]->SetLineColor(kBlue);
-  fVertexRD[1]->Scale(1/fVertexRD[1]->GetEntries());
+  fVertexRD[1]->Scale(1/fHadronRD);
   fVertexRD[1]->Draw("SAMES");
   fVertexRD[2]->SetLineColor(kCyan);
-  fVertexRD[2]->Scale(1/fVertexRD[2]->GetEntries());
+  fVertexRD[2]->Scale(1/fHadronRD);
   fVertexRD[2]->Draw("SAMES");
   c44.Update();
 
   c44.cd(2);
   fVertexMCb[3]->SetLineColor(kGreen);
-  fVertexMCb[3]->Scale(1/fVertexMCb[3]->GetEntries());
+  fVertexMCb[3]->Scale(1/fHadronMC);
   fVertexMCb[3]->Draw("");
   fVertexMCb[0]->SetLineColor(kMagenta);
-  fVertexMCb[0]->Scale(1/fVertexMCb[0]->GetEntries());
+  fVertexMCb[0]->Scale(1/fHadronMC);
   fVertexMCb[0]->Draw("SAMES");
   fVertexMCb[1]->SetLineColor(kBlue);
-  fVertexMCb[1]->Scale(1/fVertexMCb[1]->GetEntries());
+  fVertexMCb[1]->Scale(1/fHadronMC);
   fVertexMCb[1]->Draw("SAMES");
   fVertexMCb[2]->SetLineColor(kCyan);
-  fVertexMCb[2]->Scale(1/fVertexMCb[2]->GetEntries());
+  fVertexMCb[2]->Scale(1/fHadronMC);
   fVertexMCb[2]->Draw("SAMES");
   c44.Update();
 
@@ -1604,6 +1604,7 @@ void MCextraction(string pFilelist)
           else if(-261.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) fVertexMCb[1]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           else if(-198<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-134.5) fVertexMCb[2]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexMCb[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+          fHadronMC++;
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2440,6 +2441,7 @@ void RDextraction(string pFilelist)
         else if(-261.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-198) fVertexRD[1]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         else if(-198<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-134.5) fVertexRD[2]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexRD[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
+        fHadronRD++;
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
