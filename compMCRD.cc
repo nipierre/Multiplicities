@@ -749,37 +749,37 @@ void save_kin_plots()
 
   c44.cd(1);
   fVertexRD[4]->SetLineColor(kRed);
-  fVertexRD[4]->Scale(1/fHadronRD);
+  // fVertexRD[4]->Scale(1/fHadronRD);
   fVertexRD[4]->Draw("");
   fVertexRD[3]->SetLineColor(kGreen);
-  fVertexRD[3]->Scale(1/fHadronRD);
+  // fVertexRD[3]->Scale(1/fHadronRD);
   fVertexRD[3]->Draw("SAMES");
   fVertexRD[0]->SetLineColor(kMagenta);
-  fVertexRD[0]->Scale(1/fHadronRD);
+  // fVertexRD[0]->Scale(1/fHadronRD);
   fVertexRD[0]->Draw("SAMES");
   fVertexRD[1]->SetLineColor(kBlue);
-  fVertexRD[1]->Scale(1/fHadronRD);
+  // fVertexRD[1]->Scale(1/fHadronRD);
   fVertexRD[1]->Draw("SAMES");
   fVertexRD[2]->SetLineColor(kCyan);
-  fVertexRD[2]->Scale(1/fHadronRD);
+  // fVertexRD[2]->Scale(1/fHadronRD);
   fVertexRD[2]->Draw("SAMES");
   c44.Update();
 
   c44.cd(2);
   fVertexMCb[4]->SetLineColor(kRed);
-  fVertexMCb[4]->Scale(1/fHadronMC);
+  fVertexMCb[4]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[4]->Draw("");
   fVertexMCb[3]->SetLineColor(kGreen);
-  fVertexMCb[3]->Scale(1/fHadronMC);
+  fVertexMCb[3]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[3]->Draw("SAMES");
   fVertexMCb[0]->SetLineColor(kMagenta);
-  fVertexMCb[0]->Scale(1/fHadronMC);
+  fVertexMCb[0]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[0]->Draw("SAMES");
   fVertexMCb[1]->SetLineColor(kBlue);
-  fVertexMCb[1]->Scale(1/fHadronMC);
+  fVertexMCb[1]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[1]->Draw("SAMES");
   fVertexMCb[2]->SetLineColor(kCyan);
-  fVertexMCb[2]->Scale(1/fHadronMC);
+  fVertexMCb[2]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[2]->Draw("SAMES");
   c44.Update();
 
