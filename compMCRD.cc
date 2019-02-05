@@ -749,37 +749,37 @@ void save_kin_plots()
 
   c44.cd(1);
   fVertexRD[4]->SetLineColor(kRed);
-  fVertexRD[4]->Scale(1/fHadronRD);
+  // fVertexRD[4]->Scale(1/fHadronRD);
   fVertexRD[4]->Draw("");
   fVertexRD[3]->SetLineColor(kGreen);
-  fVertexRD[3]->Scale(1/fHadronRD);
+  // fVertexRD[3]->Scale(1/fHadronRD);
   fVertexRD[3]->Draw("SAMES");
   fVertexRD[0]->SetLineColor(kMagenta);
-  fVertexRD[0]->Scale(1/fHadronRD);
+  // fVertexRD[0]->Scale(1/fHadronRD);
   fVertexRD[0]->Draw("SAMES");
   fVertexRD[1]->SetLineColor(kBlue);
-  fVertexRD[1]->Scale(1/fHadronRD);
+  // fVertexRD[1]->Scale(1/fHadronRD);
   fVertexRD[1]->Draw("SAMES");
   fVertexRD[2]->SetLineColor(kCyan);
-  fVertexRD[2]->Scale(1/fHadronRD);
+  // fVertexRD[2]->Scale(1/fHadronRD);
   fVertexRD[2]->Draw("SAMES");
   c44.Update();
 
   c44.cd(2);
   fVertexMCb[4]->SetLineColor(kRed);
-  fVertexMCb[4]->Scale(1/fHadronMC);
+  fVertexMCb[4]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[4]->Draw("");
   fVertexMCb[3]->SetLineColor(kGreen);
-  fVertexMCb[3]->Scale(1/fHadronMC);
+  fVertexMCb[3]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[3]->Draw("SAMES");
   fVertexMCb[0]->SetLineColor(kMagenta);
-  fVertexMCb[0]->Scale(1/fHadronMC);
+  fVertexMCb[0]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[0]->Draw("SAMES");
   fVertexMCb[1]->SetLineColor(kBlue);
-  fVertexMCb[1]->Scale(1/fHadronMC);
+  fVertexMCb[1]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[1]->Draw("SAMES");
   fVertexMCb[2]->SetLineColor(kCyan);
-  fVertexMCb[2]->Scale(1/fHadronMC);
+  fVertexMCb[2]->Scale(fHadronRD/fHadronMC);
   fVertexMCb[2]->Draw("SAMES");
   c44.Update();
 
@@ -1454,7 +1454,7 @@ void MCextraction(string pFilelist)
         if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
           fQ2kinMC[4].push_back(Q2);
-          // fXBjkinMC[4].push_back(xBj);
+          fXBjkinMC[4].push_back(xBj);
           fYBjkinMC[4].push_back(yBj);
           fWBjkinMC[4].push_back(sqrt(wBj));
           fNukinMC[4].push_back(nu);
@@ -1615,7 +1615,7 @@ void MCextraction(string pFilelist)
           fVertexMCb[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fHadronMC++;
 
-          fXBjkinMC[4].push_back(xBj);
+          // fXBjkinMC[4].push_back(xBj);
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2201,7 +2201,7 @@ void RDextraction(string pFilelist)
       if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
       {
         fQ2kin[4].push_back(Q2);
-        // fXBjkin[4].push_back(xBj);
+        fXBjkin[4].push_back(xBj);
         fYBjkin[4].push_back(yBj);
         fWBjkin[4].push_back(sqrt(wBj));
         fNukin[4].push_back(nu);
@@ -2459,7 +2459,7 @@ void RDextraction(string pFilelist)
         fVertexRD[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         fHadronRD++;
 
-        fXBjkin[4].push_back(xBj);
+        // fXBjkin[4].push_back(xBj);
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
