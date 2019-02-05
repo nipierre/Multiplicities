@@ -1454,7 +1454,7 @@ void MCextraction(string pFilelist)
         if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
           fQ2kinMC[4].push_back(Q2);
-          // fXBjkinMC[4].push_back(xBj);
+          fXBjkinMC[4].push_back(xBj);
           fYBjkinMC[4].push_back(yBj);
           fWBjkinMC[4].push_back(sqrt(wBj));
           fNukinMC[4].push_back(nu);
@@ -1615,7 +1615,7 @@ void MCextraction(string pFilelist)
           fVertexMCb[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fHadronMC++;
 
-          fXBjkinMC[4].push_back(xBj);
+          // fXBjkinMC[4].push_back(xBj);
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2201,7 +2201,7 @@ void RDextraction(string pFilelist)
       if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
       {
         fQ2kin[4].push_back(Q2);
-        // fXBjkin[4].push_back(xBj);
+        fXBjkin[4].push_back(xBj);
         fYBjkin[4].push_back(yBj);
         fWBjkin[4].push_back(sqrt(wBj));
         fNukin[4].push_back(nu);
@@ -2459,7 +2459,7 @@ void RDextraction(string pFilelist)
         fVertexRD[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         fHadronRD++;
 
-        fXBjkin[4].push_back(xBj);
+        // fXBjkin[4].push_back(xBj);
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
