@@ -21,9 +21,6 @@
 #define WMAX 17
 #define HXX0LIMIT 15
 
-// Cluster
-#define CLUSTER getenv("SITE")
-
 using namespace std;
 
 // Progress bar
