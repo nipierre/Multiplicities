@@ -2868,11 +2868,9 @@ int main(int argc, char **argv)
                          fRcstr_zvtx[i][j][k][0].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][3] << " " <<
                          fGnrt_zvtx[i][j][k][0].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][3] << " " <<  endl;
 
-            ofs_e << fRcstr[i][j][k].tab[c][0][0] << fRcstr[i][j][k].tab[c][0][4] << endl;
+            ofs_e << fRcstr[i][j][k].tab[c][0][4] << endl;
 
-            ofs_ezvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][0] << " "
-                      << fRcstr_zvtx[i][j][k][2].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][0] << " "
-                      << fRcstr_zvtx[i][j][k][0].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][4] << " "
+            ofs_ezvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][4] << " "
                       << fRcstr_zvtx[i][j][k][2].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][4] << endl;
           }
         }

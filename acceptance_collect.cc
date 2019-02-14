@@ -31,7 +31,11 @@ LOG
 #define SPREAD 1
 
 // Outputs
+#if CLUSTER == BW
+#define dirroot "/u/sciteam/pierre1/production/software/Multiplicities/acceptance"
+#else
 #define dirroot "/sps/compass/npierre/Multiplicities/acceptance"
+#endif
 
 using namespace std;
 
@@ -54,66 +58,72 @@ Double_t RelDiff(int c, int x, int y, int z, int had)
 
 void yavg(int c, int x, int z)
 {
-  int rec[4] = {0,0,0,0};
-  int gen[4] = {0,0,0,0};
-  int dis[3] = {0,0,0};
-  int dis_MC[3] = {0,0,0};
-  int rec_c[4] = {0,0,0,0};
-  int dis_c[3] = {0,0,0};
+  int rec[2][4] = {{0,0,0,0},{0,0,0,0}};
+  int gen[2][4] = {{0,0,0,0},{0,0,0,0}};
+  int dis[2][3] = {{0,0,0},{0,0,0}};
+  int dis_MC[2][3] = {{0,0,0},{0,0,0}};
+  int rec_c[2][4] = {{0,0,0,0},{0,0,0,0}};
+  int dis_c[2][3] = {{0,0,0},{0,0,0}};
 
   for(int i=0; i<4; i++)
   {
-    fRcstr_yavg[i]=0;
-    fNDIS_evt_yavg[i]=0;
-    fGnrt_yavg[i]=0;
-    fNDIS_evt_MC_yavg[i]=0;
-    fRcstr_c_yavg[i]=0;
-    fNDIS_evt_c_yavg[i]=0;
+    for(int j=0; j<2; j++)
+    {
+      fRcstr_yavg[j][i]=0;
+      fNDIS_evt_yavg[j][i]=0;
+      fGnrt_yavg[j][i]=0;
+      fNDIS_evt_MC_yavg[j][i]=0;
+      fRcstr_c_yavg[j][i]=0;
+      fNDIS_evt_c_yavg[j][i]=0;
+    }
   }
   for(int i=0; i<6; i++)
   {
-    fRcstr_yavg[0]+=fRcstr[x][i][z].tab[c][0][0];
-    if(fRcstr[x][i][z].tab[c][0][0]) rec[0]++;
-    fRcstr_yavg[1]+=fRcstr[x][i][z].tab[c][0][1];
-    if(fRcstr[x][i][z].tab[c][0][1]) rec[1]++;
-    fRcstr_yavg[2]+=fRcstr[x][i][z].tab[c][0][2];
-    if(fRcstr[x][i][z].tab[c][0][2]) rec[2]++;
-    fRcstr_yavg[3]+=fRcstr[x][i][z].tab[c][0][3];
-    if(fRcstr[x][i][z].tab[c][0][3]) rec[3]++;
-    fNDIS_evt_yavg[0]+=fNDIS_evt[0][x][i][z];
-    if(fNDIS_evt[0][x][i][z]) dis[0]++;
-    fNDIS_evt_yavg[1]+=fNDIS_evt[1][x][i][z];
-    if(fNDIS_evt[1][x][i][z]) dis[1]++;
-    fNDIS_evt_yavg[2]+=fNDIS_evt[2][x][i][z];
-    if(fNDIS_evt[2][x][i][z]) dis[2]++;
-    fGnrt_yavg[0]+=fGnrt[x][i][z].tab[c][0][0];
-    if(fGnrt[x][i][z].tab[c][0][0]) gen[0]++;
-    fGnrt_yavg[1]+=fGnrt[x][i][z].tab[c][0][1];
-    if(fGnrt[x][i][z].tab[c][0][1]) gen[1]++;
-    fGnrt_yavg[2]+=fGnrt[x][i][z].tab[c][0][2];
-    if(fGnrt[x][i][z].tab[c][0][2]) gen[2]++;
-    fGnrt_yavg[3]+=fGnrt[x][i][z].tab[c][0][3];
-    if(fGnrt[x][i][z].tab[c][0][3]) gen[3]++;
-    fNDIS_evt_MC_yavg[0]+=fNDIS_evt_MC[0][x][i][z];
-    if(fNDIS_evt_MC[0][x][i][z]) dis_MC[0]++;
-    fNDIS_evt_MC_yavg[1]+=fNDIS_evt_MC[1][x][i][z];
-    if(fNDIS_evt_MC[1][x][i][z]) dis_MC[1]++;
-    fNDIS_evt_MC_yavg[2]+=fNDIS_evt_MC[2][x][i][z];
-    if(fNDIS_evt_MC[2][x][i][z]) dis_MC[2]++;
-    fRcstr_c_yavg[0]+=fRcstr_c[x][i][z].tab[c][0][0];
-    if(fRcstr_c[x][i][z].tab[c][0][0]) rec_c[0]++;
-    fRcstr_c_yavg[1]+=fRcstr_c[x][i][z].tab[c][0][1];
-    if(fRcstr_c[x][i][z].tab[c][0][1]) rec_c[1]++;
-    fRcstr_c_yavg[2]+=fRcstr_c[x][i][z].tab[c][0][2];
-    if(fRcstr_c[x][i][z].tab[c][0][2]) rec_c[2]++;
-    fRcstr_c_yavg[3]+=fRcstr_c[x][i][z].tab[c][0][3];
-    if(fRcstr_c[x][i][z].tab[c][0][3]) rec_c[3]++;
-    fNDIS_evt_c_yavg[0]+=fNDIS_evt_c[0][x][i][z];
-    if(fNDIS_evt_c[0][x][i][z]) dis_c[0]++;
-    fNDIS_evt_c_yavg[1]+=fNDIS_evt_c[1][x][i][z];
-    if(fNDIS_evt_c[1][x][i][z]) dis_c[1]++;
-    fNDIS_evt_c_yavg[2]+=fNDIS_evt_c[2][x][i][z];
-    if(fNDIS_evt_c[2][x][i][z]) dis_c[2]++;
+    for(int j=0; j<2; j++)
+    {
+      fRcstr_yavg[j][0]+=fRcstr[x][i][z].tab[c][j][0][0];
+      if(fRcstr[x][i][z].tab[c][j][0][0]) rec[j][0]++;
+      fRcstr_yavg[j][1]+=fRcstr[x][i][z].tab[c][j][0][1];
+      if(fRcstr[x][i][z].tab[c][j][0][1]) rec[j][1]++;
+      fRcstr_yavg[j][2]+=fRcstr[x][i][z].tab[c][j][0][2];
+      if(fRcstr[x][i][z].tab[c][j][0][2]) rec[j][2]++;
+      fRcstr_yavg[j][3]+=fRcstr[x][i][z].tab[c][j][0][3];
+      if(fRcstr[x][i][z].tab[c][j][0][3]) rec[j][3]++;
+      fNDIS_evt_yavg[j][0]+=fNDIS_evt[0][j][x][i][z];
+      if(fNDIS_evt[0][j][x][i][z]) dis[j][0]++;
+      fNDIS_evt_yavg[j][1]+=fNDIS_evt[1][j][x][i][z];
+      if(fNDIS_evt[1][j][x][i][z]) dis[j][1]++;
+      fNDIS_evt_yavg[j][2]+=fNDIS_evt[2][j][x][i][z];
+      if(fNDIS_evt[2][j][x][i][z]) dis[j][2]++;
+      fGnrt_yavg[j][0]+=fGnrt[x][i][z].tab[c][j][0][0];
+      if(fGnrt[x][i][z].tab[c][j][0][0]) gen[j][0]++;
+      fGnrt_yavg[j][1]+=fGnrt[x][i][z].tab[c][j][0][1];
+      if(fGnrt[x][i][z].tab[c][j][0][1]) gen[j][1]++;
+      fGnrt_yavg[j][2]+=fGnrt[x][i][z].tab[c][j][0][2];
+      if(fGnrt[x][i][z].tab[c][j][0][2]) gen[j][2]++;
+      fGnrt_yavg[j][3]+=fGnrt[x][i][z].tab[c][j][0][3];
+      if(fGnrt[x][i][z].tab[c][j][0][3]) gen[j][3]++;
+      fNDIS_evt_MC_yavg[j][0]+=fNDIS_evt_MC[0][j][x][i][z];
+      if(fNDIS_evt_MC[0][j][x][i][z]) dis_MC[j][0]++;
+      fNDIS_evt_MC_yavg[j][1]+=fNDIS_evt_MC[1][j][x][i][z];
+      if(fNDIS_evt_MC[1][j][x][i][z]) dis_MC[j][1]++;
+      fNDIS_evt_MC_yavg[j][2]+=fNDIS_evt_MC[2][j][x][i][z];
+      if(fNDIS_evt_MC[2][j][x][i][z]) dis_MC[j][2]++;
+      fRcstr_c_yavg[j][0]+=fRcstr_c[x][i][z].tab[c][j][0][0];
+      if(fRcstr_c[x][i][z].tab[c][j][0][0]) rec_c[j][0]++;
+      fRcstr_c_yavg[j][1]+=fRcstr_c[x][i][z].tab[c][j][0][1];
+      if(fRcstr_c[x][i][z].tab[c][j][0][1]) rec_c[j][1]++;
+      fRcstr_c_yavg[j][2]+=fRcstr_c[x][i][z].tab[c][j][0][2];
+      if(fRcstr_c[x][i][z].tab[c][j][0][2]) rec_c[j][2]++;
+      fRcstr_c_yavg[j][3]+=fRcstr_c[x][i][z].tab[c][j][0][3];
+      if(fRcstr_c[x][i][z].tab[c][j][0][3]) rec_c[j][3]++;
+      fNDIS_evt_c_yavg[j][0]+=fNDIS_evt_c[0][j][x][i][z];
+      if(fNDIS_evt_c[0][j][x][i][z]) dis_c[j][0]++;
+      fNDIS_evt_c_yavg[j][1]+=fNDIS_evt_c[1][j][x][i][z];
+      if(fNDIS_evt_c[1][j][x][i][z]) dis_c[j][1]++;
+      fNDIS_evt_c_yavg[j][2]+=fNDIS_evt_c[2][j][x][i][z];
+      if(fNDIS_evt_c[2][j][x][i][z]) dis_c[j][2]++;
+    }
   }
   // (rec[0] ? fRcstr_yavg[0] /= rec[0] : 0);
   // (rec[1] ? fRcstr_yavg[1] /= rec[1] : 0);
@@ -152,19 +162,24 @@ void resetValues()
           {
             for(int n=0; n<3; n++)
             {
-              fNDIS_evt[n][i][j][k]=0; fNDIS_evt_c[n][i][j][k]=0; fNDIS_evt_MC[n][i][j][k]=0;
-              for(int l=0; l<4; l++)
+              for(int m=0; m<2; m++)
               {
-                fNDIS_evt_zvtx[n][i][j][k][l]=0; fNDIS_evt_MC_zvtx[n][i][j][k][l]=0;
-              }
+                fNDIS_evt[n][m][i][j][k]=0; fNDIS_evt_c[n][m][i][j][k]=0; fNDIS_evt_MC[n][m][i][j][k]=0;
+                for(int l=0; l<4; l++)
+                {
+                  fNDIS_evt_zvtx[n][m][i][j][k][l]=0; fNDIS_evt_MC_zvtx[n][m][i][j][k][l]=0;
+                }
             }
           }
           for(int n=0; n<3; n++)
           {
-            fRcstr[i][j][k].tab[c][0][n]=0; fRcstr_c[i][j][k].tab[c][0][n]=0; fGnrt[i][j][k].tab[c][0][n]=0;
-            for(int l=0; l<4; l++)
+            for(int m=0; m<2; m++)
             {
-              fRcstr_zvtx[i][j][k][l].tab[c][0][n]=0; fGnrt_zvtx[i][j][k][l].tab[c][0][n]=0;
+              fRcstr[i][j][k].tab[c][m][0][n]=0; fRcstr_c[i][j][k].tab[c][m][0][n]=0; fGnrt[i][j][k].tab[c][m][0][n]=0;
+              for(int l=0; l<4; l++)
+              {
+                fRcstr_zvtx[i][j][k][l].tab[c][m][0][n]=0; fGnrt_zvtx[i][j][k][l].tab[c][m][0][n]=0;
+              }
             }
           }
         }
@@ -219,169 +234,322 @@ int main(int argc, char **argv)
             if(!c)
             {
               DIS_file >> dummyd;
-              fNDIS_evt[0][i][j][k] += dummyd;
+              fNDIS_evt[0][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt_c[0][i][j][k] += dummyd;
+              fNDIS_evt_c[0][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt_MC[0][i][j][k] += dummyd;
+              fNDIS_evt_MC[0][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt[1][i][j][k] += dummyd;
+              fNDIS_evt[1][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt_c[1][i][j][k] += dummyd;
+              fNDIS_evt_c[1][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt_MC[1][i][j][k] += dummyd;
+              fNDIS_evt_MC[1][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt[2][i][j][k] += dummyd;
+              fNDIS_evt[2][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt_c[2][i][j][k] += dummyd;
+              fNDIS_evt_c[2][1][i][j][k] += dummyd;
               DIS_file >> dummyd;
-              fNDIS_evt_MC[2][i][j][k] += dummyd;
+              fNDIS_evt_MC[2][1][i][j][k] += dummyd;
+
+              DIS_file >> dummyd;
+              fNDIS_evt[0][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt_c[0][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt_MC[0][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt[1][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt_c[1][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt_MC[1][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt[2][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt_c[2][0][i][j][k] += dummyd;
+              DIS_file >> dummyd;
+              fNDIS_evt_MC[2][0][i][j][k] += dummyd;
+
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[0][i][j][k][0] += dummyd;
+              fNDIS_evt_zvtx[0][1][i][j][k][0] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[0][i][j][k][1] += dummyd;
+              fNDIS_evt_zvtx[0][1][i][j][k][1] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[0][i][j][k][2] += dummyd;
+              fNDIS_evt_zvtx[0][1][i][j][k][2] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[0][i][j][k][3] += dummyd;
+              fNDIS_evt_zvtx[0][1][i][j][k][3] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[0][i][j][k][0] += dummyd;
+              fNDIS_evt_MC_zvtx[0][1][i][j][k][0] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[0][i][j][k][1] += dummyd;
+              fNDIS_evt_MC_zvtx[0][1][i][j][k][1] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[0][i][j][k][2] += dummyd;
+              fNDIS_evt_MC_zvtx[0][1][i][j][k][2] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[0][i][j][k][3] += dummyd;
+              fNDIS_evt_MC_zvtx[0][1][i][j][k][3] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[1][i][j][k][0] += dummyd;
+              fNDIS_evt_zvtx[1][1][i][j][k][0] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[1][i][j][k][1] += dummyd;
+              fNDIS_evt_zvtx[1][1][i][j][k][1] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[1][i][j][k][2] += dummyd;
+              fNDIS_evt_zvtx[1][1][i][j][k][2] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[1][i][j][k][3] += dummyd;
+              fNDIS_evt_zvtx[1][1][i][j][k][3] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[1][i][j][k][0] += dummyd;
+              fNDIS_evt_MC_zvtx[1][1][i][j][k][0] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[1][i][j][k][1] += dummyd;
+              fNDIS_evt_MC_zvtx[1][1][i][j][k][1] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[1][i][j][k][2] += dummyd;
+              fNDIS_evt_MC_zvtx[1][1][i][j][k][2] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[1][i][j][k][3] += dummyd;
+              fNDIS_evt_MC_zvtx[1][1][i][j][k][3] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[2][i][j][k][0] += dummyd;
+              fNDIS_evt_zvtx[2][1][i][j][k][0] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[2][i][j][k][1] += dummyd;
+              fNDIS_evt_zvtx[2][1][i][j][k][1] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[2][i][j][k][2] += dummyd;
+              fNDIS_evt_zvtx[2][1][i][j][k][2] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_zvtx[2][i][j][k][3] += dummyd;
+              fNDIS_evt_zvtx[2][1][i][j][k][3] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[2][i][j][k][0] += dummyd;
+              fNDIS_evt_MC_zvtx[2][1][i][j][k][0] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[2][i][j][k][1] += dummyd;
+              fNDIS_evt_MC_zvtx[2][1][i][j][k][1] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[2][i][j][k][2] += dummyd;
+              fNDIS_evt_MC_zvtx[2][1][i][j][k][2] += dummyd;
               DIS_zvtx_file >> dummyd;
-              fNDIS_evt_MC_zvtx[2][i][j][k][3] += dummyd;
+              fNDIS_evt_MC_zvtx[2][1][i][j][k][3] += dummyd;
+
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[0][0][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[0][0][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[1][0][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[1][0][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_zvtx[2][0][i][j][k][3] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][0][i][j][k][0] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][0][i][j][k][1] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][0][i][j][k][2] += dummyd;
+              DIS_zvtx_file >> dummyd;
+              fNDIS_evt_MC_zvtx[2][0][i][j][k][3] += dummyd;
 
             }
 
             had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][0] += dummyd;
+            fRcstr[i][j][k].tab[c][1][0][0] += dummyd;
             had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][0] += dummyd;
+            fRcstr_c[i][j][k].tab[c][1][0][0] += dummyd;
             had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][0] += dummyd;
+            fGnrt[i][j][k].tab[c][1][0][0] += dummyd;
+            had_file >> dummyd;
+            fRcstr[i][j][k].tab[c][1][0][1] += dummyd;
+            had_file >> dummyd;
+            fRcstr_c[i][j][k].tab[c][1][0][1] += dummyd;
+            had_file >> dummyd;
+            fGnrt[i][j][k].tab[c][1][0][1] += dummyd;
+            had_file >> dummyd;
+            fRcstr[i][j][k].tab[c][1][0][2] += dummyd;
+            had_file >> dummyd;
+            fRcstr_c[i][j][k].tab[c][1][0][2] += dummyd;
+            had_file >> dummyd;
+            fGnrt[i][j][k].tab[c][1][0][2] += dummyd;
+            had_file >> dummyd;
+            fRcstr[i][j][k].tab[c][1][0][3] += dummyd;
+            had_file >> dummyd;
+            fRcstr_c[i][j][k].tab[c][1][0][3] += dummyd;
+            had_file >> dummyd;
+            fGnrt[i][j][k].tab[c][1][0][3] += dummyd;
 
             had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][1] += dummyd;
+            fRcstr[i][j][k].tab[c][0][0][0] += dummyd;
             had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][1] += dummyd;
+            fRcstr_c[i][j][k].tab[c][0][0][0] += dummyd;
             had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][1] += dummyd;
-
+            fGnrt[i][j][k].tab[c][0][0][0] += dummyd;
             had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][2] += dummyd;
+            fRcstr[i][j][k].tab[c][0][0][1] += dummyd;
             had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][2] += dummyd;
+            fRcstr_c[i][j][k].tab[c][0][0][1] += dummyd;
             had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][2] += dummyd;
-
+            fGnrt[i][j][k].tab[c][0][0][1] += dummyd;
             had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][3] += dummyd;
+            fRcstr[i][j][k].tab[c][0][0][2] += dummyd;
             had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][3] += dummyd;
+            fRcstr_c[i][j][k].tab[c][0][0][2] += dummyd;
             had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][3] += dummyd;
-
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][0] += dummyd;
+            fGnrt[i][j][k].tab[c][0][0][2] += dummyd;
+            had_file >> dummyd;
+            fRcstr[i][j][k].tab[c][0][0][3] += dummyd;
+            had_file >> dummyd;
+            fRcstr_c[i][j][k].tab[c][0][0][3] += dummyd;
+            had_file >> dummyd;
+            fGnrt[i][j][k].tab[c][0][0][3] += dummyd;
 
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][1] += dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][1][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][1] += dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][1][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][1] += dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][1][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][1] += dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][1][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][1] += dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][1][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][1] += dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][1][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][1] += dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][1][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][1] += dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][1][0][0] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][1][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][1][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][1][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][1][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][1][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][1][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][1][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][1][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][1][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][1][0][3] += dummyd;
 
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][2] += dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][2] += dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][2] += dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][2] += dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][2] += dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][2] += dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][2] += dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][2] += dummyd;
-
+            fGnrt_zvtx[i][j][k][3].tab[c][0][0][0] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][3] += dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][0][1] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][3] += dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][0][1] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][3] += dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][0][1] += dummyd;
             had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][3] += dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][0][1] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][3] += dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][0][1] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][3] += dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][0][1] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][3] += dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][0][1] += dummyd;
             had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][3] += dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][0][0][1] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][0][0][2] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][0].tab[c][0][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][1].tab[c][0][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][2].tab[c][0][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fRcstr_zvtx[i][j][k][3].tab[c][0][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][0].tab[c][0][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][1].tab[c][0][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][2].tab[c][0][0][3] += dummyd;
+            had_zvtx_file >> dummyd;
+            fGnrt_zvtx[i][j][k][3].tab[c][0][0][3] += dummyd;
           }
         }
       }
@@ -519,15 +687,15 @@ int main(int argc, char **argv)
 
             //cout << fRcstr[i][j][k].tab[c][0][2] << " " << fGnrt[i][j][k].tab[c][0][2] << endl;
 
-            fAcceptance[i][j][k].tab[c][0][0] = ((fNDIS_evt[0][i][j][k] && fNDIS_evt_MC[0][i][j][k] && fGnrt[i][j][k].tab[c][0][0]) ? double((fRcstr[i][j][k].tab[c][0][0]/fNDIS_evt[0][i][j][k])/(fGnrt[i][j][k].tab[c][0][0]/fNDIS_evt_MC[0][i][j][k])) : 0);
-            fAcceptance[i][j][k].tab[c][0][1] = ((fNDIS_evt[1][i][j][k] && fNDIS_evt_MC[1][i][j][k] && fGnrt[i][j][k].tab[c][0][1]) ? double((fRcstr[i][j][k].tab[c][0][1]/fNDIS_evt[1][i][j][k])/(fGnrt[i][j][k].tab[c][0][1]/fNDIS_evt_MC[1][i][j][k])) : 0);
-            fAcceptance[i][j][k].tab[c][0][2] = ((fNDIS_evt[2][i][j][k] && fNDIS_evt_MC[2][i][j][k] && fGnrt[i][j][k].tab[c][0][2]) ? double((fRcstr[i][j][k].tab[c][0][2]/fNDIS_evt[2][i][j][k])/(fGnrt[i][j][k].tab[c][0][2]/fNDIS_evt_MC[2][i][j][k])) : 0);
-            fAcceptance[i][j][k].tab[c][0][3] = ((fNDIS_evt[0][i][j][k] && fNDIS_evt_MC[0][i][j][k] && fGnrt[i][j][k].tab[c][0][3]) ? double((fRcstr[i][j][k].tab[c][0][3]/fNDIS_evt[0][i][j][k])/(fGnrt[i][j][k].tab[c][0][3]/fNDIS_evt_MC[0][i][j][k])) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][0] = ((fNDIS_evt[0][m][i][j][k] && fNDIS_evt_MC[0][m][i][j][k] && fGnrt[i][j][k].tab[c][m][0][0]) ? double((fRcstr[i][j][k].tab[c][m][0][0]/fNDIS_evt[0][m][i][j][k])/(fGnrt[i][j][k].tab[c][m][0][0]/fNDIS_evt_MC[0][m][i][j][k])) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][1] = ((fNDIS_evt[1][m][i][j][k] && fNDIS_evt_MC[1][m][i][j][k] && fGnrt[i][j][k].tab[c][m][0][1]) ? double((fRcstr[i][j][k].tab[c][m][0][1]/fNDIS_evt[1][m][i][j][k])/(fGnrt[i][j][k].tab[c][m][0][1]/fNDIS_evt_MC[1][m][i][j][k])) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][2] = ((fNDIS_evt[2][m][i][j][k] && fNDIS_evt_MC[2][m][i][j][k] && fGnrt[i][j][k].tab[c][m][0][2]) ? double((fRcstr[i][j][k].tab[c][m][0][2]/fNDIS_evt[2][m][i][j][k])/(fGnrt[i][j][k].tab[c][m][0][2]/fNDIS_evt_MC[2][m][i][j][k])) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][3] = ((fNDIS_evt[0][m][i][j][k] && fNDIS_evt_MC[0][m][i][j][k] && fGnrt[i][j][k].tab[c][m][0][3]) ? double((fRcstr[i][j][k].tab[c][m][0][3]/fNDIS_evt[0][m][i][j][k])/(fGnrt[i][j][k].tab[c][m][0][3]/fNDIS_evt_MC[0][m][i][j][k])) : 0);
 
-            if(fAcceptance[i][j][k].tab[c][0][0]<0) fAcceptance[i][j][k].tab[c][0][0]=0;
-            if(fAcceptance[i][j][k].tab[c][0][1]<0) fAcceptance[i][j][k].tab[c][0][1]=0;
-            if(fAcceptance[i][j][k].tab[c][0][2]<0) fAcceptance[i][j][k].tab[c][0][2]=0;
-            if(fAcceptance[i][j][k].tab[c][0][3]<0) fAcceptance[i][j][k].tab[c][0][3]=0;
+            if(fAcceptance[i][j][k].tab[c][0][0]<0) fAcceptance[i][j][k].tab[c][m][0][0]=0;
+            if(fAcceptance[i][j][k].tab[c][0][1]<0) fAcceptance[i][j][k].tab[c][m][0][1]=0;
+            if(fAcceptance[i][j][k].tab[c][0][2]<0) fAcceptance[i][j][k].tab[c][m][0][2]=0;
+            if(fAcceptance[i][j][k].tab[c][0][3]<0) fAcceptance[i][j][k].tab[c][m][0][3]=0;
 
             //cout << fAcceptance[i][j][k].tab[c][0][0] << " " << fAcceptance[i][j][k].tab[c][0][1] << " " << fAcceptance[i][j][k].tab[c][0][2] << " " << fAcceptance[i][j][k].tab[c][0][3] << endl;
 
@@ -538,75 +706,75 @@ int main(int argc, char **argv)
             double rh[4];
             double gh[4];
 
-            rd_prime[0] = fNDIS_evt[0][i][j][k] - fNDIS_evt_c[0][i][j][k];
-            rd_prime[1] = fNDIS_evt[1][i][j][k] - fNDIS_evt_c[1][i][j][k];
-            rd_prime[2] = fNDIS_evt[2][i][j][k] - fNDIS_evt_c[2][i][j][k];
+            rd_prime[0] = fNDIS_evt[0][m][i][j][k] - fNDIS_evt_c[0][m][i][j][k];
+            rd_prime[1] = fNDIS_evt[1][m][i][j][k] - fNDIS_evt_c[1][m][i][j][k];
+            rd_prime[2] = fNDIS_evt[2][m][i][j][k] - fNDIS_evt_c[2][m][i][j][k];
 
-            rd[0] = fNDIS_evt_c[0][i][j][k];
-            rd[1] = fNDIS_evt_c[1][i][j][k];
-            rd[2] = fNDIS_evt_c[2][i][j][k];
+            rd[0] = fNDIS_evt_c[0][m][i][j][k];
+            rd[1] = fNDIS_evt_c[1][m][i][j][k];
+            rd[2] = fNDIS_evt_c[2][m][i][j][k];
 
-            gd[0] = fNDIS_evt_MC[0][i][j][k];
-            gd[1] = fNDIS_evt_MC[1][i][j][k];
-            gd[2] = fNDIS_evt_MC[2][i][j][k];
+            gd[0] = fNDIS_evt_MC[0][m][i][j][k];
+            gd[1] = fNDIS_evt_MC[1][m][i][j][k];
+            gd[2] = fNDIS_evt_MC[2][m][i][j][k];
 
-            rh_prime[0] = fRcstr[i][j][k].tab[c][0][0] - fRcstr_c[i][j][k].tab[c][0][0];
-            rh_prime[1] = fRcstr[i][j][k].tab[c][0][1] - fRcstr_c[i][j][k].tab[c][0][1];
-            rh_prime[2] = fRcstr[i][j][k].tab[c][0][2] - fRcstr_c[i][j][k].tab[c][0][2];
-            rh_prime[3] = fRcstr[i][j][k].tab[c][0][3] - fRcstr_c[i][j][k].tab[c][0][3];
+            rh_prime[0] = fRcstr[i][j][k].tab[c][m][0][0] - fRcstr_c[i][j][k].tab[c][m][0][0];
+            rh_prime[1] = fRcstr[i][j][k].tab[c][m][0][1] - fRcstr_c[i][j][k].tab[c][m][0][1];
+            rh_prime[2] = fRcstr[i][j][k].tab[c][m][0][2] - fRcstr_c[i][j][k].tab[c][m][0][2];
+            rh_prime[3] = fRcstr[i][j][k].tab[c][m][0][3] - fRcstr_c[i][j][k].tab[c][m][0][3];
 
-            rh[0] = fRcstr_c[i][j][k].tab[c][0][0];
-            rh[1] = fRcstr_c[i][j][k].tab[c][0][1];
-            rh[2] = fRcstr_c[i][j][k].tab[c][0][2];
-            rh[3] = fRcstr_c[i][j][k].tab[c][0][3];
+            rh[0] = fRcstr_c[i][j][k].tab[c][m][0][0];
+            rh[1] = fRcstr_c[i][j][k].tab[c][m][0][1];
+            rh[2] = fRcstr_c[i][j][k].tab[c][m][0][2];
+            rh[3] = fRcstr_c[i][j][k].tab[c][m][0][3];
 
-            gh[0] = fGnrt[i][j][k].tab[c][0][0];
-            gh[1] = fGnrt[i][j][k].tab[c][0][1];
-            gh[2] = fGnrt[i][j][k].tab[c][0][2];
-            gh[3] = fGnrt[i][j][k].tab[c][0][3];
+            gh[0] = fGnrt[i][j][k].tab[c][m][0][0];
+            gh[1] = fGnrt[i][j][k].tab[c][m][0][1];
+            gh[2] = fGnrt[i][j][k].tab[c][m][0][2];
+            gh[3] = fGnrt[i][j][k].tab[c][m][0][3];
 
-            fAcceptance[i][j][k].tab[c][1][0] = ((rh[0]>0 && gh[0]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+            fAcceptance[i][j][k].tab[c][m][1][0] = ((rh[0]>0 && gh[0]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
                                                                                 *((rh[0]+1)*(gh[0]-rh[0]+1)/(pow(gh[0]+2,2)*(gh[0]+3))+rh_prime[0]/pow(gh[0],2)+pow(rh_prime[0],2)/pow(gh[0],3))
                                                                                 +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[0]+rh_prime[0])/gh[0],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0);
-            fAcceptance[i][j][k].tab[c][1][1] = ((rh[1]>0 && gh[1]>0 && gd[1]>0 && ((rd[1]+rd_prime[1])!=0)) ? double(pow(gd[1]/(rd_prime[1]+rd[1]),2)
+            fAcceptance[i][j][k].tab[c][m][1][1] = ((rh[1]>0 && gh[1]>0 && gd[1]>0 && ((rd[1]+rd_prime[1])!=0)) ? double(pow(gd[1]/(rd_prime[1]+rd[1]),2)
                                                                                 *((rh[1]+1)*(gh[1]-rh[1]+1)/(pow(gh[1]+2,2)*(gh[1]+3))+rh_prime[1]/pow(gh[1],2)+pow(rh_prime[1],2)/pow(gh[1],3))
                                                                                 +pow(gd[1]/(rd[1]+rd_prime[1]),4)*pow((rh[1]+rh_prime[1])/gh[1],2)*((rd[1]+1)*(gd[1]-rd[1]+1)/(pow(gd[1]+2,2)*(gd[1]+3))+rd_prime[1]/pow(gd[1],2)+pow(rd_prime[1],2)/pow(gd[1],3))) : 0);
-            fAcceptance[i][j][k].tab[c][1][2] = ((rh[2]>0 && gh[2]>0 && gd[2]>0 && ((rd[2]+rd_prime[2])!=0)) ? double(pow(gd[2]/(rd_prime[2]+rd[2]),2)
+            fAcceptance[i][j][k].tab[c][m][1][2] = ((rh[2]>0 && gh[2]>0 && gd[2]>0 && ((rd[2]+rd_prime[2])!=0)) ? double(pow(gd[2]/(rd_prime[2]+rd[2]),2)
                                                                                 *((rh[2]+1)*(gh[2]-rh[2]+1)/(pow(gh[2]+2,2)*(gh[2]+3))+rh_prime[2]/pow(gh[2],2)+pow(rh_prime[2],2)/pow(gh[2],3))
                                                                                 +pow(gd[2]/(rd[2]+rd_prime[2]),4)*pow((rh[2]+rh_prime[2])/gh[2],2)*((rd[2]+1)*(gd[2]-rd[2]+1)/(pow(gd[2]+2,2)*(gd[2]+3))+rd_prime[2]/pow(gd[2],2)+pow(rd_prime[2],2)/pow(gd[2],3))) : 0);
-            fAcceptance[i][j][k].tab[c][1][3] = ((rh[3]>0 && gh[3]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+            fAcceptance[i][j][k].tab[c][m][1][3] = ((rh[3]>0 && gh[3]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
                                                                                 *((rh[3]+1)*(gh[3]-rh[3]+1)/(pow(gh[3]+2,2)*(gh[3]+3))+rh_prime[3]/pow(gh[3],2)+pow(rh_prime[3],2)/pow(gh[3],3))
                                                                                 +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[3]+rh_prime[3])/gh[3],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0);
 
-            if(fAcceptance[i][j][k].tab[c][0][0]==0) fAcceptance[i][j][k].tab[c][1][0]=0;
-            if(fAcceptance[i][j][k].tab[c][0][1]==0) fAcceptance[i][j][k].tab[c][1][1]=0;
-            if(fAcceptance[i][j][k].tab[c][0][2]==0) fAcceptance[i][j][k].tab[c][1][2]=0;
-            if(fAcceptance[i][j][k].tab[c][0][3]==0) fAcceptance[i][j][k].tab[c][1][3]=0;
+            if(fAcceptance[i][j][k].tab[c][m][0][0]==0) fAcceptance[i][j][k].tab[c][m][1][0]=0;
+            if(fAcceptance[i][j][k].tab[c][m][0][1]==0) fAcceptance[i][j][k].tab[c][m][1][1]=0;
+            if(fAcceptance[i][j][k].tab[c][m][0][2]==0) fAcceptance[i][j][k].tab[c][m][1][2]=0;
+            if(fAcceptance[i][j][k].tab[c][m][0][3]==0) fAcceptance[i][j][k].tab[c][m][1][3]=0;
 
-            if((fAcceptance[i][j][k].tab[c][0][3] != 0) && (fAcceptance[i][j][k].tab[c][1][3] > fAcceptance[i][j][k].tab[c][0][3]))
+            if((fAcceptance[i][j][k].tab[c][m][0][3] != 0) && (fAcceptance[i][j][k].tab[c][m][1][3] > 0.2*fAcceptance[i][j][k].tab[c][m][0][3]))
             {
-              fAcceptance[i][j][k].tab[c][0][0] = 0;
-              fAcceptance[i][j][k].tab[c][0][1] = 0;
-              fAcceptance[i][j][k].tab[c][0][2] = 0;
-              fAcceptance[i][j][k].tab[c][0][3] = 0;
-              fAcceptance[i][j][k].tab[c][1][0] = 0;
-              fAcceptance[i][j][k].tab[c][1][1] = 0;
-              fAcceptance[i][j][k].tab[c][1][2] = 0;
-              fAcceptance[i][j][k].tab[c][1][3] = 0;
+              fAcceptance[i][j][k].tab[c][m][0][0] = 0;
+              fAcceptance[i][j][k].tab[c][m][0][1] = 0;
+              fAcceptance[i][j][k].tab[c][m][0][2] = 0;
+              fAcceptance[i][j][k].tab[c][m][0][3] = 0;
+              fAcceptance[i][j][k].tab[c][m][1][0] = 0;
+              fAcceptance[i][j][k].tab[c][m][1][1] = 0;
+              fAcceptance[i][j][k].tab[c][m][1][2] = 0;
+              fAcceptance[i][j][k].tab[c][m][1][3] = 0;
             }
 
-            // if((fAcceptance[i][j][k].tab[c][0][0] != 0)
-            // && (fAcceptance[i][j][k].tab[c][1][0] != 0)
-            // && (fAcceptance[i][j][k].tab[c][1][0]/fAcceptance[i][j][k].tab[c][0][0] > 0.20))
+            // if((fAcceptance[i][j][k].tab[c][m][0][0] != 0)
+            // && (fAcceptance[i][j][k].tab[c][m][1][0] != 0)
+            // && (fAcceptance[i][j][k].tab[c][m][1][0]/fAcceptance[i][j][k].tab[c][m][0][0] > 0.20))
             // {
-            //   fAcceptance[i][j][k].tab[c][0][0] = 0;
-            //   fAcceptance[i][j][k].tab[c][0][1] = 0;
-            //   fAcceptance[i][j][k].tab[c][0][2] = 0;
-            //   fAcceptance[i][j][k].tab[c][0][3] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][0] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][1] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][2] = 0;
-            //   fAcceptance[i][j][k].tab[c][1][3] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][0][0] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][0][1] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][0][2] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][0][3] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][1][0] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][1][1] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][1][2] = 0;
+            //   fAcceptance[i][j][k].tab[c][m][1][3] = 0;
             // }
             //
             // if((j==4 && k==6)
@@ -621,95 +789,95 @@ int main(int argc, char **argv)
             // || (i>5 && j==5 && k==2)
             // || (j==1 && k<4))
             // {
-            //    fAcceptance[i][j][k].tab[c][0][0] = 0;
-            //    fAcceptance[i][j][k].tab[c][0][1] = 0;
-            //    fAcceptance[i][j][k].tab[c][0][2] = 0;
-            //    fAcceptance[i][j][k].tab[c][0][3] = 0;
-            //    fAcceptance[i][j][k].tab[c][1][0] = 0;
-            //    fAcceptance[i][j][k].tab[c][1][1] = 0;
-            //    fAcceptance[i][j][k].tab[c][1][2] = 0;
-            //    fAcceptance[i][j][k].tab[c][1][3] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][0][0] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][0][1] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][0][2] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][0][3] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][1][0] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][1][1] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][1][2] = 0;
+            //    fAcceptance[i][j][k].tab[c][m][1][3] = 0;
             // }
 
             //Output file
             //q_bin x_bin y_bin z_bin acc_pi acc_error_pi acc_k acc_error_k acc_p acc_error_p acc_h acc_error_h
 
             ofs << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-            fAcceptance[i][j][k].tab[c][0][0] << " " <<
-            fAcceptance[i][j][k].tab[c][1][0] << " " <<
-            fAcceptance[i][j][k].tab[c][0][1] << " " <<
-            fAcceptance[i][j][k].tab[c][1][1] << " " <<
-            fAcceptance[i][j][k].tab[c][0][2] << " " <<
-            fAcceptance[i][j][k].tab[c][1][2] << " " <<
-            fAcceptance[i][j][k].tab[c][0][3] << " " <<
-            fAcceptance[i][j][k].tab[c][1][3] <<   endl;
+            fAcceptance[i][j][k].tab[c][m][0][0] << " " <<
+            fAcceptance[i][j][k].tab[c][m][1][0] << " " <<
+            fAcceptance[i][j][k].tab[c][m][0][1] << " " <<
+            fAcceptance[i][j][k].tab[c][m][1][1] << " " <<
+            fAcceptance[i][j][k].tab[c][m][0][2] << " " <<
+            fAcceptance[i][j][k].tab[c][m][1][2] << " " <<
+            fAcceptance[i][j][k].tab[c][m][0][3] << " " <<
+            fAcceptance[i][j][k].tab[c][m][1][3] <<   endl;
 
             lepto << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-            (fAcceptance[i][j][k].tab[c][0][0] ? Double_t((fGnrt[i][j][k].tab[c][0][0]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][0],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
-            (fAcceptance[i][j][k].tab[c][0][1] ? Double_t((fGnrt[i][j][k].tab[c][0][1]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][1],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
-            (fAcceptance[i][j][k].tab[c][0][2] ? Double_t((fGnrt[i][j][k].tab[c][0][2]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][2],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
-            (fAcceptance[i][j][k].tab[c][0][3] ? Double_t((fGnrt[i][j][k].tab[c][0][3]/pow(fNDIS_evt_MC[0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][3],2)/pow(fNDIS_evt_MC[0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " << endl;
+            (fAcceptance[i][j][k].tab[c][m][0][0] ? Double_t((fGnrt[i][j][k].tab[c][m][0][0]/pow(fNDIS_evt_MC[0][m][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][m][0][0],2)/pow(fNDIS_evt_MC[0][m][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
+            (fAcceptance[i][j][k].tab[c][m][0][1] ? Double_t((fGnrt[i][j][k].tab[c][m][0][1]/pow(fNDIS_evt_MC[0][m][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][m][0][1],2)/pow(fNDIS_evt_MC[0][m][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
+            (fAcceptance[i][j][k].tab[c][m][0][2] ? Double_t((fGnrt[i][j][k].tab[c][m][0][2]/pow(fNDIS_evt_MC[0][m][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][m][0][2],2)/pow(fNDIS_evt_MC[0][m][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
+            (fAcceptance[i][j][k].tab[c][m][0][3] ? Double_t((fGnrt[i][j][k].tab[c][m][0][3]/pow(fNDIS_evt_MC[0][m][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][m][0][3],2)/pow(fNDIS_evt_MC[0][m][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " << endl;
 
-            fAcceptance[i][j][k].tab[c][0][0] = ((fAcceptance[i][j][k].tab[c][0][0]) ? (fAcceptance[i][j][k].tab[c][0][0]) : 0);
-            fAcceptance[i][j][k].tab[c][0][1] = ((fAcceptance[i][j][k].tab[c][0][1]) ? (fAcceptance[i][j][k].tab[c][0][1]) : 0);
-            fAcceptance[i][j][k].tab[c][0][2] = ((fAcceptance[i][j][k].tab[c][0][2]) ? (fAcceptance[i][j][k].tab[c][0][2]) : 0);
-            fAcceptance[i][j][k].tab[c][0][3] = ((fAcceptance[i][j][k].tab[c][0][3]) ? (fAcceptance[i][j][k].tab[c][0][3]) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][0] = ((fAcceptance[i][j][k].tab[c][m][0][0]) ? (fAcceptance[i][j][k].tab[c][m][0][0]) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][1] = ((fAcceptance[i][j][k].tab[c][m][0][1]) ? (fAcceptance[i][j][k].tab[c][m][0][1]) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][2] = ((fAcceptance[i][j][k].tab[c][m][0][2]) ? (fAcceptance[i][j][k].tab[c][m][0][2]) : 0);
+            fAcceptance[i][j][k].tab[c][m][0][3] = ((fAcceptance[i][j][k].tab[c][m][0][3]) ? (fAcceptance[i][j][k].tab[c][m][0][3]) : 0);
 
-            p_a.push_back(fAcceptance[i][j][k].tab[c][0][0]);
-            k_a.push_back(fAcceptance[i][j][k].tab[c][0][1]);
-            h_a.push_back(fAcceptance[i][j][k].tab[c][0][3]);
+            p_a.push_back(fAcceptance[i][j][k].tab[c][m][0][0]);
+            k_a.push_back(fAcceptance[i][j][k].tab[c][m][0][1]);
+            h_a.push_back(fAcceptance[i][j][k].tab[c][m][0][3]);
 
-            p_err.push_back(fAcceptance[i][j][k].tab[c][1][0]);
-            k_err.push_back(fAcceptance[i][j][k].tab[c][1][1]);
-            h_err.push_back(fAcceptance[i][j][k].tab[c][1][3]);
+            p_err.push_back(fAcceptance[i][j][k].tab[c][m][1][0]);
+            k_err.push_back(fAcceptance[i][j][k].tab[c][m][1][1]);
+            h_err.push_back(fAcceptance[i][j][k].tab[c][m][1][3]);
 
             ofs_zvtx << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k];
 
             for(int l=0; l<4; l++)
             {
-              fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = ((fNDIS_evt_zvtx[0][i][j][k][l] && fNDIS_evt_MC_zvtx[0][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][0]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][0]/fNDIS_evt_zvtx[0][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][0]/fNDIS_evt_MC_zvtx[0][i][j][k][l])) : 0);
-              fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = ((fNDIS_evt_zvtx[1][i][j][k][l] && fNDIS_evt_MC_zvtx[1][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][1]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][1]/fNDIS_evt_zvtx[1][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][1]/fNDIS_evt_MC_zvtx[1][i][j][k][l])) : 0);
-              fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = ((fNDIS_evt_zvtx[2][i][j][k][l] && fNDIS_evt_MC_zvtx[2][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][2]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][2]/fNDIS_evt_zvtx[2][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][2]/fNDIS_evt_MC_zvtx[2][i][j][k][l])) : 0);
-              fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = ((fNDIS_evt_zvtx[0][i][j][k][l] && fNDIS_evt_MC_zvtx[0][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][0][3]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][0][3]/fNDIS_evt_zvtx[0][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][0][3]/fNDIS_evt_MC_zvtx[0][i][j][k][l])) : 0);
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] = ((fNDIS_evt_zvtx[0][m][i][j][k][l] && fNDIS_evt_MC_zvtx[0][m][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][m][0][0]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][m][0][0]/fNDIS_evt_zvtx[0][m][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][m][0][0]/fNDIS_evt_MC_zvtx[0][m][i][j][k][l])) : 0);
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1] = ((fNDIS_evt_zvtx[1][m][i][j][k][l] && fNDIS_evt_MC_zvtx[1][m][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][m][0][1]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][m][0][1]/fNDIS_evt_zvtx[1][m][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][m][0][1]/fNDIS_evt_MC_zvtx[1][m][i][j][k][l])) : 0);
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][0][2] = ((fNDIS_evt_zvtx[2][m][i][j][k][l] && fNDIS_evt_MC_zvtx[2][m][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][m][0][2]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][m][0][2]/fNDIS_evt_zvtx[2][m][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][m][0][2]/fNDIS_evt_MC_zvtx[2][m][i][j][k][l])) : 0);
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3] = ((fNDIS_evt_zvtx[0][m][i][j][k][l] && fNDIS_evt_MC_zvtx[0][m][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][m][0][3]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][m][0][3]/fNDIS_evt_zvtx[0][m][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][m][0][3]/fNDIS_evt_MC_zvtx[0][m][i][j][k][l])) : 0);
 
-              if(fAcceptance_zvtx[i][j][k][l].tab[c][0][0]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][0]=0;
-              if(fAcceptance_zvtx[i][j][k][l].tab[c][0][1]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][1]=0;
-              if(fAcceptance_zvtx[i][j][k][l].tab[c][0][2]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][2]=0;
-              if(fAcceptance_zvtx[i][j][k][l].tab[c][0][3]<0) fAcceptance_zvtx[i][j][k][l].tab[c][0][3]=0;
+              if(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0]<0) fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0]=0;
+              if(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1]<0) fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1]=0;
+              if(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][2]<0) fAcceptance_zvtx[i][j][k][l].tab[c][m][0][2]=0;
+              if(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3]<0) fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3]=0;
 
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][0] = fAcceptance[i][j][k].tab[c][1][0];
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][1] = fAcceptance[i][j][k].tab[c][1][1];
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = fAcceptance[i][j][k].tab[c][1][2];
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = fAcceptance[i][j][k].tab[c][1][3];
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][0] = fAcceptance[i][j][k].tab[c][m][1][0];
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][1] = fAcceptance[i][j][k].tab[c][m][1][1];
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][2] = fAcceptance[i][j][k].tab[c][m][1][2];
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][3] = fAcceptance[i][j][k].tab[c][m][1][3];
 
-              ofs_zvtx << " " << fAcceptance_zvtx[i][j][k][l].tab[c][0][0] << " " <<
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][0] << " " <<
-              fAcceptance_zvtx[i][j][k][l].tab[c][0][1] << " " <<
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][1] << " " <<
-              fAcceptance_zvtx[i][j][k][l].tab[c][0][2] << " " <<
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][2] << " " <<
-              fAcceptance_zvtx[i][j][k][l].tab[c][0][3] << " " <<
-              fAcceptance_zvtx[i][j][k][l].tab[c][1][3];
+              ofs_zvtx << " " << fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][0] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][1] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][0][2] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][2] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3] << " " <<
+              fAcceptance_zvtx[i][j][k][l].tab[c][m][1][3];
 
               // if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
               // {
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][0] = 0;
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][1] = 0;
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][2] = 0;
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][0][3] = 0;
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][0] = 0;
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][1] = 0;
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][2] = 0;
-              //   fAcceptance_zvtx[i][j][k][l].tab[c][1][3] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][0][2] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][1][0] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][1][1] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][1][2] = 0;
+              //   fAcceptance_zvtx[i][j][k][l].tab[c][m][1][3] = 0;
               // }
 
-              p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][0] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][0] : 0);
-              k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][1] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][1] : 0);
-              h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][0][3] ? fAcceptance_zvtx[i][j][k][l].tab[c][0][3] : 0);
+              p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] ? fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] : 0);
+              k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1] ? fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1] : 0);
+              h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3] ? fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3] : 0);
 
-              p_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][1][0]));
-              k_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][1][1]));
-              h_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][1][3]));
+              p_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][0]));
+              k_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][1]));
+              h_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][3]));
             }
 
             ofs_zvtx << endl;
