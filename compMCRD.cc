@@ -1605,7 +1605,7 @@ void MCextraction(string pFilelist)
           int dz = abs(z->GetLeaf("z")->GetValue()-70);
           int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-          if(!( ( -35 < xdx && xdx < 35 ) && ( -25 < ydy && ydy < 25 ) )) continue;
+          // if(!( ( -35 < xdx && xdx < 35 ) && ( -25 < ydy && ydy < 25 ) )) continue;
           fECAL0MC->Fill(xdx,ydy);
 
           if(-325<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-261.5) fVertexMCb[0]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
@@ -2449,7 +2449,7 @@ void RDextraction(string pFilelist)
         int dz = abs(z->GetLeaf("z")->GetValue()-70);
         int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
         int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-        if(!( ( -35 < xdx && xdx < 35 ) && ( -25 < ydy && ydy < 25 ) )) continue;
+        // if(!( ( -35 < xdx && xdx < 35 ) && ( -25 < ydy && ydy < 25 ) )) continue;
         fECAL0RD->Fill(xdx,ydy);
 
         if(-325<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-261.5) fVertexRD[0]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
