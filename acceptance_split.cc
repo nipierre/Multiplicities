@@ -749,11 +749,13 @@ int main(int argc, char **argv)
     }
   }
 
+#if CLUSTER != BW
   int year=0;
 
   if(Y2006) year=2006;
   else if(Y2012) year=2012;
   else if(Y2016) year=2016;
+#endif
 
   //Kinematics
   Double_t Q2 = 0;
@@ -807,7 +809,6 @@ int main(int argc, char **argv)
     if(!periodBit) continue;
 
 #if CLUSTER == BW
-  cout << "poule" << endl;
     string filename(getenv("ACCEPTANCE_FILE"));
 #else
     ifstream list(Form("%s/%s/filelist.txt",data_path,periodName.c_str()));
