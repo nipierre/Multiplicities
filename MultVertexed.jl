@@ -6,7 +6,7 @@ z = [.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85]
 xexp = [.007,.015,.025,.035,.05,.08,.12,.16,.29]
 zFFred = [3,8,13,18,23,28,33,38,43,48,53,61]
 
-Mult = readdlm("data/Mult2016HadronVertexed.txt")
+Mult = readdlm("data/Mult2016HadronVertexedMU+.txt")
 
 Multp1 = zeros((9,12))
 Multm1 = zeros((9,12))

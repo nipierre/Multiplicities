@@ -46,7 +46,7 @@
 
 using namespace std;
 
-struct Wrapper { Double_t tab[2][2][4]; };
+struct Wrapper { Double_t tab[2][2][2][4]; };
 struct Multiplicities { Double_t tab[2][3][4]; };
 struct Recovery { vector<Double_t> vec[2][4][4]; };
 struct Recovery_tank { Double_t tab[2][4][4]; };
@@ -140,6 +140,7 @@ vector<Double_t> fXv;
 vector<Double_t> fYv;
 vector<Double_t> fZv;
 vector<Double_t> fRv;
+Int fMuCharge;
 
 //Counting
 
@@ -205,10 +206,10 @@ Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
 Recovery fMeanvalues[9][6][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
 Recovery_tank fMeanvalues_size[9][6][12];
 Recovery_tank fMeanvalues_data[9][6][12];
-Double_t fNDIS_evt[3][9][6][12];
-Double_t fNDIS_evt_err[3][9][6][12];
-Double_t fNDIS_evt_zvtx[3][9][6][12][4];
-Double_t fNDIS_evt_err_zvtx[3][9][6][12][4];
+Double_t fNDIS_evt[3][2][9][6][12];
+Double_t fNDIS_evt_err[3][2][9][6][12];
+Double_t fNDIS_evt_zvtx[3][2][9][6][12][4];
+Double_t fNDIS_evt_err_zvtx[3][2][9][6][12][4];
 Wrapper fMuMix[9][6][12];
 Int_t xbin, ybin, zbin, zlabbin;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};

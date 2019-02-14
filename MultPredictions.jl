@@ -96,7 +96,7 @@ Mpim = zeros(12)
 Mpexp = zeros(12)
 Mmexp = zeros(12)
 
-for i in 1:9
+anim = @animate for i=1:9
     global Mpirp, Mpird, Mpirpexp, Mpirdexp
     global MKrp, MKrd
     global Mpip, Mpim
@@ -165,7 +165,8 @@ for i in 1:9
                              ylabel = L"M^{\pi}",
                              label = L"\pi^-_{Exp}",
                              title=t)
-    savefig(string("plots/MultiplicitiesProtPi",i,".png"))
+    # savefig(string("plots/MultiplicitiesProtPi",i,".png"))
+
     Mpirp[i] = (Mpirpp[i]/Mpirpm[i])
     Mpirpexp[i] = (Mpirppexp[i]/Mpirpmexp[i])
     Mpirdexp[i] = (Mpirdpexp[i]/Mpirdmexp[i])
@@ -173,6 +174,7 @@ for i in 1:9
     MKrp[i] = (MKrpp[i]/MKrpm[i])
     MKrd[i] = (MKrdp[i]/MKrdm[i])
 end
+gif(anim, "plots/MultiplicitiesProtPi.gif", fps = 1)
 
 plot(x,Mpisp, lw=3,
            xscale = :log10,

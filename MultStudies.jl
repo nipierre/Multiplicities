@@ -9,7 +9,7 @@ zFFred = [3,8,13,18,23,28,33,38,43,48,53,61]
 # Mult1 = readdlm("data/Mult2016Hadron.txt")
 # Mult2 = readdlm("data/Mult2016HadronNORICH.txt")
 Mult1 = readdlm("data/Mult2016Hadron.txt")
-Mult2 = readdlm("data/Mult2016HadronMC.txt")
+Mult2 = readdlm("data/Mult2016HadronMU+.txt")
 
 Multp1 = zeros((9,12))
 Multm1 = zeros((9,12))
@@ -160,7 +160,7 @@ scatter(xexp,Ms1, lw=3,
            xlabel = "x",
            ylabel = L"\int M^{h^+}+M^{h^-} dz",
            yerror = Ss1,
-           label = "RD")
+           label = "mu+ mu-")
 scatter!(xexp,Ms2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
@@ -168,7 +168,7 @@ scatter!(xexp,Ms2, lw=3,
             xlabel = "x",
             ylabel = L"\int M^{h^+}+M^{h^-} dz",
             yerror = Ss2,
-            label = "MC")
+            label = "mu+")
 savefig("plots/MultiplicitiesSumTest.png")
 
 scatter(xexp,Mr1, lw=3,
@@ -178,7 +178,7 @@ scatter(xexp,Mr1, lw=3,
            xlabel = "x",
            ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
            yerror = Sr1,
-           label = "RD")
+           label = "mu+ mu-")
 scatter!(xexp,Mr2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
@@ -186,5 +186,5 @@ scatter!(xexp,Mr2, lw=3,
             xlabel = "x",
             ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
             yerror = Sr2,
-            label = "MC")
+            label = "mu+")
 savefig("plots/MultiplicitiesRatioTest.png")

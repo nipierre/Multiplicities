@@ -11,9 +11,18 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define MOMENTUM 12
-//#define SIZESPLIT 1
-//#define OFFSET 0
+#define MOMENTUM_DOWN 12
+#define MOMENTUM_UP 40
+#define XMIN 0.004
+#define XMAX 0.4
+#define YMIN 0.1
+#define YMAX 0.7
+#define WMIN 5
+#define WMAX 17
+#define HXX0LIMIT 15
+
+// Cluster
+#define CLUSTER getenv("SITE")
 
 using namespace std;
 
@@ -780,14 +789,14 @@ int main(int argc, char **argv)
 
   for(int i=0; i<12; i++)
   {
-    fNu_max[1][i] = sqrt(pow(40,2)+pow(fM_K,2))/fZrange[i+1];
-    fNu_min[1][i] = sqrt(pow(MOMENTUM,2)+pow(fM_K,2))/fZrange[i];
+    fNu_max[1][i] = sqrt(pow(MOMENTUM_UP,2)+pow(fM_K,2))/fZrange[i+1];
+    fNu_min[1][i] = sqrt(pow(MOMENTUM_DOWN,2)+pow(fM_K,2))/fZrange[i];
 
-    fNu_max[2][i] = sqrt(pow(40,2)+pow(fM_p,2))/fZrange[i+1];
-    fNu_min[2][i] = sqrt(pow(MOMENTUM,2)+pow(fM_p,2))/fZrange[i];
+    fNu_max[2][i] = sqrt(pow(MOMENTUM_UP,2)+pow(fM_p,2))/fZrange[i+1];
+    fNu_min[2][i] = sqrt(pow(MOMENTUM_DOWN,2)+pow(fM_p,2))/fZrange[i];
 
-    fNu_max[0][i] = sqrt(pow(40,2)+pow(fM_pi,2))/fZrange[i+1];
-    fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
+    fNu_max[0][i] = sqrt(pow(MOMENTUM_UP,2)+pow(fM_pi,2))/fZrange[i+1];
+    fNu_min[0][i] = sqrt(pow(MOMENTUM_DOWN,2)+pow(fM_pi,2))/fZrange[i];
   }
 
   ofstream trigmaskout("trigmask.dat", std::ofstream::out | std::ofstream::trunc);
@@ -800,9 +809,14 @@ int main(int argc, char **argv)
     periods >> periodBit;
     if(!periodBit) continue;
 
+#if CLUSTER == BW
+    string filename(getenv("ACCEPTANCE_FILE"));
+#else
     ifstream list(Form("%s/%s/filelist.txt",data_path,periodName.c_str()));
     string filename;
+
     while(list >> filename)
+#endif
     {
       TFile *f;
 
@@ -1441,15 +1455,15 @@ int main(int argc, char **argv)
                               fQ2test++;
 
                               // y cut
-                              if((0.1<yBj && yBj<0.9))
+                              if((YMIN<yBj && yBj<YMAX))
                               {
                                 fYBjtest++;
 
                                 // W cut
-                                if((5<sqrt(wBj) && sqrt(wBj)<17))
+                                if((WMIN<sqrt(wBj) && sqrt(wBj)<WMAX))
                                 {
                                   fWBjtest++;
-                                  if((0.004<xBj && xBj<0.4))
+                                  if((XMIN<xBj && xBj<XMAX))
                                   {
                                     fXBjtest++;
                                     fAllDISflag = 1;
@@ -1504,13 +1518,13 @@ int main(int argc, char **argv)
                   if((Q2_MC>1))
                   {
                     // y cut
-                    if((0.1<yBj_MC && yBj_MC<0.7))
+                    if((YMIN<yBj_MC && yBj_MC<YMAX))
                     {
                       // W cut
-                      if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
+                      if((WMIN<sqrt(wBj_MC) && sqrt(wBj_MC)<WMAX))
                       {
                         // x cut
-                        if((0.004<xBj_MC && xBj_MC<0.4))
+                        if((XMIN<xBj_MC && xBj_MC<XMAX))
                         {
                           fAllDISflag_MC = 1;
                         }
@@ -1531,13 +1545,13 @@ int main(int argc, char **argv)
                 if((Q2_MC>1))
                 {
                   // y cut
-                  if((0.1<yBj_MC && yBj_MC<0.7))
+                  if((YMIN<yBj_MC && yBj_MC<YMAX))
                   {
                     // W cut
-                    if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
+                    if((WMIN<sqrt(wBj_MC) && sqrt(wBj_MC)<WMAX))
                     {
                       // x cut
-                      if((0.004<xBj_MC && xBj_MC<0.4))
+                      if((XMIN<xBj_MC && xBj_MC<XMAX))
                       {
                         fAllDISflag_MC = 1;
                       }
@@ -1558,13 +1572,13 @@ int main(int argc, char **argv)
                 if((Q2_MC>1))
                 {
                   // y cut
-                  if((0.1<yBj_MC && yBj_MC<0.9))
+                  if((YMIN<yBj_MC && yBj_MC<YMAX))
                   {
                     // W cut
-                    if((5<sqrt(wBj_MC) && sqrt(wBj_MC)<17))
+                    if((WMIN<sqrt(wBj_MC) && sqrt(wBj_MC)<WMAX))
                     {
                       // x cut
-                      if((0.004<xBj_MC && xBj_MC<0.4))
+                      if((XMIN<xBj_MC && xBj_MC<XMAX))
                       {
                         fMCDIS++;
                         fAllDISflag_MC = 1;
@@ -2495,7 +2509,7 @@ int main(int argc, char **argv)
             fHZlast++;
 
             // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-            if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+            if(!(MOMENTUM_DOWN<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<MOMENTUM_UP)) continue;
             fMom++;
 
             // Theta cut
@@ -2767,20 +2781,14 @@ int main(int argc, char **argv)
             else if(fId==8)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              fHminus++; fPiminus++;
-              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
+              fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][4] += 1;
             }
             else if(fId==9)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              fHplus++; fPiplus++;
-              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
+              fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][4] += 1;
             }
             else
             {
@@ -2809,10 +2817,21 @@ int main(int argc, char **argv)
       delete f;
     }
 
+#if CLUSTER == BW
+    ofstream ofs_h(Form("hadron_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_hzvtx(Form("hadron_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_d(Form("DIS_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_dzvtx(Form("DIS_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_e(Form("electron_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ezvtx(Form("electron_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+#else
     ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+#endif
 
     for(int c=0; c<2; c++)
     {
@@ -2849,6 +2868,13 @@ int main(int argc, char **argv)
                          fGnrt_zvtx[i][j][k][0].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][2] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][2] << " " <<
                          fRcstr_zvtx[i][j][k][0].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][3] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][3] << " " <<
                          fGnrt_zvtx[i][j][k][0].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][3] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][3] << " " <<  endl;
+
+            ofs_e << fRcstr[i][j][k].tab[c][0][0] << fRcstr[i][j][k].tab[c][0][4] << endl;
+
+            ofs_ezvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][0] << " "
+                      << fRcstr_zvtx[i][j][k][2].tab[c][0][0] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][0] << " "
+                      << fRcstr_zvtx[i][j][k][0].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][4] << " "
+                      << fRcstr_zvtx[i][j][k][2].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][4] << endl;
           }
         }
       }
@@ -2856,8 +2882,10 @@ int main(int argc, char **argv)
 
     ofs_h.close();
     ofs_d.close();
+    ofs_e.close();
     ofs_hzvtx.close();
     ofs_dzvtx.close();
+    ofs_ezvtx.close();
 
     resetValues();
   }

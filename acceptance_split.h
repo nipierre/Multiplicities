@@ -43,7 +43,7 @@ using namespace std;
 
 //Structs
 
-struct Wrapper { Double_t tab[2][2][4]; };
+struct Wrapper { Double_t tab[2][2][5]; };
 struct Pvsz { vector<Double_t> vec[2][5]; };
 struct hadiden { vector<Double_t> vec; };
 struct studyxy { vector<Double_t> vec[2]; };

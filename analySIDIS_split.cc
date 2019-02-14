@@ -18,13 +18,14 @@ using namespace std;
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define MOMENTUM 12
+#define MOMENTUM_DOWN 12
+#define MOMENTUM_UP 40
 #define XMIN 0.004
 #define XMAX 0.4
 #define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
-#define MUCHARGE_SEPARATION 0
+#define MUCHARGE_SEPARATION 1
 #define MUCHARGE 1
 
 #define IRC 0
@@ -1281,14 +1282,14 @@ int main(int argc, char **argv)
 
   for(int i=0; i<12; i++)
   {
-    fNu_max[1][i] = sqrt(pow(40,2)+pow(fM_K,2))/fZrange[i+1];
-    fNu_min[1][i] = sqrt(pow(MOMENTUM,2)+pow(fM_K,2))/fZrange[i];
+    fNu_max[1][i] = sqrt(pow(MOMENTUM_UP,2)+pow(fM_K,2))/fZrange[i+1];
+    fNu_min[1][i] = sqrt(pow(MOMENTUM_DOWN,2)+pow(fM_K,2))/fZrange[i];
 
-    fNu_max[2][i] = sqrt(pow(40,2)+pow(fM_p,2))/fZrange[i+1];
-    fNu_min[2][i] = sqrt(pow(MOMENTUM,2)+pow(fM_p,2))/fZrange[i];
+    fNu_max[2][i] = sqrt(pow(MOMENTUM_UP,2)+pow(fM_p,2))/fZrange[i+1];
+    fNu_min[2][i] = sqrt(pow(MOMENTUM_DOWN,2)+pow(fM_p,2))/fZrange[i];
 
-    fNu_max[0][i] = sqrt(pow(40,2)+pow(fM_pi,2))/fZrange[i+1];
-    fNu_min[0][i] = sqrt(pow(MOMENTUM,2)+pow(fM_pi,2))/fZrange[i];
+    fNu_max[0][i] = sqrt(pow(MOMENTUM_UP,2)+pow(fM_pi,2))/fZrange[i+1];
+    fNu_min[0][i] = sqrt(pow(MOMENTUM_DOWN,2)+pow(fM_pi,2))/fZrange[i];
   }
 
   // List of files
@@ -1583,10 +1584,12 @@ int main(int argc, char **argv)
         // --------- DIS Selection -------------------------------------------------
         // -------------------------------------------------------------------------
 
+        // Mu Charge
         if(MUCHARGE_SEPARATION)
         {
           if(!(Charge->GetLeaf("Charge")->GetValue()==MUCHARGE)) continue;
         }
+        fMuCharge = Charge->GetLeaf("Charge")->GetValue();
 
         // Best Primary Vertex
         fBP++;
@@ -1779,19 +1782,19 @@ int main(int argc, char **argv)
 
         for(int i=0; i<12; i++)
         {
-          fNDIS_evt[0][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
-          fNDIS_evt[1][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
-          fNDIS_evt[2][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
-          fNDIS_evt_zvtx[0][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
-          fNDIS_evt_zvtx[1][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
-          fNDIS_evt_zvtx[2][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt[0][fMuCharge][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt[1][fMuCharge][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt[2][fMuCharge][xbin][ybin][i] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
+          fNDIS_evt_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] += 1*GetInclusiveRadiativeCorrection(xBj,yBj);
 
-          fNDIS_evt_err[0][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          fNDIS_evt_err[1][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          fNDIS_evt_err[2][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          fNDIS_evt_err_zvtx[0][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          fNDIS_evt_err_zvtx[1][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          fNDIS_evt_err_zvtx[2][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err[0][fMuCharge][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err[1][fMuCharge][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err[2][fMuCharge][xbin][ybin][i] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+          fNDIS_evt_err_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] += pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
 
           fFlag[0][xbin][ybin][i]=0;
           fFlag[1][xbin][ybin][i]=0;
@@ -1812,18 +1815,18 @@ int main(int argc, char **argv)
           }
           if(fFlag[0][xbin][ybin][i] || fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i])
           {
-            fNDIS_evt[0][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt[1][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt[2][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt_zvtx[0][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt_zvtx[1][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt_zvtx[2][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt_err[0][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err[1][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err[2][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err_zvtx[0][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err_zvtx[1][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err_zvtx[2][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt[0][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt[1][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt[2][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_err[0][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err[1][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err[2][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           }
         }
 
@@ -2265,7 +2268,7 @@ int main(int argc, char **argv)
           }
 
           // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
-          if(!(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<40)) continue;
+          if(!(MOMENTUM_DOWN<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<MOMENTUM_UP)) continue;
           fMom++;
 
           if(kin_flag) fPk[1]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
@@ -2283,7 +2286,7 @@ int main(int argc, char **argv)
           if(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.04)
           {
             theta_bin = 0;
-            if(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
+            if(MOMENTUM_DOWN<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
             else if(13<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<15) mom_bin = 1;
             else if(15<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17) mom_bin = 2;
             else if(17<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<19) mom_bin = 3;
@@ -2297,7 +2300,7 @@ int main(int argc, char **argv)
           else
           {
             theta_bin = 1;
-            if(MOMENTUM<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
+            if(MOMENTUM_DOWN<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<13) mom_bin = 0; // Here from 3 to 13 GeV
             else if(13<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<15) mom_bin = 1;
             else if(15<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17) mom_bin = 2;
             else if(17<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<19) mom_bin = 3;
@@ -3093,7 +3096,7 @@ int main(int argc, char **argv)
 
             for(int ll=0; ll<4; ll++)
             {
-              fBinning_loose[xbin][ybin][zbin].tab[j][0][ll] += Pvszloose[i].vec[j][ll+1][l];
+              fBinning_loose[xbin][ybin][zbin].tab[j][fMuCharge][0][ll] += Pvszloose[i].vec[j][ll+1][l];
             }
           }
         }
@@ -3140,7 +3143,7 @@ int main(int argc, char **argv)
 
             for(int ll=0; ll<4; ll++)
             {
-              fBinning_severe[xbin][ybin][zbin].tab[j][0][ll] += Pvszsevere[i].vec[j][ll+1][l];
+              fBinning_severe[xbin][ybin][zbin].tab[j][fMuCharge][0][ll] += Pvszsevere[i].vec[j][ll+1][l];
             }
           }
         }
@@ -3190,10 +3193,10 @@ int main(int argc, char **argv)
 
             for(int ll=0; ll<4; ll++)
             {
-              fBinning[xbin][ybin][zbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
-              fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
-              fBinning[xbin][ybin][zbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
-              fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
+              fBinning[xbin][ybin][zbin].tab[j][fMuCharge][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
+              fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][fMuCharge][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
+              fBinning[xbin][ybin][zbin].tab[j][fMuCharge][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
+              fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][fMuCharge][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
@@ -3256,7 +3259,6 @@ int main(int argc, char **argv)
     ofstream ofs_d(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_dzvtx(Form("rawmult/%d/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream xc(Form("rawmult/%d/xcheck_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream mumix(Form("rawmult/%d/mumix_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
     for(int c=0; c<2; c++)
     {
@@ -3268,9 +3270,9 @@ int main(int argc, char **argv)
           {
             if(!c)
             {
-              ofs_d << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt_err[0][i][j][k];
+              ofs_d << fNDIS_evt[0][1][i][j][k] << " " << fNDIS_evt_err[0][1][i][j][k] << " " << fNDIS_evt[0][0][i][j][k] << " " << fNDIS_evt_err[0][0][i][j][k];
               for(int zv=0; zv<4; zv++)
-                ofs_dzvtx << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][i][j][k][zv] << " ";
+                ofs_dzvtx << fNDIS_evt_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_zvtx[0][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][0][i][j][k][zv] << " ";
             }
 
             for(int ll=0; ll<4; ll++)
@@ -3283,24 +3285,29 @@ int main(int argc, char **argv)
             ofs_d << endl;
             ofs_dzvtx << endl;
 
-            ofs_h << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][1][0] << " " << fBinning_loose[i][j][k].tab[c][0][0] << " " << fBinning_severe[i][j][k].tab[c][0][0] << " " <<
-                     fBinning[i][j][k].tab[c][0][1] << " " << fBinning[i][j][k].tab[c][1][1] << " " << fBinning_loose[i][j][k].tab[c][0][1] << " " << fBinning_severe[i][j][k].tab[c][0][1] << " " <<
-                     fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][1][2] << " " << fBinning_loose[i][j][k].tab[c][0][2] << " " << fBinning_severe[i][j][k].tab[c][0][2] << " " <<
-                     fBinning[i][j][k].tab[c][0][3] << " " << fBinning[i][j][k].tab[c][1][3] << " " << fBinning_loose[i][j][k].tab[c][0][3] << " " << fBinning_severe[i][j][k].tab[c][0][3] << " " << endl;
+            ofs_h << fBinning[i][j][k].tab[c][1][0][0] << " " << fBinning[i][j][k].tab[c][1][1][0] << " " << fBinning_loose[i][j][k].tab[c][1][0][0] << " " << fBinning_severe[i][j][k].tab[c][1][0][0] << " " <<
+                     fBinning[i][j][k].tab[c][0][0][0] << " " << fBinning[i][j][k].tab[c][0][1][0] << " " << fBinning_loose[i][j][k].tab[c][0][0][0] << " " << fBinning_severe[i][j][k].tab[c][0][0][0] << " " <<
+                     fBinning[i][j][k].tab[c][1][0][1] << " " << fBinning[i][j][k].tab[c][1][1][1] << " " << fBinning_loose[i][j][k].tab[c][1][0][1] << " " << fBinning_severe[i][j][k].tab[c][1][0][1] << " " <<
+                     fBinning[i][j][k].tab[c][0][0][1] << " " << fBinning[i][j][k].tab[c][0][1][1] << " " << fBinning_loose[i][j][k].tab[c][0][0][1] << " " << fBinning_severe[i][j][k].tab[c][0][0][1] << " " <<
+                     fBinning[i][j][k].tab[c][1][0][2] << " " << fBinning[i][j][k].tab[c][1][1][2] << " " << fBinning_loose[i][j][k].tab[c][1][0][2] << " " << fBinning_severe[i][j][k].tab[c][1][0][2] << " " <<
+                     fBinning[i][j][k].tab[c][0][0][2] << " " << fBinning[i][j][k].tab[c][0][1][2] << " " << fBinning_loose[i][j][k].tab[c][0][0][2] << " " << fBinning_severe[i][j][k].tab[c][0][0][2] << " " <<
+                     fBinning[i][j][k].tab[c][1][0][3] << " " << fBinning[i][j][k].tab[c][1][1][3] << " " << fBinning_loose[i][j][k].tab[c][1][0][3] << " " << fBinning_severe[i][j][k].tab[c][1][0][3] << " " <<
+                     fBinning[i][j][k].tab[c][0][0][3] << " " << fBinning[i][j][k].tab[c][0][1][3] << " " << fBinning_loose[i][j][k].tab[c][0][0][3] << " " << fBinning_severe[i][j][k].tab[c][0][0][3] << " " << endl;
             for(int zv=0; zv<4; zv++)
             {
-              ofs_hzvtx << fBinning_zvtx[i][j][k][zv].tab[c][0][0] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][0] << " " <<
-                       fBinning_zvtx[i][j][k][zv].tab[c][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1] << " " <<
-                       fBinning_zvtx[i][j][k][zv].tab[c][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][2] << " " <<
-                       fBinning_zvtx[i][j][k][zv].tab[c][0][3] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][3] << " " << endl;
+              ofs_hzvtx << fBinning_zvtx[i][j][k][zv].tab[c][1][0][0] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][0] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][0] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][0] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][1][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][1] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][1] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][1][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][2] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][2] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][1][0][3] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][3] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][3] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][3] << " " << endl;
             }
 
         	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
-        		fNDIS_evt[0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0] << " " << fBinning[i][j][k].tab[c][0][1] << " " <<
-        		fBinning[i][j][k].tab[c][0][2] << " " << fBinning[i][j][k].tab[c][0][3] << endl;
-
-            mumix << fMuMix[i][j][k].tab[0][c][0] << " " << fMuMix[i][j][k].tab[1][c][0] << " " << fMuMix[i][j][k].tab[0][c][1] << " " << fMuMix[i][j][k].tab[1][c][1] << " "
-                  << fMuMix[i][j][k].tab[0][c][2] << " " << fMuMix[i][j][k].tab[1][c][2] << " " << fMuMix[i][j][k].tab[0][c][3] << " " << fMuMix[i][j][k].tab[1][c][3] << endl;
+        		fNDIS_evt[0][0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0][0] << " " << fBinning[i][j][k].tab[c][0][0][1] << " " <<
+        		fBinning[i][j][k].tab[c][0][0][2] << " " << fBinning[i][j][k].tab[c][0][0][3] << endl;
 
   	      }
         }
@@ -3312,7 +3319,6 @@ int main(int argc, char **argv)
     ofs_hzvtx.close();
     ofs_dzvtx.close();
     xc.close();
-    mumix.close();
 
     resetValues();
   }
