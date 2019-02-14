@@ -807,8 +807,8 @@ int main(int argc, char **argv)
     if(!periodBit) continue;
 
 #if CLUSTER == BW
+  cout << "poule" << endl;
     string filename(getenv("ACCEPTANCE_FILE"));
-    cout << "poule" << endl;
 #else
     ifstream list(Form("%s/%s/filelist.txt",data_path,periodName.c_str()));
     string filename;
