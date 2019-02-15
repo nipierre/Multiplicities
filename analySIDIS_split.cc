@@ -1357,6 +1357,7 @@ int main(int argc, char **argv)
       TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
       TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
       TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
+      TBranch *inTarget = (TBranch*) tree->FindBranch("inTarget");
       TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
       //Hadrons
@@ -1444,6 +1445,7 @@ int main(int argc, char **argv)
         beam_chi2->GetEntry(ip);
         mu_prim_chi2->GetEntry(ip);
         cellsCrossed->GetEntry(ip);
+        inTarget->GetEntry(ip);
         BMS->GetEntry(ip);
 
         //Hadrons
@@ -1642,7 +1644,7 @@ int main(int argc, char **argv)
         //2016 ---
         else if(Y2016)
         {
-          if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
+          if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
           if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
         }
         //2016 ---

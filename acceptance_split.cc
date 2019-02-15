@@ -875,6 +875,7 @@ int main(int argc, char **argv)
       TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
       TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
       TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
+      TBranch *inTarget = (TBranch*) tree->FindBranch("inTarget");
       TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
       //Hadrons
@@ -1423,7 +1424,7 @@ int main(int argc, char **argv)
               {
                 if(/*InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())*/
                     /*&&*/ (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)
-                    && inTargetMC->GetLeaf("inTargetMC")->GetValue())
+                    && inTarget->GetLeaf("inTarget")->GetValue())
                 {
                   fTarg++;
 

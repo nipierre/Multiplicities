@@ -137,6 +137,10 @@ TH1F* fVertexMCb[5];
 TH1F* fKinematicsRatio[5][20];
 Int_t fCountingRD[5][20];
 Int_t fCountingMC[5][20];
+TH1F* Target;
+TH1F* TargetMC;
+TH2F* Target2D;
+TH2F* Target2DMC;
 TCanvas c1("Kin_{Q2} Trigger","Kin_{Q2} Trigger",3200,1600);
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger",3200,1600);
 TCanvas c3("Kin_y Trigger","Kin_y Trigger",3200,1600);
@@ -181,6 +185,7 @@ TCanvas c41("Vertex (Hadron) Trig","Vertex (Hadron) Trig",3200,1600);
 TCanvas c42("Vertex (Hadron)","Vertex (Hadron)",3200,1600);
 TCanvas c43("ECAL0","ECAL0",3200,1600);
 TCanvas c44("Vertex Endpoint","Vertex Endpoint",3200,1600);
+TCanvas c45("Target","Target",3200,1600);
 
 vector<double> fError, fErrorRD, fErrorMC;
 Int_t fLineStyle[7] = {3,3,3,1,3,3,3};

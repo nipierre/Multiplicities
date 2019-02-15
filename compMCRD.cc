@@ -227,6 +227,7 @@ void create_kin_plots()
     BinLogX(fKinematicsRD[i][1]);
     BinLogX(fKinematicsMC[i][1]);
   }
+
   fKinematicsRD[0][11] = new TH1F("phi_{e,prod.pl}","phi_{e,prod.pl}", 50, 0, 3.5);
   fKinematicsMC[0][11] = new TH1F("phi_{e,prod.pl} Ratio","phi_{e,prod.pl} Ratio", 50, 0, 3.5);
   fECAL0RD = new TH2F("ECAL0 Map","ECAL0 Map", 1000, -80, 80, 1000, -80, 80);
@@ -247,6 +248,11 @@ void create_kin_plots()
   fThetaMCp[0] = new TH2F("theta_y MC", "theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
   fThetaMCp[1] = new TH2F("theta_x MC", "theta_x MC", 100, -0.005, 0.005, 100, 140, 180);
   fThetaMCp[2] = new TH2F("theta_xy MC", "theta_xy MC", 100, -0.005, 0.005, 100, -0.005, 0.005);
+  fTarget = new TH1F("Target yz", "Target yz", 1000, -500, 500);
+  fTargetMC = new TH1F("TargetMC yz", "TargetMC yz", 1000, -500, 500);
+  fTarget2D = new TH2F("Target2D yz", "Target2D yz", 1000, -400, 0, 1000, -5, 5);
+  fTarget2DMC = new TH2F("Target2DMC yz", "Target2DMC yz", 1000, -400, 0, 1000, -5, 5);
+
   for(int i=0; i<7; i++)
   {
     l1[0][i] = new TLine(0.1,0.4+i*0.2,100,0.4+i*0.2);
@@ -407,6 +413,7 @@ void save_kin_plots()
   c42.Divide(1,2);
   c43.Divide(2,1);
   c44.Divide(2,1);
+  c44.Divide(2,2);
 
   int offset=0;
 
@@ -785,6 +792,26 @@ void save_kin_plots()
 
   c44.Write();
 
+  c45.cd(1);
+  fTarget->SetLineColor(kRed);
+  fTarget->Draw("");
+  c45.Update();
+
+  c45.cd(2);
+  fTargetMC->SetLineColor(kBlue);
+  fTargetMC->Draw("");
+  c45.Update();
+
+  c45.cd(3);
+  fTarget2D->Draw("COLZ");
+  c45.Update();
+
+  c45.cd(4);
+  fTarget2DMC->Draw("COLZ");
+  c45.Update();
+
+  c45.Write();
+
   c1.Print("kinMCRD.pdf(","pdf");
   c2.Print("kinMCRD.pdf","pdf");
   c3.Print("kinMCRD.pdf","pdf");
@@ -824,7 +851,8 @@ void save_kin_plots()
   c41.Print("kinMCRD.pdf","pdf");
   c42.Print("kinMCRD.pdf","pdf");
   c43.Print("kinMCRD.pdf","pdf");
-  c44.Print("kinMCRD.pdf)","pdf");
+  c44.Print("kinMCRD.pdf","pdf");
+  c45.Print("kinMCRD.pdf)","pdf");
 }
 
 void MCextraction(string pFilelist)
@@ -1333,8 +1361,8 @@ void MCextraction(string pFilelist)
             //2016 ---
             else if(Y2016)
             {
-              if(InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())
-                  && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+              // if( (inTarget->GetLeaf("inTarget")->GetValue())
+              //     && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
               {
 
                 if((beam_chi2->GetLeaf("beam_chi2")->GetValue()<10))
@@ -1393,6 +1421,9 @@ void MCextraction(string pFilelist)
       if(fAllDISflag)
       {
         fNEventsMC++;
+
+        fTargetMC->Fill(z->GetLeaf("z")->GetValue());
+        fTarget2DMC->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
         // MT
         if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
         {
@@ -2078,8 +2109,8 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        if(!InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())) continue;
-        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
+        // if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
+        // if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
 
@@ -2137,6 +2168,9 @@ void RDextraction(string pFilelist)
 
       // x cut
       if(!(fXmin<xBj && xBj<fXmax)) continue;
+
+      fTarget->Fill(z->GetLeaf("z")->GetValue());
+      fTarget2D->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
 
       fNEventsRD++;
       // MT
