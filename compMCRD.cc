@@ -248,10 +248,14 @@ void create_kin_plots()
   fThetaMCp[0] = new TH2F("theta_y MC", "theta_y MC", 100, -0.005, 0.005, 100, 140, 180);
   fThetaMCp[1] = new TH2F("theta_x MC", "theta_x MC", 100, -0.005, 0.005, 100, 140, 180);
   fThetaMCp[2] = new TH2F("theta_xy MC", "theta_xy MC", 100, -0.005, 0.005, 100, -0.005, 0.005);
-  fTarget = new TH1F("Target yz", "Target yz", 1000, -500, 500);
-  fTargetMC = new TH1F("TargetMC yz", "TargetMC yz", 1000, -500, 500);
-  fTarget2D = new TH2F("Target2D yz", "Target2D yz", 1000, -400, 0, 1000, -5, 5);
-  fTarget2DMC = new TH2F("Target2DMC yz", "Target2DMC yz", 1000, -400, 0, 1000, -5, 5);
+  fTarget[0] = new TH1F("Target yz", "Target yz", 1000, -500, 500);
+  fTargetMC[0] = new TH1F("TargetMC yz", "TargetMC yz", 1000, -500, 500);
+  fTarget2D[0] = new TH2F("Target2D yz", "Target2D yz", 1000, -400, 0, 1000, -5, 5);
+  fTarget2DMC[0] = new TH2F("Target2DMC yz", "Target2DMC yz", 1000, -400, 0, 1000, -5, 5);
+  fTarget[1] = new TH1F("Target1 yz", "Target1 yz", 1000, -500, 500);
+  fTargetMC[1] = new TH1F("TargetMC1 yz", "TargetMC1 yz", 1000, -500, 500);
+  fTarget2D[1] = new TH2F("Target2D1 yz", "Target2D1 yz", 1000, -400, 0, 1000, -5, 5);
+  fTarget2DMC[1] = new TH2F("Target2DMC1 yz", "Target2DMC1 yz", 1000, -400, 0, 1000, -5, 5);
 
   for(int i=0; i<7; i++)
   {
@@ -793,21 +797,31 @@ void save_kin_plots()
   c44.Write();
 
   c45.cd(1);
-  fTarget->SetLineColor(kRed);
-  fTarget->Draw("");
+  fTarget[0]->SetLineColor(kRed);
+  fTarget[0]->Draw("");
+  fTarget[1]->SetLineColor(kRed-3);
+  fTarget[1]->Draw("SAME");
   c45.Update();
 
   c45.cd(2);
-  fTargetMC->SetLineColor(kBlue);
-  fTargetMC->Draw("");
+  fTargetMC[0]->SetLineColor(kBlue);
+  fTargetMC[0]->Draw("");
+  fTargetMC[0]->SetLineColor(kBlue-3);
+  fTargetMC[0]->Draw("SAME");
   c45.Update();
 
   c45.cd(3);
-  fTarget2D->Draw("COLZ");
+  fTarget2D[0]->SetMarkerColor(kRed);
+  fTarget2D[0]->Draw("");
+  fTarget2D[1]->SetMarkerColor(kRed-3);
+  fTarget2D[1]->Draw("SAME");
   c45.Update();
 
   c45.cd(4);
-  fTarget2DMC->Draw("COLZ");
+  fTarget2DMC[0]->SetMarkerColor(kBlue);
+  fTarget2DMC[0]->Draw("");
+  fTarget2DMC[1]->SetMarkerColor(kBlue-3);
+  fTarget2DMC[1]->Draw("SAME");
   c45.Update();
 
   c45.Write();
@@ -1363,8 +1377,8 @@ void MCextraction(string pFilelist)
             //2016 ---
             else if(Y2016)
             {
-              if( (inTarget->GetLeaf("inTarget")->GetValue())
-                  && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+              // if( (inTarget->GetLeaf("inTarget")->GetValue())
+              //    && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
               {
 
                 if((beam_chi2->GetLeaf("beam_chi2")->GetValue()<10))
@@ -1424,8 +1438,6 @@ void MCextraction(string pFilelist)
       {
         fNEventsMC++;
 
-        fTargetMC->Fill(z->GetLeaf("z")->GetValue());
-        fTarget2DMC->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
         // MT
         if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
         {
@@ -1688,6 +1700,14 @@ void MCextraction(string pFilelist)
             fKinematicsMC[2][17]->Fill(z->GetLeaf("z")->GetValue());
             if(fId == 8 || fId == 9) fKinematicsMC[2][18]->Fill(z->GetLeaf("z")->GetValue());
             else fKinematicsMC[2][19]->Fill(z->GetLeaf("z")->GetValue());
+            if( (inTarget->GetLeaf("inTarget")->GetValue())
+              && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+            {
+              fTargetMC[1]->Fill(z->GetLeaf("z")->GetValue());
+              fTarget2DMC[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+            }
+            fTargetMC[0]->Fill(z->GetLeaf("z")->GetValue());
+            fTarget2DMC[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
           }
           // LAST
           if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
@@ -2113,8 +2133,8 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
-        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
+        // if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
+        // if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
 
@@ -2172,9 +2192,6 @@ void RDextraction(string pFilelist)
 
       // x cut
       if(!(fXmin<xBj && xBj<fXmax)) continue;
-
-      fTarget->Fill(z->GetLeaf("z")->GetValue());
-      fTarget2D->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
 
       fNEventsRD++;
       // MT
@@ -2538,6 +2555,15 @@ void RDextraction(string pFilelist)
           fKinematicsRD[2][17]->Fill(z->GetLeaf("z")->GetValue());
           fKinematicsRD[2][18]->Fill(z->GetLeaf("z")->GetValue());
           fKinematicsRD[2][19]->Fill(z->GetLeaf("z")->GetValue());
+
+          if((inTarget->GetLeaf("inTarget")->GetValue())
+            && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+          {
+            fTarget[1]->Fill(z->GetLeaf("z")->GetValue());
+            fTarget2D[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+          }
+          fTarget[0]->Fill(z->GetLeaf("z")->GetValue());
+          fTarget2D[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
         }
         if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
         {
