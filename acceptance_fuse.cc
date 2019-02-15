@@ -35,6 +35,7 @@ int main(int argc, char **argv)
   int dummyd;
 
   ifstream list1(cFilelist1.c_str());
+  string filename;
 
   while(list1 >> filename)
   {
@@ -74,7 +75,7 @@ int main(int argc, char **argv)
               DIS_file1 >> dummyd;
               fNDIS_evt_MC[2][1][i][j][k] += dummyd;
               DIS_zvtx_file1 >> dummyd;
-              fNDIS_evt_zvtx[0][i][j][k][0] += dummyd;
+              fNDIS_evt_zvtx[0][1][i][j][k][0] += dummyd;
               DIS_zvtx_file1 >> dummyd;
               fNDIS_evt_zvtx[0][1][i][j][k][1] += dummyd;
               DIS_zvtx_file1 >> dummyd;
@@ -477,7 +478,7 @@ int main(int argc, char **argv)
           {
             ofs_d << fNDIS_evt[0][1][i][j][k] << " " << fNDIS_evt_c[0][1][i][j][k] << " " << fNDIS_evt_MC[0][1][i][j][k] << " " <<
                      fNDIS_evt[1][1][i][j][k] << " " << fNDIS_evt_c[1][1][i][j][k] << " " << fNDIS_evt_MC[1][1][i][j][k] << " " <<
-                     fNDIS_evt[2][1][i][j][k] << " " << fNDIS_evt_c[2][1][i][j][k] << " " << fNDIS_evt_MC[2][1][i][j][k] << endl;
+                     fNDIS_evt[2][1][i][j][k] << " " << fNDIS_evt_c[2][1][i][j][k] << " " << fNDIS_evt_MC[2][1][i][j][k] << " " <<
                      fNDIS_evt[0][0][i][j][k] << " " << fNDIS_evt_c[0][0][i][j][k] << " " << fNDIS_evt_MC[0][0][i][j][k] << " " <<
                      fNDIS_evt[1][0][i][j][k] << " " << fNDIS_evt_c[1][0][i][j][k] << " " << fNDIS_evt_MC[1][0][i][j][k] << " " <<
                      fNDIS_evt[2][0][i][j][k] << " " << fNDIS_evt_c[2][0][i][j][k] << " " << fNDIS_evt_MC[2][0][i][j][k] << endl;
