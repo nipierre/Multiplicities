@@ -935,6 +935,7 @@ void MCextraction(string pFilelist)
     TBranch *beam_chi2 = (TBranch*) tree->FindBranch("beam_chi2");
     TBranch *mu_prim_chi2 = (TBranch*) tree->FindBranch("mu_prim_chi2");
     TBranch *cellsCrossed = (TBranch*) tree->FindBranch("cellsCrossed");
+    TBranch *inTarget = (TBranch*) tree->FindBranch("inTarget");
     TBranch *BMS = (TBranch*) tree->FindBranch("BMS");
 
     //Hadrons
@@ -1071,6 +1072,7 @@ void MCextraction(string pFilelist)
       beam_chi2->GetEntry(ip);
       mu_prim_chi2->GetEntry(ip);
       cellsCrossed->GetEntry(ip);
+      inTarget->GetEntry(ip);
       BMS->GetEntry(ip);
 
       //Hadrons
