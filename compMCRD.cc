@@ -1700,14 +1700,6 @@ void MCextraction(string pFilelist)
             fKinematicsMC[2][17]->Fill(z->GetLeaf("z")->GetValue());
             if(fId == 8 || fId == 9) fKinematicsMC[2][18]->Fill(z->GetLeaf("z")->GetValue());
             else fKinematicsMC[2][19]->Fill(z->GetLeaf("z")->GetValue());
-            if( (inTarget->GetLeaf("inTarget")->GetValue())
-              && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
-            {
-              fTargetMC[1]->Fill(z->GetLeaf("z")->GetValue());
-              fTarget2DMC[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
-            }
-            fTargetMC[0]->Fill(z->GetLeaf("z")->GetValue());
-            fTarget2DMC[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
           }
           // LAST
           if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
@@ -1721,6 +1713,14 @@ void MCextraction(string pFilelist)
             fKinematicsMC[3][17]->Fill(z->GetLeaf("z")->GetValue());
             if(fId == 8 || fId == 9) fKinematicsMC[3][18]->Fill(z->GetLeaf("z")->GetValue());
             else fKinematicsMC[3][19]->Fill(z->GetLeaf("z")->GetValue());
+            if( (inTarget->GetLeaf("inTarget")->GetValue())
+              && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+            {
+              fTargetMC[1]->Fill(z->GetLeaf("z")->GetValue());
+              fTarget2DMC[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+            }
+            fTargetMC[0]->Fill(z->GetLeaf("z")->GetValue());
+            fTarget2DMC[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
           }
 
           // ALL TRIGGERS
@@ -2556,14 +2556,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[2][18]->Fill(z->GetLeaf("z")->GetValue());
           fKinematicsRD[2][19]->Fill(z->GetLeaf("z")->GetValue());
 
-          if((inTarget->GetLeaf("inTarget")->GetValue())
-            && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
-          {
-            fTarget[1]->Fill(z->GetLeaf("z")->GetValue());
-            fTarget2D[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
-          }
-          fTarget[0]->Fill(z->GetLeaf("z")->GetValue());
-          fTarget2D[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+
         }
         if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
         {
@@ -2576,6 +2569,14 @@ void RDextraction(string pFilelist)
           fKinematicsRD[3][17]->Fill(z->GetLeaf("z")->GetValue());
           fKinematicsRD[3][18]->Fill(z->GetLeaf("z")->GetValue());
           fKinematicsRD[3][19]->Fill(z->GetLeaf("z")->GetValue());
+          if((inTarget->GetLeaf("inTarget")->GetValue())
+            && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+          {
+            fTarget[1]->Fill(z->GetLeaf("z")->GetValue());
+            fTarget2D[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+          }
+          fTarget[0]->Fill(z->GetLeaf("z")->GetValue());
+          fTarget2D[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
         }
 
         // if(trig&2 || trig&4 || trig&8)
