@@ -799,28 +799,28 @@ void save_kin_plots()
   c45.cd(1);
   fTarget[0]->SetLineColor(kRed);
   fTarget[0]->Draw("");
-  fTarget[1]->SetLineColor(kRed-3);
+  fTarget[1]->SetLineColor(kGreen);
   fTarget[1]->Draw("SAME");
   c45.Update();
 
   c45.cd(2);
   fTargetMC[0]->SetLineColor(kBlue);
   fTargetMC[0]->Draw("");
-  fTargetMC[0]->SetLineColor(kBlue-3);
+  fTargetMC[0]->SetLineColor(kOrange);
   fTargetMC[0]->Draw("SAME");
   c45.Update();
 
   c45.cd(3);
   fTarget2D[0]->SetMarkerColor(kRed);
   fTarget2D[0]->Draw("");
-  fTarget2D[1]->SetMarkerColor(kRed-3);
+  fTarget2D[1]->SetMarkerColor(kGreen);
   fTarget2D[1]->Draw("SAME");
   c45.Update();
 
   c45.cd(4);
   fTarget2DMC[0]->SetMarkerColor(kBlue);
   fTarget2DMC[0]->Draw("");
-  fTarget2DMC[1]->SetMarkerColor(kBlue-3);
+  fTarget2DMC[1]->SetMarkerColor(kOrange);
   fTarget2DMC[1]->Draw("SAME");
   c45.Update();
 
