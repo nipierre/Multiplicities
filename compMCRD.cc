@@ -806,8 +806,8 @@ void save_kin_plots()
   c45.cd(2);
   fTargetMC[0]->SetLineColor(kBlue);
   fTargetMC[0]->Draw("");
-  fTargetMC[0]->SetLineColor(kOrange);
-  fTargetMC[0]->Draw("SAME");
+  fTargetMC[1]->SetLineColor(kOrange);
+  fTargetMC[1]->Draw("SAME");
   c45.Update();
 
   c45.cd(3);
