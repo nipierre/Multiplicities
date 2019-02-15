@@ -39,17 +39,17 @@ LOG
 
 using namespace std;
 
-Double_t RelDiff(int c, int x, int y, int z, int had)
+Double_t RelDiff(int c, int x, int y, int z, int m, int had)
 {
-  Double_t min=fAcceptance_zvtx[x][y][z][0].tab[c][0][had];
-  Double_t max=fAcceptance_zvtx[x][y][z][0].tab[c][0][had];
+  Double_t min=fAcceptance_zvtx[x][y][z][0].tab[c][m][0][had];
+  Double_t max=fAcceptance_zvtx[x][y][z][0].tab[c][m][0][had];
 
   for(int i=1; i<4; i++)
   {
-    if(fAcceptance_zvtx[x][y][z][i].tab[c][0][had]>max)
-      max=fAcceptance_zvtx[x][y][z][i].tab[c][0][had];
-    if(fAcceptance_zvtx[x][y][z][i].tab[c][0][had]<max)
-      min=fAcceptance_zvtx[x][y][z][i].tab[c][0][had];
+    if(fAcceptance_zvtx[x][y][z][i].tab[c][m][0][had]>max)
+      max=fAcceptance_zvtx[x][y][z][i].tab[c][m][0][had];
+    if(fAcceptance_zvtx[x][y][z][i].tab[c][m][0][had]<max)
+      min=fAcceptance_zvtx[x][y][z][i].tab[c][m][0][had];
   }
 
   return (min ? Double_t((max-min)/min) : 0);
