@@ -413,7 +413,7 @@ void save_kin_plots()
   c42.Divide(1,2);
   c43.Divide(2,1);
   c44.Divide(2,1);
-  c44.Divide(2,2);
+  c45.Divide(2,2);
 
   int offset=0;
 
