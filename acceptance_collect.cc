@@ -169,6 +169,7 @@ void resetValues()
                 {
                   fNDIS_evt_zvtx[n][m][i][j][k][l]=0; fNDIS_evt_MC_zvtx[n][m][i][j][k][l]=0;
                 }
+              }
             }
           }
           for(int n=0; n<3; n++)
