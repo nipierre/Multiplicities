@@ -1564,7 +1564,7 @@ int main(int argc, char **argv)
             //2016 ---
             else if(Y2016)
             {
-              if(inTargetMC->GetLeaf("inTargetMC")->GetValue())
+              if(inTargetMC->GetLeaf("inTargetMC")->GetValue()
                   && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71))
               {
                 // Q2 cut
