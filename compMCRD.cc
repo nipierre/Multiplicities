@@ -184,10 +184,10 @@ void create_root_tree()
 {
    mf = new TFile("RDMC.root","recreate");
 
-   TTree* DIS = new TTree("DIS","DIS");
-   TTree* Hadron = new TTree("Hadron","Hadron");
-   TTree* DISMC = new TTree("DISMC","DISMC");
-   TTree* HadronMC = new TTree("HadronMC","HadronMC");
+   DIS = new TTree("DIS","DIS");
+   Hadron = new TTree("Hadron","Hadron");
+   DISMC = new TTree("DISMC","DISMC");
+   HadronMC = new TTree("HadronMC","HadronMC");
 
    DIS->Branch("xd",&xd,"xd/D");
    Hadron->Branch("xh",&xh,"xh/D");
@@ -220,7 +220,7 @@ void create_root_tree()
    Hadron->Branch("Wh",&Wh,"Wh/D");
    DISMC->Branch("Wd_MC",&Wd_MC,"Wd_MC/D");
    HadronMC->Branch("Wh_MC",&Wh_MC,"Wh_MC/D");
-   Hadron->Branch("ph",&ph,"ph/D");
+   Hadron->Branch("phh",&phh,"phh/D");
    HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
 }
 
