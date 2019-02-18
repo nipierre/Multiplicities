@@ -1016,6 +1016,7 @@ int main(int argc, char **argv)
         beam_chi2->GetEntry(ip);
         mu_prim_chi2->GetEntry(ip);
         cellsCrossed->GetEntry(ip);
+        inTarget->GetEntry(ip);
         BMS->GetEntry(ip);
 
         //Hadrons
