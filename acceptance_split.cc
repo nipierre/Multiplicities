@@ -1422,8 +1422,7 @@ int main(int argc, char **argv)
               //2016 ---
               else if(Y2016)
               {
-                if(/*InTarget(x->GetLeaf("x")->GetValue(),y->GetLeaf("y")->GetValue(),z->GetLeaf("z")->GetValue())*/
-                    /*&&*/ (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)
+                if((-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)
                     && inTarget->GetLeaf("inTarget")->GetValue())
                 {
                   fTarg++;
@@ -1565,7 +1564,7 @@ int main(int argc, char **argv)
             //2016 ---
             else if(Y2016)
             {
-              if(InTarget(MC_vx->GetLeaf("MC_vx")->GetValue(),MC_vy->GetLeaf("MC_vy")->GetValue(),MC_vz->GetLeaf("MC_vz")->GetValue())
+              if(inTargetMC->GetLeaf("inTargetMC")->GetValue())
                   && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71))
               {
                 // Q2 cut
