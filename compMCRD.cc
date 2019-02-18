@@ -228,6 +228,10 @@ void create_root_tree()
    HadronMC->Branch("Wh_MC",&Wh_MC,"Wh_MC/D");
    Hadron->Branch("thh",&thh,"thh/D");
    HadronMC->Branch("th_MC",&th_MC,"th_MC/D");
+   Hadron->Branch("thRICH",&thRICH,"thRICH/D");
+   HadronMC->Branch("thRICH_MC",&thRICH_MC,"thRICH_MC/D");
+   Hadron->Branch("richpipe",&richpipe,"richpipe/D");
+   HadronMC->Branch("richpipe_MC",&richpipe_MC,"richpipe_MC/D");
    Hadron->Branch("phh",&phh,"phh/D");
    HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
 
@@ -271,6 +275,8 @@ void create_root_tree()
      zh = zhv[i];
      phh = phhv[i];
      thh = thhv[i];
+     thRICH = thRICHv[i];
+     richpipe = richpipev[i];
      Hadron->Fill();
    }
    for(int i=0; i<int(xh_MCv.size()); i++)
@@ -287,6 +293,8 @@ void create_root_tree()
      zh_MC = zh_MCv[i];
      ph_MC = ph_MCv[i];
      th_MC = th_MCv[i];
+     thRICH_MC = thRICH_MCv[i];
+     richpipe_MC = richpipe_MCv[i];
      eVTX_MC = eVTX_MCv[i];
      HadronMC->Fill();
    }
@@ -1804,6 +1812,8 @@ void MCextraction(string pFilelist)
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 2
               || MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 3) eVTX_MCv.push_back(z->GetLeaf("z")->GetValue());
           else eVTX_MCv.push_back(-3000);
+          thRICH_MCv.push_back((0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12) ? 1 : 0);
+          richpipe_MCv.push_back((pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25) ? 1 : 0);
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2682,6 +2692,8 @@ void RDextraction(string pFilelist)
         zhv.push_back(zBj);
         thhv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
         phhv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        thRICHv.push_back((0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12) ? 1 : 0);
+        richpipev.push_back((pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25) ? 1 : 0);
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
