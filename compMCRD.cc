@@ -2788,6 +2788,7 @@ int main(int argc, char **argv)
   }
   mf = new TFile("RDMC.root","recreate");
   create_root_tree();
+  mf->Close();
   create_kin_plots();
   readKinCuts(argv[3]);
   cout << "... Real Data treatment ..." << endl;
