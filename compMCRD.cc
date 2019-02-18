@@ -2786,7 +2786,7 @@ int main(int argc, char **argv)
 
     return 1;
   }
-
+  mf = new TFile("RDMC.root","recreate");
   create_root_tree();
   create_kin_plots();
   readKinCuts(argv[3]);
@@ -2795,7 +2795,7 @@ int main(int argc, char **argv)
   cout << "... Monte-Carlo treatment ..." << endl;
   MCextraction(argv[2]);
   cout << "... Saving plots ..." << endl;
-  mf = new TFile("RDMC.root","recreate");
+  mf = new TFile("RDMC.root","open");
   DIS->Write();
   Hadron->Write();
   DISMC->Write();
