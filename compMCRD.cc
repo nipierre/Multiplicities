@@ -221,7 +221,7 @@ void create_root_tree()
    Hadron->Branch("phh",&phh,"phh/D");
    HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
 
-   for(int i=0; i<xdv.size(); i++)
+   for(int i=0; i<int(xdv.size()); i++)
    {
      xd = xdv[i];
      yd = ydv[i];
@@ -232,7 +232,7 @@ void create_root_tree()
      zVTXd = zVTXdv[i];
      DIS->Fill();
    }
-   for(int i=0; i<xd_MCv.size(); i++)
+   for(int i=0; i<int(xd_MCv.size()); i++)
    {
      xd_MC = xd_MCv[i];
      yd_MC = yd_MCv[i];
@@ -243,7 +243,7 @@ void create_root_tree()
      zVTXd_MC = zVTXd_MCv[i];
      DISMC->Fill();
    }
-   for(int i=0; i<xhv.size(); i++)
+   for(int i=0; i<int(xhv.size()); i++)
    {
      xh = xhv[i];
      yh = yhv[i];
@@ -256,7 +256,7 @@ void create_root_tree()
      phh = phhv[i];
      Hadron->Fill();
    }
-   for(int i=0; i<xh_MCv.size(); i++)
+   for(int i=0; i<int(xh_MCv.size()); i++)
    {
      xh_MC = xh_MCv[i];
      yh_MC = yh_MCv[i];
