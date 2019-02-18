@@ -182,6 +182,7 @@ void readKinCuts(string pFile)
 
 void create_root_tree()
 {
+   mf = new TFile("RDMC.root","recreate");
    DIS = new TTree("DIS","DIS");
    Hadron = new TTree("Hadron","Hadron");
    DISMC = new TTree("DISMC","DISMC");
@@ -224,7 +225,7 @@ void create_root_tree()
 
 void close_root_tree()
 {
-  mf = new TFile("RDMC.root","recreate");
+  // mf = new TFile("RDMC.root","recreate");
   DIS->Write();
   Hadron->Write();
   DISMC->Write();
