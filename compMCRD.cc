@@ -182,12 +182,44 @@ void readKinCuts(string pFile)
 
 void create_root_tree()
 {
+   DIS = new TTree("DIS","DIS");
+   Hadron = new TTree("Hadron","Hadron");
+   DISMC = new TTree("DISMC","DISMC");
+   HadronMC = new TTree("HadronMC","HadronMC");
 
-}
-
-void close_root_tree()
-{
-
+   DIS->Branch("xd",&xd,"xd/D");
+   Hadron->Branch("xh",&xh,"xh/D");
+   DISMC->Branch("xd_MC",&xd_MC,"xd_MC/D");
+   HadronMC->Branch("xh_MC",&xh_MC,"xh_MC/D");
+   DIS->Branch("yd",&yd,"yd/D");
+   Hadron->Branch("yh",&yh,"yh/D");
+   DISMC->Branch("yd_MC",&yd_MC,"yd_MC/D");
+   HadronMC->Branch("yh_MC",&yh_MC,"yh_MC/D");
+   Hadron->Branch("zh",&zh,"zh/D");
+   HadronMC->Branch("zh_MC",&zh_MC,"zh_MC/D");
+   DIS->Branch("zVTXd",&zVTXd,"zVTXd/D");
+   Hadron->Branch("zVTXh",&zVTXh,"zVTXh/D");
+   DISMC->Branch("zVTXd_MC",&zVTXd_MC,"zVTXd_MC/D");
+   HadronMC->Branch("zVTXh_MC",&zVTXh_MC,"zVTXh_MC/D");
+   DIS->Branch("trigd",&trigd,"trigd/I");
+   Hadron->Branch("trigh",&trigh,"trigh/I");
+   DISMC->Branch("trigd_MC",&trigd_MC,"trigd_MC/I");
+   HadronMC->Branch("trigh_MC",&trigh_MC,"trigh_MC/I");
+   DIS->Branch("nud",&nud,"nud/D");
+   Hadron->Branch("nuh",&nuh,"nuh/D");
+   DISMC->Branch("nud_MC",&nud_MC,"nud_MC/D");
+   HadronMC->Branch("nuh_MC",&nuh_MC,"nuh_MC/D");
+   DIS->Branch("mu_charged",&mu_charged,"mu_charged/I");
+   Hadron->Branch("mu_chargeh",&mu_chargeh,"mu_chargeh/I");
+   DISMC->Branch("mu_charged_MC",&mu_charged_MC,"mu_charged_MC/I");
+   HadronMC->Branch("mu_chargeh_MC",&mu_chargeh_MC,"mu_chargeh_MC/I");
+   HadronMC->Branch("eVTX_MC",&eVTX_MC,"eVTX_MC/D");
+   DIS->Branch("Wd",&Wd,"Wd/D");
+   Hadron->Branch("Wh",&Wh,"Wh/D");
+   DISMC->Branch("Wd_MC",&Wd_MC,"Wd_MC/D");
+   HadronMC->Branch("Wh_MC",&Wh_MC,"Wh_MC/D");
+   Hadron->Branch("phh",&phh,"phh/D");
+   HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
 }
 
 void create_kin_plots()
@@ -2756,44 +2788,7 @@ int main(int argc, char **argv)
   }
 
   mf = new TFile("RDMC.root","recreate");
-  DIS = new TTree("DIS","DIS");
-  Hadron = new TTree("Hadron","Hadron");
-  DISMC = new TTree("DISMC","DISMC");
-  HadronMC = new TTree("HadronMC","HadronMC");
-
-  DIS->Branch("xd",&xd,"xd/D");
-  Hadron->Branch("xh",&xh,"xh/D");
-  DISMC->Branch("xd_MC",&xd_MC,"xd_MC/D");
-  HadronMC->Branch("xh_MC",&xh_MC,"xh_MC/D");
-  DIS->Branch("yd",&yd,"yd/D");
-  Hadron->Branch("yh",&yh,"yh/D");
-  DISMC->Branch("yd_MC",&yd_MC,"yd_MC/D");
-  HadronMC->Branch("yh_MC",&yh_MC,"yh_MC/D");
-  Hadron->Branch("zh",&zh,"zh/D");
-  HadronMC->Branch("zh_MC",&zh_MC,"zh_MC/D");
-  DIS->Branch("zVTXd",&zVTXd,"zVTXd/D");
-  Hadron->Branch("zVTXh",&zVTXh,"zVTXh/D");
-  DISMC->Branch("zVTXd_MC",&zVTXd_MC,"zVTXd_MC/D");
-  HadronMC->Branch("zVTXh_MC",&zVTXh_MC,"zVTXh_MC/D");
-  DIS->Branch("trigd",&trigd,"trigd/I");
-  Hadron->Branch("trigh",&trigh,"trigh/I");
-  DISMC->Branch("trigd_MC",&trigd_MC,"trigd_MC/I");
-  HadronMC->Branch("trigh_MC",&trigh_MC,"trigh_MC/I");
-  DIS->Branch("nud",&nud,"nud/D");
-  Hadron->Branch("nuh",&nuh,"nuh/D");
-  DISMC->Branch("nud_MC",&nud_MC,"nud_MC/D");
-  HadronMC->Branch("nuh_MC",&nuh_MC,"nuh_MC/D");
-  DIS->Branch("mu_charged",&mu_charged,"mu_charged/I");
-  Hadron->Branch("mu_chargeh",&mu_chargeh,"mu_chargeh/I");
-  DISMC->Branch("mu_charged_MC",&mu_charged_MC,"mu_charged_MC/I");
-  HadronMC->Branch("mu_chargeh_MC",&mu_chargeh_MC,"mu_chargeh_MC/I");
-  HadronMC->Branch("eVTX_MC",&eVTX_MC,"eVTX_MC/D");
-  DIS->Branch("Wd",&Wd,"Wd/D");
-  Hadron->Branch("Wh",&Wh,"Wh/D");
-  DISMC->Branch("Wd_MC",&Wd_MC,"Wd_MC/D");
-  HadronMC->Branch("Wh_MC",&Wh_MC,"Wh_MC/D");
-  Hadron->Branch("phh",&phh,"phh/D");
-  HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
+  mf->cd();
   create_root_tree();
   create_kin_plots();
   readKinCuts(argv[3]);
