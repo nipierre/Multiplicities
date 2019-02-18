@@ -1433,7 +1433,7 @@ int main(int argc, char **argv)
                     fMuchi2++;
 
                     // Cells crossing
-                    if(/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue()) &&*/ cellsCrossedMC->GetLeaf("cellsCrossedMC")->GetValue())
+                    if(/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue()) &&*/ cellsCrossed->GetLeaf("cellsCrossed")->GetValue())
                     {
                       fCell++;
 
@@ -1565,7 +1565,7 @@ int main(int argc, char **argv)
             //2016 ---
             else if(Y2016)
             {
-              if(inTargetMC->GetLeaf("inTargetMC")->GetValue()
+              if(inTarget->GetLeaf("inTarget")->GetValue()
                   && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71))
               {
                 // Q2 cut
