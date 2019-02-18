@@ -1537,7 +1537,7 @@ void MCextraction(string pFilelist)
 
         xd_MCv.push_back(xBj);
         yd_MCv.push_back(yBj);
-        Wd_MCv.push_back(wBj);
+        Wd_MCv.push_back(sqrt(wBj));
         nud_MCv.push_back(nu);
         mu_charged_MCv.push_back(Charge->GetLeaf("Charge")->GetValue());
         trigd_MCv.push_back(trig);
@@ -2645,7 +2645,7 @@ void RDextraction(string pFilelist)
 
         xhv.push_back(xBj);
         yhv.push_back(yBj);
-        Whv.push_back(wBj);
+        Whv.push_back(sqrt(wBj));
         nuhv.push_back(nu);
         mu_chargehv.push_back(Charge->GetLeaf("Charge")->GetValue());
         trighv.push_back(trig);
