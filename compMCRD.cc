@@ -220,6 +220,61 @@ void create_root_tree()
    HadronMC->Branch("Wh_MC",&Wh_MC,"Wh_MC/D");
    Hadron->Branch("phh",&phh,"phh/D");
    HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
+
+   for(int i=0; i<xdv.size(); i++)
+   {
+     xd = xdv[i];
+     yd = ydv[i];
+     Wd = Wdv[i];
+     nud = nudv[i];
+     mu_charged = mu_chargedv[i];
+     trigd = trigdv[i];
+     zVTXd = zVTXdv[i];
+     DIS->Fill();
+   }
+   for(int i=0; i<xd_MCv.size(); i++)
+   {
+     xd_MC = xd_MCv[i];
+     yd_MC = yd_MCv[i];
+     Wd_MC = Wd_MCv[i];
+     nud_MC = nud_MCv[i];
+     mu_charged_MC = mu_charged_MCv[i];
+     trigd_MC = trigd_MCv[i];
+     zVTXd_MC = zVTXd_MCv[i];
+     DISMC->Fill();
+   }
+   for(int i=0; i<xhv.size(); i++)
+   {
+     xh = xhv[i];
+     yh = yhv[i];
+     Wh = Whv[i];
+     nuh = nuhv[i];
+     mu_chargeh = mu_chargehv[i];
+     trigh = trighv[i];
+     zVTXh = zVTXhv[i];
+     zh = zhv[i];
+     phh = phhv[i];
+     Hadron->Fill();
+   }
+   for(int i=0; i<xh_MCv.size(); i++)
+   {
+     xh_MC = xh_MCv[i];
+     yh_MC = yh_MCv[i];
+     Wh_MC = Wh_MCv[i];
+     nuh_MC = nuh_MCv[i];
+     mu_chargeh_MC = mu_chargeh_MCv[i];
+     trigh_MC = trigh_MCv[i];
+     zVTXh_MC = zVTXh_MCv[i];
+     zh_MC = zh_MCv[i];
+     ph_MC = ph_MCv[i];
+     eVTX_MC = eVTX_MCv[i];
+     HadronMC->Fill();
+   }
+
+   DIS->Write();
+   Hadron->Write();
+   DISMC->Write();
+   HadronMC->Write();
 }
 
 void create_kin_plots()
@@ -1480,15 +1535,13 @@ void MCextraction(string pFilelist)
       {
         fNEventsMC++;
 
-        xd_MC = xBj;
-        yd_MC = yBj;
-        Wd_MC = wBj;
-        nud_MC = nu;
-        mu_charged_MC = Charge->GetLeaf("Charge")->GetValue();
-        trigd_MC = trig;
-        zVTXd_MC = z->GetLeaf("z")->GetValue();
-
-        DISMC->Fill();
+        xd_MCv.push_back(xBj);
+        yd_MCv.push_back(yBj);
+        Wd_MCv.push_back(wBj);
+        nud_MCv.push_back(nu);
+        mu_charged_MCv.push_back(Charge->GetLeaf("Charge")->GetValue());
+        trigd_MCv.push_back(trig);
+        zVTXd_MCv.push_back(z->GetLeaf("z")->GetValue());
 
         // MT
         if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -1714,20 +1767,18 @@ void MCextraction(string pFilelist)
 
           // fXBjkinMC[4].push_back(xBj);
 
-          xh_MC = xBj;
-          yh_MC = yBj;
-          Wh_MC = wBj;
-          nuh_MC = nu;
-          mu_chargeh_MC = Charge->GetLeaf("Charge")->GetValue();
-          trigh_MC = trig;
-          zVTXh_MC = z->GetLeaf("z")->GetValue();
-          zh_MC = zBj;
-          ph_MC = ph->GetLeaf("Hadrons.ph")->GetValue(i);
+          xh_MCv.push_back(xBj);
+          yh_MCv.push_back(yBj);
+          Wh_MCv.push_back(wBj);
+          nuh_MCv.push_back(nu);
+          mu_chargeh_MCv.push_back(Charge->GetLeaf("Charge")->GetValue());
+          trigh_MCv.push_back(trig);
+          zVTXh_MCv.push_back(z->GetLeaf("z")->GetValue());
+          zh_MCv.push_back(zBj);
+          ph_MCv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 2
-              || MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 3) eVTX_MC = z->GetLeaf("z")->GetValue();
-          else eVTX_MC = -3000;
-
-          HadronMC->Fill();
+              || MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 3) eVTX_MCv.push_back(z->GetLeaf("z")->GetValue());
+          else eVTX_MCv.push_back(-3000);
 
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2262,15 +2313,13 @@ void RDextraction(string pFilelist)
 
       fNEventsRD++;
 
-      xd = xBj;
-      yd = yBj;
-      Wd = wBj;
-      nud = nu;
-      mu_charged = Charge->GetLeaf("Charge")->GetValue();
-      trigd = trig;
-      zVTXd = z->GetLeaf("z")->GetValue();
-
-      DIS->Fill();
+      xdv.push_back(xBj);
+      ydv.push_back(yBj);
+      Wdv.push_back(wBj);
+      nudv.push_back(nu);
+      mu_chargedv.push_back(Charge->GetLeaf("Charge")->GetValue());
+      trigdv.push_back(trig);
+      zVTXdv.push_back(z->GetLeaf("z")->GetValue());
 
       // MT
       if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
@@ -2594,17 +2643,15 @@ void RDextraction(string pFilelist)
 
         // fXBjkin[4].push_back(xBj);
 
-        xh = xBj;
-        yh = yBj;
-        Wh = wBj;
-        nuh = nu;
-        mu_chargeh = Charge->GetLeaf("Charge")->GetValue();
-        trigh = trig;
-        zVTXh = z->GetLeaf("z")->GetValue();
-        zh = zBj;
-        phh = ph->GetLeaf("Hadrons.ph")->GetValue(i);
-
-        Hadron->Fill();
+        xhv.push_back(xBj);
+        yhv.push_back(yBj);
+        Whv.push_back(wBj);
+        nuhv.push_back(nu);
+        mu_chargehv.push_back(Charge->GetLeaf("Charge")->GetValue());
+        trighv.push_back(trig);
+        zVTXhv.push_back(z->GetLeaf("z")->GetValue());
+        zhv.push_back(zBj);
+        phhv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
 
         // Non null charge
         if(!charge->GetLeaf("Hadrons.charge")->GetValue(i)) continue;
@@ -2786,9 +2833,6 @@ int main(int argc, char **argv)
 
     return 1;
   }
-  mf = new TFile("RDMC.root","recreate");
-  create_root_tree();
-  mf->Close();
   create_kin_plots();
   readKinCuts(argv[3]);
   cout << "... Real Data treatment ..." << endl;
@@ -2796,11 +2840,8 @@ int main(int argc, char **argv)
   cout << "... Monte-Carlo treatment ..." << endl;
   MCextraction(argv[2]);
   cout << "... Saving plots ..." << endl;
-  mf = new TFile("RDMC.root","UPDATE");
-  DIS->Write();
-  Hadron->Write();
-  DISMC->Write();
-  HadronMC->Write();
+  mf = new TFile("RDMC.root","recreate");
+  create_root_tree();
   mf->Close();
   save_kin_plots();
 
