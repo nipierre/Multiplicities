@@ -2611,7 +2611,7 @@ void RDextraction(string pFilelist)
         trigh = trig;
         zVTXh = z->GetLeaf("z")->GetValue();
         zh = zBj;
-        ph = ph->GetLeaf("Hadrons.ph")->GetValue(i);
+        phh = ph->GetLeaf("Hadrons.ph")->GetValue(i);
 
         Hadron->Fill();
 
