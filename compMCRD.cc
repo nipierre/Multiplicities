@@ -1502,8 +1502,8 @@ void MCextraction(string pFilelist)
             //2016 ---
             else if(Y2016)
             {
-              if( (inTarget->GetLeaf("inTarget")->GetValue())
-                 && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
+              // if( (inTarget->GetLeaf("inTarget")->GetValue())
+                 // && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
               {
 
                 if((beam_chi2->GetLeaf("beam_chi2")->GetValue()<10))
@@ -2286,8 +2286,8 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
-        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
+        // if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
+        // if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
 
