@@ -9,7 +9,10 @@ PHAST_INCL =
 LHAPDF = /sps/compass/npierre/LHAPDF6
 LHAPDF_INCL += -I$(LHAPDF)/include
 LHAPDF_LIBS += -L$(LHAPDF)/lib -lLHAPDF
-CLUSTER = -DCLUSTER="${SITE}"
+
+ifeq ($(SITE),BW)
+CCFLAGS = -DBW
+endif
 
 ifeq ($(DEBUG),1)
 CCFLAGS += -DDEBUG

@@ -749,7 +749,7 @@ int main(int argc, char **argv)
     }
   }
 
-#if CLUSTER != BW
+#if BW
   int year=0;
 
   if(Y2006) year=2006;
@@ -808,7 +808,7 @@ int main(int argc, char **argv)
     periods >> periodBit;
     if(!periodBit) continue;
 
-#if CLUSTER == BW
+#if BW
     string filename(getenv("ACCEPTANCE_FILE"));
 #else
     ifstream list(Form("%s/%s/filelist.txt",data_path,periodName.c_str()));
@@ -2817,7 +2817,7 @@ int main(int argc, char **argv)
       delete f;
     }
 
-#if CLUSTER == BW
+#if BW
     ofstream ofs_h(Form("hadron_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_hzvtx(Form("hadron_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_d(Form("DIS_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
