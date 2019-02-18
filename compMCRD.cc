@@ -224,10 +224,7 @@ void create_root_tree()
 
 void close_root_tree()
 {
-  DIS->Write();
-  Hadron->Write();
-  DISMC->Write();
-  HadronMC->Write();
+
 }
 
 void create_kin_plots()
@@ -2805,6 +2802,10 @@ int main(int argc, char **argv)
   MCextraction(argv[2]);
   cout << "... Saving plots ..." << endl;
   close_root_tree();
+  DIS->Write();
+  Hadron->Write();
+  DISMC->Write();
+  HadronMC->Write();
   mf->Close();
   save_kin_plots();
 
