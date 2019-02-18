@@ -714,7 +714,7 @@ void save_kin_plots()
   c42.Print("kinMC.pdf","pdf");
   c43.Print("kinMC.pdf)","pdf");
   c41.Print("Trigger_Coverage.pdf");
-  TFile *f = new TFile("vertexstudy.root","NEW");
+  TFile *f = new TFile("vertexstudy.root","RECREATE");
   c43.Write();
   f->Close();
 
@@ -1985,6 +1985,7 @@ int main(int argc, char **argv)
                 fVertexStudyMC2D[2]->Fill(MC_lvtxz->GetLeaf("MCHadrons.lastVtxPosZ")->GetValue(),MC_lvtxy->GetLeaf("MCHadrons.lastVtxPosY")->GetValue());
               }
               fVertexHadronMC[0]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
+              if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 2 || MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 3)fVertexHadronMC[1]->Fill(MC_vz->GetLeaf("MC_vz")->GetValue());
               fKinematicsMC[3]->Fill(zBj_MC);
             }
 
