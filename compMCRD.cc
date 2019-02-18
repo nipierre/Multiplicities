@@ -2795,7 +2795,7 @@ int main(int argc, char **argv)
   cout << "... Monte-Carlo treatment ..." << endl;
   MCextraction(argv[2]);
   cout << "... Saving plots ..." << endl;
-  mf = new TFile("RDMC.root","open");
+  mf = new TFile("RDMC.root","UPDATE");
   DIS->Write();
   Hadron->Write();
   DISMC->Write();
