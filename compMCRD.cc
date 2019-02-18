@@ -197,6 +197,14 @@ void create_root_tree()
    HadronMC->Branch("yh_MC",&yh_MC,"yh_MC/D");
    Hadron->Branch("zh",&zh,"zh/D");
    HadronMC->Branch("zh_MC",&zh_MC,"zh_MC/D");
+   DIS->Branch("xVTXd",&xVTXd,"xVTXd/D");
+   Hadron->Branch("xVTXh",&xVTXh,"xVTXh/D");
+   DISMC->Branch("xVTXd_MC",&xVTXd_MC,"xVTXd_MC/D");
+   HadronMC->Branch("xVTXh_MC",&xVTXh_MC,"xVTXh_MC/D");
+   DIS->Branch("yVTXd",&yVTXd,"yVTXd/D");
+   Hadron->Branch("yVTXh",&yVTXh,"yVTXh/D");
+   DISMC->Branch("yVTXd_MC",&yVTXd_MC,"yVTXd_MC/D");
+   HadronMC->Branch("yVTXh_MC",&yVTXh_MC,"yVTXh_MC/D");
    DIS->Branch("zVTXd",&zVTXd,"zVTXd/D");
    Hadron->Branch("zVTXh",&zVTXh,"zVTXh/D");
    DISMC->Branch("zVTXd_MC",&zVTXd_MC,"zVTXd_MC/D");
@@ -218,6 +226,8 @@ void create_root_tree()
    Hadron->Branch("Wh",&Wh,"Wh/D");
    DISMC->Branch("Wd_MC",&Wd_MC,"Wd_MC/D");
    HadronMC->Branch("Wh_MC",&Wh_MC,"Wh_MC/D");
+   Hadron->Branch("thh",&phh,"thh/D");
+   HadronMC->Branch("th_MC",&ph_MC,"th_MC/D");
    Hadron->Branch("phh",&phh,"phh/D");
    HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
 
@@ -229,6 +239,8 @@ void create_root_tree()
      nud = nudv[i];
      mu_charged = mu_chargedv[i];
      trigd = trigdv[i];
+     xVTXd = xVTXdv[i];
+     yVTXd = yVTXdv[i];
      zVTXd = zVTXdv[i];
      DIS->Fill();
    }
@@ -240,6 +252,8 @@ void create_root_tree()
      nud_MC = nud_MCv[i];
      mu_charged_MC = mu_charged_MCv[i];
      trigd_MC = trigd_MCv[i];
+     xVTXd_MC = xVTXd_MCv[i];
+     yVTXd_MC = yVTXd_MCv[i];
      zVTXd_MC = zVTXd_MCv[i];
      DISMC->Fill();
    }
@@ -251,9 +265,12 @@ void create_root_tree()
      nuh = nuhv[i];
      mu_chargeh = mu_chargehv[i];
      trigh = trighv[i];
+     xVTXh = xVTXhv[i];
+     yVTXh = yVTXhv[i];
      zVTXh = zVTXhv[i];
      zh = zhv[i];
      phh = phhv[i];
+     thh = thhv[i];
      Hadron->Fill();
    }
    for(int i=0; i<int(xh_MCv.size()); i++)
@@ -264,9 +281,12 @@ void create_root_tree()
      nuh_MC = nuh_MCv[i];
      mu_chargeh_MC = mu_chargeh_MCv[i];
      trigh_MC = trigh_MCv[i];
+     xVTXh_MC = xVTXh_MCv[i];
+     yVTXh_MC = yVTXh_MCv[i];
      zVTXh_MC = zVTXh_MCv[i];
      zh_MC = zh_MCv[i];
      ph_MC = ph_MCv[i];
+     th_MC = th_MCv[i];
      eVTX_MC = eVTX_MCv[i];
      HadronMC->Fill();
    }
@@ -1541,6 +1561,8 @@ void MCextraction(string pFilelist)
         nud_MCv.push_back(nu);
         mu_charged_MCv.push_back(Charge->GetLeaf("Charge")->GetValue());
         trigd_MCv.push_back(trig);
+        xVTXd_MCv.push_back(x->GetLeaf("x")->GetValue());
+        yVTXd_MCv.push_back(y->GetLeaf("y")->GetValue());
         zVTXd_MCv.push_back(z->GetLeaf("z")->GetValue());
 
         // MT
@@ -1738,7 +1760,7 @@ void MCextraction(string pFilelist)
           if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
 
           // Zlast
-          //if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+          if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
 
           // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
           if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
@@ -1773,8 +1795,11 @@ void MCextraction(string pFilelist)
           nuh_MCv.push_back(nu);
           mu_chargeh_MCv.push_back(Charge->GetLeaf("Charge")->GetValue());
           trigh_MCv.push_back(trig);
+          xVTXh_MCv.push_back(x->GetLeaf("x")->GetValue());
+          yVTXh_MCv.push_back(y->GetLeaf("y")->GetValue());
           zVTXh_MCv.push_back(z->GetLeaf("z")->GetValue());
           zh_MCv.push_back(zBj);
+          th_MCv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
           ph_MCv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 2
               || MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 3) eVTX_MCv.push_back(z->GetLeaf("z")->GetValue());
@@ -2319,6 +2344,8 @@ void RDextraction(string pFilelist)
       nudv.push_back(nu);
       mu_chargedv.push_back(Charge->GetLeaf("Charge")->GetValue());
       trigdv.push_back(trig);
+      xVTXdv.push_back(x->GetLeaf("x")->GetValue());
+      yVTXdv.push_back(y->GetLeaf("y")->GetValue());
       zVTXdv.push_back(z->GetLeaf("z")->GetValue());
 
       // MT
@@ -2614,7 +2641,7 @@ void RDextraction(string pFilelist)
         if(!(HZfirst->GetLeaf("Hadrons.HZfirst")->GetValue(i)<350)) continue;
 
         // Zlast
-        //if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
+        if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
 
         // Theta cut
         if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
@@ -2649,8 +2676,11 @@ void RDextraction(string pFilelist)
         nuhv.push_back(nu);
         mu_chargehv.push_back(Charge->GetLeaf("Charge")->GetValue());
         trighv.push_back(trig);
+        xVTXhv.push_back(x->GetLeaf("x")->GetValue());
+        yVTXhv.push_back(y->GetLeaf("y")->GetValue());
         zVTXhv.push_back(z->GetLeaf("z")->GetValue());
         zhv.push_back(zBj);
+        thhv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
         phhv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
 
         // Non null charge
