@@ -749,7 +749,7 @@ int main(int argc, char **argv)
     }
   }
 
-#if BW
+#if BW==0
   int year=0;
 
   if(Y2006) year=2006;
