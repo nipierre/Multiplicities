@@ -226,8 +226,8 @@ void create_root_tree()
    Hadron->Branch("Wh",&Wh,"Wh/D");
    DISMC->Branch("Wd_MC",&Wd_MC,"Wd_MC/D");
    HadronMC->Branch("Wh_MC",&Wh_MC,"Wh_MC/D");
-   Hadron->Branch("thh",&phh,"thh/D");
-   HadronMC->Branch("th_MC",&ph_MC,"th_MC/D");
+   Hadron->Branch("thh",&thh,"thh/D");
+   HadronMC->Branch("th_MC",&th_MC,"th_MC/D");
    Hadron->Branch("phh",&phh,"phh/D");
    HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
 
@@ -1766,10 +1766,10 @@ void MCextraction(string pFilelist)
           if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
 
           // Theta cut
-          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+          // if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
 
           // RICH position cut
-          if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
+          // if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
@@ -2644,10 +2644,10 @@ void RDextraction(string pFilelist)
         if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
 
         // Theta cut
-        if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+        // if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
 
         // RICH position cut
-        if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
+        // if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
 
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
         if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
