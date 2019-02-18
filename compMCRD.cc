@@ -182,7 +182,6 @@ void readKinCuts(string pFile)
 
 void create_root_tree()
 {
-   mf = new TFile("RDMC.root","recreate");
    DIS = new TTree("DIS","DIS");
    Hadron = new TTree("Hadron","Hadron");
    DISMC = new TTree("DISMC","DISMC");
@@ -225,12 +224,10 @@ void create_root_tree()
 
 void close_root_tree()
 {
-  // mf = new TFile("RDMC.root","recreate");
   DIS->Write();
   Hadron->Write();
   DISMC->Write();
   HadronMC->Write();
-  mf->Close();
 }
 
 void create_kin_plots()
@@ -2798,6 +2795,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
+  mf = new TFile("RDMC.root","recreate");
   create_root_tree();
   create_kin_plots();
   readKinCuts(argv[3]);
@@ -2807,6 +2805,7 @@ int main(int argc, char **argv)
   MCextraction(argv[2]);
   cout << "... Saving plots ..." << endl;
   close_root_tree();
+  mf->Close();
   save_kin_plots();
 
   cout << "\n\n";
