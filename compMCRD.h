@@ -205,3 +205,18 @@ static const Double_t fM_K = 493.677/(1e3);
 static const Double_t fM_pi = 139.57018/(1e3);
 
 string trigname[5] = {"MT","LT","OT","LAST",""};
+
+// ROOT tree
+
+TFile *mf;
+
+Double_t xd, xh, xd_MC, xh_MC;
+Double_t yd, yh, yd_MC, yh_MC;
+Double_t zh, zh_MC;
+Double_t zVTXd, zVTXh, zVTXd_MC, zVTXh_MC;
+Int_t trigd, trigh, trigd_MC, trigh_MC;
+Double_t nud, nuh, nud_MC, nuh_MC;
+Int_t mu_charged, muchargeh, mu_charged_MC, muchargeh_MC;
+Double_t eVTX_MC;
+Double_t Wd, Wh, Wd_MC, Wh_MC;
+Double_t phh, ph_MC;

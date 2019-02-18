@@ -8,8 +8,8 @@ zFFred = [3,8,13,18,23,28,33,38,43,48,53,61]
 
 # Mult1 = readdlm("data/Mult2016Hadron.txt")
 # Mult2 = readdlm("data/Mult2016HadronNORICH.txt")
-Mult1 = readdlm("data/Mult2016Hadron.txt")
-Mult2 = readdlm("data/Mult2016HadronMU+.txt")
+Mult1 = readdlm("data/Mult2016HadronMU+.txt")
+Mult2 = readdlm("data/Mult2016HadronLEFT.txt")
 
 Multp1 = zeros((9,12))
 Multm1 = zeros((9,12))
