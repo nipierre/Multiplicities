@@ -2491,7 +2491,7 @@ int main(int argc, char **argv)
             int dz = abs(z->GetLeaf("z")->GetValue()-77);
             int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
             int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-            if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
+            // if(!( ( -41.2 < xdx && xdx < 40.9 ) && ( -29.5 < ydy && ydy < 31.3 ) )) continue;
 
             // Maximum radiation length cumulated
             if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
