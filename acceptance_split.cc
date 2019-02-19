@@ -969,7 +969,9 @@ int main(int argc, char **argv)
       for (int ip = 0; ip < N; ip++)
       {
 
+#if BW==0
         printProgress(ip,N);
+#endif
 
         //DISEvt
         runNo->GetEntry(ip);
