@@ -868,84 +868,84 @@ int main(int argc, char **argv)
 
               if(!(int(h_corr.size()))) h_corr_empty = 1;
 
-              H_corr_zvtx[c][i][j][k] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
-              P_corr_zvtx[c][i][j][k] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
-              K_corr_zvtx[c][i][j][k] = new TGraphErrors(int(k_corr.size()),&(zvtx_range_k[0]),&(k_corr[0]),0,&(k_cerr[0]));
+              H_corr_zvtx[c][i][j][k][m] = new TGraphErrors(int(h_corr.size()),&(zvtx_range_h[0]),&(h_corr[0]),0,&(h_cerr[0]));
+              P_corr_zvtx[c][i][j][k][m] = new TGraphErrors(int(p_corr.size()),&(zvtx_range_p[0]),&(p_corr[0]),0,&(p_cerr[0]));
+              K_corr_zvtx[c][i][j][k][m] = new TGraphErrors(int(k_corr.size()),&(zvtx_range_k[0]),&(k_corr[0]),0,&(k_cerr[0]));
 
-              H_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColor[j]);
-              P_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColor[j]);
-              K_corr_zvtx[c][i][j][k]->SetMarkerColor(fMarkerColor[j]);
+              H_corr_zvtx[c][i][j][k][m]->SetMarkerColor(fMarkerColor[j]);
+              P_corr_zvtx[c][i][j][k][m]->SetMarkerColor(fMarkerColor[j]);
+              K_corr_zvtx[c][i][j][k][m]->SetMarkerColor(fMarkerColor[j]);
 
-              H_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
-              P_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
-              K_corr_zvtx[c][i][j][k]->SetMarkerSize(3);
+              H_corr_zvtx[c][i][j][k][m]->SetMarkerSize(3);
+              P_corr_zvtx[c][i][j][k][m]->SetMarkerSize(3);
+              K_corr_zvtx[c][i][j][k][m]->SetMarkerSize(3);
 
-              H_corr_zvtx[c][i][j][k]->SetMarkerStyle(fMarkerStyle[j][c]);
-              P_corr_zvtx[c][i][j][k]->SetMarkerStyle(fMarkerStyle[j][c]);
-              K_corr_zvtx[c][i][j][k]->SetMarkerStyle(fMarkerStyle[j][c]);
+              H_corr_zvtx[c][i][j][k][m]->SetMarkerStyle(fMarkerStyle[j][c]);
+              P_corr_zvtx[c][i][j][k][m]->SetMarkerStyle(fMarkerStyle[j][c]);
+              K_corr_zvtx[c][i][j][k][m]->SetMarkerStyle(fMarkerStyle[j][c]);
 
-              H_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("");
-              P_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("");
-              K_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("");
+              H_corr_zvtx[c][i][j][k][m]->GetYaxis()->SetTitle("");
+              P_corr_zvtx[c][i][j][k][m]->GetYaxis()->SetTitle("");
+              K_corr_zvtx[c][i][j][k][m]->GetYaxis()->SetTitle("");
 
-              H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("");
-              P_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("");
-              K_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("");
+              H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetTitle("");
+              P_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetTitle("");
+              K_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetTitle("");
 
-              H_corr_zvtx[c][i][j][k]->SetTitle("");
-              P_corr_zvtx[c][i][j][k]->SetTitle("");
-              K_corr_zvtx[c][i][j][k]->SetTitle("");
+              H_corr_zvtx[c][i][j][k][m]->SetTitle("");
+              P_corr_zvtx[c][i][j][k][m]->SetTitle("");
+              K_corr_zvtx[c][i][j][k][m]->SetTitle("");
 
               if(!h_corr_empty)
               {
                 c8[k]->cd(i+1);
                 gPad->SetFillStyle(4000);
-                if(H_corr_zvtx[c][i][j][k])
+                if(H_corr_zvtx[c][i][j][k][m])
                 {
-                  if(!c && j==3)
+                  if(!c && !m && j==3)
                   {
-                    H_corr_zvtx[c][i][j][k]->Draw("SAMEPA");
-                    H_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                    H_corr_zvtx[c][i][j][k]->SetMinimum(0.);
-                    H_corr_zvtx[c][i][j][k]->SetMaximum(2.);
-                    H_corr_zvtx[c][i][j][k]->GetXaxis()->SetLabelSize(0.06);
-                    H_corr_zvtx[c][i][j][k]->GetYaxis()->SetLabelSize(0.06);
-                    H_corr_zvtx[c][i][j][k]->SetTitle("");
+                    H_corr_zvtx[c][i][j][k][m]->Draw("SAMEPA");
+                    H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetLimits(-320,-60);
+                    H_corr_zvtx[c][i][j][k][m]->SetMinimum(0.);
+                    H_corr_zvtx[c][i][j][k][m]->SetMaximum(2.);
+                    H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetLabelSize(0.06);
+                    H_corr_zvtx[c][i][j][k][m]->GetYaxis()->SetLabelSize(0.06);
+                    H_corr_zvtx[c][i][j][k][m]->SetTitle("");
                     if(i>4) gPad->SetBottomMargin(.15);
                     if(i==0 || i==5) gPad->SetLeftMargin(.22);
                     if(i==8)
                     {
-                      H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitle("#font[ 12]{z_{vtx}}");
-                      H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleSize(0.08);
-                      H_corr_zvtx[c][i][j][k]->GetXaxis()->SetTitleOffset(.8);
+                      H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetTitle("#font[ 12]{z_{vtx}}");
+                      H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetTitleSize(0.08);
+                      H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetTitleOffset(.8);
                     }
-                    H_corr_zvtx[c][i][j][k]->GetXaxis()->SetNdivisions(304,kTRUE);
-                    H_corr_zvtx[c][i][j][k]->GetYaxis()->SetNdivisions(304,kTRUE);
+                    H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetNdivisions(304,kTRUE);
+                    H_corr_zvtx[c][i][j][k][m]->GetYaxis()->SetNdivisions(304,kTRUE);
                     if(i==0)
                     {
-                      H_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
-                      H_corr_zvtx[c][i][j][k]->GetYaxis()->SetTitleSize(0.08);
+                      H_corr_zvtx[c][i][j][k][m]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                      H_corr_zvtx[c][i][j][k][m]->GetYaxis()->SetTitleSize(0.08);
                     }
-                    H_corr_zvtx[c][i][0][k]->Draw("SAMEP");
-                    H_corr_zvtx[c][i][0][k]->GetXaxis()->SetLimits(-320,-60);
-                    H_corr_zvtx[c][i][0][k]->SetMinimum(0.);
-                    H_corr_zvtx[c][i][0][k]->SetMaximum(2.);
-                    H_corr_zvtx[c][i][1][k]->Draw("SAMEP");
-                    H_corr_zvtx[c][i][1][k]->GetXaxis()->SetLimits(-320,-60);
-                    H_corr_zvtx[c][i][1][k]->SetMinimum(0.);
-                    H_corr_zvtx[c][i][1][k]->SetMaximum(2.);
-                    H_corr_zvtx[c][i][2][k]->Draw("SAMEP");
-                    H_corr_zvtx[c][i][2][k]->GetXaxis()->SetLimits(-320,-60);
-                    H_corr_zvtx[c][i][2][k]->SetMinimum(0.);
-                    H_corr_zvtx[c][i][2][k]->SetMaximum(2.);
+                    H_corr_zvtx[c][i][0][k][m]->Draw("SAMEP");
+                    H_corr_zvtx[c][i][0][k][m]->GetXaxis()->SetLimits(-320,-60);
+                    H_corr_zvtx[c][i][0][k][m]->SetMinimum(0.);
+                    H_corr_zvtx[c][i][0][k][m]->SetMaximum(2.);
+                    H_corr_zvtx[c][i][1][k][m]->Draw("SAMEP");
+                    H_corr_zvtx[c][i][1][k][m]->GetXaxis()->SetLimits(-320,-60);
+                    H_corr_zvtx[c][i][1][k][m]->SetMinimum(0.);
+                    H_corr_zvtx[c][i][1][k][m]->SetMaximum(2.);
+                    H_corr_zvtx[c][i][2][k][m]->Draw("SAMEP");
+                    H_corr_zvtx[c][i][2][k][m]->GetXaxis()->SetLimits(-320,-60);
+                    H_corr_zvtx[c][i][2][k][m]->SetMinimum(0.);
+                    H_corr_zvtx[c][i][2][k][m]->SetMaximum(2.);
                     c8[k]->Range(-320,0.,-60,2.);
                   }
                   else
                   {
-                    H_corr_zvtx[c][i][j][k]->Draw("SAMEP");
-                    H_corr_zvtx[c][i][j][k]->GetXaxis()->SetLimits(-320,-60);
-                    H_corr_zvtx[c][i][j][k]->SetMinimum(0.);
-                    H_corr_zvtx[c][i][j][k]->SetMaximum(2.);
+                    H_corr_zvtx[c][i][j][k][m]->Draw("SAMEP");
+                    H_corr_zvtx[c][i][j][k][m]->GetXaxis()->SetLimits(-320,-60);
+                    H_corr_zvtx[c][i][j][k][m]->SetMinimum(0.);
+                    H_corr_zvtx[c][i][j][k][m]->SetMaximum(2.);
                   }
                 }
                 c8[k]->Update();
@@ -1000,9 +1000,18 @@ int main(int argc, char **argv)
 
             if(SPREAD)
             {
-              H_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyle[0][c]);
-              P_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyle[0][c]);
-              K_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyle[0][c]);
+              if(!m)
+              {
+                H_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+                P_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+                K_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+              }
+              else
+              {
+                H_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+                P_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+                K_acc[c][i][j][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+              }
             }
             else
             {
@@ -1445,9 +1454,18 @@ int main(int argc, char **argv)
           P_y[c][i][m]->SetMarkerSize(3);
           K_y[c][i][m]->SetMarkerSize(3);
 
-          H_y[c][i][m]->SetMarkerStyle(fMarkerStyle[0][c]);
-          P_y[c][i][m]->SetMarkerStyle(fMarkerStyle[0][c]);
-          K_y[c][i][m]->SetMarkerStyle(fMarkerStyle[0][c]);
+          if(!m)
+          {
+            H_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+            P_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+            K_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+          }
+          else
+          {
+            H_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+            P_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+            K_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+          }
 
           H_y[c][i][m]->GetYaxis()->SetTitle("");
           P_y[c][i][m]->GetYaxis()->SetTitle("");
