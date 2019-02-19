@@ -2039,7 +2039,7 @@ int main(int argc, char **argv)
             (fAcceptance[i][j][k].tab[c][0][0][2] ? Double_t((fGnrt[i][j][k].tab[c][0][0][2]/pow(fNDIS_evt_MC[0][0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][0][2],2)/pow(fNDIS_evt_MC[0][0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
             (fAcceptance[i][j][k].tab[c][0][0][3] ? Double_t((fGnrt[i][j][k].tab[c][0][0][3]/pow(fNDIS_evt_MC[0][0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][0][3],2)/pow(fNDIS_evt_MC[0][0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " << endl;
 
-            for(int ll=0; ll<4; ll++)
+            for(int l=0; l<4; l++)
             {
               ofs_zvtx << " " << fAcceptance_zvtx[i][j][k][l].tab[c][1][0][0] << " " <<
               fAcceptance_zvtx[i][j][k][l].tab[c][1][1][0] << " " <<
