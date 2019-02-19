@@ -1370,10 +1370,10 @@ int main(int argc, char **argv)
           {
             if(!m) yavg(c,i,k);
 
-            fAcceptance_yavg[i][k].tab[c][m][0][0] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg0[0]) ? double((fRcstr_yavg[m][0]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][0]/fNDIS_evt_MC_yavg[m][0])) : 0);
-            fAcceptance_yavg[i][k].tab[c][m][0][1] = ((fNDIS_evt_yavg[m][1] && fNDIS_evt_MC_yavg[m][1] && fGnrt_yavg0[1]) ? double((fRcstr_yavg[m][1]/fNDIS_evt_yavg[m][1])/(fGnrt_yavg[m][1]/fNDIS_evt_MC_yavg[m][1])) : 0);
-            fAcceptance_yavg[i][k].tab[c][m][0][2] = ((fNDIS_evt_yavg[m][2] && fNDIS_evt_MC_yavg[m][2] && fGnrt_yavg0[2]) ? double((fRcstr_yavg[m][2]/fNDIS_evt_yavg[m][2])/(fGnrt_yavg[m][2]/fNDIS_evt_MC_yavg[m][2])) : 0);
-            fAcceptance_yavg[i][k].tab[c][m][0][3] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg0[3]) ? double((fRcstr_yavg[m][3]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][3]/fNDIS_evt_MC_yavg[m][0])) : 0);
+            fAcceptance_yavg[i][k].tab[c][m][0][0] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg[m][0]) ? double((fRcstr_yavg[m][0]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][0]/fNDIS_evt_MC_yavg[m][0])) : 0);
+            fAcceptance_yavg[i][k].tab[c][m][0][1] = ((fNDIS_evt_yavg[m][1] && fNDIS_evt_MC_yavg[m][1] && fGnrt_yavg[m][1]) ? double((fRcstr_yavg[m][1]/fNDIS_evt_yavg[m][1])/(fGnrt_yavg[m][1]/fNDIS_evt_MC_yavg[m][1])) : 0);
+            fAcceptance_yavg[i][k].tab[c][m][0][2] = ((fNDIS_evt_yavg[m][2] && fNDIS_evt_MC_yavg[m][2] && fGnrt_yavg[m][2]) ? double((fRcstr_yavg[m][2]/fNDIS_evt_yavg[m][2])/(fGnrt_yavg[m][2]/fNDIS_evt_MC_yavg[m][2])) : 0);
+            fAcceptance_yavg[i][k].tab[c][m][0][3] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg[m][3]) ? double((fRcstr_yavg[m][3]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][3]/fNDIS_evt_MC_yavg[m][0])) : 0);
 
             if(fAcceptance_yavg[i][k].tab[c][m][0][0]<0) fAcceptance_yavg[i][k].tab[c][m][0][0]=0;
             if(fAcceptance_yavg[i][k].tab[c][m][0][1]<0) fAcceptance_yavg[i][k].tab[c][m][0][1]=0;
@@ -1402,7 +1402,7 @@ int main(int argc, char **argv)
             rh_prime[0] = fRcstr_yavg[m][0] - fRcstr_c_yavg[m][0];
             rh_prime[1] = fRcstr_yavg[m][1] - fRcstr_c_yavg[m][1];
             rh_prime[2] = fRcstr_yavg[m][2] - fRcstr_c_yavg[m][2];
-            rh_prime[3] = fRcstr_yavg[[m]3] - fRcstr_c_yavg[m][3];
+            rh_prime[3] = fRcstr_yavg[m][3] - fRcstr_c_yavg[m][3];
 
             rh[0] = fRcstr_c_yavg[m][0];
             rh[1] = fRcstr_c_yavg[m][1];
