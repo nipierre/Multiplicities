@@ -1795,7 +1795,7 @@ void MCextraction(string pFilelist)
           fVertexMCb[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fHadronMC++;
 
-          for(int ith=0; Cth<30; ith++)
+          for(int ith=0; ith<30; ith++)
           {
             if(0.05*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.05*(ith+1))
             {
