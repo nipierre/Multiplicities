@@ -1795,16 +1795,19 @@ void MCextraction(string pFilelist)
           fVertexMCb[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fHadronMC++;
 
+          int thbin;
+
           for(int ith=0; ith<30; ith++)
           {
             if(0.005*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.005*(ith+1))
             {
+              thbin = ith;
               Cth[1][ith]++;
               break;
             }
           }
 
-          if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) Cth[1][30]++;
+          if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) {thbin=30; Cth[1][30]++;}
 
           // fXBjkinMC[4].push_back(xBj);
 
@@ -1829,76 +1832,76 @@ void MCextraction(string pFilelist)
           // MT
           if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
           {
-            fKinematicsMC[0][3]->Fill(zBj);
-            fKinematicsMC[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-            fKinematicsMC[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
-            fKinematicsMC[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
-            fKinematicsMC[0][17]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fKinematicsMC[0][18]->Fill(z->GetLeaf("z")->GetValue());
-            else fKinematicsMC[0][19]->Fill(z->GetLeaf("z")->GetValue());
+            fKinematicsMC[0][3]->Fill(zBj,Cthr[thbin]);
+            fKinematicsMC[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[0][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            if(fId == 8 || fId == 9) fKinematicsMC[0][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            else fKinematicsMC[0][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
           }
           // LT
           if(int(trig&4) && !int(trig&2) && !int(trig&8) && !int(trig&512))
           {
-            fKinematicsMC[1][3]->Fill(zBj);
-            fKinematicsMC[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-            fKinematicsMC[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
-            fKinematicsMC[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
-            fKinematicsMC[1][17]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fKinematicsMC[1][18]->Fill(z->GetLeaf("z")->GetValue());
-            else fKinematicsMC[1][19]->Fill(z->GetLeaf("z")->GetValue());
+            fKinematicsMC[1][3]->Fill(zBj,Cthr[thbin]);
+            fKinematicsMC[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[1][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            if(fId == 8 || fId == 9) fKinematicsMC[1][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            else fKinematicsMC[1][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
           }
           // OT
           if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
           {
-            fKinematicsMC[2][3]->Fill(zBj);
-            fKinematicsMC[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-            fKinematicsMC[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
-            fKinematicsMC[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
-            fKinematicsMC[2][17]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fKinematicsMC[2][18]->Fill(z->GetLeaf("z")->GetValue());
-            else fKinematicsMC[2][19]->Fill(z->GetLeaf("z")->GetValue());
+            fKinematicsMC[2][3]->Fill(zBj,Cthr[thbin]);
+            fKinematicsMC[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[2][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            if(fId == 8 || fId == 9) fKinematicsMC[2][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            else fKinematicsMC[2][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
             if( (inTarget->GetLeaf("inTarget")->GetValue())
               && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
             {
-              fTargetMC[1]->Fill(z->GetLeaf("z")->GetValue());
-              fTarget2DMC[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+              fTargetMC[1]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+              fTarget2DMC[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue(),Cthr[thbin]);
             }
-            fTargetMC[0]->Fill(z->GetLeaf("z")->GetValue());
-            fTarget2DMC[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
+            fTargetMC[0]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            fTarget2DMC[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue(),Cthr[thbin]);
           }
           // LAST
           if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
           {
-            fKinematicsMC[3][3]->Fill(zBj);
-            fKinematicsMC[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-            fKinematicsMC[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
-            fKinematicsMC[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
-            fKinematicsMC[3][17]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fKinematicsMC[3][18]->Fill(z->GetLeaf("z")->GetValue());
-            else fKinematicsMC[3][19]->Fill(z->GetLeaf("z")->GetValue());
+            fKinematicsMC[3][3]->Fill(zBj,Cthr[thbin]);
+            fKinematicsMC[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[3][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            if(fId == 8 || fId == 9) fKinematicsMC[3][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            else fKinematicsMC[3][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
           }
 
           // ALL TRIGGERS
           if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
           {
-            fKinematicsMC[4][3]->Fill(zBj);
-            fKinematicsMC[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
-            fKinematicsMC[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-            fKinematicsMC[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
-            fKinematicsMC[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
-            fKinematicsMC[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
-            fKinematicsMC[4][17]->Fill(z->GetLeaf("z")->GetValue());
-            if(fId == 8 || fId == 9) fKinematicsMC[4][18]->Fill(z->GetLeaf("z")->GetValue());
-            else fKinematicsMC[4][19]->Fill(z->GetLeaf("z")->GetValue());
+            fKinematicsMC[4][3]->Fill(zBj,Cthr[thbin]);
+            fKinematicsMC[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
+            fKinematicsMC[4][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            if(fId == 8 || fId == 9) fKinematicsMC[4][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            else fKinematicsMC[4][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
           }
         }
       }
@@ -2689,19 +2692,16 @@ void RDextraction(string pFilelist)
         fVertexRD[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         fHadronRD++;
 
-        int thbin;
-
         for(int ith=0; ith<30; ith++)
         {
           if(0.005*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.005*(ith+1))
           {
-            thbin = ith;
             Cth[0][ith]++;
             break;
           }
         }
 
-        if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) {thbin = 30; Cth[0][30]++;}
+        if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) Cth[0][30]++;
 
         // fXBjkin[4].push_back(xBj);
 
@@ -2725,75 +2725,75 @@ void RDextraction(string pFilelist)
 
         if(int(trig&2) && !int(trig&4) && !int(trig&8) && !int(trig&512))
         {
-          fKinematicsRD[0][3]->Fill(zBj,Cthr[thbin]);
-          fKinematicsRD[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[0][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[0][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[0][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+          fKinematicsRD[0][3]->Fill(zBj);
+          fKinematicsRD[0][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[0][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[0][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[0][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[0][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[0][17]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[0][18]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[0][19]->Fill(z->GetLeaf("z")->GetValue());
 
         }
         if(int(trig&4) && !int(trig&2) && !int(trig&8)&& !int(trig&512))
         {
-          fKinematicsRD[1][3]->Fill(zBj,Cthr[thbin]);
-          fKinematicsRD[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
+          fKinematicsRD[1][3]->Fill(zBj);
+          fKinematicsRD[1][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
           fKinematicsRD[1][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
-          fKinematicsRD[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[1][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[1][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[1][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+          fKinematicsRD[1][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[1][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[1][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[1][17]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[1][18]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[1][19]->Fill(z->GetLeaf("z")->GetValue());
         }
         if(int(trig&8) && !int(trig&2) && !int(trig&4) && !int(trig&512))
         {
           fKinematicsRD[2][3]->Fill(zBj);
-          fKinematicsRD[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[2][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[2][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[2][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+          fKinematicsRD[2][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[2][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[2][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[2][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[2][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[2][17]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[2][18]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[2][19]->Fill(z->GetLeaf("z")->GetValue());
 
           if((inTarget->GetLeaf("inTarget")->GetValue())
             && (-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71))
           {
-            fTarget[1]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-            fTarget2D[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue(),Cthr[thbin]);
+            fTarget[1]->Fill(z->GetLeaf("z")->GetValue());
+            fTarget2D[1]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
           }
-          fTarget[0]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fTarget2D[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue(),Cthr[thbin]);
+          fTarget[0]->Fill(z->GetLeaf("z")->GetValue());
+          fTarget2D[0]->Fill(z->GetLeaf("z")->GetValue(),y->GetLeaf("y")->GetValue());
         }
         if(int(trig&512) && !int(trig&4) && !int(trig&8) && !int(trig&2))
         {
-          fKinematicsRD[3][3]->Fill(zBj,Cthr[thbin]);
-          fKinematicsRD[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[3][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[3][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[3][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+          fKinematicsRD[3][3]->Fill(zBj);
+          fKinematicsRD[3][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[3][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[3][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[3][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[3][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[3][17]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[3][18]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[3][19]->Fill(z->GetLeaf("z")->GetValue());
         }
 
         // if(trig&2 || trig&4 || trig&8)
         if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
-          fKinematicsRD[4][3]->Fill(zBj,Cthr[thbin]);
-          fKinematicsRD[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
-          fKinematicsRD[4][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[4][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
-          fKinematicsRD[4][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+          fKinematicsRD[4][3]->Fill(zBj);
+          fKinematicsRD[4][12]->Fill(p->GetLeaf("Hadrons.P")->GetValue(i));
+          fKinematicsRD[4][13]->Fill(th->GetLeaf("Hadrons.th")->GetValue(i));
+          fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          fKinematicsRD[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          fKinematicsRD[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[4][17]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[4][18]->Fill(z->GetLeaf("z")->GetValue());
+          fKinematicsRD[4][19]->Fill(z->GetLeaf("z")->GetValue());
         }
       }
 
