@@ -1797,7 +1797,7 @@ void MCextraction(string pFilelist)
 
           for(int ith=0; ith<30; ith++)
           {
-            if(0.05*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.05*(ith+1))
+            if(0.005*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.005*(ith+1))
             {
               Cth[1][ith]++;
               break;
@@ -2691,7 +2691,7 @@ void RDextraction(string pFilelist)
 
         for(int ith=0; ith<30; ith++)
         {
-          if(0.05*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.05*(ith+1))
+          if(0.005*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.005*(ith+1))
           {
             Cth[0][ith]++;
             break;
