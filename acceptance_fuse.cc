@@ -29,7 +29,7 @@ int main(int argc, char **argv)
   }
 
   string cFilelist1 = argv[2];
-  string cFilelist2 = argv[2];
+  string cFilelist2 = argv[3];
   string periodName = argv[1];
   int year = 2016;
   int dummyd;
@@ -499,7 +499,7 @@ int main(int argc, char **argv)
                          fNDIS_evt_zvtx[1][1][i][j][k][0] << " " << fNDIS_evt_zvtx[1][1][i][j][k][1] << " " << fNDIS_evt_zvtx[1][1][i][j][k][2] << " " << fNDIS_evt_zvtx[1][1][i][j][k][3] << " " <<
                          fNDIS_evt_MC_zvtx[1][1][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[1][1][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[1][1][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[1][1][i][j][k][3] << " " <<
                          fNDIS_evt_zvtx[2][1][i][j][k][0] << " " << fNDIS_evt_zvtx[2][1][i][j][k][1] << " " << fNDIS_evt_zvtx[2][1][i][j][k][2] << " " << fNDIS_evt_zvtx[2][1][i][j][k][3] << " " <<
-                         fNDIS_evt_MC_zvtx[2][1][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[2][1][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[2][1][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[2][1][i][j][k][3] <<
+                         fNDIS_evt_MC_zvtx[2][1][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[2][1][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[2][1][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[2][1][i][j][k][3] << " " <<
                          fNDIS_evt_zvtx[0][0][i][j][k][0] << " " << fNDIS_evt_zvtx[0][0][i][j][k][1] << " " << fNDIS_evt_zvtx[0][0][i][j][k][2] << " " << fNDIS_evt_zvtx[0][0][i][j][k][3] << " " <<
                          fNDIS_evt_MC_zvtx[0][0][i][j][k][0] << " " << fNDIS_evt_MC_zvtx[0][0][i][j][k][1] << " " << fNDIS_evt_MC_zvtx[0][0][i][j][k][2] << " " << fNDIS_evt_MC_zvtx[0][0][i][j][k][3] << " " <<
                          fNDIS_evt_zvtx[1][0][i][j][k][0] << " " << fNDIS_evt_zvtx[1][0][i][j][k][1] << " " << fNDIS_evt_zvtx[1][0][i][j][k][2] << " " << fNDIS_evt_zvtx[1][0][i][j][k][3] << " " <<

@@ -1774,10 +1774,10 @@ void MCextraction(string pFilelist)
           if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
 
           // Theta cut
-          // if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
 
           // RICH position cut
-          // if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
+          if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
 
           // z cut
           if(!(0.2<zBj && zBj<0.85)) continue;
@@ -1794,6 +1794,17 @@ void MCextraction(string pFilelist)
           else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexMCb[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fVertexMCb[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fHadronMC++;
+
+          for(int ith=0; Cth<30; ith++)
+          {
+            if(0.05*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.05*(ith+1))
+            {
+              Cth[1][ith]++;
+              break;
+            }
+          }
+
+          if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) Cth[1][30]++;
 
           // fXBjkinMC[4].push_back(xBj);
 
@@ -2654,10 +2665,10 @@ void RDextraction(string pFilelist)
         if(!(350<HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i))) continue;
 
         // Theta cut
-        // if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+        if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
 
         // RICH position cut
-        // if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
+        if(!(pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25)) continue;
 
         // Momentum cut (12 GeV to 40 GeV, increasing to 3 GeV to 40 GeV)
         if(!(fPmin<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<fPmax)) continue;
@@ -2677,6 +2688,17 @@ void RDextraction(string pFilelist)
         else if(-134.5<=z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<=-71) fVertexRD[3]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         fVertexRD[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
         fHadronRD++;
+
+        for(int ith=0; ith<30; ith++)
+        {
+          if(0.05*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.05*(ith+1))
+          {
+            Cth[0][ith]++;
+            break;
+          }
+        }
+
+        if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) Cth[0][30]++;
 
         // fXBjkin[4].push_back(xBj);
 
@@ -2886,6 +2908,12 @@ int main(int argc, char **argv)
   create_root_tree();
   mf->Close();
   save_kin_plots();
+
+  ofstream ofs_th("th_reweight.txt", std::ofstream::out | std::ofstream::trunc);
+
+  for(int ith=0; ith<31; ith++) ofs_th << Cth[0][ith]/Cth[1][ith] << " ";
+
+  ofs_th.close();
 
   cout << "\n\n";
   cout << "             ********* Event distribution within MT/LT/OT/LAST in percentage of total ********* " << endl;

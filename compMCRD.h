@@ -244,3 +244,5 @@ vector<Double_t> thhv, th_MCv;
 vector<Double_t> thRICHv, thRICH_MCv;
 vector<Double_t> richpipev, richpipe_MCv;
 vector<Double_t> phhv, ph_MCv;
+
+Double_t Cth[2][31] = {0};
