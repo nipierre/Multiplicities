@@ -1991,6 +1991,19 @@ int main(int argc, char **argv)
               fKinematicsMC[3]->Fill(zBj_MC);
             }
 
+            int thbin;
+
+            for(int ith=0; ith<30; ith++)
+            {
+              if(0.005*ith <= th->GetLeaf("MCHadrons.th")->GetValue(i) && th->GetLeaf("MCHadrons.th")->GetValue(i) < 0.005*(ith+1))
+              {
+                thbin = ith;
+                break;
+              }
+            }
+
+            if(0.15<=th->GetLeaf("MCHadrons.th")->GetValue(i)) thbin=30;
+
             if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
             else if(0.25<zBj_MC && zBj_MC<0.30) zbin = 1;
             else if(0.30<zBj_MC && zBj_MC<0.35) zbin = 2;
@@ -2534,6 +2547,19 @@ int main(int argc, char **argv)
               else fVertexHadron[2]->Fill(z->GetLeaf("z")->GetValue());
               fKinematics[3]->Fill(zBj);
             }
+
+            int thbin;
+
+            for(int ith=0; ith<30; ith++)
+            {
+              if(0.005*ith <= th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i) < 0.005*(ith+1))
+              {
+                thbin = ith;
+                break;
+              }
+            }
+
+            if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) thbin=30;
 
             if(0.2<zBj && zBj<0.25) zbin = 0;
             else if(0.25<=zBj && zBj<0.30) zbin = 1;
