@@ -315,3 +315,6 @@ static const Double_t fM_p = 938.272046/(1e3);
 static const Double_t fM_mu = 105.6583715/(1e3);
 static const Double_t fM_K = 493.677/(1e3);
 static const Double_t fM_pi = 139.57018/(1e3);
+
+// Reweighting
+Double_t Cthr[31] = {1.72, 1.43, 1.33, 1.30, 1.28, 1.23, 1.14, 1.06, 1.03, 0.99, 0.98, 0.92, 0.89, 0.85, 0.81, 0.75, 0.72, 0.71, 0.66, 0.65, 0.66, 0.57, 0.57, 0.58, 0.54, 0.59, 0.59, 0.54, 0.59, 0.58, 0.59};
