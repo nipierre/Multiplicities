@@ -2911,7 +2911,7 @@ int main(int argc, char **argv)
 
   ofstream ofs_th("th_reweight.txt", std::ofstream::out | std::ofstream::trunc);
 
-  for(int ith=0; ith<31; ith++) ofs_th << (Cth[0][ith]*(fHadronRD/fHadronMC)/Cth[1][ith]) << " ";
+  for(int ith=0; ith<31; ith++) ofs_th << (Cth[0][ith]*(fHadronMC/fHadronRD)/Cth[1][ith]) << " ";
 
   ofs_th.close();
 
