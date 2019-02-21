@@ -1995,14 +1995,14 @@ int main(int argc, char **argv)
 
             for(int ith=0; ith<30; ith++)
             {
-              if(0.005*ith <= th->GetLeaf("MCHadrons.th")->GetValue(i) && th->GetLeaf("MCHadrons.th")->GetValue(i) < 0.005*(ith+1))
+              if(0.005*ith <= MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i) < 0.005*(ith+1))
               {
                 thbin = ith;
                 break;
               }
             }
 
-            if(0.15<=th->GetLeaf("MCHadrons.th")->GetValue(i)) thbin=30;
+            if(0.15<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i)) thbin=30;
 
             if(0.2<zBj_MC && zBj_MC<0.25) zbin = 0;
             else if(0.25<zBj_MC && zBj_MC<0.30) zbin = 1;
