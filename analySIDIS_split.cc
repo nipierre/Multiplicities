@@ -27,7 +27,7 @@ using namespace std;
 #define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
-#define MUCHARGE_SEPARATION 0
+#define MUCHARGE_SEPARATION 1
 #define MUCHARGE 1
 
 #define IRC 0
@@ -3289,8 +3289,8 @@ int main(int argc, char **argv)
                            fBinning_zvtx[i][j][k][zv].tab[c][0][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][1] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][1][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][2] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][0][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][2] << " " <<
-                           fBinning_zvtx[i][j][k][zv].tab[c][1][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][1][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][1][i][j][k][zv]) << " " <<
-                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][0][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][0][i][j][k][zv]) << " " << endl;
+                           fBinning_zvtx[i][j][k][zv].tab[c][1][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-fCepiVtx[c][1][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-fCepiVtx[c][1][i][j][k][zv]) << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-fCepiVtx[c][0][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-fCepiVtx[c][0][i][j][k][zv]) << " " << endl;
             }
 
         	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
