@@ -1634,7 +1634,7 @@ void MCextraction(string pFilelist)
         if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
         {
           fQ2kinMC[4].push_back(Q2);
-          fXBjkinMC[4].push_back(xBj);
+          // fXBjkinMC[4].push_back(xBj);
           fYBjkinMC[4].push_back(yBj);
           fWBjkinMC[4].push_back(sqrt(wBj));
           fNukinMC[4].push_back(nu);
@@ -1809,7 +1809,7 @@ void MCextraction(string pFilelist)
 
           if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) {thbin=30; Cth[1][30]++;}
 
-          // fXBjkinMC[4].push_back(xBj);
+          fXBjkinMC[4].push_back(xBj);
 
           xh_MCv.push_back(xBj);
           yh_MCv.push_back(yBj);
@@ -2434,7 +2434,7 @@ void RDextraction(string pFilelist)
       if(int(trig&2) || int(trig&4) || int(trig&8) || int(trig&512))
       {
         fQ2kin[4].push_back(Q2);
-        fXBjkin[4].push_back(xBj);
+        // fXBjkin[4].push_back(xBj);
         fYBjkin[4].push_back(yBj);
         fWBjkin[4].push_back(sqrt(wBj));
         fNukin[4].push_back(nu);
@@ -2703,7 +2703,7 @@ void RDextraction(string pFilelist)
 
         if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i)) Cth[0][30]++;
 
-        // fXBjkin[4].push_back(xBj);
+        fXBjkin[4].push_back(xBj);
 
         xhv.push_back(xBj);
         yhv.push_back(yBj);
