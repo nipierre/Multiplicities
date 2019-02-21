@@ -1900,6 +1900,7 @@ void MCextraction(string pFilelist)
             fKinematicsMC[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i),Cthr[thbin]);
             fKinematicsMC[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i),Cthr[thbin]);
             fKinematicsMC[4][17]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
+            fKinematicsMC[4][1]->Fill(xBj,Cthr[thbin]);
             if(fId == 8 || fId == 9) fKinematicsMC[4][18]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
             else fKinematicsMC[4][19]->Fill(z->GetLeaf("z")->GetValue(),Cthr[thbin]);
           }
@@ -1983,7 +1984,7 @@ void MCextraction(string pFilelist)
   }
   for(int i=0; i<int(fXBjkinMC[4].size()); i++)
   {
-    fKinematicsMC[4][1]->Fill(fXBjkinMC[4][i]);
+    // fKinematicsMC[4][1]->Fill(fXBjkinMC[4][i]);
   }
   for(int i=0; i<int(fThetaMCMu[0].size()); i++)
   {
@@ -2791,6 +2792,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[4][14]->Fill(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           fKinematicsRD[4][15]->Fill(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
           fKinematicsRD[4][16]->Fill(pt->GetLeaf("Hadrons.pt")->GetValue(i));
+          fKinematicsRD[4][1]->Fill(xBj);
           fKinematicsRD[4][17]->Fill(z->GetLeaf("z")->GetValue());
           fKinematicsRD[4][18]->Fill(z->GetLeaf("z")->GetValue());
           fKinematicsRD[4][19]->Fill(z->GetLeaf("z")->GetValue());
@@ -2879,7 +2881,7 @@ void RDextraction(string pFilelist)
   }
   for(int i=0; i<int(fXBjkin[4].size()); i++)
   {
-    fKinematicsRD[4][1]->Fill(fXBjkin[4][i]);
+    // fKinematicsRD[4][1]->Fill(fXBjkin[4][i]);
   }
   for(int i=0; i<int(fThetaMu[0].size()); i++)
   {
