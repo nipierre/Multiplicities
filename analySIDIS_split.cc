@@ -2454,13 +2454,13 @@ int main(int argc, char **argv)
               fPiminus_err += pow(res_vect_err[0],2);
               fKminus_err += pow(res_vect_err[1],2);
               fPminus_err += pow(res_vect_err[2],2);
-              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabbin];
-              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabbin];
-              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabbin];
-              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabbin];
-              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabbin];
-              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabbin];
-              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabbin];
+              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
+              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
+              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
+              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
+              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
+              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
+              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
 
               pzcontainer.vec[0][0].push_back(zBj);
               pzcontainer.vec[0][1].push_back(res_vect[0][0]);
