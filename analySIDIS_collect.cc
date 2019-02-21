@@ -61,6 +61,14 @@ void fetch_acceptance(string pname, int np)
           acc_file >> fAcceptance[np][i][j][k].tab[c][1][2];
           acc_file >> fAcceptance[np][i][j][k].tab[c][0][3];
           acc_file >> fAcceptance[np][i][j][k].tab[c][1][3];
+          acc_file >> dummy;
+          acc_file >> dummy;
+          acc_file >> dummy;
+          acc_file >> dummy;
+          acc_file >> dummy;
+          acc_file >> dummy;
+          acc_file >> dummy;
+          acc_file >> dummy;
 #ifdef DEBUG
           cout << fAcceptance[np][i][j][k].tab[c][0][0] << " " <<
           fAcceptance[np][i][j][k].tab[c][1][0] << " " <<
@@ -107,6 +115,14 @@ void fetch_zvtx_acceptance(string pname, int np)
             acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][2];
             acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][3];
             acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][3];
+            acc_file >> dummy;
+            acc_file >> dummy;
+            acc_file >> dummy;
+            acc_file >> dummy;
+            acc_file >> dummy;
+            acc_file >> dummy;
+            acc_file >> dummy;
+            acc_file >> dummy;
 #ifdef DEBUG
             cout << fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0] << " " <<
             fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0] << " " <<
@@ -150,6 +166,14 @@ void fetch_yavg_acceptance(string pname, int np)
         acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][2];
         acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][3];
         acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][3];
+        acc_file >> dummy;
+        acc_file >> dummy;
+        acc_file >> dummy;
+        acc_file >> dummy;
+        acc_file >> dummy;
+        acc_file >> dummy;
+        acc_file >> dummy;
+        acc_file >> dummy;
 #ifdef DEBUG
         cout << fAcceptance_yavg[np][i][k].tab[c][0][0] << " " <<
         fAcceptance_yavg[np][i][k].tab[c][1][0] << " " <<

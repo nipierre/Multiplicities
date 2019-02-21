@@ -32,7 +32,7 @@ int main(int argc, char **argv)
   string cFilelist2 = argv[3];
   string periodName = argv[1];
   int year = 2016;
-  int dummyd;
+  double dummyd;
 
   ifstream list1(cFilelist1.c_str());
   string filename;
@@ -463,8 +463,8 @@ int main(int argc, char **argv)
   ofstream ofs_dmult(Form("acceptance/%d/DIS/DIS_mult_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dmult_zvtx(Form("acceptance/%d/DIS/DIS_mult_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_e(Form("acceptance/%d/electro/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_ezvtx(Form("acceptance/%d/electro/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {

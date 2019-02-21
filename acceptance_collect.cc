@@ -814,8 +814,6 @@ int main(int argc, char **argv)
                 k_err.push_back(fAcceptance[i][j][k].tab[c][m][1][1]);
                 h_err.push_back(fAcceptance[i][j][k].tab[c][m][1][3]);
 
-                ofs_zvtx << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k];
-
                 for(int l=0; l<4; l++)
                 {
                   fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] = ((fNDIS_evt_zvtx[0][m][i][j][k][l] && fNDIS_evt_MC_zvtx[0][m][i][j][k][l] && fGnrt_zvtx[i][j][k][l].tab[c][m][0][0]) ? double((fRcstr_zvtx[i][j][k][l].tab[c][m][0][0]/fNDIS_evt_zvtx[0][m][i][j][k][l])/(fGnrt_zvtx[i][j][k][l].tab[c][m][0][0]/fNDIS_evt_MC_zvtx[0][m][i][j][k][l])) : 0);
@@ -1611,10 +1609,10 @@ int main(int argc, char **argv)
                 }
               }
               c11.Update();
+            }
           }
         }
       }
-    }
 
     TLatex fTitle;
 
@@ -2033,6 +2031,8 @@ int main(int argc, char **argv)
             (fAcceptance[i][j][k].tab[c][0][0][1] ? Double_t((fGnrt[i][j][k].tab[c][0][0][1]/pow(fNDIS_evt_MC[0][0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][0][1],2)/pow(fNDIS_evt_MC[0][0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
             (fAcceptance[i][j][k].tab[c][0][0][2] ? Double_t((fGnrt[i][j][k].tab[c][0][0][2]/pow(fNDIS_evt_MC[0][0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][0][2],2)/pow(fNDIS_evt_MC[0][0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " <<
             (fAcceptance[i][j][k].tab[c][0][0][3] ? Double_t((fGnrt[i][j][k].tab[c][0][0][3]/pow(fNDIS_evt_MC[0][0][i][j][k],2)-pow(fGnrt[i][j][k].tab[c][0][0][3],2)/pow(fNDIS_evt_MC[0][0][i][j][k],3))*pow(fZrange[k],2))  : 0) << " " << endl;
+
+            ofs_zvtx << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k];
 
             for(int l=0; l<4; l++)
             {
