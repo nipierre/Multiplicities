@@ -369,13 +369,13 @@ void LoadElectronCorrection()
       {
         for(int k=0; k<12; k++)
         {
-          ElectronPi >> fCepi[c][1][i][j][k] >> fCepi[c][0][i][j][k];
+          epi >> fCepi[c][1][i][j][k] >> fCepi[c][0][i][j][k];
         }
       }
     }
   }
 
-  ElectronPi.close();
+  epi.close();
   ifstream epiVtx(ElectronPiVtx);
 
   for(int c=0; c<2; c++)
@@ -388,14 +388,14 @@ void LoadElectronCorrection()
         {
           for(int zv=0; zv<4; zv++)
           {
-            ElectronPiVtx >> fCepiVtx[c][1][i][j][k][zv] >> fCepiVtx[c][0][i][j][k][zv];
+            epiVtx >> fCepiVtx[c][1][i][j][k][zv] >> fCepiVtx[c][0][i][j][k][zv];
           }
         }
       }
     }
   }
 
-  ElectronPiVtx.close();
+  epiVtx.close();
 
 }
 
