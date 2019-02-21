@@ -2415,13 +2415,13 @@ int main(int argc, char **argv)
               fPiplus_err += pow(res_vect_err[0],2);
               fKplus_err += pow(res_vect_err[1],2);
               fPplus_err += pow(res_vect_err[2],2);
-              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xbin][ybin][zbin][zlabbin];
-              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xbin][ybin][zbin][zlabbin];
+              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
 
               pzcontainer.vec[1][0].push_back(zBj);
               pzcontainer.vec[1][1].push_back(res_vect[0][0]);
@@ -2454,13 +2454,13 @@ int main(int argc, char **argv)
               fPiminus_err += pow(res_vect_err[0],2);
               fKminus_err += pow(res_vect_err[1],2);
               fPminus_err += pow(res_vect_err[2],2);
-              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
-              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
-              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xbin][ybin][zbin][zlabbin];
+              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
 
               pzcontainer.vec[0][0].push_back(zBj);
               pzcontainer.vec[0][1].push_back(res_vect[0][0]);
@@ -3273,24 +3273,24 @@ int main(int argc, char **argv)
             ofs_d << endl;
             ofs_dzvtx << endl;
 
-            ofs_h << fBinning[i][j][k].tab[c][1][0][0] << " " << fBinning[i][j][k].tab[c][1][1][0] << " " << fBinning_loose[i][j][k].tab[c][1][0][0] << " " << fBinning_severe[i][j][k].tab[c][1][0][0] << " " <<
-                     fBinning[i][j][k].tab[c][0][0][0] << " " << fBinning[i][j][k].tab[c][0][1][0] << " " << fBinning_loose[i][j][k].tab[c][0][0][0] << " " << fBinning_severe[i][j][k].tab[c][0][0][0] << " " <<
+            ofs_h << fBinning[i][j][k].tab[c][1][0][0]*fCepi[c][1][i][j][k] << " " << fBinning[i][j][k].tab[c][1][1][0]*fCepi[c][1][i][j][k] << " " << fBinning_loose[i][j][k].tab[c][1][0][0]*fCepi[c][1][i][j][k] << " " << fBinning_severe[i][j][k].tab[c][1][0][0]*fCepi[c][1][i][j][k] << " " <<
+                     fBinning[i][j][k].tab[c][0][0][0]*fCepi[c][0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][1][0]*fCepi[c][0][i][j][k] << " " << fBinning_loose[i][j][k].tab[c][0][0][0]*fCepi[c][0][i][j][k] << " " << fBinning_severe[i][j][k].tab[c][0][0][0]*fCepi[c][0][i][j][k] << " " <<
                      fBinning[i][j][k].tab[c][1][0][1] << " " << fBinning[i][j][k].tab[c][1][1][1] << " " << fBinning_loose[i][j][k].tab[c][1][0][1] << " " << fBinning_severe[i][j][k].tab[c][1][0][1] << " " <<
                      fBinning[i][j][k].tab[c][0][0][1] << " " << fBinning[i][j][k].tab[c][0][1][1] << " " << fBinning_loose[i][j][k].tab[c][0][0][1] << " " << fBinning_severe[i][j][k].tab[c][0][0][1] << " " <<
                      fBinning[i][j][k].tab[c][1][0][2] << " " << fBinning[i][j][k].tab[c][1][1][2] << " " << fBinning_loose[i][j][k].tab[c][1][0][2] << " " << fBinning_severe[i][j][k].tab[c][1][0][2] << " " <<
                      fBinning[i][j][k].tab[c][0][0][2] << " " << fBinning[i][j][k].tab[c][0][1][2] << " " << fBinning_loose[i][j][k].tab[c][0][0][2] << " " << fBinning_severe[i][j][k].tab[c][0][0][2] << " " <<
-                     fBinning[i][j][k].tab[c][1][0][3] << " " << fBinning[i][j][k].tab[c][1][1][3] << " " << fBinning_loose[i][j][k].tab[c][1][0][3] << " " << fBinning_severe[i][j][k].tab[c][1][0][3] << " " <<
-                     fBinning[i][j][k].tab[c][0][0][3] << " " << fBinning[i][j][k].tab[c][0][1][3] << " " << fBinning_loose[i][j][k].tab[c][0][0][3] << " " << fBinning_severe[i][j][k].tab[c][0][0][3] << " " << endl;
+                     fBinning[i][j][k].tab[c][1][0][3]-fBinning[i][j][k].tab[c][1][0][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning[i][j][k].tab[c][1][1][3]-fBinning[i][j][k].tab[c][1][1][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning_loose[i][j][k].tab[c][1][0][3]-fBinning_loose[i][j][k].tab[c][1][0][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning_severe[i][j][k].tab[c][1][0][3]-fBinning_severe[i][j][k].tab[c][1][0][0]*(1-fCepi[c][1][i][j][k]) << " " <<
+                     fBinning[i][j][k].tab[c][0][0][3]-fBinning[i][j][k].tab[c][0][0][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning[i][j][k].tab[c][0][1][3]-fBinning[i][j][k].tab[c][0][1][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning_loose[i][j][k].tab[c][0][0][3]-fBinning_loose[i][j][k].tab[c][0][0][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning_severe[i][j][k].tab[c][0][0][3]-fBinning_severe[i][j][k].tab[c][0][0][0]*(1-fCepi[c][1][i][j][k]) << " " << endl;
             for(int zv=0; zv<4; zv++)
             {
-              ofs_hzvtx << fBinning_zvtx[i][j][k][zv].tab[c][1][0][0] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][0] << " " <<
-                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][0] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][0] << " " <<
+              ofs_hzvtx << fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*fCepiVtx[c][1][i][j][k][zv] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][0]*fCepiVtx[c][1][i][j][k][zv] << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][0]*fCepiVtx[c][0][i][j][k][zv] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][0]*fCepiVtx[c][0][i][j][k][zv] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][1][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][1] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][0][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][1] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][1][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][2] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][0][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][2] << " " <<
-                           fBinning_zvtx[i][j][k][zv].tab[c][1][0][3] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][3] << " " <<
-                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][3] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][3] << " " << endl;
+                           fBinning_zvtx[i][j][k][zv].tab[c][1][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][1][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][1][i][j][k][zv]) << " " <<
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][0][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-*fCepiVtx[c][0][i][j][k][zv]) << " " << endl;
             }
 
         	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
