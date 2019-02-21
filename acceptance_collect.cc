@@ -31,7 +31,7 @@ LOG
 #define SPREAD 1
 
 // Outputs
-#if CLUSTER == BW
+#if BW
 #define dirroot "/u/sciteam/pierre1/production/software/Multiplicities/acceptance"
 #else
 #define dirroot "/sps/compass/npierre/Multiplicities/acceptance"
