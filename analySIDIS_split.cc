@@ -359,7 +359,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
 
 void LoadElectronCorrection()
 {
-  ifstream ElectronPi(ElectronPi);
+  ifstream epi(ElectronPi);
 
   for(int c=0; c<2; c++)
   {
@@ -376,7 +376,7 @@ void LoadElectronCorrection()
   }
 
   ElectronPi.close();
-  ifstream ElectronPiVtx(ElectronPiVtx);
+  ifstream epiVtx(ElectronPiVtx);
 
   for(int c=0; c<2; c++)
   {
