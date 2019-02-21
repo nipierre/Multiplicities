@@ -370,7 +370,7 @@ void LoadElectronCorrection()
         for(int k=0; k<12; k++)
         {
           epi >> fCepi[c][1][i][j][k] >> fCepi[c][0][i][j][k];
-          cout << fCepi[c][1][i][j][k] << " " << fCepi[c][0][i][j][k] << endl;
+          // cout << fCepi[c][1][i][j][k] << " " << fCepi[c][0][i][j][k] << endl;
         }
       }
     }
@@ -390,7 +390,7 @@ void LoadElectronCorrection()
           for(int zv=0; zv<4; zv++)
           {
             epiVtx >> fCepiVtx[c][1][i][j][k][zv] >> fCepiVtx[c][0][i][j][k][zv];
-            cout << fCepiVtx[c][1][i][j][k][zv] << " " << fCepiVtx[c][0][i][j][k][zv] << endl;
+            // cout << fCepiVtx[c][1][i][j][k][zv] << " " << fCepiVtx[c][0][i][j][k][zv] << endl;
           }
         }
       }
@@ -1323,6 +1323,7 @@ int main(int argc, char **argv)
 
   LoadInclusiveRadiativeCorrection();
   LoadSemiInclusiveRadiativeCorrection();
+  LoadElectronCorrection();
 
   //----------------------------------------------------------------------------
   //--------- nu cut prep ------------------------------------------------------
