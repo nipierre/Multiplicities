@@ -10,6 +10,8 @@ using namespace std;
 #define target_file_2016 "data/target-274508-274901.dat"
 #define proton_sirc "data/proton_semi_inclusive_RC.txt"
 #define proton_irc "data/hh160_r1998_f2tulay_compass_grv.asy_hcorr.txt"
+#define ElectronPi "data/electron_pion_contamination.txt"
+#define ElectronPiVtx "data/electron_pion_contaminatio_vtx.txt"
 
 //User dependant input
 #define data_path "/sps/compass/npierre"
@@ -25,7 +27,7 @@ using namespace std;
 #define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
-#define MUCHARGE_SEPARATION 1
+#define MUCHARGE_SEPARATION 0
 #define MUCHARGE 1
 
 #define IRC 0
@@ -353,6 +355,48 @@ Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
     cout << "ERROR in GetSemiInclusiveRadiativeCorrection : Year not recognized. No correction applied." << endl;
     return 1;
   }
+}
+
+void LoadElectronCorrection()
+{
+  ifstream ElectronPi(ElectronPi);
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          ElectronPi >> fCepi[c][1][i][j][k] >> fCepi[c][0][i][j][k];
+        }
+      }
+    }
+  }
+
+  ElectronPi.close();
+  ifstream ElectronPiVtx(ElectronPiVtx);
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int zv=0; zv<4; zv++)
+          {
+            ElectronPiVtx >> fCepiVtx[c][1][i][j][k][zv] >> fCepiVtx[c][0][i][j][k][zv];
+          }
+        }
+      }
+    }
+  }
+
+  ElectronPiVtx.close();
+
 }
 
 void load_rich_mat_2006(string prich, string prich_err)
@@ -2371,13 +2415,13 @@ int main(int argc, char **argv)
               fPiplus_err += pow(res_vect_err[0],2);
               fKplus_err += pow(res_vect_err[1],2);
               fPplus_err += pow(res_vect_err[2],2);
-              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xBj][yBj][zBj][zlabin];
+              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[1][fMuCharge][xBj][yBj][zBj][zlabin];
 
               pzcontainer.vec[1][0].push_back(zBj);
               pzcontainer.vec[1][1].push_back(res_vect[0][0]);
@@ -2410,13 +2454,13 @@ int main(int argc, char **argv)
               fPiminus_err += pow(res_vect_err[0],2);
               fKminus_err += pow(res_vect_err[1],2);
               fPminus_err += pow(res_vect_err[2],2);
-              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
-              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj);
+              res_vect[0][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect[1][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect[2][0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect_err[0] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect_err[1] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabin];
+              res_vect_err[2] *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabin];
+              hadron_nb *= GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj)*fCepiVtx[0][fMuCharge][xBj][yBj][zBj][zlabin];
 
               pzcontainer.vec[0][0].push_back(zBj);
               pzcontainer.vec[0][1].push_back(res_vect[0][0]);

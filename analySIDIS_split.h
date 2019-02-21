@@ -195,6 +195,9 @@ vector<string> fPeriodName;
 Double_t fInclusiveRCproton[30][19];
 Double_t fSemiInclusiveRCproton[9][6][14];
 
+Double_t fCepi[2][2][9][6][12];
+Double_t fCepiVtx[2][2][9][6][12][4];
+
 //Binning
 Wrapper fBinning[9][6][12];
 Wrapper fBinning_zvtx[9][6][12][4];
