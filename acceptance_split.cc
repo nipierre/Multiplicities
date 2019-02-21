@@ -2810,12 +2810,22 @@ int main(int argc, char **argv)
             else if(fId==8)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
+              fHminus++; fPiminus++;
+              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1*Cth[thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1*Cth[thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[thbin];
               fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1*Cth[thbin];
               fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][4] += 1*Cth[thbin];
             }
             else if(fId==9)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
+              fHplus++; fPiplus++;
+              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1*Cth[thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1*Cth[thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[thbin];
               fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1*Cth[thbin];
               fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][4] += 1*Cth[thbin];
             }
