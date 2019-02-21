@@ -1337,281 +1337,280 @@ int main(int argc, char **argv)
                 }
               }
             }
-          }
 
-          for(int k=0; k<12; k++)
-          {
-            yavg(c,i,k);
-
-            fAcceptance_yavg[i][k].tab[c][m][0][0] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg[m][0]) ? double((fRcstr_yavg[m][0]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][0]/fNDIS_evt_MC_yavg[m][0])) : 0);
-            fAcceptance_yavg[i][k].tab[c][m][0][1] = ((fNDIS_evt_yavg[m][1] && fNDIS_evt_MC_yavg[m][1] && fGnrt_yavg[m][1]) ? double((fRcstr_yavg[m][1]/fNDIS_evt_yavg[m][1])/(fGnrt_yavg[m][1]/fNDIS_evt_MC_yavg[m][1])) : 0);
-            fAcceptance_yavg[i][k].tab[c][m][0][2] = ((fNDIS_evt_yavg[m][2] && fNDIS_evt_MC_yavg[m][2] && fGnrt_yavg[m][2]) ? double((fRcstr_yavg[m][2]/fNDIS_evt_yavg[m][2])/(fGnrt_yavg[m][2]/fNDIS_evt_MC_yavg[m][2])) : 0);
-            fAcceptance_yavg[i][k].tab[c][m][0][3] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg[m][3]) ? double((fRcstr_yavg[m][3]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][3]/fNDIS_evt_MC_yavg[m][0])) : 0);
-
-            if(fAcceptance_yavg[i][k].tab[c][m][0][0]<0) fAcceptance_yavg[i][k].tab[c][m][0][0]=0;
-            if(fAcceptance_yavg[i][k].tab[c][m][0][1]<0) fAcceptance_yavg[i][k].tab[c][m][0][1]=0;
-            if(fAcceptance_yavg[i][k].tab[c][m][0][2]<0) fAcceptance_yavg[i][k].tab[c][m][0][2]=0;
-            if(fAcceptance_yavg[i][k].tab[c][m][0][3]<0) fAcceptance_yavg[i][k].tab[c][m][0][3]=0;
-
-            double rd_prime[3];
-            double rd[3];
-            double gd[3];
-            double rh_prime[4];
-            double rh[4];
-            double gh[4];
-
-            rd_prime[0] = fNDIS_evt_yavg[m][0] - fNDIS_evt_c_yavg[m][0];
-            rd_prime[1] = fNDIS_evt_yavg[m][1] - fNDIS_evt_c_yavg[m][1];
-            rd_prime[2] = fNDIS_evt_yavg[m][2] - fNDIS_evt_c_yavg[m][2];
-
-            rd[0] = fNDIS_evt_c_yavg[m][0];
-            rd[1] = fNDIS_evt_c_yavg[m][1];
-            rd[2] = fNDIS_evt_c_yavg[m][2];
-
-            gd[0] = fNDIS_evt_MC_yavg[m][0];
-            gd[1] = fNDIS_evt_MC_yavg[m][1];
-            gd[2] = fNDIS_evt_MC_yavg[m][2];
-
-            rh_prime[0] = fRcstr_yavg[m][0] - fRcstr_c_yavg[m][0];
-            rh_prime[1] = fRcstr_yavg[m][1] - fRcstr_c_yavg[m][1];
-            rh_prime[2] = fRcstr_yavg[m][2] - fRcstr_c_yavg[m][2];
-            rh_prime[3] = fRcstr_yavg[m][3] - fRcstr_c_yavg[m][3];
-
-            rh[0] = fRcstr_c_yavg[m][0];
-            rh[1] = fRcstr_c_yavg[m][1];
-            rh[2] = fRcstr_c_yavg[m][2];
-            rh[3] = fRcstr_c_yavg[m][3];
-
-            gh[0] = fGnrt_yavg[m][0];
-            gh[1] = fGnrt_yavg[m][1];
-            gh[2] = fGnrt_yavg[m][2];
-            gh[3] = fGnrt_yavg[m][3];
-
-            fAcceptance_yavg[i][k].tab[c][m][1][0] = sqrt(((rh[0]>0 && gh[0]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
-                                                                                *((rh[0]+1)*(gh[0]-rh[0]+1)/(pow(gh[0]+2,2)*(gh[0]+3))+rh_prime[0]/pow(gh[0],2)+pow(rh_prime[0],2)/pow(gh[0],3))
-                                                                                +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[0]+rh_prime[0])/gh[0],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
-            fAcceptance_yavg[i][k].tab[c][m][1][1] = sqrt(((rh[1]>0 && gh[1]>0 && gd[1]>0 && ((rd[1]+rd_prime[1])!=0)) ? double(pow(gd[1]/(rd_prime[1]+rd[1]),2)
-                                                                                *((rh[1]+1)*(gh[1]-rh[1]+1)/(pow(gh[1]+2,2)*(gh[1]+3))+rh_prime[1]/pow(gh[1],2)+pow(rh_prime[1],2)/pow(gh[1],3))
-                                                                                +pow(gd[1]/(rd[1]+rd_prime[1]),4)*pow((rh[1]+rh_prime[1])/gh[1],2)*((rd[1]+1)*(gd[1]-rd[1]+1)/(pow(gd[1]+2,2)*(gd[1]+3))+rd_prime[1]/pow(gd[1],2)+pow(rd_prime[1],2)/pow(gd[1],3))) : 0));
-            fAcceptance_yavg[i][k].tab[c][m][1][2] = sqrt(((rh[2]>0 && gh[2]>0 && gd[2]>0 && ((rd[2]+rd_prime[2])!=0)) ? double(pow(gd[2]/(rd_prime[2]+rd[2]),2)
-                                                                                *((rh[2]+1)*(gh[2]-rh[2]+1)/(pow(gh[2]+2,2)*(gh[2]+3))+rh_prime[2]/pow(gh[2],2)+pow(rh_prime[2],2)/pow(gh[2],3))
-                                                                                +pow(gd[2]/(rd[2]+rd_prime[2]),4)*pow((rh[2]+rh_prime[2])/gh[2],2)*((rd[2]+1)*(gd[2]-rd[2]+1)/(pow(gd[2]+2,2)*(gd[2]+3))+rd_prime[2]/pow(gd[2],2)+pow(rd_prime[2],2)/pow(gd[2],3))) : 0));
-            fAcceptance_yavg[i][k].tab[c][m][1][3] = sqrt(((rh[3]>0 && gh[3]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
-                                                                                *((rh[3]+1)*(gh[3]-rh[3]+1)/(pow(gh[3]+2,2)*(gh[3]+3))+rh_prime[3]/pow(gh[3],2)+pow(rh_prime[3],2)/pow(gh[3],3))
-                                                                                +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[3]+rh_prime[3])/gh[3],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
-
-            if(fAcceptance_yavg[i][k].tab[c][m][0][0]==0) fAcceptance_yavg[i][k].tab[c][m][1][0]=0;
-            if(fAcceptance_yavg[i][k].tab[c][m][0][1]==0) fAcceptance_yavg[i][k].tab[c][m][1][1]=0;
-            if(fAcceptance_yavg[i][k].tab[c][m][0][2]==0) fAcceptance_yavg[i][k].tab[c][m][1][2]=0;
-            if(fAcceptance_yavg[i][k].tab[c][m][0][3]==0) fAcceptance_yavg[i][k].tab[c][m][1][3]=0;
-
-            p_y.push_back(fAcceptance_yavg[i][k].tab[c][m][0][0]);
-            k_y.push_back(fAcceptance_yavg[i][k].tab[c][m][0][1]);
-            h_y.push_back(fAcceptance_yavg[i][k].tab[c][m][0][3]);
-
-            p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][m][1][0]);
-            k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][m][1][1]);
-            h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][m][1][3]);
-          }
-
-          for(int k=12; k>0; k--)
-          {
-            if(!p_y[k-1]) {p_y.erase(p_y.begin()+k-1); p_y_err.erase(p_y_err.begin()+k-1); z_range_p_y.erase(z_range_p_y.begin()+k-1);}
-            if(!k_y[k-1]) {k_y.erase(k_y.begin()+k-1); k_y_err.erase(k_y_err.begin()+k-1); z_range_k_y.erase(z_range_k_y.begin()+k-1);}
-            if(!h_y[k-1]) {h_y.erase(h_y.begin()+k-1); h_y_err.erase(h_y_err.begin()+k-1); z_range_h_y.erase(z_range_h_y.begin()+k-1);}
-          }
-
-          bool p_y_empty = 0;
-          bool k_y_empty = 0;
-          bool h_y_empty = 0;
-
-          if(!(int(p_y.size()))) p_y_empty = 1;
-          if(!(int(k_y.size()))) k_y_empty = 1;
-          if(!(int(h_y.size()))) h_y_empty = 1;
-
-          H_y[c][i][m] = new TGraphErrors(int(h_y.size()),&(z_range_h_y[0]),&(h_y[0]),0,&(h_y_err[0]));
-          P_y[c][i][m] = new TGraphErrors(int(p_y.size()),&(z_range_p_y[0]),&(p_y[0]),0,&(p_y_err[0]));
-          K_y[c][i][m] = new TGraphErrors(int(k_y.size()),&(z_range_k_y[0]),&(k_y[0]),0,&(k_y_err[0]));
-
-          if(!c)
-          {
-            H_y[c][i][m]->SetMarkerColor(fMarkerColor[4]);
-            P_y[c][i][m]->SetMarkerColor(fMarkerColor[4]);
-            K_y[c][i][m]->SetMarkerColor(fMarkerColor[4]);
-          }
-          else
-          {
-            H_y[c][i][m]->SetMarkerColor(fMarkerColor[0]);
-            P_y[c][i][m]->SetMarkerColor(fMarkerColor[0]);
-            K_y[c][i][m]->SetMarkerColor(fMarkerColor[0]);
-          }
-
-          H_y[c][i][m]->SetMarkerSize(3);
-          P_y[c][i][m]->SetMarkerSize(3);
-          K_y[c][i][m]->SetMarkerSize(3);
-
-          if(!m)
-          {
-            H_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
-            P_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
-            K_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
-          }
-          else
-          {
-            H_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
-            P_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
-            K_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
-          }
-
-          H_y[c][i][m]->GetYaxis()->SetTitle("");
-          P_y[c][i][m]->GetYaxis()->SetTitle("");
-          K_y[c][i][m]->GetYaxis()->SetTitle("");
-
-          H_y[c][i][m]->GetXaxis()->SetTitle("");
-          P_y[c][i][m]->GetXaxis()->SetTitle("");
-          K_y[c][i][m]->GetXaxis()->SetTitle("");
-
-          H_y[c][i][m]->SetTitle("");
-          P_y[c][i][m]->SetTitle("");
-          K_y[c][i][m]->SetTitle("");
-
-          if(!h_y_empty)
-          {
-            c9.cd(i+1);
-            gPad->SetFillStyle(4000);
-            if(H_y[c][i][m])
+            for(int k=0; k<12; k++)
             {
-              if(!c && !m)
-              {
-                H_y[c][i][m]->Draw("SAMEPA");
-                H_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                H_y[c][i][m]->SetMinimum(0.);
-                H_y[c][i][m]->SetMaximum(1.2);
-                H_y[c][i][m]->GetXaxis()->SetLabelSize(0.06);
-                H_y[c][i][m]->GetYaxis()->SetLabelSize(0.06);
-                H_y[c][i][m]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
-                {
-                  H_y[c][i][m]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  H_y[c][i][m]->GetXaxis()->SetTitleSize(0.08);
-                  H_y[c][i][m]->GetXaxis()->SetTitleOffset(.8);
-                }
-                H_y[c][i][m]->GetXaxis()->SetNdivisions(304,kTRUE);
-                H_y[c][i][m]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
-                {
-                  H_y[c][i][m]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
-                  H_y[c][i][m]->GetYaxis()->SetTitleSize(0.08);
-                }
-                H_y[c][i][m]->Draw("SAMEP");
-                H_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                H_y[c][i][m]->SetMinimum(0.);
-                H_y[c][i][m]->SetMaximum(1.2);
-                c9.Range(0.1,0.,0.9,1.2);
-              }
-              else
-              {
-                H_y[c][i][m]->Draw("SAMEP");
-                H_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                H_y[c][i][m]->SetMinimum(0.);
-                H_y[c][i][m]->SetMaximum(1.2);
-              }
-            }
-            c9.Update();
-          }
+              yavg(c,i,k);
 
-          if(!p_y_empty)
-          {
-            c10.cd(i+1);
-            if(P_y[c][i][m])
-            {
-              if(!c && !m)
-              {
-                P_y[c][i][m]->Draw("SAMEPA");
-                P_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                P_y[c][i][m]->SetMinimum(0.);
-                P_y[c][i][m]->SetMaximum(1.2);
-                P_y[c][i][m]->GetXaxis()->SetLabelSize(0.06);
-                P_y[c][i][m]->GetYaxis()->SetLabelSize(0.06);
-                P_y[c][i][m]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
-                {
-                  P_y[c][i][m]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  P_y[c][i][m]->GetXaxis()->SetTitleSize(0.08);
-                  P_y[c][i][m]->GetXaxis()->SetTitleOffset(.8);
-                }
-                P_y[c][i][m]->GetXaxis()->SetNdivisions(304,kTRUE);
-                P_y[c][i][m]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
-                {
-                  P_y[c][i][m]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
-                  P_y[c][i][m]->GetYaxis()->SetTitleSize(0.08);
-                }
-                P_y[c][i][m]->Draw("SAMEP");
-                P_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                P_y[c][i][m]->SetMinimum(0.);
-                P_y[c][i][m]->SetMaximum(1.2);
-                c10.Range(0.,0.,1.,1.2);
-              }
-              else
-              {
-                P_y[c][i][m]->Draw("SAMEP");
-                P_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                P_y[c][i][m]->SetMinimum(0.);
-                P_y[c][i][m]->SetMaximum(1.2);
-              }
-            }
-            c10.Update();
-          }
+              fAcceptance_yavg[i][k].tab[c][m][0][0] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg[m][0]) ? double((fRcstr_yavg[m][0]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][0]/fNDIS_evt_MC_yavg[m][0])) : 0);
+              fAcceptance_yavg[i][k].tab[c][m][0][1] = ((fNDIS_evt_yavg[m][1] && fNDIS_evt_MC_yavg[m][1] && fGnrt_yavg[m][1]) ? double((fRcstr_yavg[m][1]/fNDIS_evt_yavg[m][1])/(fGnrt_yavg[m][1]/fNDIS_evt_MC_yavg[m][1])) : 0);
+              fAcceptance_yavg[i][k].tab[c][m][0][2] = ((fNDIS_evt_yavg[m][2] && fNDIS_evt_MC_yavg[m][2] && fGnrt_yavg[m][2]) ? double((fRcstr_yavg[m][2]/fNDIS_evt_yavg[m][2])/(fGnrt_yavg[m][2]/fNDIS_evt_MC_yavg[m][2])) : 0);
+              fAcceptance_yavg[i][k].tab[c][m][0][3] = ((fNDIS_evt_yavg[m][0] && fNDIS_evt_MC_yavg[m][0] && fGnrt_yavg[m][3]) ? double((fRcstr_yavg[m][3]/fNDIS_evt_yavg[m][0])/(fGnrt_yavg[m][3]/fNDIS_evt_MC_yavg[m][0])) : 0);
 
-          if(!k_y_empty)
-          {
-            c11.cd(i+1);
-            if(K_y[c][i][m])
-            {
-              if(!c && !m)
-              {
-                K_y[c][i][m]->Draw("SAMEPA");
-                K_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                K_y[c][i][m]->SetMinimum(0.);
-                K_y[c][i][m]->SetMaximum(1.2);
-                K_y[c][i][m]->GetXaxis()->SetLabelSize(0.06);
-                K_y[c][i][m]->GetYaxis()->SetLabelSize(0.06);
-                K_y[c][i][m]->SetTitle("");
-                if(i>4) gPad->SetBottomMargin(.15);
-                if(i==0 || i==5) gPad->SetLeftMargin(.22);
-                if(i==8)
-                {
-                  K_y[c][i][m]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                  K_y[c][i][m]->GetXaxis()->SetTitleSize(0.08);
-                  K_y[c][i][m]->GetXaxis()->SetTitleOffset(.8);
-                }
-                K_y[c][i][m]->GetXaxis()->SetNdivisions(304,kTRUE);
-                K_y[c][i][m]->GetYaxis()->SetNdivisions(304,kTRUE);
-                if(i==0)
-                {
-                  K_y[c][i][m]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
-                  K_y[c][i][m]->GetYaxis()->SetTitleSize(0.08);
-                }
-                K_y[c][i][m]->Draw("SAMEP");
-                K_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                K_y[c][i][m]->SetMinimum(0.);
-                K_y[c][i][m]->SetMaximum(1.2);
-                c11.Range(0.,0.,1.,1.2);
-              }
-              else
-              {
-                K_y[c][i][m]->Draw("SAMEP");
-                K_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
-                K_y[c][i][m]->SetMinimum(0.);
-                K_y[c][i][m]->SetMaximum(1.2);
-              }
+              if(fAcceptance_yavg[i][k].tab[c][m][0][0]<0) fAcceptance_yavg[i][k].tab[c][m][0][0]=0;
+              if(fAcceptance_yavg[i][k].tab[c][m][0][1]<0) fAcceptance_yavg[i][k].tab[c][m][0][1]=0;
+              if(fAcceptance_yavg[i][k].tab[c][m][0][2]<0) fAcceptance_yavg[i][k].tab[c][m][0][2]=0;
+              if(fAcceptance_yavg[i][k].tab[c][m][0][3]<0) fAcceptance_yavg[i][k].tab[c][m][0][3]=0;
+
+              double rd_prime[3];
+              double rd[3];
+              double gd[3];
+              double rh_prime[4];
+              double rh[4];
+              double gh[4];
+
+              rd_prime[0] = fNDIS_evt_yavg[m][0] - fNDIS_evt_c_yavg[m][0];
+              rd_prime[1] = fNDIS_evt_yavg[m][1] - fNDIS_evt_c_yavg[m][1];
+              rd_prime[2] = fNDIS_evt_yavg[m][2] - fNDIS_evt_c_yavg[m][2];
+
+              rd[0] = fNDIS_evt_c_yavg[m][0];
+              rd[1] = fNDIS_evt_c_yavg[m][1];
+              rd[2] = fNDIS_evt_c_yavg[m][2];
+
+              gd[0] = fNDIS_evt_MC_yavg[m][0];
+              gd[1] = fNDIS_evt_MC_yavg[m][1];
+              gd[2] = fNDIS_evt_MC_yavg[m][2];
+
+              rh_prime[0] = fRcstr_yavg[m][0] - fRcstr_c_yavg[m][0];
+              rh_prime[1] = fRcstr_yavg[m][1] - fRcstr_c_yavg[m][1];
+              rh_prime[2] = fRcstr_yavg[m][2] - fRcstr_c_yavg[m][2];
+              rh_prime[3] = fRcstr_yavg[m][3] - fRcstr_c_yavg[m][3];
+
+              rh[0] = fRcstr_c_yavg[m][0];
+              rh[1] = fRcstr_c_yavg[m][1];
+              rh[2] = fRcstr_c_yavg[m][2];
+              rh[3] = fRcstr_c_yavg[m][3];
+
+              gh[0] = fGnrt_yavg[m][0];
+              gh[1] = fGnrt_yavg[m][1];
+              gh[2] = fGnrt_yavg[m][2];
+              gh[3] = fGnrt_yavg[m][3];
+
+              fAcceptance_yavg[i][k].tab[c][m][1][0] = sqrt(((rh[0]>0 && gh[0]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+                                                                                  *((rh[0]+1)*(gh[0]-rh[0]+1)/(pow(gh[0]+2,2)*(gh[0]+3))+rh_prime[0]/pow(gh[0],2)+pow(rh_prime[0],2)/pow(gh[0],3))
+                                                                                  +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[0]+rh_prime[0])/gh[0],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
+              fAcceptance_yavg[i][k].tab[c][m][1][1] = sqrt(((rh[1]>0 && gh[1]>0 && gd[1]>0 && ((rd[1]+rd_prime[1])!=0)) ? double(pow(gd[1]/(rd_prime[1]+rd[1]),2)
+                                                                                  *((rh[1]+1)*(gh[1]-rh[1]+1)/(pow(gh[1]+2,2)*(gh[1]+3))+rh_prime[1]/pow(gh[1],2)+pow(rh_prime[1],2)/pow(gh[1],3))
+                                                                                  +pow(gd[1]/(rd[1]+rd_prime[1]),4)*pow((rh[1]+rh_prime[1])/gh[1],2)*((rd[1]+1)*(gd[1]-rd[1]+1)/(pow(gd[1]+2,2)*(gd[1]+3))+rd_prime[1]/pow(gd[1],2)+pow(rd_prime[1],2)/pow(gd[1],3))) : 0));
+              fAcceptance_yavg[i][k].tab[c][m][1][2] = sqrt(((rh[2]>0 && gh[2]>0 && gd[2]>0 && ((rd[2]+rd_prime[2])!=0)) ? double(pow(gd[2]/(rd_prime[2]+rd[2]),2)
+                                                                                  *((rh[2]+1)*(gh[2]-rh[2]+1)/(pow(gh[2]+2,2)*(gh[2]+3))+rh_prime[2]/pow(gh[2],2)+pow(rh_prime[2],2)/pow(gh[2],3))
+                                                                                  +pow(gd[2]/(rd[2]+rd_prime[2]),4)*pow((rh[2]+rh_prime[2])/gh[2],2)*((rd[2]+1)*(gd[2]-rd[2]+1)/(pow(gd[2]+2,2)*(gd[2]+3))+rd_prime[2]/pow(gd[2],2)+pow(rd_prime[2],2)/pow(gd[2],3))) : 0));
+              fAcceptance_yavg[i][k].tab[c][m][1][3] = sqrt(((rh[3]>0 && gh[3]>0 && gd[0]>0 && ((rd[0]+rd_prime[0])!=0)) ? double(pow(gd[0]/(rd_prime[0]+rd[0]),2)
+                                                                                  *((rh[3]+1)*(gh[3]-rh[3]+1)/(pow(gh[3]+2,2)*(gh[3]+3))+rh_prime[3]/pow(gh[3],2)+pow(rh_prime[3],2)/pow(gh[3],3))
+                                                                                  +pow(gd[0]/(rd[0]+rd_prime[0]),4)*pow((rh[3]+rh_prime[3])/gh[3],2)*((rd[0]+1)*(gd[0]-rd[0]+1)/(pow(gd[0]+2,2)*(gd[0]+3))+rd_prime[0]/pow(gd[0],2)+pow(rd_prime[0],2)/pow(gd[0],3))) : 0));
+
+              if(fAcceptance_yavg[i][k].tab[c][m][0][0]==0) fAcceptance_yavg[i][k].tab[c][m][1][0]=0;
+              if(fAcceptance_yavg[i][k].tab[c][m][0][1]==0) fAcceptance_yavg[i][k].tab[c][m][1][1]=0;
+              if(fAcceptance_yavg[i][k].tab[c][m][0][2]==0) fAcceptance_yavg[i][k].tab[c][m][1][2]=0;
+              if(fAcceptance_yavg[i][k].tab[c][m][0][3]==0) fAcceptance_yavg[i][k].tab[c][m][1][3]=0;
+
+              p_y.push_back(fAcceptance_yavg[i][k].tab[c][m][0][0]);
+              k_y.push_back(fAcceptance_yavg[i][k].tab[c][m][0][1]);
+              h_y.push_back(fAcceptance_yavg[i][k].tab[c][m][0][3]);
+
+              p_y_err.push_back(fAcceptance_yavg[i][k].tab[c][m][1][0]);
+              k_y_err.push_back(fAcceptance_yavg[i][k].tab[c][m][1][1]);
+              h_y_err.push_back(fAcceptance_yavg[i][k].tab[c][m][1][3]);
             }
-            c11.Update();
+
+            for(int k=12; k>0; k--)
+            {
+              if(!p_y[k-1]) {p_y.erase(p_y.begin()+k-1); p_y_err.erase(p_y_err.begin()+k-1); z_range_p_y.erase(z_range_p_y.begin()+k-1);}
+              if(!k_y[k-1]) {k_y.erase(k_y.begin()+k-1); k_y_err.erase(k_y_err.begin()+k-1); z_range_k_y.erase(z_range_k_y.begin()+k-1);}
+              if(!h_y[k-1]) {h_y.erase(h_y.begin()+k-1); h_y_err.erase(h_y_err.begin()+k-1); z_range_h_y.erase(z_range_h_y.begin()+k-1);}
+            }
+
+            bool p_y_empty = 0;
+            bool k_y_empty = 0;
+            bool h_y_empty = 0;
+
+            if(!(int(p_y.size()))) p_y_empty = 1;
+            if(!(int(k_y.size()))) k_y_empty = 1;
+            if(!(int(h_y.size()))) h_y_empty = 1;
+
+            H_y[c][i][m] = new TGraphErrors(int(h_y.size()),&(z_range_h_y[0]),&(h_y[0]),0,&(h_y_err[0]));
+            P_y[c][i][m] = new TGraphErrors(int(p_y.size()),&(z_range_p_y[0]),&(p_y[0]),0,&(p_y_err[0]));
+            K_y[c][i][m] = new TGraphErrors(int(k_y.size()),&(z_range_k_y[0]),&(k_y[0]),0,&(k_y_err[0]));
+
+            if(!c)
+            {
+              H_y[c][i][m]->SetMarkerColor(fMarkerColor[4]);
+              P_y[c][i][m]->SetMarkerColor(fMarkerColor[4]);
+              K_y[c][i][m]->SetMarkerColor(fMarkerColor[4]);
+            }
+            else
+            {
+              H_y[c][i][m]->SetMarkerColor(fMarkerColor[0]);
+              P_y[c][i][m]->SetMarkerColor(fMarkerColor[0]);
+              K_y[c][i][m]->SetMarkerColor(fMarkerColor[0]);
+            }
+
+            H_y[c][i][m]->SetMarkerSize(3);
+            P_y[c][i][m]->SetMarkerSize(3);
+            K_y[c][i][m]->SetMarkerSize(3);
+
+            if(!m)
+            {
+              H_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+              P_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+              K_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[1][c]);
+            }
+            else
+            {
+              H_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+              P_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+              K_y[c][i][m]->SetMarkerStyle(fMarkerStyleb[0][c]);
+            }
+
+            H_y[c][i][m]->GetYaxis()->SetTitle("");
+            P_y[c][i][m]->GetYaxis()->SetTitle("");
+            K_y[c][i][m]->GetYaxis()->SetTitle("");
+
+            H_y[c][i][m]->GetXaxis()->SetTitle("");
+            P_y[c][i][m]->GetXaxis()->SetTitle("");
+            K_y[c][i][m]->GetXaxis()->SetTitle("");
+
+            H_y[c][i][m]->SetTitle("");
+            P_y[c][i][m]->SetTitle("");
+            K_y[c][i][m]->SetTitle("");
+
+            if(!h_y_empty)
+            {
+              c9.cd(i+1);
+              gPad->SetFillStyle(4000);
+              if(H_y[c][i][m])
+              {
+                if(!c && !m)
+                {
+                  H_y[c][i][m]->Draw("SAMEPA");
+                  H_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_y[c][i][m]->SetMinimum(0.);
+                  H_y[c][i][m]->SetMaximum(1.2);
+                  H_y[c][i][m]->GetXaxis()->SetLabelSize(0.06);
+                  H_y[c][i][m]->GetYaxis()->SetLabelSize(0.06);
+                  H_y[c][i][m]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                  if(i==8)
+                  {
+                    H_y[c][i][m]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    H_y[c][i][m]->GetXaxis()->SetTitleSize(0.08);
+                    H_y[c][i][m]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  H_y[c][i][m]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  H_y[c][i][m]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==0)
+                  {
+                    H_y[c][i][m]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{h}}");
+                    H_y[c][i][m]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  H_y[c][i][m]->Draw("SAMEP");
+                  H_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_y[c][i][m]->SetMinimum(0.);
+                  H_y[c][i][m]->SetMaximum(1.2);
+                  c9.Range(0.1,0.,0.9,1.2);
+                }
+                else
+                {
+                  H_y[c][i][m]->Draw("SAMEP");
+                  H_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  H_y[c][i][m]->SetMinimum(0.);
+                  H_y[c][i][m]->SetMaximum(1.2);
+                }
+              }
+              c9.Update();
+            }
+
+            if(!p_y_empty)
+            {
+              c10.cd(i+1);
+              if(P_y[c][i][m])
+              {
+                if(!c && !m)
+                {
+                  P_y[c][i][m]->Draw("SAMEPA");
+                  P_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_y[c][i][m]->SetMinimum(0.);
+                  P_y[c][i][m]->SetMaximum(1.2);
+                  P_y[c][i][m]->GetXaxis()->SetLabelSize(0.06);
+                  P_y[c][i][m]->GetYaxis()->SetLabelSize(0.06);
+                  P_y[c][i][m]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                  if(i==8)
+                  {
+                    P_y[c][i][m]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    P_y[c][i][m]->GetXaxis()->SetTitleSize(0.08);
+                    P_y[c][i][m]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  P_y[c][i][m]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  P_y[c][i][m]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==0)
+                  {
+                    P_y[c][i][m]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{#pi}}");
+                    P_y[c][i][m]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  P_y[c][i][m]->Draw("SAMEP");
+                  P_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_y[c][i][m]->SetMinimum(0.);
+                  P_y[c][i][m]->SetMaximum(1.2);
+                  c10.Range(0.,0.,1.,1.2);
+                }
+                else
+                {
+                  P_y[c][i][m]->Draw("SAMEP");
+                  P_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  P_y[c][i][m]->SetMinimum(0.);
+                  P_y[c][i][m]->SetMaximum(1.2);
+                }
+              }
+              c10.Update();
+            }
+
+            if(!k_y_empty)
+            {
+              c11.cd(i+1);
+              if(K_y[c][i][m])
+              {
+                if(!c && !m)
+                {
+                  K_y[c][i][m]->Draw("SAMEPA");
+                  K_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_y[c][i][m]->SetMinimum(0.);
+                  K_y[c][i][m]->SetMaximum(1.2);
+                  K_y[c][i][m]->GetXaxis()->SetLabelSize(0.06);
+                  K_y[c][i][m]->GetYaxis()->SetLabelSize(0.06);
+                  K_y[c][i][m]->SetTitle("");
+                  if(i>4) gPad->SetBottomMargin(.15);
+                  if(i==0 || i==5) gPad->SetLeftMargin(.22);
+                  if(i==8)
+                  {
+                    K_y[c][i][m]->GetXaxis()->SetTitle("#font[ 12]{z}");
+                    K_y[c][i][m]->GetXaxis()->SetTitleSize(0.08);
+                    K_y[c][i][m]->GetXaxis()->SetTitleOffset(.8);
+                  }
+                  K_y[c][i][m]->GetXaxis()->SetNdivisions(304,kTRUE);
+                  K_y[c][i][m]->GetYaxis()->SetNdivisions(304,kTRUE);
+                  if(i==0)
+                  {
+                    K_y[c][i][m]->GetYaxis()->SetTitle("#font[12]{acceptance}^{#font[ 12]{K}}");
+                    K_y[c][i][m]->GetYaxis()->SetTitleSize(0.08);
+                  }
+                  K_y[c][i][m]->Draw("SAMEP");
+                  K_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_y[c][i][m]->SetMinimum(0.);
+                  K_y[c][i][m]->SetMaximum(1.2);
+                  c11.Range(0.,0.,1.,1.2);
+                }
+                else
+                {
+                  K_y[c][i][m]->Draw("SAMEP");
+                  K_y[c][i][m]->GetXaxis()->SetLimits(0.1,0.9);
+                  K_y[c][i][m]->SetMinimum(0.);
+                  K_y[c][i][m]->SetMaximum(1.2);
+                }
+              }
+              c11.Update();
           }
         }
       }
