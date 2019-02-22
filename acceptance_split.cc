@@ -2549,6 +2549,10 @@ int main(int argc, char **argv)
             }
 
             int thbin;
+            int cbin;
+
+            if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==-1) cbin=0;
+            else cbin=1;
 
             for(int ith=0; ith<30; ith++)
             {
@@ -2601,26 +2605,26 @@ int main(int argc, char **argv)
               if(!fFlag[0][xbin][ybin][zbin_u])
               {
                 fHplus++;
-                fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[thbin];
-                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[thbin];
+                fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[cbin][thbin];
+                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[cbin][thbin];
                 if(it!=idMCrec[1][3].end())
                 {
                   if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                   {
-                    fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[thbin];
+                    fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[cbin][thbin];
                   }
                 }
               }
               it = idMCrec[1][0].find(i);
               if(fFlag[0][xbin][ybin][zbin]) continue;
               fPiplus++;
-              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1*Cth[cbin][thbin];
               if(it!=idMCrec[1][0].end())
               {
                 if(zbin == idMCrec[1][0][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[1][0][0] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[1][0][0] += 1*Cth[cbin][thbin];
                   idMCrec[1][0].erase(i);
                 }
               }
@@ -2631,26 +2635,26 @@ int main(int argc, char **argv)
               if(!fFlag[0][xbin][ybin][zbin_u])
               {
                 fHminus++;
-                fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[thbin];
-                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[thbin];
+                fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[cbin][thbin];
+                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[cbin][thbin];
                 if(it!=idMCrec[0][3].end())
                 {
                   if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                   {
-                    fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[thbin];
+                    fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[cbin][thbin];
                   }
                 }
               }
               it = idMCrec[0][0].find(i);
               if(fFlag[0][xbin][ybin][zbin]) continue;
               fPiminus++;
-              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1*Cth[cbin][thbin];
               if(it!=idMCrec[0][0].end())
               {
                 if(zbin == idMCrec[0][0][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[0][0][0] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[0][0][0] += 1*Cth[cbin][thbin];
                   idMCrec[0][0].erase(i);
                 }
               }
@@ -2661,26 +2665,26 @@ int main(int argc, char **argv)
               if(!fFlag[0][xbin][ybin][zbin_u])
               {
                 fHplus++;
-                fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[thbin];
-                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[thbin];
+                fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[cbin][thbin];
+                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[cbin][thbin];
                 if(it!=idMCrec[1][3].end())
                 {
                   if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                   {
-                    fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[thbin];
+                    fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[cbin][thbin];
                   }
                 }
               }
               it = idMCrec[1][1].find(i);
               if(fFlag[1][xbin][ybin][zbin]) continue;
               fKplus++;
-              fRcstr[xbin][ybin][zbin].tab[1][0][1] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][1] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[1][0][1] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][1] += 1*Cth[cbin][thbin];
               if(it!=idMCrec[1][1].end())
               {
                 if(zbin == idMCrec[1][1][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[1][0][1] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[1][0][1] += 1*Cth[cbin][thbin];
                   idMCrec[1][1].erase(i);
                 }
               }
@@ -2691,26 +2695,26 @@ int main(int argc, char **argv)
               if(!fFlag[0][xbin][ybin][zbin_u])
               {
                 fHminus++;
-                fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[thbin];
-                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[thbin];
+                fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[cbin][thbin];
+                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[cbin][thbin];
                 if(it!=idMCrec[0][3].end())
                 {
                   if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                   {
-                    fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[thbin];
+                    fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[cbin][thbin];
                   }
                 }
               }
               it = idMCrec[0][1].find(i);
               if(fFlag[1][xbin][ybin][zbin]) continue;
               fKminus++;
-              fRcstr[xbin][ybin][zbin].tab[0][0][1] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][1] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[0][0][1] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][1] += 1*Cth[cbin][thbin];
               if(it!=idMCrec[0][1].end())
               {
                 if(zbin == idMCrec[0][1][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[0][0][1] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[0][0][1] += 1*Cth[cbin][thbin];
                   idMCrec[0][1].erase(i);
                 }
               }
@@ -2721,26 +2725,26 @@ int main(int argc, char **argv)
               if(!fFlag[0][xbin][ybin][zbin_u])
               {
                 fHplus++;
-                fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[thbin];
-                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[thbin];
+                fRcstr[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[cbin][thbin];
+                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[cbin][thbin];
                 if(it!=idMCrec[1][3].end())
                 {
                   if(zbin_u == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                   {
-                    fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[thbin];
+                    fRcstr_c[xbin][ybin][zbin_u].tab[1][0][3] += 1*Cth[cbin][thbin];
                   }
                 }
               }
               it = idMCrec[1][2].find(i);
               if(fFlag[2][xbin][ybin][zbin]) continue;
               fPplus++;
-              fRcstr[xbin][ybin][zbin].tab[1][0][2] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][2] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[1][0][2] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][2] += 1*Cth[cbin][thbin];
               if(it!=idMCrec[1][2].end())
               {
                 if(zbin == idMCrec[1][2][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[1][0][2] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[1][0][2] += 1*Cth[cbin][thbin];
                   idMCrec[1][2].erase(i);
                 }
               }
@@ -2751,26 +2755,26 @@ int main(int argc, char **argv)
               if(!fFlag[0][xbin][ybin][zbin_u])
               {
                 fHminus++;
-                fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[thbin];
-                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[thbin];
+                fRcstr[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[cbin][thbin];
+                fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[cbin][thbin];
                 if(it!=idMCrec[0][3].end())
                 {
                   if(zbin_u == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                   {
-                    fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[thbin];
+                    fRcstr_c[xbin][ybin][zbin_u].tab[0][0][3] += 1*Cth[cbin][thbin];
                   }
                 }
               }
               it = idMCrec[0][2].find(i);
               if(fFlag[2][xbin][ybin][zbin]) continue;
               fPminus++;
-              fRcstr[xbin][ybin][zbin].tab[0][0][2] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][2] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[0][0][2] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][2] += 1*Cth[cbin][thbin];
               if(it!=idMCrec[0][2].end())
               {
                 if(zbin == idMCrec[0][2][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[0][0][2] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[0][0][2] += 1*Cth[cbin][thbin];
                   idMCrec[0][2].erase(i);
                 }
               }
@@ -2779,14 +2783,14 @@ int main(int argc, char **argv)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
               fHplus++;
-              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[cbin][thbin];
               it = idMCrec[1][3].find(i);
               if(it!=idMCrec[1][3].end())
               {
                 if(zbin == idMCrec[1][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[1][0][3] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[1][0][3] += 1*Cth[cbin][thbin];
                   idMCrec[1][3].erase(i);
                 }
               }
@@ -2795,14 +2799,14 @@ int main(int argc, char **argv)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
               fHminus++;
-              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[thbin];
+              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[cbin][thbin];
               it = idMCrec[0][3].find(i);
               if(it!=idMCrec[0][3].end())
               {
                 if(zbin == idMCrec[0][3][i] && xbin==xbin_MC && ybin==ybin_MC)
                 {
-                  fRcstr_c[xbin][ybin][zbin].tab[0][0][3] += 1*Cth[thbin];
+                  fRcstr_c[xbin][ybin][zbin].tab[0][0][3] += 1*Cth[cbin][thbin];
                   idMCrec[0][3].erase(i);
                 }
               }
@@ -2810,24 +2814,24 @@ int main(int argc, char **argv)
             else if(fId==8)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              fHminus++; fPiminus++;
-              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1*Cth[thbin];
-              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[thbin];
-              fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][4] += 1*Cth[thbin];
+              // fHminus++; fPiminus++;
+              // fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1*Cth[cbin][thbin];
+              // fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1*Cth[cbin][thbin];
+              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1*Cth[cbin][thbin];
+              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1*Cth[cbin][thbin];
+              fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][4] += 1*Cth[cbin][thbin];
             }
             else if(fId==9)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              fHplus++; fPiplus++;
-              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1*Cth[thbin];
-              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[thbin];
-              fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1*Cth[thbin];
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][4] += 1*Cth[thbin];
+              // fHplus++; fPiplus++;
+              // fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1*Cth[cbin][thbin];
+              // fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1*Cth[cbin][thbin];
+              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1*Cth[cbin][thbin];
+              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1*Cth[cbin][thbin];
+              fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1*Cth[cbin][thbin];
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][4] += 1*Cth[cbin][thbin];
             }
             else
             {
