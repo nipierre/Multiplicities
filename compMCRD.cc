@@ -2718,8 +2718,8 @@ void RDextraction(string pFilelist)
 
         if(0.15<=th->GetLeaf("Hadrons.th")->GetValue(i))
         {
-          if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==-1) Cth[0][0][ith]++;
-          else Cth[1][0][ith]++;
+          if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==-1) Cth[0][0][30]++;
+          else Cth[1][0][30]++;
         }
 
         fXBjkin[4].push_back(xBj);
@@ -2934,9 +2934,9 @@ int main(int argc, char **argv)
 
   ofstream ofs_th("th_reweight.txt", std::ofstream::out | std::ofstream::trunc);
 
-  for(int ith=0; ith<31; ith++) ofs_th << (Cth[0][0][ith]*(fHadronMCm/fHadronRDm)/Cth[0][1][ith]) << " ";
+  for(int ith=0; ith<31; ith++) ofs_th << (Cth[0][0][ith]*(fHadronmMC/fHadronmRD)/Cth[0][1][ith]) << " ";
   ofs_th << endl;
-  for(int ith=0; ith<31; ith++) ofs_th << (Cth[1][0][ith]*(fHadronMCp/fHadronRDp)/Cth[1][1][ith]) << " ";
+  for(int ith=0; ith<31; ith++) ofs_th << (Cth[1][0][ith]*(fHadronpMC/fHadronpRD)/Cth[1][1][ith]) << " ";
 
   ofs_th.close();
 
