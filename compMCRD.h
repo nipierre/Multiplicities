@@ -90,6 +90,10 @@ Double_t fNEventsRD = 0;
 Double_t fNEventsMC = 0;
 Double_t fHadronRD = 0;
 Double_t fHadronMC = 0;
+Double_t fHadronpRD = 0;
+Double_t fHadronpMC = 0;
+Double_t fHadronmRD = 0;
+Double_t fHadronmMC = 0;
 
 //Misc
 
@@ -245,6 +249,7 @@ vector<Double_t> thRICHv, thRICH_MCv;
 vector<Double_t> richpipev, richpipe_MCv;
 vector<Double_t> phhv, ph_MCv;
 
-Double_t Cth[2][31] = {0};
+Double_t Cth[2][2][31] = {0};
 
-Double_t Cthr[31] = {1.72, 1.43, 1.33, 1.30, 1.28, 1.23, 1.14, 1.06, 1.03, 0.99, 0.98, 0.92, 0.89, 0.85, 0.81, 0.75, 0.72, 0.71, 0.66, 0.65, 0.66, 0.57, 0.57, 0.58, 0.54, 0.59, 0.59, 0.54, 0.59, 0.58, 0.59};
+Double_t Cthr[2][31] = {{1.72, 1.43, 1.33, 1.30, 1.28, 1.23, 1.14, 1.06, 1.03, 0.99, 0.98, 0.92, 0.89, 0.85, 0.81, 0.75, 0.72, 0.71, 0.66, 0.65, 0.66, 0.57, 0.57, 0.58, 0.54, 0.59, 0.59, 0.54, 0.59, 0.58, 0.59},
+                        {1.72, 1.43, 1.33, 1.30, 1.28, 1.23, 1.14, 1.06, 1.03, 0.99, 0.98, 0.92, 0.89, 0.85, 0.81, 0.75, 0.72, 0.71, 0.66, 0.65, 0.66, 0.57, 0.57, 0.58, 0.54, 0.59, 0.59, 0.54, 0.59, 0.58, 0.59}};
