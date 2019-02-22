@@ -1640,7 +1640,7 @@ int main(int argc, char **argv)
         {
           if(!(Charge->GetLeaf("Charge")->GetValue()==MUCHARGE)) continue;
         }
-        fMuCharge = Charge->GetLeaf("Charge")->GetValue();
+        fMuCharge = Charge->GetLeaf("Charge")->GetValue()==1 ? 1 : 0;
 
         // Best Primary Vertex
         fBP++;
