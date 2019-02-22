@@ -27,7 +27,7 @@ using namespace std;
 #define YMIN 0.1
 #define YMAX 0.7
 #define HXX0LIMIT 15
-#define MUCHARGE_SEPARATION 1
+#define MUCHARGE_SEPARATION 0
 #define MUCHARGE 1
 
 #define IRC 0
