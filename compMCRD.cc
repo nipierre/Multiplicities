@@ -1795,6 +1795,8 @@ void MCextraction(string pFilelist)
           fVertexMCb[4]->Fill(HZlast->GetLeaf("Hadrons.HZlast")->GetValue(i));
           fHadronMC++;
 
+          int cbin;
+
           if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==-1)
           {
             cbin = 0;
