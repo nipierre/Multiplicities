@@ -787,10 +787,6 @@ int main(int argc, char **argv)
             had_file >> dummy;
             fBinning_severe[i][j][k].tab[c][0][0] += dummy;
             had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
             fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][1] += dummy;
             had_file >> dummy;
             fBinning[i][j][k].tab[c][1][1] += dummy;
@@ -799,10 +795,6 @@ int main(int argc, char **argv)
             had_file >> dummy;
             fBinning_severe[i][j][k].tab[c][0][1] += dummy;
             had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
             fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][2] += dummy;
             had_file >> dummy;
             fBinning[i][j][k].tab[c][1][2] += dummy;
@@ -810,10 +802,6 @@ int main(int argc, char **argv)
             fBinning_loose[i][j][k].tab[c][0][2] += dummy;
             had_file >> dummy;
             fBinning_severe[i][j][k].tab[c][0][2] += dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
             had_file >> dummy;
             fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][3] += dummy;
             had_file >> dummy;
@@ -826,6 +814,18 @@ int main(int argc, char **argv)
             had_file >> dummy;
             had_file >> dummy;
             had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
+            had_file >> dummy;
             for(int zv=0; zv<4; zv++)
             {
               had_zvtx_file >> dummy;
@@ -833,23 +833,23 @@ int main(int argc, char **argv)
               had_zvtx_file >> dummy;
               fBinning_zvtx[i][j][k][zv].tab[c][1][0] += dummy;
               had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
               fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][1] += dummy;
               had_zvtx_file >> dummy;
               fBinning_zvtx[i][j][k][zv].tab[c][1][1] += dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
               had_zvtx_file >> dummy;
               fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][2] += dummy;
               had_zvtx_file >> dummy;
               fBinning_zvtx[i][j][k][zv].tab[c][1][2] += dummy;
               had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
               fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][3] += dummy;
               had_zvtx_file >> dummy;
               fBinning_zvtx[i][j][k][zv].tab[c][1][3] += dummy;
+              had_zvtx_file >> dummy;
+              had_zvtx_file >> dummy;
+              had_zvtx_file >> dummy;
+              had_zvtx_file >> dummy;
+              had_zvtx_file >> dummy;
+              had_zvtx_file >> dummy;
               had_zvtx_file >> dummy;
               had_zvtx_file >> dummy;
             }
