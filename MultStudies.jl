@@ -158,7 +158,7 @@ scatter(xexp,Ms1, lw=3,
            xlabel = "x",
            ylabel = L"\int M^{h^+}+M^{h^-} dz",
            yerror = Ss1,
-           label = L"All\;\phi")
+           label = "RD")
 scatter!(xexp,Ms2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
@@ -166,7 +166,7 @@ scatter!(xexp,Ms2, lw=3,
             xlabel = "x",
             ylabel = L"\int M^{h^+}+M^{h^-} dz",
             yerror = Ss2,
-            label = L"\pi/4 > |\phi|")
+            label = "MC")
 savefig("plots/MultiplicitiesSumTest.png")
 
 scatter(xexp,Mr1, lw=3,
@@ -176,7 +176,7 @@ scatter(xexp,Mr1, lw=3,
            xlabel = "x",
            ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
            yerror = Sr1,
-           label = L"All\;\phi")
+           label = "RD")
 scatter!(xexp,Mr2, lw=3,
             xscale = :log10,
             xlims = (0.01,1),
@@ -184,5 +184,5 @@ scatter!(xexp,Mr2, lw=3,
             xlabel = "x",
             ylabel = L"\frac{\int M^{h^+} dz}{\int M^{h^-} dz}",
             yerror = Sr2,
-            label = L"\pi/4 > |\phi|")
+            label = "MC")
 savefig("plots/MultiplicitiesRatioTest.png")
