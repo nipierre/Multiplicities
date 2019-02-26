@@ -2022,14 +2022,14 @@ int main(int argc, char **argv)
             else if(0.70<zBj_MC_unid && zBj_MC_unid<0.75) zbin_u = 10;
             else zbin_u = 11;
 
-            if(0<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.015) thbin_MC = 0;
-            else if(0.015<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.025) thbin_MC = 1;
-            else if(0.025<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.035) thbin_MC = 2;
-            else if(0.035<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.045) thbin_MC = 3;
-            else if(0.045<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.058) thbin_MC = 4;
-            else if(0.058<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.072) thbin_MC = 5;
-            else if(0.072<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.088) thbin_MC = 6;
-            else if(0.072<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.2) thbin_MC = 7;
+            if(0<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.015) thbin_MC = 0;
+            else if(0.015<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.025) thbin_MC = 1;
+            else if(0.025<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.035) thbin_MC = 2;
+            else if(0.035<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.045) thbin_MC = 3;
+            else if(0.045<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.058) thbin_MC = 4;
+            else if(0.058<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.072) thbin_MC = 5;
+            else if(0.072<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.088) thbin_MC = 6;
+            else if(0.072<=MC_th->GetLeaf("MCHadrons.th")->GetValue(i) && MC_th->GetLeaf("MCHadrons.th")->GetValue(i)<0.2) thbin_MC = 7;
             else thbin_MC = -1;
 
             if(0.02<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.08) ptbin_MC = 0;
