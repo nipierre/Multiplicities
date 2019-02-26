@@ -121,7 +121,8 @@ vector<Double_t> fNu;
 vector<Double_t> fNukin;
 vector<Double_t> fLHpi;
 vector<Double_t> fLHK;
-vector<vector<Double_t> fTheta;
+vector<vector<Double_t>> fTheta;
+vector<vector<Double_t>> fpT;
 
 vector<Pvsz> fPvsz;
 vector<Pvsz> fPvsz_err;
