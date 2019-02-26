@@ -882,6 +882,7 @@ int main(int argc, char **argv)
       TBranch *p = (TBranch*) tree->FindBranch("Hadrons.P");
       TBranch *th = (TBranch*) tree->FindBranch("Hadrons.th");
       TBranch *ph = (TBranch*) tree->FindBranch("Hadrons.ph");
+      TBranch *pt = (TBranch*) tree->FindBranch("Hadrons.pt");
       TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
       TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
       TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
@@ -1026,6 +1027,7 @@ int main(int argc, char **argv)
         p->GetEntry(ip);
         th->GetEntry(ip);
         ph->GetEntry(ip);
+        pt->GetEntry(ip);
         hXX0->GetEntry(ip);
         inHCALacc->GetEntry(ip);
         HCAL->GetEntry(ip);
@@ -2030,16 +2032,16 @@ int main(int argc, char **argv)
             else if(0.072<=MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i) && MC_th->GetLeaf("Hadrons.MC_th")->GetValue(i)<0.2) thbin_MC = 7;
             else thbin_MC = -1;
 
-            if(0.02<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.08) pTbin_MC = 0;
-            else if(0.08<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.14) pTbin_MC = 1;
-            else if(0.14<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.23) pTbin_MC = 2;
-            else if(0.23<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.35) pTbin_MC = 3;
-            else if(0.35<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.52) pTbin_MC = 4;
-            else if(0.52<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.76) pTbin_MC = 5;
-            else if(0.76<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<1.12) pTbin_MC = 6;
-            else if(1.12<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<1.52) pTbin_MC = 7;
-            else if(1.52<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<2.05) pTbin_MC = 8;
-            else if(2.05<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<3.0) pTbin_MC = 9;
+            if(0.02<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.08) ptbin_MC = 0;
+            else if(0.08<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.14) ptbin_MC = 1;
+            else if(0.14<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.23) ptbin_MC = 2;
+            else if(0.23<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.35) ptbin_MC = 3;
+            else if(0.35<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.52) ptbin_MC = 4;
+            else if(0.52<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<0.76) ptbin_MC = 5;
+            else if(0.76<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<1.12) ptbin_MC = 6;
+            else if(1.12<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<1.52) ptbin_MC = 7;
+            else if(1.52<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<2.05) ptbin_MC = 8;
+            else if(2.05<=pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2) && pow(MC_pt->GetLeaf("Hadrons.MC_pt")->GetValue(i),2)<3.0) ptbin_MC = 9;
             else ptbin_MC = -1;
 
             // **********************************************************************
@@ -2627,16 +2629,16 @@ int main(int argc, char **argv)
             else if(0.072<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.2) thbin = 7;
             else thbin = -1;
 
-            if(0.02<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.08) pTbin = 0;
-            else if(0.08<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.14) pTbin = 1;
-            else if(0.14<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.23) pTbin = 2;
-            else if(0.23<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.35) pTbin = 3;
-            else if(0.35<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.52) pTbin = 4;
-            else if(0.52<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.76) pTbin = 5;
-            else if(0.76<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<1.12) pTbin = 6;
-            else if(1.12<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<1.52) pTbin = 7;
-            else if(1.52<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<2.05) pTbin = 8;
-            else if(2.05<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<3.0) pTbin = 9;
+            if(0.02<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.08) ptbin = 0;
+            else if(0.08<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.14) ptbin = 1;
+            else if(0.14<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.23) ptbin = 2;
+            else if(0.23<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.35) ptbin = 3;
+            else if(0.35<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.52) ptbin = 4;
+            else if(0.52<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.76) ptbin = 5;
+            else if(0.76<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<1.12) ptbin = 6;
+            else if(1.12<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<1.52) ptbin = 7;
+            else if(1.52<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<2.05) ptbin = 8;
+            else if(2.05<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<3.0) ptbin = 9;
             else ptbin = -1;
 
 
@@ -2989,7 +2991,7 @@ int main(int argc, char **argv)
             for(int ll=0; ll<4; ll++)
             {
               ofs_hzvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][ll] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][ll] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][ll] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][ll] << " " <<
-                           fGnrt_zvtx[i][j][k][0].tab[c][0][ll] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][ll] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][ll] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][ll] << " " <<;
+                           fGnrt_zvtx[i][j][k][0].tab[c][0][ll] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][ll] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][ll] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][ll] << " ";
 
               for(int th=0; th<8; th++)
               {
