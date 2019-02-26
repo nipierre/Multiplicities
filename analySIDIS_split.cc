@@ -3218,16 +3218,16 @@ int main(int argc, char **argv)
             else if(0.072<=fTheta[i][l] && fTheta[i][l]<0.2) thbin = 7;
             else thbin = -1;
 
-            if(0.02<=fpT[i][l] && fpT[i][l]<0.08) pTbin = 0;
-            else if(0.08<=fpT[i][l] && fpT[i][l]<0.14) pTbin = 1;
-            else if(0.14<=fpT[i][l] && fpT[i][l]<0.23) pTbin = 2;
-            else if(0.23<=fpT[i][l] && fpT[i][l]<0.35) pTbin = 3;
-            else if(0.35<=fpT[i][l] && fpT[i][l]<0.52) pTbin = 4;
-            else if(0.52<=fpT[i][l] && fpT[i][l]<0.76) pTbin = 5;
-            else if(0.76<=fpT[i][l] && fpT[i][l]<1.12) pTbin = 6;
-            else if(1.12<=fpT[i][l] && fpT[i][l]<1.52) pTbin = 7;
-            else if(1.52<=fpT[i][l] && fpT[i][l]<2.05) pTbin = 8;
-            else if(2.05<=fpT[i][l] && fpT[i][l]<3.0) pTbin = 9;
+            if(0.02<=fpT[i][l] && fpT[i][l]<0.08) ptbin = 0;
+            else if(0.08<=fpT[i][l] && fpT[i][l]<0.14) ptbin = 1;
+            else if(0.14<=fpT[i][l] && fpT[i][l]<0.23) ptbin = 2;
+            else if(0.23<=fpT[i][l] && fpT[i][l]<0.35) ptbin = 3;
+            else if(0.35<=fpT[i][l] && fpT[i][l]<0.52) ptbin = 4;
+            else if(0.52<=fpT[i][l] && fpT[i][l]<0.76) ptbin = 5;
+            else if(0.76<=fpT[i][l] && fpT[i][l]<1.12) ptbin = 6;
+            else if(1.12<=fpT[i][l] && fpT[i][l]<1.52) ptbin = 7;
+            else if(1.52<=fpT[i][l] && fpT[i][l]<2.05) ptbin = 8;
+            else if(2.05<=fpT[i][l] && fpT[i][l]<3.0) ptbin = 9;
             else ptbin = -1;
 
             for(int ll=0; ll<4; ll++)
@@ -3235,11 +3235,11 @@ int main(int argc, char **argv)
               fBinning[xbin][ybin][zbin].tab[j][fMuCharge][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
               fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][fMuCharge][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
               if(thbin!=-1) fBinning_theta[xbin][ybin][zbin][thbin].tab[j][fMuCharge][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
-              if(ptbin!=-1) fBinning_pt[xbin][ybin][zbin][pTbin].tab[j][fMuCharge][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
+              if(ptbin!=-1) fBinning_pt[xbin][ybin][zbin][ptbin].tab[j][fMuCharge][0][ll] += Pvszlocal[i].vec[j][ll+1][l];
               fBinning[xbin][ybin][zbin].tab[j][fMuCharge][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               fBinning_zvtx[xbin][ybin][zbin][zlabbin].tab[j][fMuCharge][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               if(thbin!=-1) fBinning_theta[xbin][ybin][zbin][thbin].tab[j][fMuCharge][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
-              if(ptbin!=-1) fBinning_pt[xbin][ybin][zbin][pTbin].tab[j][fMuCharge][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
+              if(ptbin!=-1) fBinning_pt[xbin][ybin][zbin][ptbin].tab[j][fMuCharge][1][ll] += Pvsz_errlocal[i].vec[j][ll+1][l];
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][2].push_back(Q2local[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][0].push_back(XBjlocal[i]);
               fMeanvalues[xbin][ybin][zbin].vec[j][ll][1].push_back(YBjlocal[i]);
@@ -3360,18 +3360,18 @@ int main(int argc, char **argv)
                            fBinning_theta[i][j][k][th].tab[c][0][0][0]*fCepiTh[c][0][i][j][k][th] << " " << fBinning_theta[i][j][k][th].tab[c][0][1][0]*fCepiTh[c][0][i][j][k][th] << " " <<
                            fBinning_theta[i][j][k][th].tab[c][0][0][1] << " " << fBinning_theta[i][j][k][th].tab[c][0][1][1] << " " <<
                            fBinning_theta[i][j][k][th].tab[c][0][0][2] << " " << fBinning_theta[i][j][k][th].tab[c][0][1][2] << " " <<
-                           fBinning_theta[i][j][k][th].tab[c][0][0][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << fBinning_theta[i][j][k][th].tab[c][0][1][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][zv]) << " " << endl;
+                           fBinning_theta[i][j][k][th].tab[c][0][0][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << fBinning_theta[i][j][k][th].tab[c][0][1][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << endl;
             }
             for(int pt=0; pt<9; pt++)
             {
-              ofs_hpt << fBinning_pt[i][j][k][pt].tab[c][1][0][0]*fCepipT[c][1][i][j][k][th] << " " << fBinning_pt[i][j][k][th].tab[c][1][1][0]*fCepipT[c][1][i][j][k][th] << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][1][0][1] << " " << fBinning_pt[i][j][k][th].tab[c][1][1][1] << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][1][0][2] << " " << fBinning_pt[i][j][k][th].tab[c][1][1][2] << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][1][0][3]-fBinning_pt[i][j][k][th].tab[c][1][0][0]*(1-fCepipT[c][1][i][j][k][th]) << " " << fBinning_pt[i][j][k][th].tab[c][1][1][3]-fBinning_pt[i][j][k][th].tab[c][1][0][0]*(1-fCepipT[c][1][i][j][k][th]) << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][0][0][0]*fCepipT[c][0][i][j][k][th] << " " << fBinning_pt[i][j][k][th].tab[c][0][1][0]*fCepipT[c][0][i][j][k][th] << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][0][0][1] << " " << fBinning_pt[i][j][k][th].tab[c][0][1][1] << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][0][0][2] << " " << fBinning_pt[i][j][k][th].tab[c][0][1][2] << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][0][0][3]-fBinning_pt[i][j][k][th].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][th]) << " " << fBinning_pt[i][j][k][th].tab[c][0][1][3]-fBinning_pt[i][j][k][th].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][zv]) << " " << endl;
+              ofs_hpt << fBinning_pt[i][j][k][pt].tab[c][1][0][0]*fCepipT[c][1][i][j][k][pt] << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][0]*fCepipT[c][1][i][j][k][pt] << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][1][0][1] << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][1] << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][1][0][2] << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][2] << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][1][0][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][1][i][j][k][pt]) << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][1][i][j][k][pt]) << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][0][0][0]*fCepipT[c][0][i][j][k][pt] << " " << fBinning_pt[i][j][k][th].tab[c][0][1][0]*fCepipT[c][0][i][j][k][pt] << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][0][0][1] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][1] << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][0][0][2] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][2] << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][0][0][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << endl;
             }
 
         	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
