@@ -121,6 +121,7 @@ vector<Double_t> fNu;
 vector<Double_t> fNukin;
 vector<Double_t> fLHpi;
 vector<Double_t> fLHK;
+vector<vector<Double_t> fTheta;
 
 vector<Pvsz> fPvsz;
 vector<Pvsz> fPvsz_err;
@@ -197,10 +198,14 @@ Double_t fSemiInclusiveRCproton[9][6][14];
 
 Double_t fCepi[2][2][9][6][12];
 Double_t fCepiVtx[2][2][9][6][12][4];
+Double_t fCepiTh[2][2][9][6][12][8];
+Double_t fCepipT[2][2][9][6][12][9];
+
 
 //Binning
 Wrapper fBinning[9][6][12];
 Wrapper fBinning_zvtx[9][6][12][4];
+Wrapper fBinning_theta[9][6][12][8];
 Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Multiplicities fMultiplicities[9][6][12];
@@ -213,7 +218,7 @@ Double_t fNDIS_evt[3][2][9][6][12];
 Double_t fNDIS_evt_err[3][2][9][6][12];
 Double_t fNDIS_evt_zvtx[3][2][9][6][12][4];
 Double_t fNDIS_evt_err_zvtx[3][2][9][6][12][4];
-Int_t xbin, ybin, zbin, zlabbin;
+Int_t xbin, ybin, zbin, zlabbin, thbin;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
 Double_t fYrange[7] = {.1,.15,.2,.3,.5,.7,.9};
