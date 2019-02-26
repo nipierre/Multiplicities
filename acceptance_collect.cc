@@ -223,6 +223,8 @@ int main(int argc, char **argv)
     ifstream DIS_zvtx_file(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()));
     ifstream had_file(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()));
     ifstream had_zvtx_file(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()));
+    ifstream had_th_file(Form("acceptance/%d/hadron/hadron_theta_%s.txt",year,periodName.c_str()));
+    ifstream had_pt_file(Form("acceptance/%d/hadron/hadron_pt_%s.txt",year,periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
@@ -372,185 +374,104 @@ int main(int argc, char **argv)
 
             }
 
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][1][0][0] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][1][0][0] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][1][0][0] += dummyd;
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][1][0][1] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][1][0][1] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][1][0][1] += dummyd;
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][1][0][2] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][1][0][2] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][1][0][2] += dummyd;
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][1][0][3] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][1][0][3] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][1][0][3] += dummyd;
+            for(int ll=0; ll<4; ll++)
+            {
+              had_file >> dummyd;
+              fRcstr[i][j][k].tab[c][1][0][ll] += dummyd;
+              had_file >> dummyd;
+              fRcstr_c[i][j][k].tab[c][1][0][ll] += dummyd;
+              had_file >> dummyd;
+              fGnrt[i][j][k].tab[c][1][0][ll] += dummyd;
 
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][0][0] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][0][0] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][0][0] += dummyd;
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][0][1] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][0][1] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][0][1] += dummyd;
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][0][2] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][0][2] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][0][2] += dummyd;
-            had_file >> dummyd;
-            fRcstr[i][j][k].tab[c][0][0][3] += dummyd;
-            had_file >> dummyd;
-            fRcstr_c[i][j][k].tab[c][0][0][3] += dummyd;
-            had_file >> dummyd;
-            fGnrt[i][j][k].tab[c][0][0][3] += dummyd;
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][0].tab[c][1][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][1].tab[c][1][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][2].tab[c][1][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][3].tab[c][1][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][0].tab[c][1][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][1].tab[c][1][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][2].tab[c][1][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][3].tab[c][1][0][ll] += dummyd;
 
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][1][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][1][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][1][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][1][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][1][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][1][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][1][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][1][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][1][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][1][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][1][0][3] += dummyd;
+              for(int th=0; th<8; th++)
+              {
+                had_th_file >> dummyd;
+                fRcstr_theta[i][j][k][th].tab[c][1][0][ll] += dummyd;
+              }
+              for(int th=0; th<8; th++)
+              {
+                had_th_file >> dummyd;
+                fGnrt_theta[i][j][k][th].tab[c][1][0][ll] += dummyd;
+              }
 
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][0][0] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][0][1] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][0][2] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][0].tab[c][0][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][1].tab[c][0][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][2].tab[c][0][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fRcstr_zvtx[i][j][k][3].tab[c][0][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][0].tab[c][0][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][1].tab[c][0][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][2].tab[c][0][0][3] += dummyd;
-            had_zvtx_file >> dummyd;
-            fGnrt_zvtx[i][j][k][3].tab[c][0][0][3] += dummyd;
+              for(int pt=0; pt<9; pt++)
+              {
+                had_pt_file >> dummyd;
+                fRcstr_pt[i][j][k][pt].tab[c][1][0][ll] += dummyd;
+              }
+              for(int pt=0; pt<9; pt++)
+              {
+                had_pt_file >> dummyd;
+                fGnrt_pt[i][j][k][pt].tab[c][1][0][ll] += dummyd;
+              }
+            }
+
+            for(int ll=0; ll<4; ll++)
+            {
+              had_file >> dummyd;
+              fRcstr[i][j][k].tab[c][0][0][ll] += dummyd;
+              had_file >> dummyd;
+              fRcstr_c[i][j][k].tab[c][0][0][ll] += dummyd;
+              had_file >> dummyd;
+              fGnrt[i][j][k].tab[c][0][0][ll] += dummyd;
+
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][0].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][1].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][2].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fRcstr_zvtx[i][j][k][3].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][0].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][1].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][2].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+              fGnrt_zvtx[i][j][k][3].tab[c][0][0][ll] += dummyd;
+              had_zvtx_file >> dummyd;
+
+              for(int th=0; th<8; th++)
+              {
+                had_th_file >> dummyd;
+                fRcstr_theta[i][j][k][th].tab[c][0][0][ll] += dummyd;
+              }
+              for(int th=0; th<8; th++)
+              {
+                had_th_file >> dummyd;
+                fGnrt_theta[i][j][k][th].tab[c][0][0][ll] += dummyd;
+              }
+
+              for(int pt=0; pt<9; pt++)
+              {
+                had_pt_file >> dummyd;
+                fRcstr_pt[i][j][k][pt].tab[c][0][0][ll] += dummyd;
+              }
+              for(int pt=0; pt<9; pt++)
+              {
+                had_pt_file >> dummyd;
+                fGnrt_pt[i][j][k][pt].tab[c][0][0][ll] += dummyd;
+              }
+            }
           }
         }
       }
@@ -560,6 +481,8 @@ int main(int argc, char **argv)
     had_file.close();
     DIS_zvtx_file.close();
     had_zvtx_file.close();
+    had_th_file.close();
+    had_pt_file.close();
 
     TCanvas c5("Hadron_Acceptance","Hadron_Acceptance",3200,1600);
     TCanvas c6("Pion_Acceptance","Pion_Acceptance",3200,1600);
@@ -615,6 +538,8 @@ int main(int argc, char **argv)
     ofstream ofs(Form("%s/%d/acceptance_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_yavg(Form("%s/%d/acceptance_yavg_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_zvtx(Form("%s/%d/acceptance_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_hadron(Form("%s/%d/acceptance_theta_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_pt(Form("%s/%d/acceptance_pt_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_reld(Form("%s/%d/reldiff_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream lepto(Form("%s/%d/lepto_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
@@ -851,6 +776,84 @@ int main(int argc, char **argv)
                   p_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][0]));
                   k_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][1]));
                   h_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][3]));
+                }
+
+                for(int th=0; th<8; th++)
+                {
+                  fAcceptance_theta[i][j][k][th].tab[c][m][0][0] = ((fNDIS_evt[0][m][i][j][k] && fNDIS_evt_MC[0][m][i][j][k] && fGnrt_theta[i][j][k][th].tab[c][m][0][0]) ? double((fRcstr_theta[i][j][k][th].tab[c][m][0][0]/fNDIS_evt[0][m][i][j][k])/(fGnrt_theta[i][j][k][th].tab[c][m][0][0]/fNDIS_evt_MC[0][m][i][j][k])) : 0);
+                  fAcceptance_theta[i][j][k][th].tab[c][m][0][1] = ((fNDIS_evt[1][m][i][j][k] && fNDIS_evt_MC[1][m][i][j][k] && fGnrt_theta[i][j][k][th].tab[c][m][0][1]) ? double((fRcstr_theta[i][j][k][th].tab[c][m][0][1]/fNDIS_evt[1][m][i][j][k])/(fGnrt_theta[i][j][k][th].tab[c][m][0][1]/fNDIS_evt_MC[1][m][i][j][k])) : 0);
+                  fAcceptance_theta[i][j][k][th].tab[c][m][0][2] = ((fNDIS_evt[2][m][i][j][k] && fNDIS_evt_MC[2][m][i][j][k] && fGnrt_theta[i][j][k][th].tab[c][m][0][2]) ? double((fRcstr_theta[i][j][k][th].tab[c][m][0][2]/fNDIS_evt[2][m][i][j][k])/(fGnrt_theta[i][j][k][th].tab[c][m][0][2]/fNDIS_evt_MC[2][m][i][j][k])) : 0);
+                  fAcceptance_theta[i][j][k][th].tab[c][m][0][3] = ((fNDIS_evt[0][m][i][j][k] && fNDIS_evt_MC[0][m][i][j][k] && fGnrt_theta[i][j][k][th].tab[c][m][0][3]) ? double((fRcstr_theta[i][j][k][th].tab[c][m][0][3]/fNDIS_evt[0][m][i][j][k])/(fGnrt_theta[i][j][k][th].tab[c][m][0][3]/fNDIS_evt_MC[0][m][i][j][k])) : 0);
+
+                  if(fAcceptance_theta[i][j][k][th].tab[c][m][0][0]<0) fAcceptance_theta[i][j][k][th].tab[c][m][0][0]=0;
+                  if(fAcceptance_theta[i][j][k][th].tab[c][m][0][1]<0) fAcceptance_theta[i][j][k][th].tab[c][m][0][1]=0;
+                  if(fAcceptance_theta[i][j][k][th].tab[c][m][0][2]<0) fAcceptance_theta[i][j][k][th].tab[c][m][0][2]=0;
+                  if(fAcceptance_theta[i][j][k][th].tab[c][m][0][3]<0) fAcceptance_theta[i][j][k][th].tab[c][m][0][3]=0;
+
+                  fAcceptance_theta[i][j][k][th].tab[c][m][1][0] = fAcceptance[i][j][k].tab[c][m][1][0];
+                  fAcceptance_theta[i][j][k][th].tab[c][m][1][1] = fAcceptance[i][j][k].tab[c][m][1][1];
+                  fAcceptance_theta[i][j][k][th].tab[c][m][1][2] = fAcceptance[i][j][k].tab[c][m][1][2];
+                  fAcceptance_theta[i][j][k][th].tab[c][m][1][3] = fAcceptance[i][j][k].tab[c][m][1][3];
+
+
+                  // if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+                  // {
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][0] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][1] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][2] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][3] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][0] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][1] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][2] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][3] = 0;
+                  // }
+
+                  // p_th.push_back(fAcceptance_theta[i][j][k][th].tab[c][m][0][0] ? fAcceptance_theta[i][j][k][th].tab[c][m][0][0] : 0);
+                  // k_th.push_back(fAcceptance_theta[i][j][k][th].tab[c][m][0][1] ? fAcceptance_theta[i][j][k][th].tab[c][m][0][1] : 0);
+                  // h_th.push_back(fAcceptance_theta[i][j][k][th].tab[c][m][0][3] ? fAcceptance_theta[i][j][k][th].tab[c][m][0][3] : 0);
+                  //
+                  // p_therr.push_back(sqrt(fAcceptance_theta[i][j][k][th].tab[c][m][1][0]));
+                  // k_therr.push_back(sqrt(fAcceptance_theta[i][j][k][th].tab[c][m][1][1]));
+                  // h_therr.push_back(sqrt(fAcceptance_theta[i][j][k][th].tab[c][m][1][3]));
+                }
+
+                for(int pt=0; pt<9; pt++)
+                {
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][0][0] = ((fNDIS_evt[0][m][i][j][k] && fNDIS_evt_MC[0][m][i][j][k] && fGnrt_pt[i][j][k][pt].tab[c][m][0][0]) ? double((fRcstr_pt[i][j][k][pt].tab[c][m][0][0]/fNDIS_evt[0][m][i][j][k])/(fGnrt_pt[i][j][k][pt].tab[c][m][0][0]/fNDIS_evt_MC[0][m][i][j][k])) : 0);
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][0][1] = ((fNDIS_evt[1][m][i][j][k] && fNDIS_evt_MC[1][m][i][j][k] && fGnrt_pt[i][j][k][pt].tab[c][m][0][1]) ? double((fRcstr_pt[i][j][k][pt].tab[c][m][0][1]/fNDIS_evt[1][m][i][j][k])/(fGnrt_pt[i][j][k][pt].tab[c][m][0][1]/fNDIS_evt_MC[1][m][i][j][k])) : 0);
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][0][2] = ((fNDIS_evt[2][m][i][j][k] && fNDIS_evt_MC[2][m][i][j][k] && fGnrt_pt[i][j][k][pt].tab[c][m][0][2]) ? double((fRcstr_pt[i][j][k][pt].tab[c][m][0][2]/fNDIS_evt[2][m][i][j][k])/(fGnrt_pt[i][j][k][pt].tab[c][m][0][2]/fNDIS_evt_MC[2][m][i][j][k])) : 0);
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][0][3] = ((fNDIS_evt[0][m][i][j][k] && fNDIS_evt_MC[0][m][i][j][k] && fGnrt_pt[i][j][k][pt].tab[c][m][0][3]) ? double((fRcstr_pt[i][j][k][pt].tab[c][m][0][3]/fNDIS_evt[0][m][i][j][k])/(fGnrt_pt[i][j][k][pt].tab[c][m][0][3]/fNDIS_evt_MC[0][m][i][j][k])) : 0);
+
+                  if(fAcceptance_pt[i][j][k][pt].tab[c][m][0][0]<0) fAcceptance_pt[i][j][k][pt].tab[c][m][0][0]=0;
+                  if(fAcceptance_pt[i][j][k][pt].tab[c][m][0][1]<0) fAcceptance_pt[i][j][k][pt].tab[c][m][0][1]=0;
+                  if(fAcceptance_pt[i][j][k][pt].tab[c][m][0][2]<0) fAcceptance_pt[i][j][k][pt].tab[c][m][0][2]=0;
+                  if(fAcceptance_pt[i][j][k][pt].tab[c][m][0][3]<0) fAcceptance_pt[i][j][k][pt].tab[c][m][0][3]=0;
+
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][1][0] = fAcceptance[i][j][k].tab[c][m][1][0];
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][1][1] = fAcceptance[i][j][k].tab[c][m][1][1];
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][1][2] = fAcceptance[i][j][k].tab[c][m][1][2];
+                  fAcceptance_pt[i][j][k][pt].tab[c][m][1][3] = fAcceptance[i][j][k].tab[c][m][1][3];
+
+
+                  // if((i==7 && j==4) || (i==8 && j==0) || (i==8 && j==4))
+                  // {
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][0] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][1] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][2] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][0][3] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][0] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][1] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][2] = 0;
+                  //   fAcceptance_theta[i][j][k][th].tab[c][m][1][3] = 0;
+                  // }
+
+                  // p_th.push_back(fAcceptance_theta[i][j][k][th].tab[c][m][0][0] ? fAcceptance_theta[i][j][k][th].tab[c][m][0][0] : 0);
+                  // k_th.push_back(fAcceptance_theta[i][j][k][th].tab[c][m][0][1] ? fAcceptance_theta[i][j][k][th].tab[c][m][0][1] : 0);
+                  // h_th.push_back(fAcceptance_theta[i][j][k][th].tab[c][m][0][3] ? fAcceptance_theta[i][j][k][th].tab[c][m][0][3] : 0);
+                  //
+                  // p_therr.push_back(sqrt(fAcceptance_theta[i][j][k][th].tab[c][m][1][0]));
+                  // k_therr.push_back(sqrt(fAcceptance_theta[i][j][k][th].tab[c][m][1][1]));
+                  // h_therr.push_back(sqrt(fAcceptance_theta[i][j][k][th].tab[c][m][1][3]));
                 }
 
                 for(int l=4; l>0; l--)
@@ -2055,6 +2058,40 @@ int main(int argc, char **argv)
             }
             ofs_zvtx << endl;
 
+            for(int th=0; th<8; th++)
+            {
+              ofs_theta << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " << fThrange[th];
+
+              for(int l=0; l<4; l++)
+              {
+                ofs_theta << " " << fAcceptance_theta[i][j][k][th].tab[c][1][0][l] << " " <<
+                fAcceptance_theta[i][j][k][th].tab[c][1][1][l];
+              }
+              for(int l=0; l<4; l++)
+              {
+                ofs_theta << " " << fAcceptance_theta[i][j][k][th].tab[c][0][0][l] << " " <<
+                fAcceptance_theta[i][j][k][th].tab[c][0][1][l];
+              }
+              ofs_theta << endl;
+            }
+
+            for(int pt=0; pt<9; pt++)
+            {
+              ofs_pt << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " << fThrange[th];
+
+              for(int l=0; l<4; l++)
+              {
+                ofs_pt << " " << fAcceptance_pt[i][j][k][pt].tab[c][1][0][l] << " " <<
+                fAcceptance_pt[i][j][k][pt].tab[c][1][1][l];
+              }
+              for(int l=0; l<4; l++)
+              {
+                ofs_pt << " " << fAcceptance_pt[i][j][k][pt].tab[c][0][0][l] << " " <<
+                fAcceptance_pt[i][j][k][pt].tab[c][0][1][l];
+              }
+              ofs_pt << endl;
+            }
+
             ofs_reld << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<
             RelDiff(c,i,j,k,1,0) << " " << RelDiff(c,i,j,k,1,1) << " " << RelDiff(c,i,j,k,1,2) << " " << RelDiff(c,i,j,k,1,3) << " " <<
             RelDiff(c,i,j,k,0,0) << " " << RelDiff(c,i,j,k,0,1) << " " << RelDiff(c,i,j,k,0,2) << " " << RelDiff(c,i,j,k,0,3) <<   endl;
@@ -2102,6 +2139,9 @@ int main(int argc, char **argv)
     c11.Print(Form("%s/%d/kaon_acceptance_yavg_%s.pdf",dirroot,year,periodName.c_str()));
 
     ofs.close();
+    ofs_zvtx.close();
+    ofs_theta.close();
+    ofs_pt.close();
     ofs_yavg.close();
     ofs_reld.close();
 

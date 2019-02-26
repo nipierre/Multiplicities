@@ -107,32 +107,94 @@ void fetch_zvtx_acceptance(string pname, int np)
           }
           for(int zv=0; zv<4; zv++)
           {
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0];
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0];
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1];
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1];
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][2];
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][2];
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][3];
-            acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][3];
-            acc_file >> dummy;
-            acc_file >> dummy;
-            acc_file >> dummy;
-            acc_file >> dummy;
-            acc_file >> dummy;
-            acc_file >> dummy;
-            acc_file >> dummy;
-            acc_file >> dummy;
-#ifdef DEBUG
-            cout << fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0] << " " <<
-            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0] << " " <<
-            fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1] << " " <<
-            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1] << " " <<
-            fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][2] << " " <<
-            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][2] << " " <<
-            fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][3] << " " <<
-            fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][3] << endl;
-#endif
+            for(int l=0; l<4; l++)
+            {
+              acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0][l];
+              acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1][l];
+            }
+            for(int l=0; l<4; l++)
+            {
+              acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0][l];
+              acc_file >> fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1][l];
+            }
+          }
+        }
+      }
+    }
+  }
+
+  acc_file.close();
+
+}
+
+void fetch_theta_acceptance(string pname, int np)
+{
+  ifstream acc_file(pname);
+  double dummy;
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int th=0; th<8; th++)
+          {
+            for(int l=0; l<5; l++)
+            {
+              acc_file >> dummy;
+            }
+            for(int l=0; l<4; l++)
+            {
+              acc_file >> fAcceptance_theta[np][i][j][k][th].tab[c][1][0][l];
+              acc_file >> fAcceptance_theta[np][i][j][k][th].tab[c][1][1][l];
+            }
+            for(int l=0; l<4; l++)
+            {
+              acc_file >> fAcceptance_theta[np][i][j][k][th].tab[c][0][0][l];
+              acc_file >> fAcceptance_theta[np][i][j][k][th].tab[c][0][1][l];
+            }
+          }
+        }
+      }
+    }
+  }
+
+  acc_file.close();
+
+}
+
+void fetch_zvtx_acceptance(string pname, int np)
+{
+  ifstream acc_file(pname);
+  double dummy;
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int pt=0; pt<9; pt++)
+          {
+            for(int l=0; l<5; l++)
+            {
+              acc_file >> dummy;
+            }
+            for(int l=0; l<4; l++)
+            {
+              acc_file >> fAcceptance_pt[np][i][j][k][pt].tab[c][1][0][l];
+              acc_file >> fAcceptance_pt[np][i][j][k][pt].tab[c][1][1][l];
+            }
+            for(int l=0; l<4; l++)
+            {
+              acc_file >> fAcceptance_pt[np][i][j][k][pt].tab[c][0][0][l];
+              acc_file >> fAcceptance_pt[np][i][j][k][pt].tab[c][0][1][l];
+            }
           }
         }
       }
@@ -158,32 +220,16 @@ void fetch_yavg_acceptance(string pname, int np)
         {
           acc_file >> dummy;
         }
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][0];
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][0];
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][1];
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][1];
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][2];
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][2];
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][3];
-        acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][3];
-        acc_file >> dummy;
-        acc_file >> dummy;
-        acc_file >> dummy;
-        acc_file >> dummy;
-        acc_file >> dummy;
-        acc_file >> dummy;
-        acc_file >> dummy;
-        acc_file >> dummy;
-#ifdef DEBUG
-        cout << fAcceptance_yavg[np][i][k].tab[c][0][0] << " " <<
-        fAcceptance_yavg[np][i][k].tab[c][1][0] << " " <<
-        fAcceptance_yavg[np][i][k].tab[c][0][1] << " " <<
-        fAcceptance_yavg[np][i][k].tab[c][1][1] << " " <<
-        fAcceptance_yavg[np][i][k].tab[c][0][2] << " " <<
-        fAcceptance_yavg[np][i][k].tab[c][1][2] << " " <<
-        fAcceptance_yavg[np][i][k].tab[c][0][3] << " " <<
-        fAcceptance_yavg[np][i][k].tab[c][1][3] << endl;
-#endif
+        for(int l=0; l<4; l++)
+        {
+          acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][0][l];
+          acc_file >> fAcceptance_yavg[np][i][k].tab[c][1][1][l];
+        }
+        for(int l=0; l<4; l++)
+        {
+          acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][0][l];
+          acc_file >> fAcceptance_yavg[np][i][k].tab[c][0][1][l];
+        }
       }
     }
   }
@@ -202,26 +248,35 @@ void dummy_acceptance()
       {
         for(int k=0; k<12; k++)
         {
-          for(int np=0; np<11; np++)
+          for(int l=0; l<4; l++)
           {
-            fAcceptance[np][i][j][k].tab[c][0][0]=1;
-            fAcceptance[np][i][j][k].tab[c][1][0]=0;
-            fAcceptance[np][i][j][k].tab[c][0][1]=1;
-            fAcceptance[np][i][j][k].tab[c][1][1]=0;
-            fAcceptance[np][i][j][k].tab[c][0][2]=1;
-            fAcceptance[np][i][j][k].tab[c][1][2]=0;
-            fAcceptance[np][i][j][k].tab[c][0][3]=1;
-            fAcceptance[np][i][j][k].tab[c][1][3]=0;
-            for(int zv=0; zv<4; zv++)
+            for(int np=0; np<11; np++)
             {
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0]=1;
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0]=0;
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1]=1;
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1]=0;
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][2]=1;
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][2]=0;
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][3]=1;
-              fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][3]=0;
+              fAcceptance[np][i][j][k].tab[c][1][0][l]=1;
+              fAcceptance[np][i][j][k].tab[c][1][1][l]=0;
+              fAcceptance[np][i][j][k].tab[c][0][0][l]=1;
+              fAcceptance[np][i][j][k].tab[c][0][1][l]=0;
+              for(int zv=0; zv<4; zv++)
+              {
+                fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][0][l]=1;
+                fAcceptance_zvtx[np][i][j][k][zv].tab[c][1][1][l]=0;
+                fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][0][l]=1;
+                fAcceptance_zvtx[np][i][j][k][zv].tab[c][0][1][l]=0;
+              }
+              for(int th=0; th<8; th++)
+              {
+                fAcceptance_theta[np][i][j][k][zv].tab[c][1][0][l]=1;
+                fAcceptance_theta[np][i][j][k][zv].tab[c][1][1][l]=0;
+                fAcceptance_theta[np][i][j][k][zv].tab[c][0][0][l]=1;
+                fAcceptance_theta[np][i][j][k][zv].tab[c][0][1][l]=0;
+              }
+              for(int pt=0; pt<9; pt++)
+              {
+                fAcceptance_pt[np][i][j][k][zv].tab[c][1][0][l]=1;
+                fAcceptance_pt[np][i][j][k][zv].tab[c][1][1][l]=0;
+                fAcceptance_pt[np][i][j][k][zv].tab[c][0][0][l]=1;
+                fAcceptance_pt[np][i][j][k][zv].tab[c][0][1][l]=0;
+              }
             }
           }
         }
@@ -237,14 +292,13 @@ void dummy_acceptance()
       {
         for(int np=0; np<11; np++)
         {
-          fAcceptance_yavg[np][i][k].tab[c][0][0]=1;
-          fAcceptance_yavg[np][i][k].tab[c][1][0]=0;
-          fAcceptance_yavg[np][i][k].tab[c][0][1]=1;
-          fAcceptance_yavg[np][i][k].tab[c][1][1]=0;
-          fAcceptance_yavg[np][i][k].tab[c][0][2]=1;
-          fAcceptance_yavg[np][i][k].tab[c][1][2]=0;
-          fAcceptance_yavg[np][i][k].tab[c][0][3]=1;
-          fAcceptance_yavg[np][i][k].tab[c][1][3]=0;
+          for(int l=0; l<4; l++)
+          {
+            fAcceptance_yavg[np][i][k].tab[c][1][0][l]=1;
+            fAcceptance_yavg[np][i][k].tab[c][1][1][l]=0;
+            fAcceptance_yavg[np][i][k].tab[c][0][0][l]=1;
+            fAcceptance_yavg[np][i][k].tab[c][0][1][l]=0;
+          }
         }
       }
     }
