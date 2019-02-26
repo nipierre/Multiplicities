@@ -3368,7 +3368,7 @@ int main(int argc, char **argv)
                            fBinning_pt[i][j][k][pt].tab[c][1][0][1] << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][1] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][1][0][2] << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][2] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][1][0][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][1][i][j][k][pt]) << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][1][i][j][k][pt]) << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][0][0][0]*fCepipT[c][0][i][j][k][pt] << " " << fBinning_pt[i][j][k][th].tab[c][0][1][0]*fCepipT[c][0][i][j][k][pt] << " " <<
+                           fBinning_pt[i][j][k][pt].tab[c][0][0][0]*fCepipT[c][0][i][j][k][pt] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][0]*fCepipT[c][0][i][j][k][pt] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][0][0][1] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][1] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][0][0][2] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][2] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][0][0][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << endl;
