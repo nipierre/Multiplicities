@@ -165,6 +165,8 @@ Wrapper fBinning_yavg_period[11][9][12];
 Wrapper fBinning_zavg_period[11][9];
 Multiplicities fMultiplicities[9][6][12];
 Multiplicities fMultiplicities_zvtx[9][6][12][4];
+Multiplicities fMultiplicities_theta[9][6][12][8];
+Multiplicities fMultiplicities_pt[9][6][12][9];
 Multiplicities fMultiplicities_yavg[9][12];
 Multiplicities fMultiplicities_zvtx_yavg[9][12][4];
 Multiplicities fMultiplicities_zavg[9];

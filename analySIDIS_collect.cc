@@ -1057,7 +1057,7 @@ int main(int argc, char **argv)
   ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_pr(Form("%s/multiplicities_proton.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), ofstream::out | ofstream::trunc);
-  ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), ofstream::out | ofstream::trunc);
+  // ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_mp(Form("%s/multiplicities_h+.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_mm(Form("%s/multiplicities_h-.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_rd(Form("%s/reldiff.txt",data_path), ofstream::out | ofstream::trunc);
@@ -1298,7 +1298,7 @@ int main(int argc, char **argv)
                                                         *fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l]))
                                                         : 0);
 
-                fMultiplicities_theta[i][j][k][th].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k][th] && fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l] ?
+                fMultiplicities_theta[i][j][k][th].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l] ?
                                                         Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_theta[period][i][j][k][th].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l],2)*
                                                         fNDIS_evt_err_period[period][0][1][i][j][k]/pow(fNDIS_evt_period[period][0][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l]),2))
                                                         + fAcceptance_theta[period][i][j][k][th].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l],2)),2)))
@@ -1333,7 +1333,7 @@ int main(int argc, char **argv)
                                                         *fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l]))
                                                         : 0);
 
-                fMultiplicities_pt[i][j][k][pt].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k][pt] && fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l] ?
+                fMultiplicities_pt[i][j][k][pt].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l] ?
                                                         Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_pt[period][i][j][k][pt].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l],2)*
                                                         fNDIS_evt_err_period[period][0][1][i][j][k]/pow(fNDIS_evt_period[period][0][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l]),2))
                                                         + fAcceptance_pt[period][i][j][k][pt].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l],2)),2)))
@@ -1435,12 +1435,12 @@ int main(int argc, char **argv)
 
           if(c) ofs_m << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
-          ofs_m <<
-          fBinning[i][j][k].tab[c][0][3] << " " << fNDIS_evt[0][i][j][k] << " " <<
-          fAcceptance_weighted[i][j][k].tab[c][0][3] << " " << GetSemiInclusiveRadiativeCorrection(i,j,k+1) << " " <<
-          fDiffVectorMeson[c][i][j][k][3] << " ";
-
-          if(!c) ofs_m << endl;
+          // ofs_m <<
+          // fBinning[i][j][k].tab[c][][0][3] << " " << fNDIS_evt[0][i][j][k] << " " <<
+          // fAcceptance_weighted[i][j][k].tab[c][0][3] << " " << GetSemiInclusiveRadiativeCorrection(i,j,k+1) << " " <<
+          // fDiffVectorMeson[c][i][j][k][3] << " ";
+          //
+          // if(!c) ofs_m << endl;
 
           if(c)
           {
