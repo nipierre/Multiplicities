@@ -3001,11 +3001,11 @@ int main(int argc, char **argv)
               {
                 ofs_hth << fGnrt_theta[i][j][k][th].tab[c][0][ll] << " ";
               }
-              for(int pt=0; pt<9; pt++)
+              for(int pt=0; pt<10; pt++)
               {
                 ofs_hpt << fRcstr_pt[i][j][k][pt].tab[c][0][ll] << " ";
               }
-              for(int pt=0; pt<9; pt++)
+              for(int pt=0; pt<10; pt++)
               {
                 ofs_hpt << fGnrt_pt[i][j][k][pt].tab[c][0][ll] << " ";
               }

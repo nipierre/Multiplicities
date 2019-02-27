@@ -3362,7 +3362,7 @@ int main(int argc, char **argv)
                            fBinning_theta[i][j][k][th].tab[c][0][0][2] << " " << fBinning_theta[i][j][k][th].tab[c][0][1][2] << " " <<
                            fBinning_theta[i][j][k][th].tab[c][0][0][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << fBinning_theta[i][j][k][th].tab[c][0][1][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << endl;
             }
-            for(int pt=0; pt<9; pt++)
+            for(int pt=0; pt<10; pt++)
             {
               ofs_hpt << fBinning_pt[i][j][k][pt].tab[c][1][0][0]*fCepipT[c][1][i][j][k][pt] << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][0]*fCepipT[c][1][i][j][k][pt] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][1][0][1] << " " << fBinning_pt[i][j][k][pt].tab[c][1][1][1] << " " <<

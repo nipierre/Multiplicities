@@ -411,12 +411,12 @@ int main(int argc, char **argv)
                 fGnrt_theta[i][j][k][th].tab[c][1][0][ll] += dummyd;
               }
 
-              for(int pt=0; pt<9; pt++)
+              for(int pt=0; pt<10; pt++)
               {
                 had_pt_file >> dummyd;
                 fRcstr_pt[i][j][k][pt].tab[c][1][0][ll] += dummyd;
               }
-              for(int pt=0; pt<9; pt++)
+              for(int pt=0; pt<10; pt++)
               {
                 had_pt_file >> dummyd;
                 fGnrt_pt[i][j][k][pt].tab[c][1][0][ll] += dummyd;
@@ -461,12 +461,12 @@ int main(int argc, char **argv)
                 fGnrt_theta[i][j][k][th].tab[c][0][0][ll] += dummyd;
               }
 
-              for(int pt=0; pt<9; pt++)
+              for(int pt=0; pt<10; pt++)
               {
                 had_pt_file >> dummyd;
                 fRcstr_pt[i][j][k][pt].tab[c][0][0][ll] += dummyd;
               }
-              for(int pt=0; pt<9; pt++)
+              for(int pt=0; pt<10; pt++)
               {
                 had_pt_file >> dummyd;
                 fGnrt_pt[i][j][k][pt].tab[c][0][0][ll] += dummyd;
@@ -538,7 +538,7 @@ int main(int argc, char **argv)
     ofstream ofs(Form("%s/%d/acceptance_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_yavg(Form("%s/%d/acceptance_yavg_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_zvtx(Form("%s/%d/acceptance_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_hadron(Form("%s/%d/acceptance_theta_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_theta(Form("%s/%d/acceptance_theta_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_pt(Form("%s/%d/acceptance_pt_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_reld(Form("%s/%d/reldiff_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream lepto(Form("%s/%d/lepto_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
@@ -817,7 +817,7 @@ int main(int argc, char **argv)
                   // h_therr.push_back(sqrt(fAcceptance_theta[i][j][k][th].tab[c][m][1][3]));
                 }
 
-                for(int pt=0; pt<9; pt++)
+                for(int pt=0; pt<10; pt++)
                 {
                   fAcceptance_pt[i][j][k][pt].tab[c][m][0][0] = ((fNDIS_evt[0][m][i][j][k] && fNDIS_evt_MC[0][m][i][j][k] && fGnrt_pt[i][j][k][pt].tab[c][m][0][0]) ? double((fRcstr_pt[i][j][k][pt].tab[c][m][0][0]/fNDIS_evt[0][m][i][j][k])/(fGnrt_pt[i][j][k][pt].tab[c][m][0][0]/fNDIS_evt_MC[0][m][i][j][k])) : 0);
                   fAcceptance_pt[i][j][k][pt].tab[c][m][0][1] = ((fNDIS_evt[1][m][i][j][k] && fNDIS_evt_MC[1][m][i][j][k] && fGnrt_pt[i][j][k][pt].tab[c][m][0][1]) ? double((fRcstr_pt[i][j][k][pt].tab[c][m][0][1]/fNDIS_evt[1][m][i][j][k])/(fGnrt_pt[i][j][k][pt].tab[c][m][0][1]/fNDIS_evt_MC[1][m][i][j][k])) : 0);
@@ -2075,9 +2075,9 @@ int main(int argc, char **argv)
               ofs_theta << endl;
             }
 
-            for(int pt=0; pt<9; pt++)
+            for(int pt=0; pt<10; pt++)
             {
-              ofs_pt << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " << fThrange[th];
+              ofs_pt << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " << fpTrange[pt];
 
               for(int l=0; l<4; l++)
               {

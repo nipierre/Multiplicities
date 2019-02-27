@@ -163,7 +163,7 @@ void fetch_pt_acceptance(string pname, int np)
       {
         for(int k=0; k<12; k++)
         {
-          for(int pt=0; pt<9; pt++)
+          for(int pt=0; pt<10; pt++)
           {
             for(int l=0; l<5; l++)
             {
@@ -254,7 +254,7 @@ void dummy_acceptance()
                 fAcceptance_theta[np][i][j][k][th].tab[c][0][0][l]=1;
                 fAcceptance_theta[np][i][j][k][th].tab[c][0][1][l]=0;
               }
-              for(int pt=0; pt<9; pt++)
+              for(int pt=0; pt<10; pt++)
               {
                 fAcceptance_pt[np][i][j][k][pt].tab[c][1][0][l]=1;
                 fAcceptance_pt[np][i][j][k][pt].tab[c][1][1][l]=0;
@@ -782,7 +782,7 @@ int main(int argc, char **argv)
               }
             }
 
-            for(int pt=0; pt<9; pt++)
+            for(int pt=0; pt<10; pt++)
             {
               for(int l=0; l<4; l++)
               {
@@ -1319,7 +1319,7 @@ int main(int argc, char **argv)
               }
             }
 
-            for(int pt=0; pt<9; pt++)
+            for(int pt=0; pt<10; pt++)
             {
               for(auto period : fPeriods)
               {
