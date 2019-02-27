@@ -9,7 +9,7 @@
 
 using namespace std;
 
-struct Wrapper { Double_t tab[2][2][4]; };
+struct Wrapper { Double_t tab[2][2][2][4]; };
 struct Multiplicities { Double_t tab[2][3][4]; };
 struct Recovery { vector<Double_t> vec[2][4][4]; };
 struct Recovery_tank { Double_t tab[2][4][4]; };
@@ -104,6 +104,11 @@ Double_t fSemiInclusiveRCproton[9][6][14];
 Double_t fDiffVectorMeson[2][9][6][12][4];
 Double_t fQelCorr[9][6];
 
+Double_t PeriodFlux[2][11] = {{0,0,0,0,0,0,8.20114e+11,4.40163e+11,6.43954e+11,6.06487e+11,0},
+                              {0,0,0,0,0,0,9.14961e+11,6.67131e+11,6.86646e+11,7.27168e+11,2.08672e+11}};
+
+Double_t PeriodFluxTot = 8.20114e+11+4.40163e+11+6.43954e+11+6.06487e+11+9.14961e+11+6.67131e+11+6.86646e+11+7.27168e+11+2.08672e+11;
+
 //Counting
 
 Double_t fBP = 0;
@@ -150,6 +155,8 @@ Wrapper fBinning[9][6][12];
 Wrapper fBinning_zvtx[9][6][12][4];
 Wrapper fBinning_period[11][9][6][12];
 Wrapper fBinning_period_zvtx[11][9][6][12][4];
+Wrapper fBinning_period_theta[11][9][6][12][8];
+Wrapper fBinning_period_pt[11][9][6][12][9];
 Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Wrapper fBinning_yavg[9][12];
@@ -164,8 +171,8 @@ Multiplicities fMultiplicities_zavg[9];
 Wrapper fDiffractiveVectorMeson[9][6][12];
 Wrapper fAcceptance[11][9][6][12];
 Wrapper fAcceptance_zvtx[11][9][6][12][4];
-Wrapper fAcceptance_weighted[9][6][12];
-Wrapper fAcceptance_weighted_zvtx[9][6][12][4];
+Wrapper fAcceptance_theta[11][9][6][12][4];
+Wrapper fAcceptance_pt[11][9][6][12][4];
 Wrapper fAcceptance_yavg[11][9][12];
 Wrapper fAcceptance_yavg_weighted[9][12];
 Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
@@ -177,13 +184,13 @@ Recovery_tank fMeanvalues_size_periods[11][9][6][12];
 Recovery_tank fMeanvalues_data[9][6][12];
 Recovery_tank fMeanvalues_data_periods[11][9][6][12];
 Recovery_tank fMeanvalues_temp[9][6][12];
-Double_t fNDIS_evt[3][9][6][12];
-Double_t fNDIS_evt_zvtx[3][9][6][12][4];
-Double_t fNDIS_evt_yavg[3][9][12];
-Double_t fNDIS_evt_zavg[3][9];
-Double_t fNDIS_evt_err[3][9][6][12];
-Double_t fNDIS_evt_err_zvtx[3][9][6][12][4];
-Double_t fNDIS_evt_err_yavg[3][9][12];
+Double_t fNDIS_evt[3][2][9][6][12];
+Double_t fNDIS_evt_zvtx[3][2][9][6][12][4];
+Double_t fNDIS_evt_yavg[3][2][9][12];
+Double_t fNDIS_evt_zavg[3][2][9];
+Double_t fNDIS_evt_err[3][2][9][6][12];
+Double_t fNDIS_evt_err_zvtx[3][2][9][6][12][4];
+Double_t fNDIS_evt_err_yavg[3][2][9][12];
 Int_t xbin, ybin, zbin;
 Double_t fZrange[13] = {.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85};
 Double_t fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};

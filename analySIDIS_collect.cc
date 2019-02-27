@@ -591,38 +591,6 @@ void compMultiplicitiesIntegratedY()
   }
 }
 
-void weight_acceptance()
-{
-  for(int i=0; i<9; i++)
-  {
-    for(int k=0; k<12; k++)
-    {
-      for(int c=1; c>=0; c--)
-      {
-        for(int l=0; l<4; l++)
-        {
-          for(auto period : fPeriods)
-          {
-              for(int j=0; j<6; j++)
-              {
-                fAcceptance_weighted[i][j][k].tab[c][0][l] += fBinning[i][j][k].tab[c][0][l] ? fBinning_period[period][i][j][k].tab[c][0][l]*fAcceptance[period][i][j][k].tab[c][0][l]/fBinning[i][j][k].tab[c][0][l] : 0;
-                fAcceptance_weighted[i][j][k].tab[c][1][l] += fBinning[i][j][k].tab[c][0][l] ? pow(fBinning_period[period][i][j][k].tab[c][0][l],2)*fAcceptance[period][i][j][k].tab[c][1][l]/pow(fBinning[i][j][k].tab[c][0][l],2) : 0;
-                for(int zv=0; zv<4; zv++)
-                {
-                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] += fBinning_zvtx[i][j][k][zv].tab[c][0][l] ? fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l]/fBinning_zvtx[i][j][k][zv].tab[c][0][l] : 0;
-                  // cout << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << " " << fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][l] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << endl;
-                  fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][1][l] += fBinning_zvtx[i][j][k][zv].tab[c][0][l] ? pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][l],2)*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][l]/pow(fBinning_zvtx[i][j][k][zv].tab[c][0][l],2) : 0;
-                }
-              }
-              fAcceptance_yavg_weighted[i][k].tab[c][0][l] += fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][0][l]/fBinning_yavg[i][k].tab[c][0][l];
-              fAcceptance_yavg_weighted[i][k].tab[c][1][l] += fBinning_yavg_period[period][i][k].tab[c][0][l]*fAcceptance_yavg[period][i][k].tab[c][1][l]/fBinning_yavg[i][k].tab[c][0][l];
-          }
-        }
-      }
-    }
-  }
-}
-
 void weight_meanvalues()
 {
   for(int i=0; i<9; i++)
@@ -641,10 +609,10 @@ void weight_meanvalues()
             }
             for(auto period : fPeriods)
             {
-              fMeanvalues_data[i][j][k].tab[c][ll][0] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0]/fMeanvalues_size[i][j][k].tab[c][ll][0];
-              fMeanvalues_data[i][j][k].tab[c][ll][1] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][1]/fMeanvalues_size[i][j][k].tab[c][ll][0];
-              fMeanvalues_data[i][j][k].tab[c][ll][2] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][2]/fMeanvalues_size[i][j][k].tab[c][ll][0];
-              fMeanvalues_data[i][j][k].tab[c][ll][3] += fMeanvalues_size_periods[period][i][j][k].tab[c][ll][0]*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][3]/fMeanvalues_size[i][j][k].tab[c][ll][0];
+              fMeanvalues_data[i][j][k].tab[c][ll][0] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
+              fMeanvalues_data[i][j][k].tab[c][ll][1] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][1]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
+              fMeanvalues_data[i][j][k].tab[c][ll][2] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][2]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
+              fMeanvalues_data[i][j][k].tab[c][ll][3] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][3]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
             }
           }
         }
@@ -790,6 +758,8 @@ int main(int argc, char **argv)
     ifstream had_file(Form("rawmult/%d/hadron_%s.txt",year,periodName.c_str()));
     ifstream dis_zvtx_file(Form("rawmult/%d/DIS_zvtx_%s.txt",year,periodName.c_str()));
     ifstream had_zvtx_file(Form("rawmult/%d/hadron_zvtx_%s.txt",year,periodName.c_str()));
+    ifstream had_theta_file(Form("rawmult/%d/hadron_theta_%s.txt",year,periodName.c_str()));
+    ifstream had_pt_file(Form("rawmult/%d/hadron_pt_%s.txt",year,periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
@@ -802,19 +772,23 @@ int main(int argc, char **argv)
             if(!c)
             {
               dis_file >> dummy;
-              fNDIS_evt[0][i][j][k] += dummy;
+              fNDIS_evt_period[fNumberPeriod-1][0][1][i][j][k] += dummy;
               dis_file >> dummy;
-              fNDIS_evt_err[0][i][j][k] += dummy;
+              fNDIS_evt_err_period[fNumberPeriod-1][0][1][i][j][k] += dummy;
               dis_file >> dummy;
+              fNDIS_evt_period[fNumberPeriod-1][0][0][i][j][k] += dummy;
               dis_file >> dummy;
+              fNDIS_evt_err_period[fNumberPeriod-1][0][0][i][j][k] += dummy;
               for(int zv=0; zv<4; zv++)
               {
                 dis_zvtx_file >> dummy;
-                fNDIS_evt_zvtx[0][i][j][k][zv] += dummy;
+                fNDIS_evt_zvtx_period[fNumberPeriod-1][0][1][i][j][k][zv] += dummy;
                 dis_zvtx_file >> dummy;
-                fNDIS_evt_err_zvtx[0][i][j][k][zv] += dummy;
+                fNDIS_evt_err_zvtx_period[fNumberPeriod-1][0][1][i][j][k][zv] += dummy;
                 dis_zvtx_file >> dummy;
+                fNDIS_evt_zvtx_period[fNumberPeriod-1][0][0][i][j][k][zv] += dummy;
                 dis_zvtx_file >> dummy;
+                fNDIS_evt_err_zvtx_period[fNumberPeriod-1][0][0][i][j][k][zv] += dummy;
               }
             }
 
@@ -832,80 +806,81 @@ int main(int argc, char **argv)
               fMeanvalues_size[i][j][k].tab[c][ll][0] += dummy;
             }
 
-            had_file >> dummy;
-            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][0] += dummy;
-            had_file >> dummy;
-            fBinning[i][j][k].tab[c][1][0] += dummy;
-            had_file >> dummy;
-            fBinning_loose[i][j][k].tab[c][0][0] += dummy;
-            had_file >> dummy;
-            fBinning_severe[i][j][k].tab[c][0][0] += dummy;
-            had_file >> dummy;
-            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][1] += dummy;
-            had_file >> dummy;
-            fBinning[i][j][k].tab[c][1][1] += dummy;
-            had_file >> dummy;
-            fBinning_loose[i][j][k].tab[c][0][1] += dummy;
-            had_file >> dummy;
-            fBinning_severe[i][j][k].tab[c][0][1] += dummy;
-            had_file >> dummy;
-            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][2] += dummy;
-            had_file >> dummy;
-            fBinning[i][j][k].tab[c][1][2] += dummy;
-            had_file >> dummy;
-            fBinning_loose[i][j][k].tab[c][0][2] += dummy;
-            had_file >> dummy;
-            fBinning_severe[i][j][k].tab[c][0][2] += dummy;
-            had_file >> dummy;
-            fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][3] += dummy;
-            had_file >> dummy;
-            fBinning[i][j][k].tab[c][1][3] += dummy;
-            had_file >> dummy;
-            fBinning_loose[i][j][k].tab[c][0][3] += dummy;
-            had_file >> dummy;
-            fBinning_severe[i][j][k].tab[c][0][3] += dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
-            had_file >> dummy;
+            for(int l=0; l<4; l++)
+            {
+              had_file >> dummy;
+              fBinning_period[fNumberPeriod-1][i][j][k].tab[c][1][0][l] += dummy;
+              had_file >> dummy;
+              fBinning_period[fNumberPeriod-1][i][j][k].tab[c][1][1][l] += dummy;
+              had_file >> dummy;
+              fBinning_loose_period[fNumberPeriod-1][i][j][k].tab[c][1][0][l] += dummy;
+              had_file >> dummy;
+              fBinning_severe_period[fNumberPeriod-1][i][j][k].tab[c][1][0][l] += dummy;
+            }
+            for(int l=0; l<4; l++)
+            {
+              had_file >> dummy;
+              fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][0][l] += dummy;
+              had_file >> dummy;
+              fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][1][l] += dummy;
+              had_file >> dummy;
+              fBinning_loose_period[fNumberPeriod-1][i][j][k].tab[c][0][0][l] += dummy;
+              had_file >> dummy;
+              fBinning_severe_period[fNumberPeriod-1][i][j][k].tab[c][0][0][l] += dummy;
+            }
+
             for(int zv=0; zv<4; zv++)
             {
-              had_zvtx_file >> dummy;
-              fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][0] += dummy;
-              had_zvtx_file >> dummy;
-              fBinning_zvtx[i][j][k][zv].tab[c][1][0] += dummy;
-              had_zvtx_file >> dummy;
-              fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][1] += dummy;
-              had_zvtx_file >> dummy;
-              fBinning_zvtx[i][j][k][zv].tab[c][1][1] += dummy;
-              had_zvtx_file >> dummy;
-              fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][2] += dummy;
-              had_zvtx_file >> dummy;
-              fBinning_zvtx[i][j][k][zv].tab[c][1][2] += dummy;
-              had_zvtx_file >> dummy;
-              fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][3] += dummy;
-              had_zvtx_file >> dummy;
-              fBinning_zvtx[i][j][k][zv].tab[c][1][3] += dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
-              had_zvtx_file >> dummy;
+              for(int l=0; l<4; l++)
+              {
+                had_zvtx_file >> dummy;
+                fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][1][0][l] += dummy;
+                had_zvtx_file >> dummy;
+                fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][1][1][l] += dummy;
+              }
+              for(int l=0; l<4; l++)
+              {
+                had_zvtx_file >> dummy;
+                fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][0][l] += dummy;
+                had_zvtx_file >> dummy;
+                fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][1][l] += dummy;
+              }
+            }
+
+            for(int th=0; th<8; th++)
+            {
+              for(int l=0; l<4; l++)
+              {
+                had_theta_file >> dummy;
+                fBinning_period_theta[fNumberPeriod-1][i][j][k][th].tab[c][1][0][l] += dummy;
+                had_theta_file >> dummy;
+                fBinning_period_theta[fNumberPeriod-1][i][j][k][th].tab[c][1][1][l] += dummy;
+              }
+              for(int l=0; l<4; l++)
+              {
+                had_theta_file >> dummy;
+                fBinning_period_theta[fNumberPeriod-1][i][j][k][th].tab[c][0][0][l] += dummy;
+                had_theta_file >> dummy;
+                fBinning_period_theta[fNumberPeriod-1][i][j][k][th].tab[c][0][1][l] += dummy;
+              }
+            }
+
+            for(int pt=0; pt<9; pt++)
+            {
+              for(int l=0; l<4; l++)
+              {
+                had_pt_file >> dummy;
+                fBinning_period_pt[fNumberPeriod-1][i][j][k][pt].tab[c][1][0][l] += dummy;
+                had_pt_file >> dummy;
+                fBinning_period_pt[fNumberPeriod-1][i][j][k][pt].tab[c][1][1][l] += dummy;
+              }
+              for(int l=0; l<4; l++)
+              {
+                had_pt_file >> dummy;
+                fBinning_period_pt[fNumberPeriod-1][i][j][k][pt].tab[c][0][0][l] += dummy;
+                had_pt_file >> dummy;
+                fBinning_period_pt[fNumberPeriod-1][i][j][k][pt].tab[c][0][1][l] += dummy;
+              }
             }
           }
         }
@@ -923,9 +898,6 @@ int main(int argc, char **argv)
           {
             for(int ll=0; ll<4; ll++)
             {
-              fBinning[i][j][k].tab[c][0][ll] += fBinning_period[fNumberPeriod-1][i][j][k].tab[c][0][ll];
-              for(int zv=0; zv<4; zv++)
-                fBinning_zvtx[i][j][k][zv].tab[c][0][ll] += fBinning_period_zvtx[fNumberPeriod-1][i][j][k][zv].tab[c][0][ll];
               if(int(fMeanvalues_size[i][j][k].tab[c][ll][0]))
               {
                 fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0] = fMeanvalues_temp[i][j][k].tab[c][ll][0]/int(fMeanvalues_size[i][j][k].tab[c][ll][0]);
@@ -1315,23 +1287,42 @@ int main(int argc, char **argv)
         {
           for(int l=0; l<4; l++)
           {
-            fMultiplicities[i][j][k].tab[c][0][l] = (fBinning[i][j][k].tab[c][0][l] && fNDIS_evt[0][i][j][k] && fAcceptance_weighted[i][j][k].tab[c][0][l] ?
-                                                    Double_t(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l]))
-                                                    : 0);
-            fMultiplicities[i][j][k].tab[c][1][l] = (fNDIS_evt[0][i][j][k] && fAcceptance_weighted[i][j][k].tab[c][0][l] ?
-                                                    Double_t(((fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
-                                                    fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l]),2))
-                                                    + fAcceptance_weighted[i][j][k].tab[c][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2))
-                                                    : 0);
-                                                    // if(l==3 && c==1) cout << i << " "  << j << " " << k << " " << ((fBinning[i][j][k].tab[c][1][l]/pow(fNDIS_evt[0][i][j][k],2)-pow(fBinning[i][j][k].tab[c][0][l],2)*
-                                                    // fNDIS_evt_err[0][i][j][k]/pow(fNDIS_evt[0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l]),2)) << " "
-                                                    // << fAcceptance_weighted[i][j][k].tab[c][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2)
-                                                    // << " " << pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2) << " " << fAcceptance_weighted[i][j][k].tab[c][1][l] << endl;
-            fMultiplicities[i][j][k].tab[c][2][l] = (fNDIS_evt[0][i][j][k] ?
-                                                    Double_t(sqrt(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]*fAcceptance_weighted[i][j][k].tab[c][0][l],2)+
-                                                    pow(0.05*sqrt(fAcceptance_weighted[i][j][k].tab[c][1][l])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning[i][j][k].tab[c][0][l]/(fNDIS_evt[0][i][j][k]*fZ_bin_width[k]
-                                                    *pow(fAcceptance_weighted[i][j][k].tab[c][0][l],2)),2)))
-                                                    : 0);
+            for(auto period : fPeriods)
+            {
+              fMultiplicities[i][j][k].tab[c][0][l] += (fBinning_period[period][i][j][k].tab[c][1][0][l] && fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance[period][i][j][k].tab[c][1][0][l] ?
+                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period[period][i][j][k].tab[c][1][0][l]/(fNDIS_evt[0][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l]))
+                                                        : 0);
+
+              fMultiplicities[i][j][k].tab[c][0][l] += (fBinning_period[period][i][j][k].tab[c][0][0][l] && fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance[period][i][j][k].tab[c][0][0][l] ?
+                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period[period][i][j][k].tab[c][0][0][l]/(fNDIS_evt[0][0][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l]))
+                                                        : 0);
+
+              fMultiplicities[i][j][k].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance[period][i][j][k].tab[c][1][0][l] ?
+                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period[period][i][j][k].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period[period][i][j][k].tab[c][1][0][l],2)*
+                                                        fNDIS_evt_err_period[period][0][1][i][j][k]/pow(fNDIS_evt_period[period][0][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l]),2))
+                                                        + fAcceptance[period][i][j][k].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[period][i][j][k].tab[c][1][0][l],2)),2)))
+                                                        : 0);
+
+              fMultiplicities[i][j][k].tab[c][1][l] += (fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance[period][i][j][k].tab[c][0][0][l] ?
+                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period[period][i][j][k].tab[c][0][1][l]/pow(fNDIS_evt_period[period][0][0][i][j][k],2)-pow(fBinning_period[period][i][j][k].tab[c][0][0][l],2)*
+                                                        fNDIS_evt_err_period[period][0][0][i][j][k]/pow(fNDIS_evt_period[period][0][0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l]),2))
+                                                        + fAcceptance[period][i][j][k].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[period][i][j][k].tab[c][0][0][l],2)),2))
+                                                        : 0);
+
+              fMultiplicities[i][j][k].tab[c][2][l] += (fNDIS_evt_period[period][0][1][i][j][k] ?
+                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err[i][j][k].tab[c][1][l],2)/pow(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l],2)+
+                                                        pow(0.05*sqrt(fAcceptance[period][i][j][k].tab[c][1][1][l])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]
+                                                        *pow(fAcceptance[period][i][j][k].tab[c][1][0][l],2)),2)))
+                                                        : 0);
+
+              fMultiplicities[i][j][k].tab[c][2][l] += (fNDIS_evt_period[period][0][1][i][j][k] ?
+                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err[i][j][k].tab[c][0][l],2)/pow(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l],2)+
+                                                        pow(0.05*sqrt(fAcceptance[period][i][j][k].tab[c][0][1][l])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]
+                                                        *pow(fAcceptance[period][i][j][k].tab[c][0][0][l],2)),2)))
+                                                        : 0);
+            }
 
             if(fMultiplicities[i][j][k].tab[c][0][l]<=0 || fMultiplicities[i][j][k].tab[c][0][l]*0.9<fMultiplicities[i][j][k].tab[c][1][l])
             {
@@ -1342,14 +1333,30 @@ int main(int argc, char **argv)
 
             for(int zv=0; zv<4; zv++)
             {
-              fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] = (fBinning_zvtx[i][j][k][zv].tab[c][0][l] && fNDIS_evt_zvtx[0][i][j][k][zv] && fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] ?
-                                                      Double_t(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_zvtx[i][j][k][zv].tab[c][0][l]/(fNDIS_evt_zvtx[0][i][j][k][zv]*fZ_bin_width[k]*fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l]))
-                                                      : 0);
-              fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l] = (fNDIS_evt_zvtx[0][i][j][k][zv] && fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] ?
-                                                      Double_t(((fBinning_zvtx[i][j][k][zv].tab[c][1][l]/pow(fNDIS_evt_zvtx[0][i][j][k][zv],2)-pow(fBinning_zvtx[i][j][k][zv].tab[c][0][l],2)*
-                                                      fNDIS_evt_err_zvtx[0][i][j][k][zv]/pow(fNDIS_evt_zvtx[0][i][j][k][zv],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l]),2))
-                                                      + fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_zvtx[i][j][k][zv].tab[c][0][l]/(fNDIS_evt_zvtx[0][i][j][k][zv]*fZ_bin_width[k]*pow(fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l],2)),2))
-                                                      : 0);
+              for(auto period : fPeriods)
+              {
+                fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] += (fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l] && fNDIS_evt_zvtx_period[period][0][1][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l] ?
+                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l]/(fNDIS_evt_zvtx_period[period][0][1][i][j][k][zv]*fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l]))
+                                                        : 0);
+
+                fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] += (fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l] && fNDIS_evt_zvtx_period[period][0][0][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l] ?
+                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l]/(fNDIS_evt_zvtx_period[period][0][0][i][j][k][zv]*fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l]))
+                                                        : 0);
+
+                fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l] += (fNDIS_evt_zvtx_period[period][0][1][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l] ?
+                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][1][l]/pow(fNDIS_evt_zvtx_period[period][0][1][i][j][k][zv],2)-pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l],2)*
+                                                        fNDIS_evt_err_zvtx_period[period][0][1][i][j][k][zv]/pow(fNDIS_evt_zvtx_period[period][0][1][i][j][k][zv],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l]),2))
+                                                        + fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l]/(fNDIS_evt_zvtx_period[period][0][1][i][j][k][zv]*fZ_bin_width[k]*pow(fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l],2)),2)))
+                                                        : 0);
+
+                fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l] += (fNDIS_evt_zvtx_period[period][0][0][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l] ?
+                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][1][l]/pow(fNDIS_evt_zvtx_period[period][0][0][i][j][k][zv],2)-pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l],2)*
+                                                        fNDIS_evt_err_zvtx_period[period][0][0][i][j][k][zv]/pow(fNDIS_evt_zvtx_period[period][0][0][i][j][k][zv],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l]),2))
+                                                        + fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l]/(fNDIS_evt_zvtx_period[period][0][0][i][j][k][zv]*fZ_bin_width[k]*pow(fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l],2)),2)))
+                                                        : 0);
+              }
 
               if(fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l]<=0 || fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l]*0.9<fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l])
               {
@@ -1359,6 +1366,76 @@ int main(int argc, char **argv)
               }
 
               // cout << c << " " << i << " " << j << " " << k << " " << l << " " << zv << " " << fNDIS_evt_zvtx[0][i][j][k][zv] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][l] << " " << fAcceptance_weighted_zvtx[i][j][k][zv].tab[c][0][l] << " " <<  fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] << endl;
+            }
+
+            for(int th=0; th<8; th++)
+            {
+              for(auto period : fPeriods)
+              {
+                fMultiplicities_theta[i][j][k][th].tab[c][0][l] += (fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l] && fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l] ?
+                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l]))
+                                                        : 0);
+
+                fMultiplicities_theta[i][j][k][th].tab[c][0][l] += (fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l] && fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l] ?
+                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l]))
+                                                        : 0);
+
+                fMultiplicities_theta[i][j][k][th].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k][th] && fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l] ?
+                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_theta[period][i][j][k][th].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l],2)*
+                                                        fNDIS_evt_err_period[period][0][1][i][j][k]/pow(fNDIS_evt_period[period][0][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l]),2))
+                                                        + fAcceptance_theta[period][i][j][k][th].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l],2)),2)))
+                                                        : 0);
+
+                fMultiplicities_theta[i][j][k][th].tab[c][1][l] += (fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l] ?
+                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_theta[period][i][j][k][th].tab[c][0][1][l]/pow(fNDIS_evt_period[period][0][0][i][j][k],2)-pow(fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l],2)*
+                                                        fNDIS_evt_err_period[period][0][0][i][j][k]/pow(fNDIS_evt_period[period][0][0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l]),2))
+                                                        + fAcceptance_theta[period][i][j][k][th].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l],2)),2)))
+                                                        : 0);
+              }
+
+              if(fMultiplicities_theta[i][j][k][th].tab[c][0][l]<=0 || fMultiplicities_theta[i][j][k][th].tab[c][0][l]*0.9<fMultiplicities_theta[i][j][k][th].tab[c][1][l])
+              {
+                fMultiplicities_theta[i][j][k][th].tab[c][0][l] = 0 ;
+                fMultiplicities_theta[i][j][k][th].tab[c][1][l] = 0 ;
+                fMultiplicities_theta[i][j][k][th].tab[c][2][l] = 0 ;
+              }
+            }
+
+            for(int pt=0; pt<9; pt++)
+            {
+              for(auto period : fPeriods)
+              {
+                fMultiplicities_pt[i][j][k][pt].tab[c][0][l] += (fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l] && fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l] ?
+                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l]))
+                                                        : 0);
+
+                fMultiplicities_pt[i][j][k][pt].tab[c][0][l] += (fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l] && fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l] ?
+                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        *fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l]))
+                                                        : 0);
+
+                fMultiplicities_pt[i][j][k][pt].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k][pt] && fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l] ?
+                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_pt[period][i][j][k][pt].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l],2)*
+                                                        fNDIS_evt_err_period[period][0][1][i][j][k]/pow(fNDIS_evt_period[period][0][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l]),2))
+                                                        + fAcceptance_pt[period][i][j][k][pt].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l],2)),2)))
+                                                        : 0);
+
+                fMultiplicities_pt[i][j][k][pt].tab[c][1][l] += (fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l] ?
+                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_pt[period][i][j][k][pt].tab[c][0][1][l]/pow(fNDIS_evt_period[period][0][0][i][j][k],2)-pow(fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l],2)*
+                                                        fNDIS_evt_err_period[period][0][0][i][j][k]/pow(fNDIS_evt_period[period][0][0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l]),2))
+                                                        + fAcceptance_pt[period][i][j][k][pt].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l],2)),2)))
+                                                        : 0);
+              }
+
+              if(fMultiplicities_pt[i][j][k][pt].tab[c][0][l]<=0 || fMultiplicities_pt[i][j][k][pt].tab[c][0][l]*0.9<fMultiplicities_pt[i][j][k][pt].tab[c][1][l])
+              {
+                fMultiplicities_pt[i][j][k][pt].tab[c][0][l] = 0 ;
+                fMultiplicities_pt[i][j][k][pt].tab[c][1][l] = 0 ;
+                fMultiplicities_pt[i][j][k][pt].tab[c][2][l] = 0 ;
+              }
             }
           }
 
