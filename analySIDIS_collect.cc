@@ -150,7 +150,7 @@ void fetch_theta_acceptance(string pname, int np)
 
 }
 
-void fetch_zvtx_acceptance(string pname, int np)
+void fetch_pt_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
   double dummy;
@@ -249,17 +249,17 @@ void dummy_acceptance()
               }
               for(int th=0; th<8; th++)
               {
-                fAcceptance_theta[np][i][j][k][zv].tab[c][1][0][l]=1;
-                fAcceptance_theta[np][i][j][k][zv].tab[c][1][1][l]=0;
-                fAcceptance_theta[np][i][j][k][zv].tab[c][0][0][l]=1;
-                fAcceptance_theta[np][i][j][k][zv].tab[c][0][1][l]=0;
+                fAcceptance_theta[np][i][j][k][th].tab[c][1][0][l]=1;
+                fAcceptance_theta[np][i][j][k][th].tab[c][1][1][l]=0;
+                fAcceptance_theta[np][i][j][k][th].tab[c][0][0][l]=1;
+                fAcceptance_theta[np][i][j][k][th].tab[c][0][1][l]=0;
               }
               for(int pt=0; pt<9; pt++)
               {
-                fAcceptance_pt[np][i][j][k][zv].tab[c][1][0][l]=1;
-                fAcceptance_pt[np][i][j][k][zv].tab[c][1][1][l]=0;
-                fAcceptance_pt[np][i][j][k][zv].tab[c][0][0][l]=1;
-                fAcceptance_pt[np][i][j][k][zv].tab[c][0][1][l]=0;
+                fAcceptance_pt[np][i][j][k][pt].tab[c][1][0][l]=1;
+                fAcceptance_pt[np][i][j][k][pt].tab[c][1][1][l]=0;
+                fAcceptance_pt[np][i][j][k][pt].tab[c][0][0][l]=1;
+                fAcceptance_pt[np][i][j][k][pt].tab[c][0][1][l]=0;
               }
             }
           }
@@ -503,36 +503,6 @@ void yweightedavg()
               fMultiplicities_zvtx_yavg[x][z][ll].tab[c][0][l]*=fMultiplicities_zvtx_yavg[x][z][ll].tab[c][1][l];
             }
           }
-        }
-      }
-    }
-  }
-}
-
-void yintegrated()
-{
-  for(int c=0; c<2; c++)
-  {
-    for(int x=0; x<9; x++)
-    {
-      for(int z=0; z<12; z++)
-      {
-        for(int l=0; l<4; l++)
-        {
-          for(int i=0; i<6; i++)
-          {
-            for(auto period : fPeriods)
-            {
-              fBinning_yavg_period[period][x][z].tab[c][0][l]+=fBinning_period[period][x][i][z].tab[c][0][l];
-              fBinning_yavg_period[period][x][z].tab[c][1][l]+=fBinning_period[period][x][i][z].tab[c][1][l];
-            }
-            fNDIS_evt_yavg[0][x][z]+=fNDIS_evt[0][x][i][z];
-            fNDIS_evt_err_yavg[0][x][z]+=fNDIS_evt_err[0][x][i][z];
-            fBinning_yavg[x][z].tab[c][0][l]+=fBinning[x][i][z].tab[c][0][l];
-            fBinning_yavg[x][z].tab[c][1][l]+=fBinning[x][i][z].tab[c][1][l];
-            fRich_sys_err_yavg[x][z].tab[c][1][l]+=pow(fRich_sys_err[x][i][z].tab[c][1][l],2);
-          }
-          fRich_sys_err_yavg[x][z].tab[c][1][l]=sqrt(fRich_sys_err_yavg[x][z].tab[c][1][l]);
         }
       }
     }
@@ -900,10 +870,9 @@ int main(int argc, char **argv)
     resetValues();
   }
 
-  if(YMULT == 3) yintegrated();
-  weight_acceptance();
+  // if(YMULT == 3) ;
   weight_meanvalues();
-  if(YMULT == 3) compMultiplicitiesIntegratedY();
+  // if(YMULT == 3) compMultiplicitiesIntegratedY();
 
   TCanvas* c51;
   c51 = new TCanvas("Hadron_Multiplicities_plus","Hadron_Multiplicities_plus",3200,1600);
