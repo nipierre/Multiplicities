@@ -53,32 +53,16 @@ void fetch_acceptance(string pname, int np)
           {
             acc_file >> dummy;
           }
-          acc_file >> fAcceptance[np][i][j][k].tab[c][0][0];
-          acc_file >> fAcceptance[np][i][j][k].tab[c][1][0];
-          acc_file >> fAcceptance[np][i][j][k].tab[c][0][1];
-          acc_file >> fAcceptance[np][i][j][k].tab[c][1][1];
-          acc_file >> fAcceptance[np][i][j][k].tab[c][0][2];
-          acc_file >> fAcceptance[np][i][j][k].tab[c][1][2];
-          acc_file >> fAcceptance[np][i][j][k].tab[c][0][3];
-          acc_file >> fAcceptance[np][i][j][k].tab[c][1][3];
-          acc_file >> dummy;
-          acc_file >> dummy;
-          acc_file >> dummy;
-          acc_file >> dummy;
-          acc_file >> dummy;
-          acc_file >> dummy;
-          acc_file >> dummy;
-          acc_file >> dummy;
-#ifdef DEBUG
-          cout << fAcceptance[np][i][j][k].tab[c][0][0] << " " <<
-          fAcceptance[np][i][j][k].tab[c][1][0] << " " <<
-          fAcceptance[np][i][j][k].tab[c][0][1] << " " <<
-          fAcceptance[np][i][j][k].tab[c][1][1] << " " <<
-          fAcceptance[np][i][j][k].tab[c][0][2] << " " <<
-          fAcceptance[np][i][j][k].tab[c][1][2] << " " <<
-          fAcceptance[np][i][j][k].tab[c][0][3] << " " <<
-          fAcceptance[np][i][j][k].tab[c][1][3] << endl;
-#endif
+          for(int l=0; l<4; l++)
+          {
+            acc_file >> fAcceptance[np][i][j][k].tab[c][1][0][0];
+            acc_file >> fAcceptance[np][i][j][k].tab[c][1][1][0];
+          }
+          for(int l=0; l<4; l++)
+          {
+            acc_file >> fAcceptance[np][i][j][k].tab[c][0][0][0];
+            acc_file >> fAcceptance[np][i][j][k].tab[c][0][1][0];
+          }
         }
       }
     }
