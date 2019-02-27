@@ -1433,8 +1433,8 @@ int main(int argc, char **argv)
 
           if(!c) ofs_h << endl;
 
-          if(c) ofs_m << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
-
+          // if(c) ofs_m << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+          //
           // ofs_m <<
           // fBinning[i][j][k].tab[c][][0][3] << " " << fNDIS_evt[0][i][j][k] << " " <<
           // fAcceptance_weighted[i][j][k].tab[c][0][3] << " " << GetSemiInclusiveRadiativeCorrection(i,j,k+1) << " " <<
@@ -4099,7 +4099,7 @@ int main(int argc, char **argv)
   ofs_k.close();
   ofs_pr.close();
   ofs_h.close();
-  ofs_m.close();
+  // ofs_m.close();
   ofs_mp.close();
   ofs_mm.close();
   ofs_rd.close();
