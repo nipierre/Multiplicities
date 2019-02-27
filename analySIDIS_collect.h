@@ -175,7 +175,7 @@ Wrapper fAcceptance_theta[11][9][6][12][4];
 Wrapper fAcceptance_pt[11][9][6][12][4];
 Wrapper fAcceptance_yavg[11][9][12];
 Wrapper fAcceptance_yavg_weighted[9][12];
-Wrapper fRich_sys_err[9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
+Wrapper fRich_sys_err_period[11][9][6][12]; // tab[][0][] : stat, tab[][1][] : sys
 Wrapper fRich_sys_err_yavg[9][12];
 Wrapper fRich_sys_err_zavg[9];
 Recovery fMeanvalues[9][6][12]; // tab[][][i], iC[0,3] : x,y,Q2,z

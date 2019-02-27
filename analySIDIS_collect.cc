@@ -527,10 +527,10 @@ void weight_meanvalues()
             }
             for(auto period : fPeriods)
             {
-              fMeanvalues_data[i][j][k].tab[c][ll][0] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
-              fMeanvalues_data[i][j][k].tab[c][ll][1] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][1]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
-              fMeanvalues_data[i][j][k].tab[c][ll][2] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][2]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
-              fMeanvalues_data[i][j][k].tab[c][ll][3] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][3]/(PeriodFluxTot[0]+PeriodFluxTot[1]);
+              fMeanvalues_data[i][j][k].tab[c][ll][0] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][0]/(PeriodFluxTot);
+              fMeanvalues_data[i][j][k].tab[c][ll][1] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][1]/(PeriodFluxTot);
+              fMeanvalues_data[i][j][k].tab[c][ll][2] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][2]/(PeriodFluxTot);
+              fMeanvalues_data[i][j][k].tab[c][ll][3] += (PeriodFlux[0][period]+PeriodFlux[1][period])*fMeanvalues_data_periods[fNumberPeriod-1][i][j][k].tab[c][ll][3]/(PeriodFluxTot);
             }
           }
         }
@@ -622,8 +622,6 @@ int main(int argc, char **argv)
 
   double dummy;
 
-  double rich_sys_err;
-
   for(int c=0; c<2; c++)
   {
     for(xbin=0; xbin<9; xbin++)
@@ -634,11 +632,12 @@ int main(int argc, char **argv)
         {
           for(int ll=0; ll<4; ll++)
           {
-            rich_sys_err = max(abs(sqrt(fBinning[xbin][ybin][zbin].tab[c][1][ll])),
-                           max(abs(fBinning_loose[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll]),
-                               abs(fBinning_severe[xbin][ybin][zbin].tab[c][0][ll]-fBinning[xbin][ybin][zbin].tab[c][0][ll])));
-
-            fRich_sys_err[xbin][ybin][zbin].tab[c][1][ll] = rich_sys_err;
+            for(auto period : fPeriods)
+            {
+              fRich_sys_err_period[period][xbin][ybin][zbin].tab[c][1][1][ll] = pow(max(abs(sqrt(fBinning_period[period][xbin][ybin][zbin].tab[c][1][1][ll])),
+                                                              max(abs(fBinning_loose_period[period][xbin][ybin][zbin].tab[c][1][0][ll]-fBinning_period[period][xbin][ybin][zbin].tab[c][1][0][ll]),
+                                                              abs(fBinning_severe_period[period][xbin][ybin][zbin].tab[c][1][0][ll]-fBinning_period[period][xbin][ybin][zbin].tab[c][1][0][ll]))),2);
+            }
           }
         }
       }
