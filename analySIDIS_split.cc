@@ -3349,7 +3349,7 @@ int main(int argc, char **argv)
                            fBinning_zvtx[i][j][k][zv].tab[c][0][0][0]*fCepiVtx[c][0][i][j][k][zv] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][0]*fCepiVtx[c][0][i][j][k][zv] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][0][0][1] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][1] << " " <<
                            fBinning_zvtx[i][j][k][zv].tab[c][0][0][2] << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][2] << " " <<
-                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-fCepiVtx[c][0][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*(1-fCepiVtx[c][0][i][j][k][zv]) << " " << endl;
+                           fBinning_zvtx[i][j][k][zv].tab[c][0][0][3]-fBinning_zvtx[i][j][k][zv].tab[c][0][0][0]*(1-fCepiVtx[c][0][i][j][k][zv]) << " " << fBinning_zvtx[i][j][k][zv].tab[c][0][1][3]-fBinning_zvtx[i][j][k][zv].tab[c][0][0][0]*(1-fCepiVtx[c][0][i][j][k][zv]) << " " << endl;
             }
             for(int th=0; th<8; th++)
             {
@@ -3360,7 +3360,7 @@ int main(int argc, char **argv)
                            fBinning_theta[i][j][k][th].tab[c][0][0][0]*fCepiTh[c][0][i][j][k][th] << " " << fBinning_theta[i][j][k][th].tab[c][0][1][0]*fCepiTh[c][0][i][j][k][th] << " " <<
                            fBinning_theta[i][j][k][th].tab[c][0][0][1] << " " << fBinning_theta[i][j][k][th].tab[c][0][1][1] << " " <<
                            fBinning_theta[i][j][k][th].tab[c][0][0][2] << " " << fBinning_theta[i][j][k][th].tab[c][0][1][2] << " " <<
-                           fBinning_theta[i][j][k][th].tab[c][0][0][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << fBinning_theta[i][j][k][th].tab[c][0][1][3]-fBinning_theta[i][j][k][th].tab[c][1][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << endl;
+                           fBinning_theta[i][j][k][th].tab[c][0][0][3]-fBinning_theta[i][j][k][th].tab[c][0][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << fBinning_theta[i][j][k][th].tab[c][0][1][3]-fBinning_theta[i][j][k][th].tab[c][0][0][0]*(1-fCepiTh[c][0][i][j][k][th]) << " " << endl;
             }
             for(int pt=0; pt<10; pt++)
             {
@@ -3371,7 +3371,7 @@ int main(int argc, char **argv)
                            fBinning_pt[i][j][k][pt].tab[c][0][0][0]*fCepipT[c][0][i][j][k][pt] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][0]*fCepipT[c][0][i][j][k][pt] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][0][0][1] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][1] << " " <<
                            fBinning_pt[i][j][k][pt].tab[c][0][0][2] << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][2] << " " <<
-                           fBinning_pt[i][j][k][pt].tab[c][0][0][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][3]-fBinning_pt[i][j][k][pt].tab[c][1][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << endl;
+                           fBinning_pt[i][j][k][pt].tab[c][0][0][3]-fBinning_pt[i][j][k][pt].tab[c][0][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << fBinning_pt[i][j][k][pt].tab[c][0][1][3]-fBinning_pt[i][j][k][pt].tab[c][0][0][0]*(1-fCepipT[c][0][i][j][k][pt]) << " " << endl;
             }
 
         	  xc << c << " " << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " " <<

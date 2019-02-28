@@ -200,14 +200,14 @@ Double_t fSemiInclusiveRCproton[9][6][14];
 Double_t fCepi[2][2][9][6][12];
 Double_t fCepiVtx[2][2][9][6][12][4];
 Double_t fCepiTh[2][2][9][6][12][8];
-Double_t fCepipT[2][2][9][6][12][9];
+Double_t fCepipT[2][2][9][6][12][10];
 
 
 //Binning
 Wrapper fBinning[9][6][12];
 Wrapper fBinning_zvtx[9][6][12][4];
 Wrapper fBinning_theta[9][6][12][8];
-Wrapper fBinning_pt[9][6][12][9];
+Wrapper fBinning_pt[9][6][12][10];
 Wrapper fBinning_loose[9][6][12];
 Wrapper fBinning_severe[9][6][12];
 Multiplicities fMultiplicities[9][6][12];
