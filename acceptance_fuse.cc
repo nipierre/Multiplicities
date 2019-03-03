@@ -547,11 +547,11 @@ int main(int argc, char **argv)
   ofstream ofs_hmult(Form("acceptance/%d/hadron/hadron_mult_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_hmult_zvtx(Form("acceptance/%d/hadron/hadron_mult_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_htheta(Form("acceptance/%d/hadron/hadron_theta_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_hpt(Form("acceptance/%d/hadron/hadron_pt_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dmult(Form("acceptance/%d/DIS/DIS_mult_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_dtheta(Form("acceptance/%d/DIS/DIS_theta_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-  ofstream ofs_dpt(Form("acceptance/%d/DIS/DIS_pt_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dmult_zvtx(Form("acceptance/%d/DIS/DIS_mult_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
