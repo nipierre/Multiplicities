@@ -2950,6 +2950,8 @@ int main(int argc, char **argv)
     ofstream ofs_dzvtx(Form("DIS_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_e(Form("electron_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_ezvtx(Form("electron_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_eth(Form("electron_theta_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ept(Form("electron_pt_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 #else
     ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
@@ -2959,6 +2961,8 @@ int main(int argc, char **argv)
     ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_eth(Form("electron_theta_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ept(Form("electron_pt_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 #endif
 
     for(int c=0; c<2; c++)
@@ -3018,6 +3022,18 @@ int main(int argc, char **argv)
 
             ofs_ezvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][4] << " "
                       << fRcstr_zvtx[i][j][k][2].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][4] << endl;
+
+            for(int th=0; th<8; th++)
+            {
+              ofs_eth << fRcstr_theta[i][j][k][th].tab[c][0][4] << " ";
+            }
+            ofs_eth << endl;
+
+            for(int pt=0; pt<9; pt++)
+            {
+              ofs_ept << fRcstr_pt[i][j][k][pt].tab[c][0][4] << " ";
+            }
+            ofs_ept << endl;
           }
         }
       }
@@ -3031,6 +3047,8 @@ int main(int argc, char **argv)
     ofs_hpt.close();
     ofs_dzvtx.close();
     ofs_ezvtx.close();
+    ofs_eth.close();
+    ofs_ept.close();
 
     resetValues();
   }
