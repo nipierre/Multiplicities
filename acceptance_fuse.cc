@@ -43,8 +43,12 @@ int main(int argc, char **argv)
     ifstream DIS_zvtx_file1(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_file1(Form("%s/hadron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_zvtx_file1(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_theta_file1(Form("%s/hadron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_pt_file1(Form("%s/hadron_pt_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_file1(Form("%s/electron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_zvtx_file1(Form("%s/electron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_theta_file1(Form("%s/electron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_pt_file1(Form("%s/electron_pt_%s.txt",filename.c_str(),periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
@@ -293,8 +297,12 @@ int main(int argc, char **argv)
     ifstream DIS_zvtx_file2(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_file2(Form("%s/hadron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_zvtx_file2(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_theta_file2(Form("%s/hadron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_pt_file2(Form("%s/hadron_pt_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_file2(Form("%s/electron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_zvtx_file2(Form("%s/electron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_theta_file2(Form("%s/electron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_pt_file2(Form("%s/electron_pt_%s.txt",filename.c_str(),periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
