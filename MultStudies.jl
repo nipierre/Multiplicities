@@ -7,7 +7,7 @@ xexp = [.007,.015,.025,.035,.05,.08,.12,.16,.29]
 zFFred = [3,8,13,18,23,28,33,38,43,48,53,61]
 
 Mult1 = readdlm("data/Mult2016Hadron.txt")
-Mult2 = readdlm("data/Mult2016HadronMC.txt")
+Mult2 = readdlm("data/Mult2016HadronTheta.txt")
 
 Multp1 = zeros((9,12))
 Multm1 = zeros((9,12))
