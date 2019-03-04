@@ -1057,6 +1057,8 @@ int main(int argc, char **argv)
   ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_pr(Form("%s/multiplicities_proton.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_htheta(Form("%s/multiplicities_hadron_theta.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_hpt(Form("%s/multiplicities_hadron_pt.txt",data_path), ofstream::out | ofstream::trunc);
   // ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_mp(Form("%s/multiplicities_h+.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_mm(Form("%s/multiplicities_h-.txt",data_path), ofstream::out | ofstream::trunc);
@@ -1317,6 +1319,9 @@ int main(int argc, char **argv)
                 fMultiplicities_theta[i][j][k][th].tab[c][1][l] = 0 ;
                 fMultiplicities_theta[i][j][k][th].tab[c][2][l] = 0 ;
               }
+
+              fMultiplicities_thetaavg[i][j][k].tab[c][0][l] += fMultiplicities_theta[i][j][k][th].tab[c][0][l]*fTh_bin_width[th];
+              fMultiplicities_thetaavg[i][j][k].tab[c][1][l] += fMultiplicities_theta[i][j][k][th].tab[c][1][l]*pow(fTh_bin_width[th],2);
             }
 
             for(int pt=0; pt<10; pt++)
@@ -1352,6 +1357,9 @@ int main(int argc, char **argv)
                 fMultiplicities_pt[i][j][k][pt].tab[c][1][l] = 0 ;
                 fMultiplicities_pt[i][j][k][pt].tab[c][2][l] = 0 ;
               }
+
+              fMultiplicities_ptavg[i][j][k].tab[c][0][l] += fMultiplicities_pt[i][j][k][pt].tab[c][0][l]*fpT_bin_width[pt];
+              fMultiplicities_ptavg[i][j][k].tab[c][1][l] += fMultiplicities_pt[i][j][k][pt].tab[c][1][l]*pow(fpT_bin_width[pt],2);
             }
           }
 
@@ -1432,6 +1440,30 @@ int main(int argc, char **argv)
           (fMultiplicities[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
 
           if(!c) ofs_h << endl;
+
+          if (c) ofs_htheta << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+          ofs_htheta <<
+          fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
+          fMultiplicities_thetaavg[i][j][k].tab[c][0][3] << " " <<
+          fMultiplicities_thetaavg[i][j][k].tab[c][1][3] << " " <<
+          fMultiplicities_thetaavg[i][j][k].tab[c][2][3] << " " <<
+          (fMultiplicities_thetaavg[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
+
+          if(!c) ofs_htheta << endl;
+
+          if (c) ofs_hpt << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
+
+          ofs_hpt <<
+          fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
+          fMultiplicities_ptavg[i][j][k].tab[c][0][3] << " " <<
+          fMultiplicities_ptavg[i][j][k].tab[c][1][3] << " " <<
+          fMultiplicities_ptavg[i][j][k].tab[c][2][3] << " " <<
+          (fMultiplicities_ptavg[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
+
+          if(!c) ofs_hpt << endl;
 
           // if(c) ofs_m << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
           //
@@ -4099,6 +4131,8 @@ int main(int argc, char **argv)
   ofs_k.close();
   ofs_pr.close();
   ofs_h.close();
+  ofs_htheta.close();
+  ofs_hpt.close();
   // ofs_m.close();
   ofs_mp.close();
   ofs_mm.close();
