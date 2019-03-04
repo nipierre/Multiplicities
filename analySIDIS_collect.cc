@@ -57,12 +57,15 @@ void fetch_acceptance(string pname, int np)
           {
             acc_file >> fAcceptance[np][i][j][k].tab[c][1][0][0];
             acc_file >> fAcceptance[np][i][j][k].tab[c][1][1][0];
+            cout << fAcceptance[np][i][j][k].tab[c][1][0][0] << " " << fAcceptance[np][i][j][k].tab[c][1][1][0] << " ";
           }
           for(int l=0; l<4; l++)
           {
             acc_file >> fAcceptance[np][i][j][k].tab[c][0][0][0];
             acc_file >> fAcceptance[np][i][j][k].tab[c][0][1][0];
+            cout << fAcceptance[np][i][j][k].tab[c][0][0][0] << " " << fAcceptance[np][i][j][k].tab[c][0][1][0] << " ";
           }
+          cout << endl;
         }
       }
     }
@@ -663,6 +666,8 @@ int main(int argc, char **argv)
     if(!NO_ACC)
     {
       fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
+      fetch_theta_acceptance(Form("acceptance/%d/acceptance_theta_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
+      fetch_pt_acceptance(Form("acceptance/%d/acceptance_pt_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
       fetch_yavg_acceptance(Form("acceptance/%d/acceptance_yavg_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
       fetch_zvtx_acceptance(Form("acceptance/%d/acceptance_vtx_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
     }
