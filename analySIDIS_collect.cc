@@ -640,6 +640,9 @@ int main(int argc, char **argv)
               fRich_sys_err_period[period][xbin][ybin][zbin].tab[c][1][1][ll] = pow(max(abs(sqrt(fBinning_period[period][xbin][ybin][zbin].tab[c][1][1][ll])),
                                                               max(abs(fBinning_loose_period[period][xbin][ybin][zbin].tab[c][1][0][ll]-fBinning_period[period][xbin][ybin][zbin].tab[c][1][0][ll]),
                                                               abs(fBinning_severe_period[period][xbin][ybin][zbin].tab[c][1][0][ll]-fBinning_period[period][xbin][ybin][zbin].tab[c][1][0][ll]))),2);
+              fRich_sys_err_period[period][xbin][ybin][zbin].tab[c][0][1][ll] = pow(max(abs(sqrt(fBinning_period[period][xbin][ybin][zbin].tab[c][0][1][ll])),
+                                                              max(abs(fBinning_loose_period[period][xbin][ybin][zbin].tab[c][0][0][ll]-fBinning_period[period][xbin][ybin][zbin].tab[c][0][0][ll]),
+                                                              abs(fBinning_severe_period[period][xbin][ybin][zbin].tab[c][0][0][ll]-fBinning_period[period][xbin][ybin][zbin].tab[c][0][0][ll]))),2);
             }
           }
         }
@@ -1240,8 +1243,8 @@ int main(int argc, char **argv)
                                                         *pow(fAcceptance[period][i][j][k].tab[c][1][0][l],2)),2)))
                                                         : 0);
 
-              fMultiplicities[i][j][k].tab[c][2][l] += (fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance[period][i][j][k].tab[c][0][0][l] ?
-                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err_period[period][i][j][k].tab[c][0][0][l],2)/pow(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l],2)+
+              fMultiplicities[i][j][k].tab[c][2][l] += (fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance[period][i][j][k].tab[c][0][0][l] ?
+                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err_period[period][i][j][k].tab[c][0][1][l],2)/pow(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l],2)+
                                                         pow(0.05*sqrt(fAcceptance[period][i][j][k].tab[c][0][1][l])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]
                                                         *pow(fAcceptance[period][i][j][k].tab[c][0][0][l],2)),2)))
                                                         : 0);
