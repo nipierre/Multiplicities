@@ -1213,7 +1213,7 @@ int main(int argc, char **argv)
                                                         : 0);
 
                                                         if(l==3) {cout << (fBinning_period[period][i][j][k].tab[c][1][0][l] && fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance[period][i][j][k].tab[c][1][0][l] ?
-                                                                                                  Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                                                                  Double_t(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                                                                   *fBinning_period[period][i][j][k].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l]))
                                                                                                   : 0) << end;}
 
