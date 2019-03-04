@@ -433,7 +433,7 @@ void LoadDiffVectorMesonCorrection()
 
 void yavg()
 {
-  int pMean;
+  int pMean, pMeanpt, pMeanth;
 
   for(int c=0; c<2; c++)
   {
@@ -1386,8 +1386,8 @@ int main(int argc, char **argv)
                 fMultiplicities_pt[i][j][k][pt].tab[c][2][l] = 0 ;
               }
 
-              fMultiplicities_ptavg[i][j][k].tab[c][0][l] += fMultiplicities_pt[i][j][k][pt].tab[c][0][l]*fpT_bin_width[pt];
-              fMultiplicities_ptavg[i][j][k].tab[c][1][l] += fMultiplicities_pt[i][j][k][pt].tab[c][1][l]*pow(fpT_bin_width[pt],2);
+              fMultiplicities_ptint[i][j][k].tab[c][0][l] += fMultiplicities_pt[i][j][k][pt].tab[c][0][l]*fpT_bin_width[pt];
+              fMultiplicities_ptint[i][j][k].tab[c][1][l] += fMultiplicities_pt[i][j][k][pt].tab[c][1][l]*pow(fpT_bin_width[pt],2);
             }
           }
 
@@ -1486,10 +1486,10 @@ int main(int argc, char **argv)
           ofs_hpt <<
           fMeanvalues_data[i][j][k].tab[0][3][0] << " " << fMeanvalues_data[i][j][k].tab[0][3][1] << " " <<
           fMeanvalues_data[i][j][k].tab[0][3][2] << " " << fMeanvalues_data[i][j][k].tab[0][3][3] << " " <<
-          fMultiplicities_ptavg[i][j][k].tab[c][0][3] << " " <<
-          fMultiplicities_ptavg[i][j][k].tab[c][1][3] << " " <<
-          fMultiplicities_ptavg[i][j][k].tab[c][2][3] << " " <<
-          (fMultiplicities_ptavg[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
+          fMultiplicities_ptint[i][j][k].tab[c][0][3] << " " <<
+          fMultiplicities_ptint[i][j][k].tab[c][1][3] << " " <<
+          fMultiplicities_ptint[i][j][k].tab[c][2][3] << " " <<
+          (fMultiplicities_ptint[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
 
           if(!c) ofs_hpt << endl;
 

@@ -168,7 +168,7 @@ Multiplicities fMultiplicities_zvtx[9][6][12][4];
 Multiplicities fMultiplicities_theta[9][6][12][8];
 Multiplicities fMultiplicities_thetaint[9][6][12];
 Multiplicities fMultiplicities_pt[9][6][12][10];
-Multiplicities fMultiplicities_ptavg[9][6][12];
+Multiplicities fMultiplicities_ptint[9][6][12];
 Multiplicities fMultiplicities_yavg[9][12];
 Multiplicities fMultiplicities_theta_yavg[9][12];
 Multiplicities fMultiplicities_pt_yavg[9][12];
