@@ -11,7 +11,9 @@ using namespace std;
 #define proton_sirc "data/proton_semi_inclusive_RC.txt"
 #define proton_irc "data/hh160_r1998_f2tulay_compass_grv.asy_hcorr.txt"
 #define ElectronPi "data/electron_pion_contamination.txt"
-#define ElectronPiVtx "data/electron_pion_contaminatio_vtx.txt"
+#define ElectronPiVtx "data/electron_pion_contamination_vtx.txt"
+#define ElectronPiTheta "data/electron_pion_contamination_Theta.txt"
+#define ElectronPipT "data/electron_pion_contamination_pT.txt"
 
 //User dependant input
 #define data_path "/sps/compass/npierre"
@@ -377,6 +379,7 @@ void LoadElectronCorrection()
   }
 
   epi.close();
+
   ifstream epiVtx(ElectronPiVtx);
 
   for(int c=0; c<2; c++)
@@ -398,6 +401,48 @@ void LoadElectronCorrection()
   }
 
   epiVtx.close();
+
+  ifstream epiTheta(ElectronPiTheta);
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int th=0; th<8; th++)
+          {
+            epiTheta >> fCepiTh[c][1][i][j][k][th] >> fCepiTh[c][0][i][j][k][th];
+          }
+        }
+      }
+    }
+  }
+
+  epiTheta.close();
+
+  ifstream epipT(ElectronPipT);
+
+  for(int c=0; c<2; c++)
+  {
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<6; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          for(int pt=0; pt<10; pt++)
+          {
+            epipT >> fCepipT[c][1][i][j][k][pt] >> fCepipT[c][0][i][j][k][pt];
+          }
+        }
+      }
+    }
+  }
+
+  epipT.close();
 
 }
 
