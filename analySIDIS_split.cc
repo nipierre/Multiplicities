@@ -2476,7 +2476,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][2].push_back(res_vect[1][0]);
               pzcontainer.vec[1][3].push_back(res_vect[2][0]);
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
 
               pzcontainer_err.vec[1][0].push_back(zBj);
               pzcontainer_err.vec[1][1].push_back(pow(res_vect_err[0],2));
@@ -2517,7 +2517,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][2].push_back(res_vect[1][0]);
               pzcontainer.vec[0][3].push_back(res_vect[2][0]);
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
 
               pzcontainer_err.vec[0][0].push_back(zBj);
               pzcontainer_err.vec[0][1].push_back(pow(res_vect_err[0],2));
@@ -2541,7 +2541,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               hadron_flag = 1;
             }
             if(!fFlag[1][xbin][ybin][zbin])
@@ -2577,7 +2577,7 @@ int main(int argc, char **argv)
                 pzcontainer.vec[1][4].push_back(0);
                 pzcontainer_err.vec[1][4].push_back(0);
                 thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-                ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+                ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               }
 
               hadcontainer.vec.push_back(2);
@@ -2594,7 +2594,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               hadron_flag = 1;
             }
             if(!fFlag[1][xbin][ybin][zbin])
@@ -2630,7 +2630,7 @@ int main(int argc, char **argv)
                 pzcontainer.vec[0][4].push_back(0);
                 pzcontainer_err.vec[0][4].push_back(0);
                 thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-                ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+                ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               }
 
               hadcontainer.vec.push_back(3);
@@ -2647,7 +2647,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               hadron_flag = 1;
             }
             if(!fFlag[2][xbin][ybin][zbin])
@@ -2683,7 +2683,7 @@ int main(int argc, char **argv)
                 pzcontainer.vec[1][4].push_back(0);
                 pzcontainer_err.vec[1][4].push_back(0);
                 thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-                ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+                ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               }
 
               hadcontainer.vec.push_back(0);
@@ -2700,7 +2700,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               hadron_flag = 1;
             }
             if(!fFlag[2][xbin][ybin][zbin])
@@ -2736,7 +2736,7 @@ int main(int argc, char **argv)
                 pzcontainer.vec[0][4].push_back(0);
                 pzcontainer_err.vec[0][4].push_back(0);
                 thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-                ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+                ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               }
 
               hadcontainer.vec.push_back(5);
@@ -2757,7 +2757,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[1][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[1][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               hadcontainer.vec.push_back(6);
             }
           }
@@ -2773,7 +2773,7 @@ int main(int argc, char **argv)
               pzcontainer.vec[0][4].push_back(1*GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj));
               pzcontainer_err.vec[0][4].push_back(pow(GetSemiInclusiveRadiativeCorrection(xBj,yBj,zBj),2));
               thlocal.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
-              ptlocal.push_back(pow(th->GetLeaf("Hadrons.th")->GetValue(i),2));
+              ptlocal.push_back(pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2));
               hadcontainer.vec.push_back(7);
             }
           }

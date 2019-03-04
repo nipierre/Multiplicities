@@ -501,6 +501,18 @@ void yweightedavg()
               fMultiplicities_yavg[x][z].tab[c][1][l]+=1/fMultiplicities[x][i][z].tab[c][1][l];
               fMultiplicities_yavg[x][z].tab[c][2][l]+=1/fMultiplicities[x][i][z].tab[c][2][l];
             }
+            if(fMultiplicities_thetaint[x][i][z].tab[c][0][l])
+            {
+              fMultiplicities_theta_yavg[x][z].tab[c][0][l]+=fMultiplicities_thetaint[x][i][z].tab[c][0][l]/fMultiplicities_thetaint[x][i][z].tab[c][1][l];
+              fMultiplicities_theta_yavg[x][z].tab[c][1][l]+=1/fMultiplicities_thetaint[x][i][z].tab[c][1][l];
+              fMultiplicities_theta_yavg[x][z].tab[c][2][l]+=1/fMultiplicities_thetaint[x][i][z].tab[c][2][l];
+            }
+            if(fMultiplicities_ptint[x][i][z].tab[c][0][l])
+            {
+              fMultiplicities_pt_yavg[x][z].tab[c][0][l]+=fMultiplicities_ptint[x][i][z].tab[c][0][l]/fMultiplicities_ptint[x][i][z].tab[c][1][l];
+              fMultiplicities_pt_yavg[x][z].tab[c][1][l]+=1/fMultiplicities_ptint[x][i][z].tab[c][1][l];
+              fMultiplicities_pt_yavg[x][z].tab[c][2][l]+=1/fMultiplicities_ptint[x][i][z].tab[c][2][l];
+            }
             for(int ll=0; ll<4; ll++)
             {
               if(fMultiplicities_zvtx[x][i][z][ll].tab[c][0][l])
@@ -516,6 +528,18 @@ void yweightedavg()
             fMultiplicities_yavg[x][z].tab[c][1][l]=1/fMultiplicities_yavg[x][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]=1/fMultiplicities_yavg[x][z].tab[c][2][l];
             fMultiplicities_yavg[x][z].tab[c][0][l]*=fMultiplicities_yavg[x][z].tab[c][1][l];
+          }
+          if(fMultiplicities_theta_yavg[x][z].tab[c][0][l])
+          {
+            fMultiplicities_theta_yavg[x][z].tab[c][1][l]=1/fMultiplicities_theta_yavg[x][z].tab[c][1][l];
+            fMultiplicities_theta_yavg[x][z].tab[c][2][l]=1/fMultiplicities_theta_yavg[x][z].tab[c][2][l];
+            fMultiplicities_theta_yavg[x][z].tab[c][0][l]*=fMultiplicities_theta_yavg[x][z].tab[c][1][l];
+          }
+          if(fMultiplicities_pt_yavg[x][z].tab[c][0][l])
+          {
+            fMultiplicities_pt_yavg[x][z].tab[c][1][l]=1/fMultiplicities_pt_yavg[x][z].tab[c][1][l];
+            fMultiplicities_pt_yavg[x][z].tab[c][2][l]=1/fMultiplicities_pt_yavg[x][z].tab[c][2][l];
+            fMultiplicities_pt_yavg[x][z].tab[c][0][l]*=fMultiplicities_pt_yavg[x][z].tab[c][1][l];
           }
           for(int ll=0; ll<4; ll++)
           {
@@ -2407,7 +2431,7 @@ int main(int argc, char **argv)
         }
 
         // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_yavg[i][k].tab[c][2][3] << endl;
-        cout << c << " " << i << " " << k << " " << fMultiplicities_theta_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_theta_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_theta_yavg[i][k].tab[c][2][3] << endl;
+        // cout << c << " " << i << " " << k << " " << fMultiplicities_theta_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_theta_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_theta_yavg[i][k].tab[c][2][3] << endl;
         // cout << c << " " << i << " " << k << " " << fMultiplicities_pt_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_pt_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_pt_yavg[i][k].tab[c][2][3] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
