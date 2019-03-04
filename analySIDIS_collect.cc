@@ -55,17 +55,17 @@ void fetch_acceptance(string pname, int np)
           }
           for(int l=0; l<4; l++)
           {
-            acc_file >> fAcceptance[np][i][j][k].tab[c][1][0][0];
-            acc_file >> fAcceptance[np][i][j][k].tab[c][1][1][0];
-            cout << fAcceptance[np][i][j][k].tab[c][1][0][0] << " " << fAcceptance[np][i][j][k].tab[c][1][1][0] << " ";
+            acc_file >> fAcceptance[np][i][j][k].tab[c][1][0][l];
+            acc_file >> fAcceptance[np][i][j][k].tab[c][1][1][l];
+            // cout << fAcceptance[np][i][j][k].tab[c][1][0][0] << " " << fAcceptance[np][i][j][k].tab[c][1][1][0] << " ";
           }
           for(int l=0; l<4; l++)
           {
-            acc_file >> fAcceptance[np][i][j][k].tab[c][0][0][0];
-            acc_file >> fAcceptance[np][i][j][k].tab[c][0][1][0];
-            cout << fAcceptance[np][i][j][k].tab[c][0][0][0] << " " << fAcceptance[np][i][j][k].tab[c][0][1][0] << " ";
+            acc_file >> fAcceptance[np][i][j][k].tab[c][0][0][l];
+            acc_file >> fAcceptance[np][i][j][k].tab[c][0][1][l];
+            // cout << fAcceptance[np][i][j][k].tab[c][0][0][0] << " " << fAcceptance[np][i][j][k].tab[c][0][1][0] << " ";
           }
-          cout << endl;
+          // cout << endl;
         }
       }
     }
