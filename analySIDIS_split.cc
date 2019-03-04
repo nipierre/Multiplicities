@@ -3262,7 +3262,7 @@ int main(int argc, char **argv)
             else if(0.045<=fTheta[i][l] && fTheta[i][l]<0.058) thbin = 4;
             else if(0.058<=fTheta[i][l] && fTheta[i][l]<0.072) thbin = 5;
             else if(0.072<=fTheta[i][l] && fTheta[i][l]<0.088) thbin = 6;
-            else if(0.072<=fTheta[i][l] && fTheta[i][l]<0.2) thbin = 7;
+            else if(0.088<=fTheta[i][l] && fTheta[i][l]<0.2) thbin = 7;
             else thbin = -1;
 
             if(0.02<=fpT[i][l] && fpT[i][l]<0.08) ptbin = 0;

@@ -501,11 +501,14 @@ void yweightedavg()
               fMultiplicities_yavg[x][z].tab[c][1][l]+=1/fMultiplicities[x][i][z].tab[c][1][l];
               fMultiplicities_yavg[x][z].tab[c][2][l]+=1/fMultiplicities[x][i][z].tab[c][2][l];
             }
-            if(fMultiplicities_thetaint[x][i][z].tab[c][0][l])
+            for(int th=0; th<8; th++)
             {
-              fMultiplicities_theta_yavg[x][z].tab[c][0][l]+=fMultiplicities_thetaint[x][i][z].tab[c][0][l]/fMultiplicities_thetaint[x][i][z].tab[c][1][l];
-              fMultiplicities_theta_yavg[x][z].tab[c][1][l]+=1/fMultiplicities_thetaint[x][i][z].tab[c][1][l];
-              fMultiplicities_theta_yavg[x][z].tab[c][2][l]+=1/fMultiplicities_thetaint[x][i][z].tab[c][2][l];
+              if(fMultiplicities_theta[x][i][z][th].tab[c][0][l])
+              {
+                fMultiplicities_theta_yavg[x][z][th].tab[c][0][l]+=fMultiplicities_theta[x][i][z][th].tab[c][0][l]/fMultiplicities_theta[x][i][z][th].tab[c][1][l];
+                fMultiplicities_theta_yavg[x][z][th].tab[c][1][l]+=1/fMultiplicities_theta[x][i][z][th].tab[c][1][l];
+                fMultiplicities_theta_yavg[x][z][th].tab[c][2][l]+=1/fMultiplicities_theta[x][i][z][th].tab[c][2][l];
+              }
             }
             if(fMultiplicities_ptint[x][i][z].tab[c][0][l])
             {
@@ -529,11 +532,14 @@ void yweightedavg()
             fMultiplicities_yavg[x][z].tab[c][2][l]=1/fMultiplicities_yavg[x][z].tab[c][2][l];
             fMultiplicities_yavg[x][z].tab[c][0][l]*=fMultiplicities_yavg[x][z].tab[c][1][l];
           }
-          if(fMultiplicities_theta_yavg[x][z].tab[c][0][l])
+          for(int th=0; th<8; th++)
           {
-            fMultiplicities_theta_yavg[x][z].tab[c][1][l]=1/fMultiplicities_theta_yavg[x][z].tab[c][1][l];
-            fMultiplicities_theta_yavg[x][z].tab[c][2][l]=1/fMultiplicities_theta_yavg[x][z].tab[c][2][l];
-            fMultiplicities_theta_yavg[x][z].tab[c][0][l]*=fMultiplicities_theta_yavg[x][z].tab[c][1][l];
+            if(fMultiplicities_theta_yavg[x][z][th].tab[c][0][l])
+            {
+              fMultiplicities_theta_yavg[x][z][th].tab[c][1][l]=1/fMultiplicities_theta_yavg[x][z][th].tab[c][1][l];
+              fMultiplicities_theta_yavg[x][z][th].tab[c][2][l]=1/fMultiplicities_theta_yavg[x][z][th].tab[c][2][l];
+              fMultiplicities_theta_yavg[x][z][th].tab[c][0][l]*=fMultiplicities_theta_yavg[x][z][th].tab[c][1][l];
+            }
           }
           if(fMultiplicities_pt_yavg[x][z].tab[c][0][l])
           {
@@ -1372,8 +1378,6 @@ int main(int argc, char **argv)
                 fMultiplicities_theta[i][j][k][th].tab[c][2][l] = 0 ;
               }
 
-              fMultiplicities_thetaint[i][j][k].tab[c][0][l] += fMultiplicities_theta[i][j][k][th].tab[c][0][l]*fTh_bin_width[th];
-              fMultiplicities_thetaint[i][j][k].tab[c][1][l] += fMultiplicities_theta[i][j][k][th].tab[c][1][l]*pow(fTh_bin_width[th],2);
             }
 
             for(int pt=0; pt<10; pt++)
@@ -2430,8 +2434,14 @@ int main(int argc, char **argv)
           }
         }
 
+        for(int th=0; th<8; th++)
+        {
+          fMultiplicities_thetaint[i][j][k].tab[c][0][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][0][l]*fTh_bin_width[th];
+          fMultiplicities_thetaint[i][j][k].tab[c][1][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][1][l]*pow(fTh_bin_width[th],2);
+        }
+
         // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_yavg[i][k].tab[c][2][3] << endl;
-        cout << c << " " << i << " " << k << " " << fMultiplicities_theta_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_theta_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_theta_yavg[i][k].tab[c][2][3] << endl;
+        cout << c << " " << i << " " << k << " " << fMultiplicities_thetaint[i][k].tab[c][0][3] << " " << fMultiplicities_thetaint[i][k].tab[c][1][3] << " " << fMultiplicities_thetaint[i][k].tab[c][2][3] << endl;
         // cout << c << " " << i << " " << k << " " << fMultiplicities_pt_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_pt_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_pt_yavg[i][k].tab[c][2][3] << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
