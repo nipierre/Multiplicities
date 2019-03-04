@@ -450,10 +450,13 @@ void yavg()
             if(fMultiplicities[x][i][z].tab[c][0][l]) pMean++;
             fMultiplicities_yavg[x][z].tab[c][1][l]+=fMultiplicities[x][i][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]+=fMultiplicities[x][i][z].tab[c][2][l];
-            fMultiplicities_theta_yavg[x][z].tab[c][0][l]+=fMultiplicities_thetaint[x][i][z].tab[c][0][l];
-            if(fMultiplicities_thetaint[x][i][z].tab[c][0][l]) pMeanth++;
-            fMultiplicities_theta_yavg[x][z].tab[c][1][l]+=fMultiplicities_thetaint[x][i][z].tab[c][1][l];
-            fMultiplicities_theta_yavg[x][z].tab[c][2][l]+=fMultiplicities_thetaint[x][i][z].tab[c][2][l];
+            for(int th=0; th<8; th++)
+            {
+              fMultiplicities_theta_yavg[x][z][th].tab[c][0][l]+=fMultiplicities_thetaint[x][i][z].tab[c][0][l];
+              if(fMultiplicities_thetaint[x][i][z][th].tab[c][0][l]) pMeanth++;
+              fMultiplicities_theta_yavg[x][z][th].tab[c][1][l]+=fMultiplicities_thetaint[x][i][z].tab[c][1][l];
+              fMultiplicities_theta_yavg[x][z][th].tab[c][2][l]+=fMultiplicities_thetaint[x][i][z].tab[c][2][l];
+            }           
             fMultiplicities_pt_yavg[x][z].tab[c][0][l]+=fMultiplicities_ptint[x][i][z].tab[c][0][l];
             if(fMultiplicities_ptint[x][i][z].tab[c][0][l]) pMeanpt++;
             fMultiplicities_pt_yavg[x][z].tab[c][1][l]+=fMultiplicities_ptint[x][i][z].tab[c][1][l];
@@ -2434,8 +2437,8 @@ int main(int argc, char **argv)
           }
           for(int th=0; th<8; th++)
           {
-            fMultiplicities_thetaint[i][j][k].tab[c][0][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][0][l]*fTh_bin_width[th];
-            fMultiplicities_thetaint[i][j][k].tab[c][1][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][1][l]*pow(fTh_bin_width[th],2);
+            fMultiplicities_thetaint[i][k].tab[c][0][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][0][l]*fTh_bin_width[th];
+            fMultiplicities_thetaint[i][k].tab[c][1][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][1][l]*pow(fTh_bin_width[th],2);
           }
         }
 
