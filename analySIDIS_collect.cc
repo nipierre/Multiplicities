@@ -2432,12 +2432,11 @@ int main(int argc, char **argv)
             fMultiplicities_pt_yavg[i][k].tab[c][1][l] = 0 ;
             fMultiplicities_pt_yavg[i][k].tab[c][2][l] = 0 ;
           }
-        }
-
-        for(int th=0; th<8; th++)
-        {
-          fMultiplicities_thetaint[i][j][k].tab[c][0][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][0][l]*fTh_bin_width[th];
-          fMultiplicities_thetaint[i][j][k].tab[c][1][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][1][l]*pow(fTh_bin_width[th],2);
+          for(int th=0; th<8; th++)
+          {
+            fMultiplicities_thetaint[i][j][k].tab[c][0][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][0][l]*fTh_bin_width[th];
+            fMultiplicities_thetaint[i][j][k].tab[c][1][l] += fMultiplicities_theta_yavg[i][k][th].tab[c][1][l]*pow(fTh_bin_width[th],2);
+          }
         }
 
         // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_yavg[i][k].tab[c][2][3] << endl;
