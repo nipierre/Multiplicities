@@ -2626,7 +2626,7 @@ int main(int argc, char **argv)
             else if(0.045<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.058) thbin = 4;
             else if(0.058<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.072) thbin = 5;
             else if(0.072<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.088) thbin = 6;
-            else if(0.072<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.2) thbin = 7;
+            else if(0.088<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.2) thbin = 7;
             else thbin = -1;
 
             if(0.02<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.08) ptbin = 0;
