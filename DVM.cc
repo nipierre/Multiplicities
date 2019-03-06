@@ -583,13 +583,19 @@ void Extraction(string pFilelist, int pType)
       }
       else if(pType==1)
       {
-        RHO_EVENTS++;
-        RHO_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        if(0.01<yBj_MC && yBj_MC<0.99 && 0.8<Q2_MC && Q2_MC<1000 && 1.6<nu_MC && nu_MC<158.4)
+        {
+          RHO_EVENTS++;
+          RHO_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        }
       }
       else if(pType==2)
       {
-        PHI_EVENTS++;
-        PHI_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        if(0.01<yBj_MC && yBj_MC<0.99 && 0.8<Q2_MC && Q2_MC<1000 && 1.6<nu_MC && nu_MC<158.4)
+        {
+          PHI_EVENTS++;
+          PHI_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        }
       }
 
 
