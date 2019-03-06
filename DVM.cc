@@ -123,6 +123,16 @@ void Extraction(string pFilelist, int pType)
   Double_t wBj = 0;
   Double_t nu = 0;
 
+  Double_t MCE0 = 0;
+  Double_t MCE1 = 0;
+  Double_t Q2_MC = 0;
+  Double_t xBj_MC = 0;
+  Double_t yBj_MC = 0;
+  Double_t zBj_MC = 0;
+  Double_t zBj_MC_unid = 0;
+  Double_t wBj_MC = 0;
+  Double_t nu_MC = 0;
+
   // Trackers
   int fRec=0;
   int fBeam=0;
