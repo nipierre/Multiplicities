@@ -1321,6 +1321,12 @@ void DVMCalc()
         fDVM_h[i][j][k].tab[1][0][1] = fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
         fDVM_h[i][j][k].tab[0][0][1] = fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1] ? fPhi[i][j][k].tab[0][0][1]/(fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]) : 0;
 
+        cout << i+1 << " " << j+1 << " " << k+1 << " "
+                << fSIDIS[i][j][k].tab[1][0][0] << " " << fSIDIS[i][j][k].tab[0][0][0] << " "
+                << fSIDIS[i][j][k].tab[1][0][1] << " " << fSIDIS[i][j][k].tab[0][0][1] << " "
+                << fRho[i][j][k].tab[1][0][0] << " " << fRho[i][j][k].tab[0][0][0] << " "
+                << fPhi[i][j][k].tab[1][0][1] << " " << fPhi[i][j][k].tab[0][0][1] <<  endl;
+
         for(int c=0; c<2; c++)
         {
           fDVM_pi[c][i][j][k] = ((1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) && fDVM_h[i][j][k].tab[c][0][0]) ? (1-fDVM_h[i][j][k].tab[c][0][0])/(1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j])) : 0;
