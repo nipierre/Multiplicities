@@ -3394,14 +3394,14 @@ int main(int argc, char **argv)
   rK_y->SetMarkerSize(4);
   rPR_y->SetMarkerSize(4);
 
-  sH_y->SetMarkerStyle(fMarkerStyle[2][1]);
-  sP_y->SetMarkerStyle(fMarkerStyle[2][1]);
-  sK_y->SetMarkerStyle(fMarkerStyle[2][1]);
-  sPR_y->SetMarkerStyle(fMarkerStyle[2][1]);
-  rH_y->SetMarkerStyle(fMarkerStyle[2][1]);
-  rP_y->SetMarkerStyle(fMarkerStyle[2][1]);
-  rK_y->SetMarkerStyle(fMarkerStyle[2][1]);
-  rPR_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  sH_y->SetMarkerStyle(fMarkerStyle[1][1]);
+  sP_y->SetMarkerStyle(fMarkerStyle[1][1]);
+  sK_y->SetMarkerStyle(fMarkerStyle[1][1]);
+  sPR_y->SetMarkerStyle(fMarkerStyle[1][1]);
+  rH_y->SetMarkerStyle(fMarkerStyle[1][1]);
+  rP_y->SetMarkerStyle(fMarkerStyle[1][1]);
+  rK_y->SetMarkerStyle(fMarkerStyle[1][1]);
+  rPR_y->SetMarkerStyle(fMarkerStyle[1][1]);
 
   sH_y->SetTitle("");
   sP_y->SetTitle("");
