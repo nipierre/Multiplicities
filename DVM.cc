@@ -8,9 +8,9 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define SIDIS_XS 227010 //349600
-#define RHO_XS 25592.8
-#define PHI_XS 5995.35
+#define SIDIS_XS 349600 //227010
+#define RHO_XS 12200 //25592.8
+#define PHI_XS 2500 //5995.35
 
 using namespace std;
 
