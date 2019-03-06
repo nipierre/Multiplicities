@@ -8,7 +8,7 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define SIDIS_XS 227010
+#define SIDIS_XS 349600//227010
 #define RHO_XS 25592.8
 #define PHI_XS 5995.35
 
@@ -527,8 +527,11 @@ void Extraction(string pFilelist, int pType)
 
       if(pType==0)
       {
-        SIDIS_EVENTS++;
-        SIDIS_WEIGHT++;
+        if(0.01<yBj && yBj<0.99 && 0.8<Q2 && Q2<1000 && 1.6<nu && nu<158.4)
+        {
+          SIDIS_EVENTS++;
+          SIDIS_WEIGHT++;
+        }
       }
       else if(pType==1)
       {
