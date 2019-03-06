@@ -1193,6 +1193,9 @@ void DVMCalc()
 {
   double sigpi, sigK, sigDIS;
 
+  cout << (SIDIS_WEIGHT/SIDIS_XS) << " " << (RHO_WEIGHT/RHO_XS) << " " << (PHI_WEIGHT/PHI_XS) << endl;
+  cout << (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS) << " " << (PHI_WEIGHT/PHI_XS) << endl;
+
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
