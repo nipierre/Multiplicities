@@ -557,11 +557,11 @@ void Extraction(string pFilelist, int pType)
       fAllDISflag = 0;
 
       // Best Primary Vertex
-
+      fRec++;
       // Reconstructed muon
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
-        fRec++;
+        // fRec++;
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
         {
