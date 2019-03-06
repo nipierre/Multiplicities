@@ -816,7 +816,6 @@ void Extraction(string pFilelist, int pType)
             }
             else
             {
-              continue;
             }
           }
 
@@ -1066,7 +1065,7 @@ void Extraction(string pFilelist, int pType)
   cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBeam << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << endl;
   cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarget << '|' << setw(15) << float(fTarget)/float(fRec)*100 << '|' << setw(15) << float(fTarget)/float(fBeam)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu chi2/ndf < 10" << '|' << setw(15) << fBeamChi2 << '|' << setw(15) << float(fBeamChi2)/float(fRec)*100 << '|' << setw(15) << float(fBeamChi2)/float(fTarget)*100 << '|' << endl;
-  cout << '|' << setw(30) << "Beam tarck X Cell" << '|' << setw(15) << fXCells << '|' << setw(15) << float(fXCells)/float(fRec)*100 << '|' << setw(15) << float(fXCells)/float(fBeamChi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Beam track X Cell" << '|' << setw(15) << fXCells << '|' << setw(15) << float(fXCells)/float(fRec)*100 << '|' << setw(15) << float(fXCells)/float(fBeamChi2)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu' chi2/ndf < 10" << '|' << setw(15) << fMuPrChi2 << '|' << setw(15) << float(fMuPrChi2)/float(fRec)*100 << '|' << setw(15) << float(fMuPrChi2)/float(fXCells)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu' Zfirst < 350" << '|' << setw(15) << fZfirst << '|' << setw(15) << float(fZfirst)/float(fRec)*100 << '|' << setw(15) << float(fZfirst)/float(fMuPrChi2)*100 << '|' << endl;
   cout << '|' << setw(30) << "Triggers MT/LT/OT/LAST" << '|' << setw(15) << fTrig << '|' << setw(15) << float(fTrig)/float(fRec)*100 << '|' << setw(15) << float(fTrig)/float(fZfirst)*100 << '|' << endl;
@@ -1082,7 +1081,7 @@ void Extraction(string pFilelist, int pType)
   cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << endl;
   cout << '|' << setw(30) << "Hadrons" << '|' << setw(15) << fHadrons << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << endl;
   cout << '|' << setw(30) << "XX0 < 15" << '|' << setw(15) << fXX0 << '|' << setw(15) << float(fXX0)/float(fHadrons)*100 << '|' << setw(15) << float(fXX0)/float(fHadrons)*100 << endl;
-  cout << '|' << setw(30) << "Chi2/ndf > 10" << '|' << setw(15) << fHadChi2 << '|' << setw(15) << float(fHadChi2)/float(fHadrons)*100 << '|' << setw(15) << float(fHadChi2)/float(fXX0)*100 << endl;
+  cout << '|' << setw(30) << "Chi2/ndf < 10" << '|' << setw(15) << fHadChi2 << '|' << setw(15) << float(fHadChi2)/float(fHadrons)*100 << '|' << setw(15) << float(fHadChi2)/float(fXX0)*100 << endl;
   cout << '|' << setw(30) << "Zfirst < 350 cm" << '|' << setw(15) << fHZfirst << '|' << setw(15) << float(fHZfirst)/float(fHadrons)*100 << '|' << setw(15) << float(fHZfirst)/float(fHadChi2)*100 << endl;
   cout << '|' << setw(30) << "Zlast > 350 cm" << '|' << setw(15) << fHZlast << '|' << setw(15) << float(fHZlast)/float(fHadrons)*100 << '|' << setw(15) << float(fHZlast)/float(fHZfirst)*100 << endl;
   cout << '|' << setw(30) << "12 < p_h < 40" << '|' << setw(15) << fP << '|' << setw(15) << float(fP)/float(fHadrons)*100 << '|' << setw(15) << float(fP)/float(fHZlast)*100 << endl;
