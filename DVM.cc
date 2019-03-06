@@ -469,6 +469,44 @@ void Extraction(string pFilelist, int pType)
       else
         wBj = 0;
 
+      //MC
+      MCE0 = sqrt(pow(fM_mu,2)
+                  +MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p0x->GetLeaf("MC_p0x")->GetValue()
+                  +MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p0y->GetLeaf("MC_p0y")->GetValue()
+                  +MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p0z->GetLeaf("MC_p0z")->GetValue());
+
+      MCE1 = sqrt(pow(fM_mu,2)
+                  +MC_p1x->GetLeaf("MC_p1x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
+                  +MC_p1y->GetLeaf("MC_p1y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
+                  +MC_p1z->GetLeaf("MC_p1z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue());
+
+      Q2_MC = 2.*( MCE0*MCE1
+           - MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
+           - MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
+           - MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue()
+           - pow(fM_mu,2));
+
+      nu_MC = MCE0 - MCE1;
+
+      if(MCE0 != 0)
+        yBj_MC = nu_MC/MCE0;
+      else
+        yBj_MC = 0;
+
+      if(nu_MC != 0)
+      {
+        xBj_MC = Q2_MC/(2*fM_p*nu_MC);
+      }
+      else
+      {
+        xBj_MC = 0;
+      }
+
+      if(xBj_MC != 0)
+        wBj_MC = pow(fM_p,2) + Q2_MC*(1-xBj_MC)/xBj_MC;
+      else
+        wBj_MC = 0;
+
       int trig= trigMask->GetLeaf("trigMask")->GetValue();
       trig = (trig&2047);
 
@@ -527,7 +565,7 @@ void Extraction(string pFilelist, int pType)
 
       if(pType==0)
       {
-        if(0.01<yBj && yBj<0.99 && 0.8<Q2 && Q2<1000 && 1.6<nu && nu<158.4)
+        if(0.01<yBj_MC && yBj_MC<0.99 && 0.8<Q2_MC && Q2_MC<1000 && 1.6<nu_MC && nu_MC<158.4)
         {
           SIDIS_EVENTS++;
           SIDIS_WEIGHT++;
