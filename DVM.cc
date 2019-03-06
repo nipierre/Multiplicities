@@ -1316,10 +1316,10 @@ void DVMCalc()
         fPhi_tot_xy[i][j][0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot_xy[i][j][1][3] += fPhi[i][j][k].tab[1][0][3];
         fPhi_tot_xy[i][j][0][3] += fPhi[i][j][k].tab[0][0][3];
-        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0] ? fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0]) : 0;
-        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0] ? fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0]) : 0;
-        fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
-        fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1] ? fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]) : 0;
+        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][0] ? fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][0]) : 0;
+        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][0] ? fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][0]) : 0;
+        fDVM_h[i][j][k].tab[1][0][1] = fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
+        fDVM_h[i][j][k].tab[0][0][1] = fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1] ? fPhi[i][j][k].tab[0][0][1]/(fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]) : 0;
 
         for(int c=0; c<2; c++)
         {
