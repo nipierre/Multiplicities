@@ -3385,23 +3385,23 @@ int main(int argc, char **argv)
   rK_y->SetMarkerColor(fMarkerColor[0]);
   rPR_y->SetMarkerColor(fMarkerColor[0]);
 
-  sH_y->SetMarkerSize(3);
-  sP_y->SetMarkerSize(3);
-  sK_y->SetMarkerSize(3);
-  sPR_y->SetMarkerSize(3);
-  rH_y->SetMarkerSize(3);
-  rP_y->SetMarkerSize(3);
-  rK_y->SetMarkerSize(3);
-  rPR_y->SetMarkerSize(3);
+  sH_y->SetMarkerSize(4);
+  sP_y->SetMarkerSize(4);
+  sK_y->SetMarkerSize(4);
+  sPR_y->SetMarkerSize(4);
+  rH_y->SetMarkerSize(4);
+  rP_y->SetMarkerSize(4);
+  rK_y->SetMarkerSize(4);
+  rPR_y->SetMarkerSize(4);
 
-  sH_y->SetMarkerStyle(fMarkerStyle[0][1]);
-  sP_y->SetMarkerStyle(fMarkerStyle[0][1]);
-  sK_y->SetMarkerStyle(fMarkerStyle[0][1]);
-  sPR_y->SetMarkerStyle(fMarkerStyle[0][1]);
-  rH_y->SetMarkerStyle(fMarkerStyle[0][1]);
-  rP_y->SetMarkerStyle(fMarkerStyle[0][1]);
-  rK_y->SetMarkerStyle(fMarkerStyle[0][1]);
-  rPR_y->SetMarkerStyle(fMarkerStyle[0][1]);
+  sH_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  sP_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  sK_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  sPR_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  rH_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  rP_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  rK_y->SetMarkerStyle(fMarkerStyle[2][1]);
+  rPR_y->SetMarkerStyle(fMarkerStyle[2][1]);
 
   sH_y->SetTitle("");
   sP_y->SetTitle("");
@@ -3420,15 +3420,6 @@ int main(int argc, char **argv)
   rP_y->GetYaxis()->SetTitle("");
   rK_y->GetYaxis()->SetTitle("");
   rPR_y->GetYaxis()->SetTitle("");
-
-  sH_y->GetXaxis()->SetTitle("z");
-  sP_y->GetXaxis()->SetTitle("z");
-  sK_y->GetXaxis()->SetTitle("z");
-  sPR_y->GetXaxis()->SetTitle("z");
-  rH_y->GetXaxis()->SetTitle("z");
-  rP_y->GetXaxis()->SetTitle("z");
-  rK_y->GetXaxis()->SetTitle("z");
-  rPR_y->GetXaxis()->SetTitle("z");
 
   c13->cd(1);
   gPad->SetFillStyle(4000);

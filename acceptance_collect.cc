@@ -690,21 +690,7 @@ int main(int argc, char **argv)
                   fAcceptance[i][j][k].tab[c][m][1][3] = 0;
                 }
 
-                // if((fAcceptance[i][j][k].tab[c][m][0][0] != 0)
-                // && (fAcceptance[i][j][k].tab[c][m][1][0] != 0)
-                // && (fAcceptance[i][j][k].tab[c][m][1][0]/fAcceptance[i][j][k].tab[c][m][0][0] > 0.20))
-                // {
-                //   fAcceptance[i][j][k].tab[c][m][0][0] = 0;
-                //   fAcceptance[i][j][k].tab[c][m][0][1] = 0;
-                //   fAcceptance[i][j][k].tab[c][m][0][2] = 0;
-                //   fAcceptance[i][j][k].tab[c][m][0][3] = 0;
-                //   fAcceptance[i][j][k].tab[c][m][1][0] = 0;
-                //   fAcceptance[i][j][k].tab[c][m][1][1] = 0;
-                //   fAcceptance[i][j][k].tab[c][m][1][2] = 0;
-                //   fAcceptance[i][j][k].tab[c][m][1][3] = 0;
-                // }
-                //
-                // if((j==4 && k==6)
+                if((j==4 && k==6)
     	          // || (i==0 && j==5 && k==3)
     	          // || (i>4 && j==4 && k==5)
                 // || (i==0 && j==3 && k==9)
@@ -714,17 +700,17 @@ int main(int argc, char **argv)
                 // || (i==7 && j==3 && k>7)
                 // || (i==8 && j==3 && k>6)
                 // || (i>5 && j==5 && k==2)
-                // || (j==1 && k<4))
-                // {
-                //    fAcceptance[i][j][k].tab[c][m][0][0] = 0;
-                //    fAcceptance[i][j][k].tab[c][m][0][1] = 0;
-                //    fAcceptance[i][j][k].tab[c][m][0][2] = 0;
-                //    fAcceptance[i][j][k].tab[c][m][0][3] = 0;
-                //    fAcceptance[i][j][k].tab[c][m][1][0] = 0;
-                //    fAcceptance[i][j][k].tab[c][m][1][1] = 0;
-                //    fAcceptance[i][j][k].tab[c][m][1][2] = 0;
-                //    fAcceptance[i][j][k].tab[c][m][1][3] = 0;
-                // }
+                || (j==1 && k==3))
+                {
+                   fAcceptance[i][j][k].tab[c][m][0][0] = 0;
+                   fAcceptance[i][j][k].tab[c][m][0][1] = 0;
+                   fAcceptance[i][j][k].tab[c][m][0][2] = 0;
+                   fAcceptance[i][j][k].tab[c][m][0][3] = 0;
+                   fAcceptance[i][j][k].tab[c][m][1][0] = 0;
+                   fAcceptance[i][j][k].tab[c][m][1][1] = 0;
+                   fAcceptance[i][j][k].tab[c][m][1][2] = 0;
+                   fAcceptance[i][j][k].tab[c][m][1][3] = 0;
+                }
 
                 fAcceptance[i][j][k].tab[c][m][0][0] = ((fAcceptance[i][j][k].tab[c][m][0][0]) ? (fAcceptance[i][j][k].tab[c][m][0][0]) : 0);
                 fAcceptance[i][j][k].tab[c][m][0][1] = ((fAcceptance[i][j][k].tab[c][m][0][1]) ? (fAcceptance[i][j][k].tab[c][m][0][1]) : 0);
