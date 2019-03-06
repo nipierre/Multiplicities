@@ -3387,6 +3387,7 @@ int main(int argc, char **argv)
                      fBinning[i][j][k].tab[c][0][0][1] << " " << fBinning[i][j][k].tab[c][0][1][1] << " " << fBinning_loose[i][j][k].tab[c][0][0][1] << " " << fBinning_severe[i][j][k].tab[c][0][0][1] << " " <<
                      fBinning[i][j][k].tab[c][0][0][2] << " " << fBinning[i][j][k].tab[c][0][1][2] << " " << fBinning_loose[i][j][k].tab[c][0][0][2] << " " << fBinning_severe[i][j][k].tab[c][0][0][2] << " " <<
                      fBinning[i][j][k].tab[c][0][0][3]-fBinning[i][j][k].tab[c][0][0][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning[i][j][k].tab[c][0][1][3]-fBinning[i][j][k].tab[c][0][1][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning_loose[i][j][k].tab[c][0][0][3]-fBinning_loose[i][j][k].tab[c][0][0][0]*(1-fCepi[c][1][i][j][k]) << " " << fBinning_severe[i][j][k].tab[c][0][0][3]-fBinning_severe[i][j][k].tab[c][0][0][0]*(1-fCepi[c][1][i][j][k]) << " " << endl;
+                     
             for(int zv=0; zv<4; zv++)
             {
               ofs_hzvtx << fBinning_zvtx[i][j][k][zv].tab[c][1][0][0]*fCepiVtx[c][1][i][j][k][zv] << " " << fBinning_zvtx[i][j][k][zv].tab[c][1][1][0]*fCepiVtx[c][1][i][j][k][zv] << " " <<

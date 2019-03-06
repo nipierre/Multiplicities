@@ -2508,6 +2508,14 @@ int main(int argc, char **argv)
             {
               fId = 9;
             }
+            else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 6)//e-
+            {
+              cout << "mu- found" << endl;
+            }
+            else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 5)//e+
+            {
+              cout << "mu+ found" << endl;
+            }
             else//Hadron
             {
               if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==1 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
