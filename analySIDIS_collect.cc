@@ -3516,13 +3516,13 @@ int main(int argc, char **argv)
   rK_y->Draw("PA");
   rK_y->GetXaxis()->SetLimits(0.01,1.);
   rK_y->SetMinimum(0.9);
-  rK_y->SetMaximum(3.5);
+  rK_y->SetMaximum(2.8);
   rK_y->SetTitle("");
   rK_y->GetXaxis()->SetTitle("#font[ 12]{x}");
   rK_y->GetXaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetNdivisions(304,kTRUE);
   rK_y->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}/#font[12]{M}^{#font[ 12]{K^{-}}}");
-  c19->Range(0.1,0.9,0.9,3.5);
+  c19->Range(0.1,0.9,0.9,2.8);
   gPad->SetLogx();
   c19->Update();
 
