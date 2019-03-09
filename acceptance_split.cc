@@ -2510,11 +2510,11 @@ int main(int argc, char **argv)
             }
             else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 6)//e-
             {
-              cout << "mu-" << endl;
+              fId = 10;
             }
             else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 5)//e+
             {
-              cout << "mu+ found" << endl;
+              fId = 11;
             }
             else//Hadron
             {
@@ -2899,11 +2899,11 @@ int main(int argc, char **argv)
             else if(fId==8)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              // fHminus++; fPiminus++;
-              // fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-              // fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
+              fHminus++; fPiminus++;
+              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
               fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1;
               fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[0][0][4] += 1;
               if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[0][0][4] += 1;
@@ -2912,11 +2912,37 @@ int main(int argc, char **argv)
             else if(fId==9)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              // fHplus++; fPiplus++;
-              // fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-              // fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
+              fHplus++; fPiplus++;
+              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
+              fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[1][0][4] += 1;
+              if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[1][0][4] += 1;
+              if(ptbin!=-1) fRcstr_pt[xbin][ybin][zbin][ptbin].tab[1][0][4] += 1;
+            }
+            else if(fId==10)
+            {
+              if(fFlag[0][xbin][ybin][zbin]) continue;
+              fHminus++; fPiminus++;
+              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
+              fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[0][0][4] += 1;
+              if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[0][0][4] += 1;
+              if(ptbin!=-1) fRcstr_pt[xbin][ybin][zbin][ptbin].tab[0][0][4] += 1;
+            }
+            else if(fId==11)
+            {
+              if(fFlag[0][xbin][ybin][zbin]) continue;
+              fHplus++; fPiplus++;
+              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
               fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1;
               fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[1][0][4] += 1;
               if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[1][0][4] += 1;
