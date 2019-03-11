@@ -238,8 +238,8 @@ void create_root_tree()
    HadronMC->Branch("phpl_MC",&phpl_MC,"phpl_MC/D");
    Hadron->Branch("PID",&PID,"PID/I");
    HadronMC->Branch("PID_MC",&PID_MC,"PID_MC/I");
-   Hadron->Branch("phad",&phad,"phad/I");
-   Hadron->Branch("thChad",&thChad,"thChad/I");
+   Hadron->Branch("phad",&phad,"phad/D");
+   Hadron->Branch("thChad",&thChad,"thChad/D");
 
    for(int i=0; i<int(xdv.size()); i++)
    {
