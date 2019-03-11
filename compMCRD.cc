@@ -238,6 +238,8 @@ void create_root_tree()
    HadronMC->Branch("phpl_MC",&phpl_MC,"phpl_MC/D");
    Hadron->Branch("PID",&PID,"PID/I");
    HadronMC->Branch("PID_MC",&PID_MC,"PID_MC/I");
+   Hadron->Branch("phad",&phad,"phad/I");
+   Hadron->Branch("thChad",&thChad,"thChad/I");
 
    for(int i=0; i<int(xdv.size()); i++)
    {
@@ -283,6 +285,8 @@ void create_root_tree()
      richpipe = richpipev[i];
      phpl = phplv[i];
      PID = PIDv[i];
+     phad = pv[i];
+     thChad = thCv[i];
      Hadron->Fill();
    }
    for(int i=0; i<int(xh_MCv.size()); i++)
@@ -2324,8 +2328,8 @@ void RDextraction(string pFilelist)
       //2016 ---
       else if(Y2016)
       {
-        // if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
-        // if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
+        if(!inTarget->GetLeaf("inTarget")->GetValue()) continue;
+        if(!(-325<z->GetLeaf("z")->GetValue() && z->GetLeaf("z")->GetValue()<-71)) continue;
       }
       //2016 ---
 
@@ -2758,6 +2762,8 @@ void RDextraction(string pFilelist)
         phhv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
         phplv.push_back(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
         PIDv.push_back(fId);
+        pv.push_back(p->GetLeaf("Hadrons.P")->GetValue(i));
+        thCv.push_back(thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
         thRICHv.push_back((0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12) ? 1 : 0);
         richpipev.push_back((pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25) ? 1 : 0);
 
