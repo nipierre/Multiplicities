@@ -234,6 +234,10 @@ void create_root_tree()
    HadronMC->Branch("richpipe_MC",&richpipe_MC,"richpipe_MC/D");
    Hadron->Branch("phh",&phh,"phh/D");
    HadronMC->Branch("ph_MC",&ph_MC,"ph_MC/D");
+   Hadron->Branch("phpl",&phpl,"phpl/D");
+   HadronMC->Branch("phpl_MC",&phpl_MC,"phpl_MC/D");
+   Hadron->Branch("PID",&PID,"PID/I");
+   HadronMC->Branch("PID_MC",&PID_MC,"PID_MC/I");
 
    for(int i=0; i<int(xdv.size()); i++)
    {
@@ -277,6 +281,8 @@ void create_root_tree()
      thh = thhv[i];
      thRICH = thRICHv[i];
      richpipe = richpipev[i];
+     phpl = phplv[i];
+     PID = PIDv[i];
      Hadron->Fill();
    }
    for(int i=0; i<int(xh_MCv.size()); i++)
@@ -296,6 +302,8 @@ void create_root_tree()
      thRICH_MC = thRICH_MCv[i];
      richpipe_MC = richpipe_MCv[i];
      eVTX_MC = eVTX_MCv[i];
+     phpl_MC = phpl_MCv[i];
+     PID_MC = PID_MCv[i];
      HadronMC->Fill();
    }
 
@@ -1836,6 +1844,8 @@ void MCextraction(string pFilelist)
           zh_MCv.push_back(zBj);
           th_MCv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
           ph_MCv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+          phpl_MCv.push_back(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          PID_MCv.push_back(fId);
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 2
               || MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 3) eVTX_MCv.push_back(z->GetLeaf("z")->GetValue());
           else eVTX_MCv.push_back(-3000);
@@ -2738,6 +2748,8 @@ void RDextraction(string pFilelist)
         zhv.push_back(zBj);
         thhv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
         phhv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
+        phplv.push_back(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+        PIDv.push_back(fId);
         thRICHv.push_back((0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12) ? 1 : 0);
         richpipev.push_back((pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25) ? 1 : 0);
 
