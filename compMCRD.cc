@@ -2567,7 +2567,7 @@ void RDextraction(string pFilelist)
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/fLHsec>1.02)
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.02)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1))) fId = 0;
+             && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1)) fId = 0;
 
           else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
