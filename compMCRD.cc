@@ -433,7 +433,6 @@ void plotting_ratio(int i, int j)
   fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
   fKinematicsRatio[i][j] = new TRatioPlot(fKinematicsRD[i][j],fKinematicsMC[i][j]);
-  fKinematicsRatio[i][j]->SetStats(0);
   fKinematicsRatio[i][j]->Draw("");
 }
 
@@ -450,7 +449,6 @@ void plotting_ratio_vertex(int i, int j)
   fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
   fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
   fKinematicsRatio[i][j] = new TRatioPlot(fKinematicsRD[i][j],fKinematicsMC[i][j]);
-  fKinematicsRatio[i][j]->SetStats(0);
   fKinematicsRatio[i][j]->Draw("");
 }
 
@@ -512,9 +510,6 @@ void save_kin_plots()
     c1.cd(i+1);
     plotting_ratio(i,0);
     gPad->SetLogx();
-    c1.Update();
-    fKinematicsRatio[i][0]->GetXaxis()->SetTitle("Q^{2}");
-    fKinematicsRatio[i][0]->GetYaxis()->SetTitle("Entries");
     c1.Update();
 
     c2.cd(i+1);
