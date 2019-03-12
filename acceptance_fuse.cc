@@ -43,8 +43,12 @@ int main(int argc, char **argv)
     ifstream DIS_zvtx_file1(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_file1(Form("%s/hadron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_zvtx_file1(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_theta_file1(Form("%s/hadron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_pt_file1(Form("%s/hadron_pt_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_file1(Form("%s/electron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_zvtx_file1(Form("%s/electron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_theta_file1(Form("%s/electron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_pt_file1(Form("%s/electron_pt_%s.txt",filename.c_str(),periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
@@ -221,6 +225,30 @@ int main(int argc, char **argv)
             had_zvtx_file1 >> dummyd;
             fGnrt_zvtx[i][j][k][3].tab[c][1][0][3] += dummyd;
 
+            for(int ll=0; ll<4; ll++)
+            {
+              for(int th=0; th<8; th++)
+              {
+                had_theta_file1 >> dummyd;
+                fRcstr_theta[i][j][k][th].tab[c][1][0][ll] += dummyd;
+              }
+              for(int th=0; th<8; th++)
+              {
+                had_theta_file1 >> dummyd;
+                fGnrt_theta[i][j][k][th].tab[c][1][0][ll] += dummyd;
+              }
+              for(int pt=0; pt<10; pt++)
+              {
+                had_pt_file1 >> dummyd;
+                fRcstr_pt[i][j][k][pt].tab[c][1][0][ll] += dummyd;
+              }
+              for(int pt=0; pt<10; pt++)
+              {
+                had_pt_file1 >> dummyd;
+                fGnrt_pt[i][j][k][pt].tab[c][1][0][ll] += dummyd;
+              }
+            }
+
             electron_file1 >> dummyd;
             fRcstr[i][j][k].tab[c][1][0][4] += dummyd;
 
@@ -232,6 +260,18 @@ int main(int argc, char **argv)
             fRcstr_zvtx[i][j][k][2].tab[c][1][0][4] += dummyd;
             electron_zvtx_file1 >> dummyd;
             fRcstr_zvtx[i][j][k][3].tab[c][1][0][4] += dummyd;
+
+            for(int th=0; th<8; th++)
+            {
+              electron_theta_file1 >> dummyd;
+              fRcstr_theta[i][j][k][th].tab[c][1][0][4] += dummyd;
+            }
+
+            for(int pt=0; pt<9; pt++)
+            {
+              electron_pt_file1 >> dummyd;
+              fRcstr_pt[i][j][k][pt].tab[c][1][0][4] += dummyd;
+            }
           }
         }
       }
@@ -242,7 +282,11 @@ int main(int argc, char **argv)
     electron_file1.close();
     DIS_zvtx_file1.close();
     had_zvtx_file1.close();
+    had_theta_file1.close();
+    had_pt_file1.close();
     electron_zvtx_file1.close();
+    electron_theta_file1.close();
+    electron_pt_file1.close();
   }
 
   ifstream list2(cFilelist2.c_str());
@@ -253,8 +297,12 @@ int main(int argc, char **argv)
     ifstream DIS_zvtx_file2(Form("%s/DIS_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_file2(Form("%s/hadron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream had_zvtx_file2(Form("%s/hadron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_theta_file2(Form("%s/hadron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream had_pt_file2(Form("%s/hadron_pt_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_file2(Form("%s/electron_%s.txt",filename.c_str(),periodName.c_str()));
     ifstream electron_zvtx_file2(Form("%s/electron_zvtx_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_theta_file2(Form("%s/electron_theta_%s.txt",filename.c_str(),periodName.c_str()));
+    ifstream electron_pt_file2(Form("%s/electron_pt_%s.txt",filename.c_str(),periodName.c_str()));
 
     for(int c=0; c<2; c++)
     {
@@ -431,6 +479,30 @@ int main(int argc, char **argv)
             had_zvtx_file2 >> dummyd;
             fGnrt_zvtx[i][j][k][3].tab[c][0][0][3] += dummyd;
 
+            for(int ll=0; ll<4; ll++)
+            {
+              for(int th=0; th<8; th++)
+              {
+                had_theta_file2 >> dummyd;
+                fRcstr_theta[i][j][k][th].tab[c][0][0][ll] += dummyd;
+              }
+              for(int th=0; th<8; th++)
+              {
+                had_theta_file2 >> dummyd;
+                fGnrt_theta[i][j][k][th].tab[c][0][0][ll] += dummyd;
+              }
+              for(int pt=0; pt<10; pt++)
+              {
+                had_pt_file2 >> dummyd;
+                fRcstr_pt[i][j][k][pt].tab[c][0][0][ll] += dummyd;
+              }
+              for(int pt=0; pt<10; pt++)
+              {
+                had_pt_file2 >> dummyd;
+                fGnrt_pt[i][j][k][pt].tab[c][0][0][ll] += dummyd;
+              }
+            }
+
             electron_file2 >> dummyd;
             fRcstr[i][j][k].tab[c][0][0][4] += dummyd;
 
@@ -442,6 +514,18 @@ int main(int argc, char **argv)
             fRcstr_zvtx[i][j][k][2].tab[c][0][0][4] += dummyd;
             electron_zvtx_file2 >> dummyd;
             fRcstr_zvtx[i][j][k][3].tab[c][0][0][4] += dummyd;
+
+            for(int th=0; th<8; th++)
+            {
+              electron_theta_file2 >> dummyd;
+              fRcstr_theta[i][j][k][th].tab[c][0][0][4] += dummyd;
+            }
+
+            for(int pt=0; pt<9; pt++)
+            {
+              electron_pt_file2 >> dummyd;
+              fRcstr_pt[i][j][k][pt].tab[c][0][0][4] += dummyd;
+            }
           }
         }
       }
@@ -452,19 +536,27 @@ int main(int argc, char **argv)
     electron_file2.close();
     DIS_zvtx_file2.close();
     had_zvtx_file2.close();
+    had_theta_file2.close();
+    had_pt_file2.close();
     electron_zvtx_file2.close();
+    electron_theta_file2.close();
+    electron_pt_file2.close();
   }
 
   ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_hmult(Form("acceptance/%d/hadron/hadron_mult_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_hmult_zvtx(Form("acceptance/%d/hadron/hadron_mult_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_htheta(Form("acceptance/%d/hadron/hadron_theta_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_hpt(Form("acceptance/%d/hadron/hadron_pt_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_d(Form("acceptance/%d/DIS/DIS_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dmult(Form("acceptance/%d/DIS/DIS_mult_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_dmult_zvtx(Form("acceptance/%d/DIS/DIS_mult_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
   ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_etheta(Form("acceptance/%d/electron/electron_theta_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+  ofstream ofs_ept(Form("acceptance/%d/electron/electron_pt_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
   for(int c=0; c<2; c++)
   {
@@ -551,6 +643,32 @@ int main(int argc, char **argv)
                        fRcstr_zvtx[i][j][k][0].tab[c][0][0][3] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][0][3] << " " << fRcstr_zvtx[i][j][k][2].tab[c][0][0][3] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][0][3] << " " <<
                        fGnrt_zvtx[i][j][k][0].tab[c][0][0][3] << " " << fGnrt_zvtx[i][j][k][1].tab[c][0][0][3] << " " << fGnrt_zvtx[i][j][k][2].tab[c][0][0][3] << " " << fGnrt_zvtx[i][j][k][3].tab[c][0][0][3] << " " <<  endl;
 
+         for(int mu=1; mu>=0; mu--)
+         {
+           for(int ll=0; ll<4; ll++)
+           {
+             for(int th=0; th<8; th++)
+             {
+               ofs_htheta << fRcstr_theta[i][j][k][th].tab[c][mu][0][ll] << " ";
+             }
+             for(int th=0; th<8; th++)
+             {
+               ofs_htheta << fGnrt_theta[i][j][k][th].tab[c][mu][0][ll] << " ";
+             }
+             ofs_htheta << endl;
+
+             for(int pt=0; pt<10; pt++)
+             {
+               ofs_hpt << fRcstr_pt[i][j][k][pt].tab[c][mu][0][ll] << " ";
+             }
+             for(int pt=0; pt<10; pt++)
+             {
+               ofs_hpt << fGnrt_pt[i][j][k][pt].tab[c][mu][0][ll] << " ";
+             }
+             ofs_hpt << endl;
+           }
+         }
+
          for(int zv=0; zv<4; zv++)
          {
            ofs_hmult_zvtx << fRcstr_zvtx[i][j][k][zv].tab[c][1][0][0] << " " << fRcstr_zvtx[i][j][k][zv].tab[c][1][0][0] << " " <<
@@ -565,7 +683,20 @@ int main(int argc, char **argv)
            ofs_ezvtx << ((fRcstr_zvtx[i][j][k][zv].tab[c][1][0][0]+fRcstr_zvtx[i][j][k][zv].tab[c][1][0][4]) ? fRcstr_zvtx[i][j][k][zv].tab[c][1][0][0]/(fRcstr_zvtx[i][j][k][zv].tab[c][1][0][0]+fRcstr_zvtx[i][j][k][zv].tab[c][1][0][4]) : 1) << " "
                      << ((fRcstr_zvtx[i][j][k][zv].tab[c][0][0][0]+fRcstr_zvtx[i][j][k][zv].tab[c][0][0][4]) ? fRcstr_zvtx[i][j][k][zv].tab[c][0][0][0]/(fRcstr_zvtx[i][j][k][zv].tab[c][0][0][0]+fRcstr_zvtx[i][j][k][zv].tab[c][0][0][4]) : 1) << endl;
          }
-        }
+
+         for(int th=0; th<8; th++)
+         {
+           ofs_etheta << ((fRcstr_theta[i][j][k][th].tab[c][1][0][0]+fRcstr_theta[i][j][k][th].tab[c][1][0][4]) ? fRcstr_theta[i][j][k][th].tab[c][1][0][0]/(fRcstr_theta[i][j][k][th].tab[c][1][0][0]+fRcstr_theta[i][j][k][th].tab[c][1][0][4]) : 1) << " "
+                      << ((fRcstr_theta[i][j][k][th].tab[c][0][0][0]+fRcstr_theta[i][j][k][th].tab[c][0][0][4]) ? fRcstr_theta[i][j][k][th].tab[c][0][0][0]/(fRcstr_theta[i][j][k][th].tab[c][0][0][0]+fRcstr_theta[i][j][k][th].tab[c][0][0][4]) : 1) << endl;
+         }
+
+         for(int pt=0; pt<10; pt++)
+         {
+           ofs_ept << ((fRcstr_pt[i][j][k][pt].tab[c][1][0][0]+fRcstr_pt[i][j][k][pt].tab[c][1][0][4]) ? fRcstr_pt[i][j][k][pt].tab[c][1][0][0]/(fRcstr_pt[i][j][k][pt].tab[c][1][0][0]+fRcstr_pt[i][j][k][pt].tab[c][1][0][4]) : 1) << " "
+                   << ((fRcstr_pt[i][j][k][pt].tab[c][0][0][0]+fRcstr_pt[i][j][k][pt].tab[c][0][0][4]) ? fRcstr_pt[i][j][k][pt].tab[c][0][0][0]/(fRcstr_pt[i][j][k][pt].tab[c][0][0][0]+fRcstr_pt[i][j][k][pt].tab[c][0][0][4]) : 1) << endl;
+         }
+
+       }
       }
     }
   }
@@ -575,9 +706,15 @@ int main(int argc, char **argv)
   ofs_d.close();
   ofs_dmult.close();
   ofs_hzvtx.close();
+  ofs_htheta.close();
+  ofs_hpt.close();
   ofs_hmult_zvtx.close();
   ofs_dzvtx.close();
   ofs_dmult_zvtx.close();
+  ofs_e.close();
+  ofs_ezvtx.close();
+  ofs_etheta.close();
+  ofs_ept.close();
 
   return 0;
 }

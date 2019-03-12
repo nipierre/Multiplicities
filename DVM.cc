@@ -8,9 +8,9 @@
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
-#define SIDIS_XS 227010
-#define RHO_XS 25592.8
-#define PHI_XS 5995.35
+#define SIDIS_XS 349600 //227010
+#define RHO_XS 12200 //25592.8
+#define PHI_XS 2500 //5995.35
 
 using namespace std;
 
@@ -122,6 +122,16 @@ void Extraction(string pFilelist, int pType)
   Double_t zBj = 0;
   Double_t wBj = 0;
   Double_t nu = 0;
+
+  Double_t MCE0 = 0;
+  Double_t MCE1 = 0;
+  Double_t Q2_MC = 0;
+  Double_t xBj_MC = 0;
+  Double_t yBj_MC = 0;
+  Double_t zBj_MC = 0;
+  Double_t zBj_MC_unid = 0;
+  Double_t wBj_MC = 0;
+  Double_t nu_MC = 0;
 
   // Trackers
   int fRec=0;
@@ -469,6 +479,44 @@ void Extraction(string pFilelist, int pType)
       else
         wBj = 0;
 
+      //MC
+      MCE0 = sqrt(pow(fM_mu,2)
+                  +MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p0x->GetLeaf("MC_p0x")->GetValue()
+                  +MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p0y->GetLeaf("MC_p0y")->GetValue()
+                  +MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p0z->GetLeaf("MC_p0z")->GetValue());
+
+      MCE1 = sqrt(pow(fM_mu,2)
+                  +MC_p1x->GetLeaf("MC_p1x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
+                  +MC_p1y->GetLeaf("MC_p1y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
+                  +MC_p1z->GetLeaf("MC_p1z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue());
+
+      Q2_MC = 2.*( MCE0*MCE1
+           - MC_p0x->GetLeaf("MC_p0x")->GetValue()*MC_p1x->GetLeaf("MC_p1x")->GetValue()
+           - MC_p0y->GetLeaf("MC_p0y")->GetValue()*MC_p1y->GetLeaf("MC_p1y")->GetValue()
+           - MC_p0z->GetLeaf("MC_p0z")->GetValue()*MC_p1z->GetLeaf("MC_p1z")->GetValue()
+           - pow(fM_mu,2));
+
+      nu_MC = MCE0 - MCE1;
+
+      if(MCE0 != 0)
+        yBj_MC = nu_MC/MCE0;
+      else
+        yBj_MC = 0;
+
+      if(nu_MC != 0)
+      {
+        xBj_MC = Q2_MC/(2*fM_p*nu_MC);
+      }
+      else
+      {
+        xBj_MC = 0;
+      }
+
+      if(xBj_MC != 0)
+        wBj_MC = pow(fM_p,2) + Q2_MC*(1-xBj_MC)/xBj_MC;
+      else
+        wBj_MC = 0;
+
       int trig= trigMask->GetLeaf("trigMask")->GetValue();
       trig = (trig&2047);
 
@@ -527,18 +575,27 @@ void Extraction(string pFilelist, int pType)
 
       if(pType==0)
       {
-        SIDIS_EVENTS++;
-        SIDIS_WEIGHT++;
+        if(0.01<yBj_MC && yBj_MC<0.99 && 0.8<Q2_MC && Q2_MC<1000 && 1.6<nu_MC && nu_MC<158.4)
+        {
+          SIDIS_EVENTS++;
+          SIDIS_WEIGHT++;
+        }
       }
       else if(pType==1)
       {
-        RHO_EVENTS++;
-        RHO_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        if(0.01<yBj_MC && yBj_MC<0.99 && 0.8<Q2_MC && Q2_MC<1000 && 1.6<nu_MC && nu_MC<158.4)
+        {
+          RHO_EVENTS++;
+          RHO_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        }
       }
       else if(pType==2)
       {
-        PHI_EVENTS++;
-        PHI_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        if(0.01<yBj_MC && yBj_MC<0.99 && 0.8<Q2_MC && Q2_MC<1000 && 1.6<nu_MC && nu_MC<158.4)
+        {
+          PHI_EVENTS++;
+          PHI_WEIGHT += mcWeight->GetLeaf("mcWeight")->GetValue();
+        }
       }
 
 
@@ -554,11 +611,11 @@ void Extraction(string pFilelist, int pType)
       fAllDISflag = 0;
 
       // Best Primary Vertex
-
+      fRec++;
       // Reconstructed muon
       if((0<E_beam->GetLeaf("E_beam")->GetValue()))
       {
-        fRec++;
+        // fRec++;
         //BMS (reconstructed beam track)
         if(true) //not used in acceptance
         {
@@ -813,7 +870,6 @@ void Extraction(string pFilelist, int pType)
             }
             else
             {
-              continue;
             }
           }
 
@@ -1063,7 +1119,7 @@ void Extraction(string pFilelist, int pType)
   cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBeam << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << setw(15) << float(fBeam)/float(fRec)*100 << '|' << endl;
   cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarget << '|' << setw(15) << float(fTarget)/float(fRec)*100 << '|' << setw(15) << float(fTarget)/float(fBeam)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu chi2/ndf < 10" << '|' << setw(15) << fBeamChi2 << '|' << setw(15) << float(fBeamChi2)/float(fRec)*100 << '|' << setw(15) << float(fBeamChi2)/float(fTarget)*100 << '|' << endl;
-  cout << '|' << setw(30) << "Beam tarck X Cell" << '|' << setw(15) << fXCells << '|' << setw(15) << float(fXCells)/float(fRec)*100 << '|' << setw(15) << float(fXCells)/float(fBeamChi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Beam track X Cell" << '|' << setw(15) << fXCells << '|' << setw(15) << float(fXCells)/float(fRec)*100 << '|' << setw(15) << float(fXCells)/float(fBeamChi2)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu' chi2/ndf < 10" << '|' << setw(15) << fMuPrChi2 << '|' << setw(15) << float(fMuPrChi2)/float(fRec)*100 << '|' << setw(15) << float(fMuPrChi2)/float(fXCells)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu' Zfirst < 350" << '|' << setw(15) << fZfirst << '|' << setw(15) << float(fZfirst)/float(fRec)*100 << '|' << setw(15) << float(fZfirst)/float(fMuPrChi2)*100 << '|' << endl;
   cout << '|' << setw(30) << "Triggers MT/LT/OT/LAST" << '|' << setw(15) << fTrig << '|' << setw(15) << float(fTrig)/float(fRec)*100 << '|' << setw(15) << float(fTrig)/float(fZfirst)*100 << '|' << endl;
@@ -1079,7 +1135,7 @@ void Extraction(string pFilelist, int pType)
   cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << endl;
   cout << '|' << setw(30) << "Hadrons" << '|' << setw(15) << fHadrons << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << '|' << setw(15) << float(fHadrons)/float(fHadrons)*100 << endl;
   cout << '|' << setw(30) << "XX0 < 15" << '|' << setw(15) << fXX0 << '|' << setw(15) << float(fXX0)/float(fHadrons)*100 << '|' << setw(15) << float(fXX0)/float(fHadrons)*100 << endl;
-  cout << '|' << setw(30) << "Chi2/ndf > 10" << '|' << setw(15) << fHadChi2 << '|' << setw(15) << float(fHadChi2)/float(fHadrons)*100 << '|' << setw(15) << float(fHadChi2)/float(fXX0)*100 << endl;
+  cout << '|' << setw(30) << "Chi2/ndf < 10" << '|' << setw(15) << fHadChi2 << '|' << setw(15) << float(fHadChi2)/float(fHadrons)*100 << '|' << setw(15) << float(fHadChi2)/float(fXX0)*100 << endl;
   cout << '|' << setw(30) << "Zfirst < 350 cm" << '|' << setw(15) << fHZfirst << '|' << setw(15) << float(fHZfirst)/float(fHadrons)*100 << '|' << setw(15) << float(fHZfirst)/float(fHadChi2)*100 << endl;
   cout << '|' << setw(30) << "Zlast > 350 cm" << '|' << setw(15) << fHZlast << '|' << setw(15) << float(fHZlast)/float(fHadrons)*100 << '|' << setw(15) << float(fHZlast)/float(fHZfirst)*100 << endl;
   cout << '|' << setw(30) << "12 < p_h < 40" << '|' << setw(15) << fP << '|' << setw(15) << float(fP)/float(fHadrons)*100 << '|' << setw(15) << float(fP)/float(fHZlast)*100 << endl;
@@ -1191,6 +1247,9 @@ void DVMCalc()
 {
   double sigpi, sigK, sigDIS;
 
+  cout << (SIDIS_WEIGHT/SIDIS_XS) << " " << (RHO_WEIGHT/RHO_XS) << " " << (PHI_WEIGHT/PHI_XS) << endl;
+  cout << (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS) << " " << (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS) << endl;
+
   for(int i=0; i<9; i++)
   {
     for(int j=0; j<6; j++)
@@ -1225,14 +1284,14 @@ void DVMCalc()
         fSIDIS_tot_xy[i][j][0][1] += fSIDIS[i][j][k].tab[0][0][1];
         fSIDIS_tot_xy[i][j][1][3] += fSIDIS[i][j][k].tab[1][0][3];
         fSIDIS_tot_xy[i][j][0][3] += fSIDIS[i][j][k].tab[0][0][3];
-        // fRho[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        // fRho[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        // fRho[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        // fRho[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        // fRho_raw[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        // fRho_raw[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        // fRho_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
-        // fRho_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[1][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[0][0][0] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
+        fRho_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(RHO_WEIGHT/RHO_XS);
         fRho_tot[1][0] += fRho[i][j][k].tab[1][0][0];
         fRho_tot[0][0] += fRho[i][j][k].tab[0][0][0];
         fRho_tot[1][3] += fRho[i][j][k].tab[1][0][3];
@@ -1241,14 +1300,14 @@ void DVMCalc()
         fRho_tot_xy[i][j][0][0] += fRho[i][j][k].tab[0][0][0];
         fRho_tot_xy[i][j][1][3] += fRho[i][j][k].tab[1][0][3];
         fRho_tot_xy[i][j][0][3] += fRho[i][j][k].tab[0][0][3];
-        // fPhi[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        // fPhi[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        // fPhi[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        // fPhi[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        // fPhi_raw[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        // fPhi_raw[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        // fPhi_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
-        // fPhi_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[1][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[0][0][1] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[1][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
+        fPhi_raw[i][j][k].tab[0][0][3] *= (SIDIS_WEIGHT/SIDIS_XS)/(PHI_WEIGHT/PHI_XS);
         fPhi_tot[1][1] += fPhi[i][j][k].tab[1][0][1];
         fPhi_tot[0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot[1][3] += fPhi[i][j][k].tab[1][0][3];
@@ -1257,10 +1316,16 @@ void DVMCalc()
         fPhi_tot_xy[i][j][0][1] += fPhi[i][j][k].tab[0][0][1];
         fPhi_tot_xy[i][j][1][3] += fPhi[i][j][k].tab[1][0][3];
         fPhi_tot_xy[i][j][0][3] += fPhi[i][j][k].tab[0][0][3];
-        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0] ? fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fSIDIS[i][j][k].tab[1][0][0]) : 0;
-        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0] ? fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fSIDIS[i][j][k].tab[0][0][0]) : 0;
-        fDVM_h[i][j][k].tab[1][0][1] = fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
-        fDVM_h[i][j][k].tab[0][0][1] = fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1] ? fPhi[i][j][k].tab[0][0][1]/(fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]) : 0;
+        fDVM_h[i][j][k].tab[1][0][0] = fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][0] ? fRho[i][j][k].tab[1][0][0]/(fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][0]) : 0;
+        fDVM_h[i][j][k].tab[0][0][0] = fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][0] ? fRho[i][j][k].tab[0][0][0]/(fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][0]) : 0;
+        fDVM_h[i][j][k].tab[1][0][1] = fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1] ? fPhi[i][j][k].tab[1][0][1]/(fRho[i][j][k].tab[1][0][0]+fPhi[i][j][k].tab[1][0][1]+fSIDIS[i][j][k].tab[1][0][1]) : 0;
+        fDVM_h[i][j][k].tab[0][0][1] = fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1] ? fPhi[i][j][k].tab[0][0][1]/(fRho[i][j][k].tab[0][0][0]+fPhi[i][j][k].tab[0][0][1]+fSIDIS[i][j][k].tab[0][0][1]) : 0;
+
+        cout << i+1 << " " << j+1 << " " << k+1 << " "
+                << fSIDIS[i][j][k].tab[1][0][0] << " " << fSIDIS[i][j][k].tab[0][0][0] << " "
+                << fSIDIS[i][j][k].tab[1][0][1] << " " << fSIDIS[i][j][k].tab[0][0][1] << " "
+                << fRho[i][j][k].tab[1][0][0] << " " << fRho[i][j][k].tab[0][0][0] << " "
+                << fPhi[i][j][k].tab[1][0][1] << " " << fPhi[i][j][k].tab[0][0][1] <<  endl;
 
         for(int c=0; c<2; c++)
         {
@@ -1317,10 +1382,10 @@ void DVMSaver()
       for(int k=0; k<12; k++)
       {
         ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
-                << 1-fDVM_h[i][j][k].tab[1][0][0] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
-                << 1-fDVM_h[i][j][k].tab[0][0][0] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
-                << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << " "
-                << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j] << endl;
+                << 1-fDVM_h[i][j][k].tab[1][0][0] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " "
+                << 1-fDVM_h[i][j][k].tab[0][0][0] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " "
+                << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " "
+                << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << endl;
         ofs_hfr << i+1 << " " << j+1 << " " << k+1 << " "
                        << (fSIDIS[i][j][k].tab[1][0][3]+fSIDIS[i][j][k].tab[0][0][3])/(fSIDIS_tot_xy[i][j][1][3]+fSIDIS_tot_xy[i][j][0][3]) << " "
                        << (fRho[i][j][k].tab[1][0][3]+fRho[i][j][k].tab[0][0][3])/(fRho_tot_xy[i][j][1][3]+fRho_tot_xy[i][j][0][3]) << " "

@@ -104,10 +104,10 @@ Double_t fSemiInclusiveRCproton[9][6][14];
 Double_t fDiffVectorMeson[2][9][6][12][4];
 Double_t fQelCorr[9][6];
 
-Double_t PeriodFlux[2][11] = {{0,0,0,0,0,0,8.20114e+11,4.40163e+11,6.43954e+11,6.06487e+11,0},
-                              {0,0,0,0,0,0,9.14961e+11,6.67131e+11,6.86646e+11,7.27168e+11,2.08672e+11}};
+Double_t PeriodFlux[2][11] = {{0,0,0,0,0,0,8.20114,4.40163,6.43954,6.06487,0},
+                              {0,0,0,0,0,0,9.14961,6.67131,6.86646,7.27168,2.08672}};
 
-Double_t PeriodFluxTot = 8.20114e+11+4.40163e+11+6.43954e+11+6.06487e+11+9.14961e+11+6.67131e+11+6.86646e+11+7.27168e+11+2.08672e+11;
+Double_t PeriodFluxTot = 8.20114+4.40163+6.43954+6.06487+9.14961+6.67131+6.86646+7.27168+2.08672;
 
 //Counting
 
@@ -166,8 +166,12 @@ Wrapper fBinning_zavg_period[11][9];
 Multiplicities fMultiplicities[9][6][12];
 Multiplicities fMultiplicities_zvtx[9][6][12][4];
 Multiplicities fMultiplicities_theta[9][6][12][8];
+Multiplicities fMultiplicities_thetaint[9][12];
 Multiplicities fMultiplicities_pt[9][6][12][10];
+Multiplicities fMultiplicities_ptint[9][6][12];
 Multiplicities fMultiplicities_yavg[9][12];
+Multiplicities fMultiplicities_theta_yavg[9][12][8];
+Multiplicities fMultiplicities_pt_yavg[9][12];
 Multiplicities fMultiplicities_zvtx_yavg[9][12][4];
 Multiplicities fMultiplicities_zavg[9];
 Wrapper fDiffractiveVectorMeson[9][6][12];
@@ -202,6 +206,8 @@ Double_t fYrange[7] = {.1,.15,.2,.3,.5,.7,.9};
 Double_t fRcutval[24] = {1.68812,1.6915,1.69572,1.69733,1.71178,1.74735,1.74682,1.7846,1.80058,1.81382,1.83367,1.84183,1.84587,1.8423,1.8376,1.8368,1.84023,1.84309,1.85645,1.86316,1.85021,1.84775,1.84463,1.84185};
 Int_t fFlag[3][9][5][12];
 Double_t fZ_bin_width[12] = {.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.05,.1};
+Double_t fTh_bin_width[8] = {.015,.01,.01,.01,.013,.014,.016,.112};
+Double_t fpT_bin_width[10] = {.06,.06,.09,.12,.17,.24,.36,.40,.53,.95};
 hadiden fRstudy[24];
 studyxy fRstudy_xy[24];
 studyxy fR_xy[24];

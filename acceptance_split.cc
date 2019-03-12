@@ -2508,6 +2508,14 @@ int main(int argc, char **argv)
             {
               fId = 9;
             }
+            else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 6)//e-
+            {
+              fId = 10;
+            }
+            else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 5)//e+
+            {
+              fId = 11;
+            }
             else//Hadron
             {
               if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==1 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
@@ -2626,7 +2634,7 @@ int main(int argc, char **argv)
             else if(0.045<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.058) thbin = 4;
             else if(0.058<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.072) thbin = 5;
             else if(0.072<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.088) thbin = 6;
-            else if(0.072<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.2) thbin = 7;
+            else if(0.088<=th->GetLeaf("Hadrons.th")->GetValue(i) && th->GetLeaf("Hadrons.th")->GetValue(i)<0.2) thbin = 7;
             else thbin = -1;
 
             if(0.02<=pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2) && pow(pt->GetLeaf("Hadrons.pt")->GetValue(i),2)<0.08) ptbin = 0;
@@ -2891,11 +2899,11 @@ int main(int argc, char **argv)
             else if(fId==8)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              // fHminus++; fPiminus++;
-              // fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-              // fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
+              fHminus++; fPiminus++;
+              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
               fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1;
               fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[0][0][4] += 1;
               if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[0][0][4] += 1;
@@ -2904,11 +2912,37 @@ int main(int argc, char **argv)
             else if(fId==9)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
-              // fHplus++; fPiplus++;
-              // fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-              // fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
-              // fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
+              fHplus++; fPiplus++;
+              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
+              fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[1][0][4] += 1;
+              if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[1][0][4] += 1;
+              if(ptbin!=-1) fRcstr_pt[xbin][ybin][zbin][ptbin].tab[1][0][4] += 1;
+            }
+            else if(fId==10)
+            {
+              if(fFlag[0][xbin][ybin][zbin]) continue;
+              fHminus++; fPiminus++;
+              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
+              fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[0][0][4] += 1;
+              if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[0][0][4] += 1;
+              if(ptbin!=-1) fRcstr_pt[xbin][ybin][zbin][ptbin].tab[0][0][4] += 1;
+            }
+            else if(fId==11)
+            {
+              if(fFlag[0][xbin][ybin][zbin]) continue;
+              fHplus++; fPiplus++;
+              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
+              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
+              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
               fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1;
               fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[1][0][4] += 1;
               if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[1][0][4] += 1;
@@ -2950,6 +2984,8 @@ int main(int argc, char **argv)
     ofstream ofs_dzvtx(Form("DIS_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_e(Form("electron_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_ezvtx(Form("electron_zvtx_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_eth(Form("electron_theta_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ept(Form("electron_pt_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 #else
     ofstream ofs_h(Form("acceptance/%d/hadron/hadron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_hzvtx(Form("acceptance/%d/hadron/hadron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
@@ -2959,6 +2995,8 @@ int main(int argc, char **argv)
     ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_eth(Form("electron_theta_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ept(Form("electron_pt_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 #endif
 
     for(int c=0; c<2; c++)
@@ -3018,6 +3056,18 @@ int main(int argc, char **argv)
 
             ofs_ezvtx << fRcstr_zvtx[i][j][k][0].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][1].tab[c][0][4] << " "
                       << fRcstr_zvtx[i][j][k][2].tab[c][0][4] << " " << fRcstr_zvtx[i][j][k][3].tab[c][0][4] << endl;
+
+            for(int th=0; th<8; th++)
+            {
+              ofs_eth << fRcstr_theta[i][j][k][th].tab[c][0][4] << " ";
+            }
+            ofs_eth << endl;
+
+            for(int pt=0; pt<9; pt++)
+            {
+              ofs_ept << fRcstr_pt[i][j][k][pt].tab[c][0][4] << " ";
+            }
+            ofs_ept << endl;
           }
         }
       }
@@ -3031,6 +3081,8 @@ int main(int argc, char **argv)
     ofs_hpt.close();
     ofs_dzvtx.close();
     ofs_ezvtx.close();
+    ofs_eth.close();
+    ofs_ept.close();
 
     resetValues();
   }
