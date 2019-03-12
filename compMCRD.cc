@@ -438,10 +438,6 @@ void plotting_ratio(int i, int j)
 
 void plotting_ratio_vertex(int i, int j)
 {
-  // for(int tt=0; tt<fKinematicsRD[idx][0]->GetNbinsX(); tt++)
-  // {
-  //   fError.push_back((fKinematicsRD[idx][0]->GetBinError(tt) && fKinematicsMC2[idx][0]->GetBinError(tt) ? sqrt(pow(1/fKinematicsMC1[idx][0]->GetBinError(tt),2)+pow(1/fKinematicsMC2[idx][0]->GetBinError(tt),2)):0));
-  // }
   fKinematicsRD[i][j]->Sumw2();
   fKinematicsMC[i][j]->Sumw2();
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
@@ -509,12 +505,14 @@ void save_kin_plots()
 
     c1.cd(i+1);
     plotting_ratio(i,0);
-    gPad->SetLogx();
+    fKinematicsRatio[i][0]->GetUpperPad()->SetLogx();
+    fKinematicsRatio[i][0]->GetLowerPad()->SetLogx();
     c1.Update();
 
     c2.cd(i+1);
     plotting_ratio(i,1);
-    gPad->SetLogx();
+    fKinematicsRatio[i][1]->GetUpperPad()->SetLogx();
+    fKinematicsRatio[i][1]->GetLowerPad()->SetLogx();
     c2.Update();
 
     c3.cd(i+1);
@@ -594,14 +592,16 @@ void save_kin_plots()
 
   c8.cd(1);
   plotting_ratio(4,0);
-  gPad->SetLogx();
+  fKinematicsRatio[4][0]->GetUpperPad()->SetLogx();
+  fKinematicsRatio[4][0]->GetLowerPad()->SetLogx();
   c8.Update();
 
   c8.Write();
 
   c9.cd(1);
   plotting_ratio(4,1);
-  gPad->SetLogx();
+  fKinematicsRatio[4][1]->GetUpperPad()->SetLogx();
+  fKinematicsRatio[4][1]->GetLowerPad()->SetLogx();
   c9.Update();
 
   c9.Write();
