@@ -17,6 +17,7 @@
 #include <TLeaf.h>
 #include <TLine.h>
 #include <TGaxis.h>
+#include <TRatioPlot.h>
 
 // COLORS
 
@@ -138,7 +139,7 @@ TH1F* fKinematicsMC[5][20];
 TH2F* fThetaMCp[3];
 TH2F* fECAL0MC;
 TH1F* fVertexMCb[5];
-TH1F* fKinematicsRatio[5][20];
+TRatioPlot* fKinematicsRatio[5][20];
 Int_t fCountingRD[5][20];
 Int_t fCountingMC[5][20];
 TH1F* fTarget[2];
