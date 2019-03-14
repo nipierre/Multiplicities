@@ -238,6 +238,8 @@ void create_root_tree()
    HadronMC->Branch("phpl_MC",&phpl_MC,"phpl_MC/D");
    Hadron->Branch("PID",&PID,"PID/I");
    HadronMC->Branch("PID_MC",&PID_MC,"PID_MC/I");
+   Hadron->Branch("XX0h",&XX0h,"XX0h/D");
+   HadronMC->Branch("XX0h_MC",&XX0h_MC,"XX0h_MC/D");
    Hadron->Branch("phad",&phad,"phad/D");
    Hadron->Branch("thChad",&thChad,"thChad/D");
    HadronMC->Branch("phad_MC",&phad_MC,"phad_MC/D");
@@ -295,6 +297,7 @@ void create_root_tree()
      richpipe = richpipev[i];
      phpl = phplv[i];
      PID = PIDv[i];
+     XX0h = XX0hv[i];
      phad = pv[i];
      thChad = thCv[i];
      EECAL1 = EECAL1v[i];
@@ -322,6 +325,7 @@ void create_root_tree()
      eVTX_MC = eVTX_MCv[i];
      phpl_MC = phpl_MCv[i];
      PID_MC = PID_MCv[i];
+     XX0h_MC = XX0h_MCv[i];
      phad_MC = p_MCv[i];
      thChad_MC = thC_MCv[i];
      EECAL1_MC = EECAL1_MCv[i];
@@ -1636,7 +1640,7 @@ void MCextraction(string pFilelist)
             fKinematicsMC[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
 
           // Maximum radiation length cumulated
-          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
+          // if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
 
           // Chi2/ndf
           if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
@@ -1721,6 +1725,7 @@ void MCextraction(string pFilelist)
           EHCAL1_MCv.push_back(HCAL1->GetLeaf("Hadrons.HCAL1")->GetValue(i));
           EHCAL2_MCv.push_back(HCAL2->GetLeaf("Hadrons.HCAL2")->GetValue(i));
           PID_MCv.push_back(fId);
+          XX0h_MCv.push_back(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i));
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 2
               || MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 3) eVTX_MCv.push_back(z->GetLeaf("z")->GetValue());
           else eVTX_MCv.push_back(-3000);
@@ -2561,7 +2566,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
 
         // Maximum radiation length cumulated
-        if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
+        // if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
 
         // Chi2/ndf
         if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
@@ -2637,6 +2642,7 @@ void RDextraction(string pFilelist)
         PIDv.push_back(fId);
         pv.push_back(p->GetLeaf("Hadrons.P")->GetValue(i));
         thCv.push_back(thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
+        XX0hv.push_back(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i));
         thRICHv.push_back((0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12) ? 1 : 0);
         richpipev.push_back((pow(RICHx->GetLeaf("Hadrons.RICHx")->GetValue(i),2)+pow(RICHy->GetLeaf("Hadrons.RICHy")->GetValue(i),2)>25) ? 1 : 0);
 
