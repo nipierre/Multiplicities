@@ -236,6 +236,8 @@ Double_t richpipe, richpipe_MC;
 Double_t phh, ph_MC;
 Double_t phpl, phpl_MC;
 Double_t phad, thChad;
+Double_t EECAL1, EECAL2, EHCAL1, EHCAL2;
+Double_t EECAL1_MC, EECAL2_MC, EHCAL1_MC, EHCAL2_MC;
 Int_t PID, PID_MC;
 vector<Double_t> xdv, xhv, xd_MCv, xh_MCv;
 vector<Double_t> ydv, yhv, yd_MCv, yh_MCv;
@@ -255,6 +257,8 @@ vector<Double_t> phhv, ph_MCv;
 vector<Double_t> phplv, phpl_MCv;
 vector<Int_t> PIDv, PID_MCv;
 vector<Double_t> pv, thCv;
+vector<Double_t> EECAL1v, EECAL2v, EHCAL1v, EHCAL2v;
+vector<Double_t> EECAL1_MCv, EECAL2_MCv, EHCAL1_MCv, EHCAL2_MCv;
 
 Double_t Cth[2][2][31] = {0};
 

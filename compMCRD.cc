@@ -240,6 +240,14 @@ void create_root_tree()
    HadronMC->Branch("PID_MC",&PID_MC,"PID_MC/I");
    Hadron->Branch("phad",&phad,"phad/D");
    Hadron->Branch("thChad",&thChad,"thChad/D");
+   Hadron->Branch("EECAL1",&EECAL1,"EECAL1/D")
+   Hadron->Branch("EECAL2",&EECAL2,"EECAL2/D")
+   Hadron->Branch("EHCAL1",&EHCAL1,"EHCAL1/D")
+   Hadron->Branch("EHCAL2",&EHCAL2,"EHCAL2/D")
+   HadronMC->Branch("EECAL1_MC",&EECAL1_MC,"EECAL1_MC/D")
+   HadronMC->Branch("EECAL2_MC",&EECAL2_MC,"EECAL2_MC/D")
+   HadronMC->Branch("EHCAL1_MC",&EHCAL1_MC,"EHCAL1_MC/D")
+   HadronMC->Branch("EHCAL2_MC",&EHCAL2_MC,"EHCAL2_MC/D")
 
    for(int i=0; i<int(xdv.size()); i++)
    {
@@ -287,6 +295,10 @@ void create_root_tree()
      PID = PIDv[i];
      phad = pv[i];
      thChad = thCv[i];
+     EECAL1 = EECAL1v[i];
+     EECAL2 = EECAL2v[i];
+     EHCAL1 = EHCAL1v[i];
+     EHCAL2 = EHCAL2v[i];
      Hadron->Fill();
    }
    for(int i=0; i<int(xh_MCv.size()); i++)
@@ -308,6 +320,10 @@ void create_root_tree()
      eVTX_MC = eVTX_MCv[i];
      phpl_MC = phpl_MCv[i];
      PID_MC = PID_MCv[i];
+     EECAL1_MC = EECAL1_MCv[i];
+     EECAL2_MC = EECAL2_MCv[i];
+     EHCAL1_MC = EHCAL1_MCv[i];
+     EHCAL2_MC = EHCAL2_MCv[i];
      HadronMC->Fill();
    }
 
@@ -427,7 +443,9 @@ void create_kin_plots()
 void plotting_ratio(int i, int j)
 {
   fKinematicsRD[i][j]->Sumw2();
+  fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsMC[i][j]->Sumw2();
+  fKinematicsRD[i][j]->SetLineColor(kBlue);
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
   fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
   fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
@@ -439,7 +457,9 @@ void plotting_ratio(int i, int j)
 void plotting_ratio_vertex(int i, int j)
 {
   fKinematicsRD[i][j]->Sumw2();
+  fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsMC[i][j]->Sumw2();
+  fKinematicsRD[i][j]->SetLineColor(kBlue);
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
   fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
   fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
@@ -930,7 +950,10 @@ void MCextraction(string pFilelist)
     TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
-    TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
+    TBranch *ECAL1 = (TBranch*) tree->FindBranch("Hadrons.ECAL1");
+    TBranch *ECAL2 = (TBranch*) tree->FindBranch("Hadrons.ECAL2");
+    TBranch *HCAL1 = (TBranch*) tree->FindBranch("Hadrons.HCAL1");
+    TBranch *HCAL2 = (TBranch*) tree->FindBranch("Hadrons.HCAL2");
     TBranch *charge = (TBranch*) tree->FindBranch("Hadrons.charge");
     TBranch *thRICH = (TBranch*) tree->FindBranch("Hadrons.thRICH");
     //TBranch *LH = (TBranch*) tree->FindBranch("Hadrons.LH");
@@ -1067,7 +1090,10 @@ void MCextraction(string pFilelist)
       ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
-      HCAL->GetEntry(ip);
+      ECAL1->GetEntry(ip);
+      ECAL2->GetEntry(ip);
+      HCAL1->GetEntry(ip);
+      HCAL2->GetEntry(ip);
       charge->GetEntry(ip);
       thRICH->GetEntry(ip);
       //LH->GetEntry(ip);
@@ -1682,6 +1708,10 @@ void MCextraction(string pFilelist)
           th_MCv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
           ph_MCv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           phpl_MCv.push_back(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+          EECAL1_MCv.push_back(ECAL1->GetLeaf("Hadrons.ECAL1")->GetValue(i));
+          EECAL2_MCv.push_back(ECAL2->GetLeaf("Hadrons.ECAL2")->GetValue(i));
+          EHCAL1_MCv.push_back(HCAL1->GetLeaf("Hadrons.HCAL1")->GetValue(i));
+          EHCAL2_MCv.push_back(HCAL2->GetLeaf("Hadrons.HCAL2")->GetValue(i));
           PID_MCv.push_back(fId);
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 2
               || MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 3) eVTX_MCv.push_back(z->GetLeaf("z")->GetValue());
@@ -1934,7 +1964,10 @@ void RDextraction(string pFilelist)
     TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
-    TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
+    TBranch *ECAL1 = (TBranch*) tree->FindBranch("Hadrons.ECAL1");
+    TBranch *ECAL2 = (TBranch*) tree->FindBranch("Hadrons.ECAL2");
+    TBranch *HCAL1 = (TBranch*) tree->FindBranch("Hadrons.HCAL1");
+    TBranch *HCAL2 = (TBranch*) tree->FindBranch("Hadrons.HCAL2");
     TBranch *charge = (TBranch*) tree->FindBranch("Hadrons.charge");
     TBranch *thRICH = (TBranch*) tree->FindBranch("Hadrons.thRICH");
     TBranch *thC = (TBranch*) tree->FindBranch("Hadrons.thC");
@@ -2009,7 +2042,10 @@ void RDextraction(string pFilelist)
       ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
-      HCAL->GetEntry(ip);
+      ECAL1->GetEntry(ip);
+      ECAL2->GetEntry(ip);
+      HCAL1->GetEntry(ip);
+      HCAL2->GetEntry(ip);
       charge->GetEntry(ip);
       thRICH->GetEntry(ip);
       thC->GetEntry(ip);
@@ -2594,6 +2630,10 @@ void RDextraction(string pFilelist)
         thhv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
         phhv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
         phplv.push_back(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
+        EECAL1v.push_back(ECAL1->GetLeaf("Hadrons.ECAL1")->GetValue(i));
+        EECAL2v.push_back(ECAL2->GetLeaf("Hadrons.ECAL2")->GetValue(i));
+        EHCAL1v.push_back(HCAL1->GetLeaf("Hadrons.HCAL1")->GetValue(i));
+        EHCAL2v.push_back(HCAL2->GetLeaf("Hadrons.HCAL2")->GetValue(i));
         PIDv.push_back(fId);
         pv.push_back(p->GetLeaf("Hadrons.P")->GetValue(i));
         thCv.push_back(thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
