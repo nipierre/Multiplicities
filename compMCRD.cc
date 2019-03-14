@@ -240,6 +240,8 @@ void create_root_tree()
    HadronMC->Branch("PID_MC",&PID_MC,"PID_MC/I");
    Hadron->Branch("phad",&phad,"phad/D");
    Hadron->Branch("thChad",&thChad,"thChad/D");
+   HadronMC->Branch("phad_MC",&phad_MC,"phad_MC/D");
+   HadronMC->Branch("thChad_MC",&thChad_MC,"thChad_MC/D");
    Hadron->Branch("EECAL1",&EECAL1,"EECAL1/D");
    Hadron->Branch("EECAL2",&EECAL2,"EECAL2/D");
    Hadron->Branch("EHCAL1",&EHCAL1,"EHCAL1/D");
@@ -320,6 +322,8 @@ void create_root_tree()
      eVTX_MC = eVTX_MCv[i];
      phpl_MC = phpl_MCv[i];
      PID_MC = PID_MCv[i];
+     phad_MC = p_MCv[i];
+     thChad_MC = thC_MCv[i];
      EECAL1_MC = EECAL1_MCv[i];
      EECAL2_MC = EECAL2_MCv[i];
      EHCAL1_MC = EHCAL1_MCv[i];
@@ -1705,6 +1709,8 @@ void MCextraction(string pFilelist)
           yVTXh_MCv.push_back(y->GetLeaf("y")->GetValue());
           zVTXh_MCv.push_back(z->GetLeaf("z")->GetValue());
           zh_MCv.push_back(zBj);
+          p_MCv.push_back(p->GetLeaf("Hadrons.P")->GetValue(i));
+          thC_MCv.push_back(thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);
           th_MCv.push_back(th->GetLeaf("Hadrons.th")->GetValue(i));
           ph_MCv.push_back(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           phpl_MCv.push_back(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i));
@@ -2439,15 +2445,13 @@ void RDextraction(string pFilelist)
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/fLHsec>1.02)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.02)
-             && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1)) fId = 0;
+             && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.02)) fId = 0;
 
           else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/fLHsec>1.08)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.08)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1)) fId = 2;
+                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.08)) fId = 2;
 
           else if((8.9<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<=17.95-5)
                   && (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.2)
@@ -2464,16 +2468,14 @@ void RDextraction(string pFilelist)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1)) fId = 4;
+                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1)) fId = 4;
 
           else if(((17.95-5)<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<(17.95+5))
                   && (((LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1))
+                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1))
                   || (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.2)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.9))
                   || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
@@ -2492,15 +2494,13 @@ void RDextraction(string pFilelist)
               && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
               && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
               && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/fLHsec>1.02)
-              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.02)
-              && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1)) fId = 1;
+              && (LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.02)) fId = 1;
 
           else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/fLHsec>1.08)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.08)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1)) fId = 3;
+                  && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.08)) fId = 3;
 
           else if((8.9<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<=17.95-5)
                   && (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.1)
@@ -2517,16 +2517,14 @@ void RDextraction(string pFilelist)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1)) fId = 5;
+                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1)) fId = 5;
 
           else if((17.95-5<p->GetLeaf("Hadrons.P")->GetValue(i) && p->GetLeaf("Hadrons.P")->GetValue(i)<17.95+5)
                   && (((LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>0)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i))
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1)
-                  && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)>1.8 ? LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) : 1))
+                  && (LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i)/fLHsec>1))
                   || (((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.1)
                   && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)<2.8))
                   || ((LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) == 0)
