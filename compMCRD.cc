@@ -1827,7 +1827,7 @@ void MCextraction(string pFilelist)
 
     cout << "\n-> Finished processing file " << filename << " <-\n" << endl;
 
-    f.Close();
+    f->Close();
 
     delete f;
   }
@@ -2754,7 +2754,7 @@ void RDextraction(string pFilelist)
 
     cout << "\n" << endl;
 
-    f.Close();
+    f->Close();
 
     delete f;
   }
