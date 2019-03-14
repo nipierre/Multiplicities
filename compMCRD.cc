@@ -252,6 +252,12 @@ void create_root_tree()
    HadronMC->Branch("EECAL2_MC",&EECAL2_MC,"EECAL2_MC/D");
    HadronMC->Branch("EHCAL1_MC",&EHCAL1_MC,"EHCAL1_MC/D");
    HadronMC->Branch("EHCAL2_MC",&EHCAL2_MC,"EHCAL2_MC/D");
+   HadronMC->Branch("EHCAL1_MC",&EHCAL1_MC,"EHCAL1_MC/D");
+   HadronMC->Branch("EHCAL2_MC",&EHCAL2_MC,"EHCAL2_MC/D");
+   Hadron->Branch("isinECAL",&isinECAL,"isinECAL/I");
+   Hadron->Branch("isinHCAL",&isinHCAL,"isinHCAL/I");
+   HadronMC->Branch("isinECAL_MC",&isinECAL_MC,"isinECAL_MC/I");
+   HadronMC->Branch("isinHCAL_MC",&isinHCAL_MC,"isinHCAL_MC/I");
 
    for(int i=0; i<int(xdv.size()); i++)
    {
@@ -304,6 +310,8 @@ void create_root_tree()
      EECAL2 = EECAL2v[i];
      EHCAL1 = EHCAL1v[i];
      EHCAL2 = EHCAL2v[i];
+     isinECAL = isinECALv[i];
+     isinHCAL = isinHCALv[i];
      Hadron->Fill();
    }
    for(int i=0; i<int(xh_MCv.size()); i++)
@@ -332,6 +340,8 @@ void create_root_tree()
      EECAL2_MC = EECAL2_MCv[i];
      EHCAL1_MC = EHCAL1_MCv[i];
      EHCAL2_MC = EHCAL2_MCv[i];
+     isinECAL_MC = isinECAL_MCv[i];
+     isinHCAL_MC = isinHCAL_MCv[i];
      HadronMC->Fill();
    }
 
@@ -959,6 +969,7 @@ void MCextraction(string pFilelist)
     TBranch *thC = (TBranch*) tree->FindBranch("Hadrons.thC");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
+    TBranch *inECALacc = (TBranch*) tree->FindBranch("Hadrons.inECALacc");
     TBranch *ECAL1 = (TBranch*) tree->FindBranch("Hadrons.ECAL1");
     TBranch *ECAL2 = (TBranch*) tree->FindBranch("Hadrons.ECAL2");
     TBranch *HCAL1 = (TBranch*) tree->FindBranch("Hadrons.HCAL1");
@@ -1100,6 +1111,7 @@ void MCextraction(string pFilelist)
       ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
       inHCALacc->GetEntry(ip);
+      inECALacc->GetEntry(ip);
       ECAL1->GetEntry(ip);
       ECAL2->GetEntry(ip);
       HCAL1->GetEntry(ip);
@@ -1640,7 +1652,7 @@ void MCextraction(string pFilelist)
             fKinematicsMC[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
 
           // Maximum radiation length cumulated
-          // if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
+          if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
 
           // Chi2/ndf
           if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
@@ -1724,6 +1736,8 @@ void MCextraction(string pFilelist)
           EECAL2_MCv.push_back(ECAL2->GetLeaf("Hadrons.ECAL2")->GetValue(i));
           EHCAL1_MCv.push_back(HCAL1->GetLeaf("Hadrons.HCAL1")->GetValue(i));
           EHCAL2_MCv.push_back(HCAL2->GetLeaf("Hadrons.HCAL2")->GetValue(i));
+          isinECAL_MCv.push_back(inECALacc->GetLeaf("Hadrons.inECALacc")->GetValue(i));
+          isinHCAL_MCv.push_back(inHCALacc->GetLeaf("Hadrons.inHCALacc")->GetValue(i));
           PID_MCv.push_back(fId);
           XX0h_MCv.push_back(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i));
           if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 2
@@ -1977,6 +1991,7 @@ void RDextraction(string pFilelist)
     TBranch *ph_pl = (TBranch*) tree->FindBranch("Hadrons.ph_pl");
     TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
     TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
+    TBranch *inECALacc = (TBranch*) tree->FindBranch("Hadrons.inECALacc");
     TBranch *ECAL1 = (TBranch*) tree->FindBranch("Hadrons.ECAL1");
     TBranch *ECAL2 = (TBranch*) tree->FindBranch("Hadrons.ECAL2");
     TBranch *HCAL1 = (TBranch*) tree->FindBranch("Hadrons.HCAL1");
@@ -2054,6 +2069,7 @@ void RDextraction(string pFilelist)
       ph->GetEntry(ip);
       ph_pl->GetEntry(ip);
       hXX0->GetEntry(ip);
+      inECALacc->GetEntry(ip);
       inHCALacc->GetEntry(ip);
       ECAL1->GetEntry(ip);
       ECAL2->GetEntry(ip);
@@ -2566,7 +2582,7 @@ void RDextraction(string pFilelist)
           fKinematicsRD[0][11]->Fill(abs(ph_pl->GetLeaf("Hadrons.ph_pl")->GetValue(i)));
 
         // Maximum radiation length cumulated
-        // if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
+        if(!(hXX0->GetLeaf("Hadrons.XX0")->GetValue(i) < 15)) continue;
 
         // Chi2/ndf
         if(!(chi2_hadron->GetLeaf("Hadrons.chi2_hadron")->GetValue(i) < 10)) continue;
@@ -2639,6 +2655,8 @@ void RDextraction(string pFilelist)
         EECAL2v.push_back(ECAL2->GetLeaf("Hadrons.ECAL2")->GetValue(i));
         EHCAL1v.push_back(HCAL1->GetLeaf("Hadrons.HCAL1")->GetValue(i));
         EHCAL2v.push_back(HCAL2->GetLeaf("Hadrons.HCAL2")->GetValue(i));
+        isinECALv.push_back(inECALacc->GetLeaf("Hadrons.inECALacc")->GetValue(i));
+        isinHCALv.push_back(inHCALacc->GetLeaf("Hadrons.inHCALacc")->GetValue(i));
         PIDv.push_back(fId);
         pv.push_back(p->GetLeaf("Hadrons.P")->GetValue(i));
         thCv.push_back(thC->GetLeaf("Hadrons.thC")->GetValue(i)*1000);

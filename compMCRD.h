@@ -239,6 +239,8 @@ Double_t phad, thChad;
 Double_t phad_MC, thChad_MC;
 Double_t EECAL1, EECAL2, EHCAL1, EHCAL2;
 Double_t EECAL1_MC, EECAL2_MC, EHCAL1_MC, EHCAL2_MC;
+Int_t isinECAL, isinHCAL;
+Int_t isinECAL_MC, isinHCAL_MC;
 Int_t PID, PID_MC;
 Double_t XX0h, XX0h_MC;
 vector<Double_t> xdv, xhv, xd_MCv, xh_MCv;
@@ -263,6 +265,8 @@ vector<Double_t> pv, thCv;
 vector<Double_t> p_MCv, thC_MCv;
 vector<Double_t> EECAL1v, EECAL2v, EHCAL1v, EHCAL2v;
 vector<Double_t> EECAL1_MCv, EECAL2_MCv, EHCAL1_MCv, EHCAL2_MCv;
+vector<Int_t> isinECALv, isinHCALv;
+vector<Int_t> isinECAL_MCv, isinHCAL_MCv;
 
 Double_t Cth[2][2][31] = {0};
 
