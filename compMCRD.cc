@@ -240,14 +240,14 @@ void create_root_tree()
    HadronMC->Branch("PID_MC",&PID_MC,"PID_MC/I");
    Hadron->Branch("phad",&phad,"phad/D");
    Hadron->Branch("thChad",&thChad,"thChad/D");
-   Hadron->Branch("EECAL1",&EECAL1,"EECAL1/D")
-   Hadron->Branch("EECAL2",&EECAL2,"EECAL2/D")
-   Hadron->Branch("EHCAL1",&EHCAL1,"EHCAL1/D")
-   Hadron->Branch("EHCAL2",&EHCAL2,"EHCAL2/D")
-   HadronMC->Branch("EECAL1_MC",&EECAL1_MC,"EECAL1_MC/D")
-   HadronMC->Branch("EECAL2_MC",&EECAL2_MC,"EECAL2_MC/D")
-   HadronMC->Branch("EHCAL1_MC",&EHCAL1_MC,"EHCAL1_MC/D")
-   HadronMC->Branch("EHCAL2_MC",&EHCAL2_MC,"EHCAL2_MC/D")
+   Hadron->Branch("EECAL1",&EECAL1,"EECAL1/D");
+   Hadron->Branch("EECAL2",&EECAL2,"EECAL2/D");
+   Hadron->Branch("EHCAL1",&EHCAL1,"EHCAL1/D");
+   Hadron->Branch("EHCAL2",&EHCAL2,"EHCAL2/D");
+   HadronMC->Branch("EECAL1_MC",&EECAL1_MC,"EECAL1_MC/D");
+   HadronMC->Branch("EECAL2_MC",&EECAL2_MC,"EECAL2_MC/D");
+   HadronMC->Branch("EHCAL1_MC",&EHCAL1_MC,"EHCAL1_MC/D");
+   HadronMC->Branch("EHCAL2_MC",&EHCAL2_MC,"EHCAL2_MC/D");
 
    for(int i=0; i<int(xdv.size()); i++)
    {
