@@ -1437,7 +1437,7 @@ int main(int argc, char **argv)
                     fMuchi2++;
 
                     // Cells crossing
-                    if(/*(cellsCrossed->GetLeaf("cellsCrossed")->GetValue()) &&*/ cellsCrossed->GetLeaf("cellsCrossed")->GetValue())
+                    if(cellsCrossed->GetLeaf("cellsCrossed")->GetValue())
                     {
                       fCell++;
 
@@ -1569,23 +1569,26 @@ int main(int argc, char **argv)
             //2016 ---
             else if(Y2016)
             {
-              if(inTarget->GetLeaf("inTarget")->GetValue()
+              if(inTargetMC->GetLeaf("inTargetMC")->GetValue()
                   && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71))
               {
-                // Q2 cut
-                if((Q2_MC>1))
+                if(cellsCrossedMC->GetLeaf("cellsCrossedMC")->GetValue())
                 {
-                  // y cut
-                  if((YMIN<yBj_MC && yBj_MC<YMAX))
+                  // Q2 cut
+                  if((Q2_MC>1))
                   {
-                    // W cut
-                    if((WMIN<sqrt(wBj_MC) && sqrt(wBj_MC)<WMAX))
+                    // y cut
+                    if((YMIN<yBj_MC && yBj_MC<YMAX))
                     {
-                      // x cut
-                      if((XMIN<xBj_MC && xBj_MC<XMAX))
+                      // W cut
+                      if((WMIN<sqrt(wBj_MC) && sqrt(wBj_MC)<WMAX))
                       {
-                        fMCDIS++;
-                        fAllDISflag_MC = 1;
+                        // x cut
+                        if((XMIN<xBj_MC && xBj_MC<XMAX))
+                        {
+                          fMCDIS++;
+                          fAllDISflag_MC = 1;
+                        }
                       }
                     }
                   }
@@ -2508,14 +2511,6 @@ int main(int argc, char **argv)
             {
               fId = 9;
             }
-            else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 6)//e-
-            {
-              fId = 10;
-            }
-            else if(MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i) == 5)//e+
-            {
-              fId = 11;
-            }
             else//Hadron
             {
               if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==1 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
@@ -2910,32 +2905,6 @@ int main(int argc, char **argv)
               if(ptbin!=-1) fRcstr_pt[xbin][ybin][zbin][ptbin].tab[0][0][4] += 1;
             }
             else if(fId==9)
-            {
-              if(fFlag[0][xbin][ybin][zbin]) continue;
-              fHplus++; fPiplus++;
-              fRcstr[xbin][ybin][zbin].tab[1][0][0] += 1;
-              fRcstr[xbin][ybin][zbin].tab[1][0][3] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][0] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[1][0][3] += 1;
-              fRcstr[xbin][ybin][zbin].tab[1][0][4] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[1][0][4] += 1;
-              if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[1][0][4] += 1;
-              if(ptbin!=-1) fRcstr_pt[xbin][ybin][zbin][ptbin].tab[1][0][4] += 1;
-            }
-            else if(fId==10)
-            {
-              if(fFlag[0][xbin][ybin][zbin]) continue;
-              fHminus++; fPiminus++;
-              fRcstr[xbin][ybin][zbin].tab[0][0][0] += 1;
-              fRcstr[xbin][ybin][zbin].tab[0][0][3] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][0] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin_u][zlabbin].tab[0][0][3] += 1;
-              fRcstr[xbin][ybin][zbin].tab[0][0][4] += 1;
-              fRcstr_zvtx[xbin][ybin][zbin][zlabbin].tab[0][0][4] += 1;
-              if(thbin!=-1) fRcstr_theta[xbin][ybin][zbin][thbin].tab[0][0][4] += 1;
-              if(ptbin!=-1) fRcstr_pt[xbin][ybin][zbin][ptbin].tab[0][0][4] += 1;
-            }
-            else if(fId==11)
             {
               if(fFlag[0][xbin][ybin][zbin]) continue;
               fHplus++; fPiplus++;
