@@ -1827,6 +1827,8 @@ void MCextraction(string pFilelist)
 
     cout << "\n-> Finished processing file " << filename << " <-\n" << endl;
 
+    f.Close();
+
     delete f;
   }
 
@@ -2751,6 +2753,10 @@ void RDextraction(string pFilelist)
     }
 
     cout << "\n" << endl;
+
+    f.Close();
+
+    delete f;
   }
 
   for(int i=0; i<int(fQ2kin[0].size()); i++)
