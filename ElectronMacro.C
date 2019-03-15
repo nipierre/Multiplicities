@@ -150,6 +150,17 @@ void contaminationTableMC()
   }
 }
 
+void contaminationTableMCx()
+{
+
+  double fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
+
+  for(int i=0; i<9; i++)
+  {
+    cout << contaminationMC(fXrange[i], fXrange[i+1], 0.1, 0.7) << " ";
+  }
+}
+
 void contaminationTableTrueMC()
 {
 
