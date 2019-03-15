@@ -84,7 +84,7 @@ double contaminationTrueMC(double x1, double x2, double y1, double y2)
   ecount = h3->GetEntries();
 
   TH1F *h4 = new TH1F();
-  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h4",Form("(PID_MC==0 || PID_MC==1 || PID_MC==8 || PID_MC==9) && isinECAL_MC==1 && 0.8<(EECAL1_MC+EECAL2_MC)/phad_MC && (EECAL1_MC+EECAL2_MC)/phad_MC<1.25 && %f<xh_MC && xh_MC<%f && %f<yh_MC && yh_MC<%f",x1,x2,y1,y2));
+  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h4",Form("(PID_MC==0 || PID_MC==1 || PID_MC==8 || PID_MC==9) && isinECAL_MC==1 && %f<xh_MC && xh_MC<%f && %f<yh_MC && yh_MC<%f",x1,x2,y1,y2));
   h4 = (TH1F*) gDirectory->Get("h4");
   piecount = h4->GetEntries();
 
