@@ -173,6 +173,6 @@ void contaminationTableTrueMCx()
 
   for(int i=0; i<9; i++)
   {
-      cout << contaminationTrueMC(fXrange[i], fXrange[i+1]) << " ";
+      cout << contaminationTrueMCx(fXrange[i], fXrange[i+1]) << " ";
   }
 }
