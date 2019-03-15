@@ -9,8 +9,7 @@ void FitElectron(double x1, double x2, double y1, double y2)
 
   TF1 *f1 = new TF1("f1","pol3+gaus(4)",0.3,1.25);
 
-  double gausCenter;
-  f1->GetParameter(&gausCenter);
+  double gausCenter = f1->GetParameter(5);
   while(!(0.9<gausCenter && gausCenter<1))
   {
     f1->SetParameter(5,0.95);
