@@ -49,7 +49,7 @@ double contaminationMC(double x1, double x2, double y1, double y2)
   h1 = (TH1F*) gDirectory->Get("h1");
 
   TH1F *h2 = new TH1F();
-  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h2",Form("(PID_MC==2 || PID_MC==3) && isinECAL_MC==1 && 0.8<(EECAL1_MC+EECAL2_MC)/phad && (EECAL1_MC+EECAL2_MC)/phad_MC<1.25 && %f<xh_MC && xh_MC<%f && %f<yh_MC && yh_MC<%f",x1,x2,y1,y2));
+  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h2",Form("(PID_MC==2 || PID_MC==3) && isinECAL_MC==1 && 0.8<(EECAL1_MC+EECAL2_MC)/phad_MC && (EECAL1_MC+EECAL2_MC)/phad_MC<1.25 && %f<xh_MC && xh_MC<%f && %f<yh_MC && yh_MC<%f",x1,x2,y1,y2));
   h2 = (TH1F*) gDirectory->Get("h2");
   RK = h2->GetEntries()/h1->GetEntries();;
 
@@ -59,7 +59,7 @@ double contaminationMC(double x1, double x2, double y1, double y2)
   picount = RK*h3->GetEntries();
 
   TH1F *h4 = new TH1F();
-  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h4",Form("(PID_MC==0 || PID_MC==1 || PID_MC==8 || PID_MC==9) && isinECAL_MC==1 && 0.8<(EECAL1_MC+EECAL2_MC)/phad && (EECAL1_MC+EECAL2_MC)/phad_MC<1.25 && %f<xh_MC && xh_MC<%f && %f<yh_MC && yh_MC<%f",x1,x2,y1,y2));
+  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h4",Form("(PID_MC==0 || PID_MC==1 || PID_MC==8 || PID_MC==9) && isinECAL_MC==1 && 0.8<(EECAL1_MC+EECAL2_MC)/phad_MC && (EECAL1_MC+EECAL2_MC)/phad_MC<1.25 && %f<xh_MC && xh_MC<%f && %f<yh_MC && yh_MC<%f",x1,x2,y1,y2));
   h4 = (TH1F*) gDirectory->Get("h4");
   piecount = h4->GetEntries();
 
