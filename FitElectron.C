@@ -14,7 +14,7 @@ void FitElectron(double x1, double x2, double y1, double y2)
   {
     f1->SetParameter(5,0.95);
     f1->SetParameter(6,0.1);
-
     h1->Fit("f1","R");
+    gausCenter = f1->GetParameter(5);
   }
 }
