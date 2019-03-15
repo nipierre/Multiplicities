@@ -16,6 +16,8 @@ void FitElectron(double x1, double x2, double y1, double y2)
 
   h1->Fit("f1","R");
 
+  f1->ReleaseParameter(5);
+  f1->ReleaseParameter(6);
   f1->SetParameter(5,0.95);
   f1->SetParameter(6,0.1);
 
