@@ -93,6 +93,31 @@ double contaminationTrueMC(double x1, double x2, double y1, double y2)
   return econt;
 }
 
+double contaminationTrueMCx(double x1, double x2)
+{
+
+  double piecount = 0;
+  double ecount = 0;
+  double econt = 0;
+
+  TFile *_file0 = TFile::Open("RDMC.root");
+  TTree *HadronMC = (TTree*) _file0->Get("HadronMC");
+
+  TH1F *h3 = new TH1F();
+  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h3",Form("(PID_MC==8 || PID_MC==9) && isinECAL_MC==1 && %f<xh_MC && xh_MC<%f",x1,x2));
+  h3 = (TH1F*) gDirectory->Get("h3");
+  ecount = h3->GetEntries();
+
+  TH1F *h4 = new TH1F();
+  HadronMC->Draw("(EECAL1_MC+EECAL2_MC)/phad_MC>>h4",Form("(PID_MC==0 || PID_MC==1 || PID_MC==8 || PID_MC==9) && isinECAL_MC==1 && %f<xh_MC && xh_MC<%f",x1,x2));
+  h4 = (TH1F*) gDirectory->Get("h4");
+  piecount = h4->GetEntries();
+
+  econt = piecount ? ecount/piecount : 0;
+
+  return econt;
+}
+
 void contaminationTable()
 {
 
@@ -138,5 +163,16 @@ void contaminationTableTrueMC()
       cout << contaminationTrueMC(fXrange[i], fXrange[i+1], fYrange[j], fYrange[j+1]) << " ";
     }
     cout << endl;
+  }
+}
+
+void contaminationTableTrueMCx()
+{
+
+  double fXrange[10] = {.004,.01,.02,.03,.04,.06,.1,.14,.18,.4};
+
+  for(int i=0; i<9; i++)
+  {
+      cout << contaminationTrueMC(fXrange[i], fXrange[i+1]) << " ";
   }
 }
