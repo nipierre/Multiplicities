@@ -12,12 +12,11 @@ double contamination(double x1, double x2)
   TH1F *h1 = new TH1F();
   Hadron->Draw("(EECAL1+EECAL2)/phad>>h1",Form("(PID==2 || PID==3) && isinECAL==1 && %f<xh && xh<%f",x1,x2));
   h1 = (TH1F*) gDirectory->Get("h1");
-  RK = h1->GetEntries();
 
   TH1F *h2 = new TH1F();
   Hadron->Draw("(EECAL1+EECAL2)/phad>>h2",Form("(PID==2 || PID==3) && isinECAL==1 && 0.8<(EECAL1+EECAL2)/phad && (EECAL1+EECAL2)/phad<1.25 && %f<xh && xh<%f",x1,x2));
   h2 = (TH1F*) gDirectory->Get("h2");
-  RK /= h2->GetEntries();
+  RK = h2->GetEntries()/h1->GetEntries();;
 
   TH1F *h3 = new TH1F();
   Hadron->Draw("(EECAL1+EECAL2)/phad>>h3",Form("(PID==0 || PID==1) && isinECAL==1 && %f<xh && xh<%f",x1,x2));
