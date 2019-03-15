@@ -28,7 +28,7 @@ double contamination(double x1, double x2, double y1, double y2)
   h4 = (TH1F*) gDirectory->Get("h4");
   piecount = h4->GetEntries();
 
-  econt = (piecount - picount)/h3->GetEntries();
+  econt = h3->GetEntries() ? (piecount - picount)/h3->GetEntries() : 0;
 
   return econt;
 }
