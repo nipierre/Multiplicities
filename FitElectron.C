@@ -8,7 +8,6 @@ void FitElectron(double x1, double x2, double y1, double y2)
   h1 = (TH1F*) gDirectory->Get("h1");
 
   TF1 *f1 = new TF1("f1","pol3+gaus(4)",0.3,1.25);
-  f1->SetParameters(par);
 
   double gausCenter;
   f1->GetParameter(&gausCenter);
