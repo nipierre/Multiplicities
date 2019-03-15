@@ -7,6 +7,7 @@ double contamination(double x1, double x2)
   double econt = 0;
 
   TFile *_file0 = TFile::Open("RDMC.root");
+  TTree *Hadron = (TTree*) _file0->Get("Hadron");
 
   Hadron->Draw("(EECAL1+EECAL2)/phad>>h1",Form("(PID==2 || PID==3) && isinECAL==1 && %f<xh && xh<%f",x1,x2));
   RK = h1->GetEntries();
