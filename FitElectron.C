@@ -4,7 +4,7 @@ double FitElectron(double x1, double x2)
   TTree *Hadron = (TTree*) _file0->Get("Hadron");
 
   TH1F *h1 = new TH1F();
-  Hadron->Draw("(EECAL1+EECAL2)/phad>>h1",Form("(PID==0 || PID==1) && isinECAL==1 && %f<xh && xh<%f",x1,x2));
+  Hadron->Draw("(EECAL1+EECAL2)/phad>>h1(300,0,2)",Form("(PID==0 || PID==1) && isinECAL==1 && %f<xh && xh<%f",x1,x2));
   h1 = (TH1F*) gDirectory->Get("h1");
 
   TF1 *f1 = new TF1("f1","pol3+gaus(4)",0.3,1.25);
