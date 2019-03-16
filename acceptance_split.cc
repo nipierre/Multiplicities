@@ -885,7 +885,6 @@ int main(int argc, char **argv)
       TBranch *pt = (TBranch*) tree->FindBranch("Hadrons.pt");
       TBranch *hXX0 = (TBranch*) tree->FindBranch("Hadrons.XX0");
       TBranch *inHCALacc = (TBranch*) tree->FindBranch("Hadrons.inHCALacc");
-      TBranch *HCAL = (TBranch*) tree->FindBranch("Hadrons.HCAL");
       TBranch *charge = (TBranch*) tree->FindBranch("Hadrons.charge");
       TBranch *thRICH = (TBranch*) tree->FindBranch("Hadrons.thRICH");
       //TBranch *LH = (TBranch*) tree->FindBranch("Hadrons.LH");
@@ -1030,7 +1029,6 @@ int main(int argc, char **argv)
         pt->GetEntry(ip);
         hXX0->GetEntry(ip);
         inHCALacc->GetEntry(ip);
-        HCAL->GetEntry(ip);
         charge->GetEntry(ip);
         thRICH->GetEntry(ip);
         //LH->GetEntry(ip);
