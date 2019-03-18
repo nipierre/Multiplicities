@@ -147,8 +147,8 @@ TH1F* fTarget[2];
 TH1F* fTargetMC[2];
 TH2F* fTarget2D[2];
 TH2F* fTarget2DMC[2];
-string unit[45] = {"Q^2","x_{Bj}","y","z","W","#nu","#Phi","Q^2","x_{Bj}","y",
-                   "z","W","#nu","#mu","#mu_p","#theta","#Phi","z_{vtx}","p_h","#theta_h",
+string unit[45] = {"Q^{2}","x_{Bj}","y","z","W","p_{h}","#Phi","Q^{2}","x_{Bj}","y",
+                   "z","W","#nu","#mu","#mu","#theta","#Phi","z_{vtx}","p_{h}","#theta_{h}",
                    "#Phi_h","p_h","#theta_h","#Phi_h","#Phi_{h}^{prod. plane}","#Phi_{h}^{prod. plane}","","","","",
                    "","","","","","","","","","",
                    "","","","",""};
