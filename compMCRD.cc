@@ -463,13 +463,30 @@ void plotting_ratio(int i, int j)
   fKinematicsRD[i][j]->Sumw2();
   fKinematicsRD[i][j]->SetLineColor(kRed);
   fKinematicsMC[i][j]->Sumw2();
-  fKinematicsRD[i][j]->SetLineColor(kBlue);
+  fKinematicsMC[i][j]->SetLineColor(kBlue);
+  fKinematicsMC[i][j]->SetFillStyle(3427);
+  fKinematicsRD[i][j]->SetTitle("");
+  fKinematicsRD[i][j]->GetXaxis()->SetTitle(unit[j]);
+  fKinematicsRD[i][j]->GetYaxis()->SetTitle("Arb. Units")
+  fKinematicsRD[i][j]->SetStats(0);
+  fKinematicsMC[i][j]->SetStats(0);
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
   fCountingRD[i][j] = fKinematicsRD[i][j]->GetEntries();
-  fKinematicsMC[i][j]->Scale(1/fKinematicsMC[i][j]->GetEntries());
-  fKinematicsRD[i][j]->Scale(1/fKinematicsRD[i][j]->GetEntries());
+  fKinematicsMC[i][j]->Scale(fKinematicsRD[i][j]->GetEntries()/fKinematicsMC[i][j]->GetEntries());
   fKinematicsRatio[i][j] = new TRatioPlot(fKinematicsRD[i][j],fKinematicsMC[i][j]);
+  fKinematicsRatio[i][j]->SetH2DrawOpt("hist");
   fKinematicsRatio[i][j]->Draw("");
+
+  TLegend *leg = new TLegend(0.7,0.6,0.9,0.9);
+  leg->AddEntry(fKinematicsRD[i][j],"Real Data","l");
+  leg->AddEntry(fKinematicsMC[i][j],"Monte Carlo","l");
+  leg->SetHeader("COMPASS 2016 Data");
+
+  fKinematicsRatio[i][j]->GetUpperPad()->cd();
+  leg->SetTextFont(1);
+  leg->SetTextSize(0.04);
+  leg->SetBorderSize(0);
+  leg->Draw();
 }
 
 void plotting_ratio_vertex(int i, int j)
