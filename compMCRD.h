@@ -18,6 +18,7 @@
 #include <TLine.h>
 #include <TGaxis.h>
 #include <TRatioPlot.h>
+#include <TLegend.h>
 
 // COLORS
 
