@@ -467,7 +467,7 @@ void plotting_ratio(int i, int j)
   fKinematicsMC[i][j]->SetFillStyle(3427);
   fKinematicsRD[i][j]->SetTitle("");
   fKinematicsRD[i][j]->GetXaxis()->SetTitle(unit[j].c_str());
-  fKinematicsRD[i][j]->GetYaxis()->SetTitle("Arb. Units")
+  fKinematicsRD[i][j]->GetYaxis()->SetTitle("Arb. Units");
   fKinematicsRD[i][j]->SetStats(0);
   fKinematicsMC[i][j]->SetStats(0);
   fCountingMC[i][j] = fKinematicsMC[i][j]->GetEntries();
