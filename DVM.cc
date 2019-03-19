@@ -100,7 +100,7 @@ bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
 void readKinCuts(string pFile)
 {
   string dummy;
-  ifstream list(pFile);
+  ifstream list(pFile.c_str());
   list >> dummy >> fXmin;
   list >> dummy >> fXmax;
   list >> dummy >> fYmin;
@@ -162,7 +162,7 @@ void Extraction(string pFilelist, int pType)
 
   // List of files
 
-  ifstream list(pFilelist);
+  ifstream list(pFilelist.c_str());
   string filename;
 
   while(list >> filename)
