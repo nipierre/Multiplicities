@@ -477,7 +477,7 @@ void plotting_ratio(int i, int j)
   fKinematicsRatio[i][j]->SetH2DrawOpt("hist");
   fKinematicsRatio[i][j]->Draw("");
 
-  TLegend *leg = new TLegend(0.6,0.5,0.8,0.8);
+  TLegend *leg = new TLegend(0.68,0.55,0.88,0.85);
   leg->AddEntry(fKinematicsRD[i][j],"Real Data","l");
   leg->AddEntry(fKinematicsMC[i][j],"Monte Carlo","l");
   leg->SetHeader("COMPASS 2016 Data");
