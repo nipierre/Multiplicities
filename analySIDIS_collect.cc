@@ -23,6 +23,7 @@
 #define irc_qel "data/sigtot_RC_wqel.dat"
 #define irc_noqel "data/sigtot_RC_woqel.dat"
 #define DVM_2006 "data/DVM_2006.dat"
+#define DVM_2016 "data/DVM_2016.dat"
 
 // Flags
 #define Y2006 0
