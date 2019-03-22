@@ -127,7 +127,7 @@ anim = @animate for i=1:9
         Mpexp[j] = Multpip[i,j]
         Mmexp[j] = Multpim[i,j]
         MpKplus = ((4*u[i])*DfavK[round(Int,Q2[i]),zFFred[j]]+(4*ub[i]+d[i]+s[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
-        MpKminus = ((4*ub[i])*Dfavpi[round(Int,Q2[i]),zFFred[j]]+(4*u[i]+db[i]+sb[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+s[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
+        MpKminus = ((4*ub[i])*DfavK[round(Int,Q2[i]),zFFred[j]]+(4*u[i]+db[i]+sb[i]+db[i])*DunfK[round(Int,Q2[i]),zFFred[j]]+s[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(4*(u[i]+ub[i])+(d[i]+db[i])+(s[i]+sb[i]))
         MdKplus = ((4*(u[i]+d[i]))*DfavK[round(Int,Q2[i]),zFFred[j]]+((u[i]+d[i])+5*(ub[i]+db[i])+2*(s[i]))*DunfK[round(Int,Q2[i]),zFFred[j]]+2*sb[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
         MdKminus = ((4*(ub[i]+db[i]))*DfavK[round(Int,Q2[i]),zFFred[j]]+((ub[i]+db[i])+5*(u[i]+d[i])+2*(sb[i]))*DunfK[round(Int,Q2[i]),zFFred[j]]+2*s[i]*DstrK[round(Int,Q2[i]),zFFred[j]])/(5*(u[i]+ub[i]+d[i]+db[i])+2*(s[i]+sb[i]))
         MKsp[i] += (MpKplus+MpKminus)*(z[j+1]-z[j])
