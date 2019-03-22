@@ -720,6 +720,8 @@ int main(int argc, char **argv)
 
     if(!periodBit) continue;
 
+    PeriodFluxTot += PeriodFlux[0][fNumberPeriod-1]+PeriodFlux[1][fNumberPeriod-1];
+
     cout << periodName << " ";
 
     if(!NO_ACC)
