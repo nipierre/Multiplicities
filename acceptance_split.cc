@@ -1145,14 +1145,14 @@ int main(int argc, char **argv)
 
         if(Y2016)
         {
-          if(-311.19<=zlab && zlab<-251.19) zlabbin = 0;
-          else if(-251.19<=zlab && zlab<-191.19) zlabbin = 1;
-          else if(-191.19<=zlab && zlab<-131.19) zlabbin = 2;
-          else if(-131.19<=zlab && zlab<=-71.19) zlabbin = 3;
-          if(-311.19<=zlab_MC && zlab_MC<-251.19) zlabbin_MC = 0;
-          else if(-251.19<=zlab_MC && zlab_MC<-191.19) zlabbin_MC = 1;
-          else if(-191.19<=zlab_MC && zlab_MC<-131.19) zlabbin_MC = 2;
-          else if(-131.19<=zlab_MC && zlab_MC<=-71.19) zlabbin_MC = 3;
+          if(-325<=zlab && zlab<-261.5) zlabbin = 0;
+          else if(-261.5<=zlab && zlab<-198) zlabbin = 1;
+          else if(-198<=zlab && zlab<-134.5) zlabbin = 2;
+          else if(-134.5<=zlab && zlab<=-71) zlabbin = 3;
+          if(-325<=zlab_MC && zlab_MC<-261.5) zlabbin_MC = 0;
+          else if(-261.5<=zlab_MC && zlab_MC<-198.5) zlabbin_MC = 1;
+          else if(-198.5<=zlab_MC && zlab_MC<-134.5) zlabbin_MC = 2;
+          else if(-134.5<=zlab_MC && zlab_MC<=-71) zlabbin_MC = 3;
         }
 
         //--------------------------------------------------------------------------
