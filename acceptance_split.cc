@@ -1976,8 +1976,7 @@ int main(int argc, char **argv)
               zBj_MC_unid = 0;
             }
 
-            if(fId==6 || fId==7) if(!(0.2<zBj_MC_unid && zBj_MC_unid<0.85)) continue;
-            else if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
+            if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
 
 
             if(kin_flag)
