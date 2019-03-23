@@ -1967,7 +1967,8 @@ int main(int argc, char **argv)
               else
                 zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
 
-              zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
+              zBj_MC_unid = zBj_MC;
+              // zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
             }
             else
             {
@@ -1975,7 +1976,9 @@ int main(int argc, char **argv)
               zBj_MC_unid = 0;
             }
 
-            if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
+            if(fId==6 || fId==7) if(!(0.2<zBj_MC_unid && zBj_MC_unid<0.85)) continue;
+            else if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
+
 
             if(kin_flag)
             {
@@ -2297,11 +2300,13 @@ int main(int argc, char **argv)
               else
                 zBj_MC = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
 
-                zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
+              zBj_MC_unid = zBj_MC;
+              // zBj_MC_unid = sqrt(pow(MC_p->GetLeaf("MCHadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu_MC;
             }
             else
             {
               zBj_MC = 0;
+              zBj_MC_unid = 0;
             }
 
             if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
@@ -2537,7 +2542,8 @@ int main(int argc, char **argv)
               else
                 zBj = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
 
-              zBj_unid = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
+                zBj_unid = zBj;
+              // zBj_unid = sqrt(pow(p->GetLeaf("Hadrons.P")->GetValue(i),2)+pow(fM_pi,2))/nu;
             }
             else
             {
