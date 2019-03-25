@@ -248,22 +248,22 @@ TH1F* fYk[2];
 TH1F* fThRich[2];
 TH1F* fPk[2];
 TH1F* fZk[2];
-TCanvas c1("Kin_Q^{2}","Kin_Q^{2}",3200,1600);
-TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}",3200,1600);
-TCanvas c3("Kin_y","Kin_y",3200,1600);
-TCanvas c4("Kin_z","Kin_z",3200,1600);
-TCanvas c5("Kin_w","Kin_w",3200,1600);
-TCanvas c6("Kin_#nu","Kin_#nu",3200,1600);
-TCanvas c7("Kin_xy","Kin_xy",3200,1600);
-TCanvas c71("Kin_xQ2","Kin_xQ2",3200,1600);
-TCanvas c8("target_xy","target_xy",3200,1600);
-TCanvas c9("RICH LH","RICH LH",3200,1600);
-TCanvas c10("HO03","HO03",3200,1600);
-TCanvas c11("HO04","HO04",3200,1600);
-TCanvas c12("RICH_spec","RICH_spec",3200,1600);
-TCanvas c13("Target_cut","Target_cut",3200,1600);
-TCanvas c14("Target_cut2","Target_cut2",3200,1600);
-TCanvas c15("Cuts","Cuts",3200,1600);
+TCanvas c1("Kin_Q^{2}","Kin_Q^{2}");
+TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}");
+TCanvas c3("Kin_y","Kin_y");
+TCanvas c4("Kin_z","Kin_z");
+TCanvas c5("Kin_w","Kin_w");
+TCanvas c6("Kin_#nu","Kin_#nu");
+TCanvas c7("Kin_xy","Kin_xy");
+TCanvas c71("Kin_xQ2","Kin_xQ2");
+TCanvas c8("target_xy","target_xy");
+TCanvas c9("RICH LH","RICH LH");
+TCanvas c10("HO03","HO03");
+TCanvas c11("HO04","HO04");
+TCanvas c12("RICH_spec","RICH_spec");
+TCanvas c13("Target_cut","Target_cut");
+TCanvas c14("Target_cut2","Target_cut2");
+TCanvas c15("Cuts","Cuts");
 
 //Graphic Style
 
