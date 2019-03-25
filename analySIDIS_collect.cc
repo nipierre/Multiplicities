@@ -507,6 +507,9 @@ void yweightedavg()
               fMultiplicities_yavg[x][z].tab[c][0][l]+=fMultiplicities[x][i][z].tab[c][0][l]/fMultiplicities[x][i][z].tab[c][1][l];
               fMultiplicities_yavg[x][z].tab[c][1][l]+=1/fMultiplicities[x][i][z].tab[c][1][l];
               fMultiplicities_yavg[x][z].tab[c][2][l]+=1/fMultiplicities[x][i][z].tab[c][2][l];
+              fMeanvalues_yavg[x][z].tab[c][l][0] += fMeanvalues_data[x][i][z].tab[c][l][0]/fMultiplicities[x][i][z].tab[c][1][l];
+              fMeanvalues_yavg[x][z].tab[c][l][2] += fMeanvalues_data[x][i][z].tab[c][l][0]/fMultiplicities[x][i][z].tab[c][1][l];
+              fMeanvalues_yavg[x][z].tab[c][l][3] += fMeanvalues_data[x][i][z].tab[c][l][0]/fMultiplicities[x][i][z].tab[c][1][l];
             }
             for(int th=0; th<8; th++)
             {
@@ -538,6 +541,9 @@ void yweightedavg()
             fMultiplicities_yavg[x][z].tab[c][1][l]=1/fMultiplicities_yavg[x][z].tab[c][1][l];
             fMultiplicities_yavg[x][z].tab[c][2][l]=1/fMultiplicities_yavg[x][z].tab[c][2][l];
             fMultiplicities_yavg[x][z].tab[c][0][l]*=fMultiplicities_yavg[x][z].tab[c][1][l];
+            fMeanvalues_yavg[x][z].tab[c][l][0] *= fMultiplicities_yavg[x][z].tab[c][1][l];
+            fMeanvalues_yavg[x][z].tab[c][l][2] *= fMultiplicities_yavg[x][z].tab[c][1][l];
+            fMeanvalues_yavg[x][z].tab[c][l][3] *= fMultiplicities_yavg[x][z].tab[c][1][l];
           }
           for(int th=0; th<8; th++)
           {
@@ -1120,10 +1126,14 @@ int main(int argc, char **argv)
   Double_t pr_yoffset2[12] = {-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065};
 
   ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_yap(Form("%s/multiplicities_pion_yavg.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_t(Form("%s/multiplicities_raw.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_k(Form("%s/multiplicities_kaon.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_yak(Form("%s/multiplicities_kaon_yavg.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_pr(Form("%s/multiplicities_proton.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_yapr(Form("%s/multiplicities_proton_yavg.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_h(Form("%s/multiplicities_hadron.txt",data_path), ofstream::out | ofstream::trunc);
+  ofstream ofs_yah(Form("%s/multiplicities_hadron_yavg.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_htheta(Form("%s/multiplicities_hadron_theta.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_hpt(Form("%s/multiplicities_hadron_pt.txt",data_path), ofstream::out | ofstream::trunc);
   // ofstream ofs_m(Form("%s/multiplicities_forMarcin.txt",data_path), ofstream::out | ofstream::trunc);
@@ -1485,8 +1495,8 @@ int main(int argc, char **argv)
           if (c) ofs_pr << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " ";
 
           ofs_pr <<
-          fMeanvalues_data[i][j][k].tab[0][1][0] << " " << fMeanvalues_data[i][j][k].tab[0][1][1] << " " <<
-          fMeanvalues_data[i][j][k].tab[0][1][2] << " " << fMeanvalues_data[i][j][k].tab[0][1][3] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][2][0] << " " << fMeanvalues_data[i][j][k].tab[0][2][1] << " " <<
+          fMeanvalues_data[i][j][k].tab[0][2][2] << " " << fMeanvalues_data[i][j][k].tab[0][2][3] << " " <<
           fMultiplicities[i][j][k].tab[c][0][2] << " " <<
           fMultiplicities[i][j][k].tab[c][1][2] << " " <<
           fMultiplicities[i][j][k].tab[c][2][2] << " " <<
@@ -2449,8 +2459,54 @@ int main(int argc, char **argv)
         }
 
         // cout << c << " " << i << " " << k << " " << fMultiplicities_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_yavg[i][k].tab[c][2][3] << endl;
-        cout << c << " " << i << " " << k << " " << fMultiplicities_thetaint[i][k].tab[c][0][3] << " " << fMultiplicities_thetaint[i][k].tab[c][1][3] << " " << fMultiplicities_thetaint[i][k].tab[c][2][3] << endl;
+        // cout << c << " " << i << " " << k << " " << fMultiplicities_thetaint[i][k].tab[c][0][3] << " " << fMultiplicities_thetaint[i][k].tab[c][1][3] << " " << fMultiplicities_thetaint[i][k].tab[c][2][3] << endl;
         // cout << c << " " << i << " " << k << " " << fMultiplicities_pt_yavg[i][k].tab[c][0][3] << " " << fMultiplicities_pt_yavg[i][k].tab[c][1][3] << " " << fMultiplicities_pt_yavg[i][k].tab[c][2][3] << endl;
+
+        if(c) ofs_yap << fXrange[i] << " " << fZrange[k] << " ";
+
+        ofs_yap <<
+        fMeanvalues_yavg[i][k].tab[0][0][0] << " " <<
+        fMeanvalues_yavg[i][k].tab[0][0][2] << " " << fMeanvalues_yavg[i][k].tab[0][0][3] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][0][0] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][1][0] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][2][0] << " " <<
+        (fMultiplicities_yavg[i][k].tab[c][0][0] ? 1 : 0) << " ";
+
+        if(!c) ofs_yap << endl;
+
+        if(c) ofs_yak << fXrange[i] << " " << fZrange[k] << " ";
+
+        ofs_yak <<
+        fMeanvalues_yavg[i][k].tab[0][1][0] << " " <<
+        fMeanvalues_yavg[i][k].tab[0][1][2] << " " << fMeanvalues_yavg[i][k].tab[0][1][3] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][0][1] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][1][1] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][2][1] << " " <<
+        (fMultiplicities_yavg[i][k].tab[c][0][1] ? 1 : 0) << " ";
+
+        if(!c) ofs_yak << endl;
+
+        if(c) ofs_yapr << fXrange[i] << " " << fZrange[k] << " ";
+
+        ofs_yapr <<
+        fMeanvalues_yavg[i][k].tab[0][2][0] << " " <<
+        fMeanvalues_yavg[i][k].tab[0][2][2] << " " << fMeanvalues_yavg[i][k].tab[0][2][3] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][0][2] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][1][2] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][2][2] << " " <<
+        (fMultiplicities_yavg[i][k].tab[c][0][2] ? 1 : 0) << " ";
+
+        if(!c) ofs_yah << endl;
+
+        ofs_yah <<
+        fMeanvalues_yavg[i][k].tab[0][3][0] << " " <<
+        fMeanvalues_yavg[i][k].tab[0][3][2] << " " << fMeanvalues_yavg[i][k].tab[0][3][3] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][0][3] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][1][3] << " " <<
+        fMultiplicities_yavg[i][k].tab[c][2][3] << " " <<
+        (fMultiplicities_yavg[i][k].tab[c][0][3] ? 1 : 0) << " ";
+
+        if(!c) ofs_yah << endl;
 
         p_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][0]);
         k_y[c][i].push_back(fMultiplicities_yavg[i][k].tab[c][0][1]);
@@ -4203,9 +4259,13 @@ int main(int argc, char **argv)
   c20->Print(Form("%s/proton_multiplicity_ratio_file.pdf",data_path));
 
   ofs_p.close();
+  ofs_yap.close();
   ofs_k.close();
+  ofs_yak.close();
   ofs_pr.close();
+  ofs_yapr.close();
   ofs_h.close();
+  ofs_yah.close();
   ofs_htheta.close();
   ofs_hpt.close();
   // ofs_m.close();

@@ -188,6 +188,7 @@ Recovery fMeanvalues[9][6][12]; // tab[][][i], iC[0,3] : x,y,Q2,z
 Recovery_tank fMeanvalues_size[9][6][12];
 Recovery_tank fMeanvalues_size_periods[11][9][6][12];
 Recovery_tank fMeanvalues_data[9][6][12];
+Recovery_tank fMeanvalues_yavg[9][12];
 Recovery_tank fMeanvalues_data_periods[11][9][6][12];
 Recovery_tank fMeanvalues_temp[9][6][12];
 Double_t fNDIS_evt_period[11][3][2][9][6][12];

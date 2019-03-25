@@ -1,51 +1,23 @@
 void plot_sum_average_ratio()
 {
   double zwidth[12]= {0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.1};
+  double zwidthH[4]= {0.1,0.1,0.2,0.2};
   ////////////read in txt files
-  double mpi_u[2][9][6][12];double mpie_u[2][9][6][12];
-  double syspi_a[2][9][6][12];
-  double zpi[2][9][6][12];
-  double xpi[2][9][6][12];
-  double mK_u[2][9][6][12];double mKe_u[2][9][6][12];
-  double sysK_a[2][9][6][12];
-  double zK[2][9][6][12];
-  double xK[2][9][6][12];
-  double mh_u[2][9][6][12];double mhe_u[2][9][6][12];
-  double sysh_a[2][9][6][12];
-  double zh[2][9][6][12];
-  double xh[2][9][6][12];
-  double mp_u[2][9][6][12];double mpe_u[2][9][6][12];
-  double sysp_a[2][9][6][12];
-  double zp[2][9][6][12];
-  double xp[2][9][6][12];
-
+  double m_u[2][9][6][12];double me_u[2][9][6][12];
+  double sys_a[2][9][6][12];
+  double z[2][9][6][12];
+  double x[2][9][6][12];
   for(int jj=0; jj<9; jj++)
     for(int kk=0; kk<6; kk++)
       for(int ll=0; ll<12; ll++)
-	     for(int ii=0; ii<2; ii++)
-	     {
-    	    mpi_u[ii][jj][kk][ll]=0 ;
-    	    mpie_u[ii][jj][kk][ll]=0;
-    	    syspi_a[ii][jj][kk][ll]=0.;
-    	    zpi[ii][jj][kk][ll]=0.;
-    	    xpi[ii][jj][kk][ll]=0.;
-          mK_u[ii][jj][kk][ll]=0 ;
-    	    mKe_u[ii][jj][kk][ll]=0;
-    	    sysK_a[ii][jj][kk][ll]=0.;
-    	    zK[ii][jj][kk][ll]=0.;
-    	    xK[ii][jj][kk][ll]=0.;
-          mh_u[ii][jj][kk][ll]=0 ;
-    	    mhe_u[ii][jj][kk][ll]=0;
-    	    sysh_a[ii][jj][kk][ll]=0.;
-    	    zh[ii][jj][kk][ll]=0.;
-    	    xh[ii][jj][kk][ll]=0.;
-          mp_u[ii][jj][kk][ll]=0 ;
-    	    mpe_u[ii][jj][kk][ll]=0;
-    	    sysp_a[ii][jj][kk][ll]=0.;
-    	    zp[ii][jj][kk][ll]=0.;
-    	    xp[ii][jj][kk][ll]=0.;
-	      }//jj
-
+	for(int ii=0; ii<2; ii++)
+	  {
+	    m_u[ii][jj][kk][ll]=0 ;
+	    me_u[ii][jj][kk][ll]=0;
+	    sys_a[ii][jj][kk][ll]=0.;
+	    z[ii][jj][kk][ll]=0.;
+	    x[ii][jj][kk][ll]=0.;
+	  }//jj
   ///////////////////read in multiplicity
   int ii=-1; int jj=-1; int kk=-1;
   double jjj=0; double kkk=0; double iii=0;
@@ -55,198 +27,54 @@ void plot_sum_average_ratio()
   double mn=0;double men=0;double sysn=0;double leptoflagn=0;
 
   ifstream IN1;
-  IN1.open("./data/multiplicities_pion.txt", ifstream::in);
+  IN1.open("./data/MultiplicityKaon_release_MCmeans_newnewRC_halfrad.txt", ifstream::in);
   for(int j=0; j<40000; j++)
-  {
+    {
       if (! IN1.eof() )
-	    {
-	       IN1>>iii>>jjj>>kkk>>xa_totalp>>ya_totalp>>q2a_totalp>>z_kaonp>>mp>>mep>>sysp>>leptoflagp>>xa_totaln>>ya_totaln>>q2a_totaln>>z_kaonn>>mn>>men>>sysn>>leptoflagn;
+	{
+	  IN1>>iii>>jjj>>kkk>>xa_totalp>>ya_totalp>>q2a_totalp>>z_kaonp>>mp>>mep>>sysp>>leptoflagp>>xa_totaln>>ya_totaln>>q2a_totaln>>z_kaonn>>mn>>men>>sysn>>leptoflagn;
 	  //
-    	   if(iii>0)ii=0;if(iii>0.0045)ii=1;if(iii>0.015)ii=2;if(iii>0.025)ii=3;if(iii>0.035)ii=4;if(iii>0.045)ii=5;if(iii>0.065)ii=6;if(iii>0.13)ii=7;if(iii>0.16)ii=8;
-    	   if(jjj>0)jj=0;if(jjj>0.105)jj=1;if(jjj>0.155)jj=2;if(jjj>0.205)jj=3;if(jjj>0.305)jj=4;if(jjj>0.505)jj=5;
-    	   if(kkk>0)kk=0;if(kkk>0.21)kk=1;if(kkk>0.251)kk=2;if(kkk>0.31)kk=3;if(kkk>0.351)kk=4;if(kkk>0.41)kk=5;if(kkk>0.451)kk=6;if(kkk>0.51)kk=7;if(kkk>0.551)kk=8;if(kkk>0.61)kk=9;if(kkk>0.651)kk=10;if(kkk>0.71)kk=11;
-    	   if(ii>-1&&jj>-1&&kk>-1)
-         {
-      	    mpi_u[1][ii][jj][kk]=mp;
-      	    mpie_u[1][ii][jj][kk]=mep;
-      	    syspi_a[1][ii][jj][kk]=sysp;
-      	    zpi[1][ii][jj][kk]=z_kaonp;
-      	    xpi[1][ii][jj][kk]=xa_totalp;
+	  if(iii>0)ii=0;if(iii>0.0045)ii=1;if(iii>0.015)ii=2;if(iii>0.025)ii=3;if(iii>0.035)ii=4;if(iii>0.045)ii=5;if(iii>0.065)ii=6;if(iii>0.13)ii=7;if(iii>0.16)ii=8;
+	  if(jjj>0)jj=0;if(jjj>0.105)jj=1;if(jjj>0.155)jj=2;if(jjj>0.205)jj=3;if(jjj>0.305)jj=4;if(jjj>0.505)jj=5;
+	  if(kkk>0)kk=0;if(kkk>0.21)kk=1;if(kkk>0.251)kk=2;if(kkk>0.31)kk=3;if(kkk>0.351)kk=4;if(kkk>0.41)kk=5;if(kkk>0.451)kk=6;if(kkk>0.51)kk=7;if(kkk>0.551)kk=8;if(kkk>0.61)kk=9;if(kkk>0.651)kk=10;if(kkk>0.71)kk=11;
+	  if(ii>-1&&jj>-1&&kk>-1){
+	    m_u[1][ii][jj][kk]=mp;
+	    me_u[1][ii][jj][kk]=mep;
+	    sys_a[1][ii][jj][kk]=sysp;
+	    z[1][ii][jj][kk]=z_kaonp;
+	    x[1][ii][jj][kk]=xa_totalp;
 	    //
-      	    mpi_u[0][ii][jj][kk]=mn;
-      	    mpie_u[0][ii][jj][kk]=men;
-      	    syspi_a[0][ii][jj][kk]=sysn;
-      	    zpi[0][ii][jj][kk]=z_kaonn;
-      	    xpi[0][ii][jj][kk]=xa_totaln;
-      	    if((jj==0&&ii==8)||(jj==4&&(ii==7||ii==8)))
-            {
-      	      mpi_u[1][ii][jj][kk]=0;
-      	      mpie_u[1][ii][jj][kk]=9999999999999;
-      	      syspi_a[1][ii][jj][kk]=0;
-      	      //
-      	      mpi_u[0][ii][jj][kk]=0;
-      	      mpie_u[0][ii][jj][kk]=9999999999999;
-      	      syspi_a[0][ii][jj][kk]=0;
-	           }
+	    m_u[0][ii][jj][kk]=mn;
+	    me_u[0][ii][jj][kk]=men;
+	    sys_a[0][ii][jj][kk]=sysn;
+	    z[0][ii][jj][kk]=z_kaonn;
+	    x[0][ii][jj][kk]=xa_totaln;
+	    if((jj==0&&ii==8)||(jj==4&&(ii==7||ii==8))){
+	      m_u[1][ii][jj][kk]=0;
+	      me_u[1][ii][jj][kk]=9999999999999;
+	      sys_a[1][ii][jj][kk]=0;
+	      //
+	      m_u[0][ii][jj][kk]=0;
+	      me_u[0][ii][jj][kk]=9999999999999;
+	      sys_a[0][ii][jj][kk]=0;
+	    }
 	    //
-      	    if(mpi_u[0][ii][jj][kk]==0)zpi[0][ii][jj][kk]=-10;
-      	    if(mpi_u[0][ii][jj][kk]==0)mpi_u[0][ii][jj][kk]=-10;
-      	    if(mpi_u[0][ii][jj][kk]==0)mpie_u[0][ii][jj][kk]=0;
+	    if(m_u[0][ii][jj][kk]==0)z[0][ii][jj][kk]=-10;
+	    if(m_u[0][ii][jj][kk]==0)m_u[0][ii][jj][kk]=-10;
+	    if(m_u[0][ii][jj][kk]==0)me_u[0][ii][jj][kk]=0;
 
-      	    if(mpi_u[1][ii][jj][kk]==0)zpi[1][ii][jj][kk]=-10;
-      	    if(mpi_u[1][ii][jj][kk]==0)mpi_u[1][ii][jj][kk]=-10;
-      	    if(mpi_u[1][ii][jj][kk]==0)mpie_u[1][ii][jj][kk]=-0;
-      	    jjj=kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
-	      }
-	   }
-  }
+	    if(m_u[1][ii][jj][kk]==0)z[1][ii][jj][kk]=-10;
+	    if(m_u[1][ii][jj][kk]==0)m_u[1][ii][jj][kk]=-10;
+	    if(m_u[1][ii][jj][kk]==0)me_u[1][ii][jj][kk]=-0;
+	    jjj=kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
+	  }
+	}
+    }
   IN1.close();
   //
-  cout<<"Done reading COMPASS Pion"<<endl;
+  cout<<"done reading COMPASS kaon"<<endl;
 
-  ifstream IN2;
-  IN2.open("./data/multiplicities_kaon.txt", ifstream::in);
-  for(int j=0; j<40000; j++)
-    {
-      if (! IN2.eof() )
-  {
-    IN2>>iii>>jjj>>kkk>>xa_totalp>>ya_totalp>>q2a_totalp>>z_kaonp>>mp>>mep>>sysp>>leptoflagp>>xa_totaln>>ya_totaln>>q2a_totaln>>z_kaonn>>mn>>men>>sysn>>leptoflagn;
-    //
-    if(iii>0)ii=0;if(iii>0.0045)ii=1;if(iii>0.015)ii=2;if(iii>0.025)ii=3;if(iii>0.035)ii=4;if(iii>0.045)ii=5;if(iii>0.065)ii=6;if(iii>0.13)ii=7;if(iii>0.16)ii=8;
-    if(jjj>0)jj=0;if(jjj>0.105)jj=1;if(jjj>0.155)jj=2;if(jjj>0.205)jj=3;if(jjj>0.305)jj=4;if(jjj>0.505)jj=5;
-    if(kkk>0)kk=0;if(kkk>0.21)kk=1;if(kkk>0.251)kk=2;if(kkk>0.31)kk=3;if(kkk>0.351)kk=4;if(kkk>0.41)kk=5;if(kkk>0.451)kk=6;if(kkk>0.51)kk=7;if(kkk>0.551)kk=8;if(kkk>0.61)kk=9;if(kkk>0.651)kk=10;if(kkk>0.71)kk=11;
-    if(ii>-1&&jj>-1&&kk>-1){
-      m_u[1][ii][jj][kk]=mp;
-      me_u[1][ii][jj][kk]=mep;
-      sys_a[1][ii][jj][kk]=sysp;
-      z[1][ii][jj][kk]=z_kaonp;
-      x[1][ii][jj][kk]=xa_totalp;
-      //
-      m_u[0][ii][jj][kk]=mn;
-      me_u[0][ii][jj][kk]=men;
-      sys_a[0][ii][jj][kk]=sysn;
-      z[0][ii][jj][kk]=z_kaonn;
-      x[0][ii][jj][kk]=xa_totaln;
-      if((jj==0&&ii==8)||(jj==4&&(ii==7||ii==8))){
-        m_u[1][ii][jj][kk]=0;
-        me_u[1][ii][jj][kk]=9999999999999;
-        sys_a[1][ii][jj][kk]=0;
-        //
-        m_u[0][ii][jj][kk]=0;
-        me_u[0][ii][jj][kk]=9999999999999;
-        sys_a[0][ii][jj][kk]=0;
-      }
-      //
-      if(m_u[0][ii][jj][kk]==0)z[0][ii][jj][kk]=-10;
-      if(m_u[0][ii][jj][kk]==0)m_u[0][ii][jj][kk]=-10;
-      if(m_u[0][ii][jj][kk]==0)me_u[0][ii][jj][kk]=0;
 
-      if(m_u[1][ii][jj][kk]==0)z[1][ii][jj][kk]=-10;
-      if(m_u[1][ii][jj][kk]==0)m_u[1][ii][jj][kk]=-10;
-      if(m_u[1][ii][jj][kk]==0)me_u[1][ii][jj][kk]=-0;
-      jjj=kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
-    }
-  }
-    }
-  IN2.close();
-  //
-  cout<<"Done reading COMPASS Kaon"<<endl;
-
-  ifstream IN3;
-  IN3.open("./data/multiplicities_hadron.txt", ifstream::in);
-  for(int j=0; j<40000; j++)
-    {
-      if (! IN3.eof() )
-  {
-    IN3>>iii>>jjj>>kkk>>xa_totalp>>ya_totalp>>q2a_totalp>>z_kaonp>>mp>>mep>>sysp>>leptoflagp>>xa_totaln>>ya_totaln>>q2a_totaln>>z_kaonn>>mn>>men>>sysn>>leptoflagn;
-    //
-    if(iii>0)ii=0;if(iii>0.0045)ii=1;if(iii>0.015)ii=2;if(iii>0.025)ii=3;if(iii>0.035)ii=4;if(iii>0.045)ii=5;if(iii>0.065)ii=6;if(iii>0.13)ii=7;if(iii>0.16)ii=8;
-    if(jjj>0)jj=0;if(jjj>0.105)jj=1;if(jjj>0.155)jj=2;if(jjj>0.205)jj=3;if(jjj>0.305)jj=4;if(jjj>0.505)jj=5;
-    if(kkk>0)kk=0;if(kkk>0.21)kk=1;if(kkk>0.251)kk=2;if(kkk>0.31)kk=3;if(kkk>0.351)kk=4;if(kkk>0.41)kk=5;if(kkk>0.451)kk=6;if(kkk>0.51)kk=7;if(kkk>0.551)kk=8;if(kkk>0.61)kk=9;if(kkk>0.651)kk=10;if(kkk>0.71)kk=11;
-    if(ii>-1&&jj>-1&&kk>-1){
-      m_u[1][ii][jj][kk]=mp;
-      me_u[1][ii][jj][kk]=mep;
-      sys_a[1][ii][jj][kk]=sysp;
-      z[1][ii][jj][kk]=z_kaonp;
-      x[1][ii][jj][kk]=xa_totalp;
-      //
-      m_u[0][ii][jj][kk]=mn;
-      me_u[0][ii][jj][kk]=men;
-      sys_a[0][ii][jj][kk]=sysn;
-      z[0][ii][jj][kk]=z_kaonn;
-      x[0][ii][jj][kk]=xa_totaln;
-      if((jj==0&&ii==8)||(jj==4&&(ii==7||ii==8))){
-        m_u[1][ii][jj][kk]=0;
-        me_u[1][ii][jj][kk]=9999999999999;
-        sys_a[1][ii][jj][kk]=0;
-        //
-        m_u[0][ii][jj][kk]=0;
-        me_u[0][ii][jj][kk]=9999999999999;
-        sys_a[0][ii][jj][kk]=0;
-      }
-      //
-      if(m_u[0][ii][jj][kk]==0)z[0][ii][jj][kk]=-10;
-      if(m_u[0][ii][jj][kk]==0)m_u[0][ii][jj][kk]=-10;
-      if(m_u[0][ii][jj][kk]==0)me_u[0][ii][jj][kk]=0;
-
-      if(m_u[1][ii][jj][kk]==0)z[1][ii][jj][kk]=-10;
-      if(m_u[1][ii][jj][kk]==0)m_u[1][ii][jj][kk]=-10;
-      if(m_u[1][ii][jj][kk]==0)me_u[1][ii][jj][kk]=-0;
-      jjj=kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
-    }
-  }
-    }
-  IN3.close();
-  //
-  cout<<"Done reading COMPASS Hadron"<<endl;
-
-  ifstream IN4;
-  IN4.open("./data/multiplicities_proton.txt", ifstream::in);
-  for(int j=0; j<40000; j++)
-    {
-      if (! IN4.eof() )
-  {
-    IN4>>iii>>jjj>>kkk>>xa_totalp>>ya_totalp>>q2a_totalp>>z_kaonp>>mp>>mep>>sysp>>leptoflagp>>xa_totaln>>ya_totaln>>q2a_totaln>>z_kaonn>>mn>>men>>sysn>>leptoflagn;
-    //
-    if(iii>0)ii=0;if(iii>0.0045)ii=1;if(iii>0.015)ii=2;if(iii>0.025)ii=3;if(iii>0.035)ii=4;if(iii>0.045)ii=5;if(iii>0.065)ii=6;if(iii>0.13)ii=7;if(iii>0.16)ii=8;
-    if(jjj>0)jj=0;if(jjj>0.105)jj=1;if(jjj>0.155)jj=2;if(jjj>0.205)jj=3;if(jjj>0.305)jj=4;if(jjj>0.505)jj=5;
-    if(kkk>0)kk=0;if(kkk>0.21)kk=1;if(kkk>0.251)kk=2;if(kkk>0.31)kk=3;if(kkk>0.351)kk=4;if(kkk>0.41)kk=5;if(kkk>0.451)kk=6;if(kkk>0.51)kk=7;if(kkk>0.551)kk=8;if(kkk>0.61)kk=9;if(kkk>0.651)kk=10;if(kkk>0.71)kk=11;
-    if(ii>-1&&jj>-1&&kk>-1){
-      m_u[1][ii][jj][kk]=mp;
-      me_u[1][ii][jj][kk]=mep;
-      sys_a[1][ii][jj][kk]=sysp;
-      z[1][ii][jj][kk]=z_kaonp;
-      x[1][ii][jj][kk]=xa_totalp;
-      //
-      m_u[0][ii][jj][kk]=mn;
-      me_u[0][ii][jj][kk]=men;
-      sys_a[0][ii][jj][kk]=sysn;
-      z[0][ii][jj][kk]=z_kaonn;
-      x[0][ii][jj][kk]=xa_totaln;
-      if((jj==0&&ii==8)||(jj==4&&(ii==7||ii==8))){
-        m_u[1][ii][jj][kk]=0;
-        me_u[1][ii][jj][kk]=9999999999999;
-        sys_a[1][ii][jj][kk]=0;
-        //
-        m_u[0][ii][jj][kk]=0;
-        me_u[0][ii][jj][kk]=9999999999999;
-        sys_a[0][ii][jj][kk]=0;
-      }
-      //
-      if(m_u[0][ii][jj][kk]==0)z[0][ii][jj][kk]=-10;
-      if(m_u[0][ii][jj][kk]==0)m_u[0][ii][jj][kk]=-10;
-      if(m_u[0][ii][jj][kk]==0)me_u[0][ii][jj][kk]=0;
-
-      if(m_u[1][ii][jj][kk]==0)z[1][ii][jj][kk]=-10;
-      if(m_u[1][ii][jj][kk]==0)m_u[1][ii][jj][kk]=-10;
-      if(m_u[1][ii][jj][kk]==0)me_u[1][ii][jj][kk]=-0;
-      jjj=kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
-    }
-  }
-    }
-  IN4.close();
-  //
-  cout<<"Done reading COMPASS Proton"<<endl;
 
 
   /////////////////read in q2 xBs///////////for a better average (has counts and x-values)
@@ -515,7 +343,6 @@ void plot_sum_average_ratio()
 
 
        }
-     double avg_xsys[8]={avg_x[0]-0.0005,avg_x[1],avg_x[2],avg_x[3],avg_x[4],avg_x[5],avg_x[6],avg_x[7]+0.005};
      TGraphErrors *dmult_sum = new TGraphErrors(8,avg_x, sum ,zerror,sum_e);
      TGraphErrors *dmult_ratio = new TGraphErrors(8,avg_x, ratio,zerror,ratio_e);
 
@@ -533,62 +360,236 @@ void plot_sum_average_ratio()
      dmult_ratio->SetMarkerColor(kRed);  dmult_ratio->SetLineColor(kRed);
      dmult_ratio->SetMarkerStyle(kFullCircle); dmult_ratio->SetMarkerSize(1.63);
 
+
+     /////////////COMPASS multiplicities from 2016
+
+     double psys_a[2][9][12];
+     double pm_u[2][9][12];
+     double pme_u[2][9][12];
+     double pz[2][9][12];
+     double px[2][9][12];
+
+     ifstream IN2;
+     IN2.open("./data/MultiplicityKaon_yavg.txt", ifstream::in);
+     for(int i=0; i<9; i++)
+     {
+       for(int k=0; k<12; k++)
+       {
+         IN2>>iii>>kkk>>xa_totalp>>q2a_totalp>>z_kaonp>>mp>>mep>>sysp>>leptoflagp>>xa_totaln>>q2a_totaln>>z_kaonn>>mn>>men>>sysn>>leptoflagn;
+         pm_u[1][i][k]=mp;
+   	     pme_u[1][i][k]=mep;
+   	     psys_a[1][i][k]=sysp;
+   	     pz[1][i][k]=z_kaonp;
+   	     px[1][i][k]=xa_totalp;
+     	   //
+     	   pm_u[0][i][k]=mn;
+     	   pme_u[0][i][k]=men;
+     	   psys_a[0][i][k]=sysn;
+     	   pz[0][i][k]=z_kaonn;
+     	   px[0][i][k]=xa_totaln;
+         kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
+       }
+     }
+
+     IN2.close();
+     //
+     cout<<"Done reading COMPASS 2016 kaon"<<endl;
+
+
+     double psum[9];
+     double psum_e[9];
+     double pratio[9];
+     double pratio_e[9];
+     double psum_m[2][9];
+     double psum_em[2][9];
+     //double pint_sysm[2][9];
+     double pint_sysm_uncorr[2][9];
+     double psummed_sysm[9];
+     double pratio_sysm[9];
+
+     for(int jj=1; jj<9; jj++)
+     {
+       psum[jj-1]=0;
+       psum_e[jj-1]=0;
+       pratio[jj-1]=0;
+       pratio_e[jj-1]=0;
+       psummed_sysm[jj-1]=0;
+       pratio_sysm[jj-1]=0;
+       for(int ii=0; ii<2; ii++)
+       {
+         pint_sysm[ii][jj-1]=0;
+         pint_sysm_uncorr[ii][jj-1]=0;
+         psum_m[ii][jj-1]=0;
+         psum_em[ii][jj-1]=0;
+
+         for(int ll=0; ll<12; ll++)
+         {
+           //pint_sysm[ii][jj-1]+=avg_sys[1][ii][ll]*zwidth[ll];
+           pint_sysm_uncorr[ii][jj-1]+=psys_a[ii][jj][ll]*pow(zwidth[ll],2);
+           if(pm_u[ii][jj][ll]>0){psum_m[ii][jj-1] += pm_u[ii][jj][ll]*zwidth[ll];
+             psum_em[ii][jj-1] += pme_u[ii][jj][ll]*pow(zwidth[ll],2);}
+
+         }
+
+         psum_em[ii][jj-1]=sqrt(psum_em[ii][jj-1]);
+         pint_sysm_uncorr[ii][jj-1] = sqrt(int_sysm_uncorr[ii][jj-1]);
+
+
+       }
+
+       psum[jj-1]=psum_m[0][jj-1]+psum_m[1][jj-1];
+       psum_e[jj-1]=sqrt(pow(psum_em[0][jj-1],2)+pow(psum_em[1][jj-1],2));
+       psummed_sysm[jj-1]=sqrt(pow(pint_sysm_uncorr[0][jj-1],2)+pow(pint_sysm_uncorr[1][jj-1],2));
+       pratio[jj-1]=psum_m[1][jj-1]/psum_m[0][jj-1];
+       pratio_e[jj-1]=pratio[jj-1]*sqrt(pow(psum_em[0][jj-1]/psum_m[0][jj-1],2)+pow(psum_em[1][jj-1]/psum_m[1][jj-1],2));
+       pratio_sysm[jj-1]=/*(int_sysm[1][jj-1]-ratio[jj-1]*int_sysm[0][jj-1])/(sum_m[0][jj-1]+int_sysm[0][jj-1]);
+             */sqrt( pow(((pint_sysm[1][jj-1]+psum_m[1][jj-1])/(pint_sysm[0][jj-1]+psum_m[0][jj-1])-(pint_sysm[1][jj-1]-psum_m[1][jj-1])/(pint_sysm[0][jj-1]-psum_m[0][jj-1]))/2,2)+(pratio[jj-1]*(pow(pint_sysm_uncorr[1][jj-1]/psum_m[1][jj-1],2)+pow(pint_sysm_uncorr[0][jj-1]/psum_m[0][jj-1],2))));
+     }
+
+     TGraphErrors *pmult_sum = new TGraphErrors(8,px, psum ,pzerror,psum_e);
+     TGraphErrors *pmult_ratio = new TGraphErrors(8,px, pratio,pzerror,pratio_e);
+
+     double poffset1[8]={0.085,0.085,0.085,0.085,0.085,0.085,0.085,0.085};
+     double poffset2[9]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093};
+     double poffset2r[9]={1.,1.,1.,1.,1.,1.,1.,1.,1.};
+     double poffset3[7]={0.7,0.7,0.7,0.7,0.7,0.7,0.7};
+
+     TGraphAsymmErrors *psys_sum = new TGraphAsymmErrors(8,pavg_x ,poffset1 , errorx, errorx, pysys,psummed_sysm );
+     TGraphAsymmErrors *psys_ratio = new TGraphAsymmErrors(8,pavg_x ,poffset2r , errorx, errorx,  pysys,pratio_sysm );
+
+     psys_sum->SetFillColor(kBlue-10);  psys_ratio->SetFillColor(kBlue-10);
+     pmult_sum->SetMarkerColor(kBlue);  pmult_sum->SetLineColor(kBlue);
+     pmult_sum->SetMarkerStyle(kFullCircle); pmult_sum->SetMarkerSize(1.63);
+     pmult_ratio->SetMarkerColor(kBlue);  pmult_ratio->SetLineColor(kBlue);
+     pmult_ratio->SetMarkerStyle(kFullCircle); pmult_ratio->SetMarkerSize(1.63);
+
+
+
      /////////////HERMES multiplicities from 2013/2014 publications
-     double temp_hermes_sum[12];
-     double temp_hermes_esum[12];
-     double temp_hermes_syssum[12];
-     double txhermes[12];
-     txhermes[0]=0.033490;  temp_hermes_sum[0]=0.132124; temp_hermes_esum[0]=0.001160; temp_hermes_syssum[0]=0.004032;
-     txhermes[1]=0.043817;  temp_hermes_sum[1]=0.125629; temp_hermes_esum[1]=0.001531; temp_hermes_syssum[1]=0.004380;
-     txhermes[2]=0.051279;  temp_hermes_sum[2]=0.123686; temp_hermes_esum[2]=0.001633; temp_hermes_syssum[2]=0.004146;
-     txhermes[3]=0.058757;  temp_hermes_sum[3]=0.122041; temp_hermes_esum[3]=0.001736; temp_hermes_syssum[3]=0.004349;
-     txhermes[4]=0.068713;  temp_hermes_sum[4]=0.118474; temp_hermes_esum[4]=0.001215; temp_hermes_syssum[4]=0.004192;
-     txhermes[5]=0.087285;  temp_hermes_sum[5]=0.107097; temp_hermes_esum[5]=0.000804; temp_hermes_syssum[5]=0.003797;
-     txhermes[6]=0.111508;  temp_hermes_sum[6]=0.103687; temp_hermes_esum[6]=0.001025; temp_hermes_syssum[6]=0.003727;
-     txhermes[7]=0.141882;  temp_hermes_sum[7]=0.103704; temp_hermes_esum[7]=0.001054; temp_hermes_syssum[7]=0.003568;
-     txhermes[8]=0.186981;  temp_hermes_sum[8]=0.102513; temp_hermes_esum[8]=0.001189; temp_hermes_syssum[8]=0.003657;
-     txhermes[9]=0.252619;  temp_hermes_sum[9]=0.103183; temp_hermes_esum[9]=0.001670; temp_hermes_syssum[9]=0.004007;
-     txhermes[10]=0.339707; temp_hermes_sum[10]=0.110911; temp_hermes_esum[10]=0.003208; temp_hermes_syssum[10]=0.004498;
-     txhermes[11]=0.451469; temp_hermes_sum[11]=0.112902; temp_hermes_esum[11]=0.007105; temp_hermes_syssum[11]=0.004596;
 
+     double hsys_a[2][9][4];
+     double hm_u[2][9][4];
+     double hme_u[2][9][4];
+     double hz[2][9][4];
+     double hx[2][9][4];
 
-     double temp_hermes_ratio[9]={1.7612,1.8643,1.9425,2.1908, 2.3017, 2.3747, 2.6249, 2.5996, 1.9692 };
-     double temp_hermes_eratio[9]={0.0313, 0.0276, 0.0272, 0.0344, 0.0368,0.0479, 0.0756, 0.1709, 0.2677};
-     double temp_hermes_sysratio[9]={0.0581,0.0448,0.0522,0.0533, 0.0689, 0.1075, 0.1240, 0.1181,0.0859};
-     double temp_hermes_ratiob[11]={1.7612,1.7612,1.8643,1.9425,2.1908, 2.3017, 2.3747, 2.6249, 2.5996 , 2.5996};
-     double temp_hermes_sysratiob[11]={0.0581,0.0581,0.0448,0.0522,0.0533, 0.0689, 0.1075, 0.1240, 0.1181,0.0859,0.0859};
-     double temp_hermes_xratiob[11]={3.348903e-02-(3.348903e-02-0.02)/4,3.348903e-02,4.767331e-02,6.495400e-02,8.728510e-02,1.175628e-01,1.656179e-01,2.397462e-01,3.397011e-01,4.514567e-01,4.514567e-01+(0.6-4.514567e-01)/4};
+     ifstream IN3;
+     IN3.open("./data/HERMESK+Prot.txt", ifstream::in);
+     for(int k=0; k<4; k++)
+     {
+       for(int i=0; i<9; i++)
+       {
+         IN3>>xa_totalp>>xa_totaln>>mp>>mep>>men>>sysp>>sysn;
+         hm_u[1][i][k]=mp;
+   	     hme_u[1][i][k]=mep;
+   	     hsys_a[1][i][k]=sysp;
+   	     hx[1][i][k]=xa_totalp;
+     	   //
+     	   pm_u[0][i][k]=mn;
+     	   pme_u[0][i][k]=men;
+     	   psys_a[0][i][k]=sysn;
+     	   pz[0][i][k]=z_kaonn;
+     	   px[0][i][k]=xa_totaln;
+         kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
+       }
+     }
 
-     double temp_hermes_xratio[9]={3.348903e-02,4.767331e-02,6.495400e-02,8.728510e-02,1.175628e-01,1.656179e-01,2.397462e-01,3.397011e-01,4.514567e-01};
-     double temp_hermes_xratioc[9]={3.348903e-02+0.0005,4.767331e-02,6.495400e-02,8.728510e-02,1.175628e-01,1.656179e-01,2.397462e-01,3.397011e-01,4.514567e-01-0.006};
+     IN3.close();
+     //
+     cout<<"done reading HERMES K+"<<endl;
 
+     ifstream IN4;
+     IN4.open("./data/HERMESK+Prot.txt", ifstream::in);
+     for(int k=0; k<4; k++)
+     {
+       for(int i=0; i<9; i++)
+       {
+         IN4>>xa_totaln>>xa_totalp>>mn>>men>>mep>>sysn>>sysp;
+     	   hm_u[0][i][k]=mn;
+     	   hme_u[0][i][k]=men;
+     	   hsys_a[0][i][k]=sysn;
+     	   hx[0][i][k]=xa_totaln;
+         kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
+       }
+     }
+
+     IN4.close();
+     //
+     cout<<"done reading HERMES K+"<<endl;
+
+     double hsum[9];
+     double hsum_e[9];
+     double hratio[9];
+     double hratio_e[9];
+     double hsum_m[2][9];
+     double hsum_em[2][9];
+     // double hint_sysm[2][9];
+     double hint_sysm_uncorr[2][9];
      double hsummed_sysm[9];
      double hratio_sysm[9];
-     double hsummed_sysmb[12];
-     double hratio_sysmb[9];
-     double txhermesb[12];
 
-     for(int jj=0; jj<12; jj++)
+     for(int jj=1; jj<9; jj++)
+     {
+       hsum[jj-1]=0;
+       hsum_e[jj-1]=0;
+       hratio[jj-1]=0;
+       hratio_e[jj-1]=0;
+       hsummed_sysm[jj-1]=0;
+       hratio_sysm[jj-1]=0;
+       for(int ii=0; ii<2; ii++)
        {
-	 hsummed_sysmb[jj]=0;
-	 txhermesb[jj] = txhermes[jj];
-     	 hsummed_sysmb[jj]=temp_hermes_syssum[jj]-0.001;
+         hint_sysm[ii][jj-1]=0;
+         hint_sysm_uncorr[ii][jj-1]=0;
+         hsum_m[ii][jj-1]=0;
+         hsum_em[ii][jj-1]=0;
+
+         for(int ll=0; ll<4; ll++)
+         {
+           // hint_sysm[ii][jj-1]+=avg_sys[ii][jj][ll]*zwidth[ll];
+           hint_sysm_uncorr[ii][jj-1]+=psys_a[ii][jj][ll]*pow(zwidthH[ll],2);
+           if(hm_u[ii][jj][ll]>0){hsum_m[ii][jj-1] += hm_u[ii][jj][ll]*zwidthH[ll];
+             hsum_em[ii][jj-1] += hme_u[ii][jj][ll]*pow(zwidthH[ll],2);}
+
+         }
+
+         hsum_em[ii][jj-1]=sqrt(hsum_em[ii][jj-1]);
+         hint_sysm_uncorr[ii][jj-1] = sqrt(hint_sysm_uncorr[ii][jj-1]);
+
+
        }
-     txhermesb[0]=txhermesb[0]+0.0005;
-     txhermesb[11]=txhermesb[11]-0.006;
 
-     double offseth2b[9]={1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005};
-     double offseth2[9]={1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07};
-     double offset2h[12]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093, 0.093, 0.093, 0.093};
-     double offseth1b[12]={0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005};
+       hsum[jj-1]=hsum_m[0][jj-1]+hsum_m[1][jj-1];
+       hsum_e[jj-1]=sqrt(pow(hsum_em[0][jj-1],2)+pow(hsum_em[1][jj-1],2));
+       hsummed_sysm[jj-1]=sqrt(pow(hint_sysm_uncorr[0][jj-1],2)+pow(hint_sysm_uncorr[1][jj-1],2));
+       hratio[jj-1]=hsum_m[1][jj-1]/hsum_m[0][jj-1];
+       hratio_e[jj-1]=hratio[jj-1]*sqrt(pow(hsum_em[0][jj-1]/hsum_m[0][jj-1],2)+pow(hsum_em[1][jj-1]/hsum_m[1][jj-1],2));
+       hratio_sysm[jj-1]=/*(int_sysm[1][jj-1]-ratio[jj-1]*int_sysm[0][jj-1])/(sum_m[0][jj-1]+int_sysm[0][jj-1]);
+             */sqrt( pow(((hint_sysm[1][jj-1]+hsum_m[1][jj-1])/(hint_sysm[0][jj-1]+hsum_m[0][jj-1])-(hint_sysm[1][jj-1]-hsum_m[1][jj-1])/(hint_sysm[0][jj-1]-hsum_m[0][jj-1]))/2,2)+(hratio[jj-1]*(pow(hint_sysm_uncorr[1][jj-1]/hsum_m[1][jj-1],2)+pow(hint_sysm_uncorr[0][jj-1]/hsum_m[0][jj-1],2))));
+     }
 
-     TGraphErrors *hmult_sum = new TGraphErrors(12,txhermes, temp_hermes_sum ,zerror,temp_hermes_esum);
-     TGraphAsymmErrors *hsys_sum = new TGraphAsymmErrors(12,txhermes ,offset2h , zerror, zerror, zerror,temp_hermes_syssum );
-     TGraphAsymmErrors *hsys_sumb = new TGraphAsymmErrors(12,txhermesb ,offseth1b , zerror, zerror, zerror,hsummed_sysmb );
+     for(int jj=0; jj<9; jj++)
+     {
+	      hsummed_sysmb[jj]=0;
+	      hxb[jj] = hx[jj];
+     	  hsummed_sysmb[jj]=hsummed_sysm[jj]-0.001;
+        hratio_sysmb[jj]=hratio_sysm[jj]-0.001;
+     }
+     hxb[0]=hxb[0]+0.0005;
+     hxb[8]=hxb[8]-0.006;
 
-     TGraphErrors *hmult_ratio = new TGraphErrors(9,temp_hermes_xratio,temp_hermes_ratio, zerror, temp_hermes_eratio);
-     TGraphAsymmErrors *hsys_ratio = new TGraphAsymmErrors(9,temp_hermes_xratio ,offseth2 , errorx, errorx, ysys,temp_hermes_sysratio);
-     TGraphAsymmErrors *hsys_ratiob = new TGraphAsymmErrors(9,temp_hermes_xratioc ,offseth2b , errorx, errorx, ysys,hratio_sysmb );
+
+     double hoffseth2b[9]={1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005};
+     double hoffseth2[9]={1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07};
+     double hoffset2h[12]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093, 0.093, 0.093, 0.093};
+     double hoffseth1b[12]={0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005};
+
+     TGraphErrors *hmult_sum = new TGraphErrors(9,hx, hsum ,hzerror,hsum_e);
+     TGraphAsymmErrors *hsys_sum = new TGraphAsymmErrors(9,hx ,hoffset2h , errorx, errorx, errorx,hsummed_sysm );
+     TGraphAsymmErrors *hsys_sumb = new TGraphAsymmErrors(9,hxb ,hoffseth1b , errorx, errorx, errorx,hsummed_sysmb );
+
+     TGraphErrors *hmult_ratio = new TGraphErrors(9,hx, hratio ,hzerror,hratio_e);
+     TGraphAsymmErrors *hsys_ratio = new TGraphAsymmErrors(9,hx ,hoffseth2 , errorx, errorx, ysys,hratio_sysm);
+     TGraphAsymmErrors *hsys_ratiob = new TGraphAsymmErrors(9,hxb ,hoffseth2b , errorx, errorx, ysys,hratio_sysmb );
 
      hsys_sum->SetFillColor(kBlack);   hsys_ratio->SetFillColor(kBlack);
      hsys_sumb->SetFillColor(kWhite);   hsys_ratiob->SetFillColor(kWhite);
@@ -680,7 +681,7 @@ void plot_sum_average_ratio()
 
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.06 );
-     TMarker markerp; TMarker markern;
+     TMarker markerp; TMarker markerd; TMarker markerh;
      TH2F *mAxis2 = new TH2F("mAxis2","",100,0.,1,100,0.08,0.2);//-0.2,3.7
      mAxis2->GetYaxis()->SetLabelSize(0.06);
      mAxis2->GetXaxis()->SetLabelSize(0.06);
@@ -699,20 +700,24 @@ void plot_sum_average_ratio()
      spad00->Draw();
      spad00->cd();
      gPad->SetLogx();
-     mAxis2->Draw("axis");dsys_sum->Draw("3"); hsys_sum->Draw("3");hsys_sumb->Draw("3");dmult_sum->Draw("P"); hmult_sum->Draw("P");
+     mAxis2->Draw("axis");dsys_sum->Draw("3");psys_sum->Draw("3");  hsys_sum->Draw("3");hsys_sumb->Draw("3");dmult_sum->Draw("P");pmult_sum->Draw("P"); hmult_sum->Draw("P");
      //////////////
      c_can2->cd();
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.03, "#font[ 12]{x}");
      y_t_axis_bins.SetTextSize( 0.06 );
-     markern.SetMarkerStyle(24);
-     markern.SetMarkerColor(kBlack);
-     markern.SetMarkerSize(1.32); markern.DrawMarker(0.2,.80);
+     markerh.SetMarkerStyle(24);
+     markerh.SetMarkerColor(kBlack);
+     markerh.SetMarkerSize(1.32); markern.DrawMarker(0.2,.71);
+     markerd.SetMarkerStyle(20);
+     markerd.SetMarkerColor(kRed);
+     markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.2,.80);
      markerp.SetMarkerStyle(20);
-     markerp.SetMarkerColor(kRed);
+     markerp.SetMarkerColor(kBlue);
      markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.2,.89);
-     y_t_axis_bins.DrawLatex( 0.22,  0.89, "COMPASS");
-     y_t_axis_bins.DrawLatex( 0.22,  0.80, "HERMES");
+     y_t_axis_bins.DrawLatex( 0.22,  0.80, "COMPASS deuteron");
+     y_t_axis_bins.DrawLatex( 0.22,  0.89, "COMPASS 2016 preliminary");
+     y_t_axis_bins.DrawLatex( 0.22,  0.71, "HERMES proton");
      TMathText text;
      text.SetTextAngle(90);
      text.SetTextFont( 132 );
@@ -756,16 +761,18 @@ void plot_sum_average_ratio()
      spad1->Draw();
      spad1->cd();
      gPad->SetLogx();
-     rmAxis->Draw("axis");dsys_ratio->Draw("3"); hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); dmult_ratio->Draw("P");hmult_ratio->Draw("P");
+     rmAxis->Draw("axis");dsys_ratio->Draw("3"); psys_ratio->Draw("3"); hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); dmult_ratio->Draw("P");pmult_ratio->Draw("P");hmult_ratio->Draw("P");
      c_can5->cd();
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.05, "#font[ 12]{x}");
      y_t_axis_bins.SetTextSize( 0.06 );
-     markern.DrawMarker(0.2,.80);
+     markerh.DrawMarker(0.2,.71);
      markerp.DrawMarker(0.2,.89);
-     y_t_axis_bins.DrawLatex( 0.22,  0.89, "COMPASS");
-     y_t_axis_bins.DrawLatex( 0.22,  0.80, "HERMES");
+     markerd.DrawMarker(0.2,.80);
+     y_t_axis_bins.DrawLatex( 0.22,  0.80, "COMPASS deuteron");
+     y_t_axis_bins.DrawLatex( 0.22,  0.89, "COMPASS 2016 preliminary");
+     y_t_axis_bins.DrawLatex( 0.22,  0.71, "HERMES proton");
      text.DrawMathText(.05,.65,"\\mathscr{M}^{ K^{+}}/\\mathscr{M}^{ K^{-}}");
      c_can5->Print("./figures/Mult_ratio.eps");
      c_can5->Print("./root_files/Mult_ratio.root");
