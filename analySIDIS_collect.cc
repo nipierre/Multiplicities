@@ -508,8 +508,8 @@ void yweightedavg()
               fMultiplicities_yavg[x][z].tab[c][1][l]+=1/fMultiplicities[x][i][z].tab[c][1][l];
               fMultiplicities_yavg[x][z].tab[c][2][l]+=1/fMultiplicities[x][i][z].tab[c][2][l];
               fMeanvalues_yavg[x][z].tab[c][l][0] += fMeanvalues_data[x][i][z].tab[c][l][0]/fMultiplicities[x][i][z].tab[c][1][l];
-              fMeanvalues_yavg[x][z].tab[c][l][2] += fMeanvalues_data[x][i][z].tab[c][l][0]/fMultiplicities[x][i][z].tab[c][1][l];
-              fMeanvalues_yavg[x][z].tab[c][l][3] += fMeanvalues_data[x][i][z].tab[c][l][0]/fMultiplicities[x][i][z].tab[c][1][l];
+              fMeanvalues_yavg[x][z].tab[c][l][2] += fMeanvalues_data[x][i][z].tab[c][l][2]/fMultiplicities[x][i][z].tab[c][1][l];
+              fMeanvalues_yavg[x][z].tab[c][l][3] += fMeanvalues_data[x][i][z].tab[c][l][3]/fMultiplicities[x][i][z].tab[c][1][l];
             }
             for(int th=0; th<8; th++)
             {
@@ -2427,9 +2427,9 @@ int main(int argc, char **argv)
     if(YMULT == 1) yavg();
     else if(YMULT == 2) yweightedavg();
 
-    for(int c=0; c<2; c++)
+    for(int k=0; k<12; k++)
     {
-      for(int k=0; k<12; k++)
+      for(int c=1; c>=0; c--)
       {
         for(int l=0; l<4; l++)
         {
@@ -2568,6 +2568,9 @@ int main(int argc, char **argv)
         }
         ofs_rd << c << " " << i << " " << k << " " << RelDiff_yavg(c,i,k,3) << " " << sqrt(RelDiff_Err_yavg(c,i,k,3)) << " " << relFlag << endl;
       }
+    }
+    for(int c=1; c>=0; c--)
+    {
 
       for(int l=0; l<12; l++)
       {
