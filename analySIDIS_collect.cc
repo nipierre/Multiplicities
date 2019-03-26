@@ -670,7 +670,7 @@ Double_t HadronTot(int c, int x, int y, int z, int h)
   Double_t tot=0;
 
   for(auto period : fPeriods)
-    tot += fBinning_period[period][x][y][z].tab[c][1][0][h] + fBinning_period[period][x][y][z].tab[c][0][0][h]
+    tot += fBinning_period[period][x][y][z].tab[c][1][0][h] + fBinning_period[period][x][y][z].tab[c][0][0][h];
 
   return tot;
 }
@@ -680,7 +680,7 @@ Double_t DISTot(int x, int y, int z)
   Double_t tot=0;
 
   for(auto period : fPeriods)
-    tot += fNDIS_evt_period[period][0][1][x][y][z] + fNDIS_evt_period[period][0][0][x][y][z]
+    tot += fNDIS_evt_period[period][0][1][x][y][z] + fNDIS_evt_period[period][0][0][x][y][z];
 
   return tot;
 }
