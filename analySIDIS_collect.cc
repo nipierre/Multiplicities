@@ -665,6 +665,26 @@ Double_t RelDiff_Err_yavg(int c, int x, int z, int had)
   return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
 }
 
+Double_t HadronTot(int c, int x, int y, int z, int h)
+{
+  Double_t tot=0;
+
+  for(auto period : fPeriods)
+    tot += fBinning_period[period][x][y][z].tab[c][1][0][h] + fBinning_period[period][x][y][z].tab[c][0][0][h]
+
+  return tot;
+}
+
+Double_t DISTot(int x, int y, int z)
+{
+  Double_t tot=0;
+
+  for(auto period : fPeriods)
+    tot += fNDIS_evt_period[period][0][1][i][j][k] + fNDIS_evt_period[period][0][0][i][j][k]
+
+  return tot;
+}
+
 int main(int argc, char **argv)
 {
 
@@ -1488,6 +1508,8 @@ int main(int argc, char **argv)
           fMultiplicities[i][j][k].tab[c][0][1] << " " <<
           fMultiplicities[i][j][k].tab[c][1][1] << " " <<
           fMultiplicities[i][j][k].tab[c][2][1] << " " <<
+          HadronTot(c,i,j,k,1) << " " <<
+          DISTot(i,j,k) << " " <<
           (fMultiplicities[i][j][k].tab[c][0][1] ? 1 : 0) << " ";
 
           if(!c) ofs_k << endl;
@@ -1512,6 +1534,8 @@ int main(int argc, char **argv)
           fMultiplicities[i][j][k].tab[c][0][3] << " " <<
           fMultiplicities[i][j][k].tab[c][1][3] << " " <<
           fMultiplicities[i][j][k].tab[c][2][3] << " " <<
+          HadronTot(c,i,j,k,3) << " " <<
+          DISTot(i,j,k) << " " <<
           (fMultiplicities[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
 
           if(!c) ofs_h << endl;
