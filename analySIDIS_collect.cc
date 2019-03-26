@@ -2429,7 +2429,7 @@ int main(int argc, char **argv)
 
     for(int k=0; k<12; k++)
     {
-      for(int c=0; c<2; c++)
+      for(int c=1; c>=0; c--)
       {
         for(int l=0; l<4; l++)
         {
@@ -2569,7 +2569,7 @@ int main(int argc, char **argv)
         ofs_rd << c << " " << i << " " << k << " " << RelDiff_yavg(c,i,k,3) << " " << sqrt(RelDiff_Err_yavg(c,i,k,3)) << " " << relFlag << endl;
       }
     }
-    for(int c=0; c<2; c++)
+    for(int c=1; c>=0; c--)
     {
 
       for(int l=0; l<12; l++)
