@@ -19,7 +19,7 @@ void plot_sum_average_ratio()
 	    x[ii][jj][kk][ll]=0.;
 	  }//jj
   ///////////////////read in multiplicity
-  int ii=-1; int jj=-1; int kk=-1;
+  int ii=-1; int jj=-1; int kk=-1; int hh=-1; int ll=-1;
   double jjj=0; double kkk=0; double iii=0;
   double xa_totalp=0; double ya_totalp=0; double q2a_totalp=0;double z_kaonp=0;
   double mp=0;double mep=0;double sysp=0;double leptoflagp=0;
@@ -27,7 +27,7 @@ void plot_sum_average_ratio()
   double mn=0;double men=0;double sysn=0;double leptoflagn=0;
 
   ifstream IN1;
-  IN1.open("./data/MultiplicityKaon_release_MCmeans_newnewRC_halfrad.txt", ifstream::in);
+  IN1.open("./data/MultiplicityKaon_2006.txt", ifstream::in);
   for(int j=0; j<40000; j++)
     {
       if (! IN1.eof() )
@@ -90,17 +90,17 @@ void plot_sum_average_ratio()
   for(int hh=0; hh<4; hh++)
     for(int jj=0; jj<9; jj++)
       for(int kk=0; kk<6; kk++)
-	for(int ll=0; ll<12; ll++)
-	  {
-	    x_total[hh][jj][kk][ll]=0;
-	    x_counts[hh][jj][kk][ll]=0;
-	    q_total[hh][jj][kk][ll]=0;
-	    q_counts[hh][jj][kk][ll]=0;
-	    y_total[hh][jj][kk][ll]=0;
-	    y_counts[hh][jj][kk][ll]=0;
-	  }
-  hh=ii=jj=kk=-1;    qq=nq =xx =nx=yy =ny=0;
-  IN1.open("./inputs/Q2_xB_y_for_allbins_MC.txt", ifstream::in);
+      	for(int ll=0; ll<12; ll++)
+    	  {
+    	    x_total[hh][jj][kk][ll]=0;
+    	    x_counts[hh][jj][kk][ll]=0;
+    	    q_total[hh][jj][kk][ll]=0;
+    	    q_counts[hh][jj][kk][ll]=0;
+    	    y_total[hh][jj][kk][ll]=0;
+    	    y_counts[hh][jj][kk][ll]=0;
+	      }
+  qq=nq =xx =nx=yy =ny=0;
+  IN1.open("./data/Q2_xB_y_for_allbins_MC.txt", ifstream::in);
   for(int j=0; j<40000; j++)
     {
       if (! IN1.eof() )
@@ -366,8 +366,8 @@ void plot_sum_average_ratio()
      double psys_a[2][9][12];
      double pm_u[2][9][12];
      double pme_u[2][9][12];
-     double pz[2][9][12];
-     double px[2][9][12];
+     double pz[2][12][9];
+     double px[2][12][9];
 
      ifstream IN2;
      IN2.open("./data/MultiplicityKaon_yavg.txt", ifstream::in);
@@ -379,14 +379,14 @@ void plot_sum_average_ratio()
          pm_u[1][i][k]=mp;
    	     pme_u[1][i][k]=mep;
    	     psys_a[1][i][k]=sysp;
-   	     pz[1][i][k]=z_kaonp;
-   	     px[1][i][k]=xa_totalp;
+   	     pz[1][k][i]=z_kaonp;
+   	     px[1][k][i]=xa_totalp;
      	   //
      	   pm_u[0][i][k]=mn;
      	   pme_u[0][i][k]=men;
      	   psys_a[0][i][k]=sysn;
-     	   pz[0][i][k]=z_kaonn;
-     	   px[0][i][k]=xa_totaln;
+     	   pz[0][k][i]=z_kaonn;
+     	   px[0][k][i]=xa_totaln;
          kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
        }
      }
@@ -402,12 +402,12 @@ void plot_sum_average_ratio()
      double pratio_e[9];
      double psum_m[2][9];
      double psum_em[2][9];
-     //double pint_sysm[2][9];
+     double pint_sysm[2][9];
      double pint_sysm_uncorr[2][9];
      double psummed_sysm[9];
      double pratio_sysm[9];
 
-     for(int jj=1; jj<9; jj++)
+     for(int jj=1; jj<10; jj++)
      {
        psum[jj-1]=0;
        psum_e[jj-1]=0;
@@ -425,14 +425,14 @@ void plot_sum_average_ratio()
          for(int ll=0; ll<12; ll++)
          {
            //pint_sysm[ii][jj-1]+=avg_sys[1][ii][ll]*zwidth[ll];
-           pint_sysm_uncorr[ii][jj-1]+=psys_a[ii][jj][ll]*pow(zwidth[ll],2);
-           if(pm_u[ii][jj][ll]>0){psum_m[ii][jj-1] += pm_u[ii][jj][ll]*zwidth[ll];
-             psum_em[ii][jj-1] += pme_u[ii][jj][ll]*pow(zwidth[ll],2);}
+           pint_sysm_uncorr[ii][jj-1]+=psys_a[ii][jj-1][ll]*pow(zwidth[ll],2);
+           if(pm_u[ii][jj-1][ll]>0){psum_m[ii][jj-1] += pm_u[ii][jj-1][ll]*zwidth[ll];
+             psum_em[ii][jj-1] += pme_u[ii][jj-1][ll]*pow(zwidth[ll],2);}
 
          }
 
          psum_em[ii][jj-1]=sqrt(psum_em[ii][jj-1]);
-         pint_sysm_uncorr[ii][jj-1] = sqrt(int_sysm_uncorr[ii][jj-1]);
+         pint_sysm_uncorr[ii][jj-1] = sqrt(pint_sysm_uncorr[ii][jj-1]);
 
 
        }
@@ -446,16 +446,16 @@ void plot_sum_average_ratio()
              */sqrt( pow(((pint_sysm[1][jj-1]+psum_m[1][jj-1])/(pint_sysm[0][jj-1]+psum_m[0][jj-1])-(pint_sysm[1][jj-1]-psum_m[1][jj-1])/(pint_sysm[0][jj-1]-psum_m[0][jj-1]))/2,2)+(pratio[jj-1]*(pow(pint_sysm_uncorr[1][jj-1]/psum_m[1][jj-1],2)+pow(pint_sysm_uncorr[0][jj-1]/psum_m[0][jj-1],2))));
      }
 
-     TGraphErrors *pmult_sum = new TGraphErrors(8,px, psum ,pzerror,psum_e);
-     TGraphErrors *pmult_ratio = new TGraphErrors(8,px, pratio,pzerror,pratio_e);
+     TGraphErrors *pmult_sum = new TGraphErrors(9,px[0][5], psum ,zerror,psum_e);
+     TGraphErrors *pmult_ratio = new TGraphErrors(9,px[0][5], pratio,zerror,pratio_e);
 
-     double poffset1[8]={0.085,0.085,0.085,0.085,0.085,0.085,0.085,0.085};
+     double poffset1[9]={0.077,0.077,0.077,0.077,0.077,0.077,0.077,0.077,0.077};
      double poffset2[9]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093};
-     double poffset2r[9]={1.,1.,1.,1.,1.,1.,1.,1.,1.};
+     double poffset2r[9]={0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93};
      double poffset3[7]={0.7,0.7,0.7,0.7,0.7,0.7,0.7};
 
-     TGraphAsymmErrors *psys_sum = new TGraphAsymmErrors(8,pavg_x ,poffset1 , errorx, errorx, pysys,psummed_sysm );
-     TGraphAsymmErrors *psys_ratio = new TGraphAsymmErrors(8,pavg_x ,poffset2r , errorx, errorx,  pysys,pratio_sysm );
+     TGraphAsymmErrors *psys_sum = new TGraphAsymmErrors(9,px[0][5] ,poffset1 , errorx, errorx, ysys,psummed_sysm );
+     TGraphAsymmErrors *psys_ratio = new TGraphAsymmErrors(9,px[0][5] ,poffset2r , errorx, errorx,  ysys,pratio_sysm );
 
      psys_sum->SetFillColor(kBlue-10);  psys_ratio->SetFillColor(kBlue-10);
      pmult_sum->SetMarkerColor(kBlue);  pmult_sum->SetLineColor(kBlue);
@@ -465,13 +465,12 @@ void plot_sum_average_ratio()
 
 
 
-     /////////////HERMES multiplicities from 2013/2014 publications
+     /////////////HERMES multiplicities from 2013/2014 publications - PROTON
 
      double hsys_a[2][9][4];
      double hm_u[2][9][4];
      double hme_u[2][9][4];
-     double hz[2][9][4];
-     double hx[2][9][4];
+     double hx[2][4][9];
 
      ifstream IN3;
      IN3.open("./data/HERMESK+Prot.txt", ifstream::in);
@@ -483,13 +482,7 @@ void plot_sum_average_ratio()
          hm_u[1][i][k]=mp;
    	     hme_u[1][i][k]=mep;
    	     hsys_a[1][i][k]=sysp;
-   	     hx[1][i][k]=xa_totalp;
-     	   //
-     	   pm_u[0][i][k]=mn;
-     	   pme_u[0][i][k]=men;
-     	   psys_a[0][i][k]=sysn;
-     	   pz[0][i][k]=z_kaonn;
-     	   px[0][i][k]=xa_totaln;
+   	     hx[1][k][i]=xa_totalp;
          kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
        }
      }
@@ -499,7 +492,7 @@ void plot_sum_average_ratio()
      cout<<"done reading HERMES K+"<<endl;
 
      ifstream IN4;
-     IN4.open("./data/HERMESK+Prot.txt", ifstream::in);
+     IN4.open("./data/HERMESK-Prot.txt", ifstream::in);
      for(int k=0; k<4; k++)
      {
        for(int i=0; i<9; i++)
@@ -508,14 +501,14 @@ void plot_sum_average_ratio()
      	   hm_u[0][i][k]=mn;
      	   hme_u[0][i][k]=men;
      	   hsys_a[0][i][k]=sysn;
-     	   hx[0][i][k]=xa_totaln;
+     	   hx[0][k][i]=xa_totaln;
          kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
        }
      }
 
      IN4.close();
      //
-     cout<<"done reading HERMES K+"<<endl;
+     cout<<"done reading HERMES K-"<<endl;
 
      double hsum[9];
      double hsum_e[9];
@@ -523,12 +516,15 @@ void plot_sum_average_ratio()
      double hratio_e[9];
      double hsum_m[2][9];
      double hsum_em[2][9];
-     // double hint_sysm[2][9];
+     double hint_sysm[2][9];
      double hint_sysm_uncorr[2][9];
      double hsummed_sysm[9];
+     double hsummed_sysmb[9];
      double hratio_sysm[9];
+     double hratio_sysmb[9];
+     double hxb[9];
 
-     for(int jj=1; jj<9; jj++)
+     for(int jj=1; jj<10; jj++)
      {
        hsum[jj-1]=0;
        hsum_e[jj-1]=0;
@@ -546,9 +542,9 @@ void plot_sum_average_ratio()
          for(int ll=0; ll<4; ll++)
          {
            // hint_sysm[ii][jj-1]+=avg_sys[ii][jj][ll]*zwidth[ll];
-           hint_sysm_uncorr[ii][jj-1]+=psys_a[ii][jj][ll]*pow(zwidthH[ll],2);
-           if(hm_u[ii][jj][ll]>0){hsum_m[ii][jj-1] += hm_u[ii][jj][ll]*zwidthH[ll];
-             hsum_em[ii][jj-1] += hme_u[ii][jj][ll]*pow(zwidthH[ll],2);}
+           hint_sysm_uncorr[ii][jj-1]+=pow(hsys_a[ii][jj-1][ll]*zwidthH[ll],2);
+           if(hm_u[ii][jj-1][ll]>0){hsum_m[ii][jj-1] += hm_u[ii][jj-1][ll]*zwidthH[ll];
+             hsum_em[ii][jj-1] += pow(hme_u[ii][jj-1][ll]*zwidthH[ll],2);}
 
          }
 
@@ -570,34 +566,164 @@ void plot_sum_average_ratio()
      for(int jj=0; jj<9; jj++)
      {
 	      hsummed_sysmb[jj]=0;
-	      hxb[jj] = hx[jj];
+	      hxb[jj] = hx[0][0][jj];
      	  hsummed_sysmb[jj]=hsummed_sysm[jj]-0.001;
-        hratio_sysmb[jj]=hratio_sysm[jj]-0.001;
+        hratio_sysmb[jj]=hratio_sysm[jj]-0.01;
      }
      hxb[0]=hxb[0]+0.0005;
      hxb[8]=hxb[8]-0.006;
 
 
-     double hoffseth2b[9]={1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005,1.07+0.005};
+     double hoffseth2b[9]={1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005};
      double hoffseth2[9]={1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07};
      double hoffset2h[12]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093, 0.093, 0.093, 0.093};
      double hoffseth1b[12]={0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005};
 
-     TGraphErrors *hmult_sum = new TGraphErrors(9,hx, hsum ,hzerror,hsum_e);
-     TGraphAsymmErrors *hsys_sum = new TGraphAsymmErrors(9,hx ,hoffset2h , errorx, errorx, errorx,hsummed_sysm );
+     TGraphErrors *hmult_sum = new TGraphErrors(9,hx[0][0], hsum ,zerror,hsum_e);
+     TGraphAsymmErrors *hsys_sum = new TGraphAsymmErrors(9,hx[0][0] ,hoffset2h , errorx, errorx, errorx,hsummed_sysm );
      TGraphAsymmErrors *hsys_sumb = new TGraphAsymmErrors(9,hxb ,hoffseth1b , errorx, errorx, errorx,hsummed_sysmb );
 
-     TGraphErrors *hmult_ratio = new TGraphErrors(9,hx, hratio ,hzerror,hratio_e);
-     TGraphAsymmErrors *hsys_ratio = new TGraphAsymmErrors(9,hx ,hoffseth2 , errorx, errorx, ysys,hratio_sysm);
+     TGraphErrors *hmult_ratio = new TGraphErrors(9,hx[0][0], hratio ,zerror,hratio_e);
+     TGraphAsymmErrors *hsys_ratio = new TGraphAsymmErrors(9,hx[0][0] ,hoffseth2 , errorx, errorx, ysys,hratio_sysm);
      TGraphAsymmErrors *hsys_ratiob = new TGraphAsymmErrors(9,hxb ,hoffseth2b , errorx, errorx, ysys,hratio_sysmb );
 
      hsys_sum->SetFillColor(kBlack);   hsys_ratio->SetFillColor(kBlack);
      hsys_sumb->SetFillColor(kWhite);   hsys_ratiob->SetFillColor(kWhite);
 
-     hmult_sum->SetMarkerColor(kBlack);  hmult_sum->SetLineColor(kBlack);
+     hmult_sum->SetMarkerColor(kBlue);  hmult_sum->SetLineColor(kBlue);
      hmult_sum->SetMarkerStyle(24); hmult_sum->SetMarkerSize(1.33);
-     hmult_ratio->SetMarkerColor(kBlack);  hmult_ratio->SetLineColor(kBlack);
+     hmult_ratio->SetMarkerColor(kBlue);  hmult_ratio->SetLineColor(kBlue);
      hmult_ratio->SetMarkerStyle(24); hmult_ratio->SetMarkerSize(1.32);
+
+     /////////////HERMES multiplicities from 2013/2014 publications - DEUTERON
+
+     double hdsys_a[2][9][4];
+     double hdm_u[2][9][4];
+     double hdme_u[2][9][4];
+     double hdx[2][4][9];
+
+     ifstream IN5;
+     IN5.open("./data/HERMESK+Deut.txt", ifstream::in);
+     for(int k=0; k<4; k++)
+     {
+       for(int i=0; i<9; i++)
+       {
+         IN5>>xa_totalp>>xa_totaln>>mp>>mep>>men>>sysp>>sysn;
+         hdm_u[1][i][k]=mp;
+   	     hdme_u[1][i][k]=mep;
+   	     hdsys_a[1][i][k]=sysp;
+   	     hdx[1][k][i]=xa_totalp;
+         kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
+       }
+     }
+
+     IN5.close();
+     //
+     cout<<"done reading HERMES K+"<<endl;
+
+     ifstream IN6;
+     IN6.open("./data/HERMESK-Deut.txt", ifstream::in);
+     for(int k=0; k<4; k++)
+     {
+       for(int i=0; i<9; i++)
+       {
+         IN6>>xa_totaln>>xa_totalp>>mn>>men>>mep>>sysn>>sysp;
+     	   hdm_u[0][i][k]=mn;
+     	   hdme_u[0][i][k]=men;
+     	   hdsys_a[0][i][k]=sysn;
+     	   hdx[0][k][i]=xa_totaln;
+         kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
+       }
+     }
+
+     IN6.close();
+     //
+     cout<<"done reading HERMES K-"<<endl;
+
+     double hdsum[9];
+     double hdsum_e[9];
+     double hdratio[9];
+     double hdratio_e[9];
+     double hdsum_m[2][9];
+     double hdsum_em[2][9];
+     double hdint_sysm[2][9];
+     double hdint_sysm_uncorr[2][9];
+     double hdsummed_sysm[9];
+     double hdsummed_sysmb[9];
+     double hdratio_sysm[9];
+     double hdratio_sysmb[9];
+     double hdxb[9];
+
+     for(int jj=1; jj<10; jj++)
+     {
+       hdsum[jj-1]=0;
+       hdsum_e[jj-1]=0;
+       hdratio[jj-1]=0;
+       hdratio_e[jj-1]=0;
+       hdsummed_sysm[jj-1]=0;
+       hdratio_sysm[jj-1]=0;
+       for(int ii=0; ii<2; ii++)
+       {
+         hdint_sysm[ii][jj-1]=0;
+         hdint_sysm_uncorr[ii][jj-1]=0;
+         hdsum_m[ii][jj-1]=0;
+         hdsum_em[ii][jj-1]=0;
+
+         for(int ll=0; ll<4; ll++)
+         {
+           // hint_sysm[ii][jj-1]+=avg_sys[ii][jj][ll]*zwidth[ll];
+           hdint_sysm_uncorr[ii][jj-1]+=pow(hdsys_a[ii][jj-1][ll]*zwidthH[ll],2);
+           if(hdm_u[ii][jj-1][ll]>0){hdsum_m[ii][jj-1] += hdm_u[ii][jj-1][ll]*zwidthH[ll];
+             hdsum_em[ii][jj-1] += pow(hdme_u[ii][jj-1][ll]*zwidthH[ll],2);}
+
+         }
+
+         hdsum_em[ii][jj-1]=sqrt(hdsum_em[ii][jj-1]);
+         hdint_sysm_uncorr[ii][jj-1] = sqrt(hdint_sysm_uncorr[ii][jj-1]);
+
+
+       }
+
+       hdsum[jj-1]=hdsum_m[0][jj-1]+hdsum_m[1][jj-1];
+       hdsum_e[jj-1]=sqrt(pow(hdsum_em[0][jj-1],2)+pow(hdsum_em[1][jj-1],2));
+       hdsummed_sysm[jj-1]=sqrt(pow(hdint_sysm_uncorr[0][jj-1],2)+pow(hdint_sysm_uncorr[1][jj-1],2));
+       hdratio[jj-1]=hdsum_m[1][jj-1]/hdsum_m[0][jj-1];
+       hdratio_e[jj-1]=hdratio[jj-1]*sqrt(pow(hdsum_em[0][jj-1]/hdsum_m[0][jj-1],2)+pow(hdsum_em[1][jj-1]/hdsum_m[1][jj-1],2));
+       hdratio_sysm[jj-1]=/*(int_sysm[1][jj-1]-ratio[jj-1]*int_sysm[0][jj-1])/(sum_m[0][jj-1]+int_sysm[0][jj-1]);
+             */sqrt( pow(((hdint_sysm[1][jj-1]+hdsum_m[1][jj-1])/(hdint_sysm[0][jj-1]+hdsum_m[0][jj-1])-(hdint_sysm[1][jj-1]-hdsum_m[1][jj-1])/(hdint_sysm[0][jj-1]-hdsum_m[0][jj-1]))/2,2)+(hdratio[jj-1]*(pow(hdint_sysm_uncorr[1][jj-1]/hdsum_m[1][jj-1],2)+pow(hdint_sysm_uncorr[0][jj-1]/hdsum_m[0][jj-1],2))));
+     }
+
+     for(int jj=0; jj<9; jj++)
+     {
+	      hdsummed_sysmb[jj]=0;
+	      hdxb[jj] = hdx[0][0][jj];
+     	  hdsummed_sysmb[jj]=hdsummed_sysm[jj]-0.001;
+        hdratio_sysmb[jj]=hdratio_sysm[jj]-0.01;
+     }
+     hdxb[0]=hdxb[0]+0.0005;
+     hdxb[8]=hdxb[8]-0.006;
+
+
+     double hdoffseth2b[9]={1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005};
+     double hdoffseth2[9]={1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07};
+     double hdoffset2h[12]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093, 0.093, 0.093, 0.093};
+     double hdoffseth1b[12]={0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005};
+
+     TGraphErrors *hdmult_sum = new TGraphErrors(9,hx[0][0], hdsum ,zerror,hdsum_e);
+     TGraphAsymmErrors *hdsys_sum = new TGraphAsymmErrors(9,hdx[0][0] ,hdoffset2h , errorx, errorx, errorx,hdsummed_sysm );
+     TGraphAsymmErrors *hdsys_sumb = new TGraphAsymmErrors(9,hdxb ,hdoffseth1b , errorx, errorx, errorx,hdsummed_sysmb );
+
+     TGraphErrors *hdmult_ratio = new TGraphErrors(9,hdx[0][0], hdratio ,zerror,hdratio_e);
+     TGraphAsymmErrors *hdsys_ratio = new TGraphAsymmErrors(9,hdx[0][0] ,hdoffseth2 , errorx, errorx, ysys,hdratio_sysm);
+     TGraphAsymmErrors *hdsys_ratiob = new TGraphAsymmErrors(9,hdxb ,hdoffseth2b , errorx, errorx, ysys,hdratio_sysmb );
+
+     hdsys_sum->SetFillColor(kBlack);   hdsys_ratio->SetFillColor(kBlack);
+     hdsys_sumb->SetFillColor(kWhite);   hdsys_ratiob->SetFillColor(kWhite);
+
+     hdmult_sum->SetMarkerColor(kRed);  hdmult_sum->SetLineColor(kRed);
+     hdmult_sum->SetMarkerStyle(24); hdmult_sum->SetMarkerSize(1.33);
+     hdmult_ratio->SetMarkerColor(kRed);  hdmult_ratio->SetLineColor(kRed);
+     hdmult_ratio->SetMarkerStyle(24); hdmult_ratio->SetMarkerSize(1.32);
 
 
    /////////////////template for plots///////////
@@ -629,59 +755,10 @@ void plot_sum_average_ratio()
      y_t_axis_bins.SetTextAlign(23);
      y_t_axis_bins.SetTextSize( 0.38 );
 
-     TH2F *mAxis = new TH2F("mAxis","",100,0.,0.8,100,0.08,0.2);//-0.2,3.7}//-0.2,3.7
-     mAxis->GetYaxis()->SetLabelSize(0.06);
-     mAxis->GetXaxis()->SetLabelSize(0.06);
-     mAxis->GetYaxis()->SetTitleSize(0.065);
-     mAxis->GetYaxis()->SetTitleOffset(1);
-     mAxis->GetYaxis()->SetLabelOffset(0.01);
-     mAxis->GetXaxis()->SetTitleSize(0.06);
-     mAxis->GetXaxis()->SetLabelOffset(-0.007);
-     TCanvas *c_candd   = new TCanvas("c_candd", "Pion sum (x) compass data and theory",970,650);//
-     c_candd->SetFillStyle(4000);
-     c_candd->SetFrameFillStyle(4000);
-     TPad *pad1dd = new TPad("pad1","",0.0,0.01,1,1);
-     pad1dd->SetFillStyle(4000); //will be transparent
-     pad1dd->SetFrameFillStyle(4000);
-     pad1dd->Draw();
-     pad1dd->cd();
-
-     ////tag
-     gPad->SetLogx();
-     dmult_sum->SetMarkerColor(kBlack);
-     dmult_sum->SetLineColor(kBlack);
-     dsys_sum->SetFillColor(kBlack);
-     mAxis->Draw("axis"); dmult_sum->Draw("P"); dsys_sum->Draw("3");
-     dsys_sum->SetFillColor(kRed);
-     //////////////
-     mAxis->Draw("axissame");
-     //////////////
-     c_candd->cd();
-     c_candd->Print("./figures/Mult_sum_test.eps");
-     dmult_sum->SetMarkerColor(kRed);
-     dmult_sum->SetLineColor(kRed);
-     dsys_sum->SetFillColor(kRed-10);
-     //endref
 
 
 
-
-
-
-
-
-     TCanvas *c_can   = new TCanvas("c_acc", "Pion sum (x) compass data and theory",970,650);//
-     TPad *spad000 = new TPad("spad000","The first subpad",0.0,0.01,1,1);
-     c_can->SetFillStyle(4000);
-     c_can->SetFrameFillStyle(4000);
-     spad000->SetFillStyle(4000); //will be transparent
-     spad000->SetFrameFillStyle(4000);
-     spad000->Draw();
-     spad000->cd();
-
-     y_t_axis_bins.SetTextAlign(12);
-     y_t_axis_bins.SetTextSize( 0.06 );
-     TMarker markerp; TMarker markerd; TMarker markerh;
+     TMarker markerp; TMarker markerd;  TMarker markerh; TMarker markerhd;
      TH2F *mAxis2 = new TH2F("mAxis2","",100,0.,1,100,0.08,0.2);//-0.2,3.7
      mAxis2->GetYaxis()->SetLabelSize(0.06);
      mAxis2->GetXaxis()->SetLabelSize(0.06);
@@ -690,6 +767,7 @@ void plot_sum_average_ratio()
      mAxis2->GetYaxis()->SetLabelOffset(0.01);
      mAxis2->GetXaxis()->SetTitleSize(0.06);
      mAxis2->GetXaxis()->SetLabelOffset(-0.007);
+     mAxis2->GetYaxis()->SetRangeUser(0.05,0.3);
 
      TCanvas *c_can2   = new TCanvas("c_acc2", "Kaon sum (x) compass and hermes data",970,650);//
      TPad *spad00 = new TPad("spad00","The first subpad",0.0,0.01,1,1);
@@ -700,24 +778,28 @@ void plot_sum_average_ratio()
      spad00->Draw();
      spad00->cd();
      gPad->SetLogx();
-     mAxis2->Draw("axis");dsys_sum->Draw("3");psys_sum->Draw("3");  hsys_sum->Draw("3");hsys_sumb->Draw("3");dmult_sum->Draw("P");pmult_sum->Draw("P"); hmult_sum->Draw("P");
+     mAxis2->Draw("axis");dsys_sum->Draw("3");psys_sum->Draw("3");  hsys_sum->Draw("3");hsys_sumb->Draw("3"); hdsys_sum->Draw("3");hdsys_sumb->Draw("3");dmult_sum->Draw("P");pmult_sum->Draw("P"); hmult_sum->Draw("P"); hdmult_sum->Draw("P");
      //////////////
      c_can2->cd();
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.03, "#font[ 12]{x}");
      y_t_axis_bins.SetTextSize( 0.06 );
      markerh.SetMarkerStyle(24);
-     markerh.SetMarkerColor(kBlack);
-     markerh.SetMarkerSize(1.32); markern.DrawMarker(0.2,.71);
+     markerh.SetMarkerColor(kBlue);
+     markerh.SetMarkerSize(1.32); markerh.DrawMarker(0.2,.80);
+     markerhd.SetMarkerStyle(24);
+     markerhd.SetMarkerColor(kRed);
+     markerhd.SetMarkerSize(1.32); markerhd.DrawMarker(0.2,.74);
      markerd.SetMarkerStyle(20);
      markerd.SetMarkerColor(kRed);
-     markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.2,.80);
+     markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.2,.86);
      markerp.SetMarkerStyle(20);
      markerp.SetMarkerColor(kBlue);
-     markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.2,.89);
-     y_t_axis_bins.DrawLatex( 0.22,  0.80, "COMPASS deuteron");
-     y_t_axis_bins.DrawLatex( 0.22,  0.89, "COMPASS 2016 preliminary");
-     y_t_axis_bins.DrawLatex( 0.22,  0.71, "HERMES proton");
+     markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.2,.92);
+     y_t_axis_bins.DrawLatex( 0.22,  0.92, "COMPASS 2016 preliminary");
+     y_t_axis_bins.DrawLatex( 0.22,  0.86, "COMPASS deuteron");
+     y_t_axis_bins.DrawLatex( 0.22,  0.80, "HERMES proton");
+     y_t_axis_bins.DrawLatex( 0.22,  0.74, "HERMES proton");
      TMathText text;
      text.SetTextAngle(90);
      text.SetTextFont( 132 );
@@ -725,20 +807,6 @@ void plot_sum_average_ratio()
      text.DrawMathText(.05,.64,"\\mathscr{M}^{ K^{+}}+\\mathscr{M}^{ K^{-}}");
      c_can2->Print("./figures/Mult_sum_hermes.eps");
      c_can2->Print("./root_files/Mult_sum_hermes.root");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -752,6 +820,7 @@ void plot_sum_average_ratio()
      rmAxis->GetYaxis()->SetLabelOffset(0.01);
      rmAxis->GetXaxis()->SetTitleSize(0.06);
      rmAxis->GetXaxis()->SetLabelOffset(-0.007);
+     rmAxis->GetYaxis()->SetRangeUser(0.9,3);
      TCanvas *c_can5   = new TCanvas("c_acc5", "Pion ratio (x) compass, hermes data",970,650);//
      TPad *spad1 = new TPad("spad1","The first subpad",0.0,0.01,1,1);
      c_can5->SetFillStyle(4000);
@@ -761,251 +830,23 @@ void plot_sum_average_ratio()
      spad1->Draw();
      spad1->cd();
      gPad->SetLogx();
-     rmAxis->Draw("axis");dsys_ratio->Draw("3"); psys_ratio->Draw("3"); hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); dmult_ratio->Draw("P");pmult_ratio->Draw("P");hmult_ratio->Draw("P");
+     rmAxis->Draw("axis");dsys_ratio->Draw("3"); psys_ratio->Draw("3"); hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); hdsys_ratio->Draw("3"); hdsys_ratiob->Draw("3"); dmult_ratio->Draw("P");pmult_ratio->Draw("P");hmult_ratio->Draw("P");hdmult_ratio->Draw("P");
      c_can5->cd();
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.05, "#font[ 12]{x}");
      y_t_axis_bins.SetTextSize( 0.06 );
-     markerh.DrawMarker(0.2,.71);
-     markerp.DrawMarker(0.2,.89);
-     markerd.DrawMarker(0.2,.80);
-     y_t_axis_bins.DrawLatex( 0.22,  0.80, "COMPASS deuteron");
-     y_t_axis_bins.DrawLatex( 0.22,  0.89, "COMPASS 2016 preliminary");
-     y_t_axis_bins.DrawLatex( 0.22,  0.71, "HERMES proton");
+     markerh.DrawMarker(0.2,.80);
+     markerhd.DrawMarker(0.2,.74);
+     markerp.DrawMarker(0.2,.92);
+     markerd.DrawMarker(0.2,.86);
+     y_t_axis_bins.DrawLatex( 0.22,  0.86, "COMPASS deuteron");
+     y_t_axis_bins.DrawLatex( 0.22,  0.92, "COMPASS 2016 preliminary");
+     y_t_axis_bins.DrawLatex( 0.22,  0.80, "HERMES proton");
+     y_t_axis_bins.DrawLatex( 0.22,  0.74, "HERMES deuteron");
      text.DrawMathText(.05,.65,"\\mathscr{M}^{ K^{+}}/\\mathscr{M}^{ K^{-}}");
      c_can5->Print("./figures/Mult_ratio.eps");
      c_can5->Print("./root_files/Mult_ratio.root");
-
-
-
-
-
-
-
-
-     // AVG plots
-     /////////////////template for plots///////////
-     gROOT->SetStyle("Plain");
-     gStyle->SetPalette(1);
-     gStyle->SetOptStat(0);
-     gStyle->SetErrorX(0);
-     gStyle->SetLabelFont(132, "xy");
-     gStyle->SetTitleFont(132,"xy");
-     gStyle->SetTitleAlign(33);
-     gStyle->SetTitleSize(0.06);
-     gStyle->SetPadColor(0);
-     gStyle->SetNdivisions(705,  "X");
-     gStyle->SetNdivisions(805,  "Y");
-     gStyle->SetLabelOffset(0.04, "Y");
-     gStyle->SetPadRightMargin(0.1);
-     gStyle->SetPadTopMargin(0.1);
-     gStyle->SetPadLeftMargin(0.235);
-     gStyle->SetPadBottomMargin(0.13);
-
-     y_t_axis_bins.SetTextAlign(23);
-     y_t_axis_bins.SetTextSize( 0.38 );
-     ///axis
-     TH2F *aAxis[5];
-     for(int ij=0; ij<5; ij++){ aAxis[ij] = new TH2F(Form("aAxis_%d",ij),"",100,0.15,0.89,100,-0.1,0.53);}//-0.2,3.7
-     aAxis[0]->GetYaxis()->SetLabelSize(0.088);//0.078
-     aAxis[0]->GetXaxis()->SetLabelSize(0.0);
-     aAxis[0]->GetYaxis()->SetTitle("#frac{d#font[ 12]{M}}{d#font[ 12]{z}}^{#font[ 12]{K}}");
-     aAxis[0]->GetYaxis()->SetTitleSize(0.11);
-     aAxis[0]->GetYaxis()->SetTitleOffset(0.95);//1
-     aAxis[0]->GetYaxis()->SetLabelOffset(0.01);
-     aAxis[1]->GetYaxis()->SetLabelSize(0.11);//0.1
-     aAxis[1]->GetYaxis()->SetLabelOffset(0.01);
-     aAxis[1]->GetXaxis()->SetLabelSize(0.0);
-     aAxis[2]->GetYaxis()->SetLabelSize(0.088); //0.078
-     aAxis[2]->GetYaxis()->SetLabelOffset(0.01);
-     aAxis[2]->GetXaxis()->SetLabelSize(0.084);//0.074
-     aAxis[3]->GetYaxis()->SetLabelSize(0.0);
-     aAxis[3]->GetXaxis()->SetLabelSize(0.104); //094
-     aAxis[3]->GetXaxis()->SetLabelOffset(-0.011);//-0.007
-     aAxis[4]->GetYaxis()->SetLabelSize(0.0);
-     aAxis[4]->GetXaxis()->SetLabelSize(0.3); //2
-     aAxis[4]->GetXaxis()->SetLabelOffset(-0.011);//-0.007
-     TLine *La = new TLine(0.16,0.,0.89,0.);
-     La->SetLineStyle(2);
-     TCanvas *a_can   = new TCanvas("a_can", "multiplicity (x,z) bins with fits",2000,1100);//
-     TPad *spada = new TPad("spada","The first subpad",0.0,0.04,1,1);
-     a_can->SetFillStyle(4000);
-     a_can->SetFrameFillStyle(4000);
-     spada->SetFillStyle(4000); //will be transparent
-     spada->SetFrameFillStyle(4000);
-
-     spada->Draw();
-     spada->cd();
-     spada->Divide(5,2,0.001,0.00);
-     spada->Draw();
-     ////tag
-
-     spada->cd(1);aAxis[0]->Draw("axis");La->Draw();dmult_avg[1][1][0]->Draw("P");dmult_avg[1][0][0]->Draw("P");A00[1][0][0]->Draw("3");A00b[1][0][0]->Draw("3");A00[1][1][0]->Draw("3");
-     title3.SetTextSize(0.085);
-     title3.SetTextAlign(21);
-     title3.DrawLatex(0.65, 0.93,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
-     spada->cd(2);aAxis[1]->Draw("axis");La->Draw();dmult_avg[1][1][1]->Draw("P");dmult_avg[1][0][1]->Draw("P");A00[1][0][1]->Draw("3");A00b[1][0][1]->Draw("3");A00[1][1][1]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
-     spada->cd(3);aAxis[1]->Draw("axis");La->Draw();dmult_avg[1][1][2]->Draw("P");dmult_avg[1][0][2]->Draw("P");A00[1][0][2]->Draw("3");A00b[1][0][2]->Draw("3");A00[1][1][2]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
-     spada->cd(4);aAxis[1]->Draw("axis");La->Draw();dmult_avg[1][1][3]->Draw("P");dmult_avg[1][0][3]->Draw("P");A00[1][0][3]->Draw("3");A00b[1][0][3]->Draw("3");A00[1][1][3]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
-     spada->cd(5);aAxis[4]->Draw("axis");La->Draw();dmult_avg[1][1][4]->Draw("P");dmult_avg[1][0][4]->Draw("P");A00[1][0][4]->Draw("3");A00b[1][0][4]->Draw("3");A00[1][1][4]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
-     spada->cd(6);aAxis[2]->Draw("axis");La->Draw();dmult_avg[1][1][5]->Draw("P");dmult_avg[1][0][5]->Draw("P");A00[1][0][5]->Draw("3");A00b[1][0][5]->Draw("3");A00[1][1][5]->Draw("3");
-     title3.SetTextSize(0.08);
-     title3.DrawLatex(0.65, 0.93,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.10");
-     spada->cd(7);aAxis[3]->Draw("axis");La->Draw();dmult_avg[1][1][6]->Draw("P");dmult_avg[1][0][6]->Draw("P");A00[1][0][6]->Draw("3");A00b[1][0][6]->Draw("3");A00[1][1][6]->Draw("3");
-     title3.SetTextSize(0.095);
-     title3.DrawLatex(0.5, 0.93,"0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
-     spada->cd(8);aAxis[3]->Draw("axis");La->Draw();dmult_avg[1][1][7]->Draw("P");dmult_avg[1][0][7]->Draw("P");A00[1][0][7]->Draw("3");A00b[1][0][7]->Draw("3");A00[1][1][7]->Draw("3");
-     title3.SetTextSize(0.095);
-     title3.DrawLatex(0.5, 0.93,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
-     spada->cd(9);aAxis[3]->Draw("axis");La->Draw();dmult_avg[1][1][8]->Draw("P");dmult_avg[1][0][8]->Draw("P");A00[1][0][8]->Draw("3");A00b[1][0][8]->Draw("3");A00[1][1][8]->Draw("3");
-     title3.SetTextSize(0.095);
-     title3.DrawLatex(0.5, 0.93,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.40");
-     spada->cd(10);
-     TLatex x_axis_bins;
-     x_axis_bins.SetTextFont( 132 );
-     x_axis_bins.SetTextAlign(33);
-     x_axis_bins.SetTextSize( 0.104 );
-     x_axis_bins.DrawLatex( 0.13 ,  0.98, "0.2");
-     x_axis_bins.DrawLatex( 0.39 ,  0.98, "0.4");
-     x_axis_bins.DrawLatex( 0.65 ,  0.98, "0.6");
-     x_axis_bins.DrawLatex( 0.93 ,  0.98, "0.8");
-     a_can->cd();
-     TArrow* z_hline = new TArrow(0.79, 0.529, 0.981,0.529, 0.02, "");
-     z_hline -> Draw();
-     TArrow* zy_hline = new TArrow(0.795, 0.529, 0.795,0.105, 0.02, "");
-     zy_hline -> Draw();
-     y_t_axis_bins.SetTextAlign(12);
-     y_t_axis_bins.SetTextSize( 0.045 );
-     y_t_axis_bins.DrawLatex( 0.76,  0.04, "#font[ 12]{z}");
-     markern.SetMarkerStyle(24);
-     markern.SetMarkerColor(kBlue);
-     markern.SetMarkerSize(1.2); markern.DrawMarker(0.19,.75);
-     markerp.SetMarkerStyle(20);
-     markerp.SetMarkerColor(kRed);
-     markerp.SetMarkerSize(1.5); markerp.DrawMarker(0.19,.8);
-     y_t_axis_bins.SetTextSize( 0.04 );
-     y_t_axis_bins.DrawLatex( 0.2,  0.75, "K^{#minus}");
-     y_t_axis_bins.DrawLatex( 0.2,  0.8, "K^{#plus}");
-
-     a_can->Print("./figures/Mult_K_newnu.eps");
-     a_can->Print("./root_files/Mult_K_newnu.root");
-
-
-
-
-  ////////////////ratio 3D
-
-
-     TH2F *ratio_Axis[5];
-     //ratio_Axis[0] = new TH2F(Form("ratio_Axis_%d",0),"",100,0.15,0.89,100,0.5,3.5/*20.7*/);
-     //ratio_Axis[1] = new TH2F(Form("ratio_Axis_%d",1),"",100,0.15,0.89,100,0.5,3.5/*20.7*/);
-     ratio_Axis[0] = new TH2F(Form("ratio_Axis_%d",0),"",100,0.15,0.89,100,0.3,4.4/*20.7*/);
-     ratio_Axis[1] = new TH2F(Form("ratio_Axis_%d",1),"",100,0.15,0.89,100,0.3,4.4/*20.7*/);
-     ratio_Axis[2] = new TH2F(Form("ratio_Axis_%d",2),"",100,0.15,0.89,100,-0.7,15.5/*20.7*/);
-     ratio_Axis[3] = new TH2F(Form("ratio_Axis_%d",3),"",100,0.15,0.89,100,-0.7,15.5/*20.7*/);
-     ratio_Axis[4] = new TH2F(Form("ratio_Axis_%d",4),"",100,0.15,0.89,100,-0.5,15.5/*20.7*/);
-
-     ratio_Axis[0]->GetYaxis()->SetLabelSize(0.088);//0.078
-     ratio_Axis[0]->GetXaxis()->SetLabelSize(0.0);
-     ratio_Axis[0]->GetYaxis()->SetTitle("#frac{d#font[ 12]{M}}{d#font[ 12]{z}}^{#font[ 12]{K^{#plus}}}/#frac{d#font[ 12]{M}}{d#font[ 12]{z}}^{#font[ 12]{K^{#minus}}}");
-     ratio_Axis[0]->GetYaxis()->SetTitleSize(0.11);
-     ratio_Axis[0]->GetYaxis()->SetTitleOffset(0.95);//1
-     ratio_Axis[0]->GetYaxis()->SetLabelOffset(0.01);
-     ratio_Axis[1]->GetYaxis()->SetLabelSize(0.11);//0.1
-     ratio_Axis[1]->GetYaxis()->SetLabelOffset(0.01);
-     ratio_Axis[1]->GetXaxis()->SetLabelSize(0.0);
-     ratio_Axis[2]->GetYaxis()->SetLabelSize(0.088); //0.078
-     ratio_Axis[2]->GetYaxis()->SetLabelOffset(0.01);
-     ratio_Axis[2]->GetXaxis()->SetLabelSize(0.084);//0.074
-     ratio_Axis[3]->GetYaxis()->SetLabelSize(0.0);
-     ratio_Axis[3]->GetXaxis()->SetLabelSize(0.104); //094
-     ratio_Axis[3]->GetXaxis()->SetLabelOffset(-0.011);//-0.007
-     ratio_Axis[4]->GetYaxis()->SetLabelSize(0.0);
-     ratio_Axis[4]->GetXaxis()->SetLabelSize(0.3); //2
-     ratio_Axis[4]->GetXaxis()->SetLabelOffset(-0.011);//-0.007
-     TLine *La = new TLine(0.16,0.,0.89,0.);
-     La->SetLineStyle(2);
-     TCanvas *ratio_can   = new TCanvas("ratio_can", "multiplicity (x,z) bins with fits",2000,1100);//
-     TPad *spada = new TPad("spada","The first subpad",0.0,0.04,1,1);
-     ratio_can->SetFillStyle(4000);
-     ratio_can->SetFrameFillStyle(4000);
-     spada->SetFillStyle(4000); //will be transparent
-     spada->SetFrameFillStyle(4000);
-     spada->Draw();
-     spada->cd();
-     spada->Divide(5,2,0.001,0.00);
-     spada->Draw();
-     ////tag
-
-     spada->cd(1);ratio_Axis[0]->Draw("axis");
-     R00[0]->Draw("3");h_ratio_2d[0]->Draw("P");
-     title3.SetTextSize(0.09);
-     title3.SetTextSize(0.08);
-     title3.SetTextSize(0.085);
-     title3.SetTextAlign(21);
-     title3.DrawLatex(0.65, 0.93,"0.004#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.01");
-     spada->cd(2);ratio_Axis[1]->Draw("axis");h_ratio_2d[1]->Draw("P");
-     R00[1]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.01#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.02");
-     spada->cd(3);ratio_Axis[1]->Draw("axis");h_ratio_2d[2]->Draw("P");
-     R00[2]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.02#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.03");
-     spada->cd(4);ratio_Axis[1]->Draw("axis");h_ratio_2d[3]->Draw("P");
-     R00[3]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.03#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.04");
-     spada->cd(5);ratio_Axis[1]->Draw("axis");h_ratio_2d[4]->Draw("P");
-     R00[4]->Draw("3");
-     title3.SetTextSize(0.102);
-     title3.DrawLatex(0.5, 0.93,"0.04#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.06");
-     spada->cd(6);ratio_Axis[2]->Draw("axis");h_ratio_2d[5]->Draw("P");
-     R00[5]->Draw("3");
-     title3.SetTextSize(0.08);
-     title3.DrawLatex(0.65, 0.93,"0.06#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.10");
-     spada->cd(7);ratio_Axis[3]->Draw("axis");h_ratio_2d[6]->Draw("P");
-     R00[6]->Draw("3");
-     title3.SetTextSize(0.095);
-     title3.DrawLatex(0.5, 0.93,"0.10#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.14");
-     spada->cd(8);ratio_Axis[3]->Draw("axis");h_ratio_2d[7]->Draw("P");
-     R00[7]->Draw("3");
-     title3.SetTextSize(0.095);
-     title3.DrawLatex(0.5, 0.93,"0.14#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.18");
-     spada->cd(9);ratio_Axis[3]->Draw("axis");h_ratio_2d[8]->Draw("P");
-     R00[8]->Draw("3");
-     title3.SetTextSize(0.095);
-     title3.DrawLatex(0.5, 0.93,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.40");
-     spada->cd(10);
-     TLatex x_axis_bins;
-     x_axis_bins.SetTextFont( 132 );
-     x_axis_bins.SetTextAlign(33);
-     x_axis_bins.SetTextSize( 0.104 );
-     x_axis_bins.DrawLatex( 0.13 ,  0.98, "0.2");
-     x_axis_bins.DrawLatex( 0.39 ,  0.98, "0.4");
-     x_axis_bins.DrawLatex( 0.65 ,  0.98, "0.6");
-     x_axis_bins.DrawLatex( 0.93 ,  0.98, "0.8");
-     ratio_can->cd();
-     TArrow* z_hline = new TArrow(0.79, 0.529, 0.981,0.529, 0.02, "");
-     z_hline -> Draw();
-     TArrow* zy_hline = new TArrow(0.795, 0.529, 0.795,0.105, 0.02, "");
-     zy_hline -> Draw();
-     y_t_axis_bins.SetTextAlign(12);
-     y_t_axis_bins.SetTextSize( 0.045 );
-     y_t_axis_bins.DrawLatex( 0.76,  0.04, "#font[ 12]{z}");
-
-
-     ratio_can->Print("./figures/Mult_K_ratio.eps");
-     ratio_can->Print("./root_files/Mult_K_ratio.root");
 
 
 
