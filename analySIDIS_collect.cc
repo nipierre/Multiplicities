@@ -680,7 +680,7 @@ Double_t DISTot(int x, int y, int z)
   Double_t tot=0;
 
   for(auto period : fPeriods)
-    tot += fNDIS_evt_period[period][0][1][i][j][k] + fNDIS_evt_period[period][0][0][i][j][k]
+    tot += fNDIS_evt_period[period][0][1][x][y][z] + fNDIS_evt_period[period][0][0][x][y][z]
 
   return tot;
 }
