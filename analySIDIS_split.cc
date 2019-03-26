@@ -3359,9 +3359,11 @@ int main(int argc, char **argv)
           {
             if(!c)
             {
-              ofs_d << fNDIS_evt[0][1][i][j][k] << " " << fNDIS_evt_err[0][1][i][j][k] << " " << fNDIS_evt[0][0][i][j][k] << " " << fNDIS_evt_err[0][0][i][j][k];
+              ofs_d << fNDIS_evt[0][1][i][j][k] << " " << fNDIS_evt_err[0][1][i][j][k] << " " << fNDIS_evt[1][1][i][j][k] << " " << fNDIS_evt_err[1][1][i][j][k] << " " << fNDIS_evt[2][1][i][j][k] << " " << fNDIS_evt_err[2][1][i][j][k] << " " <<
+                       fNDIS_evt[0][0][i][j][k] << " " << fNDIS_evt_err[0][0][i][j][k] << " " << fNDIS_evt[1][0][i][j][k] << " " << fNDIS_evt_err[1][0][i][j][k] << " " << fNDIS_evt[2][0][i][j][k] << " " << fNDIS_evt_err[2][0][i][j][k];
               for(int zv=0; zv<4; zv++)
-                ofs_dzvtx << fNDIS_evt_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_zvtx[0][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][0][i][j][k][zv] << " ";
+                ofs_dzvtx << fNDIS_evt_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_zvtx[1][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[1][1][i][j][k][zv] << " " << fNDIS_evt_zvtx[2][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[2][1][i][j][k][zv] << " " <<
+                             fNDIS_evt_zvtx[0][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][0][i][j][k][zv] << " " << fNDIS_evt_zvtx[1][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[1][0][i][j][k][zv] << " " << fNDIS_evt_zvtx[2][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[2][0][i][j][k][zv] << " ";
             }
 
             for(int ll=0; ll<4; ll++)
