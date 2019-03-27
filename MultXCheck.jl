@@ -4,11 +4,11 @@ using LaTeXStrings
 
 z = [.20,.25,.30,.35,.40,.45,.50,.55,.60,.65,.70,.75,.85]
 
-MultN = readdlm("data/multiplicities_hadron.txt")
-# MultN = readdlm("data/multiplicities_kaon.txt")
+# MultN = readdlm("data/multiplicities_hadron.txt")
+MultN = readdlm("data/multiplicities_kaon.txt")
 AccN = readdlm("data/acceptance_P07.txt")
-MultM = readdlm("data/MarcinMult.txt")
-# MultM = readdlm("data/MarcinMultKaon.txt")
+# MultM = readdlm("data/MarcinMult.txt")
+MultM = readdlm("data/MarcinMultKaon.txt")
 
 pullM = Float64[]
 pullA = Float64[]

@@ -675,12 +675,12 @@ Double_t HadronTot(int c, int x, int y, int z, int h)
   return tot;
 }
 
-Double_t DISTot(int x, int y, int z)
+Double_t DISTot(int x, int y, int z, int h)
 {
   Double_t tot=0;
 
   for(auto period : fPeriods)
-    tot += fNDIS_evt_period[period][0][1][x][y][z] + fNDIS_evt_period[period][0][0][x][y][z];
+    tot += fNDIS_evt_period[period][h%3][1][x][y][z] + fNDIS_evt_period[period][h%3][0][x][y][z];
 
   return tot;
 }
@@ -1541,7 +1541,7 @@ int main(int argc, char **argv)
           sqrt(fMultiplicities[i][j][k].tab[c][1][1]) << " " <<
           sqrt(fMultiplicities[i][j][k].tab[c][2][1]) << " " <<
           HadronTot(c,i,j,k,1) << " " <<
-          DISTot(i,j,k) << " " <<
+          DISTot(i,j,k,1) << " " <<
           (fMultiplicities[i][j][k].tab[c][0][1] ? 1 : 0) << " ";
 
           if(!c) ofs_k << endl;
@@ -1567,7 +1567,7 @@ int main(int argc, char **argv)
           sqrt(fMultiplicities[i][j][k].tab[c][1][3]) << " " <<
           sqrt(fMultiplicities[i][j][k].tab[c][2][3]) << " " <<
           HadronTot(c,i,j,k,3) << " " <<
-          DISTot(i,j,k) << " " <<
+          DISTot(i,j,k,3) << " " <<
           (fMultiplicities[i][j][k].tab[c][0][3] ? 1 : 0) << " ";
 
           if(!c) ofs_h << endl;
