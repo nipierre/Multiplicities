@@ -1551,6 +1551,8 @@ void resetValues()
           for(int m=0; m<2; m++)
           {
             fNDIS_evt[0][m][i][j][k]=0; fNDIS_evt_err[0][m][i][j][k]=0;
+            fNDIS_evt[1][m][i][j][k]=0; fNDIS_evt_err[1][m][i][j][k]=0;
+            fNDIS_evt[2][m][i][j][k]=0; fNDIS_evt_err[2][m][i][j][k]=0;
             fBinning[i][j][k].tab[c][m][0][0] = 0; fBinning[i][j][k].tab[c][m][1][0] = 0;
             fBinning[i][j][k].tab[c][m][0][1] = 0; fBinning[i][j][k].tab[c][m][1][1] = 0;
             fBinning[i][j][k].tab[c][m][0][2] = 0; fBinning[i][j][k].tab[c][m][1][2] = 0;
