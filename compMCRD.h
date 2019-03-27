@@ -147,11 +147,8 @@ TH1F* fTarget[2];
 TH1F* fTargetMC[2];
 TH2F* fTarget2D[2];
 TH2F* fTarget2DMC[2];
-string unit[45] = {"Q^{2}","x","y","z","W","p_{h}","#Phi","Q^{2}","x_{Bj}","y",
-                   "z","W","#nu","#mu","#mu","#theta","#Phi","z_{vtx}","p_{h}","#theta_{h}",
-                   "#Phi_h","p_h","#theta_h","#Phi_h","#Phi_{h}^{prod. plane}","#Phi_{h}^{prod. plane}","","","","",
-                   "","","","","","","","","","",
-                   "","","","",""};
+string unit[20] = {"Q^{2}","x","y","z","W","#nu","#mu","#mu'","#theta_{#mu}","#Phi_{#mu}",
+                   "z_{vtx}","p_{h}","#theta_{h}","#Phi_{h}","#Phi_{h,prod.pl}","p_{T}","z_{vtx,h}","z_{vtx,e}","z_{vtx,h}"};
 TCanvas c1("Kin_{Q2} Trigger","Kin_{Q2} Trigger");
 TCanvas c2("Kin_x^{Bj} Trigger","Kin_x^{Bj} Trigger");
 TCanvas c3("Kin_y Trigger","Kin_y Trigger");
