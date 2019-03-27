@@ -1898,28 +1898,25 @@ int main(int argc, char **argv)
           if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
           {
             fFlag[0][xbin][ybin][i]=1;
+            fNDIS_evt[0][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_err[0][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           }
           if(!(fNu_min[1][i]<nu && nu<fNu_max[1][i]))
           {
             fFlag[1][xbin][ybin][i]=1;
+            fNDIS_evt[1][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
+            fNDIS_evt_err[1][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
+            fNDIS_evt_err_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           }
           if(!(fNu_min[2][i]<nu && nu<fNu_max[2][i]))
           {
             fFlag[2][xbin][ybin][i]=1;
-          }
-          if(fFlag[0][xbin][ybin][i] || fFlag[1][xbin][ybin][i] || fFlag[2][xbin][ybin][i])
-          {
-            fNDIS_evt[0][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt[1][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt[2][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
-            fNDIS_evt_err[0][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err[1][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
             fNDIS_evt_err[2][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err_zvtx[0][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-            fNDIS_evt_err_zvtx[1][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
             fNDIS_evt_err_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
           }
         }
@@ -3362,9 +3359,11 @@ int main(int argc, char **argv)
           {
             if(!c)
             {
-              ofs_d << fNDIS_evt[0][1][i][j][k] << " " << fNDIS_evt_err[0][1][i][j][k] << " " << fNDIS_evt[0][0][i][j][k] << " " << fNDIS_evt_err[0][0][i][j][k];
+              ofs_d << fNDIS_evt[0][1][i][j][k] << " " << fNDIS_evt_err[0][1][i][j][k] << " " << fNDIS_evt[1][1][i][j][k] << " " << fNDIS_evt_err[1][1][i][j][k] << " " << fNDIS_evt[2][1][i][j][k] << " " << fNDIS_evt_err[2][1][i][j][k] << " " <<
+                       fNDIS_evt[0][0][i][j][k] << " " << fNDIS_evt_err[0][0][i][j][k] << " " << fNDIS_evt[1][0][i][j][k] << " " << fNDIS_evt_err[1][0][i][j][k] << " " << fNDIS_evt[2][0][i][j][k] << " " << fNDIS_evt_err[2][0][i][j][k];
               for(int zv=0; zv<4; zv++)
-                ofs_dzvtx << fNDIS_evt_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_zvtx[0][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][0][i][j][k][zv] << " ";
+                ofs_dzvtx << fNDIS_evt_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][1][i][j][k][zv] << " " << fNDIS_evt_zvtx[1][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[1][1][i][j][k][zv] << " " << fNDIS_evt_zvtx[2][1][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[2][1][i][j][k][zv] << " " <<
+                             fNDIS_evt_zvtx[0][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[0][0][i][j][k][zv] << " " << fNDIS_evt_zvtx[1][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[1][0][i][j][k][zv] << " " << fNDIS_evt_zvtx[2][0][i][j][k][zv] << " " << fNDIS_evt_err_zvtx[2][0][i][j][k][zv] << " ";
             }
 
             for(int ll=0; ll<4; ll++)
