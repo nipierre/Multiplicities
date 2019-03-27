@@ -2722,7 +2722,7 @@ int main(int argc, char **argv)
         gPad->SetFillStyle(4000);
         if(H_y[c][i])
         {
-          if(!c)
+          if(c)
           {
             H_y[c][i]->Draw("SAMEPA");
             H_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -2771,7 +2771,7 @@ int main(int argc, char **argv)
         c10->cd(i+1);
         if(P_y[c][i])
         {
-          if(!c)
+          if(c)
           {
             P_y[c][i]->Draw("SAMEPA");
             P_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -2820,7 +2820,7 @@ int main(int argc, char **argv)
         c11->cd(i+1);
         if(K_y[c][i])
         {
-          if(!c)
+          if(c)
           {
             K_y[c][i]->Draw("SAMEPA");
             K_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -2869,7 +2869,7 @@ int main(int argc, char **argv)
         c12->cd(i+1);
         if(PR_y[c][i])
         {
-          if(!c)
+          if(c)
           {
             PR_y[c][i]->Draw("SAMEPA");
             PR_y[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -2981,7 +2981,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(H_y_zvtx[c][i][zv])
           {
-            if(!c && !zv)
+            if(c && !zv)
             {
               H_y_zvtx[c][i][zv]->Draw("SAMEPA");
               H_y_zvtx[c][i][zv]->GetXaxis()->SetLimits(0.1,0.9);
@@ -3029,7 +3029,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(P_y_zvtx[c][i][zv])
           {
-            if(!c && !zv)
+            if(c && !zv)
             {
               P_y_zvtx[c][i][zv]->Draw("SAMEPA");
               P_y_zvtx[c][i][zv]->GetXaxis()->SetLimits(0.1,0.9);
@@ -3076,7 +3076,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(K_y_zvtx[c][i][zv])
           {
-            if(!c && !zv)
+            if(c && !zv)
             {
               K_y_zvtx[c][i][zv]->Draw("SAMEPA");
               K_y_zvtx[c][i][zv]->GetXaxis()->SetLimits(0.1,0.9);
@@ -3123,7 +3123,7 @@ int main(int argc, char **argv)
           gPad->SetFillStyle(4000);
           if(PR_y_zvtx[c][i][zv])
           {
-            if(!c && !zv)
+            if(c && !zv)
             {
               PR_y_zvtx[c][i][zv]->Draw("SAMEPA");
               PR_y_zvtx[c][i][zv]->GetXaxis()->SetLimits(0.1,0.9);
@@ -3244,7 +3244,7 @@ int main(int argc, char **argv)
         gPad->SetFillStyle(4000);
         if(H_y_reldiff[c][i])
         {
-          if(!c)
+          if(c)
           {
             H_y_reldiff[c][i]->Draw("SAMEPA");
             H_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -3294,7 +3294,7 @@ int main(int argc, char **argv)
         gPad->SetFillStyle(4000);
         if(P_y_reldiff[c][i])
         {
-          if(!c)
+          if(c)
           {
             P_y_reldiff[c][i]->Draw("SAMEPA");
             P_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -3344,7 +3344,7 @@ int main(int argc, char **argv)
         gPad->SetFillStyle(4000);
         if(K_y_reldiff[c][i])
         {
-          if(!c)
+          if(c)
           {
             K_y_reldiff[c][i]->Draw("SAMEPA");
             K_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
@@ -3394,7 +3394,7 @@ int main(int argc, char **argv)
         gPad->SetFillStyle(4000);
         if(PR_y_reldiff[c][i])
         {
-          if(!c)
+          if(c)
           {
             PR_y_reldiff[c][i]->Draw("SAMEPA");
             PR_y_reldiff[c][i]->GetXaxis()->SetLimits(0.1,0.9);
