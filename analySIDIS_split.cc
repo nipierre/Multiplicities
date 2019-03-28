@@ -1649,6 +1649,8 @@ int main(int argc, char **argv)
   LoadSemiInclusiveRadiativeCorrection();
   LoadElectronCorrection();
 
+  ofstream test("test.txt", std::ofstream::out | std::ofstream::trunc);
+
   //----------------------------------------------------------------------------
   //--------- nu cut prep ------------------------------------------------------
   //----------------------------------------------------------------------------
@@ -2174,7 +2176,7 @@ int main(int argc, char **argv)
           fFlag[2][xbin][ybin][i]=0;
 
           // nu cut
-          if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
+          /*if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
           {
             fFlag[0][xbin][ybin][i]=1;
             fNDIS_evt[0][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
@@ -2197,7 +2199,7 @@ int main(int argc, char **argv)
             fNDIS_evt_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt_err[2][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
             fNDIS_evt_err_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          }
+          }*/
         }
 
         // -------------------------------------------------------------------------
@@ -2694,6 +2696,16 @@ int main(int argc, char **argv)
           int ydy = y->GetLeaf("y")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*sin(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           // if(!( ( -35 < xdx && xdx < 35 ) && ( -25 < ydy && ydy < 25 ) )) continue;
+
+          test << XBj << " " << Q2 << " " << YBj << " " << p->GetLeaf("Hadrons.P")->GetValue(i) << " "
+               << thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) << " " << zBj << " " << fId << " "
+               << LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) << " "
+               << LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) << " "
+               << LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) << " "
+               << LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) << " "
+               << LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) << " "
+               << LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) << " " << endl;
+
 
           if(kin_flag)
           {
@@ -3830,6 +3842,9 @@ int main(int argc, char **argv)
        << '|' << setw(15) << fPiplus_true << '|' << setw(15) << fPiminus_true
        << '|' << setw(15) << fKplus_true << '|' << setw(15) << fKminus_true
        << '|' << setw(15) << fPplus_true << '|' << setw(15) << fPminus_true << endl;
+
+
+  test.close();
 
   return 0;
 }
