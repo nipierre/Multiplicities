@@ -27,7 +27,7 @@ void plot_sum_average_ratio()
   double mn=0;double men=0;double sysn=0;double leptoflagn=0;
 
   ifstream IN1;
-  IN1.open("./data/MultiplicityKaon_2006.txt", ifstream::in);
+  IN1.open("./data/MultiplicityPion_2006.txt", ifstream::in);
   for(int j=0; j<40000; j++)
     {
       if (! IN1.eof() )
@@ -72,7 +72,7 @@ void plot_sum_average_ratio()
     }
   IN1.close();
   //
-  cout<<"done reading COMPASS kaon"<<endl;
+  cout<<"done reading COMPASS pion"<<endl;
 
 
 
@@ -370,7 +370,7 @@ void plot_sum_average_ratio()
      double px[2][12][9];
 
      ifstream IN2;
-     IN2.open("./data/MultiplicityKaon_yavg.txt", ifstream::in);
+     IN2.open("./data/MultiplicityPion_yavg.txt", ifstream::in);
      for(int i=0; i<9; i++)
      {
        for(int k=0; k<12; k++)
@@ -473,7 +473,7 @@ void plot_sum_average_ratio()
      double hx[2][4][9];
 
      ifstream IN3;
-     IN3.open("./data/HERMESK+Prot.txt", ifstream::in);
+     IN3.open("./data/HERMESPi+Prot.txt", ifstream::in);
      for(int k=0; k<4; k++)
      {
        for(int i=0; i<9; i++)
@@ -489,10 +489,10 @@ void plot_sum_average_ratio()
 
      IN3.close();
      //
-     cout<<"done reading HERMES K+"<<endl;
+     cout<<"done reading HERMES Pi+"<<endl;
 
      ifstream IN4;
-     IN4.open("./data/HERMESK-Prot.txt", ifstream::in);
+     IN4.open("./data/HERMESPi-Prot.txt", ifstream::in);
      for(int k=0; k<4; k++)
      {
        for(int i=0; i<9; i++)
@@ -508,7 +508,7 @@ void plot_sum_average_ratio()
 
      IN4.close();
      //
-     cout<<"done reading HERMES K-"<<endl;
+     cout<<"done reading HERMES Pi-"<<endl;
 
      double hsum[9];
      double hsum_e[9];
@@ -603,7 +603,7 @@ void plot_sum_average_ratio()
      double hdx[2][4][9];
 
      ifstream IN5;
-     IN5.open("./data/HERMESK+Deut.txt", ifstream::in);
+     IN5.open("./data/HERMESPi+Deut.txt", ifstream::in);
      for(int k=0; k<4; k++)
      {
        for(int i=0; i<9; i++)
@@ -619,10 +619,10 @@ void plot_sum_average_ratio()
 
      IN5.close();
      //
-     cout<<"done reading HERMES K+"<<endl;
+     cout<<"done reading HERMES Pi+"<<endl;
 
      ifstream IN6;
-     IN6.open("./data/HERMESK-Deut.txt", ifstream::in);
+     IN6.open("./data/HERMESPi-Deut.txt", ifstream::in);
      for(int k=0; k<4; k++)
      {
        for(int i=0; i<9; i++)
@@ -638,7 +638,7 @@ void plot_sum_average_ratio()
 
      IN6.close();
      //
-     cout<<"done reading HERMES K-"<<endl;
+     cout<<"done reading HERMES Pi-"<<endl;
 
      double hdsum[9];
      double hdsum_e[9];
@@ -781,26 +781,25 @@ void plot_sum_average_ratio()
      mAxis2->Draw("axis");dsys_sum->Draw("3");psys_sum->Draw("3");  hsys_sum->Draw("3");hsys_sumb->Draw("3"); hdsys_sum->Draw("3");hdsys_sumb->Draw("3");dmult_sum->Draw("P");pmult_sum->Draw("P"); hmult_sum->Draw("P"); hdmult_sum->Draw("P");
      //////////////
      c_can2->cd();
-     y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
-     y_t_axis_bins.DrawLatex( 0.93,  0.05, "#font[ 12]{x}");
-     y_t_axis_bins.SetTextSize( 0.05 );
+     y_t_axis_bins.DrawLatex( 0.93,  0.03, "#font[ 12]{x}");
+     y_t_axis_bins.SetTextSize( 0.06 );
      markerh.SetMarkerStyle(24);
      markerh.SetMarkerColor(kBlue);
-     markerh.SetMarkerSize(1.32); markerh.DrawMarker(0.18,.80);
+     markerh.SetMarkerSize(1.32); markerh.DrawMarker(0.2,.80);
      markerhd.SetMarkerStyle(24);
      markerhd.SetMarkerColor(kRed);
-     markerhd.SetMarkerSize(1.32); markerhd.DrawMarker(0.18,.74);
+     markerhd.SetMarkerSize(1.32); markerhd.DrawMarker(0.2,.74);
      markerd.SetMarkerStyle(20);
      markerd.SetMarkerColor(kRed);
-     markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.18,.86);
+     markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.2,.86);
      markerp.SetMarkerStyle(20);
      markerp.SetMarkerColor(kBlue);
-     markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.18,.92);
-     y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS 2016 preliminary");
-     y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar");
-     y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
-     y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
+     markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.2,.92);
+     y_t_axis_bins.DrawLatex( 0.22,  0.92, "COMPASS 2016 preliminary");
+     y_t_axis_bins.DrawLatex( 0.22,  0.86, "COMPASS isocalar");
+     y_t_axis_bins.DrawLatex( 0.22,  0.80, "HERMES proton");
+     y_t_axis_bins.DrawLatex( 0.22,  0.74, "HERMES deuteron");
      TMathText text;
      text.SetTextAngle(90);
      text.SetTextFont( 132 );
@@ -836,15 +835,15 @@ void plot_sum_average_ratio()
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.05, "#font[ 12]{x}");
-     y_t_axis_bins.SetTextSize( 0.05 );
-     markerh.DrawMarker(0.18,.80);
-     markerhd.DrawMarker(0.18,.74);
-     markerp.DrawMarker(0.18,.92);
-     markerd.DrawMarker(0.18,.86);
-     y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar");
-     y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS 2016 preliminary");
-     y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
-     y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
+     y_t_axis_bins.SetTextSize( 0.06 );
+     markerh.DrawMarker(0.2,.80);
+     markerhd.DrawMarker(0.2,.74);
+     markerp.DrawMarker(0.2,.92);
+     markerd.DrawMarker(0.2,.86);
+     y_t_axis_bins.DrawLatex( 0.22,  0.86, "COMPASS isoscalar");
+     y_t_axis_bins.DrawLatex( 0.22,  0.92, "COMPASS 2016 preliminary");
+     y_t_axis_bins.DrawLatex( 0.22,  0.80, "HERMES proton");
+     y_t_axis_bins.DrawLatex( 0.22,  0.74, "HERMES deuteron");
      text.DrawMathText(.05,.65,"\\mathscr{M}^{ K^{+}}/\\mathscr{M}^{ K^{-}}");
      c_can5->Print("./figures/Mult_ratio.eps");
      c_can5->Print("./root_files/Mult_ratio.root");
