@@ -1543,8 +1543,8 @@ int main(int argc, char **argv)
           fMultiplicities[i][j][k].tab[c][0][1] << " " <<
           sqrt(fMultiplicities[i][j][k].tab[c][1][1]) << " " <<
           sqrt(fMultiplicities[i][j][k].tab[c][2][1]) << " " <<
-          HadronTot(c,i,j,k,1) << " " <<
-          DISTot(i,j,k,1) << " " <<
+          // HadronTot(c,i,j,k,1) << " " <<
+          // DISTot(i,j,k,1) << " " <<
           (fMultiplicities[i][j][k].tab[c][0][1] ? 1 : 0) << " ";
 
           if(!c) ofs_k << endl;
