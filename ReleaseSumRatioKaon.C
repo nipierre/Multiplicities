@@ -580,14 +580,14 @@ void plot_sum_average_ratio()
      double hoffseth1b[12]={0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005};
 
      TGraphErrors *hmult_sum = new TGraphErrors(9,hx[0][0], hsum ,zerror,hsum_e);
-     TGraphAsymmErrors *hsys_sum = new TGraphAsymmErrors(9,hx[0][0] ,hoffset2h , errorx, errorx, errorx,hsummed_sysm );
-     TGraphAsymmErrors *hsys_sumb = new TGraphAsymmErrors(9,hxb ,hoffseth1b , errorx, errorx, errorx,hsummed_sysmb );
+     TGraphAsymmErrors *hsys_sum = new TGraphAsymmErrors(9,hx[0][0] ,hoffset2h , errorx, errorx, ysys,hsummed_sysm );
+     TGraphAsymmErrors *hsys_sumb = new TGraphAsymmErrors(9,hxb ,hoffseth1b , errorx, errorx, ysys,hsummed_sysmb );
 
      TGraphErrors *hmult_ratio = new TGraphErrors(9,hx[0][0], hratio ,zerror,hratio_e);
      TGraphAsymmErrors *hsys_ratio = new TGraphAsymmErrors(9,hx[0][0] ,hoffseth2 , errorx, errorx, ysys,hratio_sysm);
      TGraphAsymmErrors *hsys_ratiob = new TGraphAsymmErrors(9,hxb ,hoffseth2b , errorx, errorx, ysys,hratio_sysmb );
 
-     hsys_sum->SetFillColor(kBlack);   hsys_ratio->SetFillColor(kBlack);
+     hsys_sum->SetFillColor(kBlue-10);   hsys_ratio->SetFillColor(kBlue-10);
      hsys_sumb->SetFillColor(kWhite);   hsys_ratiob->SetFillColor(kWhite);
 
      hmult_sum->SetMarkerColor(kBlue);  hmult_sum->SetLineColor(kBlue);
@@ -704,20 +704,20 @@ void plot_sum_average_ratio()
      hdxb[8]=hdxb[8]-0.006;
 
 
-     double hdoffseth2b[9]={1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005};
-     double hdoffseth2[9]={1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07};
-     double hdoffset2h[12]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093, 0.093, 0.093, 0.093};
-     double hdoffseth1b[12]={0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005};
+     double hdoffseth2b[9]={1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005};
+     double hdoffseth2[9]={1.21,1.21,1.21,1.21,1.21,1.21,1.21,1.21,1.21};
+     double hdoffset2h[12]={.097,.097,.097,.097,.097,.097,.097,.097,.097, .097, .097, .097};
+     double hdoffseth1b[12]={.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005};
 
      TGraphErrors *hdmult_sum = new TGraphErrors(9,hx[0][0], hdsum ,zerror,hdsum_e);
-     TGraphAsymmErrors *hdsys_sum = new TGraphAsymmErrors(9,hdx[0][0] ,hdoffset2h , errorx, errorx, errorx,hdsummed_sysm );
-     TGraphAsymmErrors *hdsys_sumb = new TGraphAsymmErrors(9,hdxb ,hdoffseth1b , errorx, errorx, errorx,hdsummed_sysmb );
+     TGraphAsymmErrors *hdsys_sum = new TGraphAsymmErrors(9,hdx[0][0] ,hdoffset2h , errorx, errorx, ysys,hdsummed_sysm );
+     TGraphAsymmErrors *hdsys_sumb = new TGraphAsymmErrors(9,hdxb ,hdoffseth1b , errorx, errorx, ysys,hdsummed_sysmb );
 
      TGraphErrors *hdmult_ratio = new TGraphErrors(9,hdx[0][0], hdratio ,zerror,hdratio_e);
      TGraphAsymmErrors *hdsys_ratio = new TGraphAsymmErrors(9,hdx[0][0] ,hdoffseth2 , errorx, errorx, ysys,hdratio_sysm);
      TGraphAsymmErrors *hdsys_ratiob = new TGraphAsymmErrors(9,hdxb ,hdoffseth2b , errorx, errorx, ysys,hdratio_sysmb );
 
-     hdsys_sum->SetFillColor(kBlack);   hdsys_ratio->SetFillColor(kBlack);
+     hdsys_sum->SetFillColor(kRed-10);   hdsys_ratio->SetFillColor(kRed-10);
      hdsys_sumb->SetFillColor(kWhite);   hdsys_ratiob->SetFillColor(kWhite);
 
      hdmult_sum->SetMarkerColor(kRed);  hdmult_sum->SetLineColor(kRed);
