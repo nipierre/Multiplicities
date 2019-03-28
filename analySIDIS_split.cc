@@ -2697,7 +2697,7 @@ int main(int argc, char **argv)
           int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           // if(!( ( -35 < xdx && xdx < 35 ) && ( -25 < ydy && ydy < 25 ) )) continue;
 
-          test << XBj << " " << Q2 << " " << YBj << " " << p->GetLeaf("Hadrons.P")->GetValue(i) << " "
+          test << xBj << " " << Q2 << " " << yBj << " " << p->GetLeaf("Hadrons.P")->GetValue(i) << " "
                << thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) << " " << zBj << " " << fId << " "
                << LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) << " "
                << LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) << " "
