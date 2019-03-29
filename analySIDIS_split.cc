@@ -3716,16 +3716,24 @@ int main(int argc, char **argv)
         		fNDIS_evt[0][0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0][0] << " " << fBinning[i][j][k].tab[c][0][0][1] << " " <<
         		fBinning[i][j][k].tab[c][0][0][2] << " " << fBinning[i][j][k].tab[c][0][0][3] << endl;
 
-            count << fBinning[i][j][k].tab[c][1][1][0]+fBinning[i][j][k].tab[c][1][0][0] << " "
-                 << fBinning[i][j][k].tab[c][0][1][0]+fBinning[i][j][k].tab[c][0][0][0] << " "
-                 << fBinning[i][j][k].tab[c][1][1][1]+fBinning[i][j][k].tab[c][1][0][1] << " "
-                 << fBinning[i][j][k].tab[c][0][1][1]+fBinning[i][j][k].tab[c][0][0][1] << " "
-                 << fBinning[i][j][k].tab[c][1][1][2]+fBinning[i][j][k].tab[c][1][0][2] << " "
-                 << fBinning[i][j][k].tab[c][0][1][2]+fBinning[i][j][k].tab[c][0][0][2] << " "
-                 << fBinning[i][j][k].tab[c][1][1][3]+fBinning[i][j][k].tab[c][1][0][3] << " "
-                 << fBinning[i][j][k].tab[c][0][1][3]+fBinning[i][j][k].tab[c][0][0][3] << endl;
-
   	      }
+        }
+      }
+    }
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<5; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          count << fBinning[i][j][k].tab[c][1][1][0]+fBinning[i][j][k].tab[c][1][0][0] << " "
+               << fBinning[i][j][k].tab[c][0][1][0]+fBinning[i][j][k].tab[c][0][0][0] << " "
+               << fBinning[i][j][k].tab[c][1][1][1]+fBinning[i][j][k].tab[c][1][0][1] << " "
+               << fBinning[i][j][k].tab[c][0][1][1]+fBinning[i][j][k].tab[c][0][0][1] << " "
+               << fBinning[i][j][k].tab[c][1][1][2]+fBinning[i][j][k].tab[c][1][0][2] << " "
+               << fBinning[i][j][k].tab[c][0][1][2]+fBinning[i][j][k].tab[c][0][0][2] << " "
+               << fBinning[i][j][k].tab[c][1][1][3]+fBinning[i][j][k].tab[c][1][0][3] << " "
+               << fBinning[i][j][k].tab[c][0][1][3]+fBinning[i][j][k].tab[c][0][0][3] << endl;
         }
       }
     }
