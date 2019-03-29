@@ -2628,7 +2628,7 @@ int main(int argc, char **argv)
           if(kin_flag) fThRich[0]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
 
           // Theta cut
-          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.04)) continue;
+          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
           fTRICH++;
 
           if(kin_flag) fThRich[1]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
