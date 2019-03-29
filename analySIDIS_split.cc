@@ -2178,7 +2178,7 @@ int main(int argc, char **argv)
           fFlag[2][xbin][ybin][i]=0;
 
           // nu cut
-          /*if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
+          if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
           {
             fFlag[0][xbin][ybin][i]=1;
             fNDIS_evt[0][fMuCharge][xbin][ybin][i] -= GetInclusiveRadiativeCorrection(xBj,yBj);
@@ -2201,7 +2201,7 @@ int main(int argc, char **argv)
             fNDIS_evt_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= GetInclusiveRadiativeCorrection(xBj,yBj);
             fNDIS_evt_err[2][fMuCharge][xbin][ybin][i] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
             fNDIS_evt_err_zvtx[2][fMuCharge][xbin][ybin][i][zlabbin] -= pow(GetInclusiveRadiativeCorrection(xBj,yBj),2);
-          }*/
+          }
         }
 
         // -------------------------------------------------------------------------
