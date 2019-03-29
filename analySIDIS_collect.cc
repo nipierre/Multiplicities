@@ -40,7 +40,7 @@ using namespace std;
 void fetch_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
-  double dummy;
+  float dummy;
 
   for(int c=0; c<2; c++)
   {
@@ -79,7 +79,7 @@ void fetch_acceptance(string pname, int np)
 void fetch_zvtx_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
-  double dummy;
+  float dummy;
 
   for(int c=0; c<2; c++)
   {
@@ -118,7 +118,7 @@ void fetch_zvtx_acceptance(string pname, int np)
 void fetch_theta_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
-  double dummy;
+  float dummy;
 
   for(int c=0; c<2; c++)
   {
@@ -157,7 +157,7 @@ void fetch_theta_acceptance(string pname, int np)
 void fetch_pt_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
-  double dummy;
+  float dummy;
 
   for(int c=0; c<2; c++)
   {
@@ -196,7 +196,7 @@ void fetch_pt_acceptance(string pname, int np)
 void fetch_yavg_acceptance(string pname, int np)
 {
   ifstream acc_file(pname);
-  double dummy;
+  float dummy;
 
   for(int c=0; c<2; c++)
   {
@@ -329,8 +329,8 @@ void LoadSemiInclusiveRadiativeCorrection()
 void LoadQelCorr()
 {
   string sdum;
-  double cqel[9][7];
-  double cnoqel[9][7];
+  float cqel[9][7];
+  float cnoqel[9][7];
 
   ifstream qel(irc_qel);
   for(int i=0; i<9; i++)
@@ -377,7 +377,7 @@ void LoadQelCorr()
   }
 }
 
-Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
+Float_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
 {
   if(Y2006 || !SIRC)
   {
@@ -398,7 +398,7 @@ Double_t GetSemiInclusiveRadiativeCorrection(int xb, int yb, int zb)
 void LoadDiffVectorMesonCorrection()
 {
   int x,y,z;
-  double dis,had;
+  float dis,had;
 
   if(DVMC)
   {
@@ -629,45 +629,45 @@ void resetValues()
   }
 }
 
-Double_t RelDiff(int c, int x, int y, int z, int had)
+Float_t RelDiff(int c, int x, int y, int z, int had)
 {
-  Double_t ups=fMultiplicities_zvtx[x][y][z][0].tab[c][0][had];
-  Double_t dns=fMultiplicities_zvtx[x][y][z][3].tab[c][0][had];
+  Float_t ups=fMultiplicities_zvtx[x][y][z][0].tab[c][0][had];
+  Float_t dns=fMultiplicities_zvtx[x][y][z][3].tab[c][0][had];
 
-  return (ups ? Double_t((dns-ups)/ups) : 0);
+  return (ups ? Float_t((dns-ups)/ups) : 0);
 }
 
-Double_t RelDiff_yavg(int c, int x,int z, int had)
+Float_t RelDiff_yavg(int c, int x,int z, int had)
 {
-  Double_t ups=fMultiplicities_zvtx_yavg[x][z][0].tab[c][0][had];
-  Double_t dns=fMultiplicities_zvtx_yavg[x][z][3].tab[c][0][had];
+  Float_t ups=fMultiplicities_zvtx_yavg[x][z][0].tab[c][0][had];
+  Float_t dns=fMultiplicities_zvtx_yavg[x][z][3].tab[c][0][had];
 
-  return (ups ? Double_t((dns-ups)/ups) : 0);
+  return (ups ? Float_t((dns-ups)/ups) : 0);
 }
 
-Double_t RelDiff_Err(int c, int x, int y, int z, int had)
+Float_t RelDiff_Err(int c, int x, int y, int z, int had)
 {
-  Double_t ups=fMultiplicities_zvtx[x][y][z][0].tab[c][0][had];
-  Double_t dns=fMultiplicities_zvtx[x][y][z][3].tab[c][0][had];
-  Double_t upse=fMultiplicities_zvtx[x][y][z][0].tab[c][1][had];
-  Double_t dnse=fMultiplicities_zvtx[x][y][z][3].tab[c][1][had];
+  Float_t ups=fMultiplicities_zvtx[x][y][z][0].tab[c][0][had];
+  Float_t dns=fMultiplicities_zvtx[x][y][z][3].tab[c][0][had];
+  Float_t upse=fMultiplicities_zvtx[x][y][z][0].tab[c][1][had];
+  Float_t dnse=fMultiplicities_zvtx[x][y][z][3].tab[c][1][had];
 
-  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
+  return (ups ? Float_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
 }
 
-Double_t RelDiff_Err_yavg(int c, int x, int z, int had)
+Float_t RelDiff_Err_yavg(int c, int x, int z, int had)
 {
-  Double_t ups=fMultiplicities_zvtx_yavg[x][z][0].tab[c][0][had];
-  Double_t dns=fMultiplicities_zvtx_yavg[x][z][3].tab[c][0][had];
-  Double_t upse=fMultiplicities_zvtx_yavg[x][z][0].tab[c][1][had];
-  Double_t dnse=fMultiplicities_zvtx_yavg[x][z][3].tab[c][1][had];
+  Float_t ups=fMultiplicities_zvtx_yavg[x][z][0].tab[c][0][had];
+  Float_t dns=fMultiplicities_zvtx_yavg[x][z][3].tab[c][0][had];
+  Float_t upse=fMultiplicities_zvtx_yavg[x][z][0].tab[c][1][had];
+  Float_t dnse=fMultiplicities_zvtx_yavg[x][z][3].tab[c][1][had];
 
-  return (ups ? Double_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
+  return (ups ? Float_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
 }
 
-Double_t HadronTot(int c, int x, int y, int z, int h)
+Float_t HadronTot(int c, int x, int y, int z, int h)
 {
-  Double_t tot=0;
+  Float_t tot=0;
 
   for(auto period : fPeriods)
     tot += fBinning_period[period][x][y][z].tab[c][1][0][h] + fBinning_period[period][x][y][z].tab[c][0][0][h];
@@ -675,9 +675,9 @@ Double_t HadronTot(int c, int x, int y, int z, int h)
   return tot;
 }
 
-Double_t DISTot(int x, int y, int z, int h)
+Float_t DISTot(int x, int y, int z, int h)
 {
-  Double_t tot=0;
+  Float_t tot=0;
 
   for(auto period : fPeriods)
     tot += fNDIS_evt_period[period][h%3][1][x][y][z] + fNDIS_evt_period[period][h%3][0][x][y][z];
@@ -706,7 +706,7 @@ int main(int argc, char **argv)
   else if(Y2012) year=2012;
   else if(Y2016) year=2016;
 
-  double dummy;
+  float dummy;
 
   for(int c=0; c<2; c++)
   {
@@ -1165,17 +1165,17 @@ int main(int argc, char **argv)
   TGraphAsymmErrors* K_ysys[2][9];
   TGraphAsymmErrors* PR_ysys[2][9];
 
-  Double_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
-  Double_t x_range[9] = {.008,.015,.025,.035,.05,.08,.12,.16,.29};
-  Double_t errorx[12] = {0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.1/2};
-  Double_t h_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
-  Double_t p_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
-  Double_t k_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
-  Double_t pr_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
-  Double_t h_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
-  Double_t p_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
-  Double_t k_yoffset2[12] = {-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065};
-  Double_t pr_yoffset2[12] = {-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065};
+  Float_t z_range[12] = {.225,.275,.325,.375,.425,.475,.525,.575,.625,.675,.725,.8};
+  Float_t x_range[9] = {.008,.015,.025,.035,.05,.08,.12,.16,.29};
+  Float_t errorx[12] = {0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.05/2,0.1/2};
+  Float_t h_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
+  Float_t p_yoffset[12] = {-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2,-0.2};
+  Float_t k_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
+  Float_t pr_yoffset[12] = {-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037,-0.037};
+  Float_t h_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
+  Float_t p_yoffset2[12] = {-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3,-0.3};
+  Float_t k_yoffset2[12] = {-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065};
+  Float_t pr_yoffset2[12] = {-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065,-0.065};
 
   ofstream ofs_p(Form("%s/multiplicities_pion.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_yap(Form("%s/multiplicities_pion_yavg.txt",data_path), ofstream::out | ofstream::trunc);
@@ -1193,118 +1193,118 @@ int main(int argc, char **argv)
   ofstream ofs_mm(Form("%s/multiplicities_h-.txt",data_path), ofstream::out | ofstream::trunc);
   ofstream ofs_rd(Form("%s/reldiff.txt",data_path), ofstream::out | ofstream::trunc);
 
-  vector<Double_t> p_m[2][9][6];
-  vector<Double_t> k_m[2][9][6];
-  vector<Double_t> pr_m[2][9][6];
-  vector<Double_t> h_m[2][9][6];
-  vector<Double_t> p_err[2][9][6];
-  vector<Double_t> k_err[2][9][6];
-  vector<Double_t> pr_err[2][9][6];
-  vector<Double_t> h_err[2][9][6];
-  vector<Double_t> p_sys[2][9][6];
-  vector<Double_t> k_sys[2][9][6];
-  vector<Double_t> pr_sys[2][9][6];
-  vector<Double_t> h_sys[2][9][6];
-  vector<Double_t> z_range_p[2][9][6];
-  vector<Double_t> z_range_k[2][9][6];
-  vector<Double_t> z_range_pr[2][9][6];
-  vector<Double_t> z_range_h[2][9][6];
-  vector<Double_t> p_z[2][9][6][4];
-  vector<Double_t> k_z[2][9][6][4];
-  vector<Double_t> pr_z[2][9][6][4];
-  vector<Double_t> h_z[2][9][6][4];
-  vector<Double_t> p_z_err[2][9][6][4];
-  vector<Double_t> k_z_err[2][9][6][4];
-  vector<Double_t> pr_z_err[2][9][6][4];
-  vector<Double_t> h_z_err[2][9][6][4];
-  vector<Double_t> p_z_sys[2][9][6][4];
-  vector<Double_t> k_z_sys[2][9][6][4];
-  vector<Double_t> pr_z_sys[2][9][6][4];
-  vector<Double_t> h_z_sys[2][9][6][4];
-  vector<Double_t> z_range_p_z[2][9][6][4];
-  vector<Double_t> z_range_k_z[2][9][6][4];
-  vector<Double_t> z_range_pr_z[2][9][6][4];
-  vector<Double_t> z_range_h_z[2][9][6][4];
-  vector<Double_t> p_reldiff[2][9][6];
-  vector<Double_t> k_reldiff[2][9][6];
-  vector<Double_t> pr_reldiff[2][9][6];
-  vector<Double_t> h_reldiff[2][9][6];
-  vector<Double_t> p_reldiff_err[2][9][6];
-  vector<Double_t> k_reldiff_err[2][9][6];
-  vector<Double_t> pr_reldiff_err[2][9][6];
-  vector<Double_t> h_reldiff_err[2][9][6];
-  vector<Double_t> z_range_p_reldiff[2][9][6];
-  vector<Double_t> z_range_k_reldiff[2][9][6];
-  vector<Double_t> z_range_pr_reldiff[2][9][6];
-  vector<Double_t> z_range_h_reldiff[2][9][6];
-  vector<Double_t> p_y[2][9];
-  vector<Double_t> k_y[2][9];
-  vector<Double_t> pr_y[2][9];
-  vector<Double_t> h_y[2][9];
-  vector<Double_t> p_y_err[2][9];
-  vector<Double_t> k_y_err[2][9];
-  vector<Double_t> pr_y_err[2][9];
-  vector<Double_t> h_y_err[2][9];
-  vector<Double_t> p_y_sys[2][9];
-  vector<Double_t> k_y_sys[2][9];
-  vector<Double_t> pr_y_sys[2][9];
-  vector<Double_t> h_y_sys[2][9];
-  vector<Double_t> z_range_p_y[2][9];
-  vector<Double_t> z_range_k_y[2][9];
-  vector<Double_t> z_range_pr_y[2][9];
-  vector<Double_t> z_range_h_y[2][9];
-  vector<Double_t> p_y_z[2][9][4];
-  vector<Double_t> k_y_z[2][9][4];
-  vector<Double_t> pr_y_z[2][9][4];
-  vector<Double_t> h_y_z[2][9][4];
-  vector<Double_t> p_y_z_err[2][9][4];
-  vector<Double_t> k_y_z_err[2][9][4];
-  vector<Double_t> pr_y_z_err[2][9][4];
-  vector<Double_t> h_y_z_err[2][9][4];
-  vector<Double_t> p_y_z_sys[2][9][4];
-  vector<Double_t> k_y_z_sys[2][9][4];
-  vector<Double_t> pr_y_z_sys[2][9][4];
-  vector<Double_t> h_y_z_sys[2][9][4];
-  vector<Double_t> z_range_p_y_z[2][9][4];
-  vector<Double_t> z_range_k_y_z[2][9][4];
-  vector<Double_t> z_range_pr_y_z[2][9][4];
-  vector<Double_t> z_range_h_y_z[2][9][4];
-  vector<Double_t> p_y_reldiff[2][9];
-  vector<Double_t> k_y_reldiff[2][9];
-  vector<Double_t> pr_y_reldiff[2][9];
-  vector<Double_t> h_y_reldiff[2][9];
-  vector<Double_t> p_y_reldiff_err[2][9];
-  vector<Double_t> k_y_reldiff_err[2][9];
-  vector<Double_t> pr_y_reldiff_err[2][9];
-  vector<Double_t> h_y_reldiff_err[2][9];
-  vector<Double_t> z_range_p_y_reldiff[2][9];
-  vector<Double_t> z_range_k_y_reldiff[2][9];
-  vector<Double_t> z_range_pr_y_reldiff[2][9];
-  vector<Double_t> z_range_h_y_reldiff[2][9];
-  vector<Double_t> sp_y;
-  vector<Double_t> sk_y;
-  vector<Double_t> spr_y;
-  vector<Double_t> sh_y;
-  vector<Double_t> sp_y_err;
-  vector<Double_t> sk_y_err;
-  vector<Double_t> spr_y_err;
-  vector<Double_t> sh_y_err;
-  vector<Double_t> sx_range_p_y;
-  vector<Double_t> sx_range_k_y;
-  vector<Double_t> sx_range_pr_y;
-  vector<Double_t> sx_range_h_y;
-  vector<Double_t> rp_y;
-  vector<Double_t> rk_y;
-  vector<Double_t> rpr_y;
-  vector<Double_t> rh_y;
-  vector<Double_t> rp_y_err;
-  vector<Double_t> rk_y_err;
-  vector<Double_t> rpr_y_err;
-  vector<Double_t> rh_y_err;
-  vector<Double_t> rx_range_p_y;
-  vector<Double_t> rx_range_k_y;
-  vector<Double_t> rx_range_pr_y;
-  vector<Double_t> rx_range_h_y;
+  vector<Float_t> p_m[2][9][6];
+  vector<Float_t> k_m[2][9][6];
+  vector<Float_t> pr_m[2][9][6];
+  vector<Float_t> h_m[2][9][6];
+  vector<Float_t> p_err[2][9][6];
+  vector<Float_t> k_err[2][9][6];
+  vector<Float_t> pr_err[2][9][6];
+  vector<Float_t> h_err[2][9][6];
+  vector<Float_t> p_sys[2][9][6];
+  vector<Float_t> k_sys[2][9][6];
+  vector<Float_t> pr_sys[2][9][6];
+  vector<Float_t> h_sys[2][9][6];
+  vector<Float_t> z_range_p[2][9][6];
+  vector<Float_t> z_range_k[2][9][6];
+  vector<Float_t> z_range_pr[2][9][6];
+  vector<Float_t> z_range_h[2][9][6];
+  vector<Float_t> p_z[2][9][6][4];
+  vector<Float_t> k_z[2][9][6][4];
+  vector<Float_t> pr_z[2][9][6][4];
+  vector<Float_t> h_z[2][9][6][4];
+  vector<Float_t> p_z_err[2][9][6][4];
+  vector<Float_t> k_z_err[2][9][6][4];
+  vector<Float_t> pr_z_err[2][9][6][4];
+  vector<Float_t> h_z_err[2][9][6][4];
+  vector<Float_t> p_z_sys[2][9][6][4];
+  vector<Float_t> k_z_sys[2][9][6][4];
+  vector<Float_t> pr_z_sys[2][9][6][4];
+  vector<Float_t> h_z_sys[2][9][6][4];
+  vector<Float_t> z_range_p_z[2][9][6][4];
+  vector<Float_t> z_range_k_z[2][9][6][4];
+  vector<Float_t> z_range_pr_z[2][9][6][4];
+  vector<Float_t> z_range_h_z[2][9][6][4];
+  vector<Float_t> p_reldiff[2][9][6];
+  vector<Float_t> k_reldiff[2][9][6];
+  vector<Float_t> pr_reldiff[2][9][6];
+  vector<Float_t> h_reldiff[2][9][6];
+  vector<Float_t> p_reldiff_err[2][9][6];
+  vector<Float_t> k_reldiff_err[2][9][6];
+  vector<Float_t> pr_reldiff_err[2][9][6];
+  vector<Float_t> h_reldiff_err[2][9][6];
+  vector<Float_t> z_range_p_reldiff[2][9][6];
+  vector<Float_t> z_range_k_reldiff[2][9][6];
+  vector<Float_t> z_range_pr_reldiff[2][9][6];
+  vector<Float_t> z_range_h_reldiff[2][9][6];
+  vector<Float_t> p_y[2][9];
+  vector<Float_t> k_y[2][9];
+  vector<Float_t> pr_y[2][9];
+  vector<Float_t> h_y[2][9];
+  vector<Float_t> p_y_err[2][9];
+  vector<Float_t> k_y_err[2][9];
+  vector<Float_t> pr_y_err[2][9];
+  vector<Float_t> h_y_err[2][9];
+  vector<Float_t> p_y_sys[2][9];
+  vector<Float_t> k_y_sys[2][9];
+  vector<Float_t> pr_y_sys[2][9];
+  vector<Float_t> h_y_sys[2][9];
+  vector<Float_t> z_range_p_y[2][9];
+  vector<Float_t> z_range_k_y[2][9];
+  vector<Float_t> z_range_pr_y[2][9];
+  vector<Float_t> z_range_h_y[2][9];
+  vector<Float_t> p_y_z[2][9][4];
+  vector<Float_t> k_y_z[2][9][4];
+  vector<Float_t> pr_y_z[2][9][4];
+  vector<Float_t> h_y_z[2][9][4];
+  vector<Float_t> p_y_z_err[2][9][4];
+  vector<Float_t> k_y_z_err[2][9][4];
+  vector<Float_t> pr_y_z_err[2][9][4];
+  vector<Float_t> h_y_z_err[2][9][4];
+  vector<Float_t> p_y_z_sys[2][9][4];
+  vector<Float_t> k_y_z_sys[2][9][4];
+  vector<Float_t> pr_y_z_sys[2][9][4];
+  vector<Float_t> h_y_z_sys[2][9][4];
+  vector<Float_t> z_range_p_y_z[2][9][4];
+  vector<Float_t> z_range_k_y_z[2][9][4];
+  vector<Float_t> z_range_pr_y_z[2][9][4];
+  vector<Float_t> z_range_h_y_z[2][9][4];
+  vector<Float_t> p_y_reldiff[2][9];
+  vector<Float_t> k_y_reldiff[2][9];
+  vector<Float_t> pr_y_reldiff[2][9];
+  vector<Float_t> h_y_reldiff[2][9];
+  vector<Float_t> p_y_reldiff_err[2][9];
+  vector<Float_t> k_y_reldiff_err[2][9];
+  vector<Float_t> pr_y_reldiff_err[2][9];
+  vector<Float_t> h_y_reldiff_err[2][9];
+  vector<Float_t> z_range_p_y_reldiff[2][9];
+  vector<Float_t> z_range_k_y_reldiff[2][9];
+  vector<Float_t> z_range_pr_y_reldiff[2][9];
+  vector<Float_t> z_range_h_y_reldiff[2][9];
+  vector<Float_t> sp_y;
+  vector<Float_t> sk_y;
+  vector<Float_t> spr_y;
+  vector<Float_t> sh_y;
+  vector<Float_t> sp_y_err;
+  vector<Float_t> sk_y_err;
+  vector<Float_t> spr_y_err;
+  vector<Float_t> sh_y_err;
+  vector<Float_t> sx_range_p_y;
+  vector<Float_t> sx_range_k_y;
+  vector<Float_t> sx_range_pr_y;
+  vector<Float_t> sx_range_h_y;
+  vector<Float_t> rp_y;
+  vector<Float_t> rk_y;
+  vector<Float_t> rpr_y;
+  vector<Float_t> rh_y;
+  vector<Float_t> rp_y_err;
+  vector<Float_t> rk_y_err;
+  vector<Float_t> rpr_y_err;
+  vector<Float_t> rh_y_err;
+  vector<Float_t> rx_range_p_y;
+  vector<Float_t> rx_range_k_y;
+  vector<Float_t> rx_range_pr_y;
+  vector<Float_t> rx_range_h_y;
 
   TLine l1(0.1,0.1,0.9,0.1);
   TLine l2(0.1,-0.1,0.9,-0.1);
@@ -1337,29 +1337,29 @@ int main(int argc, char **argv)
             for(auto period : fPeriods)
             {
               fMultiplicities[i][j][k].tab[c][0][l] += (fBinning_period[period][i][j][k].tab[c][1][0][l] && fNDIS_evt_period[period][l%3][1][i][j][k] && fAcceptance[period][i][j][k].tab[c][1][0][l] ?
-                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period[period][i][j][k].tab[c][1][0][l]/(fNDIS_evt_period[period][l%3][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l]))
                                                         : 0);
 
               fMultiplicities[i][j][k].tab[c][0][l] += (fBinning_period[period][i][j][k].tab[c][0][0][l] && fNDIS_evt_period[period][l%3][0][i][j][k] && fAcceptance[period][i][j][k].tab[c][0][0][l] ?
-                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period[period][i][j][k].tab[c][0][0][l]/(fNDIS_evt_period[period][l%3][0][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l]))
                                                         : 0);
 
               fMultiplicities[i][j][k].tab[c][1][l] += (fNDIS_evt_period[period][l%3][1][i][j][k] && fAcceptance[period][i][j][k].tab[c][1][0][l] ?
-                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period[period][i][j][k].tab[c][1][1][l]/pow(fNDIS_evt_period[period][l%3][1][i][j][k],2)-pow(fBinning_period[period][i][j][k].tab[c][1][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period[period][i][j][k].tab[c][1][1][l]/pow(fNDIS_evt_period[period][l%3][1][i][j][k],2)-pow(fBinning_period[period][i][j][k].tab[c][1][0][l],2)*
                                                         fNDIS_evt_err_period[period][l%3][1][i][j][k]/pow(fNDIS_evt_period[period][l%3][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l]),2))
                                                         + fAcceptance[period][i][j][k].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][1][0][l]/(fNDIS_evt_period[period][l%3][1][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[period][i][j][k].tab[c][1][0][l],2)),2)))
                                                         : 0);
 
               fMultiplicities[i][j][k].tab[c][1][l] += (fNDIS_evt_period[period][l%3][0][i][j][k] && fAcceptance[period][i][j][k].tab[c][0][0][l] ?
-                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period[period][i][j][k].tab[c][0][1][l]/pow(fNDIS_evt_period[period][l%3][0][i][j][k],2)-pow(fBinning_period[period][i][j][k].tab[c][0][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period[period][i][j][k].tab[c][0][1][l]/pow(fNDIS_evt_period[period][l%3][0][i][j][k],2)-pow(fBinning_period[period][i][j][k].tab[c][0][0][l],2)*
                                                         fNDIS_evt_err_period[period][l%3][0][i][j][k]/pow(fNDIS_evt_period[period][l%3][0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l]),2))
                                                         + fAcceptance[period][i][j][k].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][0][0][l]/(fNDIS_evt_period[period][l%3][0][i][j][k]*fZ_bin_width[k]*pow(fAcceptance[period][i][j][k].tab[c][0][0][l],2)),2)))
                                                         : 0);
 
               fMultiplicities[i][j][k].tab[c][2][l] += (fNDIS_evt_period[period][l%3][1][i][j][k] && fAcceptance[period][i][j][k].tab[c][1][0][l] ?
-                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err_period[period][i][j][k].tab[c][1][1][l],2)/pow(fNDIS_evt_period[period][l%3][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l],2)+
+                                                        Float_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err_period[period][i][j][k].tab[c][1][1][l],2)/pow(fNDIS_evt_period[period][l%3][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l],2)+
                                                         pow(0.1*sqrt(fAcceptance[period][i][j][k].tab[c][1][1][l])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][1][0][l]/(fNDIS_evt_period[period][l%3][1][i][j][k]*fZ_bin_width[k]
                                                         *pow(fAcceptance[period][i][j][k].tab[c][1][0][l],2)),2)
                                                         + pow(fDiffVectorMeson[c][i][j][k][l]*0.06*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][1][0][l],2)/pow(fNDIS_evt_period[period][l%3][1][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][1][0][l],2)))
@@ -1367,7 +1367,7 @@ int main(int argc, char **argv)
                                                         : 0);
 
               fMultiplicities[i][j][k].tab[c][2][l] += (fNDIS_evt_period[period][l%3][0][i][j][k] && fAcceptance[period][i][j][k].tab[c][0][0][l] ?
-                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err_period[period][i][j][k].tab[c][0][1][l],2)/pow(fNDIS_evt_period[period][l%3][0][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l],2)+
+                                                        Float_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fRich_sys_err_period[period][i][j][k].tab[c][0][1][l],2)/pow(fNDIS_evt_period[period][l%3][0][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l],2)+
                                                         pow(0.1*sqrt(fAcceptance[period][i][j][k].tab[c][0][1][l])*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][0][0][l]/(fNDIS_evt_period[period][l%3][0][i][j][k]*fZ_bin_width[k]
                                                         *pow(fAcceptance[period][i][j][k].tab[c][0][0][l],2)),2)
                                                         + pow(fDiffVectorMeson[c][i][j][k][l]*0.06*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period[period][i][j][k].tab[c][0][0][l],2)/pow(fNDIS_evt_period[period][l%3][0][i][j][k]*fZ_bin_width[k]*fAcceptance[period][i][j][k].tab[c][0][0][l],2)))
@@ -1386,23 +1386,23 @@ int main(int argc, char **argv)
               for(auto period : fPeriods)
               {
                 fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] += (fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l] && fNDIS_evt_zvtx_period[period][l%3][1][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l] ?
-                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l]/(fNDIS_evt_zvtx_period[period][l%3][1][i][j][k][zv]*fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l]))
                                                         : 0);
 
                 fMultiplicities_zvtx[i][j][k][zv].tab[c][0][l] += (fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l] && fNDIS_evt_zvtx_period[period][l%3][0][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l] ?
-                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l]/(fNDIS_evt_zvtx_period[period][l%3][0][i][j][k][zv]*fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l]))
                                                         : 0);
 
                 fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l] += (fNDIS_evt_zvtx_period[period][l%3][1][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l] ?
-                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][1][l]/pow(fNDIS_evt_zvtx_period[period][l%3][1][i][j][k][zv],2)-pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][1][l]/pow(fNDIS_evt_zvtx_period[period][l%3][1][i][j][k][zv],2)-pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l],2)*
                                                         fNDIS_evt_err_zvtx_period[period][l%3][1][i][j][k][zv]/pow(fNDIS_evt_zvtx_period[period][l%3][1][i][j][k][zv],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l]),2))
                                                         + fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_zvtx[period][i][j][k][zv].tab[c][1][0][l]/(fNDIS_evt_zvtx_period[period][l%3][1][i][j][k][zv]*fZ_bin_width[k]*pow(fAcceptance_zvtx[period][i][j][k][zv].tab[c][1][0][l],2)),2)))
                                                         : 0);
 
                 fMultiplicities_zvtx[i][j][k][zv].tab[c][1][l] += (fNDIS_evt_zvtx_period[period][l%3][0][i][j][k][zv] && fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l] ?
-                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][1][l]/pow(fNDIS_evt_zvtx_period[period][l%3][0][i][j][k][zv],2)-pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][1][l]/pow(fNDIS_evt_zvtx_period[period][l%3][0][i][j][k][zv],2)-pow(fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l],2)*
                                                         fNDIS_evt_err_zvtx_period[period][l%3][0][i][j][k][zv]/pow(fNDIS_evt_zvtx_period[period][l%3][0][i][j][k][zv],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l]),2))
                                                         + fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_zvtx[period][i][j][k][zv].tab[c][0][0][l]/(fNDIS_evt_zvtx_period[period][l%3][0][i][j][k][zv]*fZ_bin_width[k]*pow(fAcceptance_zvtx[period][i][j][k][zv].tab[c][0][0][l],2)),2)))
                                                         : 0);
@@ -1423,23 +1423,23 @@ int main(int argc, char **argv)
               for(auto period : fPeriods)
               {
                 fMultiplicities_theta[i][j][k][th].tab[c][0][l] += (fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l] && fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l] ?
-                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*(fTh_bin_width[th])*fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l]))
                                                         : 0);
 
                 fMultiplicities_theta[i][j][k][th].tab[c][0][l] += (fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l] && fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l] ?
-                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*(fTh_bin_width[th])*fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l]))
                                                         : 0);
 
                 fMultiplicities_theta[i][j][k][th].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l] ?
-                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_theta[period][i][j][k][th].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_theta[period][i][j][k][th].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l],2)*
                                                         fNDIS_evt_err_period[period][0][1][i][j][k]/pow(fNDIS_evt_period[period][0][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*(fTh_bin_width[th])*fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l]),2))
                                                         + fAcceptance_theta[period][i][j][k][th].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_theta[period][i][j][k][th].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*(fTh_bin_width[th])*pow(fAcceptance_theta[period][i][j][k][th].tab[c][1][0][l],2)),2)))
                                                         : 0);
 
                 fMultiplicities_theta[i][j][k][th].tab[c][1][l] += (fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l] ?
-                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_theta[period][i][j][k][th].tab[c][0][1][l]/pow(fNDIS_evt_period[period][0][0][i][j][k],2)-pow(fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_theta[period][i][j][k][th].tab[c][0][1][l]/pow(fNDIS_evt_period[period][0][0][i][j][k],2)-pow(fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l],2)*
                                                         fNDIS_evt_err_period[period][0][0][i][j][k]/pow(fNDIS_evt_period[period][0][0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*(fTh_bin_width[th])*fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l]),2))
                                                         + fAcceptance_theta[period][i][j][k][th].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_theta[period][i][j][k][th].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*(fTh_bin_width[th])*pow(fAcceptance_theta[period][i][j][k][th].tab[c][0][0][l],2)),2)))
                                                         : 0);
@@ -1459,23 +1459,23 @@ int main(int argc, char **argv)
               for(auto period : fPeriods)
               {
                 fMultiplicities_pt[i][j][k][pt].tab[c][0][l] += (fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l] && fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l] ?
-                                                        Double_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[1][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*(fpT_bin_width[pt]/3)*fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l]))
                                                         : 0);
 
                 fMultiplicities_pt[i][j][k][pt].tab[c][0][l] += (fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l] && fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l] ?
-                                                        Double_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
+                                                        Float_t((PeriodFlux[0][period]/PeriodFluxTot)*fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)
                                                         *fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*(fpT_bin_width[pt]/3)*fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l]))
                                                         : 0);
 
                 fMultiplicities_pt[i][j][k][pt].tab[c][1][l] += (fNDIS_evt_period[period][0][1][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l] ?
-                                                        Double_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_pt[period][i][j][k][pt].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[1][period]/PeriodFluxTot,2)*(((fBinning_period_pt[period][i][j][k][pt].tab[c][1][1][l]/pow(fNDIS_evt_period[period][0][1][i][j][k],2)-pow(fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l],2)*
                                                         fNDIS_evt_err_period[period][0][1][i][j][k]/pow(fNDIS_evt_period[period][0][1][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*(fpT_bin_width[pt]/3)*fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l]),2))
                                                         + fAcceptance_pt[period][i][j][k][pt].tab[c][1][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_pt[period][i][j][k][pt].tab[c][1][0][l]/(fNDIS_evt_period[period][0][1][i][j][k]*fZ_bin_width[k]*(fpT_bin_width[pt]/3)*pow(fAcceptance_pt[period][i][j][k][pt].tab[c][1][0][l],2)),2)))
                                                         : 0);
 
                 fMultiplicities_pt[i][j][k][pt].tab[c][1][l] += (fNDIS_evt_period[period][0][0][i][j][k] && fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l] ?
-                                                        Double_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_pt[period][i][j][k][pt].tab[c][0][1][l]/pow(fNDIS_evt_period[period][0][0][i][j][k],2)-pow(fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l],2)*
+                                                        Float_t(pow(PeriodFlux[0][period]/PeriodFluxTot,2)*(((fBinning_period_pt[period][i][j][k][pt].tab[c][0][1][l]/pow(fNDIS_evt_period[period][0][0][i][j][k],2)-pow(fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l],2)*
                                                         fNDIS_evt_err_period[period][0][0][i][j][k]/pow(fNDIS_evt_period[period][0][0][i][j][k],4))*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)/(fZ_bin_width[k]*(fpT_bin_width[pt]/3)*fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l]),2))
                                                         + fAcceptance_pt[period][i][j][k][pt].tab[c][0][1][l]*pow(fDiffVectorMeson[c][i][j][k][l]*GetSemiInclusiveRadiativeCorrection(i,j,k+1)*fBinning_period_pt[period][i][j][k][pt].tab[c][0][0][l]/(fNDIS_evt_period[period][0][0][i][j][k]*fZ_bin_width[k]*(fpT_bin_width[pt]/3)*pow(fAcceptance_pt[period][i][j][k][pt].tab[c][0][0][l],2)),2)))
                                                         : 0);
@@ -2465,7 +2465,7 @@ int main(int argc, char **argv)
       }
     }
 
-    Double_t MultiplicitiesSum[2][2][4];
+    Float_t MultiplicitiesSum[2][2][4];
     MultiplicitiesSum[0][0][0] = 0;
     MultiplicitiesSum[0][1][0] = 0;
     MultiplicitiesSum[0][0][1] = 0;

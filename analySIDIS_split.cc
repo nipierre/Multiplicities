@@ -44,7 +44,7 @@ using namespace std;
 void printProgress(int event, int total)
 {
     string points[6] = {"   ",".  ",".. ","..."," ..","  ."};
-    double percentage = double(event)/double(total);
+    float percentage = float(event)/float(total);
     int val = (int) (percentage * 100);
     int lpad = (int) (percentage * PBWIDTH);
     int rpad = PBWIDTH - lpad;
@@ -54,9 +54,9 @@ void printProgress(int event, int total)
 
 // Fusion sort
 
-void fusion(Double_t* tab, Int_t beg1 , Int_t end1, Int_t end2)
+void fusion(Float_t* tab, Int_t beg1 , Int_t end1, Int_t end2)
 {
-   Double_t* tab2 = new Double_t[end1-beg1+1];
+   Float_t* tab2 = new Float_t[end1-beg1+1];
    Int_t beg2 = end1+1;
    Int_t loop1 = beg1;
    Int_t loop2 = beg2;
@@ -88,7 +88,7 @@ void fusion(Double_t* tab, Int_t beg1 , Int_t end1, Int_t end2)
    delete tab2;
 }
 
-void fusionSort2(Double_t* tab, Int_t begin, Int_t end)
+void fusionSort2(Float_t* tab, Int_t begin, Int_t end)
 {
    if(begin!=end)
    {
@@ -99,7 +99,7 @@ void fusionSort2(Double_t* tab, Int_t begin, Int_t end)
    }
 }
 
-void fusionSort(Double_t* tab, Int_t len)
+void fusionSort(Float_t* tab, Int_t len)
 {
    if(len>0)
       fusionSort2(tab, 0, len-1);
@@ -127,33 +127,33 @@ void InitTargetFile(string pfile)
   cout<<"INFO : Target cell description loaded"<<endl;
 }
 
-void CellCenter(Double_t z, Double_t& xc, Double_t& yc, Double_t& R)
+void CellCenter(Float_t z, Float_t& xc, Float_t& yc, Float_t& R)
 {
   xc = 1000000;
   yc = 1000000;
 
   for(Int_t i = 0; i < int(fZv.size()-1); i++)
   {
-    Double_t z1 = fZv[i];
-    Double_t z2 = fZv[i+1];
+    Float_t z1 = fZv[i];
+    Float_t z2 = fZv[i+1];
 
     if( z2 < z ) continue;
     if( z1 > z ) continue;
 
-    Double_t xc1 = fXv[i];
-    Double_t xc2 = fXv[i+1];
+    Float_t xc1 = fXv[i];
+    Float_t xc2 = fXv[i+1];
 
-    Double_t yc1 = fYv[i];
-    Double_t yc2 = fYv[i+1];
+    Float_t yc1 = fYv[i];
+    Float_t yc2 = fYv[i+1];
 
-    Double_t rc1 = fRv[i];
-    Double_t rc2 = fRv[i+1];
+    Float_t rc1 = fRv[i];
+    Float_t rc2 = fRv[i+1];
 
-    Double_t dxcdz = (xc2-xc1)/(z2-z1);
-    Double_t dycdz = (yc2-yc1)/(z2-z1);
-    Double_t drcdz = (rc2-rc1)/(z2-z1);
+    Float_t dxcdz = (xc2-xc1)/(z2-z1);
+    Float_t dycdz = (yc2-yc1)/(z2-z1);
+    Float_t drcdz = (rc2-rc1)/(z2-z1);
 
-    Double_t dz = z-z1;
+    Float_t dz = z-z1;
     xc = xc1 + dxcdz*dz;
     yc = yc1 + dycdz*dz;
     R = rc1 + drcdz*dz;
@@ -162,13 +162,13 @@ void CellCenter(Double_t z, Double_t& xc, Double_t& yc, Double_t& R)
   }
 }
 
-bool InTarget(Double_t xvtx, Double_t yvtx, Double_t zvtx)
+bool InTarget(Float_t xvtx, Float_t yvtx, Float_t zvtx)
 {
-  Double_t xc, yc, R;
+  Float_t xc, yc, R;
   CellCenter(zvtx, xc, yc, R);
-  Double_t dx = xvtx-xc;
-  Double_t dy = yvtx-yc;
-  Double_t r = sqrt(dx*dx + dy*dy);
+  Float_t dx = xvtx-xc;
+  Float_t dy = yvtx-yc;
+  Float_t r = sqrt(dx*dx + dy*dy);
 
   return( r < 1.9 && yvtx < 1.2 );
 }
@@ -236,7 +236,7 @@ void LoadSemiInclusiveRadiativeCorrection()
   proton.close();
 }
 
-Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
+Float_t GetInclusiveRadiativeCorrection(Float_t x, Float_t y)
 {
   int xb=-1;
   int yb=-1;
@@ -307,7 +307,7 @@ Double_t GetInclusiveRadiativeCorrection(Double_t x, Double_t y)
   }
 }
 
-Double_t GetSemiInclusiveRadiativeCorrection(Double_t x, Double_t y, Double_t z)
+Float_t GetSemiInclusiveRadiativeCorrection(Float_t x, Float_t y, Float_t z)
 {
   int xb=-1;
   int yb=-1;
@@ -1620,12 +1620,12 @@ int main(int argc, char **argv)
   else if(Y2016) year=2016;
 
   //Kinematics
-  Double_t Q2 = 0;
-  Double_t xBj = 0;
-  Double_t yBj = 0;
-  Double_t zBj = 0;
-  Double_t wBj = 0;
-  Double_t nu = 0;
+  Float_t Q2 = 0;
+  Float_t xBj = 0;
+  Float_t yBj = 0;
+  Float_t zBj = 0;
+  Float_t wBj = 0;
+  Float_t nu = 0;
 
   if(kin_flag) create_kin_plots();
 
@@ -1770,16 +1770,16 @@ int main(int argc, char **argv)
       vector<Pvsz> Pvszloose;
       vector<Pvsz> Pvszsevere;
       vector<Pvsz> Pvsz_errlocal;
-      vector<Double_t> XBjlocal;
-      vector<Double_t> YBjlocal;
-      vector<Double_t> Q2local;
-      vector<Double_t> Zvtxlocal;
-      vector<Double_t> XBjloose;
-      vector<Double_t> YBjloose;
-      vector<Double_t> Q2loose;
-      vector<Double_t> XBjsevere;
-      vector<Double_t> YBjsevere;
-      vector<Double_t> Q2severe;
+      vector<Float_t> XBjlocal;
+      vector<Float_t> YBjlocal;
+      vector<Float_t> Q2local;
+      vector<Float_t> Zvtxlocal;
+      vector<Float_t> XBjloose;
+      vector<Float_t> YBjloose;
+      vector<Float_t> Q2loose;
+      vector<Float_t> XBjsevere;
+      vector<Float_t> YBjsevere;
+      vector<Float_t> Q2severe;
 
       for (Int_t ip = 0; ip < N; ip++)
       {
@@ -1855,7 +1855,7 @@ int main(int argc, char **argv)
         //--------- Vertex Study ---------------------------------------------------
         //--------------------------------------------------------------------------
 
-        Double_t zlab = z->GetLeaf("z")->GetValue();
+        Float_t zlab = z->GetLeaf("z")->GetValue();
         zlabbin=-1;
 
         if(Y2016)
@@ -1915,44 +1915,44 @@ int main(int argc, char **argv)
         //--------------------------------------------------------------------------
 
         //MC target position new
-        static const Double_t dz = 2;
+        static const Float_t dz = 2;
 
-        static const Double_t mcxU = -0.085;
-        static const Double_t mcyU = 0.33;
-        static const Double_t mczU_1 = -65+dz+4;
-        //static const double mczU_2 = -35+dz;
-        //static const double mczC_1 = -30+dz+8;
-        //static const double mczC_2 = 30+dz;
-        static const Double_t mcxD = -0.085;
-        static const Double_t mcyD = 0.33;
-        //static const double mczD_1 = 35+dz+2;
-        static const Double_t mczD_2 = 65+dz;
+        static const Float_t mcxU = -0.085;
+        static const Float_t mcyU = 0.33;
+        static const Float_t mczU_1 = -65+dz+4;
+        //static const float mczU_2 = -35+dz;
+        //static const float mczC_1 = -30+dz+8;
+        //static const float mczC_2 = 30+dz;
+        static const Float_t mcxD = -0.085;
+        static const Float_t mcyD = 0.33;
+        //static const float mczD_1 = 35+dz+2;
+        static const Float_t mczD_2 = 65+dz;
 
-        double mcR    = 1.4;
-        //double mcyCUT = 1.4;
+        float mcR    = 1.4;
+        //float mcyCUT = 1.4;
 
         //target position data 2006
-        static const Double_t xU = -0.1;
-        static const Double_t yU = 0.33;
-        static const Double_t zU_1 = -65+dz+4;
-        //static const double zU_2 = -35+dz;
-        //static const double zC_1 = -30+dz+8;
-        //static const double zC_2 =  30+dz;
-        static const Double_t xD = -0.07;
-        static const Double_t yD = 0.33;
-        //static const double zD_1 =  35+dz+2;
-        static const Double_t zD_2 =  65+dz;
+        static const Float_t xU = -0.1;
+        static const Float_t yU = 0.33;
+        static const Float_t zU_1 = -65+dz+4;
+        //static const float zU_2 = -35+dz;
+        //static const float zC_1 = -30+dz+8;
+        //static const float zC_2 =  30+dz;
+        static const Float_t xD = -0.07;
+        static const Float_t yD = 0.33;
+        //static const float zD_1 =  35+dz+2;
+        static const Float_t zD_2 =  65+dz;
 
-        Double_t R    = 1.4;//1.4;
-        Double_t yCUT = 1.4;
+        Float_t R    = 1.4;//1.4;
+        Float_t yCUT = 1.4;
 
-        Double_t mcxC = (mcxD-mcxU) * (mczU_1-z->GetLeaf("z")->GetValue()) / (mczU_1-mczD_2) + mcxU;
-        Double_t mcyC = (mcyD-mcyU) * (mczU_1-z->GetLeaf("z")->GetValue()) / (mczU_1-mczD_2) + mcyU;
-        Double_t mcr = sqrt( (x->GetLeaf("x")->GetValue()-mcxC)*(x->GetLeaf("x")->GetValue()-mcxC)
+        Float_t mcxC = (mcxD-mcxU) * (mczU_1-z->GetLeaf("z")->GetValue()) / (mczU_1-mczD_2) + mcxU;
+        Float_t mcyC = (mcyD-mcyU) * (mczU_1-z->GetLeaf("z")->GetValue()) / (mczU_1-mczD_2) + mcyU;
+        Float_t mcr = sqrt( (x->GetLeaf("x")->GetValue()-mcxC)*(x->GetLeaf("x")->GetValue()-mcxC)
                       + (y->GetLeaf("y")->GetValue()-mcyC)*(y->GetLeaf("y")->GetValue()-mcyC) );
-        Double_t xC = (xD-xU) * (zU_1-z->GetLeaf("z")->GetValue()) / (zU_1-zD_2) + xU;
-        Double_t yC = (yD-yU) * (zU_1-z->GetLeaf("z")->GetValue()) / (zU_1-zD_2) + yU;
-        Double_t r = sqrt( (x->GetLeaf("x")->GetValue()-xC)*(x->GetLeaf("x")->GetValue()-xC)
+        Float_t xC = (xD-xU) * (zU_1-z->GetLeaf("z")->GetValue()) / (zU_1-zD_2) + xU;
+        Float_t yC = (yD-yU) * (zU_1-z->GetLeaf("z")->GetValue()) / (zU_1-zD_2) + yU;
+        Float_t r = sqrt( (x->GetLeaf("x")->GetValue()-xC)*(x->GetLeaf("x")->GetValue()-xC)
                       + (y->GetLeaf("y")->GetValue()-yC)*(y->GetLeaf("y")->GetValue()-yC) );
 
         // -------------------------------------------------------------------------
@@ -2210,8 +2210,8 @@ int main(int argc, char **argv)
         Pvsz pzcontainer_loose;
         Pvsz pzcontainer_severe;
         Pvsz pzcontainer_err;
-        vector<Double_t> thlocal;
-        vector<Double_t> ptlocal;
+        vector<Float_t> thlocal;
+        vector<Float_t> ptlocal;
         hadiden hadcontainer;
 
         for(int i=0; i<p->GetLeaf("Hadrons.P")->GetLen(); i++)
@@ -2232,7 +2232,7 @@ int main(int argc, char **argv)
             fLHsec_set.insert(LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i));
             fLHsec_set.insert(LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i));
 
-            fLHsec_tab = new Double_t[5];
+            fLHsec_tab = new Float_t[5];
             fLHsec_tab[0] = LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i);
             fLHsec_tab[1] = LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i);
             fLHsec_tab[2] = LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i);
@@ -2248,7 +2248,7 @@ int main(int argc, char **argv)
             fLHsec_set.insert(LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i));
             fLHsec_set.insert(LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i));
 
-            fLHsec_tab = new Double_t[4];
+            fLHsec_tab = new Float_t[4];
             fLHsec_tab[0] = LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i);
             fLHsec_tab[1] = LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i);
             fLHsec_tab[2] = LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i);
@@ -2257,7 +2257,7 @@ int main(int argc, char **argv)
             fLHsec = fLHsec_tab[2];
           }
 
-          set<Double_t>::iterator it = fLHsec_set.begin();
+          set<Float_t>::iterator it = fLHsec_set.begin();
           advance(it, fLHsec_set.size()-2);
   #ifdef DEBUG
           if(*it != fLHsec) {cout << i << " : "
@@ -2652,8 +2652,8 @@ int main(int argc, char **argv)
 
           Int_t theta_bin, mom_bin;
           TMatrixD res_vect(3,1);
-          Double_t res_vect_err[3];
-          Double_t hadron_nb;
+          Float_t res_vect_err[3];
+          Float_t hadron_nb;
 
           // Theta and momentum binning
 
