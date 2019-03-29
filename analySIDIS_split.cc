@@ -23,7 +23,7 @@ using namespace std;
 #define Y2012 0
 #define Y2016 1
 #define MOMENTUM_DOWN 12
-#define MOMENTUM_UP 40
+#define MOMENTUM_UP 13
 #define XMIN 0.004
 #define XMAX 0.4
 #define YMIN 0.1
@@ -1651,6 +1651,7 @@ int main(int argc, char **argv)
   LoadElectronCorrection();
 
   ofstream test("test.txt", std::ofstream::out | std::ofstream::trunc);
+  ofstream count("count.txt", std::ofstream::out | std::ofstream::trunc);
 
   //----------------------------------------------------------------------------
   //--------- nu cut prep ------------------------------------------------------
@@ -2627,7 +2628,7 @@ int main(int argc, char **argv)
           if(kin_flag) fThRich[0]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
 
           // Theta cut
-          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.04)) continue;
           fTRICH++;
 
           if(kin_flag) fThRich[1]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
@@ -3715,6 +3716,15 @@ int main(int argc, char **argv)
         		fNDIS_evt[0][0][i][j][k] << " " << fBinning[i][j][k].tab[c][0][0][0] << " " << fBinning[i][j][k].tab[c][0][0][1] << " " <<
         		fBinning[i][j][k].tab[c][0][0][2] << " " << fBinning[i][j][k].tab[c][0][0][3] << endl;
 
+            count << fBinning[i][j][k].tab[c][1][1][0]+fBinning[i][j][k].tab[c][1][0][0] << " "
+                 << fBinning[i][j][k].tab[c][0][1][0]+fBinning[i][j][k].tab[c][0][0][0] << " "
+                 << fBinning[i][j][k].tab[c][1][1][1]+fBinning[i][j][k].tab[c][1][0][1] << " "
+                 << fBinning[i][j][k].tab[c][0][1][1]+fBinning[i][j][k].tab[c][0][0][1] << " "
+                 << fBinning[i][j][k].tab[c][1][1][2]+fBinning[i][j][k].tab[c][1][0][2] << " "
+                 << fBinning[i][j][k].tab[c][0][1][2]+fBinning[i][j][k].tab[c][0][0][2] << " "
+                 << fBinning[i][j][k].tab[c][1][1][3]+fBinning[i][j][k].tab[c][1][0][3] << " "
+                 << fBinning[i][j][k].tab[c][0][1][3]+fBinning[i][j][k].tab[c][0][0][3] << endl;
+
   	      }
         }
       }
@@ -3846,6 +3856,7 @@ int main(int argc, char **argv)
 
 
   test.close();
+  count.close();
 
   return 0;
 }
