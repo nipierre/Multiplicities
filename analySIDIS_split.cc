@@ -23,7 +23,7 @@ using namespace std;
 #define Y2012 0
 #define Y2016 1
 #define MOMENTUM_DOWN 12
-#define MOMENTUM_UP 13
+#define MOMENTUM_UP 40
 #define XMIN 0.004
 #define XMAX 0.4
 #define YMIN 0.1
@@ -1650,8 +1650,8 @@ int main(int argc, char **argv)
   LoadSemiInclusiveRadiativeCorrection();
   LoadElectronCorrection();
 
-  ofstream test("test.txt", std::ofstream::out | std::ofstream::trunc);
-  ofstream count("count.txt", std::ofstream::out | std::ofstream::trunc);
+  // ofstream test("test.txt", std::ofstream::out | std::ofstream::trunc);
+  // ofstream count("count.txt", std::ofstream::out | std::ofstream::trunc);
 
   //----------------------------------------------------------------------------
   //--------- nu cut prep ------------------------------------------------------
@@ -2699,14 +2699,14 @@ int main(int argc, char **argv)
           int xdx = x->GetLeaf("x")->GetValue()+dz*tan(th->GetLeaf("Hadrons.th")->GetValue(i))*cos(ph->GetLeaf("Hadrons.ph")->GetValue(i));
           // if(!( ( -35 < xdx && xdx < 35 ) && ( -25 < ydy && ydy < 25 ) )) continue;
 
-          test << xBj << " " << Q2 << " " << yBj << " " << p->GetLeaf("Hadrons.P")->GetValue(i) << " "
-               << thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) << " " << zBj << " " << fId << " "
-               << LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) << " "
-               << LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) << " "
-               << LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) << " "
-               << LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) << " "
-               << LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) << " "
-               << LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) << " " << endl;
+          // test << xBj << " " << Q2 << " " << yBj << " " << p->GetLeaf("Hadrons.P")->GetValue(i) << " "
+          //      << thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) << " " << zBj << " " << fId << " "
+          //      << LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i) << " "
+          //      << LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i) << " "
+          //      << LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i) << " "
+          //      << LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) << " "
+          //      << LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) << " "
+          //      << LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) << " " << endl;
 
 
           if(kin_flag)
@@ -3720,23 +3720,23 @@ int main(int argc, char **argv)
         }
       }
     }
-    for(int i=0; i<9; i++)
-    {
-      for(int j=0; j<5; j++)
-      {
-        for(int k=0; k<12; k++)
-        {
-          count << fBinning[i][j][k].tab[1][1][0][0]+fBinning[i][j][k].tab[1][0][0][0] << " "
-               << fBinning[i][j][k].tab[0][1][0][0]+fBinning[i][j][k].tab[0][0][0][0] << " "
-               << fBinning[i][j][k].tab[1][1][0][1]+fBinning[i][j][k].tab[1][0][0][1] << " "
-               << fBinning[i][j][k].tab[0][1][0][1]+fBinning[i][j][k].tab[0][0][0][1] << " "
-               << fBinning[i][j][k].tab[1][1][0][2]+fBinning[i][j][k].tab[1][0][0][2] << " "
-               << fBinning[i][j][k].tab[0][1][0][2]+fBinning[i][j][k].tab[0][0][0][2] << " "
-               << fBinning[i][j][k].tab[1][1][0][3]+fBinning[i][j][k].tab[1][0][0][3] << " "
-               << fBinning[i][j][k].tab[0][1][0][3]+fBinning[i][j][k].tab[0][0][0][3] << endl;
-        }
-      }
-    }
+    // for(int i=0; i<9; i++)
+    // {
+    //   for(int j=0; j<5; j++)
+    //   {
+    //     for(int k=0; k<12; k++)
+    //     {
+    //       count << fBinning[i][j][k].tab[1][1][0][0]+fBinning[i][j][k].tab[1][0][0][0] << " "
+    //            << fBinning[i][j][k].tab[0][1][0][0]+fBinning[i][j][k].tab[0][0][0][0] << " "
+    //            << fBinning[i][j][k].tab[1][1][0][1]+fBinning[i][j][k].tab[1][0][0][1] << " "
+    //            << fBinning[i][j][k].tab[0][1][0][1]+fBinning[i][j][k].tab[0][0][0][1] << " "
+    //            << fBinning[i][j][k].tab[1][1][0][2]+fBinning[i][j][k].tab[1][0][0][2] << " "
+    //            << fBinning[i][j][k].tab[0][1][0][2]+fBinning[i][j][k].tab[0][0][0][2] << " "
+    //            << fBinning[i][j][k].tab[1][1][0][3]+fBinning[i][j][k].tab[1][0][0][3] << " "
+    //            << fBinning[i][j][k].tab[0][1][0][3]+fBinning[i][j][k].tab[0][0][0][3] << endl;
+    //     }
+    //   }
+    // }
 
     ofs_h.close();
     ofs_d.close();
@@ -3863,8 +3863,8 @@ int main(int argc, char **argv)
        << '|' << setw(15) << fPplus_true << '|' << setw(15) << fPminus_true << endl;
 
 
-  test.close();
-  count.close();
+  // test.close();
+  // count.close();
 
   return 0;
 }
