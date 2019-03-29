@@ -34,7 +34,7 @@ using namespace std;
 
 #define IRC 0
 #define SIRC 0
-#define RICH 0
+#define RICH 1
 
 // Progress bar
 
