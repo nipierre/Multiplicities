@@ -23,7 +23,7 @@ using namespace std;
 #define Y2012 0
 #define Y2016 1
 #define MOMENTUM_DOWN 12
-#define MOMENTUM_UP 40
+#define MOMENTUM_UP 13
 #define XMIN 0.004
 #define XMAX 0.4
 #define YMIN 0.1
@@ -34,7 +34,7 @@ using namespace std;
 
 #define IRC 0
 #define SIRC 0
-#define RICH 0
+#define RICH 1
 
 // Progress bar
 
@@ -792,21 +792,16 @@ void load_rich_mat_2016(string prich, string prich_err)
 
   for(int i=0; i<10; i++)
   {
-    cout << rich_mat_p[0][i][0][0] << " " << rich_mat_p[0][i][0][1] << " " << rich_mat_p[0][i][0][2] << endl;
-    cout << rich_mat_p[0][i][1][0] << " " << rich_mat_p[0][i][1][1] << " " << rich_mat_p[0][i][1][2] << endl;
-    cout << rich_mat_p[0][i][2][0] << " " << rich_mat_p[0][i][2][1] << " " << rich_mat_p[0][i][2][2] << endl;
-
-    cout << endl;
-
-    cout << rich_mat_p[1][i][0][0] << " " << rich_mat_p[1][i][0][1] << " " << rich_mat_p[1][i][0][2] << endl;
-    cout << rich_mat_p[1][i][1][0] << " " << rich_mat_p[1][i][1][1] << " " << rich_mat_p[1][i][1][2] << endl;
-    cout << rich_mat_p[1][i][2][0] << " " << rich_mat_p[1][i][2][1] << " " << rich_mat_p[1][i][2][2] << endl;
-
-    cout << endl;
 
     cout << rich_mat_m[0][i][0][0] << " " << rich_mat_m[0][i][0][1] << " " << rich_mat_m[0][i][0][2] << endl;
     cout << rich_mat_m[0][i][1][0] << " " << rich_mat_m[0][i][1][1] << " " << rich_mat_m[0][i][1][2] << endl;
     cout << rich_mat_m[0][i][2][0] << " " << rich_mat_m[0][i][2][1] << " " << rich_mat_m[0][i][2][2] << endl;
+
+    cout << endl;
+
+    cout << rich_mat_p[0][i][0][0] << " " << rich_mat_p[0][i][0][1] << " " << rich_mat_p[0][i][0][2] << endl;
+    cout << rich_mat_p[0][i][1][0] << " " << rich_mat_p[0][i][1][1] << " " << rich_mat_p[0][i][1][2] << endl;
+    cout << rich_mat_p[0][i][2][0] << " " << rich_mat_p[0][i][2][1] << " " << rich_mat_p[0][i][2][2] << endl;
 
     cout << endl;
 
@@ -816,36 +811,42 @@ void load_rich_mat_2016(string prich, string prich_err)
 
     cout << endl;
 
+    cout << rich_mat_p[1][i][0][0] << " " << rich_mat_p[1][i][0][1] << " " << rich_mat_p[1][i][0][2] << endl;
+    cout << rich_mat_p[1][i][1][0] << " " << rich_mat_p[1][i][1][1] << " " << rich_mat_p[1][i][1][2] << endl;
+    cout << rich_mat_p[1][i][2][0] << " " << rich_mat_p[1][i][2][1] << " " << rich_mat_p[1][i][2][2] << endl;
+
+    cout << endl;
+
     inv_rich_p[0][i] = rich_mat_p[0][i].InvertFast();
     inv_rich_p[1][i] = rich_mat_p[1][i].InvertFast();
     inv_rich_m[0][i] = rich_mat_m[0][i].InvertFast();
     inv_rich_m[1][i] = rich_mat_m[1][i].InvertFast();
 
-    cout << inv_rich_p[0][i][0][0] << " " << inv_rich_p[0][i][0][1] << " " << inv_rich_p[0][i][0][2] << endl;
-    cout << inv_rich_p[0][i][1][0] << " " << inv_rich_p[0][i][1][1] << " " << inv_rich_p[0][i][1][2] << endl;
-    cout << inv_rich_p[0][i][2][0] << " " << inv_rich_p[0][i][2][1] << " " << inv_rich_p[0][i][2][2] << endl;
-
-    cout << endl;
-
-
-    cout << inv_rich_p[1][i][0][0] << " " << inv_rich_p[1][i][0][1] << " " << inv_rich_p[1][i][0][2] << endl;
-    cout << inv_rich_p[1][i][1][0] << " " << inv_rich_p[1][i][1][1] << " " << inv_rich_p[1][i][1][2] << endl;
-    cout << inv_rich_p[1][i][2][0] << " " << inv_rich_p[1][i][2][1] << " " << inv_rich_p[1][i][2][2] << endl;
-
-    cout << endl;
-
-
-    cout << inv_rich_m[0][i][0][0] << " " << inv_rich_m[0][i][0][1] << " " << inv_rich_m[0][i][0][2] << endl;
-    cout << inv_rich_m[0][i][1][0] << " " << inv_rich_m[0][i][1][1] << " " << inv_rich_m[0][i][1][2] << endl;
-    cout << inv_rich_m[0][i][2][0] << " " << inv_rich_m[0][i][2][1] << " " << inv_rich_m[0][i][2][2] << endl;
-
-    cout << endl;
-
-    cout << inv_rich_m[1][i][0][0] << " " << inv_rich_m[1][i][0][1] << " " << inv_rich_m[1][i][0][2] << endl;
-    cout << inv_rich_m[1][i][1][0] << " " << inv_rich_m[1][i][1][1] << " " << inv_rich_m[1][i][1][2] << endl;
-    cout << inv_rich_m[1][i][2][0] << " " << inv_rich_m[1][i][2][1] << " " << inv_rich_m[1][i][2][2] << endl;
-
-    cout << endl;
+    // cout << inv_rich_p[0][i][0][0] << " " << inv_rich_p[0][i][0][1] << " " << inv_rich_p[0][i][0][2] << endl;
+    // cout << inv_rich_p[0][i][1][0] << " " << inv_rich_p[0][i][1][1] << " " << inv_rich_p[0][i][1][2] << endl;
+    // cout << inv_rich_p[0][i][2][0] << " " << inv_rich_p[0][i][2][1] << " " << inv_rich_p[0][i][2][2] << endl;
+    //
+    // cout << endl;
+    //
+    //
+    // cout << inv_rich_p[1][i][0][0] << " " << inv_rich_p[1][i][0][1] << " " << inv_rich_p[1][i][0][2] << endl;
+    // cout << inv_rich_p[1][i][1][0] << " " << inv_rich_p[1][i][1][1] << " " << inv_rich_p[1][i][1][2] << endl;
+    // cout << inv_rich_p[1][i][2][0] << " " << inv_rich_p[1][i][2][1] << " " << inv_rich_p[1][i][2][2] << endl;
+    //
+    // cout << endl;
+    //
+    //
+    // cout << inv_rich_m[0][i][0][0] << " " << inv_rich_m[0][i][0][1] << " " << inv_rich_m[0][i][0][2] << endl;
+    // cout << inv_rich_m[0][i][1][0] << " " << inv_rich_m[0][i][1][1] << " " << inv_rich_m[0][i][1][2] << endl;
+    // cout << inv_rich_m[0][i][2][0] << " " << inv_rich_m[0][i][2][1] << " " << inv_rich_m[0][i][2][2] << endl;
+    //
+    // cout << endl;
+    //
+    // cout << inv_rich_m[1][i][0][0] << " " << inv_rich_m[1][i][0][1] << " " << inv_rich_m[1][i][0][2] << endl;
+    // cout << inv_rich_m[1][i][1][0] << " " << inv_rich_m[1][i][1][1] << " " << inv_rich_m[1][i][1][2] << endl;
+    // cout << inv_rich_m[1][i][2][0] << " " << inv_rich_m[1][i][2][1] << " " << inv_rich_m[1][i][2][2] << endl;
+    //
+    // cout << endl;
   }
 
   // Errors YODO
@@ -1650,6 +1651,7 @@ int main(int argc, char **argv)
   LoadElectronCorrection();
 
   ofstream test("test.txt", std::ofstream::out | std::ofstream::trunc);
+  ofstream count("count.txt", std::ofstream::out | std::ofstream::trunc);
 
   //----------------------------------------------------------------------------
   //--------- nu cut prep ------------------------------------------------------
@@ -2377,7 +2379,7 @@ int main(int argc, char **argv)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_loose = 4;
-            else fId = 6;
+            else fId_loose = 6;
 
             // Loose cuts ---
 
@@ -2445,7 +2447,7 @@ int main(int argc, char **argv)
 
             else if((LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>0)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(0+6*i))
-                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2))
+                    && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)>LH->GetLeaf("Hadrons.LH")->GetValue(2+6*i))
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/fLHsec>1.08)
                     && (LH->GetLeaf("Hadrons.LH")->GetValue(1+6*i)/LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i)>2.08)) fId = 3;
 
@@ -2534,7 +2536,7 @@ int main(int argc, char **argv)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_loose = 5;
-            else fId = 7;
+            else fId_loose = 7;
 
             // Loose cuts ---
 
@@ -2626,7 +2628,7 @@ int main(int argc, char **argv)
           if(kin_flag) fThRich[0]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
 
           // Theta cut
-          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.12)) continue;
+          if(!(0.01<thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i) && thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i)<0.04)) continue;
           fTRICH++;
 
           if(kin_flag) fThRich[1]->Fill(thRICH->GetLeaf("Hadrons.thRICH")->GetValue(i));
@@ -3718,6 +3720,23 @@ int main(int argc, char **argv)
         }
       }
     }
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<5; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          count << fBinning[i][j][k].tab[1][1][0][0]+fBinning[i][j][k].tab[1][0][0][0] << " "
+               << fBinning[i][j][k].tab[0][1][0][0]+fBinning[i][j][k].tab[0][0][0][0] << " "
+               << fBinning[i][j][k].tab[1][1][0][1]+fBinning[i][j][k].tab[1][0][0][1] << " "
+               << fBinning[i][j][k].tab[0][1][0][1]+fBinning[i][j][k].tab[0][0][0][1] << " "
+               << fBinning[i][j][k].tab[1][1][0][2]+fBinning[i][j][k].tab[1][0][0][2] << " "
+               << fBinning[i][j][k].tab[0][1][0][2]+fBinning[i][j][k].tab[0][0][0][2] << " "
+               << fBinning[i][j][k].tab[1][1][0][3]+fBinning[i][j][k].tab[1][0][0][3] << " "
+               << fBinning[i][j][k].tab[0][1][0][3]+fBinning[i][j][k].tab[0][0][0][3] << endl;
+        }
+      }
+    }
 
     ofs_h.close();
     ofs_d.close();
@@ -3845,6 +3864,7 @@ int main(int argc, char **argv)
 
 
   test.close();
+  count.close();
 
   return 0;
 }
