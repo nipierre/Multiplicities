@@ -2377,7 +2377,7 @@ int main(int argc, char **argv)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_loose = 4;
-            else fId = 6;
+            else fId_loose = 6;
 
             // Loose cuts ---
 
@@ -2534,7 +2534,7 @@ int main(int argc, char **argv)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(3+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(4+6*i) == 0)
                       && (LH->GetLeaf("Hadrons.LH")->GetValue(5+6*i) == 0))))) fId_loose = 5;
-            else fId = 7;
+            else fId_loose = 7;
 
             // Loose cuts ---
 
