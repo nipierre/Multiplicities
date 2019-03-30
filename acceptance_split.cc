@@ -2967,8 +2967,8 @@ int main(int argc, char **argv)
     ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_eth(Form("acceptance/%d/electron/electron_theta_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_ept(Form("acceptance/%d/electron/electron_pt_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_eth(Form("acceptance/%d/electron/electron_theta_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ept(Form("acceptance/%d/electron/electron_pt_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_test("test.txt", std::ofstream::out | std::ofstream::trunc);
 #endif
 
@@ -3079,7 +3079,7 @@ int main(int argc, char **argv)
     ofs_ezvtx.close();
     ofs_eth.close();
     ofs_ept.close();
-    test.close();
+    ofs_test.close();
 
     resetValues();
   }
