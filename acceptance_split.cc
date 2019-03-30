@@ -1755,7 +1755,7 @@ int main(int argc, char **argv)
             DIS_MC[2][i] = 1;
 
             // nu cut
-            if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
+            /*if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
             {
               fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
             }
@@ -1784,7 +1784,7 @@ int main(int argc, char **argv)
               fNDIS_evt_MC[2][xbin_MC][ybin_MC][i]--;
               fNDIS_evt_MC_zvtx[2][xbin_MC][ybin_MC][i][zlabbin_MC]--;
               DIS_MC[2][i] = 0;
-            }
+            }*/
           }
         }
         else
@@ -1800,7 +1800,7 @@ int main(int argc, char **argv)
             DIS_MC[2][i] = 1;
 
             // nu cut
-            if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
+            /*if(!(fNu_min[0][i]<nu_MC && nu_MC<fNu_max[0][i]))
             {
               fFlag_MC[0][xbin_MC][ybin_MC][i]=1;
             }
@@ -1823,7 +1823,7 @@ int main(int argc, char **argv)
             if(fFlag_MC[2][xbin_MC][ybin_MC][i])
             {
               DIS_MC[2][i] = 0;
-            }
+            }*/
           }
         }
 
@@ -1853,7 +1853,7 @@ int main(int argc, char **argv)
             DIS_rec[2][i] = 1;
 
             // nu cut
-            if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
+            /*if(!(fNu_min[0][i]<nu && nu<fNu_max[0][i]))
             {
               fFlag[0][xbin][ybin][i]=1;
             }
@@ -1897,7 +1897,7 @@ int main(int argc, char **argv)
               {
                 fNDIS_evt_c[2][xbin][ybin][i] += 1;
               }
-            }
+            }*/
           }
         }
 
