@@ -2967,8 +2967,9 @@ int main(int argc, char **argv)
     ofstream ofs_dzvtx(Form("acceptance/%d/DIS/DIS_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_e(Form("acceptance/%d/electron/electron_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_ezvtx(Form("acceptance/%d/electron/electron_zvtx_%s.txt",year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_eth(Form("electron_theta_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
-    ofstream ofs_ept(Form("electron_pt_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_eth(Form("acceptance/%d/electron/electron_theta_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_ept(Form("acceptance/%d/electron/electron_pt_%s.txt",periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_test("test.txt", std::ofstream::out | std::ofstream::trunc);
 #endif
 
     for(int c=0; c<2; c++)
@@ -3045,6 +3046,29 @@ int main(int argc, char **argv)
       }
     }
 
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<5; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          ofs_test << i << " " << j << " " << k << " "
+                   << fRcstr[i][j][k].tab[1][0][0] << " " << fGnrt[i][j][k].tab[1][0][0] << " "
+                   << fRcstr[i][j][k].tab[0][0][0] << " " << fGnrt[i][j][k].tab[0][0][0] << " "
+                   << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt_MC[0][i][j][k] << " "
+                   << fRcstr[i][j][k].tab[1][0][1] << " " << fGnrt[i][j][k].tab[1][0][1] << " "
+                   << fRcstr[i][j][k].tab[0][0][1] << " " << fGnrt[i][j][k].tab[0][0][1] << " "
+                   << fNDIS_evt[1][i][j][k] << " " << fNDIS_evt_MC[1][i][j][k] << " "
+                   << fRcstr[i][j][k].tab[1][0][2] << " " << fGnrt[i][j][k].tab[1][0][2] << " "
+                   << fRcstr[i][j][k].tab[0][0][2] << " " << fGnrt[i][j][k].tab[0][0][2] << " "
+                   << fNDIS_evt[2][i][j][k] << " " << fNDIS_evt_MC[2][i][j][k] << " "
+                   << fRcstr[i][j][k].tab[1][0][3] << " " << fGnrt[i][j][k].tab[1][0][3] << " "
+                   << fRcstr[i][j][k].tab[0][0][3] << " " << fGnrt[i][j][k].tab[0][0][3] << " "
+                   << fNDIS_evt[0][i][j][k] << " " << fNDIS_evt_MC[0][i][j][k] << endl;
+        }
+      }
+    }
+
     ofs_h.close();
     ofs_d.close();
     ofs_e.close();
@@ -3055,6 +3079,7 @@ int main(int argc, char **argv)
     ofs_ezvtx.close();
     ofs_eth.close();
     ofs_ept.close();
+    test.close();
 
     resetValues();
   }
