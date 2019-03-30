@@ -1494,6 +1494,7 @@ int main(int argc, char **argv)
         int DIS_MC[3][12];
 
         // Best Primary Vertex
+        fBPMC++;
 
         if((0<MCE0))
         {
@@ -1501,6 +1502,7 @@ int main(int argc, char **argv)
           // Energy of the muon beam
           if((140<=MCE0 && MCE0<=180))
           {
+            fBECMC++;
             //2006 ---
             if(Y2006)
             {
@@ -1570,20 +1572,26 @@ int main(int argc, char **argv)
               if(inTargetMC->GetLeaf("inTargetMC")->GetValue()
                   && (-325<MC_vz->GetLeaf("MC_vz")->GetValue() && MC_vz->GetLeaf("MC_vz")->GetValue()<-71))
               {
+                fTargMC++;
                 if(cellsCrossedMC->GetLeaf("cellsCrossedMC")->GetValue())
                 {
+                  fCellMC++;
                   // Q2 cut
                   if((Q2_MC>1))
                   {
+                    fQ2MCtest++;
                     // y cut
                     if((YMIN<yBj_MC && yBj_MC<YMAX))
                     {
+                      fYBjMCtest++;
                       // W cut
                       if((WMIN<sqrt(wBj_MC) && sqrt(wBj_MC)<WMAX))
                       {
+                        fWBjMCtest++;
                         // x cut
                         if((XMIN<xBj_MC && xBj_MC<XMAX))
                         {
+                          fXBjMCtest++;
                           fMCDIS++;
                           fAllDISflag_MC = 1;
                         }
@@ -3168,7 +3176,7 @@ int main(int argc, char **argv)
   cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBEC << '|' << setw(15) << float(fBEC)/float(fBP)*100 << '|' << setw(15) << float(fBEC)/float(fBMS)*100 << '|' << endl;
   cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTarg << '|' << setw(15) << float(fTarg)/float(fBP)*100 << '|' << setw(15) << float(fTarg)/float(fBEC)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu chi2/ndf < 10" << '|' << setw(15) << fMuchi2 << '|' << setw(15) << float(fMuchi2)/float(fBP)*100 << '|' << setw(15) << float(fMuchi2)/float(fTarg)*100 << '|' << endl;
-  cout << '|' << setw(30) << "Beam tarck X Cell" << '|' << setw(15) << fCell << '|' << setw(15) << float(fCell)/float(fBP)*100 << '|' << setw(15) << float(fCell)/float(fMuchi2)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Beam track X Cell" << '|' << setw(15) << fCell << '|' << setw(15) << float(fCell)/float(fBP)*100 << '|' << setw(15) << float(fCell)/float(fMuchi2)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu' chi2/ndf < 10" << '|' << setw(15) << fMupchi2 << '|' << setw(15) << float(fMupchi2)/float(fBP)*100 << '|' << setw(15) << float(fMupchi2)/float(fCell)*100 << '|' << endl;
   cout << '|' << setw(30) << "Mu' Zfirst < 350" << '|' << setw(15) << fMZfirst << '|' << setw(15) << float(fMZfirst)/float(fBP)*100 << '|' << setw(15) << float(fMZfirst)/float(fMupchi2)*100 << '|' << endl;
   cout << '|' << setw(30) << "Triggers MT/LT/OT/LAST" << '|' << setw(15) << fTrig << '|' << setw(15) << float(fTrig)/float(fBP)*100 << '|' << setw(15) << float(fTrig)/float(fMZfirst)*100 << '|' << endl;
@@ -3176,6 +3184,21 @@ int main(int argc, char **argv)
   cout << '|' << setw(30) << "0.1 < y < 0.7" << '|' << setw(15) << fYBjtest << '|' << setw(15) << float(fYBjtest)/float(fBP)*100 << '|' << setw(15) << float(fYBjtest)/float(fQ2test)*100 << '|' << endl;
   cout << '|' << setw(30) << "5 < W < 17" << '|' << setw(15) << fWBjtest << '|' << setw(15) << float(fWBjtest)/float(fBP)*100 << '|' << setw(15) << float(fWBjtest)/float(fYBjtest)*100 << '|' << endl;
   cout << '|' << setw(30) << "0.004 < x < 0.4" << '|' << setw(15) << fXBjtest << '|' << setw(15) << float(fXBjtest)/float(fBP)*100 << '|' << setw(15) << float(fXBjtest)/float(fWBjtest)*100 << '|' << endl;
+
+  cout << "\n\n";
+  cout << "             ********* Cut flow for Reconstructed MC DIS events after cuts ********* " << endl;
+  cout << "             ----------------------------------------------------------------------- " << endl;
+
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << '|' << endl;
+  cout << '|' << setw(30) << "Best Primary Vertex" << '|' << setw(15) << fBPMC << '|' << setw(15) << float(fBPMC)/float(fBPMC)*100 << '|' << setw(15) << float(fBPMC)/float(fBPMC)*100 << '|' << endl;
+  cout << '|' << setw(30) << "140 < E_mu < 180" << '|' << setw(15) << fBECMC << '|' << setw(15) << float(fBECMC)/float(fBPMC)*100 << '|' << setw(15) << float(fBECMC)/float(fBPMC)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Vertex in Target" << '|' << setw(15) << fTargMC << '|' << setw(15) << float(fTargMC)/float(fBPMC)*100 << '|' << setw(15) << float(fTargMC)/float(fBECMC)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Beam track X Cell" << '|' << setw(15) << fCellMC << '|' << setw(15) << float(fCellMC)/float(fBPMC)*100 << '|' << setw(15) << float(fCellMC)/float(fTargMC)*100 << '|' << endl;
+  cout << '|' << setw(30) << "Q2 > 1" << '|' << setw(15) << fQ2MCtest << '|' << setw(15) << float(fQ2MCtest)/float(fBPMC)*100 << '|' << setw(15) << float(fQ2MCtest)/float(fCellMC)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.1 < y < 0.7" << '|' << setw(15) << fYBjMCtest << '|' << setw(15) << float(fYBjMCtest)/float(fBPMC)*100 << '|' << setw(15) << float(fYBjMCtest)/float(fQ2MCtest)*100 << '|' << endl;
+  cout << '|' << setw(30) << "5 < W < 17" << '|' << setw(15) << fWBjMCtest << '|' << setw(15) << float(fWBjMCtest)/float(fBPMC)*100 << '|' << setw(15) << float(fWBjMCtest)/float(fYBjMCtest)*100 << '|' << endl;
+  cout << '|' << setw(30) << "0.004 < x < 0.4" << '|' << setw(15) << fXBjMCtest << '|' << setw(15) << float(fXBjMCtest)/float(fBPMC)*100 << '|' << setw(15) << float(fXBjMCtest)/float(fWBjMCtest)*100 << '|' << endl;
+
 
   cout << "\n\n";
   cout << "             ********* Cut flow for Reconstructed hadrons after cuts ********* " << endl;
