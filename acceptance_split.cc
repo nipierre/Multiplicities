@@ -1923,6 +1923,8 @@ int main(int argc, char **argv)
         if(fAllDISflag_MC)
         {
 
+          fHadronsMC++;
+
           for(int i=0; i<MC_p->GetLeaf("MCHadrons.P")->GetLen(); i++)
           {
 
@@ -1985,6 +1987,8 @@ int main(int argc, char **argv)
             }
 
             if(!(0.2<zBj_MC && zBj_MC<0.85)) continue;
+
+            fZMCtest++;
 
 
             if(kin_flag)
