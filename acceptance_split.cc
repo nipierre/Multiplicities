@@ -3216,6 +3216,15 @@ int main(int argc, char **argv)
   cout << '|' << setw(30) << "0.2 < z < 0.85" << '|' << setw(15) << fZtest << '|' << setw(15) << float(fZtest)/float(fHadrons)*100 << '|' << setw(15) << float(fZtest)/float(fPosRICH)*100 << endl;
 
   cout << "\n\n";
+  cout << "             ********* Cut flow for Reconstructed MC hadrons after cuts ********* " << endl;
+  cout << "             -------------------------------------------------------------------- " << endl;
+
+  cout << '|' << setw(30) << "Cut" << '|' << setw(15) << "Events" << '|' << setw(15) << "Abs." << '|' << setw(15) << "Rel." << endl;
+  cout << '|' << setw(30) << "Hadrons" << '|' << setw(15) << fHadronsMC << '|' << setw(15) << float(fHadronsMC)/float(fHadronsMC)*100 << '|' << setw(15) << float(fHadronsMC)/float(fHadronsMC)*100 << endl;
+  cout << '|' << setw(30) << "0.2 < z < 0.85" << '|' << setw(15) << fZMCtest << '|' << setw(15) << float(fZMCtest)/float(fHadronsMC)*100 << '|' << setw(15) << float(fZMCtest)/float(fHadronsMC)*100 << endl;
+
+
+  cout << "\n\n";
   cout << "             ********* Hadron Content (h,pi,K,p) ********* " << endl;
   cout << "             --------------------------------------------- " << endl;
 
@@ -3229,11 +3238,22 @@ int main(int argc, char **argv)
        << '|' << setw(15) << fPiplus << '|' << setw(15) << fPiminus
        << '|' << setw(15) << fKplus << '|' << setw(15) << fKminus
        << '|' << setw(15) << fPplus << '|' << setw(15) << fPminus << endl;
-  cout << '|' << setw(15) << "True ID"
-       << '|' << setw(15) << fHplus << '|' << setw(15) << fHminus
-       << '|' << setw(15) << fPiplus_true << '|' << setw(15) << fPiminus_true
-       << '|' << setw(15) << fKplus_true << '|' << setw(15) << fKminus_true
-       << '|' << setw(15) << fPplus_true << '|' << setw(15) << fPminus_true << endl;
+
+
+  cout << "\n\n";
+  cout << "             ********* MC Hadron Content (h,pi,K,p) ********* " << endl;
+  cout << "             ------------------------------------------------ " << endl;
+
+  cout << '|' << setw(15) << "Hadron"
+      << '|' << setw(15) << "h+" << '|' << setw(15) << "h-"
+      << '|' << setw(15) << "pi+" << '|' << setw(15) << "pi-"
+      << '|' << setw(15) << "K+" << '|' << setw(15) << "K-"
+      << '|' << setw(15) << "p+" << '|' << setw(15) << "p-" << endl;
+  cout << '|' << setw(15) << "ID"
+      << '|' << setw(15) << fMCHplus << '|' << setw(15) << fMCHminus
+      << '|' << setw(15) << fMCPiplus << '|' << setw(15) << fMCPiminus
+      << '|' << setw(15) << fMCKplus << '|' << setw(15) << fMCKminus
+      << '|' << setw(15) << fMCPplus << '|' << setw(15) << fMCPminus << endl;
 
   trigmaskout.close();
 

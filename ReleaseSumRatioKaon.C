@@ -354,10 +354,10 @@ void plot_sum_average_ratio()
      TGraphAsymmErrors *dsys_sum = new TGraphAsymmErrors(8,avg_x ,offset1 , errorx, errorx, ysys,summed_sysm );
      TGraphAsymmErrors *dsys_ratio = new TGraphAsymmErrors(8,avg_x ,offset2r , errorx, errorx,  ysys,ratio_sysm );
 
-     dsys_sum->SetFillColor(kRed-10);  dsys_ratio->SetFillColor(kRed-10);
-     dmult_sum->SetMarkerColor(kRed);  dmult_sum->SetLineColor(kRed);
+     dsys_sum->SetFillColor(kOrange-9);  dsys_ratio->SetFillColor(kOrange-9);
+     dmult_sum->SetMarkerColor(kOrange+7);  dmult_sum->SetLineColor(kOrange+7);
      dmult_sum->SetMarkerStyle(kFullCircle); dmult_sum->SetMarkerSize(1.63);
-     dmult_ratio->SetMarkerColor(kRed);  dmult_ratio->SetLineColor(kRed);
+     dmult_ratio->SetMarkerColor(kOrange+7);  dmult_ratio->SetLineColor(kOrange+7);
      dmult_ratio->SetMarkerStyle(kFullCircle); dmult_ratio->SetMarkerSize(1.63);
 
 
@@ -367,7 +367,7 @@ void plot_sum_average_ratio()
      double pm_u[2][9][12];
      double pme_u[2][9][12];
      double pz[2][12][9];
-     double px[2][12][9];
+     double px[2][12][8];
 
      ifstream IN2;
      IN2.open("./data/MultiplicityKaon_yavg.txt", ifstream::in);
@@ -380,13 +380,13 @@ void plot_sum_average_ratio()
    	     pme_u[1][i][k]=mep;
    	     psys_a[1][i][k]=sysp;
    	     pz[1][k][i]=z_kaonp;
-   	     px[1][k][i]=xa_totalp;
+         if(i) px[1][k][i-1]=xa_totalp;
      	   //
      	   pm_u[0][i][k]=mn;
      	   pme_u[0][i][k]=men;
      	   psys_a[0][i][k]=sysn;
      	   pz[0][k][i]=z_kaonn;
-     	   px[0][k][i]=xa_totaln;
+     	   if(i) px[0][k][i-1]=xa_totaln;
          kkk=iii=xa_totalp= ya_totalp= q2a_totalp= z_kaonp = mp= mep= sysp= leptoflagp=xa_totaln= ya_totaln= q2a_totaln= z_kaonn=mn= men= sysn= leptoflagn=0;
        }
      }
@@ -425,9 +425,9 @@ void plot_sum_average_ratio()
          for(int ll=0; ll<12; ll++)
          {
            //pint_sysm[ii][jj-1]+=avg_sys[1][ii][ll]*zwidth[ll];
-           pint_sysm_uncorr[ii][jj-1]+=psys_a[ii][jj-1][ll]*pow(zwidth[ll],2);
-           if(pm_u[ii][jj-1][ll]>0){psum_m[ii][jj-1] += pm_u[ii][jj-1][ll]*zwidth[ll];
-             psum_em[ii][jj-1] += pme_u[ii][jj-1][ll]*pow(zwidth[ll],2);}
+           pint_sysm_uncorr[ii][jj-1]+=psys_a[ii][jj][ll]*pow(zwidth[ll],2);
+           if(pm_u[ii][jj][ll]>0){psum_m[ii][jj-1] += pm_u[ii][jj][ll]*zwidth[ll];
+             psum_em[ii][jj-1] += pme_u[ii][jj][ll]*pow(zwidth[ll],2);}
 
          }
 
@@ -446,21 +446,21 @@ void plot_sum_average_ratio()
              */sqrt( pow(((pint_sysm[1][jj-1]+psum_m[1][jj-1])/(pint_sysm[0][jj-1]+psum_m[0][jj-1])-(pint_sysm[1][jj-1]-psum_m[1][jj-1])/(pint_sysm[0][jj-1]-psum_m[0][jj-1]))/2,2)+(pratio[jj-1]*(pow(pint_sysm_uncorr[1][jj-1]/psum_m[1][jj-1],2)+pow(pint_sysm_uncorr[0][jj-1]/psum_m[0][jj-1],2))));
      }
 
-     TGraphErrors *pmult_sum = new TGraphErrors(9,px[0][5], psum ,zerror,psum_e);
-     TGraphErrors *pmult_ratio = new TGraphErrors(9,px[0][5], pratio,zerror,pratio_e);
+     TGraphErrors *pmult_sum = new TGraphErrors(8,px[0][5], psum ,zerror,psum_e);
+     TGraphErrors *pmult_ratio = new TGraphErrors(8,px[0][5], pratio,zerror,pratio_e);
 
      double poffset1[9]={0.083,0.083,0.083,0.083,0.083,0.083,0.083,0.083,0.083};
      double poffset2[9]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093};
-     double poffset2r[9]={0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93};
+     double poffset2r[9]={0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96};
      double poffset3[7]={0.7,0.7,0.7,0.7,0.7,0.7,0.7};
 
-     TGraphAsymmErrors *psys_sum = new TGraphAsymmErrors(9,px[0][5] ,poffset1 , errorx, errorx, ysys,psummed_sysm );
-     TGraphAsymmErrors *psys_ratio = new TGraphAsymmErrors(9,px[0][5] ,poffset2r , errorx, errorx,  ysys,pratio_sysm );
+     TGraphAsymmErrors *psys_sum = new TGraphAsymmErrors(8,px[0][5] ,poffset1 , errorx, errorx, ysys,psummed_sysm );
+     TGraphAsymmErrors *psys_ratio = new TGraphAsymmErrors(8,px[0][5] ,poffset2r , errorx, errorx,  ysys,pratio_sysm );
 
-     psys_sum->SetFillColor(kBlue-10);  psys_ratio->SetFillColor(kBlue-10);
-     pmult_sum->SetMarkerColor(kBlue);  pmult_sum->SetLineColor(kBlue);
+     psys_sum->SetFillColor(kAzure-9);  psys_ratio->SetFillColor(kAzure-9);
+     pmult_sum->SetMarkerColor(kAzure+10);  pmult_sum->SetLineColor(kAzure+10);
      pmult_sum->SetMarkerStyle(kFullCircle); pmult_sum->SetMarkerSize(1.63);
-     pmult_ratio->SetMarkerColor(kBlue);  pmult_ratio->SetLineColor(kBlue);
+     pmult_ratio->SetMarkerColor(kAzure+10);  pmult_ratio->SetLineColor(kAzure+10);
      pmult_ratio->SetMarkerStyle(kFullCircle); pmult_ratio->SetMarkerSize(1.63);
 
 
@@ -568,13 +568,13 @@ void plot_sum_average_ratio()
 	      hsummed_sysmb[jj]=0;
 	      hxb[jj] = hx[0][0][jj];
      	  hsummed_sysmb[jj]=hsummed_sysm[jj]-0.001;
-        hratio_sysmb[jj]=hratio_sysm[jj]-0.01;
+        hratio_sysmb[jj]=hratio_sysm[jj]-0.02;
      }
      hxb[0]=hxb[0]+0.0005;
      hxb[8]=hxb[8]-0.006;
 
 
-     double hoffseth2b[9]={1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005,1.07+0.0005};
+     double hoffseth2b[9]={1.07+0.01,1.07+0.01,1.07+0.01,1.07+0.01,1.07+0.01,1.07+0.01,1.07+0.01,1.07+0.01,1.07+0.01};
      double hoffseth2[9]={1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07,1.07};
      double hoffset2h[12]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093, 0.093, 0.093, 0.093};
      double hoffseth1b[12]={0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005,0.093+0.0005};
@@ -587,13 +587,13 @@ void plot_sum_average_ratio()
      TGraphAsymmErrors *hsys_ratio = new TGraphAsymmErrors(9,hx[0][0] ,hoffseth2 , errorx, errorx, ysys,hratio_sysm);
      TGraphAsymmErrors *hsys_ratiob = new TGraphAsymmErrors(9,hxb ,hoffseth2b , errorx, errorx, ysys,hratio_sysmb );
 
-     hsys_sum->SetFillColor(kBlue-10);   hsys_ratio->SetFillColor(kBlue-10);
+     hsys_sum->SetFillColor(kAzure-9);   hsys_ratio->SetFillColor(kAzure-9);
      hsys_sumb->SetFillColor(kWhite);   hsys_ratiob->SetFillColor(kWhite);
 
-     hmult_sum->SetMarkerColor(kBlue);  hmult_sum->SetLineColor(kBlue);
-     hmult_sum->SetMarkerStyle(24); hmult_sum->SetMarkerSize(1.33);
-     hmult_ratio->SetMarkerColor(kBlue);  hmult_ratio->SetLineColor(kBlue);
-     hmult_ratio->SetMarkerStyle(24); hmult_ratio->SetMarkerSize(1.32);
+     hmult_sum->SetMarkerColor(kAzure+10);  hmult_sum->SetLineColor(kAzure+10);
+     hmult_sum->SetMarkerStyle(30); hmult_sum->SetMarkerSize(1.63);
+     hmult_ratio->SetMarkerColor(kAzure+10);  hmult_ratio->SetLineColor(kAzure+10);
+     hmult_ratio->SetMarkerStyle(30); hmult_ratio->SetMarkerSize(1.63);
 
      /////////////HERMES multiplicities from 2013/2014 publications - DEUTERON
 
@@ -698,13 +698,13 @@ void plot_sum_average_ratio()
 	      hdsummed_sysmb[jj]=0;
 	      hdxb[jj] = hdx[0][0][jj];
      	  hdsummed_sysmb[jj]=hdsummed_sysm[jj]-0.001;
-        hdratio_sysmb[jj]=hdratio_sysm[jj]-0.01;
+        hdratio_sysmb[jj]=hdratio_sysm[jj]-0.02;
      }
      hdxb[0]=hdxb[0]+0.0005;
      hdxb[8]=hdxb[8]-0.006;
 
 
-     double hdoffseth2b[9]={1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005,1.21+0.0005};
+     double hdoffseth2b[9]={1.21+0.01,1.21+0.01,1.21+0.01,1.21+0.01,1.21+0.01,1.21+0.01,1.21+0.01,1.21+0.01,1.21+0.01};
      double hdoffseth2[9]={1.21,1.21,1.21,1.21,1.21,1.21,1.21,1.21,1.21};
      double hdoffset2h[12]={.097,.097,.097,.097,.097,.097,.097,.097,.097, .097, .097, .097};
      double hdoffseth1b[12]={.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005,.097+0.0005};
@@ -717,13 +717,13 @@ void plot_sum_average_ratio()
      TGraphAsymmErrors *hdsys_ratio = new TGraphAsymmErrors(9,hdx[0][0] ,hdoffseth2 , errorx, errorx, ysys,hdratio_sysm);
      TGraphAsymmErrors *hdsys_ratiob = new TGraphAsymmErrors(9,hdxb ,hdoffseth2b , errorx, errorx, ysys,hdratio_sysmb );
 
-     hdsys_sum->SetFillColor(kRed-10);   hdsys_ratio->SetFillColor(kRed-10);
+     hdsys_sum->SetFillColor(kOrange-9);   hdsys_ratio->SetFillColor(kOrange-9);
      hdsys_sumb->SetFillColor(kWhite);   hdsys_ratiob->SetFillColor(kWhite);
 
-     hdmult_sum->SetMarkerColor(kRed);  hdmult_sum->SetLineColor(kRed);
-     hdmult_sum->SetMarkerStyle(24); hdmult_sum->SetMarkerSize(1.33);
-     hdmult_ratio->SetMarkerColor(kRed);  hdmult_ratio->SetLineColor(kRed);
-     hdmult_ratio->SetMarkerStyle(24); hdmult_ratio->SetMarkerSize(1.32);
+     hdmult_sum->SetMarkerColor(kOrange+7);  hdmult_sum->SetLineColor(kOrange+7);
+     hdmult_sum->SetMarkerStyle(30); hdmult_sum->SetMarkerSize(1.63);
+     hdmult_ratio->SetMarkerColor(kOrange+7);  hdmult_ratio->SetLineColor(kOrange+7);
+     hdmult_ratio->SetMarkerStyle(30); hdmult_ratio->SetMarkerSize(1.63);
 
 
    /////////////////template for plots///////////
@@ -785,17 +785,17 @@ void plot_sum_average_ratio()
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.05, "#font[ 12]{x}");
      y_t_axis_bins.SetTextSize( 0.05 );
-     markerh.SetMarkerStyle(24);
-     markerh.SetMarkerColor(kBlue);
-     markerh.SetMarkerSize(1.32); markerh.DrawMarker(0.18,.80);
-     markerhd.SetMarkerStyle(24);
-     markerhd.SetMarkerColor(kRed);
-     markerhd.SetMarkerSize(1.32); markerhd.DrawMarker(0.18,.74);
+     markerh.SetMarkerStyle(30);
+     markerh.SetMarkerColor(kAzure+10);
+     markerh.SetMarkerSize(1.63); markerh.DrawMarker(0.18,.80);
+     markerhd.SetMarkerStyle(30);
+     markerhd.SetMarkerColor(kOrange+7);
+     markerhd.SetMarkerSize(1.63); markerhd.DrawMarker(0.18,.74);
      markerd.SetMarkerStyle(20);
-     markerd.SetMarkerColor(kRed);
+     markerd.SetMarkerColor(kOrange+7);
      markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.18,.86);
      markerp.SetMarkerStyle(20);
-     markerp.SetMarkerColor(kBlue);
+     markerp.SetMarkerColor(kAzure+10);
      markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.18,.92);
      y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS 2016 preliminary");
      y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar");
