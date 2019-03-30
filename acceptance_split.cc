@@ -1954,11 +1954,11 @@ int main(int argc, char **argv)
             }
             else//Hadron
             {
-              if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
+              if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)>0 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
               {
                 fId = 6;
               }
-              else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==-1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
+              else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)<0 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
               {
                 fId = 7;
               }
@@ -2288,11 +2288,11 @@ int main(int argc, char **argv)
             }
             else//Hadron
             {
-              if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
+              if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)>0 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
               {
                 fId = 6;
               }
-              else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)==-1 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
+              else if(MC_charge->GetLeaf("MCHadrons.charge")->GetValue(i)<0 && (MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i)>7))
               {
                 fId = 7;
               }
@@ -2527,11 +2527,11 @@ int main(int argc, char **argv)
             }
             else//Hadron
             {
-              if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==1 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
+              if(charge->GetLeaf("Hadrons.charge")->GetValue(i)>0 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
               {
                 fId = 6;
               }
-              else if(charge->GetLeaf("Hadrons.charge")->GetValue(i)==-1 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
+              else if(charge->GetLeaf("Hadrons.charge")->GetValue(i)<0 && MCpid->GetLeaf("Hadrons.MCpid")->GetValue(i)>7)
               {
                 fId = 7;
               }
