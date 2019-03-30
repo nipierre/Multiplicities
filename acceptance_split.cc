@@ -1923,10 +1923,10 @@ int main(int argc, char **argv)
         if(fAllDISflag_MC)
         {
 
-          fHadronsMC++;
-
           for(int i=0; i<MC_p->GetLeaf("MCHadrons.P")->GetLen(); i++)
           {
+
+            fHadronsMC++;
 
             if(MC_pid->GetLeaf("MCHadrons.pid")->GetValue(i) == 8)//pi+
             {
