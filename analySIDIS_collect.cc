@@ -2555,7 +2555,9 @@ int main(int argc, char **argv)
         fMultiplicities_yavg[i][k].tab[c][2][2] << " " <<
         (fMultiplicities_yavg[i][k].tab[c][0][2] ? 1 : 0) << " ";
 
-        if(!c) ofs_yah << endl;
+        if(!c) ofs_yapr << endl;
+
+        if(c) ofs_yah << fXrange[i] << " " << fZrange[k] << " ";
 
         ofs_yah <<
         fMeanvalues_yavg[i][k].tab[0][3][0] << " " <<
