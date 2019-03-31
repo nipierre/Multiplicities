@@ -1377,7 +1377,7 @@ int main(int argc, char **argv)
                                                         : 0);
             }
 
-            if(fMultiplicities[i][j][k].tab[c][0][l]<=0 || fMultiplicities[i][j][k].tab[c][0][l]*0.9<fMultiplicities[i][j][k].tab[c][1][l])
+            if(fMultiplicities[i][j][k].tab[c][0][l]<=0 /*|| fMultiplicities[i][j][k].tab[c][0][l]*0.9<fMultiplicities[i][j][k].tab[c][1][l]*/)
             {
               fMultiplicities[i][j][k].tab[c][0][l] = 0 ;
               fMultiplicities[i][j][k].tab[c][1][l] = 0 ;
@@ -4353,8 +4353,8 @@ int main(int argc, char **argv)
                   << fMultiplicities[i][j][k].tab[0][0][0] << " " << fMultiplicities[i][j][k].tab[0][1][0] << " "
                   << fAcceptance[6][i][j][k].tab[1][1][0][0] << " " << fAcceptance[6][i][j][k].tab[1][1][1][0] << " "
                   << fAcceptance[6][i][j][k].tab[0][0][0][0] << " " << fAcceptance[6][i][j][k].tab[0][0][1][0] << " "
-                  << fBinning_period[6][i][j][k].tab[1][1][0][0]+fBinning_period[6][i][j][k].tab[1][1][0][0] << " " << fNDIS_evt_period[6][0][0][i][j][k]+fNDIS_evt_period[6][0][1][i][j][k] << " "
-                  << fBinning_period[6][i][j][k].tab[0][1][0][0]+fBinning_period[6][i][j][k].tab[0][1][0][0] << " " << fNDIS_evt_period[6][0][0][i][j][k]+fNDIS_evt_period[6][0][1][i][j][k] << " "
+                  << fBinning_period[6][i][j][k].tab[1][1][0][0]+fBinning_period[6][i][j][k].tab[1][0][0][0] << " " << fNDIS_evt_period[6][0][0][i][j][k]+fNDIS_evt_period[6][0][1][i][j][k] << " "
+                  << fBinning_period[6][i][j][k].tab[0][1][0][0]+fBinning_period[6][i][j][k].tab[0][0][0][0] << " " << fNDIS_evt_period[6][0][0][i][j][k]+fNDIS_evt_period[6][0][1][i][j][k] << " "
                   << "0 0 0 0 0 0 0 0 "
                   << GetSemiInclusiveRadiativeCorrection(1,i,j,k+1) << " " << GetSemiInclusiveRadiativeCorrection(0,i,j,k+1) << " "
                   << fDiffVectorMeson[1][i][j][k][0] << " " << fDiffVectorMeson[1][i][j][k][0] << endl;
