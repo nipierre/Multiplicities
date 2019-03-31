@@ -3726,18 +3726,19 @@ int main(int argc, char **argv)
       {
         for(int k=0; k<12; k++)
         {
-          count << fBinning[i][j][k].tab[1][1][0][0]+fBinning[i][j][k].tab[1][0][0][0] << " "
+          count << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " "
+               << fBinning[i][j][k].tab[1][1][0][0]+fBinning[i][j][k].tab[1][0][0][0] << " "
                << fBinning[i][j][k].tab[0][1][0][0]+fBinning[i][j][k].tab[0][0][0][0] << " "
-               << fNDIS_evt[0][0][i][j][k] << " "
+               << fNDIS_evt[0][0][i][j][k]+fNDIS_evt[0][1][i][j][k] << " "
                << fBinning[i][j][k].tab[1][1][0][1]+fBinning[i][j][k].tab[1][0][0][1] << " "
                << fBinning[i][j][k].tab[0][1][0][1]+fBinning[i][j][k].tab[0][0][0][1] << " "
-               << fNDIS_evt[1][0][i][j][k] << " "
+               << fNDIS_evt[1][0][i][j][k]+fNDIS_evt[1][1][i][j][k] << " "
                << fBinning[i][j][k].tab[1][1][0][2]+fBinning[i][j][k].tab[1][0][0][2] << " "
                << fBinning[i][j][k].tab[0][1][0][2]+fBinning[i][j][k].tab[0][0][0][2] << " "
-               << fNDIS_evt[2][0][i][j][k] << " "
+               << fNDIS_evt[2][0][i][j][k]+fNDIS_evt[2][1][i][j][k] << " "
                << fBinning[i][j][k].tab[1][1][0][3]+fBinning[i][j][k].tab[1][0][0][3] << " "
                << fBinning[i][j][k].tab[0][1][0][3]+fBinning[i][j][k].tab[0][0][0][3] << " "
-               << fNDIS_evt[0][0][i][j][k] << endl;
+               << fNDIS_evt[0][0][i][j][k]+fNDIS_evt[0][1][i][j][k] << endl;
         }
       }
     }
