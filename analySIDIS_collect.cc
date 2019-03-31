@@ -4349,10 +4349,10 @@ int main(int argc, char **argv)
       for(int k=0; k<12; k++)
       {
         ofs_test << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " "
-                  << fMultiplicities[i][j][k].tab[1][0][0] << " " << fMultiplicities[i][j][k].tab[1][1][0] << " "
-                  << fMultiplicities[i][j][k].tab[0][0][0] << " " << fMultiplicities[i][j][k].tab[0][1][0] << " "
+                  << fMultiplicities[i][j][k].tab[1][0][0] << " " << sqrt(fMultiplicities[i][j][k].tab[1][1][0]) << " "
+                  << fMultiplicities[i][j][k].tab[0][0][0] << " " << sqrt(fMultiplicities[i][j][k].tab[0][1][0]) << " "
                   << fAcceptance[6][i][j][k].tab[1][1][0][0] << " "
-                  << fAcceptance[6][i][j][k].tab[0][0][0][0] << " "
+                  << fAcceptance[6][i][j][k].tab[0][1][0][0] << " "
                   << fBinning_period[6][i][j][k].tab[1][1][0][0]+fBinning_period[6][i][j][k].tab[1][0][0][0] << " " << fNDIS_evt_period[6][0][0][i][j][k]+fNDIS_evt_period[6][0][1][i][j][k] << " "
                   << fBinning_period[6][i][j][k].tab[0][1][0][0]+fBinning_period[6][i][j][k].tab[0][0][0][0] << " " << fNDIS_evt_period[6][0][0][i][j][k]+fNDIS_evt_period[6][0][1][i][j][k] << " "
                   << "0 0 0 0 0 0 0 0 "
