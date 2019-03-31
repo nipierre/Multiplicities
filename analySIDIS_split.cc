@@ -1651,7 +1651,7 @@ int main(int argc, char **argv)
   LoadElectronCorrection();
 
   // ofstream test("test.txt", std::ofstream::out | std::ofstream::trunc);
-  // ofstream count("count.txt", std::ofstream::out | std::ofstream::trunc);
+  ofstream count("count.txt", std::ofstream::out | std::ofstream::trunc);
 
   //----------------------------------------------------------------------------
   //--------- nu cut prep ------------------------------------------------------
@@ -3720,23 +3720,27 @@ int main(int argc, char **argv)
         }
       }
     }
-    // for(int i=0; i<9; i++)
-    // {
-    //   for(int j=0; j<5; j++)
-    //   {
-    //     for(int k=0; k<12; k++)
-    //     {
-    //       count << fBinning[i][j][k].tab[1][1][0][0]+fBinning[i][j][k].tab[1][0][0][0] << " "
-    //            << fBinning[i][j][k].tab[0][1][0][0]+fBinning[i][j][k].tab[0][0][0][0] << " "
-    //            << fBinning[i][j][k].tab[1][1][0][1]+fBinning[i][j][k].tab[1][0][0][1] << " "
-    //            << fBinning[i][j][k].tab[0][1][0][1]+fBinning[i][j][k].tab[0][0][0][1] << " "
-    //            << fBinning[i][j][k].tab[1][1][0][2]+fBinning[i][j][k].tab[1][0][0][2] << " "
-    //            << fBinning[i][j][k].tab[0][1][0][2]+fBinning[i][j][k].tab[0][0][0][2] << " "
-    //            << fBinning[i][j][k].tab[1][1][0][3]+fBinning[i][j][k].tab[1][0][0][3] << " "
-    //            << fBinning[i][j][k].tab[0][1][0][3]+fBinning[i][j][k].tab[0][0][0][3] << endl;
-    //     }
-    //   }
-    // }
+    for(int i=0; i<9; i++)
+    {
+      for(int j=0; j<5; j++)
+      {
+        for(int k=0; k<12; k++)
+        {
+          count << fBinning[i][j][k].tab[1][1][0][0]+fBinning[i][j][k].tab[1][0][0][0] << " "
+               << fBinning[i][j][k].tab[0][1][0][0]+fBinning[i][j][k].tab[0][0][0][0] << " "
+               << fNDIS_evt[0][0][i][j][k] << " "
+               << fBinning[i][j][k].tab[1][1][0][1]+fBinning[i][j][k].tab[1][0][0][1] << " "
+               << fBinning[i][j][k].tab[0][1][0][1]+fBinning[i][j][k].tab[0][0][0][1] << " "
+               << fNDIS_evt[1][0][i][j][k] << " "
+               << fBinning[i][j][k].tab[1][1][0][2]+fBinning[i][j][k].tab[1][0][0][2] << " "
+               << fBinning[i][j][k].tab[0][1][0][2]+fBinning[i][j][k].tab[0][0][0][2] << " "
+               << fNDIS_evt[2][0][i][j][k] << " "
+               << fBinning[i][j][k].tab[1][1][0][3]+fBinning[i][j][k].tab[1][0][0][3] << " "
+               << fBinning[i][j][k].tab[0][1][0][3]+fBinning[i][j][k].tab[0][0][0][3] << " "
+               << fNDIS_evt[0][0][i][j][k] << endl;
+        }
+      }
+    }
 
     ofs_h.close();
     ofs_d.close();
@@ -3864,7 +3868,7 @@ int main(int argc, char **argv)
 
 
   // test.close();
-  // count.close();
+  count.close();
 
   return 0;
 }
