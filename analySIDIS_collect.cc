@@ -380,7 +380,7 @@ void LoadQelCorr()
   }
 }
 
-Float_t GetSemiInclusiveRadiativeCorrection(int c, int xb, int yb, int zb)
+Float_t GetSemiInclusiveRadiativeCorrection(int ch, int xb, int yb, int zb)
 {
   if(Y2006 || !SIRC)
   {
