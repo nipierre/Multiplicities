@@ -445,21 +445,21 @@ int main(int argc, char **argv)
 
               had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][0].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";              had_zvtx_file >> dummyd;
+              // cout << dummyd << " ";              had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][1].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";              had_zvtx_file >> dummyd;
+              // cout << dummyd << " ";              had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][2].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";              had_zvtx_file >> dummyd;
+              // cout << dummyd << " ";              had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][3].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";              had_zvtx_file >> dummyd;
+              // cout << dummyd << " ";              had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][0].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";              had_zvtx_file >> dummyd;
+              // cout << dummyd << " ";              had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][1].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";              had_zvtx_file >> dummyd;
+              // cout << dummyd << " ";              had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][2].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";              had_zvtx_file >> dummyd;
+              // cout << dummyd << " ";              had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][3].tab[c][1][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
 
               for(int th=0; th<8; th++)
               {
@@ -495,29 +495,29 @@ int main(int argc, char **argv)
 
               had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][0].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
               had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][1].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
               had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][2].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
               had_zvtx_file >> dummyd;
               fRcstr_zvtx[i][j][k][3].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
               had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][0].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
               had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][1].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
               had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][2].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
+              // cout << dummyd << " ";
               had_zvtx_file >> dummyd;
               fGnrt_zvtx[i][j][k][3].tab[c][0][0][ll] += dummyd;
-              cout << dummyd << " ";
-              cout << endl;
+              // cout << dummyd << " ";
+              // cout << endl;
 
               for(int th=0; th<8; th++)
               {
