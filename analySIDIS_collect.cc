@@ -4357,7 +4357,7 @@ int main(int argc, char **argv)
                   << fBinning_period[6][i][j][k].tab[0][1][0][0]+fBinning_period[6][i][j][k].tab[0][0][0][0] << " " << fNDIS_evt_period[6][0][0][i][j][k]+fNDIS_evt_period[6][0][1][i][j][k] << " "
                   << "0 0 0 0 0 0 0 0 "
                   << GetSemiInclusiveRadiativeCorrection(1,i,j,k+1) << " " << GetSemiInclusiveRadiativeCorrection(0,i,j,k+1) << " "
-                  << fDiffVectorMeson[1][i][j][k][0] << " " << fDiffVectorMeson[1][i][j][k][0] << endl;
+                  << fDiffVectorMeson[1][i][j][k][0] << " " << fDiffVectorMeson[0][i][j][k][0] << endl;
       }
     }
   }
