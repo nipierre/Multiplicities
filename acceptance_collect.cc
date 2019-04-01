@@ -276,101 +276,159 @@ int main(int argc, char **argv)
 
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][1][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][1][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][1][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][1][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][1][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][1][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][1][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][1][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][1][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][1][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][1][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][1][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][1][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][1][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][1][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][1][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][1][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][1][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][1][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][1][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][1][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][1][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][1][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][1][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
 
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][0][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][0][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][0][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[0][0][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][0][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][0][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][0][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[0][0][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][0][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][0][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][0][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[1][0][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][0][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][0][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][0][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[1][0][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][0][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][0][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][0][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_zvtx[2][0][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
+
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][0][i][j][k][0] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][0][i][j][k][1] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][0][i][j][k][2] += dummyd;
+              cout << dummyd << " ";
               DIS_zvtx_file >> dummyd;
               fNDIS_evt_MC_zvtx[2][0][i][j][k][3] += dummyd;
+              cout << dummyd << " ";
 
             }
 

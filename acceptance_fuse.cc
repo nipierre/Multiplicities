@@ -78,6 +78,7 @@ int main(int argc, char **argv)
               fNDIS_evt_c[2][1][i][j][k] += dummyd;
               DIS_file1 >> dummyd;
               fNDIS_evt_MC[2][1][i][j][k] += dummyd;
+
               DIS_zvtx_file1 >> dummyd;
               fNDIS_evt_zvtx[0][1][i][j][k][0] += dummyd;
               DIS_zvtx_file1 >> dummyd;
@@ -94,6 +95,7 @@ int main(int argc, char **argv)
               fNDIS_evt_MC_zvtx[0][1][i][j][k][2] += dummyd;
               DIS_zvtx_file1 >> dummyd;
               fNDIS_evt_MC_zvtx[0][1][i][j][k][3] += dummyd;
+
               DIS_zvtx_file1 >> dummyd;
               fNDIS_evt_zvtx[1][1][i][j][k][0] += dummyd;
               DIS_zvtx_file1 >> dummyd;
@@ -110,6 +112,7 @@ int main(int argc, char **argv)
               fNDIS_evt_MC_zvtx[1][1][i][j][k][2] += dummyd;
               DIS_zvtx_file1 >> dummyd;
               fNDIS_evt_MC_zvtx[1][1][i][j][k][3] += dummyd;
+
               DIS_zvtx_file1 >> dummyd;
               fNDIS_evt_zvtx[2][1][i][j][k][0] += dummyd;
               DIS_zvtx_file1 >> dummyd;
@@ -332,6 +335,7 @@ int main(int argc, char **argv)
               fNDIS_evt_c[2][0][i][j][k] += dummyd;
               DIS_file2 >> dummyd;
               fNDIS_evt_MC[2][0][i][j][k] += dummyd;
+
               DIS_zvtx_file2 >> dummyd;
               fNDIS_evt_zvtx[0][0][i][j][k][0] += dummyd;
               DIS_zvtx_file2 >> dummyd;
@@ -348,6 +352,7 @@ int main(int argc, char **argv)
               fNDIS_evt_MC_zvtx[0][0][i][j][k][2] += dummyd;
               DIS_zvtx_file2 >> dummyd;
               fNDIS_evt_MC_zvtx[0][0][i][j][k][3] += dummyd;
+
               DIS_zvtx_file2 >> dummyd;
               fNDIS_evt_zvtx[1][0][i][j][k][0] += dummyd;
               DIS_zvtx_file2 >> dummyd;
@@ -364,6 +369,7 @@ int main(int argc, char **argv)
               fNDIS_evt_MC_zvtx[1][0][i][j][k][2] += dummyd;
               DIS_zvtx_file2 >> dummyd;
               fNDIS_evt_MC_zvtx[1][0][i][j][k][3] += dummyd;
+              
               DIS_zvtx_file2 >> dummyd;
               fNDIS_evt_zvtx[2][0][i][j][k][0] += dummyd;
               DIS_zvtx_file2 >> dummyd;
