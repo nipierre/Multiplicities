@@ -430,6 +430,8 @@ int main(int argc, char **argv)
               fNDIS_evt_MC_zvtx[2][0][i][j][k][3] += dummyd;
               cout << dummyd << " ";
 
+              cout <<endl;
+
             }
 
             for(int ll=0; ll<4; ll++)
