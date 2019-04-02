@@ -766,7 +766,7 @@ int main(int argc, char **argv)
                 //   fAcceptance[i][j][k].tab[c][m][1][2] = 0;
                 //   fAcceptance[i][j][k].tab[c][m][1][3] = 0;
                 // }
-// 
+//
                 // if((j==4 && k==6)
     	          // || (i==0 && j==5 && k==3)
     	          // || (i>4 && j==4 && k==5)
@@ -2211,7 +2211,7 @@ int main(int argc, char **argv)
                      << fGnrt[i][j][k].tab[c][1][0][3] << " " << fRcstr[i][j][k].tab[c][1][0][3] << " " << fRcstr_c[i][j][k].tab[c][1][0][3] << " "
                      << fNDIS_evt_MC[0][1][i][j][k] << " " << fNDIS_evt[0][1][i][j][k] << " "
                      << sqrt(1/fGnrt[i][j][k].tab[c][1][0][3]+1/fRcstr[i][j][k].tab[c][1][0][3]+1/fNDIS_evt_MC[0][1][i][j][k]+1/fNDIS_evt[0][1][i][j][k]) << " "
-                     << sqrt(fAcceptance[i][j][k].tab[c][1][0][3]) << endl;
+                     << sqrt(fAcceptance[i][j][k].tab[c][1][1][3]) << endl;
           }
         }
       }
