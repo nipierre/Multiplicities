@@ -21,6 +21,9 @@
 #include <map>
 #include <utility>
 #include <math.h>
+#include <TColor.h>
+#include <TROOT.h>
+#include <TStyle.h>
 
 // COLORS
 
