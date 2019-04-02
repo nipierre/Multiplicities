@@ -2594,11 +2594,6 @@ int main(int argc, char **argv)
         MultiplicitiesSum[1][c][2] += fMultiplicities_yavg[i][k].tab[c][1][2]*pow(fZ_bin_width[k],2);
         MultiplicitiesSum[1][c][3] += fMultiplicities_yavg[i][k].tab[c][1][3]*pow(fZ_bin_width[k],2);
 
-        cout << c << " " << i << " " << k << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][1][3] << " "
-                                                 << fMultiplicities_zvtx_yavg[i][k][1].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][1].tab[c][1][3] << " "
-                                                 << fMultiplicities_zvtx_yavg[i][k][2].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][2].tab[c][1][3] << " "
-                                                 << fMultiplicities_zvtx_yavg[i][k][3].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][3].tab[c][1][3] << endl;
-
         for(int zv=0; zv<4; zv++)
         {
           p_y_z[c][i][zv].push_back(fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0]>0 ? fMultiplicities_zvtx_yavg[i][k][zv].tab[c][0][0] : 0);
@@ -4358,6 +4353,23 @@ int main(int argc, char **argv)
                   << "0 0 0 0 0 0 0 0 "
                   << GetSemiInclusiveRadiativeCorrection(1,i,j,k+1) << " " << GetSemiInclusiveRadiativeCorrection(0,i,j,k+1) << " "
                   << fDiffVectorMeson[1][i][j][k][0] << " " << fDiffVectorMeson[0][i][j][k][0] << endl;
+      }
+    }
+  }
+
+  for(int i=0; i<9; i++)
+  {
+    for(int j=0; j<5; j++)
+    {
+      for(int c=0; c<2; c++)
+      {
+        for(int k=0; k<12; k++)
+        {
+            cout << c << " " << i << " " << k << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][1][3] << " "
+                                                     << fMultiplicities_zvtx_yavg[i][k][1].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][1].tab[c][1][3] << " "
+                                                     << fMultiplicities_zvtx_yavg[i][k][2].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][2].tab[c][1][3] << " "
+                                                     << fMultiplicities_zvtx_yavg[i][k][3].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][3].tab[c][1][3] << endl;
+        }
       }
     }
   }
