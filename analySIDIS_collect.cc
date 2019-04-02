@@ -4359,17 +4359,14 @@ int main(int argc, char **argv)
 
   for(int i=0; i<9; i++)
   {
-    for(int j=0; j<5; j++)
+    for(int c=0; c<2; c++)
     {
-      for(int c=0; c<2; c++)
+      for(int k=0; k<12; k++)
       {
-        for(int k=0; k<12; k++)
-        {
-            cout << c << " " << i << " " << k << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][1][3] << " "
-                                                     << fMultiplicities_zvtx_yavg[i][k][1].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][1].tab[c][1][3] << " "
-                                                     << fMultiplicities_zvtx_yavg[i][k][2].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][2].tab[c][1][3] << " "
-                                                     << fMultiplicities_zvtx_yavg[i][k][3].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][3].tab[c][1][3] << endl;
-        }
+          cout << c << " " << i << " " << k << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][0].tab[c][1][3] << " "
+                                                   << fMultiplicities_zvtx_yavg[i][k][1].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][1].tab[c][1][3] << " "
+                                                   << fMultiplicities_zvtx_yavg[i][k][2].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][2].tab[c][1][3] << " "
+                                                   << fMultiplicities_zvtx_yavg[i][k][3].tab[c][0][3] << " " << fMultiplicities_zvtx_yavg[i][k][3].tab[c][1][3] << endl;
       }
     }
   }
