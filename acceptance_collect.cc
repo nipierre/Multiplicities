@@ -617,6 +617,7 @@ int main(int argc, char **argv)
     ofstream ofs_theta(Form("%s/%d/acceptance_theta_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_pt(Form("%s/%d/acceptance_pt_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
     ofstream ofs_reld(Form("%s/%d/reldiff_vtx_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
+    ofstream ofs_test("test.txt", std::ofstream::out | std::ofstream::trunc);
     ofstream lepto(Form("%s/%d/lepto_%s.txt",dirroot,year,periodName.c_str()), std::ofstream::out | std::ofstream::trunc);
 
     for(int c=0; c<2; c++)
@@ -784,8 +785,7 @@ int main(int argc, char **argv)
                 || (j==2 && k<2)
                 || (j==1 && k<4)
                 || (j==0 && k<7)
-                || (i==8 && j==0)
-                )
+                || (i==8 && j==0))
                 {
                    fAcceptance[i][j][k].tab[c][m][0][0] = 0;
                    fAcceptance[i][j][k].tab[c][m][0][1] = 0;
@@ -2198,6 +2198,25 @@ int main(int argc, char **argv)
       }
     }
 
+    for(int c=1; c>=0; c--)
+    {
+      for(int i=0; i<9; i++)
+      {
+        for(int j=0; j<5; j++)
+        {
+          for(int k=0; k<12; k++)
+          {
+            ofs_test << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " "
+                     << fAcceptance[i][j][k].tab[c][1][0][3] << " "
+                     << fGnrt[i][j][k].tab[c][1][0][3] << " " << fRcstr[i][j][k].tab[c][1][0][3] << " " << fRcstr_c[i][j][k].tab[c][1][0][3] << " "
+                     << fNDIS_evt_MC[0][1][i][j][k] << " " << fNDIS_evt[0][1][i][j][k]) << " "
+                     << sqrt(1/fGnrt[i][j][k].tab[c][1][0][3]+1/fRcstr[i][j][k].tab[c][1][0][3]+1/fNDIS_evt_MC[0][1][i][j][k]+1/fNDIS_evt[0][1][i][j][k]) << " "
+                     << sqrt(fAcceptance[i][j][k].tab[c][1][0][3]) << endl;
+          }
+        }
+      }
+    }
+
     c5.Print(Form("%s/%d/hadron_acceptance_%s.pdf",dirroot,year,periodName.c_str()));
     c6.Print(Form("%s/%d/pion_acceptance_%s.pdf",dirroot,year,periodName.c_str()));
     c7.Print(Form("%s/%d/kaon_acceptance_%s.pdf",dirroot,year,periodName.c_str()));
@@ -2215,6 +2234,7 @@ int main(int argc, char **argv)
     ofs_pt.close();
     ofs_yavg.close();
     ofs_reld.close();
+    ofs_test.close();
 
     for(int i=0; i<12; i++)
     {
