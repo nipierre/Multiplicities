@@ -2209,7 +2209,7 @@ int main(int argc, char **argv)
             ofs_test << fXrange[i] << " " << fYrange[j] << " " << fZrange[k] << " "
                      << fAcceptance[i][j][k].tab[c][1][0][3] << " "
                      << fGnrt[i][j][k].tab[c][1][0][3] << " " << fRcstr[i][j][k].tab[c][1][0][3] << " " << fRcstr_c[i][j][k].tab[c][1][0][3] << " "
-                     << fNDIS_evt_MC[0][1][i][j][k] << " " << fNDIS_evt[0][1][i][j][k]) << " "
+                     << fNDIS_evt_MC[0][1][i][j][k] << " " << fNDIS_evt[0][1][i][j][k] << " "
                      << sqrt(1/fGnrt[i][j][k].tab[c][1][0][3]+1/fRcstr[i][j][k].tab[c][1][0][3]+1/fNDIS_evt_MC[0][1][i][j][k]+1/fNDIS_evt[0][1][i][j][k]) << " "
                      << sqrt(fAcceptance[i][j][k].tab[c][1][0][3]) << endl;
           }
