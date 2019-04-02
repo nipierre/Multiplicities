@@ -1372,7 +1372,7 @@ void create_kin_plots()
 
 void save_kin_plots()
 {
-  gStyle->SetPalette(kColorPrintableOnGrey);
+  gStyle->SetPalette(kRainBow);
   c1.Divide(1,1);
   c2.Divide(1,1);
   c3.Divide(1,1);
