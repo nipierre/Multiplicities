@@ -389,7 +389,7 @@ Float_t GetSemiInclusiveRadiativeCorrection(int ch, int xb, int yb, int zb)
   else if(Y2012 || Y2016)
   {
     return fSemiInclusiveRCproton[ch][xb][yb][zb];
-    // return fSemiInclusiveRCproton[xb][yb][zb]/fQelCorr[xb][yb];
+    // return fSemiInclusiveRCproton[ch][xb][yb][zb]/fQelCorr[xb][yb];
   }
   else
   {
