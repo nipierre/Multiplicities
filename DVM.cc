@@ -1373,7 +1373,7 @@ void DVMSaver()
 
   for(int i=0; i<9; i++)
   {
-    for(int j=0; j<6; j++)
+    for(int j=0; j<5; j++)
     {
       ofs_dfr << i+1 << " " << j+1 << " "
                      << fNDIS_evt_SIDIS[i][j]/fNDIS_SIDIS_tot << " "
@@ -1395,6 +1395,29 @@ void DVMSaver()
       {
         for(int k=0; k<12; k++)
         {
+          if((j==4 && k>4)
+          || (i==0 && j==5 && k==3)
+          || (i>4 && j==4 && k==5)
+          || (i==0 && j==3 && k==9)
+          || (j==3 && k==11)
+          || (i==8 && j==4 && k==4)
+          || (i==6 && j==3 && k==10)
+          || (i==7 && j==3 && k>7)
+          || (i==8 && j==3 && k>6)
+          || (i>5 && j==5 && k==2)
+          || (j==1 && k==3)
+          || (i<7 && j==4 && k>5)
+          || (i>6 && j==4)
+          || (i>5 && j==3 && k>10)
+          || (i>7 && j==3 && k>8)
+          || (j==2 && k<2)
+          || (j==1 && k<4)
+          || (j==0 && k<7)
+          || (i==8 && j==0))
+          {
+            fDVM_pi[c][i][j][k]=0;
+            fDVM_K[c][i][j][k]=0;
+          }
           p_d[c][i][j].push_back(fDVM_pi[c][i][j][k]);
           k_d[c][i][j].push_back(fDVM_K[c][i][j][k]);
           p_err[c][i][j].push_back(sqrt(fDVM_pi_err[c][i][j][k]));
