@@ -217,7 +217,7 @@ studyxy fR_xy[24];
 
 int fMarkerColor[6] = {2,95,209,226,4,221};
 int fMarkerColorZvtx[4][2] = {{kBlue,kRed},{kBlue-7,kRed-7},{kBlue-9,kRed-9},{kBlue-10,kRed-10}};
-int fMarkerStyle[6][2] = {{24,20},{26,22},{25,21},{27,33},{28,34},{30,29}};
+int fMarkerStyle[6][2] = {{20,20},{26,22},{25,21},{27,33},{28,34},{30,29}};
 
 //Constants
 
