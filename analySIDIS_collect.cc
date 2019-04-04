@@ -1760,6 +1760,7 @@ int main(int argc, char **argv)
                 if(c) H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{+}}}+ #font[ 12]{#delta}");
                 else H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{-}}}+ #font[ 12]{#delta}");
                 H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.12);
+                H_mult[c][i][j]->GetYaxis()->SetTitleOffset(.6);
               }
               lsys.Draw();
               if(j==3) H_sys[c][i][j]->Draw("SAME3");
