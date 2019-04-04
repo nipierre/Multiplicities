@@ -1853,8 +1853,8 @@ int main(int argc, char **argv)
               if(i==8)
               {
                 K_mult[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                K_mult[c][i][j]->GetXaxis()->SetTitleSize(0.08);
-                K_mult[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                K_mult[c][i][j]->GetXaxis()->SetTitleSize(0.12);
+                K_mult[c][i][j]->GetXaxis()->SetTitleOffset(.6);
               }
               K_mult[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
               K_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
@@ -1862,7 +1862,8 @@ int main(int argc, char **argv)
               {
                 if(c) K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}+ #font[ 12]{#delta}");
                 else K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{-}}}+ #font[ 12]{#delta}");
-                K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.12);
+                K_mult[c][i][j]->GetYaxis()->SetTitleOffset(.6);
               }
               lsys.Draw();
               if(j==3) K_sys[c][i][j]->Draw("SAME3");
@@ -2838,15 +2839,16 @@ int main(int argc, char **argv)
             if(i==8)
             {
               K_y[c][i]->GetXaxis()->SetTitle("#font[ 12]{z}");
-              K_y[c][i]->GetXaxis()->SetTitleSize(0.08);
-              K_y[c][i]->GetXaxis()->SetTitleOffset(.8);
+              K_y[c][i]->GetXaxis()->SetTitleSize(0.12);
+              K_y[c][i]->GetXaxis()->SetTitleOffset(.6);
             }
             K_y[c][i]->GetXaxis()->SetNdivisions(304,kTRUE);
             K_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
               K_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}");
-              K_y[c][i]->GetYaxis()->SetTitleSize(0.08);
+              K_y[c][i]->GetYaxis()->SetTitleSize(0.12);
+              K_y[c][i]->GetYaxis()->SetTitleOffset(.6);
             }
             lsys.Draw();
             K_y[c][i]->Draw("SAMEP");
@@ -4200,6 +4202,12 @@ int main(int argc, char **argv)
   fTitle.SetTextSize(0.078);
   fTitle.SetTextAlign(21);
   fTitle.DrawLatex(0.5, 0.74,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
+
+  c11->cd(10);
+  auto legend = new TLegend(0.4,0.4,0.6,0.6);
+  legend->AddEntry(K_y[1][0],"K^{+}");
+  legend->AddEntry(K_y[0][0],"K^{-}");
+  legend->Draw();
 
   c12->cd(1);
   fTitle.SetTextSize(0.078);
