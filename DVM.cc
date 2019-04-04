@@ -1382,10 +1382,10 @@ void DVMSaver()
       for(int k=0; k<12; k++)
       {
         ofs_dvm << i+1 << " " << j+1 << " " << k+1 << " "
-                << 1-fDVM_h[i][j][k].tab[1][0][0] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " "
-                << 1-fDVM_h[i][j][k].tab[0][0][0] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " "
-                << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " "
-                << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << endl;
+                << 1-fDVM_h[i][j][k].tab[1][0][0] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " " << fDVM_pi_err[1][i][j][k] << " "
+                << 1-fDVM_h[i][j][k].tab[0][0][0] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " " << fDVM_pi_err[0][i][j][k] << " "
+                << 1-fDVM_h[i][j][k].tab[1][0][1] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " " << fDVM_K_err[1][i][j][k] << " "
+                << 1-fDVM_h[i][j][k].tab[0][0][1] << " " << 1-(fDVM_DIS_pi[i][j]+fDVM_DIS_K[i][j]) << " " << fDVM_K_err[0][i][j][k] << endl;
         ofs_hfr << i+1 << " " << j+1 << " " << k+1 << " "
                        << (fSIDIS[i][j][k].tab[1][0][3]+fSIDIS[i][j][k].tab[0][0][3])/(fSIDIS_tot_xy[i][j][1][3]+fSIDIS_tot_xy[i][j][0][3]) << " "
                        << (fRho[i][j][k].tab[1][0][3]+fRho[i][j][k].tab[0][0][3])/(fRho_tot_xy[i][j][1][3]+fRho_tot_xy[i][j][0][3]) << " "
