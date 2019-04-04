@@ -1742,15 +1742,15 @@ int main(int argc, char **argv)
               H_mult[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
               H_mult[c][i][j]->SetMinimum(-0.4);
               H_mult[c][i][j]->SetMaximum(5.);
-              H_mult[c][i][j]->GetXaxis()->SetLabelSize(0.06);
-              H_mult[c][i][j]->GetYaxis()->SetLabelSize(0.06);
+              H_mult[c][i][j]->GetXaxis()->SetLabelSize(0.08);
+              H_mult[c][i][j]->GetYaxis()->SetLabelSize(0.08);
               H_mult[c][i][j]->SetTitle("");
               if(i>4) gPad->SetBottomMargin(.15);
               if(i==0 || i==5) gPad->SetLeftMargin(.22);
               if(i==8)
               {
                 H_mult[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
-                H_mult[c][i][j]->GetXaxis()->SetTitleSize(0.08);
+                H_mult[c][i][j]->GetXaxis()->SetTitleSize(0.1);
                 H_mult[c][i][j]->GetXaxis()->SetTitleOffset(.8);
               }
               H_mult[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
@@ -1759,7 +1759,7 @@ int main(int argc, char **argv)
               {
                 if(c) H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{+}}}+ #font[ 12]{#delta}");
                 else H_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{h^{-}}}+ #font[ 12]{#delta}");
-                H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.08);
+                H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.1);
               }
               lsys.Draw();
               if(j==3) H_sys[c][i][j]->Draw("SAME3");
