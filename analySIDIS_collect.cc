@@ -4204,10 +4204,10 @@ int main(int argc, char **argv)
   fTitle.DrawLatex(0.5, 0.74,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
   c11->cd(10);
-  auto legend = new TLegend(0.4,0.4,0.6,0.6);
-  legend->AddEntry(K_y[1][0],"K^{+}");
-  legend->AddEntry(K_y[0][0],"K^{-}");
-  legend->Draw();
+  TLegend legend(0.4,0.4,0.6,0.6);
+  legend.AddEntry(K_y[1][0],"K^{+}");
+  legend.AddEntry(K_y[0][0],"K^{-}");
+  legend.Draw();
 
   c12->cd(1);
   fTitle.SetTextSize(0.078);

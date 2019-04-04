@@ -6,6 +6,7 @@
 #include <map>
 #include <utility>
 #include <TLatex.h>
+#include <TLegend.h>
 
 using namespace std;
 
