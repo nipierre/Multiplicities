@@ -4207,6 +4207,8 @@ int main(int argc, char **argv)
   TLegend legend(0.4,0.4,0.6,0.6);
   legend.AddEntry(K_y[1][0],"K^{+}");
   legend.AddEntry(K_y[0][0],"K^{-}");
+  legend.SetLegendBorderSize(0);
+  legend.SetLegendTextSize(0.6);
   legend.Draw();
 
   c12->cd(1);
