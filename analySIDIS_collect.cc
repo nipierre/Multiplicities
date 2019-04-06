@@ -1860,8 +1860,8 @@ int main(int argc, char **argv)
               K_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
               if(i==0)
               {
-                if(c) K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{+}}}+ #font[ 12]{#delta}");
-                else K_mult[c][i][j]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K^{-}}}+ #font[ 12]{#delta}");
+                if(c) K_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{K^{+}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
+                else K_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{K^{-}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.12);
                 K_mult[c][i][j]->GetYaxis()->SetTitleOffset(.6);
               }
@@ -2846,7 +2846,7 @@ int main(int argc, char **argv)
             K_y[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              K_y[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}");
+              K_y[c][i]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{K}}}{#font[12]{dz}}");
               K_y[c][i]->GetYaxis()->SetTitleSize(0.12);
               K_y[c][i]->GetYaxis()->SetTitleOffset(.6);
             }
@@ -3371,7 +3371,7 @@ int main(int argc, char **argv)
             K_y_reldiff[c][i]->GetYaxis()->SetNdivisions(304,kTRUE);
             if(i==0)
             {
-              K_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{M}^{#font[ 12]{K}}_{#font[ 12]{ratio}}");
+              K_y_reldiff[c][i]->GetYaxis()->SetTitle("#font[12]{dM}^{#font[ 12]{K}}_{#font[ 12]{ratio}}");
               K_y_reldiff[c][i]->GetYaxis()->SetTitleSize(0.08);
             }
             K_y_reldiff[c][i]->Draw("SAMEP");
@@ -4204,11 +4204,11 @@ int main(int argc, char **argv)
   fTitle.DrawLatex(0.5, 0.74,"0.18#scale[0.5]{ }<#scale[0.5]{ }#font[ 12]{x}#scale[0.5]{ }<#scale[0.5]{ }0.4");
 
   c11->cd(10);
-  TLegend legend(0.2,0.2,0.8,0.8);
+  TLegend legend(0.4,0.3,0.8,0.8);
   legend.AddEntry(K_y[1][0],"K^{+}");
   legend.AddEntry(K_y[0][0],"K^{-}");
   legend.SetBorderSize(0);
-  legend.SetTextSize(0.2);
+  legend.SetTextSize(0.15);
   legend.Draw();
 
   c12->cd(1);
