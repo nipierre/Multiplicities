@@ -1132,8 +1132,8 @@ int main(int argc, char **argv)
                     {
                       H_acc[c][i][j][m]->Draw("SAMEPA");
                       H_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      H_acc[c][i][j][m]->SetMinimum(0.);
-                      H_acc[c][i][j][m]->SetMaximum(1.2);
+                      H_acc[c][i][j][m]->SetMinimum(0.25);
+                      H_acc[c][i][j][m]->SetMaximum(1.04);
                       H_acc[c][i][j][m]->GetXaxis()->SetLabelSize(0.06);
                       H_acc[c][i][j][m]->GetYaxis()->SetLabelSize(0.06);
                       H_acc[c][i][j][m]->SetTitle("");
@@ -1154,16 +1154,16 @@ int main(int argc, char **argv)
                       }
                       H_acc[c][i][j][m]->Draw("SAMEP");
                       H_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      H_acc[c][i][j][m]->SetMinimum(0.);
-                      H_acc[c][i][j][m]->SetMaximum(1.2);
+                      H_acc[c][i][j][m]->SetMinimum(0.25);
+                      H_acc[c][i][j][m]->SetMaximum(1.04);
                       c5.Range(0.1,0.,0.9,1.2);
                     }
                     else
                     {
                       H_acc[c][i][j][m]->Draw("SAMEP");
                       H_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      H_acc[c][i][j][m]->SetMinimum(0.);
-                      H_acc[c][i][j][m]->SetMaximum(1.2);
+                      H_acc[c][i][j][m]->SetMinimum(0.25);
+                      H_acc[c][i][j][m]->SetMaximum(1.04);
                     }
                   }
                   c5.Update();
@@ -1178,8 +1178,8 @@ int main(int argc, char **argv)
                     {
                       P_acc[c][i][j][m]->Draw("SAMEPA");
                       P_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      P_acc[c][i][j][m]->SetMinimum(0.);
-                      P_acc[c][i][j][m]->SetMaximum(1.2);
+                      P_acc[c][i][j][m]->SetMinimum(0.25);
+                      P_acc[c][i][j][m]->SetMaximum(1.04);
                       P_acc[c][i][j][m]->GetXaxis()->SetLabelSize(0.06);
                       P_acc[c][i][j][m]->GetYaxis()->SetLabelSize(0.06);
                       P_acc[c][i][j][m]->SetTitle("");
@@ -1200,16 +1200,16 @@ int main(int argc, char **argv)
                       }
                       P_acc[c][i][j][m]->Draw("SAMEP");
                       P_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      P_acc[c][i][j][m]->SetMinimum(0.);
-                      P_acc[c][i][j][m]->SetMaximum(1.2);
+                      P_acc[c][i][j][m]->SetMinimum(0.25);
+                      P_acc[c][i][j][m]->SetMaximum(1.04);
                       c6.Range(0.,0.,1.,1.2);
                     }
                     else
                     {
                       P_acc[c][i][j][m]->Draw("SAMEP");
                       P_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      P_acc[c][i][j][m]->SetMinimum(0.);
-                      P_acc[c][i][j][m]->SetMaximum(1.2);
+                      P_acc[c][i][j][m]->SetMinimum(0.25);
+                      P_acc[c][i][j][m]->SetMaximum(1.04);
                     }
                   }
                   c6.Update();
@@ -1224,8 +1224,8 @@ int main(int argc, char **argv)
                     {
                       K_acc[c][i][j][m]->Draw("SAMEPA");
                       K_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      K_acc[c][i][j][m]->SetMinimum(0.);
-                      K_acc[c][i][j][m]->SetMaximum(1.2);
+                      K_acc[c][i][j][m]->SetMinimum(0.25);
+                      K_acc[c][i][j][m]->SetMaximum(1.04);
                       K_acc[c][i][j][m]->GetXaxis()->SetLabelSize(0.06);
                       K_acc[c][i][j][m]->GetYaxis()->SetLabelSize(0.06);
                       K_acc[c][i][j][m]->SetTitle("");
@@ -1246,16 +1246,16 @@ int main(int argc, char **argv)
                       }
                       K_acc[c][i][j][m]->Draw("SAMEP");
                       K_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      K_acc[c][i][j][m]->SetMinimum(0.);
-                      K_acc[c][i][j][m]->SetMaximum(1.2);
+                      K_acc[c][i][j][m]->SetMinimum(0.25);
+                      K_acc[c][i][j][m]->SetMaximum(1.04);
                       c7.Range(0.,0.,1.,1.2);
                     }
                     else
                     {
                       K_acc[c][i][j][m]->Draw("SAMEP");
                       K_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
-                      K_acc[c][i][j][m]->SetMinimum(0.);
-                      K_acc[c][i][j][m]->SetMaximum(1.2);
+                      K_acc[c][i][j][m]->SetMinimum(0.25);
+                      K_acc[c][i][j][m]->SetMaximum(1.04);
                     }
                   }
                   c7.Update();
