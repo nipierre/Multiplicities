@@ -1220,7 +1220,7 @@ int main(int argc, char **argv)
                   c7.cd(i+1+9*j);
                   if(K_acc[c][i][j][m])
                   {
-                    if(!c)
+                    if(!c && !m)
                     {
                       K_acc[c][i][j][m]->Draw("SAMEPA");
                       K_acc[c][i][j][m]->GetXaxis()->SetLimits(0.1,0.9);
