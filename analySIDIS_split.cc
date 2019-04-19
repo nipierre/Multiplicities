@@ -1289,6 +1289,36 @@ void load_rich_mat_dummy(string prich, string prich_err)
   errRICH.close();
 }
 
+Double_t th_cerenkov(double x, double m)
+{
+  return acos(1/(1.45)*sqrt((pow(m,2)/x^2)+1));
+}
+
+Double_t th_cerenkov_e(double x)
+{
+  return th_cerenkov(x,0.000511);
+}
+
+Double_t th_cerenkov_mu(double x)
+{
+  return th_cerenkov(x,0.10566);
+}
+
+Double_t th_cerenkov_pi(double x)
+{
+  return th_cerenkov(x,0.13957);
+}
+
+Double_t th_cerenkov_k(double x)
+{
+  return th_cerenkov(x,0.4937);
+}
+
+Double_t th_cerenkov_p(double x)
+{
+  return th_cerenkov(x,0.93827);
+}
+
 void BinLogX(TH1*h)
 {
    TAxis *axis = h->GetXaxis();
@@ -1372,7 +1402,8 @@ void create_kin_plots()
 
 void save_kin_plots()
 {
-  gStyle->SetPalette(kRainBow);
+  // gStyle->SetPalette(kRainBow);
+  gStyle->SetPalette(kColorPrintableOnGrey);
   c1.Divide(1,1);
   c2.Divide(1,1);
   c3.Divide(1,1);
@@ -1435,6 +1466,26 @@ void save_kin_plots()
   fKinematicsRICH->SetStats(0);
   fKinematicsRICH->Draw("COLZ");
   gPad->SetLogz();
+  TF1 *fe = new TF1("fe","th_cerenkov_e(x)",0,60);
+  fe->SetLineColor(0);
+  fe->SetLineStyle(9);
+  fe->Draw("SAME");
+  TF1 *fmu = new TF1("fmu","th_cerenkov_mu(x)",0,60);
+  fmu->SetLineColor(0);
+  fmu->SetLineStyle(9);
+  fmu->Draw("SAME");
+  TF1 *fpi = new TF1("fpi","th_cerenkov_pi(x)",0,60);
+  fpi->SetLineColor(0);
+  fpi->SetLineStyle(9);
+  fpi->Draw("SAME");
+  TF1 *fk = new TF1("fk","th_cerenkov_k(x)",0,60);
+  fk->SetLineColor(0);
+  fk->SetLineStyle(9);
+  fk->Draw("SAME");
+  TF1 *fp = new TF1("fp","th_cerenkov_p(x)",0,60);
+  fp->SetLineColor(0);
+  fp->SetLineStyle(9);
+  fp->Draw("SAME");
   c12.Update();
   // c13.cd(1);
   // fAllTarget[0]->SetStats(0);
