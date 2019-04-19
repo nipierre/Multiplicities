@@ -1291,7 +1291,7 @@ void load_rich_mat_dummy(string prich, string prich_err)
 
 Double_t th_cerenkov(double x, double m)
 {
-  return acos((1/1.45)*sqrt((pow(m,2)/pow(x,2))+1))*1000;
+  return acos((1/1.001390)*sqrt((pow(m,2)/pow(x,2))+1))*1000;
 }
 
 Double_t th_cerenkov_e(double x)
