@@ -1289,31 +1289,6 @@ void load_rich_mat_dummy(string prich, string prich_err)
   errRICH.close();
 }
 
-Double_t th_cerenkov_e(double x)
-{
-  return acos((1/1.001390)*sqrt((pow(0.000511,2)/pow(x,2))+1))*1000;
-}
-
-Double_t th_cerenkov_mu(double x)
-{
-  return acos((1/1.001390)*sqrt((pow(0.10566,2)/pow(x,2))+1))*1000;
-}
-
-Double_t th_cerenkov_pi(double x)
-{
-  return acos((1/1.001390)*sqrt((pow(0.13957,2)/pow(x,2))+1))*1000;
-}
-
-Double_t th_cerenkov_k(double x)
-{
-  return acos((1/1.001390)*sqrt((pow(0.4937,2)/pow(x,2))+1))*1000;
-}
-
-Double_t th_cerenkov_p(double x)
-{
-  return acos((1/1.001390)*sqrt((pow(0.93827,2)/pow(x,2))+1))*1000;
-}
-
 void BinLogX(TH1*h)
 {
    TAxis *axis = h->GetXaxis();
@@ -1461,23 +1436,23 @@ void save_kin_plots()
   fKinematicsRICH->SetStats(0);
   fKinematicsRICH->Draw("COLZ");
   gPad->SetLogz();
-  TF1 *fe = new TF1("fe","th_cerenkov_e(x)",0,60);
+  TF1 *fe = new TF1("fe","acos((1/1.001390)*sqrt((pow(0.000511,2)/pow(x,2))+1))*1000",0,60);
   fe->SetLineColor(10);
   fe->SetLineStyle(9);
   fe->Draw("SAME");
-  TF1 *fmu = new TF1("fmu","th_cerenkov_mu(x)",0,60);
+  TF1 *fmu = new TF1("fmu","acos((1/1.001390)*sqrt((pow(0.10566,2)/pow(x,2))+1))*1000",0,60);
   fmu->SetLineColor(10);
   fmu->SetLineStyle(9);
   fmu->Draw("SAME");
-  TF1 *fpi = new TF1("fpi","th_cerenkov_pi(x)",0,60);
+  TF1 *fpi = new TF1("fpi","acos((1/1.001390)*sqrt((pow(0.13957,2)/pow(x,2))+1))*1000",0,60);
   fpi->SetLineColor(10);
   fpi->SetLineStyle(9);
   fpi->Draw("SAME");
-  TF1 *fk = new TF1("fk","th_cerenkov_k(x)",0,60);
+  TF1 *fk = new TF1("fk","acos((1/1.001390)*sqrt((pow(0.4937,2)/pow(x,2))+1))*1000",0,60);
   fk->SetLineColor(10);
   fk->SetLineStyle(9);
   fk->Draw("SAME");
-  TF1 *fp = new TF1("fp","th_cerenkov_p(x)",0,60);
+  TF1 *fp = new TF1("fp","acos((1/1.001390)*sqrt((pow(0.93827,2)/pow(x,2))+1))*1000",0,60);
   fp->SetLineColor(10);
   fp->SetLineStyle(9);
   fp->Draw("SAME");
