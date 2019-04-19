@@ -1289,34 +1289,29 @@ void load_rich_mat_dummy(string prich, string prich_err)
   errRICH.close();
 }
 
-Double_t th_cerenkov(double x, double m)
-{
-  return acos((1/1.001390)*sqrt((pow(m,2)/pow(x,2))+1))*1000;
-}
-
 Double_t th_cerenkov_e(double x)
 {
-  return th_cerenkov(x,0.000511);
+  return acos((1/1.001390)*sqrt((pow(0.000511,2)/pow(x,2))+1))*1000;
 }
 
 Double_t th_cerenkov_mu(double x)
 {
-  return th_cerenkov(x,0.10566);
+  return acos((1/1.001390)*sqrt((pow(0.10566,2)/pow(x,2))+1))*1000;
 }
 
 Double_t th_cerenkov_pi(double x)
 {
-  return th_cerenkov(x,0.13957);
+  return acos((1/1.001390)*sqrt((pow(0.13957,2)/pow(x,2))+1))*1000;
 }
 
 Double_t th_cerenkov_k(double x)
 {
-  return th_cerenkov(x,0.4937);
+  return acos((1/1.001390)*sqrt((pow(0.4937,2)/pow(x,2))+1))*1000;
 }
 
 Double_t th_cerenkov_p(double x)
 {
-  return th_cerenkov(x,0.93827);
+  return acos((1/1.001390)*sqrt((pow(0.93827,2)/pow(x,2))+1))*1000;
 }
 
 void BinLogX(TH1*h)
