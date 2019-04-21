@@ -1760,7 +1760,7 @@ int main(int argc, char **argv)
                 if(c) H_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{h^{+}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 else H_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{h^{-}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 H_mult[c][i][j]->GetYaxis()->SetTitleSize(0.09);
-                H_mult[c][i][j]->GetYaxis()->SetTitleOffset(.6);
+                H_mult[c][i][j]->GetYaxis()->SetTitleOffset(.8);
               }
               lsys.Draw();
               if(j==3) H_sys[c][i][j]->Draw("SAME3");
@@ -1803,7 +1803,7 @@ int main(int argc, char **argv)
               {
                 P_mult[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
                 P_mult[c][i][j]->GetXaxis()->SetTitleSize(0.09);
-                P_mult[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                P_mult[c][i][j]->GetXaxis()->SetTitleOffset(.6);
               }
               P_mult[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
               P_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
@@ -1812,7 +1812,7 @@ int main(int argc, char **argv)
                 if(c) P_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{#pi^{+}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 else P_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{#pi^{-}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 P_mult[c][i][j]->GetYaxis()->SetTitleSize(0.09);
-                P_mult[c][i][j]->GetYaxis()->SetTitleOffset(.6);
+                P_mult[c][i][j]->GetYaxis()->SetTitleOffset(.8);
               }
               lsys.Draw();
               if(j==3) P_sys[c][i][j]->Draw("SAME3");
@@ -1864,7 +1864,7 @@ int main(int argc, char **argv)
                 if(c) K_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{K^{+}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 else K_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{K^{-}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 K_mult[c][i][j]->GetYaxis()->SetTitleSize(0.09);
-                K_mult[c][i][j]->GetYaxis()->SetTitleOffset(.6);
+                K_mult[c][i][j]->GetYaxis()->SetTitleOffset(.8);
               }
               lsys.Draw();
               if(j==3) K_sys[c][i][j]->Draw("SAME3");
@@ -1907,7 +1907,7 @@ int main(int argc, char **argv)
               {
                 PR_mult[c][i][j]->GetXaxis()->SetTitle("#font[ 12]{z}");
                 PR_mult[c][i][j]->GetXaxis()->SetTitleSize(0.09);
-                PR_mult[c][i][j]->GetXaxis()->SetTitleOffset(.8);
+                PR_mult[c][i][j]->GetXaxis()->SetTitleOffset(.6);
               }
               PR_mult[c][i][j]->GetXaxis()->SetNdivisions(304,kTRUE);
               PR_mult[c][i][j]->GetYaxis()->SetNdivisions(304,kTRUE);
@@ -1916,7 +1916,7 @@ int main(int argc, char **argv)
                 if(c) PR_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{p}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 else PR_mult[c][i][j]->GetYaxis()->SetTitle("#frac{#font[12]{dM}^{#font[ 12]{#bar{p}}}}{#font[12]{dz}}+ #font[ 12]{#delta}");
                 PR_mult[c][i][j]->GetYaxis()->SetTitleSize(0.09);
-                PR_mult[c][i][j]->GetYaxis()->SetTitleOffset(.6);
+                PR_mult[c][i][j]->GetYaxis()->SetTitleOffset(.8);
               }
               lsys.Draw();
               if(j==3) PR_sys[c][i][j]->Draw("SAME3");
