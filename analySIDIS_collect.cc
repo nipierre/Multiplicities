@@ -1377,7 +1377,7 @@ int main(int argc, char **argv)
                                                         : 0);
             }
 
-            if(fMultiplicities[i][j][k].tab[c][0][l]<=0 || fMultiplicities[i][j][k].tab[c][0][l]*0.4<fMultiplicities[i][j][k].tab[c][1][l])
+            if(fMultiplicities[i][j][k].tab[c][0][l]<=0 || fMultiplicities[i][j][k].tab[c][0][l]*0.5<fMultiplicities[i][j][k].tab[c][1][l])
             {
               fMultiplicities[i][j][k].tab[c][0][l] = 0 ;
               fMultiplicities[i][j][k].tab[c][1][l] = 0 ;
