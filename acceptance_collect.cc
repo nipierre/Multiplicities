@@ -871,12 +871,10 @@ int main(int argc, char **argv)
 
                   p_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] ? fAcceptance_zvtx[i][j][k][l].tab[c][m][0][0] : 0);
                   k_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1] ? fAcceptance_zvtx[i][j][k][l].tab[c][m][0][1] : 0);
-                  pr_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][2] ? fAcceptance_zvtx[i][j][k][l].tab[c][m][0][2] : 0);
                   h_corr.push_back(fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3] ? fAcceptance_zvtx[i][j][k][l].tab[c][m][0][3] : 0);
 
                   p_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][0]));
                   k_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][1]));
-                  pr_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][2]));
                   h_cerr.push_back(sqrt(fAcceptance_zvtx[i][j][k][l].tab[c][m][1][3]));
                 }
 
