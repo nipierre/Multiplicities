@@ -251,6 +251,14 @@ TH1F* fYk[2];
 TH1F* fThRich[2];
 TH1F* fPk[2];
 TH1F* fZk[2];
+TH1F* fxMT;
+TH1F* fxLT;
+TH1F* fxOT;
+TH1F* fxLAST;
+TH1F* fQ2MT;
+TH1F* fQ2LT;
+TH1F* fQ2OT;
+TH1F* fQ2LAST;
 TCanvas c1("Kin_Q^{2}","Kin_Q^{2}");
 TCanvas c2("Kin_x^{Bj}","Kin_x^{Bj}");
 TCanvas c3("Kin_y","Kin_y");
@@ -267,6 +275,8 @@ TCanvas c12("RICH_spec","RICH_spec");
 TCanvas c13("Target_cut","Target_cut");
 TCanvas c14("Target_cut2","Target_cut2");
 TCanvas c15("Cuts","Cuts");
+TCanvas c16("Q2Trig","Q2trig");
+TCanvas c17("xTrig","xTrig");
 
 //Graphic Style
 

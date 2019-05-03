@@ -1342,6 +1342,14 @@ void create_kin_plots()
   fInTarget[1] = new TH2F("Target YZ", "Target YZ", 100, -350, -50, 100, -3, 3);
   fAllTarget[0] = new TH2F("Target XZ2", "Target XZ2", 100, -350, -50, 100, -3, 3);
   fAllTarget[1] = new TH2F("Target YZ2", "Target YZ2", 100, -350, -50, 100, -3, 3);
+  fxMT = new TH1F("xMT","XMT", 100, -3, 0);
+  fxLT = new TH1F("xLT","xLT", 100, -3, 0);
+  fxOT = new TH1F("xOT","xOT", 100, -3, 0);
+  fxLAST = new TH1F("xLAST","xLAST", 100, -3, 0);
+  fQ2MT = new TH1F("Q2MT","Q2MT", 100, 0, 2);
+  fQ2LT = new TH1F("Q2LT","Q2LT", 100, 0, 2);
+  fQ2OT = new TH1F("Q2OT","Q2OT", 100, 0, 2);
+  fQ2LAST = new TH1F("Q2LAST","Q2LAST", 100, 0, 2);
   for(int i=0; i<10; i++)
   {
     fInTarget[i+2] = new TH2F(Form("Target XY z%d",i), Form("Target YZ z%d",i), 500, -3, 3, 500, -3, 3);
@@ -1368,12 +1376,20 @@ void create_kin_plots()
   fKinematics2D[1]->SetStats(0);
   BinLogX(fQ2k[0]);
   BinLogX(fQ2k[1]);
+  BinLogX(fxMT);
+  BinLogX(fxLT);
+  BinLogX(fxOT);
+  BinLogX(fxLAST);
+  BinLogX(fQ2MT);
+  BinLogX(fQ2LT);
+  BinLogX(fQ2OT);
+  BinLogX(fQ2LAST);
 }
 
 void save_kin_plots()
 {
   // gStyle->SetPalette(kRainBow);
-  gStyle->SetPalette(kColorPrintableOnGrey);
+  gStyle->SetPalette(kRainBow);
   c1.Divide(1,1);
   c2.Divide(1,1);
   c3.Divide(1,1);
@@ -1390,48 +1406,63 @@ void save_kin_plots()
   c13.Divide(1,2);
   c14.Divide(5,2);
   c15.Divide(3,2);
+  c16.Divide(1,1);
+  c17.Divide(1,1);
   c1.cd(1);
+  fKinematics[0]->SetStats(0);
   fKinematics[0]->Draw();
   gPad->SetLogx();
   c1.Update();
   c2.cd(1);
+  fKinematics[1]->SetStats(0);
   fKinematics[1]->Draw();
   gPad->SetLogx();
   c2.Update();
   c3.cd(1);
+  fKinematics[2]->SetStats(0);
   fKinematics[2]->Draw();
   c3.Update();
   c4.cd(1);
+  fKinematics[3]->SetStats(0);
   fKinematics[3]->Draw();
   c4.Update();
   c5.cd(1);
+  fKinematics[4]->SetStats(0);
   fKinematics[4]->Draw();
   c5.Update();
   c6.cd(1);
+  fKinematics[5]->SetStats(0);
   fKinematics[5]->Draw();
   c6.Update();
   c7.cd(1);
+  fKinematics2D[0]->SetStats(0);
   fKinematics2D[0]->Draw("COLZ");
   gPad->SetLogx();
   c7.Update();
   c71.cd(1);
+  fKinematics2D[1]->SetStats(0);
   fKinematics2D[1]->Draw("COLZ");
   gPad->SetLogx();
   gPad->SetLogy();
   gPad->SetLogz();
   c71.Update();
   c8.cd(1);
+  fTarget2D->SetStats(0);
   fTarget2D->Draw("COLZ");
   c8.Update();
   c9.cd(1);
-  fRICHLH->Draw();
+  fRICHLH->SetStats(0);
+  fRICHLH->Draw("COLZ");
   c9.Update();
   c10.cd(1);
+  fHO03->SetStats(0);
   fHO03->Draw("COLZ");
   c10.Update();
   c11.cd(1);
+  fHO04->SetStats(0);
   fHO04->Draw("COLZ");
   c11.Update();
+  gStyle->SetPalette(kColorPrintableOnGrey);
   c12.cd(1);
   fKinematicsRICH->SetStats(0);
   fKinematicsRICH->Draw("COLZ");
@@ -1481,6 +1512,7 @@ void save_kin_plots()
   //   fInTarget[i+2]->Draw("SAME");
   //   c14.Update();
   // }
+  gStyle->SetPalette(kRainBow);
   c15.cd(1);
   fZvtx[0]->SetStats(0);
   fZvtx[0]->SetTitle("z_{vtx}");
@@ -1542,6 +1574,40 @@ void save_kin_plots()
   fZk[0]->Draw();
   fZk[1]->Draw("SAME");
   c15.Update();
+  c16.cd(1);
+  fQ2MT->SetStats(0);
+  fQ2MT->GetXaxis()->SetTitle("Q^{2} (GeV/c)^{2}");
+  fQ2MT->GetYaxis()->SetTitle("Entries");
+  fQ2LT->SetLineColor(kRed);
+  fQ2LT->SetStats(0);
+  fQ2LT->SetLineColor(kMagenta);
+  fQ2OT->SetStats(0);
+  fQ2OT->SetLineColor(kOrange);
+  fQ2LAST->SetStats(0);
+  fQ2LAST->SetLineColor(kBlue);
+  gPad->SetLogx();
+  fQ2MT->Draw();
+  fQ2LT->Draw("SAME");
+  fQ2OT->Draw("SAME");
+  fQ2LAST->Draw("SAME");
+  c16.Update();
+  c17.cd(1);
+  fxMT->SetStats(0);
+  fxMT->GetXaxis()->SetTitle("x");
+  fxMT->GetYaxis()->SetTitle("Entries");
+  fxLT->SetLineColor(kRed);
+  fxLT->SetStats(0);
+  fxLT->SetLineColor(kMagenta);
+  fxOT->SetStats(0);
+  fxOT->SetLineColor(kOrange);
+  fxLAST->SetStats(0);
+  fxLAST->SetLineColor(kBlue);
+  gPad->SetLogx();
+  fxMT->Draw();
+  fxLT->Draw("SAME");
+  fxOT->Draw("SAME");
+  fxLAST->Draw("SAME");
+  c17.Update();
 
   c1.Print("kinSIDIS.pdf(","pdf");
   c2.Print("kinSIDIS.pdf","pdf");
@@ -1558,7 +1624,9 @@ void save_kin_plots()
   c12.Print("kinSIDIS.pdf","pdf");
   c13.Print("kinSIDIS.pdf","pdf");
   c14.Print("kinSIDIS.pdf","pdf");
-  c15.Print("kinSIDIS.pdf)","pdf");
+  c15.Print("kinSIDIS.pdf","pdf");
+  c16.Print("kinSIDIS.pdf","pdf");
+  c17.Print("kinSIDIS.pdf)","pdf");
 }
 
 void resetValues()
@@ -2149,6 +2217,26 @@ int main(int argc, char **argv)
           fHO03y.push_back(HO03y->GetLeaf("HO03y")->GetValue());
           fHO04x.push_back(HO04x->GetLeaf("HO04x")->GetValue());
           fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
+          if(trig&2)
+          {
+            fQ2MT.push_back(Q2);
+            fxMT.push_back(xBj);
+          }
+          if(trig&4)
+          {
+            fQ2LT.push_back(Q2);
+            fxLT.push_back(xBj);
+          }
+          if(trig&8)
+          {
+            fQ2OT.push_back(Q2);
+            fxOT.push_back(xBj);
+          }
+          if(trig&512)
+          {
+            fQ2LAST.push_back(Q2);
+            fxLAST.push_back(xBj);
+          }
         }
 
         // -------------------------------------------------------------------------
