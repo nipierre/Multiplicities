@@ -1337,7 +1337,7 @@ void create_kin_plots()
   fTarget2D = new TH2F("Target xy", "Target xy", 100, -3, 3, 100, -3, 3);
   fHO03 = new TH2F("HO03", "HO03", 100, -120, 120, 100, -60, 60);
   fHO04 = new TH2F("HO04", "HO04", 100, -250, 250, 100, -100, 100);
-  fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 2, 100, -2, 2);
+  fRICHLH = new TH2F("RICH LH", "RICH LH", 100, -2, 1.5, 100, -2, 1.5);
   fInTarget[0] = new TH2F("Target XZ", "Target XZ", 100, -350, -50, 100, -3, 3);
   fInTarget[1] = new TH2F("Target YZ", "Target YZ", 100, -350, -50, 100, -3, 3);
   fAllTarget[0] = new TH2F("Target XZ2", "Target XZ2", 100, -350, -50, 100, -3, 3);
@@ -1346,10 +1346,10 @@ void create_kin_plots()
   fxLT = new TH1F("xLT","xLT", 100, -3, 0);
   fxOT = new TH1F("xOT","xOT", 100, -3, 0);
   fxLAST = new TH1F("xLAST","xLAST", 100, -3, 0);
-  fQ2MT = new TH1F("Q2MT","Q2MT", 100, 0, 2);
-  fQ2LT = new TH1F("Q2LT","Q2LT", 100, 0, 2);
-  fQ2OT = new TH1F("Q2OT","Q2OT", 100, 0, 2);
-  fQ2LAST = new TH1F("Q2LAST","Q2LAST", 100, 0, 2);
+  fQ2MT = new TH1F("Q2MT","Q2MT", 100, -0.09, 2);
+  fQ2LT = new TH1F("Q2LT","Q2LT", 100, -0.09, 2);
+  fQ2OT = new TH1F("Q2OT","Q2OT", 100, -0.09, 2);
+  fQ2LAST = new TH1F("Q2LAST","Q2LAST", 100, -0.09, 2);
   for(int i=0; i<10; i++)
   {
     fInTarget[i+2] = new TH2F(Form("Target XY z%d",i), Form("Target YZ z%d",i), 500, -3, 3, 500, -3, 3);
@@ -1578,7 +1578,7 @@ void save_kin_plots()
   fQ2MT->SetStats(0);
   fQ2MT->GetXaxis()->SetTitle("Q^{2} (GeV/c)^{2}");
   fQ2MT->GetYaxis()->SetTitle("Entries");
-  fQ2LT->SetLineColor(kRed);
+  fQ2MT->SetLineColor(kRed);
   fQ2LT->SetStats(0);
   fQ2LT->SetLineColor(kMagenta);
   fQ2OT->SetStats(0);
@@ -1595,7 +1595,7 @@ void save_kin_plots()
   fxMT->SetStats(0);
   fxMT->GetXaxis()->SetTitle("x");
   fxMT->GetYaxis()->SetTitle("Entries");
-  fxLT->SetLineColor(kRed);
+  fxMT->SetLineColor(kRed);
   fxLT->SetStats(0);
   fxLT->SetLineColor(kMagenta);
   fxOT->SetStats(0);
