@@ -2219,23 +2219,23 @@ int main(int argc, char **argv)
           fHO04y.push_back(HO04y->GetLeaf("HO04y")->GetValue());
           if(trig&2)
           {
-            fQ2MT.Fill(Q2);
-            fxMT.Fill(xBj);
+            fQ2MT->Fill(Q2);
+            fxMT->Fill(xBj);
           }
           if(trig&4)
           {
-            fQ2LT.Fill(Q2);
-            fxLT.Fill(xBj);
+            fQ2LT->Fill(Q2);
+            fxLT->Fill(xBj);
           }
           if(trig&8)
           {
-            fQ2OT.Fill(Q2);
-            fxOT.Fill(xBj);
+            fQ2OT->Fill(Q2);
+            fxOT->Fill(xBj);
           }
           if(trig&512)
           {
-            fQ2LAST.Fill(Q2);
-            fxLAST.Fill(xBj);
+            fQ2LAST->Fill(Q2);
+            fxLAST->Fill(xBj);
           }
         }
 
