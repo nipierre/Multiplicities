@@ -346,9 +346,9 @@ void plot_sum_average_ratio()
      TGraphErrors *dmult_sum = new TGraphErrors(8,avg_x, sum ,zerror,sum_e);
      TGraphErrors *dmult_ratio = new TGraphErrors(8,avg_x, ratio,zerror,ratio_e);
 
-     double offset1[8]={0.085,0.085,0.085,0.085,0.085,0.085,0.085,0.085};
+     double offset1[8]={0.056,0.056,0.056,0.056,0.056,0.056,0.056,0.056};
      double offset2[9]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093};
-     double offset2r[9]={1.,1.,1.,1.,1.,1.,1.,1.,1.};
+     double offset2r[9]={1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8};
      double offset3[7]={0.7,0.7,0.7,0.7,0.7,0.7,0.7};
 
      TGraphAsymmErrors *dsys_sum = new TGraphAsymmErrors(8,avg_x ,offset1 , errorx, errorx, ysys,summed_sysm );
@@ -370,7 +370,7 @@ void plot_sum_average_ratio()
      double px[2][12][8];
 
      ifstream IN2;
-     IN2.open("./data/MultiplicityKaon_yavg.txt", ifstream::in);
+     IN2.open("./data/MultiplicityProton_yavg.txt", ifstream::in);
      for(int i=0; i<9; i++)
      {
        for(int k=0; k<12; k++)
@@ -449,9 +449,9 @@ void plot_sum_average_ratio()
      TGraphErrors *pmult_sum = new TGraphErrors(8,px[0][5], psum ,zerror,psum_e);
      TGraphErrors *pmult_ratio = new TGraphErrors(8,px[0][5], pratio,zerror,pratio_e);
 
-     double poffset1[9]={0.077,0.077,0.077,0.077,0.077,0.077,0.077,0.077,0.077};
+     double poffset1[9]={0.047,0.047,0.047,0.047,0.047,0.047,0.047,0.047,0.047};
      double poffset2[9]={0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093,0.093};
-     double poffset2r[9]={0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92};
+     double poffset2r[9]={1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8,1.8};
      double poffset3[7]={0.7,0.7,0.7,0.7,0.7,0.7,0.7};
 
      TGraphAsymmErrors *psys_sum = new TGraphAsymmErrors(8,px[0][5] ,poffset1 , errorx, errorx, ysys,psummed_sysm );
@@ -459,9 +459,9 @@ void plot_sum_average_ratio()
 
      psys_sum->SetFillColor(kAzure+6);  psys_ratio->SetFillColor(kAzure+6);
      pmult_sum->SetMarkerColor(kAzure+7);  pmult_sum->SetLineColor(kAzure+7);
-     pmult_sum->SetMarkerStyle(22); pmult_sum->SetMarkerSize(1.63);
+     pmult_sum->SetMarkerStyle(kFullCircle); pmult_sum->SetMarkerSize(1.63);
      pmult_ratio->SetMarkerColor(kAzure+7);  pmult_ratio->SetLineColor(kAzure+7);
-     pmult_ratio->SetMarkerStyle(22); pmult_ratio->SetMarkerSize(1.63);
+     pmult_ratio->SetMarkerStyle(kFullCircle); pmult_ratio->SetMarkerSize(1.63);
 
 
 
@@ -587,13 +587,13 @@ void plot_sum_average_ratio()
      TGraphAsymmErrors *hsys_ratio = new TGraphAsymmErrors(9,hx[0][0] ,hoffseth2 , errorx, errorx, ysys,hratio_sysm);
      TGraphAsymmErrors *hsys_ratiob = new TGraphAsymmErrors(9,hxb ,hoffseth2b , errorx, errorx, ysys,hratio_sysmb );
 
-     hsys_sum->SetFillColor(kViolet-4);   hsys_ratio->SetFillColor(kViolet-4);
+     hsys_sum->SetFillColor(kAzure-9);   hsys_ratio->SetFillColor(kAzure-9);
      hsys_sumb->SetFillColor(kWhite);   hsys_ratiob->SetFillColor(kWhite);
 
-     hmult_sum->SetMarkerColor(kViolet);  hmult_sum->SetLineColor(kViolet);
-     hmult_sum->SetMarkerStyle(25); hmult_sum->SetMarkerSize(1.63);
-     hmult_ratio->SetMarkerColor(kViolet);  hmult_ratio->SetLineColor(kViolet);
-     hmult_ratio->SetMarkerStyle(25); hmult_ratio->SetMarkerSize(1.63);
+     hmult_sum->SetMarkerColor(kAzure+10);  hmult_sum->SetLineColor(kAzure+10);
+     hmult_sum->SetMarkerStyle(30); hmult_sum->SetMarkerSize(1.63);
+     hmult_ratio->SetMarkerColor(kAzure+10);  hmult_ratio->SetLineColor(kAzure+10);
+     hmult_ratio->SetMarkerStyle(30); hmult_ratio->SetMarkerSize(1.63);
 
      /////////////HERMES multiplicities from 2013/2014 publications - DEUTERON
 
@@ -717,12 +717,12 @@ void plot_sum_average_ratio()
      TGraphAsymmErrors *hdsys_ratio = new TGraphAsymmErrors(9,hdx[0][0] ,hdoffseth2 , errorx, errorx, ysys,hdratio_sysm);
      TGraphAsymmErrors *hdsys_ratiob = new TGraphAsymmErrors(9,hdxb ,hdoffseth2b , errorx, errorx, ysys,hdratio_sysmb );
 
-     hdsys_sum->SetFillColor(kTeal+4);   hdsys_ratio->SetFillColor(kTeal+4);
+     hdsys_sum->SetFillColor(kOrange-9);   hdsys_ratio->SetFillColor(kOrange-9);
      hdsys_sumb->SetFillColor(kWhite);   hdsys_ratiob->SetFillColor(kWhite);
 
-     hdmult_sum->SetMarkerColor(kTeal+3);  hdmult_sum->SetLineColor(kTeal+3);
+     hdmult_sum->SetMarkerColor(kOrange+7);  hdmult_sum->SetLineColor(kOrange+7);
      hdmult_sum->SetMarkerStyle(30); hdmult_sum->SetMarkerSize(1.63);
-     hdmult_ratio->SetMarkerColor(kTeal+3);  hdmult_ratio->SetLineColor(kTeal+3);
+     hdmult_ratio->SetMarkerColor(kOrange+7);  hdmult_ratio->SetLineColor(kOrange+7);
      hdmult_ratio->SetMarkerStyle(30); hdmult_ratio->SetMarkerSize(1.63);
 
 
@@ -759,7 +759,7 @@ void plot_sum_average_ratio()
 
 
      TMarker markerp; TMarker markerd;  TMarker markerh; TMarker markerhd;
-     TH2F *mAxis2 = new TH2F("mAxis2","",100,0.,1,100,0.074,0.21);//-0.2,3.7
+     TH2F *mAxis2 = new TH2F("mAxis2","",100,0.,1,100,0.045,0.1);//-0.2,3.7
      mAxis2->GetYaxis()->SetLabelSize(0.06);
      mAxis2->GetXaxis()->SetLabelSize(0.06);
      mAxis2->GetYaxis()->SetTitleSize(0.065);
@@ -767,7 +767,6 @@ void plot_sum_average_ratio()
      mAxis2->GetYaxis()->SetLabelOffset(0.01);
      mAxis2->GetXaxis()->SetTitleSize(0.06);
      mAxis2->GetXaxis()->SetLabelOffset(-0.007);
-     mAxis2->GetYaxis()->SetRangeUser(0.05,0.3);
 
      TCanvas *c_can2   = new TCanvas("c_acc2", "Kaon sum (x) compass and hermes data",970,650);//
      TPad *spad00 = new TPad("spad00","The first subpad",0.0,0.01,1,1);
@@ -778,41 +777,42 @@ void plot_sum_average_ratio()
      spad00->Draw();
      spad00->cd();
      gPad->SetLogx();
-     mAxis2->Draw("axis");dsys_sum->Draw("3");psys_sum->Draw("3");  /*hsys_sum->Draw("3");hsys_sumb->Draw("3"); hdsys_sum->Draw("3");hdsys_sumb->Draw("3");*/dmult_sum->Draw("P");pmult_sum->Draw("P"); /*hmult_sum->Draw("P"); hdmult_sum->Draw("P");*/
+     mAxis2->Draw("axis");/*dsys_sum->Draw("3");*/psys_sum->Draw("3");  /*hsys_sum->Draw("3");hsys_sumb->Draw("3"); hdsys_sum->Draw("3");hdsys_sumb->Draw("3");dmult_sum->Draw("P");*/pmult_sum->Draw("P"); /*hmult_sum->Draw("P"); hdmult_sum->Draw("P");*/
      //////////////
      c_can2->cd();
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.05, "#font[ 12]{x}");
      y_t_axis_bins.SetTextSize( 0.05 );
-     markerh.SetMarkerStyle(25);
-     markerh.SetMarkerColor(kViolet);
+     markerh.SetMarkerStyle(30);
+     markerh.SetMarkerColor(kAzure+10);
      // markerh.SetMarkerSize(1.63); markerh.DrawMarker(0.18,.80);
      markerhd.SetMarkerStyle(30);
-     markerhd.SetMarkerColor(kTeal+3);
+     markerhd.SetMarkerColor(kOrange+7);
      // markerhd.SetMarkerSize(1.63); markerhd.DrawMarker(0.18,.74);
      markerd.SetMarkerStyle(20);
      markerd.SetMarkerColor(kOrange+7);
-     markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.18,.86);
-     markerp.SetMarkerStyle(22);
+     // markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.18,.86);
+     markerp.SetMarkerStyle(20);
      markerp.SetMarkerColor(kAzure+7);
      markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.18,.92);
-     y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS proton preliminary");
-     y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar (^{6}LiD)");
+     y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS 2016 preliminary");
+     // y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar");
      // y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
      // y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
      TMathText text;
      text.SetTextAngle(90);
      text.SetTextFont( 132 );
      text.SetTextSize( 0.07 );
-     text.DrawMathText(.05,.64,"\\mathscr{M}^{ K^{+}}+\\mathscr{M}^{ K^{-}}");
-     c_can2->Print("./figures/Mult_k_sum.eps");
+     text.DrawMathText(.05,.64,"\\mathscr{M}^{ p}+\\mathscr{M}^{ \\bar{p}}");
+     c_can2->Print("./figures/Mult_p_sum.eps");
+     // c_can2->Print("./root_files/Mult_sum_hermes.root");
 
 
 
 
      //ratio
-     TH2F *rmAxis = new TH2F("rmAxis","",100,0.,1,100,0.82,3.5);//-0.2,3.7
+     TH2F *rmAxis = new TH2F("rmAxis","",100,0.,1,100,1.7,3.5);//-0.2,3.7
      rmAxis->GetYaxis()->SetLabelSize(0.06);
      rmAxis->GetXaxis()->SetLabelSize(0.06);
      rmAxis->GetYaxis()->SetTitleSize(0.065);
@@ -820,7 +820,6 @@ void plot_sum_average_ratio()
      rmAxis->GetYaxis()->SetLabelOffset(0.01);
      rmAxis->GetXaxis()->SetTitleSize(0.06);
      rmAxis->GetXaxis()->SetLabelOffset(-0.007);
-     rmAxis->GetYaxis()->SetRangeUser(0.82,4);
      TCanvas *c_can5   = new TCanvas("c_acc5", "Pion ratio (x) compass, hermes data",970,650);//
      TPad *spad1 = new TPad("spad1","The first subpad",0.0,0.01,1,1);
      c_can5->SetFillStyle(4000);
@@ -830,7 +829,7 @@ void plot_sum_average_ratio()
      spad1->Draw();
      spad1->cd();
      gPad->SetLogx();
-     rmAxis->Draw("axis");dsys_ratio->Draw("3"); psys_ratio->Draw("3"); /*hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); hdsys_ratio->Draw("3"); hdsys_ratiob->Draw("3");*/ dmult_ratio->Draw("P");pmult_ratio->Draw("P");/*hmult_ratio->Draw("P");hdmult_ratio->Draw("P");*/
+     rmAxis->Draw("axis");/*dsys_ratio->Draw("3");*/ psys_ratio->Draw("3"); /*hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); hdsys_ratio->Draw("3"); hdsys_ratiob->Draw("3"); dmult_ratio->Draw("P");*/pmult_ratio->Draw("P");/*hmult_ratio->Draw("P");hdmult_ratio->Draw("P")*/;
      c_can5->cd();
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
@@ -839,13 +838,14 @@ void plot_sum_average_ratio()
      // markerh.DrawMarker(0.18,.80);
      // markerhd.DrawMarker(0.18,.74);
      markerp.DrawMarker(0.18,.92);
-     markerd.DrawMarker(0.18,.86);
-     y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar (^{6}LiD)");
+     // markerd.DrawMarker(0.18,.86);
+     // y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar");
      y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS proton preliminary");
      // y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
      // y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
-     text.DrawMathText(.05,.65,"\\mathscr{M}^{ K^{+}}/\\mathscr{M}^{ K^{-}}");
-     c_can5->Print("./figures/Mult_k_ratio.eps");
+     text.DrawMathText(.05,.65,"\\mathscr{M}^{ p}/\\mathscr{M}^{ \\bar{p}}");
+     c_can5->Print("./figures/Mult_p_ratio.eps");
+     // c_can5->Print("./root_files/Mult_ratio.root");
 
 
 
