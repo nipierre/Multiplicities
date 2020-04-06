@@ -725,8 +725,39 @@ void plot_sum_average_ratio()
      hdmult_ratio->SetMarkerColor(kTeal+3);  hdmult_ratio->SetLineColor(kTeal+3);
      hdmult_ratio->SetMarkerStyle(30); hdmult_ratio->SetMarkerSize(1.63);
 
+     //Ratio COMPASS proton/deuteron
 
-   /////////////////template for plots///////////
+     double compsum[9];
+     double compsum_e[9];
+     double compsum_s[9];
+     double compratio[9];
+     double compratio_e[9];
+     double compratio_s[9];
+
+     for(int i=0; i<9; i++)
+     {
+       compsum[i] = psum[i]/sum[i];
+       compsum_e[i] = sqrt(pow(psum_e[i]/sum[i],2)+pow(compsum[i]*sum_e[i]/sum[i],2));
+       compsum_s[i] = sqrt(pow(psummed_sysm[i]/sum[i],2)+pow(compsum[i]*summed_sysm[i]/sum[i],2));
+       compratio[i] = pratio[i]/ratio[i];
+       compratio_e[i] = sqrt(pow(pratio_e[i]/ratio[i],2)+pow(compratio[i]*ratio_e[i]/ratio[i],2));
+       compratio_s[i] = sqrt(pow(pratio_sysm[i]/ratio[i],2)+pow(compratio[i]*ratio_sysm[i]/ratio[i],2));
+     }
+
+     double compoffset1[9]={0.077,0.077,0.077,0.077,0.077,0.077,0.077,0.077,0.077};
+     double compoffset2r[9]={0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92};
+
+     TGraphErrors *comp_sum = new TGraphErrors(8,px[0][5], compsum ,zerror,compsum_e);
+     TGraphErrors *comp_ratio = new TGraphErrors(8,px[0][5], compratio ,zerror,compratio_e);
+
+     TGraphAsymmErrors *compsys_sum = new TGraphAsymmErrors(8,px[0][5] ,compoffset1 , errorx, errorx, ysys,compsum_s );
+     TGraphAsymmErrors *compsys_ratio = new TGraphAsymmErrors(8,px[0][5] ,compoffset2r , errorx, errorx, ysys,compratio_s);
+
+     comp_sum->SetMarkerStyle(kFullCircle);
+     comp_ratio->SetMarkerStyle(kFullCircle);
+
+
+     /////////////////template for plots///////////
      gROOT->SetStyle("Plain");
      gStyle->SetPalette(1);
      gStyle->SetOptStat(0);
@@ -769,6 +800,19 @@ void plot_sum_average_ratio()
      mAxis2->GetXaxis()->SetLabelOffset(-0.007);
      mAxis2->GetYaxis()->SetRangeUser(0.05,0.3);
 
+     TH2F *mAxis4 = new TH2F("mAxis3","",100,0.,1,100,0.9,1.1);//-0.2,3.7
+     mAxis4->GetYaxis()->SetLabelSize(0.06);
+     mAxis4->GetXaxis()->SetLabelSize(0.06);
+     mAxis4->GetYaxis()->SetTitleSize(0.065);
+     mAxis4->GetYaxis()->SetTitleOffset(1);
+     mAxis4->GetYaxis()->SetLabelOffset(0.01);
+     mAxis4->GetXaxis()->SetTitleSize(0.06);
+     // mAxis4->GetXaxis()->SetLabelOffset(-0.007);
+     mAxis4->GetXaxis()->SetTitleOffset(0.9);
+     mAxis4->GetYaxis()->SetRangeUser(0.05,0.3);
+     mAxis4->GetXaxis()->SetTitle("#font[ 12]{x}");
+     mAxis4->GetYaxis()->SetTitle("S_{pr}\\,/S_{iso}");
+
      TCanvas *c_can2   = new TCanvas("c_acc2", "Kaon sum (x) compass and hermes data",970,650);//
      TPad *spad00 = new TPad("spad00","The first subpad",0.0,0.01,1,1);
      c_can2->SetFillStyle(4000);
@@ -778,8 +822,16 @@ void plot_sum_average_ratio()
      spad00->Draw();
      spad00->cd();
      gPad->SetLogx();
-     mAxis2->Draw("axis");dsys_sum->Draw("3");psys_sum->Draw("3");  /*hsys_sum->Draw("3");hsys_sumb->Draw("3"); hdsys_sum->Draw("3");hdsys_sumb->Draw("3");*/dmult_sum->Draw("P");pmult_sum->Draw("P"); /*hmult_sum->Draw("P"); hdmult_sum->Draw("P");*/
+     mAxis2->Draw("axis");dsys_sum->Draw("3");psys_sum->Draw("3");  hsys_sum->Draw("3");hsys_sumb->Draw("3"); hdsys_sum->Draw("3");hdsys_sumb->Draw("3"); dmult_sum->Draw("P");pmult_sum->Draw("P"); hmult_sum->Draw("P"); hdmult_sum->Draw("P");
      //////////////
+     c_can2->cd();
+     TPad *spad02 = new TPad("spad02","The first subpad2",0.68,0.68,0.98,0.97);
+     spad02->SetFillStyle(4000); //will be transparent
+     spad02->SetFrameFillStyle(4000);
+     // spad02->Draw();
+     spad02->cd();
+     gPad->SetLogx();
+     mAxis4->Draw("axis"); /*compsys_ratio->Draw("3");*/ comp_sum->Draw("P");
      c_can2->cd();
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
@@ -787,20 +839,20 @@ void plot_sum_average_ratio()
      y_t_axis_bins.SetTextSize( 0.05 );
      markerh.SetMarkerStyle(25);
      markerh.SetMarkerColor(kViolet);
-     // markerh.SetMarkerSize(1.63); markerh.DrawMarker(0.18,.80);
+     markerh.SetMarkerSize(1.63); markerh.DrawMarker(0.18,.80);
      markerhd.SetMarkerStyle(30);
      markerhd.SetMarkerColor(kTeal+3);
-     // markerhd.SetMarkerSize(1.63); markerhd.DrawMarker(0.18,.74);
+     markerhd.SetMarkerSize(1.63); markerhd.DrawMarker(0.18,.74);
      markerd.SetMarkerStyle(20);
      markerd.SetMarkerColor(kOrange+7);
      markerd.SetMarkerSize(1.63); markerd.DrawMarker(0.18,.86);
      markerp.SetMarkerStyle(22);
      markerp.SetMarkerColor(kAzure+7);
      markerp.SetMarkerSize(1.63); markerp.DrawMarker(0.18,.92);
-     y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS proton preliminary");
+     y_t_axis_bins.DrawLatex( 0.20,  0.92, "This work");
      y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar (^{6}LiD)");
-     // y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
-     // y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
+     y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
+     y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
      TMathText text;
      text.SetTextAngle(90);
      text.SetTextFont( 132 );
@@ -812,7 +864,7 @@ void plot_sum_average_ratio()
 
 
      //ratio
-     TH2F *rmAxis = new TH2F("rmAxis","",100,0.,1,100,0.82,3.5);//-0.2,3.7
+     TH2F *rmAxis = new TH2F("rmAxis","",100,0.,1,100,0.82,3.8);//-0.2,3.7
      rmAxis->GetYaxis()->SetLabelSize(0.06);
      rmAxis->GetXaxis()->SetLabelSize(0.06);
      rmAxis->GetYaxis()->SetTitleSize(0.065);
@@ -821,6 +873,21 @@ void plot_sum_average_ratio()
      rmAxis->GetXaxis()->SetTitleSize(0.06);
      rmAxis->GetXaxis()->SetLabelOffset(-0.007);
      rmAxis->GetYaxis()->SetRangeUser(0.82,4);
+
+     TH2F *mAxis3 = new TH2F("mAxis3","",100,0.,1,100,1.,1.4);//-0.2,3.7
+     mAxis3->GetYaxis()->SetLabelSize(0.06);
+     mAxis3->GetXaxis()->SetLabelSize(0.06);
+     mAxis3->GetYaxis()->SetTitleSize(0.065);
+     mAxis3->GetYaxis()->SetTitleOffset(1);
+     mAxis3->GetYaxis()->SetLabelOffset(0.01);
+     mAxis3->GetXaxis()->SetTitleSize(0.06);
+     // mAxis3->GetXaxis()->SetLabelOffset(-0.001);
+     mAxis3->GetXaxis()->SetTitleOffset(0.9);
+     mAxis3->GetYaxis()->SetRangeUser(0.05,0.3);
+     mAxis3->GetXaxis()->SetTitle("#font[ 12]{x}");
+     mAxis3->GetYaxis()->SetTitle("R_{pr}\\,/R_{iso}");
+
+
      TCanvas *c_can5   = new TCanvas("c_acc5", "Pion ratio (x) compass, hermes data",970,650);//
      TPad *spad1 = new TPad("spad1","The first subpad",0.0,0.01,1,1);
      c_can5->SetFillStyle(4000);
@@ -830,23 +897,29 @@ void plot_sum_average_ratio()
      spad1->Draw();
      spad1->cd();
      gPad->SetLogx();
-     rmAxis->Draw("axis");dsys_ratio->Draw("3"); psys_ratio->Draw("3"); /*hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); hdsys_ratio->Draw("3"); hdsys_ratiob->Draw("3");*/ dmult_ratio->Draw("P");pmult_ratio->Draw("P");/*hmult_ratio->Draw("P");hdmult_ratio->Draw("P");*/
+     rmAxis->Draw("axis");dsys_ratio->Draw("3"); psys_ratio->Draw("3"); hsys_ratio->Draw("3"); hsys_ratiob->Draw("3"); hdsys_ratio->Draw("3"); hdsys_ratiob->Draw("3"); dmult_ratio->Draw("P");pmult_ratio->Draw("P"); hmult_ratio->Draw("P");hdmult_ratio->Draw("P");
+     c_can5->cd();
+     TPad *spad0t = new TPad("spad0t","The first subpadt",0.68,0.68,0.98,0.97);
+     spad0t->SetFillStyle(4000); //will be transparent
+     spad0t->SetFrameFillStyle(4000);
+     // spad0t->Draw();
+     spad0t->cd();
+     gPad->SetLogx();
+     mAxis3->Draw("axis"); /*compsys_ratio->Draw("3");*/ comp_ratio->Draw("P");
      c_can5->cd();
      y_t_axis_bins.SetTextAlign(12);
      y_t_axis_bins.SetTextSize( 0.065 );
      y_t_axis_bins.DrawLatex( 0.93,  0.05, "#font[ 12]{x}");
      y_t_axis_bins.SetTextSize( 0.05 );
-     // markerh.DrawMarker(0.18,.80);
-     // markerhd.DrawMarker(0.18,.74);
+     markerh.DrawMarker(0.18,.80);
+     markerhd.DrawMarker(0.18,.74);
      markerp.DrawMarker(0.18,.92);
      markerd.DrawMarker(0.18,.86);
      y_t_axis_bins.DrawLatex( 0.20,  0.86, "COMPASS isoscalar (^{6}LiD)");
-     y_t_axis_bins.DrawLatex( 0.20,  0.92, "COMPASS proton preliminary");
-     // y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
-     // y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
+     y_t_axis_bins.DrawLatex( 0.20,  0.92, "This work");
+     y_t_axis_bins.DrawLatex( 0.20,  0.80, "HERMES proton");
+     y_t_axis_bins.DrawLatex( 0.20,  0.74, "HERMES deuteron");
      text.DrawMathText(.05,.65,"\\mathscr{M}^{ K^{+}}/\\mathscr{M}^{ K^{-}}");
      c_can5->Print("./figures/Mult_k_ratio.eps");
-
-
 
        }

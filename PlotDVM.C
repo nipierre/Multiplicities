@@ -152,7 +152,7 @@ void PlotDVM()
             {
               P_d[c][i][j]->Draw("SAMEPA");
               P_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P_d[c][i][j]->SetMinimum(0.6);
+              P_d[c][i][j]->SetMinimum(0.4);
               P_d[c][i][j]->SetMaximum(1.15);
               P_d[c][i][j]->GetXaxis()->SetLabelSize(0.06);
               P_d[c][i][j]->GetYaxis()->SetLabelSize(0.06);
@@ -174,7 +174,7 @@ void PlotDVM()
               }
               P_d[c][i][j]->Draw("SAMEP");
               P_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P_d[c][i][j]->SetMinimum(0.6);
+              P_d[c][i][j]->SetMinimum(0.4);
               P_d[c][i][j]->SetMaximum(1.15);
               c1.Range(0.,0.,1.,1.2);
             }
@@ -182,7 +182,7 @@ void PlotDVM()
             {
               P_d[c][i][j]->Draw("SAMEP");
               P_d[c][i][j]->GetXaxis()->SetLimits(0.1,0.9);
-              P_d[c][i][j]->SetMinimum(0.6);
+              P_d[c][i][j]->SetMinimum(0.4);
               P_d[c][i][j]->SetMaximum(1.15);
             }
           }

@@ -63,37 +63,40 @@ plot!(zred,slice_cum, lw=3,
 savefig("myplot.png")
 plot(z_data,y_data, ribbon = (Rd,Rd),
                     fillalpha = 0.3,
-                    xlabel = "z",
-                    ylabel = "y",
+                    xlabel = "z (cm)",
+                    ylabel = "y (cm)",
+                    ylims = (-3,3.),
                     label="Data Target")
 plot!(z_mc,y_mc, ribbon = (Rmc,Rmc),
                  fillalpha = 0.3,
-                 xlabel = "z",
-                 ylabel = "y",
+                 xlabel = "z (cm)",
+                 ylabel = "y (cm)",
+                 ylims = (-3,3.),
                  label="MC Target")
 plot!(z_mc,y12, fillalpha = 0.3,
-                 xlabel = "z",
-                 ylabel = "y",
-                 label="Cut y=1.2")
+                 xlabel = "z (cm)",
+                 ylabel = "y (cm)",
+                 ylims = (-3,3.),
+                 label="Cut y=1.2 cm")
 savefig("myplot2.png")
 
-ygif = fill(1.2,2)
-xgif = [-3,3]
-
-anim = @animate for i=1:26
-    f(x,y) = x^2 + (y-y_data[i])^2 - Rd^2
-    g(x,y) = x^2 + (y-y_mc[i])^2 - Rmc^2
-    r = ((Le(f,0)) & (Ge(g,0)))
-    t = string("Residual volume in intersection at z =", z_data[i])
-    plot(r, xlabel = "x",
-            xlims = (-3,3),
-            xticks = -3:0.5:3,
-            ylabel = "y",
-            ylims = (-3,1.2),
-            yticks = -3:0.5:3,
-            title=t)
-    plot!(xgif, ygif, label="Cut y=1.2")
-end
-gif(anim, "mygif.gif", fps = 3)
+# ygif = fill(1.2,2)
+# xgif = [-3,3]
+#
+# anim = @animate for i=1:26
+#     f(x,y) = x^2 + (y-y_data[i])^2 - Rd^2
+#     g(x,y) = x^2 + (y-y_mc[i])^2 - Rmc^2
+#     r = ((Le(f,0)) & (Ge(g,0)))
+#     t = string("Residual volume in intersection at z =", z_data[i])
+#     plot(r, xlabel = "x",
+#             xlims = (-3,3),
+#             xticks = -3:0.5:3,
+#             ylabel = "y",
+#             ylims = (-3,1.2),
+#             yticks = -3:0.5:3,
+#             title=t)
+#     plot!(xgif, ygif, label="Cut y=1.2")
+# end
+# gif(anim, "mygif.gif", fps = 3)
 
 println((total_Volume-intersection_Volume)/total_Volume)
