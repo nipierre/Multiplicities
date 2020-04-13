@@ -2090,7 +2090,7 @@ int main(int argc, char **argv)
   {
     cout << "ERROR : Not enough arguments." << endl;
     cout << "Asked : 3 *** Received : " << argc-1 << endl;
-    cout << "./compMCRD [RD filelist] [MC filelist] [Cutfile]" << endl;
+    cout << "./compRDRD [RD filelist 1] [RD filelist 2] [Cutfile]" << endl;
 
     return 1;
   }

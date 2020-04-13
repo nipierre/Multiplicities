@@ -1570,7 +1570,7 @@ int main(int argc, char **argv)
   {
     cout << "ERROR : Not enough arguments." << endl;
     cout << "Asked : 4 *** Received : " << argc-1 << endl;
-    cout << "./compMCMC [SIDIS filelist] [rho filelist] [phi filelist] [Cutfile]" << endl;
+    cout << "./DVM [SIDIS filelist] [rho filelist] [phi filelist] [Cutfile]" << endl;
 
     return 1;
   }
