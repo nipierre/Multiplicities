@@ -218,7 +218,7 @@ Takes the output of `analySIDIS_split`, computes the Multiplicities and stores/p
   - **`{}_acceptance_{}.pdf` for Hadron, Pion, Kaon, Proton and per Period**
   - **`{}_acceptance_corr_{}.pdf` for Hadron, Pion, Kaon, Proton and per Period**
 
-## [C++] compMult
+## [C++] compMult<a name="compMult" />
 
 **Call:**
 ```Bash
@@ -238,7 +238,7 @@ Pmin  3
 Pmax  40
 ```
 
-## [C++] compRDRD
+## [C++] compRDRD<a name="compRDRD" />
 
 **Call:**
 ```Bash
@@ -247,7 +247,7 @@ Pmax  40
 
 where `[CUTFILE]` is a file with kinematical cuts.
 
-## [C++] compMCRD
+## [C++] compMCRD<a name="compMCRD" />
 
 **Call:**
 ```Bash
@@ -256,7 +256,7 @@ where `[CUTFILE]` is a file with kinematical cuts.
 
 where `[CUTFILE]` is a file with kinematical cuts.
 
-## [C++] compMCMC
+## [C++] compMCMC<a name="compMCMC" />
 
 **Call:**
 ```Bash
@@ -265,7 +265,7 @@ where `[CUTFILE]` is a file with kinematical cuts.
 
 where `[CUTFILE]` is a file with kinematical cuts.
 
-## [C++] DVM
+## [C++] DVM<a name="DVM" />
 
 **Call:**
 ```Bash
@@ -274,7 +274,7 @@ where `[CUTFILE]` is a file with kinematical cuts.
 
 where `[CUTFILE]` is a file with kinematical cuts.
 
-## [C++] FFExtractor
+## [C++] FFExtractor<a name="FFExtractor" />
 
 **Call:**
 ```Bash
@@ -287,7 +287,7 @@ with `[OPTIONS]` being:
  - ```-kaon-4 [K+_PROT] [K-_PROT] [K+_DEUT] [K-_DEUT]```
  - ```-dummy-data [MULT_BASE_FILE]```
 
-## [C++] FFPlotter
+## [C++] FFPlotter<a name="FFPlotter" />
 
 **Call:**
 ```Bash
