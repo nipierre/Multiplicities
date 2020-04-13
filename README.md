@@ -2,7 +2,7 @@
 
 ## Building
 
- - MAKEFILE PHONY TARGETS:
+ MAKEFILE PHONY TARGETS:
   - `make`: builds all targets
   - `make analySIDIS`: builds the SIDIS analysis framework.
   - `make acceptance`: builds the acceptance analysis framework
