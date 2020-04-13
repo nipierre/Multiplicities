@@ -2,7 +2,10 @@
 
 using namespace std;
 
+//******************************************************************************
 //Inputs
+//******************************************************************************
+
 #define mat_RICH_2006_name "data/rich_mat_2006.txt"
 #define mat_RICH_2016_name "data/rich_mat_2016.txt"
 #define err_RICH_name "data/rich_mat_error.txt"
@@ -15,10 +18,16 @@ using namespace std;
 #define ElectronPiTheta "data/electron_pion_contamination_Theta.txt"
 #define ElectronPipT "data/electron_pion_contamination_pT.txt"
 
+//******************************************************************************
 //User dependant input
+//******************************************************************************
+
 #define data_path "/sps/compass/npierre"
 
+//******************************************************************************
 // Flags
+//******************************************************************************
+
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
@@ -36,7 +45,9 @@ using namespace std;
 #define SIRC 0
 #define RICH 1
 
+//******************************************************************************
 // Progress bar
+//******************************************************************************
 
 # define PBSTR "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 # define PBWIDTH 60
@@ -52,7 +63,9 @@ void printProgress(int event, int total)
     fflush (stdout);
 }
 
+//******************************************************************************
 // Fusion sort
+//******************************************************************************
 
 void fusion(Float_t* tab, Int_t beg1 , Int_t end1, Int_t end2)
 {
@@ -105,8 +118,9 @@ void fusionSort(Float_t* tab, Int_t len)
       fusionSort2(tab, 0, len-1);
 }
 
-
+//******************************************************************************
 // Target Management
+//******************************************************************************
 
 void InitTargetFile(string pfile)
 {
@@ -202,6 +216,10 @@ void LoadInclusiveRadiativeCorrection()
   }
   proton.close();
 }
+
+//******************************************************************************
+// RADIATIVE CORRECTION
+//******************************************************************************
 
 void LoadSemiInclusiveRadiativeCorrection()
 {
@@ -360,6 +378,10 @@ Float_t GetSemiInclusiveRadiativeCorrection(Float_t x, Float_t y, Float_t z)
   }
 }
 
+//******************************************************************************
+// ELECTRON CORRECTION
+//******************************************************************************
+
 void LoadElectronCorrection()
 {
   ifstream epi(ElectronPi);
@@ -446,6 +468,10 @@ void LoadElectronCorrection()
   epipT.close();
 
 }
+
+//******************************************************************************
+// RICH MATRICES
+//******************************************************************************
 
 void load_rich_mat_2006(string prich, string prich_err)
 {
@@ -1289,6 +1315,10 @@ void load_rich_mat_dummy(string prich, string prich_err)
   errRICH.close();
 }
 
+//******************************************************************************
+// LOG BINNING
+//******************************************************************************
+
 void BinLogX(TH1*h)
 {
    TAxis *axis = h->GetXaxis();
@@ -1322,6 +1352,10 @@ void BinLogY(TH1*h)
    axis->Set(bins, new_bins);
    delete new_bins;
 }
+
+//******************************************************************************
+// PLOT HANDLING
+//******************************************************************************
 
 void create_kin_plots()
 {
@@ -1629,6 +1663,10 @@ void save_kin_plots()
   c17.Print("kinSIDIS.pdf)","pdf");
 }
 
+//******************************************************************************
+// RESETTING CONTAINERS
+//******************************************************************************
+
 void resetValues()
 {
   for(int c=0; c<2; c++)
@@ -1674,6 +1712,10 @@ void resetValues()
     }
   }
 }
+
+//******************************************************************************
+// MAIN FUNCTION
+//******************************************************************************
 
 int main(int argc, char **argv)
 {

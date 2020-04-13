@@ -18,6 +18,10 @@
 
 #include "analySIDIS_collect.h"
 
+//******************************************************************************
+// INPUTS
+//******************************************************************************
+
 #define data_path "/sps/compass/npierre/Multiplicities"
 #define proton_sirc "data/proton_semi_inclusive_RC.txt"
 #define irc_qel "data/sigtot_RC_wqel.dat"
@@ -25,7 +29,10 @@
 #define DVM_2006 "data/DVM_2006.dat"
 #define DVM_2016 "data/DVM_2016.dat"
 
+//******************************************************************************
 // Flags
+//******************************************************************************
+
 #define Y2006 0
 #define Y2012 0
 #define Y2016 1
@@ -36,6 +43,10 @@
 #define STAGGERED 1
 
 using namespace std;
+
+//******************************************************************************
+// ACCEPTANCE
+//******************************************************************************
 
 void fetch_acceptance(string pname, int np)
 {
@@ -293,6 +304,10 @@ void dummy_acceptance()
   }
 }
 
+//******************************************************************************
+// RADIATIVE CORRECTIONS
+//******************************************************************************
+
 void LoadSemiInclusiveRadiativeCorrection()
 {
   string sdum;
@@ -398,6 +413,10 @@ Float_t GetSemiInclusiveRadiativeCorrection(int ch, int xb, int yb, int zb)
   }
 }
 
+//******************************************************************************
+// DIFFRACTIVE VECTOR MESONS
+//******************************************************************************
+
 void LoadDiffVectorMesonCorrection()
 {
   int x,y,z;
@@ -434,6 +453,10 @@ void LoadDiffVectorMesonCorrection()
             fDiffVectorMeson[0][i][j][k][l] = fDiffVectorMeson[1][i][j][k][l] = 1;
   }
 }
+
+//******************************************************************************
+// MULTIPLICITIES AVERAGING
+//******************************************************************************
 
 void yavg()
 {
@@ -608,6 +631,10 @@ void weight_meanvalues()
   }
 }
 
+//******************************************************************************
+// RESETTING VALUES
+//******************************************************************************
+
 void resetValues()
 {
   for(int c=0; c<2; c++)
@@ -631,6 +658,10 @@ void resetValues()
     }
   }
 }
+
+//******************************************************************************
+// RELATIVE DIFFERENCE
+//******************************************************************************
 
 Float_t RelDiff(int c, int x, int y, int z, int had)
 {
@@ -668,6 +699,10 @@ Float_t RelDiff_Err_yavg(int c, int x, int z, int had)
   return (ups ? Float_t((dnse+upse*dns/ups)/pow(ups,2)) : 0);
 }
 
+//******************************************************************************
+// TOTAL DIS AND HADRONS
+//******************************************************************************
+
 Float_t HadronTot(int c, int x, int y, int z, int h)
 {
   Float_t tot=0;
@@ -687,6 +722,10 @@ Float_t DISTot(int x, int y, int z, int h)
 
   return tot;
 }
+
+//******************************************************************************
+// MAIN
+//******************************************************************************
 
 int main(int argc, char **argv)
 {
@@ -711,6 +750,7 @@ int main(int argc, char **argv)
 
   float dummy;
 
+  // RICH SYS ERR
   for(int c=0; c<2; c++)
   {
     for(xbin=0; xbin<9; xbin++)
@@ -736,10 +776,12 @@ int main(int argc, char **argv)
     }
   }
 
+  // LOADING CORRECTIONS
   LoadSemiInclusiveRadiativeCorrection();
   LoadDiffVectorMesonCorrection();
   LoadQelCorr();
 
+  // READ COUNT FILES
   ifstream periods(argv[1]);
   string filelist, periodName;
   int periodBit;
@@ -754,6 +796,7 @@ int main(int argc, char **argv)
 
     cout << periodName << " ";
 
+    // LOAD ACCEPTANCE
     if(!NO_ACC)
     {
       fetch_acceptance(Form("acceptance/%d/acceptance_%s.txt",year,periodName.c_str()),fNumberPeriod-1);
@@ -767,6 +810,7 @@ int main(int argc, char **argv)
       dummy_acceptance();
     }
 
+    // LOAD DIS/HADRONS DATA
     ifstream dis_file(Form("rawmult/%d/DIS_%s.txt",year,periodName.c_str()));
     ifstream had_file(Form("rawmult/%d/hadron_%s.txt",year,periodName.c_str()));
     ifstream dis_zvtx_file(Form("rawmult/%d/DIS_zvtx_%s.txt",year,periodName.c_str()));
@@ -961,10 +1005,12 @@ int main(int argc, char **argv)
     resetValues();
   }
 
+  // WEIGHTING
   // if(YMULT == 3) ;
   weight_meanvalues();
   // if(YMULT == 3) compMultiplicitiesIntegratedY();
 
+  // LONG PLOTTING CODE
   TCanvas* c51;
   c51 = new TCanvas("Hadron_Multiplicities_plus","Hadron_Multiplicities_plus",3200,1600);
   TCanvas* c52;
